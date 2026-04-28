@@ -1,5 +1,32 @@
 {
-  "projects": [],
-  "complexity_trajectory": [],
-  "concepts_explored": []
+  "projects": [
+    {
+      "date": "2026-04-28",
+      "name": "basic-neural-net-trainer",
+      "repo_url": "https://github.com/dipeshrayg/2026-04-28-basic-neural-net-trainer",
+      "pages_url": "",
+      "language": "Python",
+      "tech_stack": [
+        "numpy"
+      ],
+      "complexity_score": 3,
+      "concepts_demonstrated": [
+        "neural networks",
+        "gradient descent",
+        "classification",
+        "backpropagation"
+      ],
+      "safety_notes": "N/A - pure utility",
+      "errors_encountered_count": 0
+    }
+  ],
+  "complexity_trajectory": [
+    3
+  ],
+  "concepts_explored": [
+    "neural networks",
+    "gradient descent",
+    "classification",
+    "backpropagation"
+  ]
 }
