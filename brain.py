@@ -335,6 +335,152 @@ def update_memory(memory: dict[str, Any], spec: dict[str, Any],
     save_memory(memory)
     log.info("Memory log updated.")
 
+# ---------- Dashboard rendering ----------------------------------------
+
+README_PATH = Path("README.md")
+INDEX_PATH = Path("index.html")
+
+
+def render_dashboard(memory: dict[str, Any], owner: str, repo: str = "autonomous-brain") -> None:
+    """Regenerate README.md and index.html from the current memory log."""
+    projects = list(reversed(memory.get("projects", [])))
+    total = len(projects)
+    avg = (sum(p.get("complexity_score", 0) for p in projects) / total) if total else 0
+    languages = sorted({p.get("language", "?") for p in projects})
+    latest = projects[0]["date"] if projects else "—"
+
+    # ---- README.md ----
+    rows = []
+    for p in projects[:30]:
+        concepts = ", ".join((p.get("concepts_demonstrated") or [])[:3])
+        pages = f" · [🌐 demo]({p['pages_url']})" if p.get("pages_url") else ""
+        rows.append(
+            f"| {p.get('date')} | [{p.get('name')}]({p.get('repo_url')}){pages} "
+            f"| {p.get('language')} | {p.get('complexity_score')}/10 | {concepts} |"
+        )
+    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — |"
+
+    readme = f"""# 🤖 Autonomous Brain
+
+A self-improving AI software-engineering pipeline. Every day at 06:00 UTC, a
+GitHub Action wakes up, asks an LLM (free GitHub Models) to design a brand-new
+project that's more advanced than yesterday's, generates the code, tests it,
+publishes it as a new repo, and remembers what it built.
+
+📊 **Live dashboard:** https://{owner}.github.io/{repo}/
+🔁 **Schedule:** daily 06:00 UTC · **Cost:** $0 · **Source:** [`brain.py`](brain.py)
+
+## Stats
+
+- **Total projects:** {total}
+- **Average complexity:** {avg:.1f} / 10
+- **Latest run:** {latest}
+- **Languages explored:** {', '.join(languages) if languages else '—'}
+
+## Latest creations
+
+| Date | Project | Lang | Complexity | Concepts |
+|------|---------|------|------------|----------|
+{table}
+
+---
+
+*Generated automatically by `brain.py`. All projects are educational/diagnostic
+and TOS-compliant. Last updated {latest}.*
+"""
+    README_PATH.write_text(readme, encoding="utf-8")
+    log.info("README.md regenerated (%d projects).", total)
+
+    # ---- index.html (Pages dashboard) ----
+    INDEX_PATH.write_text(_DASHBOARD_HTML, encoding="utf-8")
+    log.info("index.html regenerated.")
+
+
+_DASHBOARD_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autonomous Brain — Daily Creations</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+       max-width:1200px;margin:0 auto;padding:2rem 1rem;
+       background:#0d1117;color:#c9d1d9;line-height:1.5}
+  h1{color:#58a6ff;margin:0 0 .25rem;font-size:2rem}
+  .sub{color:#8b949e;margin:0 0 2rem}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+         gap:1rem;padding:1.25rem;background:#161b22;border:1px solid #30363d;
+         border-radius:8px;margin-bottom:2rem}
+  .stat-num{font-size:2rem;font-weight:700;color:#58a6ff;line-height:1}
+  .stat-label{font-size:.8rem;color:#8b949e;margin-top:.25rem;text-transform:uppercase;letter-spacing:.5px}
+  .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1.25rem;
+        transition:border-color .15s,transform .15s}
+  .card:hover{border-color:#58a6ff;transform:translateY(-2px)}
+  .card h3{margin:0 0 .5rem;font-size:1.05rem}
+  .card h3 a{color:#58a6ff;text-decoration:none}
+  .card h3 a:hover{text-decoration:underline}
+  .meta{font-size:.85rem;color:#8b949e;margin-bottom:.75rem}
+  .badge{display:inline-block;padding:2px 8px;border-radius:12px;background:#21262d;
+         font-size:.75rem;margin-right:4px;color:#c9d1d9}
+  .star{color:#f1c40f;font-weight:600}
+  .concepts{font-size:.85rem;color:#c9d1d9}
+  .demo{display:inline-block;margin-top:.75rem;font-size:.85rem;color:#3fb950;text-decoration:none}
+  .demo:hover{text-decoration:underline}
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #30363d;
+         color:#8b949e;font-size:.85rem;text-align:center}
+  footer a{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>🤖 Autonomous Brain</h1>
+<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.</p>
+
+<div class="stats">
+  <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
+  <div><div class="stat-num" id="avg">—</div><div class="stat-label">Avg complexity</div></div>
+  <div><div class="stat-num" id="langs">—</div><div class="stat-label">Languages</div></div>
+  <div><div class="stat-num" id="latest">—</div><div class="stat-label">Latest</div></div>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<footer>
+  Updates daily 06:00 UTC · <a href="memory_log.json">memory_log.json</a>
+</footer>
+
+<script>
+fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
+  const projects = (m.projects || []).slice().reverse();
+  document.getElementById('count').textContent = projects.length;
+  if (projects.length) {
+    const avg = projects.reduce((s,p)=>s+(p.complexity_score||0),0) / projects.length;
+    document.getElementById('avg').textContent = avg.toFixed(1);
+    document.getElementById('langs').textContent = new Set(projects.map(p=>p.language)).size;
+    document.getElementById('latest').textContent = projects[0].date;
+  }
+  const grid = document.getElementById('grid');
+  for (const p of projects) {
+    const c = document.createElement('div');
+    c.className = 'card';
+    const concepts = (p.concepts_demonstrated || []).slice(0,4).join(' · ');
+    c.innerHTML = `
+      <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
+      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}/10</span></div>
+      <div class="concepts">${concepts}</div>
+      ${p.pages_url ? `<a class="demo" href="${p.pages_url}" target="_blank" rel="noopener">🌐 Live demo →</a>` : ''}
+    `;
+    grid.appendChild(c);
+  }
+}).catch(e => {
+  document.getElementById('grid').innerHTML = '<p style="color:#f85149">Failed to load memory log: ' + e.message + '</p>';
+});
+</script>
+</body>
+</html>
+"""
+
 # ---------- Main -------------------------------------------------------
 
 def main() -> int:
@@ -389,6 +535,9 @@ def main() -> int:
     if pages_url:
         log.info("Pages:     %s", pages_url)
     update_memory(memory, spec, repo_url, pages_url, errors)
+
+    owner = Github(gh_token).get_user().login
+    render_dashboard(memory, owner=owner)
     return 0
 
 

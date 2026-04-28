@@ -1,16 +1,28 @@
-# Autonomous Brain
+# 🤖 Autonomous Brain
 
-A self-improving AI software-engineering pipeline. Every 24 hours a GitHub
-Action wakes up, asks an LLM (via the free GitHub Models API) to design a
-brand-new project that's more advanced than yesterday's, generates the code,
-tests it, publishes it as a new public repo (with Pages if applicable), and
-remembers what it built.
+A self-improving AI software-engineering pipeline. Every day at 06:00 UTC, a
+GitHub Action wakes up, asks an LLM (free GitHub Models) to design a brand-new
+project that's more advanced than yesterday's, generates the code, tests it,
+publishes it as a new repo, and remembers what it built.
 
-- **Schedule:** daily at 06:00 UTC (`.github/workflows/daily_build.yml`)
-- **Brain:** `brain.py`
-- **Memory:** `memory_log.json` (auto-updated by the bot)
-- **Retry cap:** 5 attempts/day
-- **Cost:** $0 (uses GitHub Models free tier)
+📊 **Live dashboard:** https://dipeshrayg.github.io/autonomous-brain/
+🔁 **Schedule:** daily 06:00 UTC · **Cost:** $0 · **Source:** [`brain.py`](brain.py)
 
-All generated projects are educational/diagnostic. The system prompt in
-`brain.py` enforces strict GitHub-TOS-compliant safety guardrails.
+## Stats
+
+- **Total projects:** 2
+- **Average complexity:** 4.0 / 10
+- **Latest run:** 2026-04-28
+- **Languages explored:** Python
+
+## Latest creations
+
+| Date | Project | Lang | Complexity | Concepts |
+|------|---------|------|------------|----------|
+| 2026-04-28 | [maze-solver-using-a-star](https://github.com/dipeshrayg/2026-04-28-maze-solver-using-a-star) | Python | 5/10 | A* search algorithm, heuristic optimization, graph traversal |
+| 2026-04-28 | [basic-neural-net-trainer](https://github.com/dipeshrayg/2026-04-28-basic-neural-net-trainer) | Python | 3/10 | neural networks, gradient descent, classification |
+
+---
+
+*Generated automatically by `brain.py`. All projects are educational/diagnostic
+and TOS-compliant. Last updated 2026-04-28.*

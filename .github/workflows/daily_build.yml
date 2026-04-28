@@ -39,15 +39,15 @@ jobs:
           GH_PAT:       ${{ secrets.GH_PAT }}
         run: python brain.py
 
-      - name: Commit memory log
+      - name: Commit memory log + dashboard
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add memory_log.json || true
+          git add memory_log.json README.md index.html 2>/dev/null || true
           if git diff --staged --quiet; then
-            echo "No memory changes to commit."
+            echo "Nothing to commit."
           else
-            git commit -m "chore: update memory log $(date -u +%Y-%m-%d)"
+            git commit -m "chore: daily update $(date -u +%Y-%m-%d)"
             git push
           fi

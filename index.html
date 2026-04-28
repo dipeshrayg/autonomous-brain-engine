@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autonomous Brain — Daily Creations</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+       max-width:1200px;margin:0 auto;padding:2rem 1rem;
+       background:#0d1117;color:#c9d1d9;line-height:1.5}
+  h1{color:#58a6ff;margin:0 0 .25rem;font-size:2rem}
+  .sub{color:#8b949e;margin:0 0 2rem}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+         gap:1rem;padding:1.25rem;background:#161b22;border:1px solid #30363d;
+         border-radius:8px;margin-bottom:2rem}
+  .stat-num{font-size:2rem;font-weight:700;color:#58a6ff;line-height:1}
+  .stat-label{font-size:.8rem;color:#8b949e;margin-top:.25rem;text-transform:uppercase;letter-spacing:.5px}
+  .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+  .card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:1.25rem;
+        transition:border-color .15s,transform .15s}
+  .card:hover{border-color:#58a6ff;transform:translateY(-2px)}
+  .card h3{margin:0 0 .5rem;font-size:1.05rem}
+  .card h3 a{color:#58a6ff;text-decoration:none}
+  .card h3 a:hover{text-decoration:underline}
+  .meta{font-size:.85rem;color:#8b949e;margin-bottom:.75rem}
+  .badge{display:inline-block;padding:2px 8px;border-radius:12px;background:#21262d;
+         font-size:.75rem;margin-right:4px;color:#c9d1d9}
+  .star{color:#f1c40f;font-weight:600}
+  .concepts{font-size:.85rem;color:#c9d1d9}
+  .demo{display:inline-block;margin-top:.75rem;font-size:.85rem;color:#3fb950;text-decoration:none}
+  .demo:hover{text-decoration:underline}
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #30363d;
+         color:#8b949e;font-size:.85rem;text-align:center}
+  footer a{color:#58a6ff}
+</style>
+</head>
+<body>
+<h1>🤖 Autonomous Brain</h1>
+<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.</p>
+
+<div class="stats">
+  <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
+  <div><div class="stat-num" id="avg">—</div><div class="stat-label">Avg complexity</div></div>
+  <div><div class="stat-num" id="langs">—</div><div class="stat-label">Languages</div></div>
+  <div><div class="stat-num" id="latest">—</div><div class="stat-label">Latest</div></div>
+</div>
+
+<div id="grid" class="grid"></div>
+
+<footer>
+  Updates daily 06:00 UTC · <a href="memory_log.json">memory_log.json</a>
+</footer>
+
+<script>
+fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
+  const projects = (m.projects || []).slice().reverse();
+  document.getElementById('count').textContent = projects.length;
+  if (projects.length) {
+    const avg = projects.reduce((s,p)=>s+(p.complexity_score||0),0) / projects.length;
+    document.getElementById('avg').textContent = avg.toFixed(1);
+    document.getElementById('langs').textContent = new Set(projects.map(p=>p.language)).size;
+    document.getElementById('latest').textContent = projects[0].date;
+  }
+  const grid = document.getElementById('grid');
+  for (const p of projects) {
+    const c = document.createElement('div');
+    c.className = 'card';
+    const concepts = (p.concepts_demonstrated || []).slice(0,4).join(' · ');
+    c.innerHTML = `
+      <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
+      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}/10</span></div>
+      <div class="concepts">${concepts}</div>
+      ${p.pages_url ? `<a class="demo" href="${p.pages_url}" target="_blank" rel="noopener">🌐 Live demo →</a>` : ''}
+    `;
+    grid.appendChild(c);
+  }
+}).catch(e => {
+  document.getElementById('grid').innerHTML = '<p style="color:#f85149">Failed to load memory log: ' + e.message + '</p>';
+});
+</script>
+</body>
+</html>
