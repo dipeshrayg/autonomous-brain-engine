@@ -17,10 +17,10 @@ publishes it as a new repo, and remembers what it built.
 
 ## Latest creations
 
-| Date | Project | Lang | Complexity | Concepts |
-|------|---------|------|------------|----------|
-| 2026-04-28 | [maze-solver-using-a-star](https://github.com/dipeshrayg/2026-04-28-maze-solver-using-a-star) | Python | 5/10 | A* search algorithm, heuristic optimization, graph traversal |
-| 2026-04-28 | [basic-neural-net-trainer](https://github.com/dipeshrayg/2026-04-28-basic-neural-net-trainer) | Python | 3/10 | neural networks, gradient descent, classification |
+| Date | Project | Lang | ★ | Concepts | Run |
+|------|---------|------|---|----------|-----|
+| 2026-04-28 | [maze-solver-using-a-star](https://github.com/dipeshrayg/2026-04-28-maze-solver-using-a-star) | Python | 5/10 | A* search algorithm, heuristic optimization, graph traversal | [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-maze-solver-using-a-star) |
+| 2026-04-28 | [basic-neural-net-trainer](https://github.com/dipeshrayg/2026-04-28-basic-neural-net-trainer) | Python | 3/10 | neural networks, gradient descent, classification | [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-basic-neural-net-trainer) |
 
 ---
 

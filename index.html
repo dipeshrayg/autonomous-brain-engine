@@ -28,8 +28,14 @@
          font-size:.75rem;margin-right:4px;color:#c9d1d9}
   .star{color:#f1c40f;font-weight:600}
   .concepts{font-size:.85rem;color:#c9d1d9}
-  .demo{display:inline-block;margin-top:.75rem;font-size:.85rem;color:#3fb950;text-decoration:none}
-  .demo:hover{text-decoration:underline}
+  .actions{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.4rem .75rem;border-radius:6px;font-size:.82rem;
+       text-decoration:none;border:1px solid #30363d;color:#c9d1d9;background:#21262d;
+       transition:border-color .15s,background .15s}
+  .btn:hover{border-color:#58a6ff}
+  .btn.primary{background:#238636;border-color:#2ea043;color:#fff;font-weight:600}
+  .btn.primary:hover{background:#2ea043;border-color:#3fb950}
+  .btn.ghost{background:transparent}
   footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #30363d;
          color:#8b949e;font-size:.85rem;text-align:center}
   footer a{color:#58a6ff}
@@ -37,7 +43,8 @@
 </head>
 <body>
 <h1>🤖 Autonomous Brain</h1>
-<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.</p>
+<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.<br>
+Click <b>▶ Run it</b> to play any project instantly in your browser, or <b>⚡ Codespaces</b> to open a free in-browser dev environment.</p>
 
 <div class="stats">
   <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
@@ -67,11 +74,17 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     const c = document.createElement('div');
     c.className = 'card';
     const concepts = (p.concepts_demonstrated || []).slice(0,4).join(' · ');
+    const ghPath = (p.repo_url || '').replace('https://github.com/', '');
+    const codespaces = ghPath ? `https://codespaces.new/${ghPath}` : '';
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
       <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}/10</span></div>
       <div class="concepts">${concepts}</div>
-      ${p.pages_url ? `<a class="demo" href="${p.pages_url}" target="_blank" rel="noopener">🌐 Live demo →</a>` : ''}
+      <div class="actions">
+        ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}
+        ${codespaces ? `<a class="btn" href="${codespaces}" target="_blank" rel="noopener">⚡ Codespaces</a>` : ''}
+        <a class="btn ghost" href="${p.repo_url}" target="_blank" rel="noopener">&lt;/&gt; Source</a>
+      </div>
     `;
     grid.appendChild(c);
   }

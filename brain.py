@@ -91,7 +91,14 @@ CODE RULES:
 - Pin dependency versions where reasonable.
 - Code must run as-is on a fresh Ubuntu 22.04 GitHub Actions runner (Python, Node, Go, Rust, gcc/g++, Java, .NET are pre-installed).
 - The full setup + test sequence must complete in under 5 minutes.
-- Set is_web_project=true only if an `index.html` at the repo root will render meaningfully under GitHub Pages.
+
+DEPLOYMENT REQUIREMENT — every project MUST be runnable from a single URL with zero installation:
+- DEFAULT to building the project in HTML + CSS + JavaScript with `index.html` at the repo root. Use Canvas, SVG, WebGL for visualizations; Web Audio for sound; small CDN libraries (p5.js, three.js, tone.js, tensorflow.js, d3.js, chart.js, etc.) where they help.
+- ALWAYS set is_web_project=true and include a working `index.html` at repo root that loads instantly when GitHub Pages serves it. The page must be self-contained (no build step) — use ES modules from CDN if you need them.
+- Algorithmic projects (mazes, sorts, graphs, neural nets, simulations, fractals, cellular automata, physics, music, raycasting, compression, crypto demos, etc.) translate beautifully to Canvas + JS — choose this style by default.
+- You may use a non-web language ONLY if you ALSO include a complete browser-runnable demo of the same idea in index.html. Treat the non-web code as supplementary reference, not the primary deliverable.
+- Test commands for web projects can be lightweight: `node -e "require('fs').readFileSync('index.html')"` or a small `puppeteer`/HTML validator script. Make sure tests reflect that the index.html is well-formed.
+- Vary the IDEAS, LIBRARIES, and DOMAINS across projects — the variety lives in what the project does, not what language it's written in.
 
 SIZE CONSTRAINT - your response budget is tight (~4000 output tokens):
 - Prefer 1-4 focused files over sprawling multi-file architectures.
@@ -353,12 +360,19 @@ def render_dashboard(memory: dict[str, Any], owner: str, repo: str = "autonomous
     rows = []
     for p in projects[:30]:
         concepts = ", ".join((p.get("concepts_demonstrated") or [])[:3])
-        pages = f" · [🌐 demo]({p['pages_url']})" if p.get("pages_url") else ""
+        gh_path = (p.get("repo_url") or "").replace("https://github.com/", "")
+        cs_url = f"https://codespaces.new/{gh_path}" if gh_path else ""
+        run_links = []
+        if p.get("pages_url"):
+            run_links.append(f"[▶ run]({p['pages_url']})")
+        if cs_url:
+            run_links.append(f"[⚡ codespaces]({cs_url})")
+        run_cell = " · ".join(run_links) if run_links else "—"
         rows.append(
-            f"| {p.get('date')} | [{p.get('name')}]({p.get('repo_url')}){pages} "
-            f"| {p.get('language')} | {p.get('complexity_score')}/10 | {concepts} |"
+            f"| {p.get('date')} | [{p.get('name')}]({p.get('repo_url')}) "
+            f"| {p.get('language')} | {p.get('complexity_score')}/10 | {concepts} | {run_cell} |"
         )
-    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — |"
+    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — | — |"
 
     readme = f"""# 🤖 Autonomous Brain
 
@@ -379,8 +393,8 @@ publishes it as a new repo, and remembers what it built.
 
 ## Latest creations
 
-| Date | Project | Lang | Complexity | Concepts |
-|------|---------|------|------------|----------|
+| Date | Project | Lang | ★ | Concepts | Run |
+|------|---------|------|---|----------|-----|
 {table}
 
 ---
@@ -426,8 +440,14 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
          font-size:.75rem;margin-right:4px;color:#c9d1d9}
   .star{color:#f1c40f;font-weight:600}
   .concepts{font-size:.85rem;color:#c9d1d9}
-  .demo{display:inline-block;margin-top:.75rem;font-size:.85rem;color:#3fb950;text-decoration:none}
-  .demo:hover{text-decoration:underline}
+  .actions{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
+  .btn{display:inline-block;padding:.4rem .75rem;border-radius:6px;font-size:.82rem;
+       text-decoration:none;border:1px solid #30363d;color:#c9d1d9;background:#21262d;
+       transition:border-color .15s,background .15s}
+  .btn:hover{border-color:#58a6ff}
+  .btn.primary{background:#238636;border-color:#2ea043;color:#fff;font-weight:600}
+  .btn.primary:hover{background:#2ea043;border-color:#3fb950}
+  .btn.ghost{background:transparent}
   footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #30363d;
          color:#8b949e;font-size:.85rem;text-align:center}
   footer a{color:#58a6ff}
@@ -435,7 +455,8 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
 </head>
 <body>
 <h1>🤖 Autonomous Brain</h1>
-<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.</p>
+<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.<br>
+Click <b>▶ Run it</b> to play any project instantly in your browser, or <b>⚡ Codespaces</b> to open a free in-browser dev environment.</p>
 
 <div class="stats">
   <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
@@ -465,11 +486,17 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     const c = document.createElement('div');
     c.className = 'card';
     const concepts = (p.concepts_demonstrated || []).slice(0,4).join(' · ');
+    const ghPath = (p.repo_url || '').replace('https://github.com/', '');
+    const codespaces = ghPath ? `https://codespaces.new/${ghPath}` : '';
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
       <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}/10</span></div>
       <div class="concepts">${concepts}</div>
-      ${p.pages_url ? `<a class="demo" href="${p.pages_url}" target="_blank" rel="noopener">🌐 Live demo →</a>` : ''}
+      <div class="actions">
+        ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}
+        ${codespaces ? `<a class="btn" href="${codespaces}" target="_blank" rel="noopener">⚡ Codespaces</a>` : ''}
+        <a class="btn ghost" href="${p.repo_url}" target="_blank" rel="noopener">&lt;/&gt; Source</a>
+      </div>
     `;
     grid.appendChild(c);
   }
