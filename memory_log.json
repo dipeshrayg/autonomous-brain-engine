@@ -18,15 +18,42 @@
       ],
       "safety_notes": "N/A - pure utility",
       "errors_encountered_count": 0
+    },
+    {
+      "date": "2026-04-28",
+      "name": "maze-solver-using-a-star",
+      "repo_url": "https://github.com/dipeshrayg/2026-04-28-maze-solver-using-a-star",
+      "pages_url": "",
+      "language": "Python",
+      "tech_stack": [
+        "numpy",
+        "matplotlib"
+      ],
+      "complexity_score": 5,
+      "concepts_demonstrated": [
+        "A* search algorithm",
+        "heuristic optimization",
+        "graph traversal",
+        "maze generation",
+        "visualization of pathfinding algorithms"
+      ],
+      "safety_notes": "N/A - pure utility.",
+      "errors_encountered_count": 2
     }
   ],
   "complexity_trajectory": [
-    3
+    3,
+    5
   ],
   "concepts_explored": [
     "neural networks",
     "gradient descent",
     "classification",
-    "backpropagation"
+    "backpropagation",
+    "A* search algorithm",
+    "heuristic optimization",
+    "graph traversal",
+    "maze generation",
+    "visualization of pathfinding algorithms"
   ]
 }
