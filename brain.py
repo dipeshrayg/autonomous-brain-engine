@@ -517,8 +517,19 @@ def main() -> int:
         log.error("GITHUB_TOKEN and GH_PAT environment variables are required.")
         return 2
 
-    client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
     memory = load_memory()
+
+    # Idempotency: if today already has a project AND this is a scheduled run,
+    # skip silently. The 18:17 UTC backup cron exists to catch missed primaries,
+    # not to double up. Manual workflow_dispatch always runs.
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    event = os.environ.get("GITHUB_EVENT_NAME", "")
+    already_done = any(p.get("date") == today for p in memory.get("projects", []))
+    if already_done and event == "schedule":
+        log.info("Today (%s) already has a project; scheduled run skipping.", today)
+        return 0
+
+    client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
     memory_summary = summarize_memory(memory)
 
     retry_context: str | None = None
