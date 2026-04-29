@@ -60,35 +60,12 @@
       ],
       "safety_notes": "N/A - pure utility. This project operates entirely within the user's browser, contains no network calls, and no external dependencies other than CDNs explicitly specified in the README. It is safe and educational.",
       "errors_encountered_count": 1
-    },
-    {
-      "date": "2026-04-29",
-      "name": "genetic-algorithm-visualizer",
-      "repo_url": "https://github.com/dipeshrayg/2026-04-29-genetic-algorithm-visualizer",
-      "pages_url": "https://dipeshrayg.github.io/2026-04-29-genetic-algorithm-visualizer/",
-      "language": "JavaScript",
-      "tech_stack": [
-        "D3.js",
-        "HTML Canvas",
-        "ES Modules"
-      ],
-      "complexity_score": 8,
-      "concepts_demonstrated": [
-        "Evolutionary algorithms",
-        "Genetic algorithm components (selection, crossover, mutation)",
-        "Fitness evaluation",
-        "Optimization problem solving",
-        "Interactive data visualization"
-      ],
-      "safety_notes": "N/A - pure utility",
-      "errors_encountered_count": 1
     }
   ],
   "complexity_trajectory": [
     3,
     5,
-    7,
-    8
+    7
   ],
   "concepts_explored": [
     "neural networks",
@@ -104,11 +81,6 @@
     "Collision detection",
     "Elastic collisions",
     "Dynamic rendering on HTML Canvas",
-    "Vector algebra and Newtonian mechanics",
-    "Evolutionary algorithms",
-    "Genetic algorithm components (selection, crossover, mutation)",
-    "Fitness evaluation",
-    "Optimization problem solving",
-    "Interactive data visualization"
+    "Vector algebra and Newtonian mechanics"
   ]
 }
