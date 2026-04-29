@@ -38,7 +38,7 @@ PLAN_SYSTEM = """You are the Chief Architect of an autonomous, daily software-cr
 
 ABSOLUTE CONSTRAINTS - non-negotiable:
 1. Comply strictly with GitHub TOS / Acceptable Use. No active malware, no exfiltration, no exploits against systems without consent. Security topics are educational/diagnostic only.
-2. The project MUST run in any modern browser by serving a single index.html via GitHub Pages — no install, no build step. Allowed runtimes: HTML+CSS+JavaScript, optionally WebGL/WebGPU/WASM/Web Audio.
+2. The project MUST run in any modern browser by serving a single index.html via GitHub Pages — no install, no build step. Allowed runtimes: HTML+CSS+JavaScript, Canvas 2D, SVG, optionally Web Audio. PREFER Canvas 2D over WebGL — the verifier runs in software-rendered headless Chromium where WebGL produces spurious GPU-stall warnings and is harder to debug. Only choose WebGL/WebGPU if the project genuinely needs 3D, custom shaders, or >50k particles, and even then include a clear visible fallback message if the context can't be created.
 3. HARD ADVANCEMENT (the most important rule):
    - complexity_score must be at least max(recent complexity scores) + 1, capped at 10. If recent max is 8, today is 9.
    - novel_concepts must contain AT LEAST TWO concepts not present in concepts_explored.
@@ -113,6 +113,8 @@ Find every:
 - Edge case: empty inputs, extreme values, very fast clicks, tab going to background.
 - Performance: O(n²) where O(n) works, allocs in hot loop, blocking main thread.
 - Polish: ugly defaults, missing dark mode, no transitions, unprofessional typography.
+
+DO NOT obsess over: GPU/WebGL performance warnings (e.g. "GL_CLOSE_PATH_NV", "GPU stall"), favicon 404s, autoplay policy hints. These are environmental noise, not bugs.
 
 OUTPUT - single JSON:
 {

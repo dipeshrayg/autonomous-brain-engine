@@ -45,7 +45,7 @@ import dashboard
 GH_MODELS_BASE_URL = "https://models.inference.ai.azure.com"
 MODEL = "gpt-4o"
 
-MAX_QUALITY_CYCLES = 3       # critique+fix iterations
+MAX_QUALITY_CYCLES = 4       # critique+fix iterations
 TEST_TIMEOUT_SECONDS = 300
 
 MEMORY_LOG_PATH = Path("memory_log.json")

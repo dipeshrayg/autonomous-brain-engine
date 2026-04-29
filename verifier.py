@@ -28,6 +28,21 @@ from typing import Any, Iterator
 
 log = logging.getLogger("brain.verifier")
 
+# Substrings that indicate noise, not real bugs. Filtered from both
+# console errors and warnings. Examples: WebGL software-renderer stalls,
+# autoplay policy hints, etc.
+_NOISE_PATTERNS = (
+    "GL_CLOSE_PATH_NV",
+    "GPU stall due to ReadPixels",
+    "WEBGL_lose_context",
+    "play() failed because the user didn't interact",
+    "favicon.ico",
+)
+
+
+def _is_noise(text: str) -> bool:
+    return any(p in text for p in _NOISE_PATTERNS)
+
 
 @contextmanager
 def static_server(directory: Path) -> Iterator[int]:
@@ -126,14 +141,27 @@ def verify_web(workspace: Path, timeout: int = 30) -> dict[str, Any]:
             ctx = browser.new_context(viewport={"width": 1280, "height": 800})
             page = ctx.new_page()
 
-            page.on("console", lambda m: (
-                errors.append(f"[console.{m.type}] {m.text[:300]}")
-                if m.type in ("error", "warning") else None
-            ))
-            page.on("pageerror", lambda e: errors.append(f"[pageerror] {str(e)[:400]}"))
-            page.on("requestfailed", lambda req: errors.append(
-                f"[requestfailed] {req.url} - {req.failure}"
-            ))
+            def _on_console(m):
+                # Only console.error counts as an error. Warnings are noisy.
+                if m.type != "error":
+                    return
+                if _is_noise(m.text):
+                    return
+                errors.append(f"[console.error] {m.text[:300]}")
+
+            def _on_pageerror(e):
+                if _is_noise(str(e)):
+                    return
+                errors.append(f"[pageerror] {str(e)[:400]}")
+
+            def _on_requestfailed(req):
+                if _is_noise(req.url):
+                    return
+                errors.append(f"[requestfailed] {req.url} - {req.failure}")
+
+            page.on("console", _on_console)
+            page.on("pageerror", _on_pageerror)
+            page.on("requestfailed", _on_requestfailed)
 
             try:
                 page.goto(
