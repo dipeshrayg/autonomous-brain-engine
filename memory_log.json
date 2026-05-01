@@ -161,6 +161,54 @@
         "viewportMeta": true,
         "hasMain": true
       }
+    },
+    {
+      "date": "2026-05-01",
+      "name": "multi-agent-systems-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-01-multi-agent-systems-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-01-multi-agent-systems-simulator/",
+      "language": "JavaScript",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Canvas 2D",
+        "Chart.js (https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.js)"
+      ],
+      "complexity_score": 10,
+      "concepts_demonstrated": [
+        "Emergent behavior in multi-agent systems",
+        "Swarm intelligence and flocking behavior",
+        "Dynamic obstacle avoidance",
+        "Real-time charting with Chart.js",
+        "Interactive simulation control"
+      ],
+      "novel_concepts": [
+        "Emergent behavior in multi-agent systems",
+        "Swarm intelligence and flocking behavior"
+      ],
+      "advancement_axis": "This project advances both in algorithmic depth by implementing emergent behavior and swarm intelligence, and in interactivity by incorporating real-time metrics using a new library (Chart.js). It also handles more complex real-time interactions than previous projects.",
+      "safety_notes": "The project involves no security risks, as it runs entirely in the user's browser and does not involve any network requests or data storage.",
+      "file_count": 7,
+      "loc": 847,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 119,
+        "bodyHtml": 1275,
+        "canvasCount": 2,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 5,
+        "title": "Multi-Agent Systems Simulator",
+        "viewportMeta": true,
+        "hasMain": true
+      }
     }
   ],
   "complexity_trajectory": [
@@ -168,7 +216,8 @@
     5,
     7,
     8,
-    9
+    9,
+    10
   ],
   "concepts_explored": [
     "neural networks",
@@ -196,6 +245,11 @@
     "Rule-based simulation",
     "Dynamic visualization",
     "Real-time interactivity",
-    "File export functionality"
+    "File export functionality",
+    "Emergent behavior in multi-agent systems",
+    "Swarm intelligence and flocking behavior",
+    "Dynamic obstacle avoidance",
+    "Real-time charting with Chart.js",
+    "Interactive simulation control"
   ]
 }
