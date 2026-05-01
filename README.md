@@ -1,6 +1,6 @@
 # 🤖 Autonomous Brain
 
-A self-improving AI software-engineering pipeline. Every day at 06:17 UTC, a
+A self-improving software-engineering pipeline. Every day at 06:17 UTC, a
 GitHub Action wakes up, asks an LLM (free GitHub Models) to design a brand-new
 browser-runnable project that's more advanced than yesterday's. The pipeline:
 
