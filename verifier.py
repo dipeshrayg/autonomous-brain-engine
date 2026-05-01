@@ -272,6 +272,22 @@ def verify_web(workspace: Path, timeout: int = 30) -> dict[str, Any]:
     cs = metrics.get("canvasSize") or {}
     if cs.get("cssW") == 0 or cs.get("cssH") == 0:
         issues.append("Canvas has 0 CSS size — set width/height in CSS or attributes.")
+    # Runaway-canvas detection: a canvas taller than ~5000px or wider than ~5000px
+    # almost certainly means an unbounded resize/append loop. Real interactive
+    # canvases stay within viewport bounds.
+    cw, ch = (cs.get("w") or 0), (cs.get("h") or 0)
+    if cw > 5000 or ch > 5000:
+        issues.append(
+            f"Canvas dimensions are runaway ({cw}x{ch}) — almost certainly an "
+            "unbounded resize loop. Constrain canvas.width/canvas.height to fixed "
+            "values or to clientWidth/clientHeight, and only resize on explicit events."
+        )
+    cssW, cssH = (cs.get("cssW") or 0), (cs.get("cssH") or 0)
+    if cssH > 4000:
+        issues.append(
+            f"Canvas CSS height is {cssH}px — set max-height or height: 100% with a "
+            "constrained parent so the page doesn't scroll thousands of pixels."
+        )
     ic = metrics.get("interactiveCount", 0)
     if ic == 0:
         issues.append("Page has zero interactive controls. Add at least 3 user controls (buttons / sliders / selects) so the visitor can experiment with parameters.")
