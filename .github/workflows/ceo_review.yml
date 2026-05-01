@@ -1,0 +1,57 @@
+name: CEO Review
+
+# The CEO meta-watchdog. Runs every 6 hours, examines the trajectory of recent
+# projects, and writes strict directives that the next plan stage must obey.
+# This is the layer ABOVE the per-project pipeline — it watches the watchdog.
+
+on:
+  schedule:
+    - cron: "11 1 * * *"       # 01:11 UTC
+    - cron: "11 7 * * *"       # 07:11 UTC
+    - cron: "11 13 * * *"      # 13:11 UTC
+    - cron: "11 19 * * *"      # 19:11 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write              # commit ceo_reviews back to memory_log.json
+
+concurrency:
+  group: ceo-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout master repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai>=1.30.0
+
+      - name: Run CEO review
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python executive.py
+
+      - name: Commit CEO review
+        if: always()
+        run: |
+          git config user.name  "ceo-bot[autonomous-brain]"
+          git config user.email "ceo-bot@users.noreply.github.com"
+          git add memory_log.json 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No CEO review to commit."
+          else
+            git commit -m "ceo: review @ $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi

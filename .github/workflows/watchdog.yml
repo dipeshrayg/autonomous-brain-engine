@@ -47,31 +47,46 @@ jobs:
 
           today=$(date -u +%Y-%m-%d)
           hour=$(date -u +%H)
-          # Strip leading zero so arithmetic doesn't break on hours like 08, 09.
           hour=$((10#$hour))
+          now_unix=$(date -u +%s)
           echo "Watchdog tick: $today ${hour}:xx UTC"
 
           has_today=$(jq -r --arg t "$today" '[.projects[] | select(.date == $t)] | length' memory_log.json)
-          echo "Projects shipped today: $has_today / 2"
+          echo "Projects shipped today: $has_today / 5 (hard cap)"
 
-          # TWO-PROJECT DAY targets:
-          #   00-01 UTC quiet hours
-          #   02-13 UTC: target = 1 (morning project)
-          #   14-22 UTC: target = 2 (afternoon project too)
-          #   23 UTC quiet (let new day take over)
-          if [ "$hour" -ge 23 ] || [ "$hour" -lt 2 ]; then
-            target=0
-          elif [ "$hour" -ge 14 ]; then
-            target=2
-          else
-            target=1
-          fi
-
-          if [ "$has_today" -ge "$target" ]; then
-            echo "✓ Satisfied: $has_today >= target $target for hour $hour."
+          if [ "$has_today" -ge 5 ]; then
+            echo "✓ Daily cap reached. No further dispatches today."
             exit 0
           fi
-          echo "↻ Below target ($has_today < $target). Considering dispatch."
+
+          # 5-HOUR SPACING POLICY:
+          # The autonomous goal is a new project every 5 hours. So the watchdog
+          # only force-dispatches if the most recent project completed >= 5h ago.
+          last_unix=$(jq -r '.projects | map(.completed_at_unix // 0) | last // 0' memory_log.json)
+          if [ -z "$last_unix" ] || [ "$last_unix" = "null" ]; then last_unix=0; fi
+          if [ "$last_unix" -gt 0 ]; then
+            elapsed_h=$(( (now_unix - last_unix) / 3600 ))
+            echo "Last project completed_at_unix=$last_unix; elapsed ${elapsed_h}h."
+            if [ "$elapsed_h" -lt 5 ]; then
+              echo "✓ Last project was ${elapsed_h}h ago (< 5h). Holding."
+              exit 0
+            fi
+          else
+            echo "No completed_at_unix in ledger (legacy entries). Falling back to date-only check."
+            if [ "$has_today" -ge 1 ] && [ "$hour" -lt 14 ]; then
+              echo "✓ Today already has a project and we're pre-14:00 UTC. Holding."
+              exit 0
+            fi
+          fi
+
+          # Quiet hours: don't dispatch in the late-night sliver to allow the
+          # new UTC day's first scheduled cron to take precedence.
+          if [ "$hour" -ge 23 ] || [ "$hour" -lt 2 ]; then
+            echo "Quiet hours (23-02 UTC). No action."
+            exit 0
+          fi
+
+          echo "↻ Eligible for dispatch (today=$has_today/5, elapsed since last >= 5h)."
 
           # Don't pile on if a daily_build is already running or queued.
           active=$(gh run list \

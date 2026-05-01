@@ -68,6 +68,21 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
          font-size:.75rem;margin-right:4px;color:#c9d1d9}
   .badge.pattern{background:#1f3a5f;color:#79c0ff}
   .badge.domain{background:#3d2f1f;color:#ffa657}
+  .badge.model{background:#2d1b4d;color:#d2a8ff;font-family:ui-monospace,Menlo,monospace;font-size:.7rem}
+  .ceo-ribbon{background:linear-gradient(135deg,#1c2333 0%,#2d1b4d 100%);
+              border:1px solid #58a6ff;border-radius:10px;padding:1.25rem;margin-bottom:1.5rem}
+  .ceo-head{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-bottom:.5rem}
+  .ceo-tag{display:inline-block;padding:.15rem .6rem;background:#58a6ff;color:#0d1117;
+           font-weight:700;font-size:.75rem;border-radius:4px;letter-spacing:.5px}
+  .ceo-verdict{font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:1px}
+  .ceo-verdict.thriving{color:#3fb950}
+  .ceo-verdict.acceptable{color:#79c0ff}
+  .ceo-verdict.drifting{color:#f1c40f}
+  .ceo-verdict.alarming{color:#f85149}
+  .ceo-meta{font-size:.8rem;color:#8b949e;margin-left:auto}
+  .ceo-body{color:#c9d1d9;font-size:.95rem;margin:.5rem 0;line-height:1.5}
+  .ceo-directives{margin:.5rem 0 0;padding-left:1.25rem;color:#c9d1d9;font-size:.9rem}
+  .ceo-directives li{margin-bottom:.25rem}
   .star{color:#f1c40f;font-weight:600}
   .concepts{font-size:.85rem;color:#c9d1d9}
   .actions{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
@@ -85,13 +100,24 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
 </head>
 <body>
 <h1>🤖 Autonomous Brain</h1>
-<p class="sub">An self improving software-engineer that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.<br>
-Click <b>▶ Run it</b> to play any project instantly in your browser, or <b>⚡ Codespaces</b> to open a free in-browser dev environment.<br> I, Dipesh Ray believes this is just the smallest concept what AI is truely capabel of. It can simply be given Consciousness.</p>
+<p class="sub">A boardroom of LLMs — a CEO, a Chief Architect, a council of engineers and reviewers — that designs, codes, tests, and ships a new browser project every five hours. Free on GitHub Actions + GitHub Models.<br>
+Click <b>▶ Run it</b> to play any project instantly in your browser, or <b>⚡ Codespaces</b> for an in-browser dev environment.<br>
+I, Dipesh Ray, believe this is just the smallest concept of what AI is truly capable of. It can simply be given consciousness.</p>
+
+<div id="ceo-ribbon" class="ceo-ribbon" style="display:none">
+  <div class="ceo-head">
+    <span class="ceo-tag">CEO</span>
+    <span class="ceo-verdict" id="ceo-verdict"></span>
+    <span class="ceo-meta" id="ceo-meta"></span>
+  </div>
+  <div class="ceo-body" id="ceo-summary"></div>
+  <ul class="ceo-directives" id="ceo-directives"></ul>
+</div>
 
 <div class="stats">
   <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
   <div><div class="stat-num" id="avg">—</div><div class="stat-label">Avg complexity</div></div>
-  <div><div class="stat-num" id="langs">—</div><div class="stat-label">Languages</div></div>
+  <div><div class="stat-num" id="peak">—</div><div class="stat-label">Peak ★</div></div>
   <div><div class="stat-num" id="latest">—</div><div class="stat-label">Latest</div></div>
 </div>
 
@@ -106,8 +132,27 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
   if (projects.length) {
     const avg = projects.reduce((s,p)=>s+(p.complexity_score||0),0) / projects.length;
     document.getElementById('avg').textContent = avg.toFixed(1);
-    document.getElementById('langs').textContent = new Set(projects.map(p=>p.language)).size;
+    document.getElementById('peak').textContent = Math.max(...projects.map(p => p.complexity_score || 0));
     document.getElementById('latest').textContent = projects[0].date;
+  }
+  // CEO ribbon
+  const ceoReviews = (m.ceo_reviews || []);
+  if (ceoReviews.length) {
+    const last = ceoReviews[ceoReviews.length - 1];
+    document.getElementById('ceo-ribbon').style.display = 'block';
+    const v = document.getElementById('ceo-verdict');
+    v.textContent = last.verdict || '—';
+    v.className = 'ceo-verdict ' + (last.verdict || 'acceptable');
+    document.getElementById('ceo-meta').textContent =
+      `${last.issued_at || ''} · ${last.model || ''}`;
+    document.getElementById('ceo-summary').textContent = last.summary || '';
+    const ul = document.getElementById('ceo-directives');
+    ul.innerHTML = '';
+    for (const d of (last.directives || [])) {
+      const li = document.createElement('li');
+      li.textContent = d;
+      ul.appendChild(li);
+    }
   }
   const grid = document.getElementById('grid');
   for (const p of projects) {
@@ -118,10 +163,12 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     const codespaces = ghPath ? `https://codespaces.new/${ghPath}` : '';
     const patternBadge = p.pattern ? `<span class="badge pattern">${p.pattern}</span>` : '';
     const domainBadge = p.domain ? `<span class="badge domain">${p.domain}</span>` : '';
+    const planModel = p.model_attribution && p.model_attribution.plan_judge;
+    const modelBadge = planModel ? `<span class="badge model">plan: ${planModel}</span>` : '';
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
       <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span></div>
-      <div class="meta">${patternBadge}${domainBadge}</div>
+      <div class="meta">${patternBadge}${domainBadge}${modelBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">
         ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}
@@ -162,11 +209,30 @@ def render_dashboard(memory: dict[str, Any], owner: str,
         run_cell = " · ".join(run_links) if run_links else "—"
         pattern = p.get("pattern", "—")
         domain = p.get("domain", "—")
+        plan_model = (p.get("model_attribution") or {}).get("plan_judge", "—")
         rows.append(
             f"| {p.get('date')} | [{p.get('name')}]({p.get('repo_url')}) "
-            f"| {p.get('language')} | {p.get('complexity_score')} | {pattern} | {domain} | {concepts} | {run_cell} |"
+            f"| {p.get('language')} | {p.get('complexity_score')} | {pattern} | {domain} "
+            f"| {plan_model} | {concepts} | {run_cell} |"
         )
-    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — | — | — | — |"
+    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — | — | — | — | — |"
+
+    # CEO board summary
+    ceo_block = ""
+    ceo_reviews = memory.get("ceo_reviews", []) or []
+    if ceo_reviews:
+        last = ceo_reviews[-1]
+        ceo_block = (
+            f"\n## Latest CEO review\n\n"
+            f"**Verdict:** `{last.get('verdict','?')}` — _issued {last.get('issued_at','?')} by {last.get('model','?')}_\n\n"
+            f"> {last.get('summary','(no summary)')}\n\n"
+            + ("**Active directives** (architect must obey):\n"
+               + "\n".join(f"- {d}" for d in last.get('directives', [])) + "\n\n"
+               if last.get('directives') else "")
+            + ("**Concerns:**\n"
+               + "\n".join(f"- {c}" for c in last.get('concerns', [])) + "\n\n"
+               if last.get('concerns') else "")
+        )
 
     readme = (
         f"# 🤖 Autonomous Brain\n\n"
@@ -193,9 +259,20 @@ def render_dashboard(memory: dict[str, Any], owner: str,
         f"- **Patterns used recently:** {', '.join(_recent_unique([p.get('pattern') for p in projects], 6)) or '—'}\n"
         f"- **Domains explored:** {', '.join(_recent_unique([p.get('domain') for p in projects], 8)) or '—'}\n\n"
         f"## Latest creations\n\n"
-        f"| Date | Project | Lang | ★ | Pattern | Domain | Concepts | Run |\n"
-        f"|------|---------|------|---|---------|--------|----------|-----|\n"
-        f"{table}\n\n"
+        f"| Date | Project | Lang | ★ | Pattern | Domain | Plan model | Concepts | Run |\n"
+        f"|------|---------|------|---|---------|--------|------------|----------|-----|\n"
+        f"{table}\n"
+        f"{ceo_block}"
+        f"\n## The boardroom\n\n"
+        f"This system runs as a hierarchy of LLMs with distinct roles, not a single model:\n\n"
+        f"- **CEO** (`gpt-4o`) — runs every 6 hours, reviews recent trajectory, issues strict directives the architect must obey. See above.\n"
+        f"- **VP Engineering** (the watchdog) — fires every 15 minutes, dispatches builds when the system is below target.\n"
+        f"- **Chief Architect — Judge** (`gpt-4o`) — synthesizes the candidate plans into the final design.\n"
+        f"- **Architect Candidates** (`Mistral-Large` + `Llama-3.1-70B`) — propose plans in parallel.\n"
+        f"- **Engineers** (`gpt-4o`) — implement files, one LLM call per file.\n"
+        f"- **Code Reviewers** (`Mistral-Large` + `Llama-3.1-70B`) — critique in parallel; results merged.\n"
+        f"- **Fixer / Polisher** (`gpt-4o-mini`) — applies fixes and the final polish pass.\n"
+        f"- **QA** (Playwright + Chromium) — mechanical headless-browser verification before publish.\n\n"
         f"---\n\n"
         f"*Generated automatically by `brain.py`. All projects are educational/diagnostic\n"
         f"and TOS-compliant. Last updated {latest}.*\n"

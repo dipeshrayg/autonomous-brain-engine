@@ -39,14 +39,16 @@ from openai import OpenAI
 import pipeline
 import verifier
 import dashboard
+import executive
 
 # ─────────────────────── Configuration ──────────────────────────────────
 
 GH_MODELS_BASE_URL = "https://models.inference.ai.azure.com"
-MODEL = "gpt-4o"
 
-MAX_QUALITY_CYCLES = 8       # critique+fix iterations
+MAX_QUALITY_CYCLES = 8        # critique+fix iterations
 TEST_TIMEOUT_SECONDS = 300
+MAX_PROJECTS_PER_DAY = 5      # cap for runaway-loop protection
+MIN_HOURS_BETWEEN_PROJECTS = 5  # 5h spacing per user spec; manual_dispatch overrides
 
 MEMORY_LOG_PATH = Path("memory_log.json")
 WORKSPACE = Path("workspace")
@@ -73,11 +75,34 @@ def save_memory(memory: dict[str, Any]) -> None:
         f.write("\n")
 
 
+def _last_project_unix(memory: dict[str, Any]) -> float | None:
+    """Unix timestamp of the most-recent project's completion, or None."""
+    projects = memory.get("projects", []) or []
+    if not projects:
+        return None
+    last = projects[-1]
+    if "completed_at_unix" in last:
+        return float(last["completed_at_unix"])
+    # Backwards compat: parse the date string and assume mid-day UTC.
+    date = last.get("date")
+    if not date:
+        return None
+    try:
+        dt = datetime.strptime(date, "%Y-%m-%d").replace(tzinfo=timezone.utc, hour=12)
+        return dt.timestamp()
+    except ValueError:
+        return None
+
+
 def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
                   repo_url: str, pages_url: str, cycles: int,
-                  verify_result: dict) -> None:
+                  verify_result: dict, model_per_file: dict[str, str],
+                  ceo_directives: list[str] | None) -> None:
+    now = datetime.now(timezone.utc)
     record = {
-        "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "date": now.strftime("%Y-%m-%d"),
+        "completed_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "completed_at_unix": int(now.timestamp()),
         "name": plan["name"],
         "repo_url": repo_url,
         "pages_url": pages_url,
@@ -95,6 +120,14 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
         "loc": sum(c.count("\n") + 1 for c in files.values()),
         "quality_cycles_used": cycles,
         "final_verify_metrics": verify_result.get("metrics", {}),
+        # Multi-model attribution
+        "model_attribution": {
+            "plan_judge": plan.get("__model__", "?"),
+            "plan_candidates": plan.get("__candidate_models__", []),
+            "candidates_considered": plan.get("__candidates_considered__", 1),
+            "implement_per_file": model_per_file,
+        },
+        "ceo_directives_followed": list(ceo_directives or []),
     }
     memory.setdefault("projects", []).append(record)
     memory.setdefault("complexity_trajectory", []).append(record["complexity_score"])
@@ -107,8 +140,9 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
     if record["domain"]:
         memory.setdefault("domains_used", []).append(record["domain"])
     save_memory(memory)
-    log.info("Memory updated: project #%d (pattern=%s, domain=%s).",
-             len(memory["projects"]), record["pattern"], record["domain"])
+    log.info("Memory updated: project #%d (pattern=%s, domain=%s, plan_model=%s).",
+             len(memory["projects"]), record["pattern"], record["domain"],
+             record["model_attribution"]["plan_judge"])
 
 
 # ─────────────────────── Workspace ──────────────────────────────────────
@@ -240,35 +274,38 @@ def enable_pages(full_name: str, owner: str, name: str, gh_token: str) -> str:
 
 # ─────────────────────── Quality loop ───────────────────────────────────
 
-def implement_all(client: OpenAI, plan: dict) -> dict[str, str]:
-    """Generate every file in the plan, in order."""
+def implement_all(client: OpenAI, plan: dict) -> tuple[dict[str, str], dict[str, str]]:
+    """Generate every file in the plan, in order. Returns (files, model_per_file)."""
     files: dict[str, str] = {}
+    model_per_file: dict[str, str] = {}
     for fs in plan["files"]:
         log.info("IMPLEMENT %s", fs["path"])
-        path, content = pipeline.stage_implement(client, MODEL, plan, fs, files)
+        path, content, meta = pipeline.stage_implement(client, plan, fs, files)
         files[path] = content
+        model_per_file[path] = meta.get("model", "?")
     log.info("Implemented %d file(s) totalling %d chars.",
              len(files), sum(len(c) for c in files.values()))
-    return files
+    return files, model_per_file
 
 
 def quality_loop(client: OpenAI, plan: dict, files: dict[str, str],
                  target: Path) -> tuple[dict[str, str], int, dict]:
-    """Verify -> critique -> fix; loop until clean or budget exhausted."""
+    """Verify -> critique-conference -> fix; loop until clean or budget exhausted."""
     materialize(files, target)
     verify = verify_project(plan, target)
     cycles = 0
     last_verify = verify
 
     for cycle in range(1, MAX_QUALITY_CYCLES + 1):
-        # Combine mechanical + semantic feedback.
-        log.info("CRITIQUE cycle %d (browser issues=%d, errors=%d)",
+        log.info("CRITIQUE conference cycle %d (browser issues=%d, errors=%d)",
                  cycle, len(verify.get("issues", [])), len(verify.get("errors", [])))
-        critique = pipeline.stage_critique(client, MODEL, plan, files, verify)
+        critique = pipeline.stage_critique(client, plan, files, verify)
         verdict = critique.get("verdict", "fix")
         must_fix = critique.get("must_fix") or []
-        log.info("Critique verdict=%s, must_fix=%d, summary=%s",
-                 verdict, len(must_fix), critique.get("summary", "")[:200])
+        reviews = critique.get("_reviews", [])
+        log.info("Critique conference verdict=%s, merged must_fix=%d, reviewers=%s",
+                 verdict, len(must_fix),
+                 [f"{r.get('model')}:{r.get('verdict')}" for r in reviews])
 
         all_issues: list[str] = []
         all_issues.extend(verify.get("errors", []))
@@ -276,8 +313,9 @@ def quality_loop(client: OpenAI, plan: dict, files: dict[str, str],
         for item in must_fix:
             if isinstance(item, dict):
                 f = item.get("file", "")
+                src = item.get("raised_by", "?")
                 msg = f"{item.get('issue', '')}  -- suggestion: {item.get('suggestion', '')}"
-                all_issues.append(f"[{f}] {msg}")
+                all_issues.append(f"[{f}] (from {src}) {msg}")
 
         if verdict == "ship" and not all_issues:
             log.info("Critique says SHIP and zero issues - quality loop done.")
@@ -288,7 +326,7 @@ def quality_loop(client: OpenAI, plan: dict, files: dict[str, str],
             return files, cycles, verify
 
         log.info("FIX cycle %d - %d issue(s) to address.", cycle, len(all_issues))
-        updates = pipeline.stage_fix(client, MODEL, plan, files, all_issues)
+        updates = pipeline.stage_fix(client, plan, files, all_issues)
         if not updates:
             log.warning("Fix returned zero updates; giving up on this cycle.")
             break
@@ -299,7 +337,6 @@ def quality_loop(client: OpenAI, plan: dict, files: dict[str, str],
         last_verify = verify
         cycles = cycle
 
-        # Early exit: if browser verify is now clean AND critique was non-blocking.
         if not verify.get("errors") and not verify.get("issues"):
             log.info("Browser verify is clean after cycle %d.", cycle)
             return files, cycles, verify
@@ -319,43 +356,66 @@ def main() -> int:
 
     memory = load_memory()
 
-    # Idempotency: scheduled runs skip if today already has 2 projects (the
-    # daily cap). Manual workflow_dispatch always runs so the user can force
+    # Idempotency for scheduled / watchdog runs:
+    #   - Skip if today already has MAX_PROJECTS_PER_DAY projects (hard cap).
+    #   - Skip if the most-recent project is < MIN_HOURS_BETWEEN_PROJECTS old.
+    # Manual workflow_dispatch overrides both checks so the user can force
     # extra creations on demand.
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    now = datetime.now(timezone.utc)
+    today = now.strftime("%Y-%m-%d")
     event = os.environ.get("GITHUB_EVENT_NAME", "")
     today_count = sum(1 for p in memory.get("projects", []) if p.get("date") == today)
-    if event == "schedule" and today_count >= 2:
-        log.info("Today (%s) already has %d projects; scheduled run skipping.", today, today_count)
-        return 0
-    log.info("Today (%s) has %d/2 projects so far. Building project #%d.",
-             today, today_count, today_count + 1)
+
+    if event == "schedule":
+        if today_count >= MAX_PROJECTS_PER_DAY:
+            log.info("Today (%s) has %d/%d projects; scheduled run skipping.",
+                     today, today_count, MAX_PROJECTS_PER_DAY)
+            return 0
+        # Spacing check
+        last_ts = _last_project_unix(memory)
+        if last_ts is not None:
+            hours_since = (now.timestamp() - last_ts) / 3600.0
+            if hours_since < MIN_HOURS_BETWEEN_PROJECTS:
+                log.info("Last project was %.1fh ago; need >=%dh between projects. Skipping.",
+                         hours_since, MIN_HOURS_BETWEEN_PROJECTS)
+                return 0
+            log.info("Last project was %.1fh ago. Proceeding.", hours_since)
+
+    log.info("Today (%s) has %d/%d projects so far. Building project #%d.",
+             today, today_count, MAX_PROJECTS_PER_DAY, today_count + 1)
 
     client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
 
     try:
-        # 1. PLAN
-        log.info("════════ STAGE 1: PLAN ════════")
-        plan = pipeline.stage_plan(client, MODEL, memory)
+        # CEO directives — top-of-house guidance for the architect conference.
+        ceo_directives = executive.latest_directives(memory)
+        if ceo_directives:
+            log.info("CEO has issued %d active directive(s) the architect must obey.",
+                     len(ceo_directives))
+            for d in ceo_directives:
+                log.info("  CEO: %s", d)
+
+        # 1. PLAN — multi-model architect conference
+        log.info("════════ STAGE 1: ARCHITECT CONFERENCE ════════")
+        plan = pipeline.stage_plan(client, memory, ceo_directives=ceo_directives)
 
         # 2. IMPLEMENT
-        log.info("════════ STAGE 2: IMPLEMENT ════════")
-        files = implement_all(client, plan)
+        log.info("════════ STAGE 2: IMPLEMENT (Engineer role) ════════")
+        files, impl_meta = implement_all(client, plan)
 
         # 3+4. QUALITY LOOP (verify ↔ critique ↔ fix)
-        log.info("════════ STAGE 3+4: QUALITY LOOP ════════")
+        log.info("════════ STAGE 3+4: QUALITY LOOP (Reviewer conference + Fixer) ════════")
         files, cycles_used, _ = quality_loop(client, plan, files, WORKSPACE)
 
-        # 5. POLISH (with rollback safety: if polish introduces NEW problems
-        #    that weren't there pre-polish, ship the pre-polish version).
-        log.info("════════ STAGE 5: POLISH ════════")
+        # 5. POLISH (with rollback safety)
+        log.info("════════ STAGE 5: POLISH (Polisher role) ════════")
         pre_polish_files = dict(files)
         pre_polish_verify = verify_project(plan, WORKSPACE)
         pre_polish_problem_count = (
             len(pre_polish_verify.get("errors", []))
             + len(pre_polish_verify.get("issues", []))
         )
-        polish_updates = pipeline.stage_polish(client, MODEL, plan, files)
+        polish_updates = pipeline.stage_polish(client, plan, files)
         if polish_updates:
             files = merge_updates(files, polish_updates)
             materialize(files, WORKSPACE)
@@ -378,7 +438,7 @@ def main() -> int:
         elif final_verify.get("errors") or final_verify.get("issues"):
             log.warning("Polish kept quality the same but issues remain; running one fix pass.")
             issues = (final_verify.get("errors") or []) + (final_verify.get("issues") or [])
-            updates = pipeline.stage_fix(client, MODEL, plan, files, issues)
+            updates = pipeline.stage_fix(client, plan, files, issues)
             if updates:
                 files = merge_updates(files, updates)
                 materialize(files, WORKSPACE)
@@ -405,7 +465,8 @@ def main() -> int:
 
         # 8. MEMORY + DASHBOARD
         log.info("════════ STAGE 8: MEMORY + DASHBOARD ════════")
-        append_record(memory, plan, files, repo_url, pages_url, cycles_used, final_verify)
+        append_record(memory, plan, files, repo_url, pages_url, cycles_used,
+                      final_verify, impl_meta, ceo_directives)
         dashboard.render_dashboard(memory, owner=owner)
 
         log.info("All stages complete.")

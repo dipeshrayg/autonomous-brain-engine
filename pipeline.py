@@ -1,16 +1,22 @@
 """
 pipeline.py - Multi-stage LLM code-generation pipeline.
 
-Stages:
-    1. PLAN       - architect the project at the design level (no code yet).
-    2. IMPLEMENT  - per-file generation (one call per file, no 4K-token squeeze).
-    3. CRITIQUE   - senior engineer pre-ship review (combined with browser verify).
-    4. FIX        - apply specific issues, returning full updated files only.
-    5. POLISH     - elevate from "works" to "flawless" (visuals, controls, edge cases).
+Stages (now with multi-model conferences for plan + critique):
+    1. PLAN       - 3-way architect conference (Mistral-Large + Llama-70B propose,
+                    GPT-4o judges and synthesizes).
+    2. IMPLEMENT  - per-file generation by the Engineer role (gpt-4o).
+    3. CRITIQUE   - 2-way reviewer conference (Mistral-Large + Llama-70B), merged.
+    4. FIX        - the Fixer role (gpt-4o-mini) applies specific issues.
+    5. POLISH     - the Polisher role (gpt-4o-mini) elevates UX.
 
 The orchestrator wraps stages 3+4 in a quality loop until the project is clean
 or MAX_QUALITY_CYCLES is exhausted. Hard advancement constraints are enforced
 in `_validate_plan` so a stale, low-complexity plan never reaches code-gen.
+
+Each role's model assignment + fallback chain lives in `roles.py`. Rate limits
+on the GitHub Models free tier are per-model, so spreading load across model
+families lets the system run multiple projects per day without exhausting any
+one budget.
 """
 
 from __future__ import annotations
@@ -24,6 +30,8 @@ from pathlib import Path
 from typing import Any
 
 from openai import OpenAI
+
+import roles
 
 log = logging.getLogger("brain.pipeline")
 
@@ -231,10 +239,25 @@ def _parse_json(text: str) -> dict:
     return json.loads(text[s:e + 1])
 
 
+def _call_role(client: OpenAI, role: str, system: str, user: str, *,
+               max_tokens: int, temperature: float = 0.85,
+               json_mode: bool = True) -> tuple[dict, dict[str, Any]]:
+    """Call the LLM bound to a role. Returns (parsed_json, meta).
+    Meta carries which model was actually used (post-fallback)."""
+    text, meta = roles.call_with_fallback(
+        client, role,
+        system=system, user=user,
+        max_tokens=max_tokens, temperature=temperature,
+        json_mode=json_mode,
+    )
+    return _parse_json(text), meta
+
+
+# Backwards-compatible shim — old code paths still call _call(model=...).
 def _call(client: OpenAI, model: str, system: str, user: str, *,
           max_tokens: int, temperature: float = 0.85,
           json_mode: bool = True, attempts: int = 3) -> dict:
-    """LLM call with JSON output and bounded retries on transient errors."""
+    """Legacy single-model call path, retained for any non-role-routed code."""
     for i in range(attempts):
         try:
             kwargs: dict[str, Any] = dict(
@@ -255,8 +278,8 @@ def _call(client: OpenAI, model: str, system: str, user: str, *,
                          model, resp.usage.prompt_tokens, resp.usage.completion_tokens)
             return _parse_json(text)
         except PipelineError:
-            raise  # parse errors don't get retried — model needs new instructions
-        except Exception as exc:  # network / rate / 5xx
+            raise
+        except Exception as exc:
             if i == attempts - 1:
                 raise
             backoff = 2 ** (i + 1)
@@ -404,35 +427,98 @@ def _ensure_readme_planned(plan: dict) -> None:
 
 # ─────────────────────── Stages ─────────────────────────────────────────
 
-def stage_plan(client: OpenAI, model: str, memory: dict) -> dict:
+def stage_plan(client: OpenAI, memory: dict, ceo_directives: list[str] | None = None) -> dict:
+    """
+    Architect conference: two candidate models propose plans in parallel; the
+    judge picks the strongest or synthesizes one. Returns the final plan with
+    `__model__`, `__role__`, `__candidates_considered__` metadata attached.
+    """
     history = _summarize_history(memory)
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    user = f"Today is {today}. Produce today's design plan.\n\n{history}"
 
-    last_err: str | None = None
-    for attempt in range(1, 4):
-        log.info("PLAN attempt %d", attempt)
-        retry_note = (
-            f"\n\nThe previous plan was REJECTED with this error — fix it and retry:\n{last_err}"
-            if last_err else ""
+    base_user = f"Today is {today}. Produce today's design plan.\n\n{history}"
+    if ceo_directives:
+        base_user += "\n\nCEO DIRECTIVES (you must obey these):\n" + "\n".join(
+            f"- {d}" for d in ceo_directives
         )
-        plan = _call(client, model, PLAN_SYSTEM, user + retry_note, max_tokens=4000)
-        try:
-            _validate_plan(plan, memory)
-            _ensure_readme_planned(plan)
-            log.info("Plan OK: %s | complexity %d | %d files | novel: %s",
-                     plan["name"], plan["complexity_score"], len(plan["files"]),
-                     plan.get("novel_concepts"))
-            return plan
-        except PipelineError as e:
-            last_err = str(e)
-            log.warning("Plan rejected: %s", last_err)
-    raise PipelineError(f"Plan stage failed after 3 tries. Last error: {last_err}")
+
+    candidate_roles = ["architect_candidate_a", "architect_candidate_b"]
+    candidates: list[dict] = []
+    last_err: str | None = None
+
+    # Up to 2 rounds of soliciting candidates. Each round, every candidate role
+    # gets a fresh attempt with whatever rejection reason last surfaced.
+    for round_num in range(1, 3):
+        log.info("ARCHITECT CONFERENCE round %d", round_num)
+        for role in candidate_roles:
+            try:
+                user = base_user
+                if last_err:
+                    user += (
+                        f"\n\nA prior candidate was rejected with this error — "
+                        f"fix it and produce a valid plan:\n{last_err}"
+                    )
+                plan, meta = _call_role(client, role,
+                                        PLAN_SYSTEM, user,
+                                        max_tokens=4000)
+                _validate_plan(plan, memory)
+                _ensure_readme_planned(plan)
+                plan["__model__"] = meta["model"]
+                plan["__role__"] = role
+                candidates.append(plan)
+                log.info("✓ Candidate from %s (%s): %s | c=%d | files=%d",
+                         role, meta["model"], plan["name"],
+                         plan["complexity_score"], len(plan["files"]))
+            except PipelineError as e:
+                last_err = str(e)
+                log.warning("✗ Candidate %s rejected: %s", role, last_err)
+            except roles.AllModelsFailed as e:
+                log.warning("✗ Candidate %s exhausted models: %s", role, e)
+        if candidates:
+            break
+
+    if not candidates:
+        raise PipelineError(
+            f"Architect conference produced 0 valid candidates after {round_num} round(s). "
+            f"Last error: {last_err}"
+        )
+
+    if len(candidates) == 1:
+        log.info("Only one valid candidate; skipping judge.")
+        return candidates[0]
+
+    # Judge picks/synthesizes
+    judge_input = json.dumps(
+        [{k: v for k, v in c.items() if not k.startswith("__")} for c in candidates],
+        indent=2,
+    )[:18000]
+    judge_user = (
+        f"Today is {today}.\n\n{history}\n\n"
+        f"Your engineering team produced {len(candidates)} candidate plans below. "
+        "As Chief Architect, pick the strongest one OR synthesize a stronger plan "
+        "by combining their best elements. Honor every constraint in your system "
+        "prompt. Output ONE final plan in the same JSON schema. Do NOT add extra fields.\n\n"
+        f"CANDIDATES:\n{judge_input}"
+    )
+    final, meta = _call_role(client, "architect_judge",
+                             PLAN_SYSTEM, judge_user, max_tokens=4000)
+    _validate_plan(final, memory)
+    _ensure_readme_planned(final)
+    final["__model__"] = meta["model"]
+    final["__role__"] = "architect_judge"
+    final["__candidates_considered__"] = len(candidates)
+    final["__candidate_models__"] = [c["__model__"] for c in candidates]
+    log.info("Judge (%s) chose plan: %s | c=%d | %d files | from %d candidates",
+             meta["model"], final["name"], final["complexity_score"],
+             len(final["files"]), len(candidates))
+    return final
 
 
-def stage_implement(client: OpenAI, model: str, plan: dict,
-                    file_spec: dict, prior: dict[str, str]) -> tuple[str, str]:
-    plan_brief = {k: v for k, v in plan.items() if k != "long_description"}
+def stage_implement(client: OpenAI, plan: dict,
+                    file_spec: dict, prior: dict[str, str]) -> tuple[str, str, dict]:
+    """Engineer role writes one file. Returns (path, content, meta)."""
+    plan_brief = {k: v for k, v in plan.items()
+                  if k != "long_description" and not k.startswith("__")}
     prior_concat = "\n\n".join(
         f"=== {p} ===\n{c[:3000]}{'...[truncated]' if len(c) > 3000 else ''}"
         for p, c in prior.items()
@@ -444,16 +530,21 @@ def stage_implement(client: OpenAI, model: str, plan: dict,
         f"ROLE: {file_spec.get('role', '')}\n"
         f"KEY FUNCTIONS: {file_spec.get('key_functions', [])}"
     )
-    out = _call(client, model, IMPLEMENT_SYSTEM, user, max_tokens=4000)
+    out, meta = _call_role(client, "engineer", IMPLEMENT_SYSTEM, user, max_tokens=4000)
     if "path" not in out or "content" not in out:
         raise PipelineError(f"Implement output missing fields: keys={list(out.keys())}")
     if not isinstance(out["content"], str) or len(out["content"]) < 30:
         raise PipelineError(f"File content too short for {file_spec['path']!r}: {len(out.get('content', ''))} chars")
-    return file_spec["path"], out["content"]
+    return file_spec["path"], out["content"], meta
 
 
-def stage_critique(client: OpenAI, model: str, plan: dict,
+def stage_critique(client: OpenAI, plan: dict,
                    files: dict[str, str], browser_result: dict | None) -> dict:
+    """
+    Critique conference: two reviewer models examine the project independently;
+    their must_fix lists are merged (deduped by issue text); the most-pessimistic
+    verdict wins. Each reviewer's identity is preserved in `_reviews` for audit.
+    """
     plan_brief = {k: plan[k] for k in
                   ("name", "description", "verification_criteria", "ui_features",
                    "concepts_demonstrated", "complexity_score") if k in plan}
@@ -464,11 +555,71 @@ def stage_critique(client: OpenAI, model: str, plan: dict,
         f"FILES:\n{files_concat}\n\n"
         f"BROWSER VERIFY (real headless Chrome):\n{browser_summary}"
     )
-    return _call(client, model, CRITIQUE_SYSTEM, user, max_tokens=2500)
+
+    reports: list[dict] = []
+    for role in ("reviewer_a", "reviewer_b"):
+        try:
+            report, meta = _call_role(client, role, CRITIQUE_SYSTEM, user, max_tokens=2500)
+            report["__model__"] = meta["model"]
+            report["__role__"] = role
+            reports.append(report)
+            log.info("Reviewer %s (%s): verdict=%s, must_fix=%d",
+                     role, meta["model"],
+                     report.get("verdict"),
+                     len(report.get("must_fix") or []))
+        except (PipelineError, roles.AllModelsFailed) as e:
+            log.warning("Reviewer %s failed: %s", role, e)
+
+    if not reports:
+        raise PipelineError("Critique conference: every reviewer failed.")
+
+    # Merge must_fix lists (dedup by first 60 chars of issue text)
+    merged_must_fix: list[dict] = []
+    seen: set[str] = set()
+    for r in reports:
+        for item in (r.get("must_fix") or []):
+            if not isinstance(item, dict):
+                continue
+            key = (item.get("issue", "")[:60]).lower().strip()
+            if key and key not in seen:
+                seen.add(key)
+                # Tag with which reviewer raised it
+                item = {**item, "raised_by": r.get("__model__", "?")}
+                merged_must_fix.append(item)
+
+    # Most-pessimistic verdict wins
+    verdicts = [r.get("verdict", "fix") for r in reports]
+    if "redo" in verdicts:
+        verdict = "redo"
+    elif "fix" in verdicts:
+        verdict = "fix"
+    else:
+        verdict = "ship"
+
+    summary = " || ".join(
+        f"[{r.get('__model__','?')}] {r.get('summary','')[:200]}"
+        for r in reports
+    )
+
+    return {
+        "verdict": verdict,
+        "must_fix": merged_must_fix,
+        "should_improve": [s for r in reports for s in (r.get("should_improve") or [])],
+        "summary": summary[:800],
+        "_reviews": [
+            {
+                "model": r.get("__model__"),
+                "verdict": r.get("verdict"),
+                "n_must_fix": len(r.get("must_fix") or []),
+            }
+            for r in reports
+        ],
+    }
 
 
-def stage_fix(client: OpenAI, model: str, plan: dict,
+def stage_fix(client: OpenAI, plan: dict,
               files: dict[str, str], issues: list[str]) -> dict[str, str]:
+    """Fixer role applies a list of issues. Returns {path: content} of changes."""
     plan_brief = {k: plan[k] for k in
                   ("name", "verification_criteria", "ui_features") if k in plan}
     files_concat = _concat_files(files, budget=22000)
@@ -478,15 +629,17 @@ def stage_fix(client: OpenAI, model: str, plan: dict,
         f"ISSUES TO FIX (every one of these must be addressed):\n"
         + "\n".join(f"- {issue}" for issue in issues)
     )
-    out = _call(client, model, FIX_SYSTEM, user, max_tokens=4000)
+    out, meta = _call_role(client, "fixer", FIX_SYSTEM, user, max_tokens=4000)
     updates = {f["path"]: f["content"] for f in (out.get("files") or [])
                if isinstance(f, dict) and "path" in f and "content" in f}
-    log.info("Fix produced %d file update(s): %s", len(updates), list(updates.keys()))
+    log.info("Fixer (%s) produced %d update(s): %s",
+             meta["model"], len(updates), list(updates.keys()))
     return updates
 
 
-def stage_polish(client: OpenAI, model: str, plan: dict,
+def stage_polish(client: OpenAI, plan: dict,
                  files: dict[str, str]) -> dict[str, str]:
+    """Polisher role elevates UX. Returns {path: content} of changes."""
     plan_brief = {k: plan[k] for k in
                   ("name", "description", "ui_features") if k in plan}
     files_concat = _concat_files(files, budget=22000)
@@ -494,10 +647,11 @@ def stage_polish(client: OpenAI, model: str, plan: dict,
         f"PLAN:\n{json.dumps(plan_brief, indent=2)}\n\n"
         f"WORKING FILES:\n{files_concat}"
     )
-    out = _call(client, model, POLISH_SYSTEM, user, max_tokens=4000)
+    out, meta = _call_role(client, "polisher", POLISH_SYSTEM, user, max_tokens=4000)
     updates = {f["path"]: f["content"] for f in (out.get("files") or [])
                if isinstance(f, dict) and "path" in f and "content" in f}
-    log.info("Polish produced %d file update(s): %s", len(updates), list(updates.keys()))
+    log.info("Polisher (%s) produced %d update(s): %s",
+             meta["model"], len(updates), list(updates.keys()))
     return updates
 
 
