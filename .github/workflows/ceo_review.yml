@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write              # commit ceo_reviews back to memory_log.json
+  models: read                 # call GitHub Models (free LLM access)
 
 concurrency:
   group: ceo-review
