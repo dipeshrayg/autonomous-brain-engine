@@ -19,13 +19,23 @@ browser-runnable project that's more advanced than yesterday's. The pipeline:
 
 ## Stats
 
+<<<<<<< Updated upstream
 - **Total projects:** 6
 - **Average complexity:** 7.0 / 10
 - **Latest run:** 2026-05-01
+=======
+- **Total projects:** 5 (0 today, target 2/day)
+- **Peak complexity:** 9 (open-ended scale, no cap)
+- **Average complexity:** 6.4
+- **Latest run:** 2026-04-30
+>>>>>>> Stashed changes
 - **Languages explored:** JavaScript, Python
+- **Patterns used recently:** —
+- **Domains explored:** —
 
 ## Latest creations
 
+<<<<<<< Updated upstream
 | Date | Project | Lang | ★ | Concepts | Run |
 |------|---------|------|---|----------|-----|
 | 2026-05-01 | [multi-agent-systems-simulator](https://github.com/dipeshrayg/2026-05-01-multi-agent-systems-simulator) | JavaScript | 10/10 | Emergent behavior in multi-agent systems, Swarm intelligence and flocking behavior, Dynamic obstacle avoidance | [▶ run](https://dipeshrayg.github.io/2026-05-01-multi-agent-systems-simulator/) · [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-05-01-multi-agent-systems-simulator) |
@@ -34,6 +44,15 @@ browser-runnable project that's more advanced than yesterday's. The pipeline:
 | 2026-04-28 | [dynamic-physics-simulator](https://github.com/dipeshrayg/2026-04-28-dynamic-physics-simulator) | JavaScript | 7/10 | Physics simulation, Collision detection, Elastic collisions | [▶ run](https://dipeshrayg.github.io/2026-04-28-dynamic-physics-simulator/) · [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-dynamic-physics-simulator) |
 | 2026-04-28 | [maze-solver-using-a-star](https://github.com/dipeshrayg/2026-04-28-maze-solver-using-a-star) | Python | 5/10 | A* search algorithm, heuristic optimization, graph traversal | [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-maze-solver-using-a-star) |
 | 2026-04-28 | [basic-neural-net-trainer](https://github.com/dipeshrayg/2026-04-28-basic-neural-net-trainer) | Python | 3/10 | neural networks, gradient descent, classification | [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-basic-neural-net-trainer) |
+=======
+| Date | Project | Lang | ★ | Pattern | Domain | Concepts | Run |
+|------|---------|------|---|---------|--------|----------|-----|
+| 2026-04-30 | [cellular-automata-pattern-generator](https://github.com/dipeshrayg/2026-04-30-cellular-automata-pattern-generator) | JavaScript | 9 | — | — | Cellular automata theory, Rule-based simulation, Dynamic visualization | [▶ run](https://dipeshrayg.github.io/2026-04-30-cellular-automata-pattern-generator/) · [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-30-cellular-automata-pattern-generator) |
+| 2026-04-29 | [genetic-algorithm-art-optimizer](https://github.com/dipeshrayg/2026-04-29-genetic-algorithm-art-optimizer) | JavaScript | 8 | — | — | Genetic algorithms, Crossover and mutation operations, Fitness function customization | [▶ run](https://dipeshrayg.github.io/2026-04-29-genetic-algorithm-art-optimizer/) · [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-29-genetic-algorithm-art-optimizer) |
+| 2026-04-28 | [dynamic-physics-simulator](https://github.com/dipeshrayg/2026-04-28-dynamic-physics-simulator) | JavaScript | 7 | — | — | Physics simulation, Collision detection, Elastic collisions | [▶ run](https://dipeshrayg.github.io/2026-04-28-dynamic-physics-simulator/) · [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-dynamic-physics-simulator) |
+| 2026-04-28 | [maze-solver-using-a-star](https://github.com/dipeshrayg/2026-04-28-maze-solver-using-a-star) | Python | 5 | — | — | A* search algorithm, heuristic optimization, graph traversal | [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-maze-solver-using-a-star) |
+| 2026-04-28 | [basic-neural-net-trainer](https://github.com/dipeshrayg/2026-04-28-basic-neural-net-trainer) | Python | 3 | — | — | neural networks, gradient descent, classification | [⚡ codespaces](https://codespaces.new/dipeshrayg/2026-04-28-basic-neural-net-trainer) |
+>>>>>>> Stashed changes
 
 ---
 

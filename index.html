@@ -26,6 +26,8 @@
   .meta{font-size:.85rem;color:#8b949e;margin-bottom:.75rem}
   .badge{display:inline-block;padding:2px 8px;border-radius:12px;background:#21262d;
          font-size:.75rem;margin-right:4px;color:#c9d1d9}
+  .badge.pattern{background:#1f3a5f;color:#79c0ff}
+  .badge.domain{background:#3d2f1f;color:#ffa657}
   .star{color:#f1c40f;font-weight:600}
   .concepts{font-size:.85rem;color:#c9d1d9}
   .actions{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
@@ -74,9 +76,12 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     const concepts = (p.concepts_demonstrated || []).slice(0,4).join(' · ');
     const ghPath = (p.repo_url || '').replace('https://github.com/', '');
     const codespaces = ghPath ? `https://codespaces.new/${ghPath}` : '';
+    const patternBadge = p.pattern ? `<span class="badge pattern">${p.pattern}</span>` : '';
+    const domainBadge = p.domain ? `<span class="badge domain">${p.domain}</span>` : '';
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
-      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}/10</span></div>
+      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span></div>
+      <div class="meta">${patternBadge}${domainBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">
         ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}

@@ -17,6 +17,25 @@ log = logging.getLogger("brain.dashboard")
 README_PATH = Path("README.md")
 INDEX_PATH = Path("index.html")
 
+
+def _count_today(projects: list) -> int:
+    from datetime import datetime, timezone
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    return sum(1 for p in projects if p.get("date") == today)
+
+
+def _recent_unique(seq: list, n: int) -> list:
+    out: list = []
+    for item in reversed(seq):
+        if not item:
+            continue
+        if item in out:
+            continue
+        out.append(item)
+        if len(out) >= n:
+            break
+    return out
+
 # Static dashboard HTML — fetches memory_log.json client-side so it's always
 # fresh without needing a JS build step.
 _DASHBOARD_HTML = """<!DOCTYPE html>
@@ -47,6 +66,8 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
   .meta{font-size:.85rem;color:#8b949e;margin-bottom:.75rem}
   .badge{display:inline-block;padding:2px 8px;border-radius:12px;background:#21262d;
          font-size:.75rem;margin-right:4px;color:#c9d1d9}
+  .badge.pattern{background:#1f3a5f;color:#79c0ff}
+  .badge.domain{background:#3d2f1f;color:#ffa657}
   .star{color:#f1c40f;font-weight:600}
   .concepts{font-size:.85rem;color:#c9d1d9}
   .actions{display:flex;gap:.5rem;margin-top:.9rem;flex-wrap:wrap}
@@ -95,9 +116,12 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     const concepts = (p.concepts_demonstrated || []).slice(0,4).join(' · ');
     const ghPath = (p.repo_url || '').replace('https://github.com/', '');
     const codespaces = ghPath ? `https://codespaces.new/${ghPath}` : '';
+    const patternBadge = p.pattern ? `<span class="badge pattern">${p.pattern}</span>` : '';
+    const domainBadge = p.domain ? `<span class="badge domain">${p.domain}</span>` : '';
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
-      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}/10</span></div>
+      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span></div>
+      <div class="meta">${patternBadge}${domainBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">
         ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}
@@ -136,11 +160,13 @@ def render_dashboard(memory: dict[str, Any], owner: str,
         if cs_url:
             run_links.append(f"[⚡ codespaces]({cs_url})")
         run_cell = " · ".join(run_links) if run_links else "—"
+        pattern = p.get("pattern", "—")
+        domain = p.get("domain", "—")
         rows.append(
             f"| {p.get('date')} | [{p.get('name')}]({p.get('repo_url')}) "
-            f"| {p.get('language')} | {p.get('complexity_score')}/10 | {concepts} | {run_cell} |"
+            f"| {p.get('language')} | {p.get('complexity_score')} | {pattern} | {domain} | {concepts} | {run_cell} |"
         )
-    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — | — |"
+    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — | — | — | — |"
 
     readme = (
         f"# 🤖 Autonomous Brain\n\n"
@@ -159,13 +185,16 @@ def render_dashboard(memory: dict[str, Any], owner: str,
         f"📊 **Live dashboard:** https://{owner}.github.io/{repo}/\n"
         f"🔁 **Schedule:** daily 06:17 UTC (backup 18:17 UTC) · **Cost:** $0 · **Source:** [`brain.py`](brain.py)\n\n"
         f"## Stats\n\n"
-        f"- **Total projects:** {total}\n"
-        f"- **Average complexity:** {avg:.1f} / 10\n"
+        f"- **Total projects:** {total} ({_count_today(projects)} today, target 2/day)\n"
+        f"- **Peak complexity:** {max((p.get('complexity_score', 0) for p in projects), default=0)} (open-ended scale, no cap)\n"
+        f"- **Average complexity:** {avg:.1f}\n"
         f"- **Latest run:** {latest}\n"
-        f"- **Languages explored:** {', '.join(languages) if languages else '—'}\n\n"
+        f"- **Languages explored:** {', '.join(languages) if languages else '—'}\n"
+        f"- **Patterns used recently:** {', '.join(_recent_unique([p.get('pattern') for p in projects], 6)) or '—'}\n"
+        f"- **Domains explored:** {', '.join(_recent_unique([p.get('domain') for p in projects], 8)) or '—'}\n\n"
         f"## Latest creations\n\n"
-        f"| Date | Project | Lang | ★ | Concepts | Run |\n"
-        f"|------|---------|------|---|----------|-----|\n"
+        f"| Date | Project | Lang | ★ | Pattern | Domain | Concepts | Run |\n"
+        f"|------|---------|------|---|---------|--------|----------|-----|\n"
         f"{table}\n\n"
         f"---\n\n"
         f"*Generated automatically by `brain.py`. All projects are educational/diagnostic\n"

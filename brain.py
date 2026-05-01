@@ -87,6 +87,9 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
         "concepts_demonstrated": plan.get("concepts_demonstrated", []),
         "novel_concepts": plan.get("novel_concepts", []),
         "advancement_axis": plan.get("advancement_axis", ""),
+        "pattern": plan.get("pattern", ""),
+        "domain": plan.get("domain", ""),
+        "visual_identity": plan.get("visual_identity", ""),
         "safety_notes": plan.get("safety_notes", ""),
         "file_count": len(files),
         "loc": sum(c.count("\n") + 1 for c in files.values()),
@@ -99,8 +102,13 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
     for c in (plan.get("concepts_demonstrated") or []):
         if c not in explored:
             explored.append(c)
+    if record["pattern"]:
+        memory.setdefault("patterns_used", []).append(record["pattern"])
+    if record["domain"]:
+        memory.setdefault("domains_used", []).append(record["domain"])
     save_memory(memory)
-    log.info("Memory updated: project #%d.", len(memory["projects"]))
+    log.info("Memory updated: project #%d (pattern=%s, domain=%s).",
+             len(memory["projects"]), record["pattern"], record["domain"])
 
 
 # ─────────────────────── Workspace ──────────────────────────────────────
@@ -311,12 +319,17 @@ def main() -> int:
 
     memory = load_memory()
 
-    # Idempotency: scheduled runs skip if today's already done. Manual runs always run.
+    # Idempotency: scheduled runs skip if today already has 2 projects (the
+    # daily cap). Manual workflow_dispatch always runs so the user can force
+    # extra creations on demand.
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     event = os.environ.get("GITHUB_EVENT_NAME", "")
-    if event == "schedule" and any(p.get("date") == today for p in memory.get("projects", [])):
-        log.info("Today (%s) already has a project; scheduled run skipping.", today)
+    today_count = sum(1 for p in memory.get("projects", []) if p.get("date") == today)
+    if event == "schedule" and today_count >= 2:
+        log.info("Today (%s) already has %d projects; scheduled run skipping.", today, today_count)
         return 0
+    log.info("Today (%s) has %d/2 projects so far. Building project #%d.",
+             today, today_count, today_count + 1)
 
     client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
 

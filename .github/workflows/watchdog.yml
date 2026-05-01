@@ -47,21 +47,31 @@ jobs:
 
           today=$(date -u +%Y-%m-%d)
           hour=$(date -u +%H)
+          # Strip leading zero so arithmetic doesn't break on hours like 08, 09.
+          hour=$((10#$hour))
           echo "Watchdog tick: $today ${hour}:xx UTC"
 
-          # Idempotency: if today's project is already in memory_log, we're done.
           has_today=$(jq -r --arg t "$today" '[.projects[] | select(.date == $t)] | length' memory_log.json)
-          if [ "$has_today" -gt 0 ]; then
-            echo "✓ Today has $has_today project(s) in memory_log. Watchdog satisfied."
-            exit 0
+          echo "Projects shipped today: $has_today / 2"
+
+          # TWO-PROJECT DAY targets:
+          #   00-01 UTC quiet hours
+          #   02-13 UTC: target = 1 (morning project)
+          #   14-22 UTC: target = 2 (afternoon project too)
+          #   23 UTC quiet (let new day take over)
+          if [ "$hour" -ge 23 ] || [ "$hour" -lt 2 ]; then
+            target=0
+          elif [ "$hour" -ge 14 ]; then
+            target=2
+          else
+            target=1
           fi
 
-          # Don't churn between 23:00 and 02:00 UTC — give the new day's first
-          # scheduled cron a chance to fire before we start force-dispatching.
-          if [ "$hour" -ge 23 ] || [ "$hour" -lt 2 ]; then
-            echo "Quiet hours (23-02 UTC). No action."
+          if [ "$has_today" -ge "$target" ]; then
+            echo "✓ Satisfied: $has_today >= target $target for hour $hour."
             exit 0
           fi
+          echo "↻ Below target ($has_today < $target). Considering dispatch."
 
           # Don't pile on if a daily_build is already running or queued.
           active=$(gh run list \
@@ -83,7 +93,8 @@ jobs:
             --limit 50 \
             --json event,createdAt \
             --jq "[.[] | select(.event == \"workflow_dispatch\" and (.createdAt | startswith(\"$today\")))] | length")
-          if [ "$dispatches_today" -ge 4 ]; then
+          # Cap at 8/day (4 attempts per project slot) for runaway-loop protection.
+          if [ "$dispatches_today" -ge 8 ]; then
             echo "::warning::Already dispatched daily_build $dispatches_today times today. Refusing further auto-dispatches — investigate manually."
             exit 0
           fi

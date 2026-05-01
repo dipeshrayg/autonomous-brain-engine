@@ -34,40 +34,75 @@ class PipelineError(RuntimeError):
 
 # ─────────────────────── Prompts ────────────────────────────────────────
 
-PLAN_SYSTEM = """You are the Chief Architect of an autonomous, daily software-creation pipeline. Today you produce a DESIGN PLAN for a new project — the plan only, no code. A separate stage will turn the plan into code.
+PLAN_SYSTEM = """You are the Chief Architect of an autonomous, twice-daily software-creation pipeline. You design at the intersection of a polymath developer with all of these hats: full-stack, frontend, backend, server-side, DevOps, web designer, system & cybersecurity, data engineer, AI/ML researcher, VP of Engineering, product manager, business analyst, networking specialist, trading / quantitative analyst, distributed-systems architect. Each project today reflects that breadth.
 
 ABSOLUTE CONSTRAINTS - non-negotiable:
-1. Comply strictly with GitHub TOS / Acceptable Use. No active malware, no exfiltration, no exploits against systems without consent. Security topics are educational/diagnostic only.
-2. The project MUST run in any modern browser by serving a single index.html via GitHub Pages — no install, no build step. Allowed runtimes: HTML+CSS+JavaScript, Canvas 2D, SVG, optionally Web Audio. PREFER Canvas 2D over WebGL — the verifier runs in software-rendered headless Chromium where WebGL produces spurious GPU-stall warnings and is harder to debug. Only choose WebGL/WebGPU if the project genuinely needs 3D, custom shaders, or >50k particles, and even then include a clear visible fallback message if the context can't be created.
-3. HARD ADVANCEMENT (the most important rule):
-   - complexity_score must be at least max(recent complexity scores) + 1, capped at 10. If recent max is 8, today is 9.
-   - novel_concepts must contain AT LEAST TWO concepts not present in concepts_explored.
-   - tech_stack must include at least one library/technique no previous project has used.
-   - advancement_axis must explicitly state how today is more advanced (deeper algorithm, richer interaction, larger architecture, novel domain, etc.).
-4. SUBSTANTIVE SCOPE:
-   - At least 4 source files in addition to README.md (so 5 total minimum). Examples: index.html, app.js, engine.js, ui.js, style.css.
-   - Real depth: multiple algorithms or systems, real-time interactivity, polished UI with multiple controls (sliders, presets, pause/resume, randomize, etc.), edge case handling.
-   - Visualizations must be informative and dynamic — not static dots, not a single line.
-5. UI REQUIREMENTS the verifier will check mechanically:
-   - At least 3 interactive controls (buttons, sliders, selects).
-   - <meta name="viewport">.
-   - The canvas (if any) must actually render content — the loop must be running and drawing on first frame.
-6. EXTERNAL LIBRARIES — ABSOLUTE RULE:
-   Every external library MUST be loaded from a pinned CDN URL (jsdelivr / unpkg / cdnjs) with explicit version, e.g.:
-       <script src="https://cdn.jsdelivr.net/npm/d3-delaunay@6.0.4/dist/d3-delaunay.min.js"></script>
-   NEVER write <script src="some-lib.js"> referencing a local library file you are not also generating. The verifier mechanically checks that every src/href local reference resolves to a file that exists in the project. Dangling refs are a hard fail.
+1. Comply strictly with GitHub TOS / Acceptable Use. No active malware, no exfiltration, no exploits against systems without consent. Security/trading topics are educational/diagnostic ONLY (operate on synthetic data, simulate, never connect to real markets or real targets).
+2. The project MUST run in any modern browser by serving a single index.html via GitHub Pages — no install, no build step. Allowed runtimes: HTML+CSS+JavaScript, Canvas 2D, SVG, optionally Web Audio / Web Workers / IndexedDB. PREFER Canvas 2D over WebGL (verifier runs software-rendered Chromium). If you must use WebGL/WebGPU, include a fallback notice when the context can't be created.
 
-OUTPUT — single JSON object, no prose, no markdown fences, schema:
+3. HARD ADVANCEMENT (the most important rule):
+   - complexity_score is OPEN-ENDED. NO upper cap. It must be >= max(recent complexity_scores) + 1.
+     Scale guide:
+       1-3   trivial demo
+       4-6   solid single-file interactive demo
+       7-9   polished real-time interactive system, multiple controls
+       10-12 production-style with multiple subsystems, simulated backend, persistence
+       13-15 full-app feel: multi-view, simulated auth, complex state, multiple integrated panels
+       16-20 architectural feat: IDE-quality tooling, multi-pane workspace, deep interactivity
+       21+   surpass even that — invent the next rung
+   - novel_concepts must contain >=2 concepts NOT in concepts_explored.
+   - tech_stack must include at least one library/technique no previous project has used.
+   - advancement_axis must explicitly explain how today exceeds the most recent project along a concrete dimension.
+
+4. PATTERN ROTATION — no two consecutive projects share a pattern:
+   `pattern` must be a project genre/shape. Choose ONE that does NOT appear in `patterns_used` for the last 5 projects. Examples (you may invent more):
+     visualizer, simulator, game, generator, dashboard, editor, analyzer,
+     explorer, sandbox/IDE, tutor, comparator, planner, monitor, transformer,
+     studio, calculator, terminal, modeler, debugger, composer, mapper,
+     orchestrator, replayer, profiler.
+
+5. DOMAIN ROTATION — broad coverage of the polymath catalogue:
+   `domain` must be a top-level field of expertise this project explores. Choose ONE that does NOT appear in `domains_used` for the last 5 projects. The catalogue (extend freely):
+     AI/ML, Trading & Markets, Cybersecurity, Networking, Data Engineering,
+     DevOps/SRE, Web Design, UX/Product, Cryptography, Compilers/Languages,
+     Distributed Systems, Game Theory, Operations Research, Computer Graphics,
+     3D/WebGL, Audio/DSP, Bioinformatics, Education, System Architecture,
+     Database Engineering, Compiler Theory, Embedded/IoT, Robotics,
+     Financial Engineering, Statistical Inference, Information Theory,
+     Algorithmic Composition, Visualization Theory.
+
+6. SUBSTANTIVE SCOPE that scales with complexity:
+   - complexity 7-9: >=4 source files (excluding README), >=400 LOC.
+   - complexity 10-12: >=6 source files, >=700 LOC, simulated persistence (IndexedDB/localStorage).
+   - complexity 13+: >=8 source files, >=1000 LOC, multi-view layout, keyboard shortcuts, save/load state.
+   Real depth: multiple algorithms, real-time interactivity, polished UI, edge case handling, accessible markup.
+
+7. UI REQUIREMENTS the verifier checks mechanically:
+   - >=3 interactive controls (>=5 for complexity 10+).
+   - <meta name="viewport">.
+   - Canvas (if any) renders meaningful content on first frame.
+
+8. VISUAL IDENTITY — every project must feel distinct:
+   - Don't reuse the same colour palette twice in a row. Vary typography (serif vs mono vs sans), layout (single-pane vs split-pane vs multi-panel grid), and visual personality.
+   - Polished by default: thoughtful spacing, clear hierarchy, hover/focus states, prefers-color-scheme support.
+
+9. EXTERNAL LIBRARIES — ABSOLUTE RULE:
+   Every external library MUST come from a pinned CDN URL (jsdelivr / unpkg / cdnjs) with explicit version. NEVER write <script src="some-lib.js"> referencing a local library file you are not generating. The verifier mechanically checks every src/href local reference resolves to a file that exists. Dangling refs = hard fail.
+
+OUTPUT — single JSON object, no prose, no markdown fences:
 {
   "name": "kebab-case (3-60 chars, ascii)",
   "description": "≤200 chars",
   "long_description": "2-4 paragraphs for README",
   "language": "primary language",
   "tech_stack": [list of specific libs/APIs],
-  "complexity_score": int 1-10,
+  "complexity_score": int >=1 (no upper cap),
   "concepts_demonstrated": [list],
   "novel_concepts": [list of concepts NOT in concepts_explored],
   "advancement_axis": "explicit explanation of how this exceeds recent projects",
+  "pattern": "one genre token, NOT in patterns_used[-5:]",
+  "domain": "one domain token, NOT in domains_used[-5:]",
+  "visual_identity": "short description of color palette, typography, layout personality",
   "is_web_project": true,
   "safety_notes": "...",
   "architecture": {
@@ -232,24 +267,37 @@ def _call(client: OpenAI, model: str, system: str, user: str, *,
 def _summarize_history(memory: dict) -> str:
     recent = memory.get("projects", [])[-HISTORY_WINDOW:]
     if not recent:
-        return "No previous projects. This is day 1 — start at complexity 4 with real depth."
+        return "No previous projects. This is day 1 — start at complexity 5 with real depth."
     lines = ["Recent project history (oldest → newest):"]
     for p in recent:
         concepts = ", ".join((p.get("concepts_demonstrated") or [])[:5])
+        pat = p.get("pattern", "?")
+        dom = p.get("domain", "?")
         lines.append(
             f"- {p.get('date')}  \"{p.get('name')}\"  "
-            f"[{p.get('language')}, complexity {p.get('complexity_score')}]"
+            f"[{p.get('language')}, c={p.get('complexity_score')}, "
+            f"pattern={pat}, domain={dom}]"
             f"  concepts: {concepts}"
         )
     cs = [p.get("complexity_score", 0) for p in recent]
     lines.append("")
     lines.append(f"Recent complexity: max={max(cs)}, avg={sum(cs)/len(cs):.1f}.")
-    lines.append(f"Today's complexity_score MUST be >= {min(max(cs)+1, 10)}.")
+    lines.append(f"Today's complexity_score MUST be >= {max(cs)+1} (open scale, no cap).")
+
+    # Pattern + domain rotation - last 5
+    last5 = memory.get("projects", [])[-5:]
+    recent_patterns = [p.get("pattern") for p in last5 if p.get("pattern")]
+    recent_domains = [p.get("domain") for p in last5 if p.get("domain")]
+    if recent_patterns:
+        lines.append(f"Patterns used in last 5 projects (you must NOT repeat): {', '.join(recent_patterns)}")
+    if recent_domains:
+        lines.append(f"Domains used in last 5 projects (you must NOT repeat): {', '.join(recent_domains)}")
+
     explored = memory.get("concepts_explored", [])
     if explored:
         lines.append("")
         lines.append(f"concepts_explored (your novel_concepts must NOT appear here):")
-        lines.append(", ".join(explored))
+        lines.append(", ".join(explored[-50:]))
     return "\n".join(lines)
 
 
@@ -259,6 +307,7 @@ def _validate_plan(plan: dict, memory: dict) -> None:
         "complexity_score", "concepts_demonstrated", "novel_concepts",
         "advancement_axis", "is_web_project", "safety_notes",
         "architecture", "files", "ui_features", "verification_criteria",
+        "pattern", "domain", "visual_identity",
     }
     missing = required - plan.keys()
     if missing:
@@ -267,20 +316,34 @@ def _validate_plan(plan: dict, memory: dict) -> None:
         raise PipelineError(f"Invalid plan name: {plan['name']!r}")
     if not plan.get("is_web_project"):
         raise PipelineError("All plans must be browser-runnable (is_web_project=true).")
-    files = plan.get("files") or []
-    if len(files) < 4:
-        raise PipelineError(f"Plan needs >=4 files (excluding README in concept). Got {len(files)}.")
 
-    # Hard advancement gates
+    complexity = int(plan["complexity_score"])
+
+    files = plan.get("files") or []
+    # Scope minimum scales with complexity
+    if complexity >= 13:
+        min_files = 8
+    elif complexity >= 10:
+        min_files = 6
+    else:
+        min_files = 4
+    if len(files) < min_files:
+        raise PipelineError(
+            f"Plan with complexity {complexity} needs >={min_files} files. Got {len(files)}."
+        )
+
+    # Hard advancement gate — open-ended, no upper cap.
     recent = memory.get("projects", [])[-7:]
     if recent:
         max_recent = max(p.get("complexity_score", 0) for p in recent)
-        floor = min(max_recent + 1, 10)
-        if int(plan["complexity_score"]) < floor:
+        floor = max_recent + 1
+        if complexity < floor:
             raise PipelineError(
-                f"complexity_score={plan['complexity_score']} below required floor {floor} "
-                f"(max recent={max_recent})."
+                f"complexity_score={complexity} below required floor {floor} "
+                f"(max recent={max_recent}). The scale is open-ended; surpass yesterday."
             )
+
+    # Novel concepts gate
     explored = set(memory.get("concepts_explored", []))
     novel = plan.get("novel_concepts") or []
     truly_novel = [c for c in novel if c not in explored]
@@ -288,6 +351,27 @@ def _validate_plan(plan: dict, memory: dict) -> None:
         raise PipelineError(
             f"novel_concepts must include >=2 entries NOT in concepts_explored. "
             f"You provided novel={novel}; truly novel={truly_novel}."
+        )
+
+    # Pattern rotation: must not match last 5
+    last5 = memory.get("projects", [])[-5:]
+    recent_patterns = [p.get("pattern") for p in last5 if p.get("pattern")]
+    recent_domains = [p.get("domain") for p in last5 if p.get("domain")]
+    pattern = (plan.get("pattern") or "").strip().lower()
+    domain = (plan.get("domain") or "").strip()
+    if not pattern:
+        raise PipelineError("`pattern` field is required (one project-genre token).")
+    if not domain:
+        raise PipelineError("`domain` field is required (one top-level discipline).")
+    if pattern in [p.lower() for p in recent_patterns if p]:
+        raise PipelineError(
+            f"pattern={pattern!r} was used in the last 5 projects ({recent_patterns}). "
+            "Pick a different genre."
+        )
+    if domain in recent_domains:
+        raise PipelineError(
+            f"domain={domain!r} was used in the last 5 projects ({recent_domains}). "
+            "Pick a different discipline."
         )
 
     # File path safety + required artifacts
