@@ -85,8 +85,8 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
 </head>
 <body>
 <h1>🤖 Autonomous Brain</h1>
-<p class="sub">An AI that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.<br>
-Click <b>▶ Run it</b> to play any project instantly in your browser, or <b>⚡ Codespaces</b> to open a free in-browser dev environment.</p>
+<p class="sub">An self improving software-engineer that designs, codes, tests, and publishes a new software project every day. Runs free on GitHub Actions + GitHub Models.<br>
+Click <b>▶ Run it</b> to play any project instantly in your browser, or <b>⚡ Codespaces</b> to open a free in-browser dev environment.<br> I, Dipesh Ray believes this is just the smallest concept what AI is truely capabel of. It can simply be given Consciousness.</p>
 
 <div class="stats">
   <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
