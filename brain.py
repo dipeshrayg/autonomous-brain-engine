@@ -481,45 +481,53 @@ def main() -> int:
             return 1
 
         # 6.5 SECURITY REVIEW (CSO role: per-project pre-publish gate).
-        # If critical/high findings, send to Fixer for one round, then re-review.
-        # If still blocking after that, refuse to publish.
+        # If critical/high findings, send to the Security Fixer (gpt-4o) for up
+        # to 3 remediation rounds, re-reviewing after each. Refuse to publish
+        # only if all rounds fail to clear the blocking findings.
         log.info("════════ STAGE 6.5: SECURITY REVIEW (Security Officer) ════════")
         sec_report = pipeline.stage_security_review(client, plan, files, final_verify)
         sec_findings_to_record = sec_report
-        if sec_report.get("verdict") == "publish_blocked":
+
+        MAX_SEC_FIX_ROUNDS = 3
+        round_num = 0
+        while sec_report.get("verdict") == "publish_blocked" and round_num < MAX_SEC_FIX_ROUNDS:
+            round_num += 1
             blocking_security = [
                 f for f in (sec_report.get("findings") or [])
                 if isinstance(f, dict) and f.get("severity") in ("critical", "high")
             ]
-            log.warning("Security gate identified %d blocking finding(s); attempting fix.",
-                        len(blocking_security))
+            log.warning(
+                "Security round %d/%d: %d blocking finding(s) — calling security_fixer (gpt-4o).",
+                round_num, MAX_SEC_FIX_ROUNDS, len(blocking_security),
+            )
             sec_issues = [
-                f"[security:{f.get('severity')}] [{f.get('category')}] {f.get('issue')} "
+                f"[{f.get('severity')}] [{f.get('category')}] {f.get('issue')} "
                 f"-- suggestion: {f.get('suggestion')}"
                 for f in blocking_security
             ]
-            updates = pipeline.stage_fix(client, plan, files, sec_issues)
-            if updates:
-                files = merge_updates(files, updates)
-                materialize(files, WORKSPACE)
-                final_verify = verify_project(plan, WORKSPACE)
-                # Re-run security review once
-                sec_report = pipeline.stage_security_review(
-                    client, plan, files, final_verify
-                )
-                sec_findings_to_record = sec_report
-            if sec_report.get("verdict") == "publish_blocked":
-                log.error("Security gate STILL blocking after one fix pass — refusing to publish.")
-                still_blocking = [
-                    f for f in (sec_report.get("findings") or [])
-                    if isinstance(f, dict) and f.get("severity") in ("critical", "high")
-                ]
-                for f in still_blocking:
-                    log.error("  [%s] [%s] %s",
-                              f.get("severity", "?").upper(),
-                              f.get("category", "?"),
-                              f.get("issue", "")[:200])
-                return 1
+            updates = pipeline.stage_security_fix(client, plan, files, sec_issues)
+            if not updates:
+                log.warning("Security fixer produced no updates; aborting remediation loop.")
+                break
+            files = merge_updates(files, updates)
+            materialize(files, WORKSPACE)
+            final_verify = verify_project(plan, WORKSPACE)
+            sec_report = pipeline.stage_security_review(client, plan, files, final_verify)
+            sec_findings_to_record = sec_report
+
+        if sec_report.get("verdict") == "publish_blocked":
+            log.error("Security gate STILL blocking after %d round(s) — refusing to publish.",
+                      round_num)
+            still_blocking = [
+                f for f in (sec_report.get("findings") or [])
+                if isinstance(f, dict) and f.get("severity") in ("critical", "high")
+            ]
+            for f in still_blocking:
+                log.error("  [%s] [%s] %s",
+                          f.get("severity", "?").upper(),
+                          f.get("category", "?"),
+                          f.get("issue", "")[:200])
+            return 1
 
         # 7. PUBLISH
         log.info("════════ STAGE 7: PUBLISH ════════")

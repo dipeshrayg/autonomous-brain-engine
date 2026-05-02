@@ -773,6 +773,48 @@ def stage_security_review(client: OpenAI, plan: dict,
     return out
 
 
+def stage_security_fix(client: OpenAI, plan: dict,
+                       files: dict[str, str], issues: list[str]) -> dict[str, str]:
+    """
+    Security-specific Fixer. Routes to the `security_fixer` role (gpt-4o by
+    default — more capable than the regular gpt-4o-mini fixer for the kind of
+    careful rewrites XSS and prototype-pollution remediation requires).
+
+    Same input/output shape as stage_fix but with stronger system prompt
+    biased toward defensive coding patterns.
+    """
+    plan_brief = {k: plan[k] for k in
+                  ("name", "verification_criteria", "ui_features", "tech_stack")
+                  if k in plan}
+    files_concat = _concat_files(files, budget=14000)
+    user = (
+        f"PLAN:\n{json.dumps(plan_brief, indent=2)}\n\n"
+        f"CURRENT FILES:\n{files_concat}\n\n"
+        f"SECURITY FINDINGS TO REMEDIATE (every one is a hard publish-blocker):\n"
+        + "\n".join(f"- {issue}" for issue in issues)
+        + "\n\nGuidance for safe rewrites:\n"
+          "- Replace innerHTML with textContent or use document.createElement + setAttribute. \n"
+          "- For DOM injection from user input, use the safelist whitelist approach.\n"
+          "- For canvas fillText with user input, you don't need to sanitize for XSS, but make "
+          "sure user input doesn't escape into a DOM-ish context elsewhere.\n"
+          "- For localStorage/sessionStorage holding sensitive-looking keys, document why it's "
+          "safe (synthetic data only) in a code comment, OR remove the storage and keep state "
+          "in memory.\n"
+          "- For drag-and-drop: use dataTransfer.getData('text/plain') and validate before use; "
+          "never insert dropped text via innerHTML.\n"
+          "- Add <meta http-equiv='Content-Security-Policy'> with default-src 'self' plus "
+          "explicit allowlist of any CDNs you load.\n\n"
+        "Output the FULL corrected files (only those that change). Same JSON schema as the "
+        "regular Fixer."
+    )
+    out, meta = _call_role(client, "security_fixer", FIX_SYSTEM, user, max_tokens=6000)
+    updates = {f["path"]: f["content"] for f in (out.get("files") or [])
+               if isinstance(f, dict) and "path" in f and "content" in f}
+    log.info("Security-fixer (%s) produced %d update(s): %s",
+             meta["model"], len(updates), list(updates.keys()))
+    return updates
+
+
 def stage_polish(client: OpenAI, plan: dict,
                  files: dict[str, str]) -> dict[str, str]:
     """Polisher role elevates UX. Returns {path: content} of changes.

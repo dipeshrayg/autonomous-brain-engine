@@ -60,6 +60,9 @@ ROLE_PRIMARY: dict[str, str] = {
     "ceo":                   "gpt-4o",
     "cso":                   "gpt-4o",
     "security_officer":      "gpt-4o",
+    # Security remediation is harder than ordinary bugfixes — XSS, prototype
+    # pollution, etc. require careful rewrites. Use the strongest model.
+    "security_fixer":        "gpt-4o",
     "architect_judge":       "gpt-4o",
     # Two distinct candidates so the conference has actual diversity.
     "architect_candidate_a": "gpt-4o-mini",
@@ -77,6 +80,7 @@ ROLE_FALLBACK: dict[str, list[str]] = {
     "ceo":                   ["gpt-4o-mini", "phi-medium"],
     "cso":                   ["gpt-4o-mini", "phi-medium"],
     "security_officer":      ["gpt-4o-mini", "phi-medium"],
+    "security_fixer":        ["gpt-4o-mini", "phi-medium"],
     "architect_judge":       ["gpt-4o-mini", "phi-medium"],
     "architect_candidate_a": ["phi-medium", "gpt-4o"],
     "architect_candidate_b": ["gpt-4o-mini", "gpt-4o"],
