@@ -201,6 +201,48 @@ OUTPUT - single JSON, no prose, no fences:
 """
 
 
+QA_REVIEW_SYSTEM = """You are the QA Tester for an autonomous software-publishing pipeline. Every project ships to a public Pages URL where real visitors will try to use it. Your job is to judge: DOES THIS PROJECT ACTUALLY DELIVER THE INTERACTIVITY ITS PLAN PROMISED?
+
+You receive:
+- The plan (especially `ui_features` and `verification_criteria` — what the project promised)
+- The source files
+- The mechanical interaction-test result from headless Chromium: which controls were exercised and whether the page state actually changed in response to each one. Dead controls are listed by tag/type/label. The metric is: did `document.body.innerHTML.length`, displayed text, canvas pixel hash, or localStorage size change after triggering the control?
+
+Your single most important question: would a curious visitor who opens this page find the controls actually DO something, or is it a static-looking mockup?
+
+A button labelled "Run Simulation" that does nothing when clicked is WORSE than no button — it's deceptive. A slider that updates a displayed number but doesn't drive any visualization is half-built.
+
+CRITERIA for verdict:
+
+- **non_functional**: > 50% of controls don't change observable state, OR a core ui_feature from the plan is entirely missing (e.g., plan promises drag-and-drop visualization but only buttons exist), OR the canvas/main view never changes regardless of what the user does.
+
+- **partially_usable**: 1–3 controls dead or pointless but the core experience still works. A "Save Configuration" button that fails silently while the rest of the simulation works is partially_usable.
+
+- **shippable**: every promised feature actually does something visible or stateful. Sliders drive the visualization. Buttons cause real updates. Drag-and-drop targets accept and respond to drops. Login state actually persists.
+
+OUTPUT — single JSON, no prose, no markdown fences:
+{
+  "verdict": "shippable" | "partially_usable" | "non_functional",
+  "summary": "1-2 sentences of executive judgement",
+  "dead_controls": [
+    {"control": "<tag.type 'label'>", "expected": "<what it should do per plan>", "actual": "<what actually happened>", "fix": "<concrete code change>"}
+  ],
+  "missing_features": [
+    {"feature": "<ui_feature from plan>", "why_missing": "<reason>", "fix": "<concrete code change>"}
+  ],
+  "directives_for_future": [
+    "imperative instructions for future projects (architect must obey). 0-3 entries."
+  ]
+}
+
+Rules:
+- 'non_functional' requires that you name AT LEAST ONE specific dead control or missing feature with a code fix.
+- Don't be pedantic about minor polish (a tooltip missing, a label slightly off). Focus on broken interaction.
+- The mechanical interaction test in `browser.metrics.interaction.dead_controls` is your most important evidence — trust it. If it says 5 of 7 controls don't change state, the project is non_functional regardless of how nice it looks.
+- If the plan promises a feature that the source code doesn't even attempt, call it out as `missing_features`, not just `dead_controls`.
+"""
+
+
 SECURITY_REVIEW_SYSTEM = """You are the Security Officer for an autonomous software-publishing pipeline. Every project is a small, self-contained, browser-runnable EDUCATIONAL DEMO published to GitHub Pages. There is no real backend, no real users, no real money, no real PII. Your job is to identify issues that could ACTUALLY HARM A VISITOR who opens the demo, not to enforce production-enterprise security policy on a static toy.
 
 You receive: the plan, the final source files, and the browser-verify result. You return a structured security report. The pipeline will treat any issue with severity 'critical' or 'high' as a hard publish-blocker — those issues will be sent to a security-aware Fixer for remediation before another review is attempted.
@@ -720,6 +762,75 @@ def stage_fix(client: OpenAI, plan: dict,
     updates = {f["path"]: f["content"] for f in (out.get("files") or [])
                if isinstance(f, dict) and "path" in f and "content" in f}
     log.info("Fixer (%s) produced %d update(s): %s",
+             meta["model"], len(updates), list(updates.keys()))
+    return updates
+
+
+def stage_qa_review(client: OpenAI, plan: dict,
+                    files: dict[str, str],
+                    browser_result: dict | None) -> dict:
+    """
+    Per-project QA gate. Returns a structured report:
+      { verdict, summary, dead_controls: [...], missing_features: [...] }
+    Verdicts:
+      - 'shippable'         → ship
+      - 'partially_usable'  → ship, but log issues
+      - 'non_functional'    → block; feed dead-control list to qa_fixer
+    """
+    plan_brief = {k: plan[k] for k in
+                  ("name", "description", "ui_features", "verification_criteria",
+                   "concepts_demonstrated") if k in plan}
+    files_concat = _concat_files(files, budget=14000)
+    metrics = (browser_result or {}).get("metrics") or {}
+    interaction = metrics.get("interaction") or {}
+    interaction_summary = json.dumps(interaction, indent=2)[:2500]
+    user = (
+        f"PLAN:\n{json.dumps(plan_brief, indent=2)}\n\n"
+        f"INTERACTION TEST (headless Chromium drove each control):\n{interaction_summary}\n\n"
+        f"FINAL FILES:\n{files_concat}\n\n"
+        "Evaluate usability. Return a single JSON object per the schema."
+    )
+    out, meta = _call_role(client, "qa_tester",
+                           QA_REVIEW_SYSTEM, user, max_tokens=2500)
+    out["__model__"] = meta["model"]
+    dead_count = len(out.get("dead_controls") or [])
+    missing_count = len(out.get("missing_features") or [])
+    log.info(
+        "QA review (%s): verdict=%s, dead=%d, missing=%d. %s",
+        meta["model"], out.get("verdict"), dead_count, missing_count,
+        out.get("summary", "")[:200],
+    )
+    return out
+
+
+def stage_qa_fix(client: OpenAI, plan: dict,
+                 files: dict[str, str], issues: list[str]) -> dict[str, str]:
+    """QA-aware Fixer. Routes to qa_fixer (gpt-4o)."""
+    plan_brief = {k: plan[k] for k in
+                  ("name", "ui_features", "verification_criteria") if k in plan}
+    files_concat = _concat_files(files, budget=14000)
+    user = (
+        f"PLAN:\n{json.dumps(plan_brief, indent=2)}\n\n"
+        f"CURRENT FILES:\n{files_concat}\n\n"
+        f"USABILITY ISSUES TO FIX (each is a hard publish-blocker — wire the "
+        f"controls so they actually change page state):\n"
+        + "\n".join(f"- {i}" for i in issues)
+        + "\n\nGuidance:\n"
+          "- Every button MUST have an event listener that mutates state, "
+          "redraws the canvas, updates DOM text, or modifies localStorage.\n"
+          "- Sliders/range inputs MUST trigger 'input' or 'change' handlers "
+          "that visibly update the simulation/visualization.\n"
+          "- Drag-and-drop targets MUST handle dragover (preventDefault) and "
+          "drop events with visible state changes.\n"
+          "- If a feature in the plan's ui_features list isn't implemented, "
+          "build it now.\n\n"
+        "Output FULL updated files (only those that change). Same JSON schema "
+        "as the regular Fixer."
+    )
+    out, meta = _call_role(client, "qa_fixer", FIX_SYSTEM, user, max_tokens=6000)
+    updates = {f["path"]: f["content"] for f in (out.get("files") or [])
+               if isinstance(f, dict) and "path" in f and "content" in f}
+    log.info("QA fixer (%s) produced %d update(s): %s",
              meta["model"], len(updates), list(updates.keys()))
     return updates
 

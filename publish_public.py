@@ -69,6 +69,14 @@ def sanitize_memory(memory: dict[str, Any]) -> dict[str, Any]:
                 "verdict": sr.get("verdict"),
                 "findings_count": sr.get("findings_count", 0),
             }
+        # Trim QA review to verdict + counts
+        qr = p.get("qa_review")
+        if qr:
+            p["qa_review"] = {
+                "verdict": qr.get("verdict"),
+                "dead_controls_count": qr.get("dead_controls_count", 0),
+                "missing_features_count": qr.get("missing_features_count", 0),
+            }
 
     # CEO + CSO: verdict + summary only (concerns + directives are internal coaching)
     out["ceo_reviews"] = [

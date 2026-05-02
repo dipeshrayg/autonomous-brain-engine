@@ -257,6 +257,39 @@ def verify_web(workspace: Path, timeout: int = 30) -> dict[str, Any]:
             except Exception:
                 pass
 
+            # ── INTERACTION TEST ─────────────────────────────────────────
+            # Drive every visible interactive control and detect ones that don't
+            # change page state. A "dead" control is one that — when clicked or
+            # changed — produces ZERO observable effect on the DOM, the canvas
+            # contents, or localStorage. Catches the static-mockup-with-pretty-
+            # buttons failure mode.
+            interaction = {}
+            try:
+                interaction = _run_interaction_test(page)
+                metrics["interaction"] = interaction
+                dead = interaction.get("dead_controls") or []
+                tested = interaction.get("tested", 0)
+                if tested > 0 and dead:
+                    dead_summary = ", ".join(
+                        f"{d.get('tag','?')}.{d.get('type','')} '{d.get('label','')[:30]}'"
+                        for d in dead[:6]
+                    )
+                    issues.append(
+                        f"{len(dead)} of {tested} interactive controls are DEAD — they do "
+                        f"not change the page state when triggered: {dead_summary}. "
+                        "Wire each control's event handler to mutate state, redraw the "
+                        "canvas, or update displayed values. Buttons that look interactive "
+                        "but do nothing are worse than no buttons at all."
+                    )
+                if tested == 0 and metrics.get("interactiveCount", 0) > 0:
+                    issues.append(
+                        "Interaction test ran but exercised 0 controls — none were visible "
+                        "or all were disabled. The visible controls aren't actually usable."
+                    )
+            except Exception as e:
+                log.warning("Interaction test failed: %s", e)
+                metrics["interaction"] = {"error": str(e)}
+
             try:
                 page.screenshot(path=str(screenshot_path), full_page=False)
             except Exception as e:
@@ -301,6 +334,176 @@ def verify_web(workspace: Path, timeout: int = 30) -> dict[str, Any]:
         "issues": issues,
         "metrics": metrics,
         "screenshot": str(screenshot_path) if screenshot_path.exists() else None,
+    }
+
+
+_SNAPSHOT_JS = """() => {
+    const c = document.querySelector('canvas');
+    let cHash = 'none';
+    if (c) {
+        try {
+            const ctx = c.getContext('2d');
+            if (ctx && c.width && c.height) {
+                const w = Math.min(c.width, 100), h = Math.min(c.height, 100);
+                const img = ctx.getImageData(0, 0, w, h);
+                let h32 = 5381;
+                for (let i = 0; i < img.data.length; i += 16) {
+                    h32 = ((h32 * 33) ^ img.data[i]) >>> 0;
+                }
+                cHash = h32;
+            }
+        } catch (e) { /* tainted canvas, leave as 'none' */ }
+    }
+    return {
+        html_size: document.body.innerHTML.length,
+        text: (document.body.innerText || '').slice(0, 500),
+        canvas: cHash,
+        ls: JSON.stringify(Object.entries(localStorage)).length,
+        scroll: window.scrollY,
+    };
+}"""
+
+_LIST_CONTROLS_JS = """() => {
+    const sel = 'button, input:not([type=hidden]), select, textarea, [onclick], [role="button"]';
+    const all = [...document.querySelectorAll(sel)];
+    return all
+        .map((el, i) => {
+            const r = el.getBoundingClientRect();
+            return {
+                idx: i,
+                tag: el.tagName,
+                type: el.type || '',
+                label: (el.innerText || el.value || el.placeholder ||
+                        el.getAttribute('aria-label') || '').slice(0, 40),
+                visible: r.width > 0 && r.height > 0,
+                disabled: !!el.disabled,
+            };
+        })
+        .filter(e => e.visible && !e.disabled);
+}"""
+
+# Trigger a single control by its index in the controls list. Different
+# strategies for different element kinds.
+_TRIGGER_JS = """(idx) => {
+    const sel = 'button, input:not([type=hidden]), select, textarea, [onclick], [role="button"]';
+    const all = [...document.querySelectorAll(sel)];
+    const e = all[idx];
+    if (!e) return 'no-element';
+    const tag = e.tagName, ty = e.type || '';
+    try {
+        if (tag === 'INPUT' && (ty === 'range' || ty === 'number')) {
+            const min = parseFloat(e.min) || 0;
+            const max = parseFloat(e.max) || 100;
+            const cur = parseFloat(e.value) || 0;
+            const target = (Math.abs(cur - max) > 0.0001) ? max : min;
+            e.value = target;
+            e.dispatchEvent(new Event('input', {bubbles: true}));
+            e.dispatchEvent(new Event('change', {bubbles: true}));
+            return 'range';
+        }
+        if (tag === 'SELECT') {
+            if (e.options.length > 1) {
+                e.selectedIndex = (e.selectedIndex + 1) % e.options.length;
+                e.dispatchEvent(new Event('change', {bubbles: true}));
+                return 'select';
+            }
+            return 'select-no-options';
+        }
+        if (tag === 'INPUT' && (ty === 'checkbox' || ty === 'radio')) {
+            e.checked = !e.checked;
+            e.dispatchEvent(new Event('change', {bubbles: true}));
+            return 'check';
+        }
+        if (tag === 'INPUT' && (ty === 'text' || ty === 'search' || ty === '' || ty === 'email' || ty === 'number')) {
+            e.value = 'qa-test-' + idx;
+            e.dispatchEvent(new Event('input', {bubbles: true}));
+            e.dispatchEvent(new Event('change', {bubbles: true}));
+            return 'text';
+        }
+        if (tag === 'TEXTAREA') {
+            e.value = 'qa-test-' + idx;
+            e.dispatchEvent(new Event('input', {bubbles: true}));
+            return 'textarea';
+        }
+        // Default: click
+        e.click();
+        return 'click';
+    } catch (err) {
+        return 'error:' + (err.message || '?');
+    }
+}"""
+
+
+def _run_interaction_test(page, max_controls: int = 12, settle_ms: int = 400) -> dict:
+    """
+    Drive every visible control once, detect ones that produce no state change.
+
+    Returns:
+        {
+            'tested':         <how many controls we exercised>,
+            'total_controls': <total visible controls available>,
+            'dead_controls':  [{'tag', 'type', 'label', 'index', 'reason'}, ...],
+            'live_count':     <controls that DID cause a state change>,
+        }
+    """
+    controls = page.evaluate(_LIST_CONTROLS_JS) or []
+    if not controls:
+        return {"tested": 0, "total_controls": 0, "dead_controls": [], "live_count": 0}
+
+    to_test = controls[:max_controls]
+    dead: list[dict] = []
+    live = 0
+
+    for c in to_test:
+        idx = c["idx"]
+        try:
+            before = page.evaluate(_SNAPSHOT_JS)
+        except Exception:
+            continue
+
+        try:
+            outcome = page.evaluate(_TRIGGER_JS, idx)
+        except Exception as e:
+            dead.append({**c, "reason": f"trigger-failed:{e}"})
+            continue
+
+        # Let async handlers, animations, network stubs settle
+        time.sleep(settle_ms / 1000.0)
+
+        try:
+            after = page.evaluate(_SNAPSHOT_JS)
+        except Exception:
+            continue
+
+        changed = (
+            before["html_size"] != after["html_size"]
+            or before["text"] != after["text"]
+            or before["canvas"] != after["canvas"]
+            or before["ls"] != after["ls"]
+            or before["scroll"] != after["scroll"]
+        )
+
+        if changed:
+            live += 1
+        else:
+            dead.append({
+                "index": idx,
+                "tag": c["tag"],
+                "type": c["type"],
+                "label": c["label"],
+                "trigger": outcome,
+                "reason": "no observable state change",
+            })
+
+    log.info(
+        "Interaction test: %d/%d controls live, %d dead.",
+        live, len(to_test), len(dead),
+    )
+    return {
+        "tested": len(to_test),
+        "total_controls": len(controls),
+        "dead_controls": dead,
+        "live_count": live,
     }
 
 

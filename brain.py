@@ -99,7 +99,8 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
                   repo_url: str, pages_url: str, cycles: int,
                   verify_result: dict, model_per_file: dict[str, str],
                   ceo_directives: list[str] | None,
-                  security_report: dict | None = None) -> None:
+                  security_report: dict | None = None,
+                  qa_report: dict | None = None) -> None:
     now = datetime.now(timezone.utc)
     record = {
         "date": now.strftime("%Y-%m-%d"),
@@ -140,6 +141,18 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
                 "directives_for_future": security_report.get("directives_for_future") or [],
             }
             if security_report else None
+        ),
+        "qa_review": (
+            {
+                "verdict": qa_report.get("verdict"),
+                "summary": qa_report.get("summary"),
+                "model": qa_report.get("__model__"),
+                "dead_controls_count": len(qa_report.get("dead_controls") or []),
+                "missing_features_count": len(qa_report.get("missing_features") or []),
+                "dead_controls": qa_report.get("dead_controls") or [],
+                "missing_features": qa_report.get("missing_features") or [],
+            }
+            if qa_report else None
         ),
     }
     memory.setdefault("projects", []).append(record)
@@ -480,6 +493,61 @@ def main() -> int:
                 log.error("  - %s", i)
             return 1
 
+        # 6.4 QA REVIEW — does the project ACTUALLY DO what the plan promised?
+        # The mechanical interaction test in verifier already reports dead
+        # controls; the QA Tester role (gpt-4o) layers a usability judgement on
+        # top, including "promised feature missing entirely". Up to 3 fix rounds.
+        log.info("════════ STAGE 6.4: QA REVIEW (Tester role) ════════")
+        qa_report = pipeline.stage_qa_review(client, plan, files, final_verify)
+        qa_findings_to_record = qa_report
+
+        MAX_QA_FIX_ROUNDS = 3
+        qa_round = 0
+        while qa_report.get("verdict") == "non_functional" and qa_round < MAX_QA_FIX_ROUNDS:
+            qa_round += 1
+            dead = qa_report.get("dead_controls") or []
+            missing = qa_report.get("missing_features") or []
+            log.warning(
+                "QA round %d/%d: %d dead control(s), %d missing feature(s) — calling qa_fixer.",
+                qa_round, MAX_QA_FIX_ROUNDS, len(dead), len(missing),
+            )
+            qa_issues: list[str] = []
+            for d in dead:
+                if isinstance(d, dict):
+                    qa_issues.append(
+                        f"[dead-control] {d.get('control','?')} should {d.get('expected','do something')} "
+                        f"but {d.get('actual','does nothing')}. Fix: {d.get('fix','')}"
+                    )
+            for f in missing:
+                if isinstance(f, dict):
+                    qa_issues.append(
+                        f"[missing-feature] {f.get('feature','?')} promised in plan but not "
+                        f"implemented ({f.get('why_missing','?')}). Fix: {f.get('fix','')}"
+                    )
+            if not qa_issues:
+                log.warning("QA non-functional but no specific issues — escaping fix loop.")
+                break
+            updates = pipeline.stage_qa_fix(client, plan, files, qa_issues)
+            if not updates:
+                log.warning("QA fixer returned no updates; aborting QA loop.")
+                break
+            files = merge_updates(files, updates)
+            materialize(files, WORKSPACE)
+            final_verify = verify_project(plan, WORKSPACE)
+            qa_report = pipeline.stage_qa_review(client, plan, files, final_verify)
+            qa_findings_to_record = qa_report
+
+        if qa_report.get("verdict") == "non_functional":
+            log.error("QA gate STILL non-functional after %d round(s) — refusing to publish.",
+                      qa_round)
+            for d in (qa_report.get("dead_controls") or [])[:5]:
+                if isinstance(d, dict):
+                    log.error("  [DEAD] %s — %s", d.get("control", "?"), d.get("actual", "?"))
+            for f in (qa_report.get("missing_features") or [])[:5]:
+                if isinstance(f, dict):
+                    log.error("  [MISSING] %s", f.get("feature", "?"))
+            return 1
+
         # 6.5 SECURITY REVIEW (CSO role: per-project pre-publish gate).
         # If critical/high findings, send to the Security Fixer (gpt-4o) for up
         # to 3 remediation rounds, re-reviewing after each. Refuse to publish
@@ -541,7 +609,8 @@ def main() -> int:
         log.info("════════ STAGE 8: MEMORY + DASHBOARD ════════")
         append_record(memory, plan, files, repo_url, pages_url, cycles_used,
                       final_verify, impl_meta, ceo_directives,
-                      security_report=sec_findings_to_record)
+                      security_report=sec_findings_to_record,
+                      qa_report=qa_findings_to_record)
         dashboard.render_dashboard(memory, owner=owner)
 
         log.info("All stages complete.")

@@ -76,6 +76,9 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
   .badge.security-secure{background:#1c3320;color:#3fb950}
   .badge.security-minor{background:#33301c;color:#f1c40f}
   .badge.security-blocked{background:#3a1c1c;color:#f85149}
+  .badge.qa-shippable{background:#1c2c33;color:#79c0ff}
+  .badge.qa-partial{background:#33301c;color:#f1c40f}
+  .badge.qa-blocked{background:#3a1c1c;color:#f85149}
   .ceo-head{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-bottom:.5rem}
   .ceo-tag{display:inline-block;padding:.15rem .6rem;background:#58a6ff;color:#0d1117;
            font-weight:700;font-size:.75rem;border-radius:4px;letter-spacing:.5px}
@@ -208,10 +211,19 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     } else if (sec.verdict === 'publish_blocked') {
       secBadge = `<span class="badge security-blocked" title="Was blocked by CSO and fixed before ship">🛡 fixed at gate</span>`;
     }
+    const qa = p.qa_review || {};
+    let qaBadge = '';
+    if (qa.verdict === 'shippable') {
+      qaBadge = `<span class="badge qa-shippable" title="QA: every promised control works">🧪 shippable</span>`;
+    } else if (qa.verdict === 'partially_usable') {
+      qaBadge = `<span class="badge qa-partial" title="${qa.dead_controls_count||0} dead control(s)">🧪 partial</span>`;
+    } else if (qa.verdict === 'non_functional') {
+      qaBadge = `<span class="badge qa-blocked" title="QA fixed dead controls before ship">🧪 fixed at gate</span>`;
+    }
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
       <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span></div>
-      <div class="meta">${patternBadge}${domainBadge}${modelBadge}${secBadge}</div>
+      <div class="meta">${patternBadge}${domainBadge}${modelBadge}${qaBadge}${secBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">
         ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}

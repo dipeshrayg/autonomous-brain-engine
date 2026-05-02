@@ -59,6 +59,11 @@ MODELS: dict[str, tuple[str, str]] = {
 ROLE_PRIMARY: dict[str, str] = {
     "ceo":                   "gpt-4o",
     "cso":                   "gpt-4o",
+    # QA reviews the user-facing usability — does the project deliver the
+    # interactivity it promised? Catches "looks alive but does nothing" demos
+    # that pass mechanical render checks but are useless to a visitor.
+    "qa_tester":             "gpt-4o",
+    "qa_fixer":              "gpt-4o",
     "security_officer":      "gpt-4o",
     # Security remediation is harder than ordinary bugfixes — XSS, prototype
     # pollution, etc. require careful rewrites. Use the strongest model.
@@ -79,6 +84,8 @@ ROLE_PRIMARY: dict[str, str] = {
 ROLE_FALLBACK: dict[str, list[str]] = {
     "ceo":                   ["gpt-4o-mini", "phi-medium"],
     "cso":                   ["gpt-4o-mini", "phi-medium"],
+    "qa_tester":             ["gpt-4o-mini", "phi-medium"],
+    "qa_fixer":              ["gpt-4o-mini", "phi-medium"],
     "security_officer":      ["gpt-4o-mini", "phi-medium"],
     "security_fixer":        ["gpt-4o-mini", "phi-medium"],
     "architect_judge":       ["gpt-4o-mini", "phi-medium"],
