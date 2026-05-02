@@ -475,12 +475,29 @@ def main() -> int:
             final_verify = pre_polish_verify
         elif final_verify.get("errors") or final_verify.get("issues"):
             log.warning("Polish kept quality the same but issues remain; running one fix pass.")
+            pre_postfix_files = dict(files)
+            pre_postfix_problems = (
+                len(final_verify.get("errors", []))
+                + len(final_verify.get("issues", []))
+            )
             issues = (final_verify.get("errors") or []) + (final_verify.get("issues") or [])
             updates = pipeline.stage_fix(client, plan, files, issues)
             if updates:
                 files = merge_updates(files, updates)
                 materialize(files, WORKSPACE)
                 final_verify = verify_project(plan, WORKSPACE)
+                post_postfix_problems = (
+                    len(final_verify.get("errors", []))
+                    + len(final_verify.get("issues", []))
+                )
+                if post_postfix_problems > pre_postfix_problems:
+                    log.warning(
+                        "Post-polish fix REGRESSED (%d -> %d problems); reverting.",
+                        pre_postfix_problems, post_postfix_problems,
+                    )
+                    files = pre_postfix_files
+                    materialize(files, WORKSPACE)
+                    final_verify = verify_project(plan, WORKSPACE)
 
         # Hard quality gate: refuse to publish a clearly broken project.
         blocking_issues = final_verify.get("errors", []) + [
