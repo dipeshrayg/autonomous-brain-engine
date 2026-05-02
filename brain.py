@@ -499,17 +499,6 @@ def main() -> int:
                     materialize(files, WORKSPACE)
                     final_verify = verify_project(plan, WORKSPACE)
 
-        # Hard quality gate: refuse to publish a clearly broken project.
-        blocking_issues = final_verify.get("errors", []) + [
-            i for i in final_verify.get("issues", [])
-            if "blank" in i.lower() or "empty" in i.lower() or "zero" in i.lower()
-        ]
-        if blocking_issues:
-            log.error("Blocking issues remain after final verify - refusing to publish.")
-            for i in blocking_issues:
-                log.error("  - %s", i)
-            return 1
-
         # 6.4 QA REVIEW — does the project ACTUALLY DO what the plan promised?
         # The mechanical interaction test in verifier already reports dead
         # controls; the QA Tester role (gpt-4o) layers a usability judgement on
@@ -518,15 +507,34 @@ def main() -> int:
         qa_report = pipeline.stage_qa_review(client, plan, files, final_verify)
         qa_findings_to_record = qa_report
 
+        # The QA fixer also gets a crack at any verifier-level blockers
+        # (blank canvas, missing files, page errors that didn't crash hard).
+        # qa_fixer is gpt-4o (more capable than the regular fixer's gpt-4o-mini)
+        # and gets explicit guidance for control-wiring + canvas drawing.
+        def _qa_should_run(qa_rep: dict, verify: dict) -> bool:
+            if qa_rep.get("verdict") == "non_functional":
+                return True
+            # Treat blank canvas / structural verifier issues as QA-fixable
+            for issue in (verify.get("issues") or []):
+                low = issue.lower()
+                if "blank" in low or "runaway" in low or "empty" in low or "zero" in low:
+                    return True
+            return False
+
         MAX_QA_FIX_ROUNDS = 3
         qa_round = 0
-        while qa_report.get("verdict") == "non_functional" and qa_round < MAX_QA_FIX_ROUNDS:
+        while _qa_should_run(qa_report, final_verify) and qa_round < MAX_QA_FIX_ROUNDS:
             qa_round += 1
             dead = qa_report.get("dead_controls") or []
             missing = qa_report.get("missing_features") or []
+            verifier_blockers = [
+                i for i in (final_verify.get("issues") or [])
+                if any(k in i.lower() for k in ("blank", "runaway", "empty", "zero"))
+            ]
             log.warning(
-                "QA round %d/%d: %d dead control(s), %d missing feature(s) — calling qa_fixer.",
-                qa_round, MAX_QA_FIX_ROUNDS, len(dead), len(missing),
+                "QA round %d/%d: %d dead, %d missing, %d verifier blocker(s) — qa_fixer (gpt-4o).",
+                qa_round, MAX_QA_FIX_ROUNDS,
+                len(dead), len(missing), len(verifier_blockers),
             )
             qa_issues: list[str] = []
             for d in dead:
@@ -541,8 +549,11 @@ def main() -> int:
                         f"[missing-feature] {f.get('feature','?')} promised in plan but not "
                         f"implemented ({f.get('why_missing','?')}). Fix: {f.get('fix','')}"
                     )
+            for vb in verifier_blockers:
+                qa_issues.append(f"[render] {vb}")
+
             if not qa_issues:
-                log.warning("QA non-functional but no specific issues — escaping fix loop.")
+                log.warning("QA flagged but no specific issues — escaping loop.")
                 break
             updates = pipeline.stage_qa_fix(client, plan, files, qa_issues)
             if not updates:
@@ -554,8 +565,14 @@ def main() -> int:
             qa_report = pipeline.stage_qa_review(client, plan, files, final_verify)
             qa_findings_to_record = qa_report
 
-        if qa_report.get("verdict") == "non_functional":
-            log.error("QA gate STILL non-functional after %d round(s) — refusing to publish.",
+        # Final hard-quality gate: refuse to publish if QA couldn't fix things
+        # AND the verifier still reports fundamental brokenness.
+        hard_blockers = (final_verify.get("errors") or []) + [
+            i for i in (final_verify.get("issues") or [])
+            if any(k in i.lower() for k in ("blank", "runaway", "empty", "zero"))
+        ]
+        if qa_report.get("verdict") == "non_functional" or hard_blockers:
+            log.error("Final quality gate failed after %d QA round(s) — refusing to publish.",
                       qa_round)
             for d in (qa_report.get("dead_controls") or [])[:5]:
                 if isinstance(d, dict):
@@ -563,6 +580,8 @@ def main() -> int:
             for f in (qa_report.get("missing_features") or [])[:5]:
                 if isinstance(f, dict):
                     log.error("  [MISSING] %s", f.get("feature", "?"))
+            for hb in hard_blockers[:5]:
+                log.error("  [VERIFIER] %s", str(hb)[:180])
             return 1
 
         # 6.5 SECURITY REVIEW (CSO role: per-project pre-publish gate).
