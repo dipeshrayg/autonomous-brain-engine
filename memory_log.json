@@ -455,5 +455,32 @@
       ],
       "reviewed_project_count": 8
     }
+  ],
+  "security_audits": [
+    {
+      "issued_at": "2026-05-02T07:52:35Z",
+      "issued_at_unix": 1777708355,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The pipeline has systemic issues with security coverage, including a complete lack of security reviews, over-reliance on external CDNs, and growing use of client-side libraries without proper scrutiny.",
+      "concerns": [
+        "None of the last 8 projects underwent a security review, leaving critical vulnerabilities unchecked.",
+        "Multiple projects rely on external CDNs (e.g., jsdelivr, plot.ly) for libraries like Chart.js, Math.js, and Vue.js, which increases exposure to supply chain attacks.",
+        "There is a growing trend of using complex JavaScript libraries (e.g., Plotly.js, Chart.js, Vue.js) without any assessment of their security implications.",
+        "The use of FileSaver.js in the cellular-automata-pattern-generator project introduces potential risks related to file handling and browser-based downloads.",
+        "The healthcare-simulation-dashboard project introduces a privacy risk by potentially handling sensitive healthcare-related data without any explicit data handling or privacy review."
+      ],
+      "directives": [
+        "The next project must undergo a mandatory security review before release, with at least one finding documented, even if only to confirm no issues were found.",
+        "The next project must self-host all JavaScript libraries and dependencies rather than rely on external CDNs.",
+        "The next project must include a Content Security Policy via a <meta http-equiv=Content-Security-Policy> tag, with 'default-src' set to 'self' and explicit allowlists for any necessary external resources.",
+        "The next project must include a privacy impact statement if it processes or stores any user data, explaining what data is collected, how it is stored, and how it is used.",
+        "The next project may not use libraries (e.g., FileSaver.js, Plotly.js) without an explicit justification for their inclusion and documentation of their security implications."
+      ],
+      "praise": [
+        "Projects are consistently leveraging modern web technologies like Canvas 2D and JavaScript ES6, which are inherently more secure than older alternatives when used properly."
+      ],
+      "reviewed_project_count": 8
+    }
   ]
 }
