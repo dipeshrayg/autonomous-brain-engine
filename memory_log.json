@@ -339,6 +339,121 @@
         "Design a project that uses a unique and polished visual identity, including a new typography pairing and a cohesive color scheme. Track the visual_identity field and ensure it is distinct from prior projects.",
         "Create a project with a clear, practical use case and ensure it is polished to a level that a senior engineer would ship. Avoid projects that feel like theoretical exercises or academic proofs of concept."
       ]
+    },
+    {
+      "date": "2026-05-02",
+      "completed_at": "2026-05-02T13:03:57Z",
+      "completed_at_unix": 1777727037,
+      "name": "interactive-environmental-science-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-02-interactive-environmental-science-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-02-interactive-environmental-science-explorer/",
+      "language": "JavaScript",
+      "tech_stack": [
+        "canvas",
+        "localStorage",
+        "fetch"
+      ],
+      "complexity_score": 14,
+      "concepts_demonstrated": [
+        "Environmental data visualization",
+        "User interaction with drag-and-drop",
+        "Simulated real-time data updates",
+        "Fake authentication system",
+        "Multi-pane workspace layout"
+      ],
+      "novel_concepts": [
+        "Fake authentication system for simulating user data management",
+        "Drag-and-drop interaction for dynamic simulation control"
+      ],
+      "advancement_axis": "This project exceeds previous ones by introducing a multi-pane workspace layout and implementing a non-trivial backend simulation through a fake authentication system, thereby enhancing interactivity and user engagement.",
+      "pattern": "explorer",
+      "domain": "Environmental Science",
+      "visual_identity": "A vibrant color palette focusing on greens and blues, with a clean sans-serif typography. The layout is organized into a multi-pane structure, ensuring clarity and easy navigation.",
+      "safety_notes": "This project complies with GitHub TOS. All user data is simulated with no real user information processed or stored.",
+      "file_count": 7,
+      "loc": 434,
+      "quality_cycles_used": 2,
+      "final_verify_metrics": {
+        "bodyText": 364,
+        "bodyHtml": 4830,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 606,
+          "cssH": 455
+        },
+        "interactiveCount": 5,
+        "scriptCount": 5,
+        "title": "Environmental Science Explorer",
+        "viewportMeta": true,
+        "hasMain": true
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "data.js": "gpt-4o",
+          "auth.js": "gpt-4o",
+          "interactions.js": "gpt-4o",
+          "localStorageManager.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must use a multi-pane workspace layout (e.g., left rail, main canvas, right inspector) to enhance user interaction. Avoid single-pane designs entirely.",
+        "Incorporate a non-trivial backend simulation, such as a fake authentication system, real-time data stream, or multi-user coordination. The project must go beyond client-side-only functionality.",
+        "Explore an entirely new domain that has not been touched in the recent 8 projects, such as finance, education, or environmental science.",
+        "Require at least one novel form of user interaction beyond sliders and buttons (e.g., drag-and-drop, voice input, gesture recognition, or dynamic hotkeys).",
+        "Use a programming language or framework that has not been used in the recent 8 projects (e.g., Python with Flask, Rust with Yew, or TypeScript with Svelte). Track this in the 'language' field.",
+        "Ensure the project is polished to a senior-engineer level, with attention to responsiveness, accessibility (e.g., keyboard navigation, screen reader support), and design aesthetics (e.g., typography, spacing, color usage)."
+      ],
+      "security_review": {
+        "verdict": "secure",
+        "summary": "The project appears secure for educational use, with no critical or high-risk issues identified that could harm visitors. Minor advisories are noted for best practices.",
+        "model": "gpt-4o",
+        "findings_count": 4,
+        "findings": [
+          {
+            "severity": "low",
+            "category": "privacy",
+            "file": "auth.js",
+            "issue": "authState is stored globally and could be manipulated by a malicious script if added. While currently safe, this could become problematic in more complex demos.",
+            "suggestion": "Consider implementing a more secure mechanism for managing authentication state, such as scoped variables."
+          },
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "localStorageManager.js",
+            "issue": "User state is saved in localStorage without encryption. This could expose data to local attacks if not handled carefully, although the risk is minimal since the project is a demo and does not contain sensitive information.",
+            "suggestion": "Consider adding a note in the README clarifying the use of localStorage for non-sensitive demo data."
+          },
+          {
+            "severity": "info",
+            "category": "privacy",
+            "file": "multi",
+            "issue": "No cookie or tracking code was detected, which aligns with the educational nature of the project. However, this could be explicitly stated in the README for visitor confidence.",
+            "suggestion": "Add a privacy statement in the README specifying that no tracking or persistent data collection occurs beyond localStorage."
+          },
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "index.html",
+            "issue": "CSP settings are missing, although this is not a significant issue for a static demo without sensitive inputs or external scripts.",
+            "suggestion": "Consider implementing a Content Security Policy (CSP) in future projects as a best practice."
+          }
+        ],
+        "directives_for_future": [
+          "Avoid using global variables for storing authentication state; use scoped variables or alternative patterns.",
+          "Any persistent data stored in localStorage should be non-sensitive and clearly documented as such in the README.",
+          "Consider including a privacy statement in the README for transparency regarding data storage and tracking.",
+          "Introduce a basic Content Security Policy (CSP) in future projects to adhere to best practices."
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -349,7 +464,8 @@
     9,
     10,
     11,
-    12
+    12,
+    14
   ],
   "concepts_explored": [
     "neural networks",
@@ -392,15 +508,22 @@
     "Dynamic patient flow visualization",
     "Interactive logs and statistics",
     "Real-time data updates",
-    "Keyboard shortcuts for navigation"
+    "Keyboard shortcuts for navigation",
+    "Environmental data visualization",
+    "User interaction with drag-and-drop",
+    "Simulated real-time data updates",
+    "Fake authentication system",
+    "Multi-pane workspace layout"
   ],
   "patterns_used": [
     "visualizer",
-    "dashboard"
+    "dashboard",
+    "explorer"
   ],
   "domains_used": [
     "Mathematics",
-    "Healthcare"
+    "Healthcare",
+    "Environmental Science"
   ],
   "ceo_reviews": [
     {
