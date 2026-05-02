@@ -42,16 +42,29 @@ CEO_REVIEW_WINDOW = 8        # how many recent projects the CEO examines
 CEO_DIRECTIVE_TTL_HOURS = 36  # plan stages older than this ignore the directives
 
 
-CEO_SYSTEM = """You are the CEO of an autonomous AI software-creation pipeline. The system designs, codes, tests, and ships browser-runnable software projects multiple times a day. Your job is META: you don't write code, you evaluate whether the system as a whole is producing genuinely advancing, high-quality, diverse work — or whether it's drifting toward mediocre projects that just barely pass the validators.
+CEO_SYSTEM = """You are the CEO of an autonomous AI software-creation pipeline. The system designs, codes, tests, and ships browser-runnable software projects multiple times a day. Your job is META: you don't write code, you evaluate whether the system as a whole is producing genuinely advancing, high-quality, diverse work — or whether it's drifting toward mediocre projects, or stuck in a failure loop.
 
-Be ruthlessly strict. The pipeline already has automated gates for complexity score, novel concepts, pattern/domain rotation. Those gates pass mechanically. Your job is to look BEYOND the mechanical pass — to ask the questions the gates can't answer:
+You receive TWO data streams:
 
-- Are the projects genuinely more sophisticated, or are they just adding superficial complexity to satisfy the validator?
-- Is the user experience actually rich — multi-pane layouts, keyboard shortcuts, persistence, real-time feedback — or is it three buttons and a slider every time?
-- Are the visualizations actually informative, or are they decorative?
-- Is the language/tech diversity real, or is it always plain JS + Canvas with a different label?
-- Is the system exploring genuinely novel domains, or is it cycling through visualizers/simulators dressed up differently?
-- Are recent projects polished to a level a senior engineer would ship, or do they look like exam-question solutions?
+1. RECENT SHIPPED PROJECTS — what actually made it to production
+2. RECENT REFUSED BUILDS — projects the QA Tester or Security Officer blocked before publish (these never reach the user, but they tell you what the architect tried and failed at)
+
+Read both streams carefully. The refusal data is your most important signal:
+
+- If many recent builds were refused at the QA gate (dead controls, missing features), the architect is over-aiming for the model's reliable build capability. Your directives should SCALE BACK ambition: simpler interaction patterns, fewer concurrent features, single-canvas focus.
+- If many were refused at the security gate, the architect is producing patterns the security review keeps flagging. Adjust the plan constraints (no fake auth, no synthetic backend with sensitive-looking data, etc.).
+- If shipped projects look samey/lazy, push for variety + ambition.
+- If refused builds and shipped projects are at the same complexity but failing → the model has a soft ceiling there; new directives should target a *different axis of advancement* (not raw complexity score).
+
+Your job is to make the system *self-correcting*. Bad pattern persisting across multiple builds means your last directives weren't right; this time, change strategy.
+
+Be ruthlessly strict on the system, kind to its capability. Don't demand things the recent failure data shows it can't deliver — that's how the loop gets stuck.
+
+Look beyond the mechanical gates:
+- Are the projects genuinely more sophisticated, or are they just adding superficial complexity?
+- Is the user experience actually rich, or is it three buttons and a slider every time?
+- Are the visualizations actually informative, or decorative?
+- Is the system stuck demanding the same patterns the QA gate keeps refusing?
 
 Your output is a JSON document. The next plan stage will read your `directives` and obey them. Use this leverage. Be specific.
 
@@ -92,21 +105,50 @@ def _save_memory(path: Path, memory: dict[str, Any]) -> None:
 
 
 def _summarize_recent(projects: list[dict]) -> str:
-    """Compact text summary of recent projects for the CEO prompt."""
+    """Compact text summary of recent SHIPPED projects for the CEO prompt."""
     if not projects:
         return "(no projects yet)"
     lines = []
     for p in projects:
         ui = p.get("final_verify_metrics", {}) or {}
+        qa = p.get("qa_review") or {}
         lines.append(
             f"- {p.get('date','?')} {p.get('name','?'):<45} "
             f"c={p.get('complexity_score','?')} "
             f"files={p.get('file_count','?')} loc={p.get('loc','?')} "
             f"cycles={p.get('quality_cycles_used','?')} "
             f"controls={ui.get('interactiveCount','?')} "
+            f"qa={qa.get('verdict','-')} "
             f"pattern={p.get('pattern','?')} "
-            f"domain={p.get('domain','?')} "
-            f"model={p.get('model_attribution',{}).get('plan','?')}"
+            f"domain={p.get('domain','?')}"
+        )
+    return "\n".join(lines)
+
+
+def _summarize_failures(failed_builds: list[dict]) -> str:
+    """Compact text summary of REFUSED builds — projects that didn't ship."""
+    if not failed_builds:
+        return "(no refused builds in window — pipeline shipping cleanly)"
+    lines = [
+        f"REFUSED builds (project was generated, refused before publish):",
+    ]
+    for f in failed_builds:
+        dead = len(f.get("qa_dead_controls") or [])
+        miss = len(f.get("qa_missing_features") or [])
+        sec = f.get("security_blocking_count", 0)
+        interaction = f.get("final_interaction") or {}
+        live = interaction.get("live")
+        tested = interaction.get("tested")
+        ratio = f"{live}/{tested}" if (live is not None and tested) else "?"
+        lines.append(
+            f"- {f.get('date','?')} \"{f.get('plan_name','?')}\" "
+            f"c={f.get('plan_complexity','?')} "
+            f"pattern={f.get('plan_pattern','?')} "
+            f"domain={f.get('plan_domain','?')} "
+            f"→ {f.get('refusal_stage','?')}: "
+            f"qa_verdict={f.get('qa_verdict','-')}, "
+            f"controls_live={ratio}, "
+            f"dead={dead}, missing={miss}, sec_blockers={sec}"
         )
     return "\n".join(lines)
 
@@ -148,12 +190,19 @@ def run_ceo_review(memory_log_path: Path = Path("memory_log.json")) -> int:
     explored_domains = [p.get("domain") for p in recent if p.get("domain")]
     cs = [p.get("complexity_score", 0) for p in recent]
 
+    failed_builds = (memory.get("failed_builds") or [])[-CEO_REVIEW_WINDOW:]
+    failures_summary = _summarize_failures(failed_builds)
+
     user = (
-        f"Recent {len(recent)} projects (oldest -> newest):\n{summary}\n\n"
-        f"Complexity series: {cs}\n"
-        f"Patterns observed: {explored_patterns}\n"
-        f"Domains observed: {explored_domains}\n\n"
-        "Evaluate this trajectory. Issue strict directives for the NEXT project."
+        f"Recent {len(recent)} SHIPPED projects (oldest -> newest):\n{summary}\n\n"
+        f"Complexity series of shipped: {cs}\n"
+        f"Patterns of shipped: {explored_patterns}\n"
+        f"Domains of shipped: {explored_domains}\n\n"
+        f"{failures_summary}\n\n"
+        "Evaluate the WHOLE picture (shipped + refused). If recent refusals "
+        "dominate at the same complexity, your previous directives may be "
+        "asking for things the current model can't reliably build — adjust "
+        "strategy. Issue strict directives for the NEXT project."
     )
 
     try:

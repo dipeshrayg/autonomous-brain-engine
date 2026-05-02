@@ -76,6 +76,66 @@ def save_memory(memory: dict[str, Any]) -> None:
         f.write("\n")
 
 
+def record_failure(memory: dict[str, Any], plan: dict | None, stage: str, reason: str,
+                   qa_report: dict | None = None,
+                   security_report: dict | None = None,
+                   verify_result: dict | None = None) -> None:
+    """
+    Append a refused-build record to memory_log.failed_builds[]. The CEO reads
+    this list on its next review and adjusts strategy accordingly. Without
+    this, the CEO only sees what shipped — and keeps demanding the same
+    ambitious patterns that the QA gate is rejecting.
+    """
+    now = datetime.now(timezone.utc)
+    record: dict[str, Any] = {
+        "attempted_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "attempted_at_unix": int(now.timestamp()),
+        "date": now.strftime("%Y-%m-%d"),
+        "refusal_stage": stage,
+        "refusal_reason": reason,
+    }
+    if plan:
+        record.update({
+            "plan_name": plan.get("name", "(unknown)"),
+            "plan_language": plan.get("language", "?"),
+            "plan_complexity": int(plan.get("complexity_score", 0)),
+            "plan_pattern": plan.get("pattern", "?"),
+            "plan_domain": plan.get("domain", "?"),
+            "plan_files_count": len(plan.get("files", [])),
+        })
+    if qa_report:
+        record["qa_verdict"] = qa_report.get("verdict")
+        record["qa_dead_controls"] = [
+            {"control": d.get("control"), "expected": d.get("expected")}
+            for d in (qa_report.get("dead_controls") or [])[:5]
+            if isinstance(d, dict)
+        ]
+        record["qa_missing_features"] = [
+            {"feature": f.get("feature")}
+            for f in (qa_report.get("missing_features") or [])[:5]
+            if isinstance(f, dict)
+        ]
+    if security_report:
+        record["security_verdict"] = security_report.get("verdict")
+        record["security_blocking_count"] = sum(
+            1 for f in (security_report.get("findings") or [])
+            if isinstance(f, dict) and f.get("severity") in ("critical", "high")
+        )
+    if verify_result:
+        metrics = verify_result.get("metrics", {}) or {}
+        interaction = metrics.get("interaction") or {}
+        record["final_interaction"] = {
+            "tested": interaction.get("tested"),
+            "live": interaction.get("live_count"),
+            "dead": len(interaction.get("dead_controls") or []),
+        }
+        record["final_interactive_count"] = metrics.get("interactiveCount")
+    memory.setdefault("failed_builds", []).append(record)
+    save_memory(memory)
+    log.info("Recorded refused build to memory_log.failed_builds[]: %s @ %s (reason=%s)",
+             record.get("plan_name", "?"), stage, reason[:120])
+
+
 def _last_project_unix(memory: dict[str, Any]) -> float | None:
     """Unix timestamp of the most-recent project's completion, or None."""
     projects = memory.get("projects", []) or []
@@ -587,6 +647,19 @@ def main() -> int:
                     log.error("  [MISSING] %s", f.get("feature", "?"))
             for hb in hard_blockers[:5]:
                 log.error("  [VERIFIER] %s", str(hb)[:180])
+            record_failure(
+                memory, plan,
+                stage="qa_gate",
+                reason=(
+                    f"QA gate refused after {qa_round} round(s). "
+                    f"verdict={qa_report.get('verdict')}, "
+                    f"{len(qa_report.get('dead_controls') or [])} dead controls, "
+                    f"{len(qa_report.get('missing_features') or [])} missing features, "
+                    f"{len(hard_blockers)} verifier blocker(s)."
+                ),
+                qa_report=qa_report,
+                verify_result=final_verify,
+            )
             return 1
         if qa_report.get("verdict") == "partially_usable":
             residual_dead = len(qa_report.get("dead_controls") or [])
@@ -643,6 +716,17 @@ def main() -> int:
                           f.get("severity", "?").upper(),
                           f.get("category", "?"),
                           f.get("issue", "")[:200])
+            record_failure(
+                memory, plan,
+                stage="security_gate",
+                reason=(
+                    f"Security gate refused after {round_num} fix round(s); "
+                    f"{len(still_blocking)} critical/high finding(s) remained."
+                ),
+                qa_report=qa_findings_to_record,
+                security_report=sec_report,
+                verify_result=final_verify,
+            )
             return 1
 
         # 7. PUBLISH

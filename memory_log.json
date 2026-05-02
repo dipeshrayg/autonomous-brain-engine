@@ -813,5 +813,259 @@
       ],
       "reviewed_project_count": 8
     }
+  ],
+  "failed_builds": [
+    {
+      "attempted_at": "2026-05-02T13:39:00Z",
+      "attempted_at_unix": 1777729140,
+      "date": "2026-05-02",
+      "plan_name": "(unknown — pre-failure-log; storytelling-workspace pattern)",
+      "plan_complexity": 14,
+      "plan_pattern": "workspace",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "verifier_blank_canvas",
+      "refusal_reason": "8 quality cycles + polish + post-polish-fix all stuck at 2/3 controls live + canvas blank.",
+      "qa_verdict": "(predates QA gate)",
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T17:47:00Z",
+      "attempted_at_unix": 1777744020,
+      "date": "2026-05-02",
+      "plan_name": "interactive-music-composition-studio",
+      "plan_complexity": 15,
+      "plan_pattern": "workspace",
+      "plan_domain": "Music",
+      "refusal_stage": "verifier_blank_canvas",
+      "refusal_reason": "Quality loop stuck at 3/9 controls live + canvas blank; not converging.",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "audio playback",
+          "expected": "play composed melody"
+        }
+      ],
+      "final_interaction": {
+        "tested": 9,
+        "live": 3,
+        "dead": 6
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T18:00:00Z",
+      "attempted_at_unix": 1777744800,
+      "date": "2026-05-02",
+      "plan_name": "interactive-storytelling-workspace",
+      "plan_complexity": 15,
+      "plan_pattern": "workspace",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA Tester verdict=partially_usable; Save Story / Load Story buttons dead (couldn't trigger fix loop pre-fix).",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Save Story button",
+          "expected": "persist story data"
+        },
+        {
+          "control": "Load Story button",
+          "expected": "restore saved story"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T18:15:00Z",
+      "attempted_at_unix": 1777745700,
+      "date": "2026-05-02",
+      "plan_name": "interactive-narrative-engine",
+      "plan_complexity": 15,
+      "plan_pattern": "workspace",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA verdict=non_functional after 3 qa_fixer rounds; 3 dead controls + 3 missing features.",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Save Story",
+          "expected": "persist data"
+        },
+        {
+          "control": "Load Story",
+          "expected": "restore data"
+        },
+        {
+          "control": "Navigate",
+          "expected": "move between scenes"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "drag-and-drop"
+        },
+        {
+          "feature": "contextual menus"
+        },
+        {
+          "feature": "real-time feedback"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T18:46:00Z",
+      "attempted_at_unix": 1777747560,
+      "date": "2026-05-02",
+      "plan_name": "creative-storytelling-simulator",
+      "plan_complexity": 15,
+      "plan_pattern": "simulator",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Same pattern: QA verdict=non_functional after fix rounds. Storytelling+drag-drop+persistence keeps failing.",
+      "qa_verdict": "non_functional",
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T13:39:00Z",
+      "attempted_at_unix": 1777729140,
+      "date": "2026-05-02",
+      "plan_name": "(unknown — pre-failure-log)",
+      "plan_complexity": 14,
+      "plan_pattern": "workspace",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "verifier_blank_canvas",
+      "refusal_reason": "8 cycles + polish stuck at 2/3 controls + canvas blank.",
+      "qa_verdict": "(predates QA gate)",
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T17:47:00Z",
+      "attempted_at_unix": 1777744020,
+      "date": "2026-05-02",
+      "plan_name": "interactive-music-composition-studio",
+      "plan_complexity": 15,
+      "plan_pattern": "workspace",
+      "plan_domain": "Music",
+      "refusal_stage": "verifier_blank_canvas",
+      "refusal_reason": "Stuck at 3/9 controls live + canvas blank; not converging.",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "audio playback",
+          "expected": "play composed melody"
+        }
+      ],
+      "final_interaction": {
+        "tested": 9,
+        "live": 3,
+        "dead": 6
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T18:00:00Z",
+      "attempted_at_unix": 1777744800,
+      "date": "2026-05-02",
+      "plan_name": "interactive-storytelling-workspace",
+      "plan_complexity": 15,
+      "plan_pattern": "workspace",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA verdict=partially_usable; Save Story / Load Story dead.",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Save Story",
+          "expected": "persist story data"
+        },
+        {
+          "control": "Load Story",
+          "expected": "restore saved story"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T18:15:00Z",
+      "attempted_at_unix": 1777745700,
+      "date": "2026-05-02",
+      "plan_name": "interactive-narrative-engine",
+      "plan_complexity": 15,
+      "plan_pattern": "workspace",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA verdict=non_functional after 3 qa_fixer rounds; 3 dead + 3 missing.",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Save Story",
+          "expected": "persist data"
+        },
+        {
+          "control": "Load Story",
+          "expected": "restore data"
+        },
+        {
+          "control": "Navigate",
+          "expected": "move between scenes"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "drag-and-drop"
+        },
+        {
+          "feature": "contextual menus"
+        },
+        {
+          "feature": "real-time feedback"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      }
+    },
+    {
+      "attempted_at": "2026-05-02T18:46:00Z",
+      "attempted_at_unix": 1777747560,
+      "date": "2026-05-02",
+      "plan_name": "creative-storytelling-simulator",
+      "plan_complexity": 15,
+      "plan_pattern": "simulator",
+      "plan_domain": "Storytelling",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Same pattern: QA non_functional after fix rounds.",
+      "qa_verdict": "non_functional",
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      }
+    }
   ]
 }

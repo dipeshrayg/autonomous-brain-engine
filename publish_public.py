@@ -78,6 +78,9 @@ def sanitize_memory(memory: dict[str, Any]) -> dict[str, Any]:
                 "missing_features_count": qr.get("missing_features_count", 0),
             }
 
+    # Refused-build history is private (full coaching data for CEO).
+    out.pop("failed_builds", None)
+
     # CEO + CSO: verdict + summary only (concerns + directives are internal coaching)
     out["ceo_reviews"] = [
         {
