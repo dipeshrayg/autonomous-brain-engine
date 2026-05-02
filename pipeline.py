@@ -470,9 +470,31 @@ def _validate_plan(plan: dict, memory: dict) -> None:
             f"Plan with complexity {complexity} needs >={min_files} files. Got {len(files)}."
         )
 
-    # Hard advancement gate — open-ended, no upper cap.
+    # Recovery mode: when failures outnumber successes since the last ship,
+    # the CEO is likely directing a scale-back. Relax the strict advancement +
+    # rotation rules so the architect can propose something the model can
+    # actually deliver. The CEO's directive text drives the *direction* of the
+    # scale-back; the validator just stops blocking it.
+    last_success_unix = max(
+        (p.get("completed_at_unix", 0) for p in (memory.get("projects") or [])),
+        default=0,
+    )
+    fails_since_last_ship = sum(
+        1 for f in (memory.get("failed_builds") or [])
+        if f.get("attempted_at_unix", 0) > last_success_unix
+    )
+    in_recovery = fails_since_last_ship >= 3
+    if in_recovery:
+        log.warning(
+            "VALIDATOR recovery mode active: %d refused build(s) since last ship. "
+            "Relaxing complexity floor + pattern/domain rotation so the CEO's "
+            "scale-back directive can be obeyed.",
+            fails_since_last_ship,
+        )
+
+    # Hard advancement gate — open-ended, no upper cap. Bypassed in recovery.
     recent = memory.get("projects", [])[-7:]
-    if recent:
+    if recent and not in_recovery:
         max_recent = max(p.get("complexity_score", 0) for p in recent)
         floor = max_recent + 1
         if complexity < floor:
@@ -481,17 +503,19 @@ def _validate_plan(plan: dict, memory: dict) -> None:
                 f"(max recent={max_recent}). The scale is open-ended; surpass yesterday."
             )
 
-    # Novel concepts gate
+    # Novel concepts gate — softer threshold in recovery (≥1 instead of ≥2)
     explored = set(memory.get("concepts_explored", []))
     novel = plan.get("novel_concepts") or []
     truly_novel = [c for c in novel if c not in explored]
-    if len(truly_novel) < 2:
+    novel_min = 1 if in_recovery else 2
+    if len(truly_novel) < novel_min:
         raise PipelineError(
-            f"novel_concepts must include >=2 entries NOT in concepts_explored. "
-            f"You provided novel={novel}; truly novel={truly_novel}."
+            f"novel_concepts must include >={novel_min} entries NOT in "
+            f"concepts_explored. You provided novel={novel}; truly novel={truly_novel}."
         )
 
-    # Pattern rotation: must not match last 5
+    # Pattern rotation: must not match last 5 — bypassed in recovery so the
+    # CEO can recommend a return to a proven pattern (visualizer/explorer/etc.)
     last5 = memory.get("projects", [])[-5:]
     recent_patterns = [p.get("pattern") for p in last5 if p.get("pattern")]
     recent_domains = [p.get("domain") for p in last5 if p.get("domain")]
@@ -501,16 +525,17 @@ def _validate_plan(plan: dict, memory: dict) -> None:
         raise PipelineError("`pattern` field is required (one project-genre token).")
     if not domain:
         raise PipelineError("`domain` field is required (one top-level discipline).")
-    if pattern in [p.lower() for p in recent_patterns if p]:
-        raise PipelineError(
-            f"pattern={pattern!r} was used in the last 5 projects ({recent_patterns}). "
-            "Pick a different genre."
-        )
-    if domain in recent_domains:
-        raise PipelineError(
-            f"domain={domain!r} was used in the last 5 projects ({recent_domains}). "
-            "Pick a different discipline."
-        )
+    if not in_recovery:
+        if pattern in [p.lower() for p in recent_patterns if p]:
+            raise PipelineError(
+                f"pattern={pattern!r} was used in the last 5 projects ({recent_patterns}). "
+                "Pick a different genre."
+            )
+        if domain in recent_domains:
+            raise PipelineError(
+                f"domain={domain!r} was used in the last 5 projects ({recent_domains}). "
+                "Pick a different discipline."
+            )
 
     # File path safety + required artifacts + no-transpile rule
     forbidden_exts = {".ts", ".tsx", ".jsx", ".scss", ".less", ".vue",
