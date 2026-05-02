@@ -46,7 +46,7 @@ PLAN_SYSTEM = """You are the Chief Architect of an autonomous, twice-daily softw
 
 ABSOLUTE CONSTRAINTS - non-negotiable:
 1. Comply strictly with GitHub TOS / Acceptable Use. No active malware, no exfiltration, no exploits against systems without consent. Security/trading topics are educational/diagnostic ONLY (operate on synthetic data, simulate, never connect to real markets or real targets).
-2. The project MUST run in any modern browser by serving a single index.html via GitHub Pages — no install, no build step. Allowed runtimes: HTML+CSS+JavaScript, Canvas 2D, SVG, optionally Web Audio / Web Workers / IndexedDB. PREFER Canvas 2D over WebGL (verifier runs software-rendered Chromium). If you must use WebGL/WebGPU, include a fallback notice when the context can't be created.
+2. The project MUST run in any modern browser by serving a single index.html via GitHub Pages — no install, no build step. Allowed runtimes: HTML+CSS+JavaScript, Canvas 2D, SVG, optionally Web Audio / Web Workers / IndexedDB. PREFER Canvas 2D over WebGL (verifier runs software-rendered Chromium). If you must use WebGL/WebGPU, include a fallback notice when the context can't be created. ABSOLUTELY NO COMPILED LANGUAGES — never plan .ts, .jsx, .tsx, .scss, .less, .vue, .svelte files. Write plain .js, .html, .css. There is no transpiler. If your plan needs `dist/` paths, list those exact .js files as project files yourself.
 
 3. HARD ADVANCEMENT (the most important rule):
    - complexity_score is OPEN-ENDED. NO upper cap. It must be >= max(recent complexity_scores) + 1.
@@ -135,6 +135,7 @@ RULES:
 - Production-quality code. NO TODOs, NO placeholders, NO "implement this later", NO stubs.
 - Honor sibling files: do not redefine variables/functions they already export, do not duplicate their work.
 - For HTML: <!DOCTYPE html>, charset, viewport, semantic structure. All referenced scripts/styles must exist in sibling files. PREFER CLASSIC <script src="..."></script> over <script type="module">. Classic scripts compose reliably without import maps; modules require careful path handling that often breaks under GitHub Pages.
+- ABSOLUTELY NO COMPILED-LANGUAGE FILES. The runtime is a static GitHub Pages server — there is no build step. NEVER write .ts (TypeScript), .jsx, .tsx, .scss, .less, .vue, .svelte, .coffee, or any other file that would normally be transpiled. Write plain .js, .html, .css. If you reference dist/foo.js or build/bar.js, that file must EXIST in your `files` list as a concrete static asset.
 - For JS: handle DOMContentLoaded properly, no top-level statements that touch the DOM before it's ready, handle resize, handle edge cases, no unhandled promise rejections. AVOID Web Workers unless absolutely essential — they require separate worker.js files and cross-file message protocol that frequently breaks. Inline computation is fine for nearly all interactive demos.
 - For CSS: responsive, accessible, polished — use modern selectors, custom properties, prefers-color-scheme.
 - Pin any CDN versions explicitly (e.g., d3@7.8.5).
@@ -197,6 +198,73 @@ OUTPUT - single JSON, no prose, no fences:
   ],
   "notes": "1-2 sentences on what you changed"
 }
+"""
+
+
+SECURITY_REVIEW_SYSTEM = """You are the Security Officer for an autonomous software-publishing pipeline. Every project is about to be published to a public GitHub repo with a live demo on GitHub Pages. Your job is to identify security and safety issues BEFORE publish.
+
+You receive: the plan, the final source files, and the browser-verify result. You return a structured security report. The pipeline will treat any issue with severity 'critical' or 'high' as a hard publish-blocker — those issues will be fed back to the Fixer for remediation before another security review is attempted.
+
+REVIEW SCOPE — be thorough across all of these:
+
+1. CLIENT-SIDE WEB SECURITY:
+   - Stored or reflected XSS via innerHTML, document.write, eval, new Function, or attribute injection from user input.
+   - Prototype pollution (Object.assign on user JSON, recursive merge of untrusted data).
+   - Open redirects, javascript: URLs, target="_blank" without rel="noopener noreferrer".
+   - Mixed content, insecure CDNs (http://), missing Subresource Integrity (SRI) where the file is sourced from a third party.
+   - DOM-based clickjacking, missing CSP / X-Frame-Options where applicable to the demo.
+   - LocalStorage / IndexedDB containing anything resembling credentials, tokens, or PII.
+
+2. THIRD-PARTY DEPENDENCIES:
+   - CDN URL pins: are versions pinned? Is the CDN reputable (jsdelivr/unpkg/cdnjs only)?
+   - Known-vulnerable library versions (call them out by CVE if you recognise them).
+   - Excessive permissions or capabilities a library doesn't need.
+
+3. AI / LLM-SPECIFIC THREATS:
+   - If the project takes user text input and feeds it to a model or model-like logic, is it sanitised against prompt-injection (e.g. "ignore previous instructions")?
+   - If the project echoes user input into another tool, command, or API, is there an injection vector?
+   - If the project surfaces AI-generated content as authoritative, are there safety disclaimers?
+
+4. BACKEND SIMULATION CONCERNS (even if simulated, treat as real):
+   - eval() / Function() on user input → critical.
+   - Unsanitised SQL / command construction patterns, even in toy form.
+   - "Authentication" demos that store passwords in plaintext or use trivial hashes.
+   - Simulated financial transactions: are amounts validated? Race conditions?
+
+5. PRIVACY:
+   - Any code path that exfiltrates data to a third-party origin (fetch/XHR/beacon/img to non-CDN).
+   - Any tracking, telemetry, fingerprinting code.
+   - Storage of user-entered data without explicit consent / clear UI.
+
+6. GENERATED-CODE SAFETY (this is autonomous code, treat with extra suspicion):
+   - Any deceptive patterns ("dark UX") in the generated UI.
+   - Misleading claims in the README that don't match the code.
+   - Code that downloads + executes content (malware shape).
+
+OUTPUT — single JSON, no prose, no markdown fences:
+{
+  "verdict": "secure" | "minor_concerns" | "publish_blocked",
+  "summary": "1-2 sentence executive summary",
+  "findings": [
+    {
+      "severity": "critical" | "high" | "medium" | "low" | "info",
+      "category": "xss" | "injection" | "dependency" | "ai_threat" | "privacy" | "deception" | "other",
+      "file": "<path or 'multi'>",
+      "issue": "what's wrong, specifically",
+      "suggestion": "concrete fix"
+    }
+  ],
+  "directives_for_future": [
+    "imperative instructions for future projects (architect must obey). 0-4 entries."
+  ]
+}
+
+Rules:
+- If verdict is 'publish_blocked' there must be at least one critical/high finding.
+- If verdict is 'secure', findings can still include low/info items — those are advisory.
+- Be specific. 'CSP missing' is too vague; 'No <meta http-equiv="Content-Security-Policy"> tag — add a strict default-src \\'self\\' policy' is right.
+- Don't be paranoid about WebGL warnings or harmless console.warns. Focus on real attack surface.
+- Don't flag CDN URLs from jsdelivr/unpkg/cdnjs as 'untrusted' — those are the trusted choice for static demos. DO flag missing version pins or http:// CDNs.
 """
 
 
@@ -405,7 +473,9 @@ def _validate_plan(plan: dict, memory: dict) -> None:
             "Pick a different discipline."
         )
 
-    # File path safety + required artifacts
+    # File path safety + required artifacts + no-transpile rule
+    forbidden_exts = {".ts", ".tsx", ".jsx", ".scss", ".less", ".vue",
+                      ".svelte", ".coffee", ".pug", ".sass"}
     has_index = False
     has_readme = False
     for fs in files:
@@ -413,6 +483,11 @@ def _validate_plan(plan: dict, memory: dict) -> None:
         p = Path(path)
         if not path or p.is_absolute() or ".." in p.parts:
             raise PipelineError(f"Unsafe file path in plan: {path!r}")
+        if p.suffix.lower() in forbidden_exts:
+            raise PipelineError(
+                f"File {path!r} requires a build step. GitHub Pages serves static "
+                "files only. Use plain .js / .html / .css — never .ts, .jsx, .scss, etc."
+            )
         if p.name.lower() == "index.html":
             has_index = True
         if p.name.lower() == "readme.md":

@@ -44,10 +44,12 @@ log = logging.getLogger("brain.roles")
 # Names are GitHub-Models / Azure-endpoint compatible. Tier is informational.
 
 MODELS: dict[str, tuple[str, str]] = {
+    # Names below are verified against the Azure GitHub Models endpoint. The
+    # earlier `Mistral-Large-2411` and `Meta-Llama-3.1-70B-Instruct` IDs return
+    # `unknown_model` errors there — the fallback chain has been silently
+    # masking that since day one, leaving the system running on just OpenAI.
     "gpt-4o":          ("gpt-4o",                          "premium"),
     "gpt-4o-mini":     ("gpt-4o-mini",                     "fast"),
-    "mistral-large":   ("Mistral-Large-2411",              "premium"),
-    "llama-70b":       ("Meta-Llama-3.1-70B-Instruct",     "balanced"),
     "phi-medium":      ("Phi-3.5-MoE-instruct",            "fast"),
 }
 
@@ -56,29 +58,33 @@ MODELS: dict[str, tuple[str, str]] = {
 
 ROLE_PRIMARY: dict[str, str] = {
     "ceo":                   "gpt-4o",
+    "cso":                   "gpt-4o",
+    "security_officer":      "gpt-4o",
     "architect_judge":       "gpt-4o",
-    "architect_candidate_a": "mistral-large",
-    "architect_candidate_b": "llama-70b",
+    # Two distinct candidates so the conference has actual diversity.
+    "architect_candidate_a": "gpt-4o-mini",
+    "architect_candidate_b": "phi-medium",
     "engineer":              "gpt-4o",
-    "reviewer_a":            "mistral-large",
-    "reviewer_b":            "llama-70b",
-    "fixer":                 "gpt-4o-mini",  # saves premium budget for plan/implement
+    "reviewer_a":            "gpt-4o-mini",
+    "reviewer_b":            "phi-medium",
+    "fixer":                 "gpt-4o-mini",
     "polisher":              "gpt-4o-mini",
 }
 
-# Fallbacks tried in order when the primary errors. The fallback chains are
-# different per role so that rate-limit pressure on one model doesn't cascade
-# everyone onto the same backup.
+# Fallbacks tried in order when the primary errors. Each chain ends in gpt-4o
+# so that — worst case — every role can succeed on the strongest model we have.
 ROLE_FALLBACK: dict[str, list[str]] = {
-    "ceo":                   ["mistral-large", "gpt-4o-mini"],
-    "architect_judge":       ["mistral-large", "gpt-4o-mini"],
-    "architect_candidate_a": ["llama-70b", "gpt-4o-mini"],
-    "architect_candidate_b": ["mistral-large", "gpt-4o-mini"],
-    "engineer":              ["gpt-4o-mini", "mistral-large", "llama-70b"],
-    "reviewer_a":            ["llama-70b", "gpt-4o-mini"],
-    "reviewer_b":            ["mistral-large", "gpt-4o-mini"],
-    "fixer":                 ["gpt-4o", "mistral-large", "llama-70b"],
-    "polisher":              ["gpt-4o", "mistral-large", "llama-70b"],
+    "ceo":                   ["gpt-4o-mini", "phi-medium"],
+    "cso":                   ["gpt-4o-mini", "phi-medium"],
+    "security_officer":      ["gpt-4o-mini", "phi-medium"],
+    "architect_judge":       ["gpt-4o-mini", "phi-medium"],
+    "architect_candidate_a": ["phi-medium", "gpt-4o"],
+    "architect_candidate_b": ["gpt-4o-mini", "gpt-4o"],
+    "engineer":              ["gpt-4o-mini", "phi-medium"],
+    "reviewer_a":            ["phi-medium", "gpt-4o"],
+    "reviewer_b":            ["gpt-4o-mini", "gpt-4o"],
+    "fixer":                 ["gpt-4o", "phi-medium"],
+    "polisher":              ["gpt-4o", "phi-medium"],
 }
 
 
