@@ -507,14 +507,16 @@ def main() -> int:
         qa_report = pipeline.stage_qa_review(client, plan, files, final_verify)
         qa_findings_to_record = qa_report
 
-        # The QA fixer also gets a crack at any verifier-level blockers
-        # (blank canvas, missing files, page errors that didn't crash hard).
-        # qa_fixer is gpt-4o (more capable than the regular fixer's gpt-4o-mini)
-        # and gets explicit guidance for control-wiring + canvas drawing.
+        # The QA fixer gets a crack at usability problems regardless of the
+        # 'verdict' label: if there are concrete dead controls or missing
+        # features, fix them. Verdict alone (non_functional vs partially_usable)
+        # depends on how the QA Tester drew the line — but a dead Save button
+        # is dead either way, and shouldn't ship.
         def _qa_should_run(qa_rep: dict, verify: dict) -> bool:
             if qa_rep.get("verdict") == "non_functional":
                 return True
-            # Treat blank canvas / structural verifier issues as QA-fixable
+            if qa_rep.get("dead_controls") or qa_rep.get("missing_features"):
+                return True
             for issue in (verify.get("issues") or []):
                 low = issue.lower()
                 if "blank" in low or "runaway" in low or "empty" in low or "zero" in low:
@@ -565,8 +567,11 @@ def main() -> int:
             qa_report = pipeline.stage_qa_review(client, plan, files, final_verify)
             qa_findings_to_record = qa_report
 
-        # Final hard-quality gate: refuse to publish if QA couldn't fix things
-        # AND the verifier still reports fundamental brokenness.
+        # Final hard-quality gate: refuse to publish if QA couldn't fix the
+        # fundamentals after its rounds. partially_usable with a few residual
+        # dead controls IS allowed to ship — the QA badge surfaces the state
+        # to the visitor — but non_functional or fundamental verifier
+        # blockers (blank canvas, page errors) are hard refusals.
         hard_blockers = (final_verify.get("errors") or []) + [
             i for i in (final_verify.get("issues") or [])
             if any(k in i.lower() for k in ("blank", "runaway", "empty", "zero"))
@@ -583,6 +588,13 @@ def main() -> int:
             for hb in hard_blockers[:5]:
                 log.error("  [VERIFIER] %s", str(hb)[:180])
             return 1
+        if qa_report.get("verdict") == "partially_usable":
+            residual_dead = len(qa_report.get("dead_controls") or [])
+            log.warning(
+                "Shipping with QA verdict=partially_usable (%d residual dead control(s)). "
+                "Card will display 🧪 partial badge so visitors are warned.",
+                residual_dead,
+            )
 
         # 6.5 SECURITY REVIEW (CSO role: per-project pre-publish gate).
         # If critical/high findings, send to the Security Fixer (gpt-4o) for up
