@@ -734,6 +734,31 @@
         "Projects are consistently leveraging modern web technologies like Canvas 2D and JavaScript ES6, which are inherently more secure than older alternatives when used properly."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-02T17:23:32Z",
+      "issued_at_unix": 1777742612,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The pipeline is showing signs of security drift, with systemic gaps in security reviews, reliance on outdated CDN versions, and increasing use of localStorage and network calls without encryption or CSP policies.",
+      "concerns": [
+        "No security reviews were conducted for 7 out of 8 recent projects, indicating a systemic lack of review.",
+        "Multiple projects rely on outdated or potentially insecure CDN-hosted libraries (e.g., Chart.js v3.6.0, Math.js v10.6.4).",
+        "The interactive-environmental-science-explorer project stores sensitive user state in localStorage without encryption, exposing it to potential XSS attacks.",
+        "CSP policies are missing across all projects, increasing the risk of script injection attacks.",
+        "Rising use of localStorage and fetch indicates an expanding attack surface, with insufficient safeguards for data security and privacy."
+      ],
+      "directives": [
+        "The next project must undergo a formal security review before publication, with findings documented in detail.",
+        "The next project must use the latest versions of all dependencies and justify the use of any CDN-hosted libraries over self-hosted or package-managed versions.",
+        "The next project must implement a strict <meta http-equiv=Content-Security-Policy> with default-src 'self' and an explicit allowlist for any external resources.",
+        "No project may store sensitive user data (e.g., auth state) in localStorage without encryption or equivalent safeguards.",
+        "The next project must include a privacy statement clarifying what user data is collected, how it is stored, and how it will be used."
+      ],
+      "praise": [
+        "The interactive-environmental-science-explorer project avoided the use of cookies and tracking code, maintaining user privacy for its educational purpose."
+      ],
+      "reviewed_project_count": 8
     }
   ]
 }
