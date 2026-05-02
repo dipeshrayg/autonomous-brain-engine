@@ -44,13 +44,15 @@ log = logging.getLogger("brain.roles")
 # Names are GitHub-Models / Azure-endpoint compatible. Tier is informational.
 
 MODELS: dict[str, tuple[str, str]] = {
-    # Names below are verified against the Azure GitHub Models endpoint. The
-    # earlier `Mistral-Large-2411` and `Meta-Llama-3.1-70B-Instruct` IDs return
-    # `unknown_model` errors there — the fallback chain has been silently
-    # masking that since day one, leaving the system running on just OpenAI.
+    # Verified against the Azure GitHub Models endpoint (models.inference.ai.azure.com).
+    # Mistral-Large-2411, Meta-Llama-3.1-70B-Instruct, and Phi-3.5-MoE-instruct
+    # all return `unknown_model` 400s here — the endpoint has dropped them.
+    # We're back to OpenAI-only on this endpoint; conference diversity comes
+    # from temperature variation across role invocations rather than model
+    # variation. If a working alt-family model is added to the catalogue,
+    # plug it in here and the fallback chains will pick it up automatically.
     "gpt-4o":          ("gpt-4o",                          "premium"),
     "gpt-4o-mini":     ("gpt-4o-mini",                     "fast"),
-    "phi-medium":      ("Phi-3.5-MoE-instruct",            "fast"),
 }
 
 
@@ -71,31 +73,33 @@ ROLE_PRIMARY: dict[str, str] = {
     "architect_judge":       "gpt-4o",
     # Two distinct candidates so the conference has actual diversity.
     "architect_candidate_a": "gpt-4o-mini",
-    "architect_candidate_b": "phi-medium",
+    "architect_candidate_b": "gpt-4o-mini",
     "engineer":              "gpt-4o",
     "reviewer_a":            "gpt-4o-mini",
-    "reviewer_b":            "phi-medium",
+    "reviewer_b":            "gpt-4o-mini",
     "fixer":                 "gpt-4o-mini",
     "polisher":              "gpt-4o-mini",
 }
 
-# Fallbacks tried in order when the primary errors. Each chain ends in gpt-4o
-# so that — worst case — every role can succeed on the strongest model we have.
+# Fallbacks tried in order when the primary errors. With only two working
+# models, the chain is simple: primary → other model → fail. AllModelsFailed
+# is raised only if both gpt-4o and gpt-4o-mini are unavailable
+# simultaneously (rare; usually transient rate-limit recovers within minutes).
 ROLE_FALLBACK: dict[str, list[str]] = {
-    "ceo":                   ["gpt-4o-mini", "phi-medium"],
-    "cso":                   ["gpt-4o-mini", "phi-medium"],
-    "qa_tester":             ["gpt-4o-mini", "phi-medium"],
-    "qa_fixer":              ["gpt-4o-mini", "phi-medium"],
-    "security_officer":      ["gpt-4o-mini", "phi-medium"],
-    "security_fixer":        ["gpt-4o-mini", "phi-medium"],
-    "architect_judge":       ["gpt-4o-mini", "phi-medium"],
-    "architect_candidate_a": ["phi-medium", "gpt-4o"],
-    "architect_candidate_b": ["gpt-4o-mini", "gpt-4o"],
-    "engineer":              ["gpt-4o-mini", "phi-medium"],
-    "reviewer_a":            ["phi-medium", "gpt-4o"],
-    "reviewer_b":            ["gpt-4o-mini", "gpt-4o"],
-    "fixer":                 ["gpt-4o", "phi-medium"],
-    "polisher":              ["gpt-4o", "phi-medium"],
+    "ceo":                   ["gpt-4o-mini"],
+    "cso":                   ["gpt-4o-mini"],
+    "qa_tester":             ["gpt-4o-mini"],
+    "qa_fixer":              ["gpt-4o-mini"],
+    "security_officer":      ["gpt-4o-mini"],
+    "security_fixer":        ["gpt-4o-mini"],
+    "architect_judge":       ["gpt-4o-mini"],
+    "architect_candidate_a": ["gpt-4o"],
+    "architect_candidate_b": ["gpt-4o"],
+    "engineer":              ["gpt-4o-mini"],
+    "reviewer_a":            ["gpt-4o"],
+    "reviewer_b":            ["gpt-4o"],
+    "fixer":                 ["gpt-4o"],
+    "polisher":              ["gpt-4o"],
 }
 
 
