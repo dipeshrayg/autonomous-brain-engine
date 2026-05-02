@@ -454,6 +454,124 @@
           "Introduce a basic Content Security Policy (CSP) in future projects to adhere to best practices."
         ]
       }
+    },
+    {
+      "date": "2026-05-02",
+      "completed_at": "2026-05-02T22:43:02Z",
+      "completed_at_unix": 1777761782,
+      "name": "data-visualization-toolkit",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-02-data-visualization-toolkit",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-02-data-visualization-toolkit/",
+      "language": "JavaScript",
+      "tech_stack": [
+        "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"
+      ],
+      "complexity_score": 15,
+      "concepts_demonstrated": [
+        "Real-time data visualization",
+        "Interactive parameter control",
+        "Mathematical function plotting",
+        "User-friendly interface design"
+      ],
+      "novel_concepts": [
+        "Dynamic function selection",
+        "Responsive canvas resizing"
+      ],
+      "advancement_axis": "This project introduces a more user-friendly interface while maintaining interactivity with real-time parameter adjustments, offering deeper engagement compared to previous visualizations focused solely on static data.",
+      "pattern": "visualizer",
+      "domain": "Mathematics",
+      "visual_identity": "A clean and modern aesthetic featuring a blue and green color palette, sans-serif typography, and a simple layout focused on interactive visualizations.",
+      "safety_notes": "This project does not handle sensitive user data; it operates solely with user interactions on the client-side.",
+      "file_count": 6,
+      "loc": 593,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 280,
+        "bodyHtml": 1694,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 800,
+          "cssH": 400
+        },
+        "interactiveCount": 7,
+        "scriptCount": 2,
+        "title": "Data Visualization Toolkit",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 7,
+          "total_controls": 7,
+          "dead_controls": [],
+          "live_count": 7
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "README.md": "gpt-4o",
+          "privacy-statement.html": "gpt-4o",
+          "csp-directives.html": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must target a complexity of 10 or below. Avoid pushing into the 14-15 complexity range until QA pass rates stabilize.",
+        "Use a single-pane canvas layout with no more than three live controls. Avoid multi-view workspaces or complex multi-control interactions.",
+        "Exclude the 'workspace' and 'simulator' patterns from the next project. Instead, use a simple, well-tested pattern like 'visualizer' or 'explorer'.",
+        "Focus on a familiar domain from recent successes (Mathematics, Healthcare, or Environmental Science) instead of experimenting with new domains like Storytelling or Music.",
+        "Introduce a novel data visualization or interaction design within the chosen pattern, ensuring it is functional and adds genuine user value."
+      ],
+      "security_review": {
+        "verdict": "secure",
+        "summary": "The project is secure for publication; no critical or high-severity findings were identified. Minor best-practice recommendations are provided for improvement.",
+        "model": "gpt-4o",
+        "findings_count": 3,
+        "findings": [
+          {
+            "severity": "low",
+            "category": "privacy",
+            "file": "index.html",
+            "issue": "No Content Security Policy (CSP) defined in the meta tags, which could help protect the application against certain injection attacks.",
+            "suggestion": "Add a meta tag with a CSP directive to specify the allowed sources for scripts, styles, and other resources."
+          },
+          {
+            "severity": "low",
+            "category": "dependency",
+            "file": "index.html",
+            "issue": "The p5.js library is included via CDN without an integrity (SRI) attribute, which can help verify the integrity of the loaded resource.",
+            "suggestion": "Add an integrity attribute to the p5.js script tag to ensure the resource hasn't been tampered with."
+          },
+          {
+            "severity": "info",
+            "category": "privacy",
+            "file": "index.html",
+            "issue": "No explicit analytics, tracking, or telemetry code detected, but privacy practices were not explicitly disclosed in the README or privacy statement beyond stating that no data is collected.",
+            "suggestion": "Ensure privacy practices are transparent and align with the statement provided in privacy-statement.html."
+          }
+        ],
+        "directives_for_future": [
+          "Include a basic CSP directive in all projects to specify safe sources of resources, even for static demos.",
+          "Always use the integrity attribute for third-party CDN resources, where available, to protect against tampering.",
+          "If the project uses interactive elements, clearly disclose privacy practices to visitors, even if no data is collected.",
+          "Conduct routine checks for unused or dead controls in the UI."
+        ]
+      },
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All promised features are implemented, and all controls successfully update the visualization or state as expected.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -465,7 +583,8 @@
     10,
     11,
     12,
-    14
+    14,
+    15
   ],
   "concepts_explored": [
     "neural networks",
@@ -513,17 +632,23 @@
     "User interaction with drag-and-drop",
     "Simulated real-time data updates",
     "Fake authentication system",
-    "Multi-pane workspace layout"
+    "Multi-pane workspace layout",
+    "Real-time data visualization",
+    "Interactive parameter control",
+    "Mathematical function plotting",
+    "User-friendly interface design"
   ],
   "patterns_used": [
     "visualizer",
     "dashboard",
-    "explorer"
+    "explorer",
+    "visualizer"
   ],
   "domains_used": [
     "Mathematics",
     "Healthcare",
-    "Environmental Science"
+    "Environmental Science",
+    "Mathematics"
   ],
   "ceo_reviews": [
     {
