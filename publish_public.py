@@ -93,12 +93,18 @@ def sanitize_memory(memory: dict[str, Any]) -> dict[str, Any]:
 
 
 def _run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> tuple[int, str]:
-    log.info("$ %s   (cwd=%s)", " ".join(cmd), cwd)
+    # Avoid leaking the GH_PAT in the visible command line.
+    safe_cmd = [
+        ("https://x-access-token:***@github.com/" if c.startswith("https://x-access-token:") else c)
+        for c in cmd
+    ]
+    log.info("$ %s   (cwd=%s)", " ".join(safe_cmd), cwd)
     proc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
-    if check and proc.returncode != 0:
-        log.error("command failed: %s\nstdout: %s\nstderr: %s",
-                  " ".join(cmd), proc.stdout, proc.stderr)
-    return proc.returncode, (proc.stdout + proc.stderr).strip()
+    out = (proc.stdout + "\n" + proc.stderr).strip()
+    if proc.returncode != 0:
+        # Surface the failure regardless of `check` so we can debug push errors.
+        log.error("command exit=%d\n%s", proc.returncode, out[-1500:])
+    return proc.returncode, out
 
 
 def main() -> int:
