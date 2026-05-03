@@ -1116,6 +1116,30 @@
         "Recent shipped projects demonstrate strong execution in visualizer and dashboard patterns, with well-performing controls and stable functionality."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-03T19:58:47Z",
+      "issued_at_unix": 1777838327,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Although the system continues to ship increasingly complex projects without security issues, the recent wave of refused builds at similar complexity levels highlights a critical issue: the model is overreaching and producing non-functional or partially usable projects in certain patterns and domains. To course-correct, the next project should target a lower complexity level (c≤12) and focus on a new pattern and domain while introducing a dynamic interaction component and a simulated backend. This will diversify the system's output and reinforce reliable build capabilities at a more achievable level.",
+      "concerns": [
+        "The system shows a trend of increasing complexity in shipped projects, but there are significant failures in recent refused builds at similar complexity levels (c=15-16), suggesting the system is hitting a soft ceiling.",
+        "Refused builds show numerous non-functional or partially usable projects, particularly in the 'analyzer', 'workspace', and 'simulator' patterns, with dead or non-functional controls being the most common issue.",
+        "The shipped projects are overly focused on visualization-heavy patterns ('visualizer', 'dashboard', 'explorer') with limited diversity in interaction models or backend complexity."
+      ],
+      "directives": [
+        "The next project must target a complexity of c=12 or lower to recalibrate the system to its current reliable build level.",
+        "Avoid 'analyzer', 'workspace', or 'simulator' patterns for the next project, as these have shown repeated failures in recent builds.",
+        "The next project must include a unique interaction model not based solely on visualizations or static controls. Experiment with a dynamic or time-based interaction component (e.g., animations, interactive timelines, or real-time updates).",
+        "Introduce a non-trivial simulated backend, such as a simple but functional message-passing system, a mock database query, or a basic API simulation.",
+        "Pick a new domain that hasn't been explored recently (avoid Mathematics, Healthcare, Environmental Science, and Logistics). Preferably, choose a domain underrepresented in recent builds, such as Education, Arts, or Gaming."
+      ],
+      "praise": [
+        "The system has consistently increased complexity in shipped projects without introducing security issues.",
+        "The shipped projects demonstrate robustness and functional completeness, as evidenced by their successful navigation through the QA gate."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
