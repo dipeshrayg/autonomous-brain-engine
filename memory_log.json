@@ -1320,6 +1320,41 @@
         "dead": 2
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-03T10:40:52Z",
+      "attempted_at_unix": 1777804852,
+      "date": "2026-05-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "social-network-analysis-tool",
+      "plan_language": "JavaScript",
+      "plan_complexity": 16,
+      "plan_pattern": "analyzer",
+      "plan_domain": "Social Science",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.range '10'>",
+          "expected": "Adjust node size and affect graph visualization"
+        },
+        {
+          "control": "<BUTTON.submit 'Download Graph'>",
+          "expected": "Download the graph as an image"
+        },
+        {
+          "control": "<BUTTON.submit 'Fullscreen'>",
+          "expected": "Toggle fullscreen mode for the graph canvas"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ]
 }
