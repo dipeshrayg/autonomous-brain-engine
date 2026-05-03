@@ -1355,6 +1355,41 @@
         "dead": 3
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-03T12:14:50Z",
+      "attempted_at_unix": 1777810490,
+      "date": "2026-05-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 0 missing features, 7 verifier blocker(s).",
+      "plan_name": "social-network-interaction-analyzer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 16,
+      "plan_pattern": "analyzer",
+      "plan_domain": "Social Science",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Start Simulation'>",
+          "expected": "Start the simulation and dynamically update the canvas and interaction data"
+        },
+        {
+          "control": "<BUTTON.submit 'Pause Simulation'>",
+          "expected": "Pause the ongoing simulation and stop dynamic updates to the canvas"
+        },
+        {
+          "control": "<BUTTON.submit 'Clear History'>",
+          "expected": "Clear interaction history and reset the canvas"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ]
 }
