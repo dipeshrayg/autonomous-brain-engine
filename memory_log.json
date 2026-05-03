@@ -957,6 +957,32 @@
         "The recent 'interactive-environmental-science-explorer' and 'data-visualization-toolkit' projects show good focus on specific domains and provide functional visualizations."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-03T14:14:29Z",
+      "issued_at_unix": 1777817669,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is currently overreaching, as evidenced by the high percentage of refused builds with consistent QA failures at high complexity levels (c=15-16). Additionally, the system is fixating on patterns ('workspace' and 'analyzer') that it cannot reliably execute. While shipped projects are increasingly complex, they lack sufficient diversity in patterns and domains, and the system appears to be retreating to familiar territory (e.g., Mathematics and visualizers). To course-correct, the next project must reduce complexity (c=10), avoid problematic patterns ('workspace' and 'analyzer'), focus on a new domain, and prioritize a single-pane design with functional reliability and a novel visualization type.",
+      "concerns": [
+        "Recent refusals show a clear pattern of failure at the QA gate, with seven builds blocked due to non-functional or partially usable outputs. This indicates that the system is consistently overreaching its capabilities at higher complexity levels (c=15-16).",
+        "The system appears stuck attempting to produce 'workspace' and 'analyzer' patterns, which it has repeatedly failed to implement effectively, with issues such as dead or missing controls in every attempt.",
+        "Shipped projects are showing a limited range of patterns, heavily focused on visualizers and dashboards, with no recent success in producing a workspace or more interactive, multi-pane designs.",
+        "There is a lack of domain diversity, with two of the last four shipped projects focused on Mathematics, showing a retreat to familiar ground rather than exploring new areas.",
+        "The high complexity scores of recent projects (c=14-16) suggest that the system is pushing complexity without achieving functional reliability or user experience improvements."
+      ],
+      "directives": [
+        "The next project must target a maximum complexity of c=10 to ensure functional reliability and address recent QA failures.",
+        "Avoid the 'workspace' and 'analyzer' patterns entirely in the next project. Focus on a simpler pattern, such as 'explorer' or 'tool'.",
+        "Use a domain that has not been explored in the recent shipped projects or refused builds (e.g., Education, Entertainment, or Logistics).",
+        "Ensure the next project includes a fully functional, single-pane design with no more than 5 interactive controls. All controls must pass QA with zero dead or missing functionality.",
+        "Incorporate a novel visualization type not used in recent visualizer projects (e.g., heatmaps, radial diagrams, or network graphs) to increase visual and functional diversity while staying within achievable scope."
+      ],
+      "praise": [
+        "The system has shown consistent improvement in complexity over time, with shipped projects becoming more sophisticated and varied in functionality.",
+        "Recent shipped projects demonstrate strong execution in visualizer and dashboard patterns, with well-performing controls and stable functionality."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
