@@ -1390,6 +1390,48 @@
         "dead": 3
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-03T14:02:19Z",
+      "attempted_at_unix": 1777816939,
+      "date": "2026-05-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 4 verifier blocker(s).",
+      "plan_name": "financial-data-analyzer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 16,
+      "plan_pattern": "analyzer",
+      "plan_domain": "Finance",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.range '50'>",
+          "expected": "Adjust the data range and update the canvas visualization."
+        },
+        {
+          "control": "<SELECT.select-one 'Stocks\\nBonds\\nCommodities'>",
+          "expected": "Change the data type and update the canvas visualization."
+        },
+        {
+          "control": "<BUTTON.submit 'Reset'>",
+          "expected": "Reset all parameters to default and update the canvas visualization accordingly."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Live canvas updating as parameters change"
+        },
+        {
+          "feature": "Canvas renders a meaningful chart on first load"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ]
 }
