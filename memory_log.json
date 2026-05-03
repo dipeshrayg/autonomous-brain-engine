@@ -1289,6 +1289,37 @@
         "live": 0,
         "dead": 3
       }
+    },
+    {
+      "attempted_at": "2026-05-03T09:15:46Z",
+      "attempted_at_unix": 1777799746,
+      "date": "2026-05-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 10 verifier blocker(s).",
+      "plan_name": "interactive-social-science-analyzer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 16,
+      "plan_pattern": "analyzer",
+      "plan_domain": "Social Science",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.button 'Generate Data'>",
+          "expected": "Trigger data generation and update visualization with new data."
+        },
+        {
+          "control": "<BUTTON.submit 'Export Data'>",
+          "expected": "Download visualized data as a file."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 3,
+        "dead": 2
+      },
+      "final_interactive_count": 5
     }
   ]
 }
