@@ -1458,6 +1458,48 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-03T14:52:18Z",
+      "attempted_at_unix": 1777819938,
+      "date": "2026-05-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 10 verifier blocker(s).",
+      "plan_name": "dynamic-logistics-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 16,
+      "plan_pattern": "simulator",
+      "plan_domain": "Logistics",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.range 'Supply'>",
+          "expected": "Update the logistics network visualization based on supply parameter"
+        },
+        {
+          "control": "<INPUT.range 'Demand'>",
+          "expected": "Update the logistics network visualization based on demand parameter"
+        },
+        {
+          "control": "<BUTTON.button 'Simulate Changes'>",
+          "expected": "Trigger logistics network simulation and display significant changes alerts"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive graph to visualize logistics flows"
+        },
+        {
+          "feature": "Alert notifications for significant changes in the network"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 1,
+        "dead": 3
+      },
+      "final_interactive_count": 4
     }
   ]
 }
