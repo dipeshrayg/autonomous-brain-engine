@@ -697,6 +697,180 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-03",
+      "completed_at": "2026-05-03T21:10:23Z",
+      "completed_at_unix": 1777842623,
+      "name": "interactive-poetry-generator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-03-interactive-poetry-generator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-03-interactive-poetry-generator/",
+      "language": "JavaScript",
+      "tech_stack": [
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      ],
+      "complexity_score": 17,
+      "concepts_demonstrated": [
+        "Dynamic content generation",
+        "User input handling",
+        "Simulated backend interaction",
+        "Real-time word suggestion",
+        "Animation integration"
+      ],
+      "novel_concepts": [
+        "Interactive word suggestion mechanism",
+        "Dynamic poem generation based on user-defined parameters"
+      ],
+      "advancement_axis": "This project introduces a unique interaction model with real-time word suggestions and animated highlights, moving away from static visualizations and enhancing user engagement through dynamic content generation.",
+      "pattern": "generator",
+      "domain": "Arts",
+      "visual_identity": "Soft pastel color palette, using serif typography for a poetic feel, and a multi-panel layout that separates the input, suggestions, and output areas.",
+      "safety_notes": "This project complies with content security policies and does not handle sensitive data.",
+      "file_count": 7,
+      "loc": 586,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 192,
+        "bodyHtml": 1999,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 6,
+        "scriptCount": 7,
+        "title": "Interactive Poetry Generator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 6,
+          "total_controls": 6,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "1",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "9",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Randomize Poem",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 5,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Fullscreen",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "app.js": "gpt-4o",
+          "backend.js": "gpt-4o",
+          "animation.js": "gpt-4o",
+          "security.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must target a complexity of c=12 or lower to recalibrate the system to its current reliable build level.",
+        "Avoid 'analyzer', 'workspace', or 'simulator' patterns for the next project, as these have shown repeated failures in recent builds.",
+        "The next project must include a unique interaction model not based solely on visualizations or static controls. Experiment with a dynamic or time-based interaction component (e.g., animations, interactive timelines, or real-time updates).",
+        "Introduce a non-trivial simulated backend, such as a simple but functional message-passing system, a mock database query, or a basic API simulation.",
+        "Pick a new domain that hasn't been explored recently (avoid Mathematics, Healthcare, Environmental Science, and Logistics). Preferably, choose a domain underrepresented in recent builds, such as Education, Arts, or Gaming."
+      ],
+      "security_review": {
+        "verdict": "secure",
+        "summary": "No critical security issues were found. The interactive poetry generator is safe for publishing, but minor usability concerns exist due to dead interactive controls.",
+        "model": "gpt-4o",
+        "findings_count": 3,
+        "findings": [
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "multi",
+            "issue": "4 out of 6 interactive controls are non-functional (dead controls). This does not pose a security risk but creates a misleading user experience.",
+            "suggestion": "Ensure all controls are wired to event handlers that update the page state as intended (e.g., sliders should adjust values and trigger updates, buttons should perform their described actions)."
+          },
+          {
+            "severity": "low",
+            "category": "dependency",
+            "file": "index.html",
+            "issue": "The jQuery and lodash scripts from cdnjs lack Subresource Integrity (SRI) hashes. While cdnjs is a trusted CDN, adding SRI hashes is a best practice for ensuring dependency integrity.",
+            "suggestion": "Include SRI hashes for CDN-loaded scripts to enhance defense against tampering."
+          },
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "security.js",
+            "issue": "The project does not enforce a strict Content Security Policy (CSP) via HTTP headers or meta tags. This is not critical, as the demo is static and not connected to a backend.",
+            "suggestion": "Consider adding a strict CSP for added defense against potential script injection in future projects, such as <meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com\">."
+          }
+        ],
+        "directives_for_future": [
+          "Ensure all interactive controls have event handlers that perform observable state changes or interactions.",
+          "Consider adding Subresource Integrity (SRI) hashes for all CDN dependencies as a best practice.",
+          "Evaluate whether to include a strict Content Security Policy (CSP) in future demos for additional security.",
+          "Clearly communicate the interactive behavior of elements within the UI to avoid misleading user expectations."
+        ]
+      },
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The core feature of dynamic poem generation and word suggestions works, but several controls lack functionality, including sliders and buttons that fail to update state.",
+        "model": "gpt-4o",
+        "dead_controls_count": 4,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<INPUT.range 'Theme'>",
+            "expected": "Adjust poem theme and update content dynamically",
+            "actual": "No observable state change when adjusted",
+            "fix": "Ensure the theme slider triggers a function to update the theme parameter in poem generation logic and re-render the poem."
+          },
+          {
+            "control": "<INPUT.range 'Tone'>",
+            "expected": "Adjust poem tone and update content dynamically",
+            "actual": "No observable state change when adjusted",
+            "fix": "Ensure the tone slider triggers a function to update the tone parameter in poem generation logic and re-render the poem."
+          },
+          {
+            "control": "<BUTTON.submit 'Randomize Poem'>",
+            "expected": "Randomize poem parameters, generate a new poem",
+            "actual": "No observable state change when clicked",
+            "fix": "Verify randomizePoem function is correctly hooked up to button and generates a new poem with random parameters."
+          },
+          {
+            "control": "<BUTTON.submit 'Fullscreen'>",
+            "expected": "Enable fullscreen mode for the poem display area",
+            "actual": "No observable state change when clicked",
+            "fix": "Ensure toggleFullscreen function is properly connected to the button and initiates fullscreen behavior for the display area."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -710,7 +884,8 @@
     12,
     14,
     15,
-    16
+    16,
+    17
   ],
   "concepts_explored": [
     "neural networks",
@@ -767,21 +942,28 @@
     "Dijkstra's algorithm for shortest path finding",
     "Network graph visualization with D3.js",
     "Real-time user interaction for adding/removing nodes and edges",
-    "SessionStorage for state persistence"
+    "SessionStorage for state persistence",
+    "Dynamic content generation",
+    "User input handling",
+    "Simulated backend interaction",
+    "Real-time word suggestion",
+    "Animation integration"
   ],
   "patterns_used": [
     "visualizer",
     "dashboard",
     "explorer",
     "visualizer",
-    "tool"
+    "tool",
+    "generator"
   ],
   "domains_used": [
     "Mathematics",
     "Healthcare",
     "Environmental Science",
     "Mathematics",
-    "Logistics"
+    "Logistics",
+    "Arts"
   ],
   "ceo_reviews": [
     {
