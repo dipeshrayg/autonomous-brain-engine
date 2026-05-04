@@ -2051,6 +2051,45 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-04T20:04:43Z",
+      "attempted_at_unix": 1777925083,
+      "date": "2026-05-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 1 missing features, 0 verifier blocker(s).",
+      "plan_name": "dynamic-education-workspace",
+      "plan_language": "JavaScript",
+      "plan_complexity": 18,
+      "plan_pattern": "studio",
+      "plan_domain": "Education",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Save Content'>",
+          "expected": "Save the current content and reflect updated data in localStorage and the canvas."
+        },
+        {
+          "control": "<BUTTON.submit 'Create Quiz'>",
+          "expected": "Create a quiz and display it in the main canvas."
+        },
+        {
+          "control": "<BUTTON.submit 'Create Flashcard'>",
+          "expected": "Generate a flashcard and display it in the main canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Main canvas displays live previews of educational content."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ]
 }
