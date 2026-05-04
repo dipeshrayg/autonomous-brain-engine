@@ -2012,6 +2012,45 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-04T19:22:12Z",
+      "attempted_at_unix": 1777922532,
+      "date": "2026-05-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 1 missing features, 6 verifier blocker(s).",
+      "plan_name": "historical-events-studio",
+      "plan_language": "JavaScript",
+      "plan_complexity": 18,
+      "plan_pattern": "studio",
+      "plan_domain": "History",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Apply Filters'>",
+          "expected": "Filter events on the timeline based on selected criteria"
+        },
+        {
+          "control": "<BUTTON.submit 'Reset Filters'>",
+          "expected": "Clear all filters and reset the timeline to its original state"
+        },
+        {
+          "control": "<SELECT.select-one 'All Time\\nLast Century\\nLast Decade'>",
+          "expected": "Change the timeline view to display events for the selected date range"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Main canvas for displaying the timeline of events"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ]
 }
