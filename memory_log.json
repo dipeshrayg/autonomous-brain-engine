@@ -1322,6 +1322,30 @@
         "The shipped projects demonstrate robustness and functional completeness, as evidenced by their successful navigation through the QA gate."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-04T04:49:54Z",
+      "issued_at_unix": 1777870194,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is drifting, as evidenced by a high rate of QA refusals at complexity levels 15 and 16, particularly in the Storytelling and Social Science domains. While shipped projects have demonstrated some domain diversity, interaction patterns are clustering, and recent attempts at diversification have failed. Directives focus on scaling back complexity, avoiding problematic domains, ensuring functional controls, and pushing for both interaction and visual design innovation in the next project.",
+      "concerns": [
+        "Recent refusals show a high failure rate at QA for projects with complexity 15 and 16, suggesting that the system is overreaching its reliable build capability.",
+        "Storytelling and Social Science domains have shown consistent failure, with rejected projects like 'interactive-storytelling-workspace' and 'interactive-social-science-analyzer' due to non-functional or partially usable builds.",
+        "Shipped projects are showing some diversity in domains but are beginning to cluster around similar interaction patterns (e.g., visualizers and dashboards). The recent focus on storytelling and analyzers in the refused builds suggests an attempt to diversify, but it has not been successful.",
+        "Several refused projects have a high number of dead or non-functional controls, indicating a lack of robustness in implementation at higher complexities."
+      ],
+      "directives": [
+        "Scale back complexity to a maximum of 14 for the next project to align with the system's demonstrated reliability threshold.",
+        "Avoid the 'Storytelling' and 'Social Science' domains for the next project and focus on a domain where the system has previously succeeded, such as Environmental Science or Logistics.",
+        "Introduce a new interaction pattern that has not been recently used, such as a 'workflow' or 'timeline' interface, to encourage diversity and prevent overuse of visualizers and dashboards.",
+        "Ensure all controls in the project are functional. Implement a pre-QA validation step to detect and resolve dead or missing controls before passing to the QA gate.",
+        "Use a visual identity (typography, color scheme) that has not been used in any of the last 8 shipped projects to push aesthetic innovation."
+      ],
+      "praise": [
+        "The system has successfully explored diverse domains such as Arts, Logistics, and Environmental Science in recent shipped projects, pushing beyond Mathematics-heavy projects."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
