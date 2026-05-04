@@ -1370,6 +1370,31 @@
         "The shipped projects demonstrate a steady increase in complexity, indicating that the system is pushing its boundaries."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-04T15:17:31Z",
+      "issued_at_unix": 1777907851,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The pipeline is showing signs of drifting due to overreach in complexity and repeated failures in specific patterns ('analyzer' and 'simulator'). Shipped projects, while spanning a range of domains, lack innovation in interaction patterns. Recent refusals at higher complexity suggest the system is hitting a soft ceiling. The next steps should focus on simplifying complexity, avoiding problematic patterns, exploring underrepresented domains, and introducing more engaging layouts to break repetitive design patterns and ensure reliability.",
+      "concerns": [
+        "The complexity of shipped projects is steadily increasing (c=9 to c=17), but many recent builds at similar complexity levels (c=15-18) failed at the QA gate due to non-functional or partially usable controls, suggesting the system is struggling to handle this complexity reliably.",
+        "The system is overproducing 'analyzer' and 'simulator' patterns in refused builds, particularly in the Social Science and Finance domains, where consistent QA failures are occurring. This indicates a weakness or misalignment between the architect's design and the system's execution capability.",
+        "Shipped projects show a lack of diversity in interaction patterns and user experience design. While domains vary, the patterns ('visualizer', 'dashboard', 'explorer', etc.) feel repetitive and fail to push boundaries meaningfully.",
+        "The interactive-poetry-generator (c=17) was only marked as 'partially usable,' indicating that even shipped projects at higher complexity levels are not fully successful."
+      ],
+      "directives": [
+        "Reduce target complexity for the next project to c=12 to focus on increasing reliability at mid-level complexity.",
+        "Avoid 'analyzer' and 'simulator' patterns in the next project. Choose a novel or underutilized interaction pattern such as 'workspace' or 'studio.'",
+        "Select a domain that has not been recently explored, avoiding Social Science, Finance, and Logistics. Prioritize areas like Education, Entertainment, or History.",
+        "Ensure all controls in the next project are functional and pass QA testing. No dead or missing controls are acceptable.",
+        "The next project must feature a dynamic, multi-pane workspace layout (e.g., left rail + main canvas + right inspector) to push the system toward more engaging and interactive user experiences."
+      ],
+      "praise": [
+        "The system has successfully explored a diverse range of domains, including Arts, Healthcare, and Logistics, demonstrating some openness to new application areas.",
+        "The 'artistic-visual-music-synthesizer' project, though refused, was marked as shippable, showing the potential for success in creative and novel patterns like 'studio.'"
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
