@@ -1346,6 +1346,30 @@
         "The system has successfully explored diverse domains such as Arts, Logistics, and Environmental Science in recent shipped projects, pushing beyond Mathematics-heavy projects."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-04T09:30:35Z",
+      "issued_at_unix": 1777887035,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is showing signs of drifting, with shipped projects becoming more complex but lacking meaningful diversity in patterns and interaction paradigms. Recent refusals highlight that the system struggles to deliver functional projects in higher complexity levels (c=15-16) and with certain patterns like 'analyzer' and 'simulator.' Directives focus on reducing complexity, avoiding problematic patterns, and exploring novel interaction styles and underutilized domains to ensure functional, innovative, and diverse output.",
+      "concerns": [
+        "Recent shipped projects show increasing complexity but are not demonstrating significant innovation in interaction patterns. The majority fall into a narrow set of categories: visualizer, dashboard, and tool.",
+        "Recent refused builds show a concerning trend: high complexity projects (c=15-16) are consistently failing at the QA gate, with dead or non-functional controls, especially in the 'analyzer' and 'simulator' patterns.",
+        "The system attempted to explore new domains like Storytelling and Social Science, but all projects in those domains were refused due to functional issues, indicating that it may lack the capability to handle these specific domains or patterns at higher complexity levels."
+      ],
+      "directives": [
+        "Develop a project using a single-pane design with no more than 3 functional controls to ensure focus on delivering a fully functional, high-quality user experience.",
+        "Restrict project complexity to a maximum of c=12 for the next build cycle to align with the system's demonstrated reliable capabilities.",
+        "Avoid the 'analyzer' and 'simulator' patterns for the next project as recent failures indicate these patterns are beyond the system's current capabilities.",
+        "Create a project in an underexplored domain (e.g., Arts or Environmental Science) to diversify the output while staying within achievable complexity and functionality limits.",
+        "Utilize a novel interaction pattern (e.g., timeline-based interaction, drag-and-drop interface, or a guided tutorial flow) to break out of the overused visualizer and dashboard patterns."
+      ],
+      "praise": [
+        "The system successfully explored new domains like Arts and Environmental Science with shipped projects such as 'interactive-environmental-science-explorer' and 'interactive-poetry-generator,' showing potential for diversification.",
+        "The shipped projects demonstrate a steady increase in complexity, indicating that the system is pushing its boundaries."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
