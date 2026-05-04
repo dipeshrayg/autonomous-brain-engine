@@ -1395,6 +1395,31 @@
         "The 'artistic-visual-music-synthesizer' project, though refused, was marked as shippable, showing the potential for success in creative and novel patterns like 'studio.'"
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-04T20:40:54Z",
+      "issued_at_unix": 1777927254,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is drifting, with an upward trend in complexity leading to a high failure rate at QA, particularly for new patterns ('analyzer' and 'studio') and domains ('Social Science', 'Finance', 'Audio/DSP', 'History'). While some shipped projects remain functional and useful, the pipeline is struggling to innovate effectively without compromising quality. Directives focus on scaling back complexity, reinforcing functional reliability with simpler interaction patterns and fewer controls, and exploring diversity through new domains.",
+      "concerns": [
+        "The recent SHIPPED projects show a clear upward trend in complexity, but many of the REFUSED builds at similar complexity levels (c=16-18) are failing QA due to non-functional or partially functional controls.",
+        "The repeated failures of 'analyzer' and 'studio' pattern projects in the REFUSED builds indicate that the system is struggling to handle these patterns consistently at higher complexity.",
+        "Some shipped projects, like 'interactive-poetry-generator', were marked as only 'partially usable', suggesting that even successful builds are not fully achieving their intended functionality.",
+        "A lack of diversity in interaction patterns is emerging — 'visualizer', 'dashboard', and 'generator' dominate the shipped projects, and failed attempts at new patterns ('analyzer' and 'studio') indicate the system is struggling to innovate effectively."
+      ],
+      "directives": [
+        "The next project must use a pattern that has been successfully shipped recently (e.g., 'visualizer', 'dashboard', or 'generator') to ensure functional reliability while maintaining some degree of innovation in domain or feature set.",
+        "Limit the number of controls in the next project to a maximum of 5, as recent refusals suggest the system struggles when more controls are involved.",
+        "Focus the next project on a single-canvas interface to reduce complexity and improve the likelihood of passing QA.",
+        "Explore a new domain that has not been attempted recently or at all (e.g., Sports, Astronomy, or Public Policy) to ensure diversity, but avoid 'Social Science', 'Finance', 'Audio/DSP', and 'History' as these have shown repeated failures.",
+        "Incorporate a simple but functional backend simulation (e.g., a basic data generator or small dataset) to expand system capabilities without overloading complexity."
+      ],
+      "praise": [
+        "The system has consistently increased project complexity, demonstrating a willingness to push boundaries and tackle more ambitious builds.",
+        "Projects like 'logistics-route-optimizer' and 'data-visualization-toolkit' show good functionality and serve useful purposes in their domains."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
