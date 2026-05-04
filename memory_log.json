@@ -871,6 +871,126 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-04",
+      "completed_at": "2026-05-04T21:06:56Z",
+      "completed_at_unix": 1777928816,
+      "name": "sports-stats-visualizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-04-sports-stats-visualizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-04-sports-stats-visualizer/",
+      "language": "JavaScript",
+      "tech_stack": [
+        "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/chart.js/2.9.4/Chart.min.js"
+      ],
+      "complexity_score": 18,
+      "concepts_demonstrated": [
+        "Synthetic data generation",
+        "Interactive canvas-based visualization",
+        "User-driven data exploration",
+        "Statistical metrics display"
+      ],
+      "novel_concepts": [
+        "Synthetic sports data generation",
+        "Real-time charting with Chart.js"
+      ],
+      "advancement_axis": "This project exceeds previous projects by integrating a backend simulation to generate synthetic data while maintaining a single-canvas interface. It also focuses on statistical visualization, a domain not previously explored, providing a unique educational tool.",
+      "pattern": "visualizer",
+      "domain": "Sports",
+      "visual_identity": "The UI features a vibrant color palette with blues and greens, a sans-serif font for clarity, and a clean single-pane layout emphasizing data interaction.",
+      "safety_notes": "This project complies with strict security protocols, ensuring data integrity and user safety.",
+      "file_count": 8,
+      "loc": 642,
+      "quality_cycles_used": 5,
+      "final_verify_metrics": {
+        "bodyText": 139,
+        "bodyHtml": 1011,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 798,
+          "cssH": 398
+        },
+        "interactiveCount": 3,
+        "scriptCount": 7,
+        "title": "Sports Stats Visualizer",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "data.js": "gpt-4o",
+          "visualization.js": "gpt-4o",
+          "controls.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "security.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must use a pattern that has been successfully shipped recently (e.g., 'visualizer', 'dashboard', or 'generator') to ensure functional reliability while maintaining some degree of innovation in domain or feature set.",
+        "Limit the number of controls in the next project to a maximum of 5, as recent refusals suggest the system struggles when more controls are involved.",
+        "Focus the next project on a single-canvas interface to reduce complexity and improve the likelihood of passing QA.",
+        "Explore a new domain that has not been attempted recently or at all (e.g., Sports, Astronomy, or Public Policy) to ensure diversity, but avoid 'Social Science', 'Finance', 'Audio/DSP', and 'History' as these have shown repeated failures.",
+        "Incorporate a simple but functional backend simulation (e.g., a basic data generator or small dataset) to expand system capabilities without overloading complexity."
+      ],
+      "security_review": {
+        "verdict": "secure",
+        "summary": "The demo is free of any critical or high-severity issues. No visitor harm was found, and all features behave as expected within the scope of an educational demo.",
+        "model": "gpt-4o",
+        "findings_count": 3,
+        "findings": [
+          {
+            "severity": "low",
+            "category": "privacy",
+            "file": "security.js",
+            "issue": "localStorage is used for storing data, which could be accessed by malicious scripts if the visitor's browser is compromised.",
+            "suggestion": "Consider adding application-specific namespace prefixes to stored keys to avoid conflicts in the browser's global storage."
+          },
+          {
+            "severity": "info",
+            "category": "security",
+            "file": "index.html",
+            "issue": "Meta CSP is implemented, but not strict enough — it allows resources from CDNJS and jsdelivr without specifying specific hashes.",
+            "suggestion": "Consider adding Subresource Integrity (SRI) hashes to external scripts for improved security against tampered dependencies."
+          },
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "visualization.js",
+            "issue": "Randomized color generation for chart datasets does not follow accessibility guidelines for color contrast.",
+            "suggestion": "Use a predefined color palette to ensure sufficient contrast and readability for users with visual impairments."
+          }
+        ],
+        "directives_for_future": [
+          "Use application-specific prefixes for all localStorage keys to avoid namespace collisions.",
+          "Add SRI hashes to external dependencies wherever feasible for better trust assurance.",
+          "Ensure color schemes for visualizations comply with accessibility standards (e.g., WCAG contrast ratios).",
+          "Regularly audit synthetic data generation logic to ensure it consistently maps to the intended educational purpose."
+        ]
+      },
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All promised features work as intended, with fully functional interactive controls and state updates.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -885,7 +1005,8 @@
     14,
     15,
     16,
-    17
+    17,
+    18
   ],
   "concepts_explored": [
     "neural networks",
@@ -947,7 +1068,11 @@
     "User input handling",
     "Simulated backend interaction",
     "Real-time word suggestion",
-    "Animation integration"
+    "Animation integration",
+    "Synthetic data generation",
+    "Interactive canvas-based visualization",
+    "User-driven data exploration",
+    "Statistical metrics display"
   ],
   "patterns_used": [
     "visualizer",
@@ -955,7 +1080,8 @@
     "explorer",
     "visualizer",
     "tool",
-    "generator"
+    "generator",
+    "visualizer"
   ],
   "domains_used": [
     "Mathematics",
@@ -963,7 +1089,8 @@
     "Environmental Science",
     "Mathematics",
     "Logistics",
-    "Arts"
+    "Arts",
+    "Sports"
   ],
   "ceo_reviews": [
     {
