@@ -2765,6 +2765,59 @@
         "dead": 5
       },
       "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-05-05T23:43:23Z",
+      "attempted_at_unix": 1778024603,
+      "date": "2026-05-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 3 missing features, 8 verifier blocker(s).",
+      "plan_name": "interactive-audio-composition-editor",
+      "plan_language": "JavaScript",
+      "plan_complexity": 20,
+      "plan_pattern": "editor",
+      "plan_domain": "Audio/DSP",
+      "plan_files_count": 9,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Play'>",
+          "expected": "Trigger audio playback when clicked."
+        },
+        {
+          "control": "<BUTTON.submit 'Pause'>",
+          "expected": "Pause the currently playing audio when clicked."
+        },
+        {
+          "control": "<BUTTON.submit 'Stop'>",
+          "expected": "Stop the currently playing audio when clicked."
+        },
+        {
+          "control": "<INPUT.range '0.5'>",
+          "expected": "Adjust the volume of the audio in real-time."
+        },
+        {
+          "control": "<INPUT.range '1'>",
+          "expected": "Adjust the pitch of the audio in real-time."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Timeline interface for audio clips layout"
+        },
+        {
+          "feature": "Drag-and-drop functionality for audio file placement"
+        },
+        {
+          "feature": "Dynamic parameter sliders for effects control"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ]
 }
