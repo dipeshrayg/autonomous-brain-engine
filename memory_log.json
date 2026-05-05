@@ -2242,6 +2242,41 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-05T04:05:28Z",
+      "attempted_at_unix": 1777953928,
+      "date": "2026-05-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "population-dynamics-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 19,
+      "plan_pattern": "simulator",
+      "plan_domain": "Ecology",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.number '50'>",
+          "expected": "Alter initial prey population and update canvas rendering"
+        },
+        {
+          "control": "<INPUT.number '10'>",
+          "expected": "Alter initial predator population and update canvas rendering"
+        },
+        {
+          "control": "<BUTTON.button 'Stop Simulation'>",
+          "expected": "Stop the simulation and pause canvas updates"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 7,
+        "live": 4,
+        "dead": 3
+      },
+      "final_interactive_count": 8
     }
   ]
 }
