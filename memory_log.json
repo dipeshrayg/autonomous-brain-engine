@@ -2335,6 +2335,59 @@
         "dead": 3
       },
       "final_interactive_count": 14
+    },
+    {
+      "attempted_at": "2026-05-05T06:24:05Z",
+      "attempted_at_unix": 1777962245,
+      "date": "2026-05-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 6 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "audio-sampling-editor",
+      "plan_language": "JavaScript",
+      "plan_complexity": 19,
+      "plan_pattern": "editor",
+      "plan_domain": "Audio/DSP",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Load Sample'>",
+          "expected": "Load an audio sample and display it on the waveform canvas."
+        },
+        {
+          "control": "<BUTTON.submit 'Save Sample'>",
+          "expected": "Save the current audio sample to localStorage."
+        },
+        {
+          "control": "<BUTTON.submit 'Play'>",
+          "expected": "Play the loaded audio sample and start waveform visualization."
+        },
+        {
+          "control": "<BUTTON.submit 'Stop'>",
+          "expected": "Stop the playback of the current audio sample and clear the waveform visualization."
+        },
+        {
+          "control": "<INPUT.range '1'> (Volume Slider)",
+          "expected": "Adjust the volume of the audio sample in real-time."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Main canvas for visualizing audio waveforms"
+        },
+        {
+          "feature": "Audio samples can be loaded and played back"
+        },
+        {
+          "feature": "Sliders for real-time audio adjustments"
+        }
+      ],
+      "final_interaction": {
+        "tested": 6,
+        "live": 0,
+        "dead": 6
+      },
+      "final_interactive_count": 6
     }
   ]
 }
