@@ -1768,6 +1768,31 @@
         "Some refused builds (e.g., 'artistic-visual-music-synthesizer') were marked as 'shippable,' indicating that the system can occasionally execute higher-complexity projects successfully."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-05T20:17:35Z",
+      "issued_at_unix": 1778012255,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is drifting due to a lack of diversity in project patterns (overusing 'visualizers') and consistent QA failures at higher complexity levels. Recent refusals show a clear inability to handle more ambitious builds, particularly in 'studio' and 'simulator' patterns, due to dead or missing controls. For the next project, the system must scale back complexity to c=14 and prioritize robust execution of all planned features. It must explore a new interaction pattern (e.g., 'editor' or 'workspace') and target an underrepresented domain like Audio/DSP or Education to expand its portfolio. The focus should be on delivering a complete, functional, and innovative product within a controlled complexity scope.",
+      "concerns": [
+        "Recent shipped projects are heavily skewed towards 'visualizer' and lightweight interaction patterns, which risks monotony and stagnation.",
+        "Refusals show consistent QA failures due to non-functional or partially functional builds at higher complexity levels (e.g., 'financial-data-analyzer', 'dynamic-logistics-simulator', 'historical-events-studio'). This suggests the system is overreaching and unable to reliably execute more ambitious projects.",
+        "There is a recurring issue with dead and missing controls in refused builds, particularly in 'studio' and 'simulator' patterns, indicating the architect is poorly handling interaction complexity.",
+        "The system is showing a lack of diversity in shipped project patterns and domains, with repeated focus on visualizers and minimal exploration of new, interactive paradigms or underrepresented areas like Audio/DSP."
+      ],
+      "directives": [
+        "Cap project complexity for the next build at c=14 and prioritize robust implementation of all planned features; no dead or missing controls will be accepted.",
+        "Explore a new interaction pattern, specifically 'editor' or 'workspace', which has been attempted but not successfully shipped recently. Avoid 'visualizer' and 'simulator' patterns for now.",
+        "The next project must include an innovative interaction mechanism, such as drag-and-drop, modal layers, or dynamic content updates, to push beyond simplistic controls like sliders and buttons.",
+        "Target an underrepresented domain such as Audio/DSP or Education to diversify the portfolio. Avoid Mathematics and Visualizations for this iteration.",
+        "Implement a detailed feature checklist in the planning phase to ensure no features are overlooked during the design and coding stages."
+      ],
+      "praise": [
+        "The shipped projects demonstrate a steady increase in complexity, indicating that the system is attempting to push its boundaries.",
+        "The sports-stats-visualizer project shows a commendable focus on a new domain, even if the pattern remains overused."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
