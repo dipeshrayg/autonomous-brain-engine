@@ -2722,6 +2722,49 @@
         "dead": 6
       },
       "final_interactive_count": 8
+    },
+    {
+      "attempted_at": "2026-05-05T21:49:10Z",
+      "attempted_at_unix": 1778017750,
+      "date": "2026-05-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 5 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "interactive-audio-composition-editor",
+      "plan_language": "JavaScript",
+      "plan_complexity": 20,
+      "plan_pattern": "editor",
+      "plan_domain": "Audio/DSP",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.range '0.5'>",
+          "expected": "Adjust volume of audio in real-time with immediate feedback"
+        },
+        {
+          "control": "<INPUT.range '5100'>",
+          "expected": "Adjust low pass filter in real-time with immediate audio feedback"
+        },
+        {
+          "control": "<INPUT.range '5100'>",
+          "expected": "Adjust high pass filter in real-time with immediate audio feedback"
+        },
+        {
+          "control": "<BUTTON.submit 'Save Composition'>",
+          "expected": "Save the current composition to IndexedDB"
+        },
+        {
+          "control": "<BUTTON.submit 'Load Composition'>",
+          "expected": "Load a saved composition from IndexedDB"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 8,
+        "live": 3,
+        "dead": 5
+      },
+      "final_interactive_count": 6
     }
   ]
 }
