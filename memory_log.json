@@ -2663,6 +2663,65 @@
         "dead": 6
       },
       "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-05-05T21:25:57Z",
+      "attempted_at_unix": 1778016357,
+      "date": "2026-05-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 6 dead controls, 5 missing features, 5 verifier blocker(s).",
+      "plan_name": "interactive-audio-workspace",
+      "plan_language": "JavaScript",
+      "plan_complexity": 20,
+      "plan_pattern": "editor",
+      "plan_domain": "Audio/DSP",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.range '0.5'>",
+          "expected": "Adjust volume in real-time, reflected in the audio playback and UI."
+        },
+        {
+          "control": "<INPUT.range '1'>",
+          "expected": "Adjust pitch in real-time, reflected in the audio playback and UI."
+        },
+        {
+          "control": "<BUTTON.submit 'Pause'>",
+          "expected": "Pause the audio playback and update the UI state accordingly."
+        },
+        {
+          "control": "<BUTTON.submit 'Add Reverb'>",
+          "expected": "Apply a reverb effect to the audio in real-time."
+        },
+        {
+          "control": "<BUTTON.submit 'Remove Reverb'>",
+          "expected": "Remove the reverb effect from the audio in real-time."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Drag-and-drop area for importing audio files"
+        },
+        {
+          "feature": "Display area for audio waveform visualization"
+        },
+        {
+          "feature": "Real-time sliders for adjusting audio properties (e.g., volume, pitch)"
+        },
+        {
+          "feature": "Buttons for applying and removing effects"
+        },
+        {
+          "feature": "Sessions can be saved to and loaded from IndexedDB without errors"
+        }
+      ],
+      "final_interaction": {
+        "tested": 6,
+        "live": 0,
+        "dead": 6
+      },
+      "final_interactive_count": 8
     }
   ]
 }
