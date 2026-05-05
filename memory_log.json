@@ -991,6 +991,172 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-05",
+      "completed_at": "2026-05-05T06:44:29Z",
+      "completed_at_unix": 1777963469,
+      "name": "historical-events-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-05-historical-events-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-05-historical-events-simulator/",
+      "language": "JavaScript",
+      "tech_stack": [
+        "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.0/d3.min.js"
+      ],
+      "complexity_score": 19,
+      "concepts_demonstrated": [
+        "Interactive data visualization",
+        "Event-driven programming",
+        "Dynamic timeline manipulation",
+        "Contextual information display"
+      ],
+      "novel_concepts": [
+        "Timeline data structure for historical events",
+        "Simulated backend using static JSON data"
+      ],
+      "advancement_axis": "This project exceeds the previous complexity by introducing a simulated backend component with static JSON data, enhancing data interactivity and educational value through historical context.",
+      "pattern": "simulator",
+      "domain": "History",
+      "visual_identity": "Utilizes a vintage color palette with sepia tones, serif typography for historical text, and a multi-pane layout for enhanced usability.",
+      "safety_notes": "Strict adherence to security protocols, including CSP and SRI for external libraries.",
+      "file_count": 7,
+      "loc": 555,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 451,
+        "bodyHtml": 1937,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 5,
+        "scriptCount": 5,
+        "title": "Historical Events Simulator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Previous Event",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "date",
+              "label": "Select a date",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 4,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Fullscreen",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "data/events.json": "gpt-4o",
+          "timelineHelper.js": "gpt-4o",
+          "csp.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "Focus the next project on delivering a highly functional, low-complexity application (complexity <= 12) to rebuild reliability. Limit controls to a maximum of 5, and ensure all controls are functional.",
+        "Prohibit the use of the 'visualizer' pattern for the next project to encourage diversity in project types.",
+        "Target a rarely used or unexplored domain (e.g., Audio/DSP, History, or Education) for the next project to break the domain pattern repetition.",
+        "Use a novel layout structure for the user interface, such as a multi-pane workspace (e.g., left navigation, main canvas, and right inspector), to deviate from the single-pane pattern observed in most shipped projects.",
+        "Incorporate a simple backend simulation (e.g., a static JSON data source or a basic simulated API) to begin addressing the model's struggles with integration while keeping the scope minimal and manageable."
+      ],
+      "security_review": {
+        "verdict": "secure",
+        "summary": "The demo is free of critical security flaws and has no issues that would harm visitors. There are minor functional issues with interactive controls, but these do not impact security.",
+        "model": "gpt-4o",
+        "findings_count": 4,
+        "findings": [
+          {
+            "severity": "low",
+            "category": "privacy",
+            "file": "index.html",
+            "issue": "Missing rel='noopener noreferrer' on external links in the resources section. Potential risk of leaking window.opener if these links lead to malicious sites.",
+            "suggestion": "Add rel='noopener noreferrer' to external links in the resources section."
+          },
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "multi",
+            "issue": "Interactive controls (Previous Event, Select a Date, Fullscreen) do not function as intended, leading to a confusing user experience.",
+            "suggestion": "Ensure all interactive controls have functional handlers that visibly update the page state or perform the intended actions."
+          },
+          {
+            "severity": "info",
+            "category": "dependency",
+            "file": "index.html",
+            "issue": "CDN dependencies (jQuery, D3.js) included without SRI hashes. Best practice is to use Subresource Integrity (SRI) checks.",
+            "suggestion": "Consider adding SRI hashes to script tags for extra integrity verification of CDN assets."
+          },
+          {
+            "severity": "info",
+            "category": "other",
+            "file": "script.js",
+            "issue": "Content Security Policy settings are defined in the csp.js file, but these cannot enforce browser-level security since a static site cannot set headers.",
+            "suggestion": "Remove the CSP definition from the script, or consider hosting on a platform that allows CSP headers for static sites."
+          }
+        ],
+        "directives_for_future": [
+          "Add rel='noopener noreferrer' to external links to reduce potential risks of leaking window.opener.",
+          "Ensure all visible interactive controls have functional event handlers that visibly affect the page state.",
+          "Consider adding SRI hashes to CDN dependencies for improved integrity verification.",
+          "Avoid placing CSP configurations in client-side JavaScript files; these are ineffective without server-side enforcement."
+        ]
+      },
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The core experience of the timeline visualization and event details display works, but key controls like 'Previous Event', 'Select a date', and 'Fullscreen' do not function as promised, rendering the user experience incomplete.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<BUTTON.submit 'Previous Event'>",
+            "expected": "Navigate to the previous event on the timeline and update the event details on the main canvas.",
+            "actual": "No observable state change occurs when clicked.",
+            "fix": "Implement the 'navigateEvents' function to decrement the 'currentIndex' and call 'updateEventDetails' with the updated index."
+          },
+          {
+            "control": "<INPUT.date 'Select a date'>",
+            "expected": "Update the event details on the main canvas to reflect the chosen date.",
+            "actual": "No observable state change occurs when a date is selected.",
+            "fix": "Fix the 'filterByDate' function to correctly match the selected date with an event and update the main canvas using 'updateEventDetails'."
+          },
+          {
+            "control": "<BUTTON.submit 'Fullscreen'>",
+            "expected": "Toggle fullscreen mode for the application interface.",
+            "actual": "No observable state change occurs when clicked.",
+            "fix": "Ensure the 'toggleFullscreen' function correctly calls the relevant DOM API (e.g., requestFullscreen or exitFullscreen) and is properly attached to the button."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -1006,7 +1172,8 @@
     15,
     16,
     17,
-    18
+    18,
+    19
   ],
   "concepts_explored": [
     "neural networks",
@@ -1072,7 +1239,11 @@
     "Synthetic data generation",
     "Interactive canvas-based visualization",
     "User-driven data exploration",
-    "Statistical metrics display"
+    "Statistical metrics display",
+    "Interactive data visualization",
+    "Event-driven programming",
+    "Dynamic timeline manipulation",
+    "Contextual information display"
   ],
   "patterns_used": [
     "visualizer",
@@ -1081,7 +1252,8 @@
     "visualizer",
     "tool",
     "generator",
-    "visualizer"
+    "visualizer",
+    "simulator"
   ],
   "domains_used": [
     "Mathematics",
@@ -1090,7 +1262,8 @@
     "Mathematics",
     "Logistics",
     "Arts",
-    "Sports"
+    "Sports",
+    "History"
   ],
   "ceo_reviews": [
     {
