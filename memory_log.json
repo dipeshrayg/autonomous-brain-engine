@@ -1950,6 +1950,32 @@
         "The use of educational and interactive concepts has avoided introducing malicious or harmful techniques intentionally."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-05T17:59:19Z",
+      "issued_at_unix": 1778003959,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The pipeline exhibits recurring issues with missing SRI hashes, insufficient or missing CSP policies, and increased reliance on external CDN dependencies, which collectively increase the threat surface. Privacy concerns related to localStorage usage and user data handling are also emerging trends.",
+      "concerns": [
+        "Recurring lack of Subresource Integrity (SRI) hashes for external CDN dependencies, observed in 'data-visualization-toolkit', 'logistics-route-optimizer', 'interactive-poetry-generator', 'sports-stats-visualizer', and 'historical-events-simulator'.",
+        "Content Security Policy (CSP) settings are either missing or insufficiently strict across multiple projects, including 'interactive-environmental-science-explorer', 'data-visualization-toolkit', 'logistics-route-optimizer', 'interactive-poetry-generator', and 'sports-stats-visualizer'.",
+        "Increased use of localStorage for storing user data without encryption or safeguards against malicious scripts, noted in 'interactive-environmental-science-explorer' and 'sports-stats-visualizer'.",
+        "Projects increasingly rely on external CDNs for critical libraries, such as Plotly.js, Chart.js, D3.js, jQuery, and lodash, which introduces a dependency risk without proper mitigations like SRI.",
+        "Two projects ('differential-equation-visualizer' and 'healthcare-simulation-dashboard') were shipped without any security review, indicating a significant coverage gap in the review process."
+      ],
+      "directives": [
+        "The next project must include Subresource Integrity (SRI) hashes for all externally loaded CDN scripts and stylesheets.",
+        "The next project must enforce a strict <meta http-equiv=Content-Security-Policy> with default-src 'none', script-src 'self' 'sha256-*', and explicit allowlist for any external resources.",
+        "The next project must not use localStorage for storing sensitive or user-related data unless the data is encrypted and access is restricted to prevent malicious script manipulation.",
+        "The next project must undergo a complete security review before shipping. No projects are to be deployed without explicit security approval.",
+        "The next project must document its privacy practices, including how user data (if any) is collected, stored, and protected, and this documentation must be reviewed as part of the security process."
+      ],
+      "praise": [
+        "No significant use of tracking or telemetry code was detected across the projects.",
+        "The use of modern JavaScript libraries and frameworks demonstrates an effort to utilize up-to-date technology."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "failed_builds": [
