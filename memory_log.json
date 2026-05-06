@@ -2892,6 +2892,56 @@
         "dead": 1
       },
       "final_interactive_count": 7
+    },
+    {
+      "attempted_at": "2026-05-06T10:22:21Z",
+      "attempted_at_unix": 1778062941,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 0 verifier blocker(s).",
+      "plan_name": "financial-portfolio-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 20,
+      "plan_pattern": "simulator",
+      "plan_domain": "Finance",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.text 'Portfolio Name'>",
+          "expected": "Set the name of a new portfolio for creation."
+        },
+        {
+          "control": "<BUTTON.submit 'Add Portfolio'>",
+          "expected": "Add a new portfolio based on provided input parameters and display it in the visualization."
+        },
+        {
+          "control": "<BUTTON.submit 'Remove Portfolio'>",
+          "expected": "Remove the most recently added portfolio and update the visualization and insights."
+        },
+        {
+          "control": "<INPUT.number 'Initial Value'>",
+          "expected": "Set the initial value of the portfolio for synthetic data generation."
+        },
+        {
+          "control": "<INPUT.number 'Days for Data'>",
+          "expected": "Set the number of days for which synthetic data is generated."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Performance visualization canvas"
+        },
+        {
+          "feature": "Insights inspector"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ]
 }
