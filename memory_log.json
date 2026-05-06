@@ -2000,6 +2000,30 @@
         "Complexity has been steadily increasing, demonstrating potential for growth if properly guided."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-06T20:45:28Z",
+      "issued_at_unix": 1778100328,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is drifting due to overreaching in complexity and struggling with certain patterns like 'editor' and 'workspace', particularly in the Audio/DSP domain. While shipped projects show incremental complexity growth, they lack diversity in interaction patterns and are predominantly single-canvas. The next directives focus on scaling back complexity, avoiding problematic patterns, introducing multi-pane layouts, exploring new domains, and ensuring functional controls to address the current limitations and foster sustainable progress.",
+      "concerns": [
+        "Refused builds are heavily concentrated in the Audio/DSP domain with the 'editor' and 'workspace' patterns, showing persistent issues with non-functional or partially usable controls. This indicates the system is overreaching in complexity and design patterns it cannot reliably implement.",
+        "Shipped projects show an incremental increase in complexity but lack diversity in terms of interaction patterns and interfaces. The visualizer pattern is repeated twice, and most shipped projects are single-canvas applications with minimal controls.",
+        "The success rate of projects at complexity levels 20-21 is poor, with multiple failures in QA due to dead or missing controls. The system appears to have hit a soft ceiling in terms of complexity it can handle."
+      ],
+      "directives": [
+        "The next project must target a maximum complexity of 16 to adjust for the system's current inability to deliver functional high-complexity outputs reliably.",
+        "The next project must avoid the 'editor', 'workspace', and 'dashboard' patterns, as recent refusals and shipped projects indicate overuse or failure in these domains.",
+        "Focus on creating a multi-pane workspace layout (e.g., left rail, main canvas, and right inspector) to push beyond the overused single-canvas design pattern.",
+        "Design the next project for a domain that has not been explored recently (e.g., Gaming, Education, or Retail) to increase diversity in application focus.",
+        "Introduce a minimum of three interactive, functional controls that are fully tested and validated for usability to ensure the project meets QA standards."
+      ],
+      "praise": [
+        "The system demonstrated consistent incremental growth in complexity for shipped projects, reaching a complexity score of 20.",
+        "The 'smart-city-traffic-optimizer' refusal was marked as shippable, suggesting that the system can succeed in certain patterns at higher complexity when focused on achievable goals."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
