@@ -1975,6 +1975,31 @@
         "The pipeline has shown reliability in producing functional visualizers, as demonstrated by the recent 'sports-stats-visualizer' and 'data-visualization-toolkit' projects."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-06T15:33:57Z",
+      "issued_at_unix": 1778081637,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is drifting due to repeated failures at high complexity, particularly in the Audio/DSP domain, and an overreliance on familiar interaction patterns and single-pane designs. While complexity is increasing, innovation in user interaction and project diversity has stagnated. Directives focus on breaking the single-pane design pattern, avoiding problematic domains, introducing backend depth, and pushing for novel interaction mechanisms and visual styles.",
+      "concerns": [
+        "Recent shipped projects show increasing complexity but limited innovation in interaction patterns, with repeated reliance on dashboards, visualizers, simulators, and tools.",
+        "The system has repeatedly failed to produce functional builds in the Audio/DSP domain, with multiple 'editor' and 'workspace' patterns marked as non-functional or partially usable.",
+        "Refusals are concentrated in high-complexity projects (c=19-20), particularly with dead or non-functional controls, indicating the system is overreaching its current capabilities.",
+        "Shipped projects lack diversity in user interaction paradigms (e.g., single-pane designs dominate), and visualizations often feel decorative rather than deeply informative."
+      ],
+      "directives": [
+        "The next project must use a multi-pane workspace layout (e.g., left navigation rail + main canvas + right inspector) to break the reliance on single-pane designs.",
+        "Focus on a domain outside Audio/DSP and Finance for the next project — both have shown repeated failures in recent builds. Prioritize domains with demonstrated success, such as Logistics or Environmental Science.",
+        "The next project must include a non-trivial backend simulation (e.g., synthetic data generation, a basic decision tree, or a queue-based task simulator) to add depth to the user experience.",
+        "The next project must incorporate a novel user interaction mechanism (e.g., drag-and-drop, dynamic filters, or real-time updates) rather than relying on static controls like buttons and sliders.",
+        "The visual identity of the next project must use a typography pairing not seen in the last eight shipped projects (e.g., Roboto Slab + Source Sans Pro) to push for aesthetic variety."
+      ],
+      "praise": [
+        "The system has successfully expanded into diverse domains (e.g., Bioinformatics, History, Arts) in the shipped projects, showcasing some breadth in application areas.",
+        "Complexity has been steadily increasing, demonstrating potential for growth if properly guided."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
