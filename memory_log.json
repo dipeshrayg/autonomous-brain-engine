@@ -3213,6 +3213,28 @@
         "dead": 8
       },
       "final_interactive_count": 8
+    },
+    {
+      "attempted_at": "2026-05-06T20:22:16Z",
+      "attempted_at_unix": 1778098936,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "smart-city-traffic-optimizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "optimizer",
+      "plan_domain": "Urban Planning",
+      "plan_files_count": 7,
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 7,
+        "live": 7,
+        "dead": 0
+      },
+      "final_interactive_count": 7
     }
   ]
 }
