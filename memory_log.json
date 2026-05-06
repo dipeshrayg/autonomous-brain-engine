@@ -2842,6 +2842,33 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-06T05:43:05Z",
+      "attempted_at_unix": 1778046185,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "audio-dsp-workspace",
+      "plan_language": "JavaScript",
+      "plan_complexity": 20,
+      "plan_pattern": "workspace",
+      "plan_domain": "Audio/DSP",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.file ''>",
+          "expected": "Allow user to upload an audio file that loads into the system for playback and processing"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 2,
+        "live": 1,
+        "dead": 1
+      },
+      "final_interactive_count": 7
     }
   ]
 }
