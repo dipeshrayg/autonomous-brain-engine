@@ -3160,6 +3160,59 @@
         "dead": 2
       },
       "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-05-06T19:27:59Z",
+      "attempted_at_unix": 1778095679,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 8 dead controls, 3 missing features, 3 verifier blocker(s).",
+      "plan_name": "dynamic-environmental-data-analyzer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "dashboard",
+      "plan_domain": "Environmental Science",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.number 'Number of Points'>",
+          "expected": "Adjust the number of data points and update visualization."
+        },
+        {
+          "control": "<INPUT.number 'Minimum Value'>",
+          "expected": "Adjust the minimum value of the generated data and update visualization."
+        },
+        {
+          "control": "<INPUT.number 'Maximum Value'>",
+          "expected": "Adjust the maximum value of the generated data and update visualization."
+        },
+        {
+          "control": "<SELECT.select-one 'Distribution'>",
+          "expected": "Change the distribution used for data generation and update visualization."
+        },
+        {
+          "control": "<BUTTON.submit 'Generate Data'>",
+          "expected": "Generate new data based on current parameters and update visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Drag-and-drop functionality for data source management"
+        },
+        {
+          "feature": "Real-time parameter controls that update visualizations"
+        },
+        {
+          "feature": "Inspector panel providing details and settings for displayed data"
+        }
+      ],
+      "final_interaction": {
+        "tested": 8,
+        "live": 0,
+        "dead": 8
+      },
+      "final_interactive_count": 8
     }
   ]
 }
