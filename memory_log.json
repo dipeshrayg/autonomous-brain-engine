@@ -3129,6 +3129,37 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-06T18:28:39Z",
+      "attempted_at_unix": 1778092119,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "environmental-resource-management-workspace",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "dashboard",
+      "plan_domain": "Environmental Science",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<SELECT.select-one 'All\\nTypeA\\nTypeB'>",
+          "expected": "Filter visualization by selected type in real time"
+        },
+        {
+          "control": "<INPUT.color '#000000'>",
+          "expected": "Filter visualization by selected color in real time"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 6,
+        "live": 4,
+        "dead": 2
+      },
+      "final_interactive_count": 6
     }
   ]
 }
