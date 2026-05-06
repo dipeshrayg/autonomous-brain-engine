@@ -3334,6 +3334,59 @@
         "dead": 8
       },
       "final_interactive_count": 9
+    },
+    {
+      "attempted_at": "2026-05-06T22:52:49Z",
+      "attempted_at_unix": 1778107969,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 3 missing features, 11 verifier blocker(s).",
+      "plan_name": "educational-math-game",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "game",
+      "plan_domain": "Education",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Addition'>",
+          "expected": "Display addition challenge on the canvas."
+        },
+        {
+          "control": "<BUTTON.submit 'Subtraction'>",
+          "expected": "Display subtraction challenge on the canvas."
+        },
+        {
+          "control": "<BUTTON.submit 'Multiplication'>",
+          "expected": "Display multiplication challenge on the canvas."
+        },
+        {
+          "control": "<INPUT.number 'Enter your answer'>",
+          "expected": "Allow the user to input a numeric answer, which updates game logic when submitted."
+        },
+        {
+          "control": "<BUTTON.submit 'Submit'>",
+          "expected": "Submit the user's answer and provide immediate feedback."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Main canvas that displays the current challenge and allows user input."
+        },
+        {
+          "feature": "User can select challenges and receive instant feedback."
+        },
+        {
+          "feature": "Progress tracking updates correctly based on user performance."
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ]
 }
