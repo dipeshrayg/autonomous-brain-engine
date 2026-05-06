@@ -3281,6 +3281,59 @@
         "dead": 0
       },
       "final_interactive_count": 2
+    },
+    {
+      "attempted_at": "2026-05-06T21:50:20Z",
+      "attempted_at_unix": 1778104220,
+      "date": "2026-05-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 8 dead controls, 3 missing features, 0 verifier blocker(s).",
+      "plan_name": "interactive-history-timeline-generator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "planner",
+      "plan_domain": "Education",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<INPUT.text 'Enter event title'>",
+          "expected": "Inputting an event title should update the event form's state and allow adding a new event to the timeline."
+        },
+        {
+          "control": "<INPUT.date 'Event Date'>",
+          "expected": "Inputting or selecting a date should update the event form's state and allow adding a new event to the timeline."
+        },
+        {
+          "control": "<BUTTON.submit 'Add Event'>",
+          "expected": "Clicking this button should add an event to the timeline and populate the event list on the left panel."
+        },
+        {
+          "control": "<INPUT.color '#000000'>",
+          "expected": "Selecting a color should allow customization of the selected event's style."
+        },
+        {
+          "control": "<INPUT.range '5'>",
+          "expected": "Adjusting the range slider should change the size of the selected event's visual representation."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive event creation form that allows users to input event details."
+        },
+        {
+          "feature": "List of added events on the left panel with options to edit or remove."
+        },
+        {
+          "feature": "Event customization options on the right panel that allow for style changes."
+        }
+      ],
+      "final_interaction": {
+        "tested": 9,
+        "live": 1,
+        "dead": 8
+      },
+      "final_interactive_count": 9
     }
   ]
 }
