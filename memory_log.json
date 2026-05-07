@@ -3920,6 +3920,33 @@
         "dead": 0
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-07T23:45:38Z",
+      "attempted_at_unix": 1778197538,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "puzzle-quest-cooperative",
+      "plan_language": "javascript",
+      "plan_complexity": 24,
+      "plan_pattern": "puzzle-quest",
+      "plan_domain": "Entertainment",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<button>",
+          "expected": "State change to start a new game and update the scoring section"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ]
 }
