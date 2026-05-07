@@ -3973,6 +3973,33 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-07T23:58:08Z",
+      "attempted_at_unix": 1778198288,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 2 verifier blocker(s).",
+      "plan_name": "abstract-puzzle-fractals",
+      "plan_language": "javascript",
+      "plan_complexity": 24,
+      "plan_pattern": "abstract-puzzle",
+      "plan_domain": "Gaming",
+      "plan_files_count": 6,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<button id='startGame'>",
+          "expected": "Menu section hides, and the game area is displayed with the first puzzle loaded."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 2,
+        "live": 1,
+        "dead": 1
+      },
+      "final_interactive_count": 5
     }
   ]
 }
