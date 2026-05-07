@@ -103,6 +103,7 @@ ABSOLUTE CONSTRAINTS:
    - document: index.html is a BEAUTIFULLY STYLED reader page. Render the document content as a polished web page with typography, diagrams, table of contents, and visual flair — NOT just raw markdown. Make it look like a published article on Medium or a research paper.
 3. Python tools: must ALSO run with `python <entry>` in a Codespaces dev container; declare deps in requirements.txt. The Python code is the real project; index.html is the showcase.
 4. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .jsx, .scss, .vue, etc.). Plain languages only.
+5. NO BACKEND SERVERS, WebSockets, or localhost connections. Everything web-facing runs as STATIC files on GitHub Pages — no Node.js server, no Express, no WebSocket server. Multiplayer/cooperative features must use local-only simulation (AI opponents, hot-seat multiplayer, or single-player with simulated cooperation).
 
 TYPE DIVERSITY — you MUST NOT repeat the same project_type as the previous build. The system enforces type rotation. Read the TYPE DIVERSITY REPORT in the user prompt to see which types are underrepresented, which are maxed out, and which is recommended. Once a type's max shipped complexity reaches its ceiling, that type is LOCKED and you must escalate to a higher-ceiling type. The ceilings are: document=20, generative_art=25, web_interactive=30, game_web=35, web_3d=35, python_tool=50.
 

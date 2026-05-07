@@ -98,6 +98,13 @@ _NOISE_PATTERNS = (
     # 404s for things we don't care about
     "favicon.ico",
     "/sw.js",
+    # Network errors expected in static Pages context (no backend)
+    "ERR_CONNECTION_REFUSED",
+    "ERR_CONNECTION_RESET",
+    "ERR_NAME_NOT_RESOLVED",
+    "WebSocket connection to",
+    "Failed to load resource: net::",
+    "localhost",
 )
 
 
