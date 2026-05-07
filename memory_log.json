@@ -3463,6 +3463,48 @@
         "dead": 7
       },
       "final_interactive_count": 7
+    },
+    {
+      "attempted_at": "2026-05-07T05:52:26Z",
+      "attempted_at_unix": 1778133146,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 8 verifier blocker(s).",
+      "plan_name": "urban-planning-simulation",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "simulator",
+      "plan_domain": "Urban Planning",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<BUTTON.submit 'Reset Canvas'>",
+          "expected": "Should clear all elements from the canvas and reset the right inspector view to its default state."
+        },
+        {
+          "control": "<BUTTON.submit 'Save Design'>",
+          "expected": "Should save the current canvas state to localStorage and display a confirmation message."
+        },
+        {
+          "control": "<INPUT.range '6'>",
+          "expected": "Should adjust the number of elements displayed on the canvas in real-time."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Drag-and-drop functionality"
+        },
+        {
+          "feature": "Real-time updates based on user input"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ]
 }
