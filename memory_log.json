@@ -3605,6 +3605,32 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-07T19:17:44Z",
+      "attempted_at_unix": 1778181464,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 0 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "interactive-sound-generator",
+      "plan_language": "python",
+      "plan_complexity": 21,
+      "plan_pattern": "generator",
+      "plan_domain": "Sound Design",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [],
+      "qa_missing_features": [
+        {
+          "feature": "UI interactions for sound generation, parameter adjustment, and preset handling"
+        }
+      ],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ]
 }
