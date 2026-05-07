@@ -3898,6 +3898,28 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-07T23:33:29Z",
+      "attempted_at_unix": 1778196809,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "cooperative-puzzle-explorer",
+      "plan_language": "javascript",
+      "plan_complexity": 24,
+      "plan_pattern": "puzzle-explorer",
+      "plan_domain": "Gaming",
+      "plan_files_count": 7,
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 3,
+        "dead": 0
+      },
+      "final_interactive_count": 4
     }
   ]
 }
