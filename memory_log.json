@@ -2075,6 +2075,31 @@
         "Some recent shipped projects explored cross-domain themes, such as biology and history."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-07T09:44:12Z",
+      "issued_at_unix": 1778147052,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a loop of web-based projects with minor domain variations, while recent refusals highlight overcomplexity and execution issues.",
+      "concerns": [
+        "The majority of shipped projects are repetitive web tools with dashboards, visualizers, or simulators.",
+        "Recent failures suggest an overemphasis on complexity without delivering functional results.",
+        "No meaningful exploration of non-browser-based domains or breakthrough ideas is evident."
+      ],
+      "directives": [
+        "The next project must be a Python-based physics simulation (e.g., fluid dynamics, n-body simulation). No web interface — deliver a runnable Python script or Jupyter Notebook.",
+        "Avoid dashboards, visualizers, or simulators. These patterns are overrepresented in recent projects and need a break.",
+        "Focus on robustness over complexity — prioritize functionality to guarantee a shippable outcome.",
+        "Do not target the Education or Environmental Science domains for the next project to force domain diversification.",
+        "Explore a new domain like cryptography, cellular automata, or generative art for subsequent projects after the next one.",
+        "Implement a clear scope definition for the project to avoid over-engineering and feature creep that leads to QA rejection."
+      ],
+      "praise": [
+        "Consistent delivery of functional web-based tools across diverse domains.",
+        "Demonstrated ability to address a wide range of applications, from bioinformatics to logistics."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
