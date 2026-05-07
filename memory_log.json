@@ -2285,6 +2285,32 @@
         "Projects generally avoid the use of dangerous practices like eval or innerHTML with user input."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-07T07:22:34Z",
+      "issued_at_unix": 1778138554,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The pipeline shows recurring issues with missing Subresource Integrity (SRI) hashes, weak or missing Content Security Policies (CSP), and increasing reliance on localStorage for user data, which may lead to privacy risks.",
+      "concerns": [
+        "Recurring lack of Subresource Integrity (SRI) hashes for CDN dependencies across projects (e.g., data-visualization-toolkit, logistics-route-optimizer, interactive-poetry-generator, historical-events-simulator, bioinformatics-gene-sequence-analyzer).",
+        "Weak or missing Content Security Policies (CSP) across multiple projects (e.g., interactive-environmental-science-explorer, logistics-route-optimizer, interactive-poetry-generator).",
+        "Increased use of localStorage for storing sensitive or user state data without encryption or safeguards (e.g., interactive-environmental-science-explorer, sports-stats-visualizer).",
+        "Projects with non-functional or misleading interactive controls (e.g., logistics-route-optimizer, interactive-poetry-generator, historical-events-simulator, bioinformatics-gene-sequence-analyzer).",
+        "No security review conducted for healthcare-simulation-dashboard, indicating a potential process gap."
+      ],
+      "directives": [
+        "The next project must include Subresource Integrity (SRI) hashes for all CDN dependencies.",
+        "The next project must implement a strict Content Security Policy (CSP) via a <meta http-equiv=Content-Security-Policy> tag that restricts default-src to 'self' and explicitly lists allowed CDNs.",
+        "The next project must avoid using localStorage for storing user state or sensitive data. If necessary, any data stored in localStorage must be encrypted.",
+        "The next project must ensure that all interactive controls are functional and tested to avoid misleading or non-functional UI elements.",
+        "All future projects must undergo a mandatory security review before shipping, with documented findings."
+      ],
+      "praise": [
+        "Projects generally avoid explicit analytics, tracking, or telemetry, maintaining user privacy.",
+        "No evidence of unsafe use of eval or similar high-risk patterns across recent projects."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "failed_builds": [
