@@ -101,7 +101,7 @@ Areas you care about:
 - Deep-tech ambition (consensus protocols, distributed systems, formal verification, DSP)
 - Edge-case rigor (what happens at the boundary, the singular point, the empty input?)
 
-Output schema same as CEO:
+Return valid JSON matching this schema:
 {
   "verdict": "thriving" | "acceptable" | "drifting" | "alarming",
   "summary": "1-2 sentences",

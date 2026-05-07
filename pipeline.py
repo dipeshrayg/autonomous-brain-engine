@@ -207,7 +207,7 @@ Add or improve where appropriate: visual identity, transitions, hover states, co
 
 CRITICAL: do not break what already works. Only improve.
 
-Output: {"files": [...], "notes": "..."}
+Return valid JSON: {"files": [{"path": "...", "content": "..."}], "notes": "..."}
 Only include files that actually changed.
 """
 
