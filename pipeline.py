@@ -190,6 +190,15 @@ RULES:
 - For canvas + state-bearing UIs: the click handler must compute coordinates the SAME way the render code uses them. State + visual must stay in sync.
 - For randomize / reset: enumerate exactly which DOM elements + state slots are touched.
 - For drag-drop: dragstart sets dataTransfer; dragover preventDefault; drop reads dataTransfer + mutates state + triggers re-render.
+- CANVAS RENDERING (critical — blank canvas is the #1 failure mode):
+  - The canvas MUST have explicit width/height attributes: <canvas id="game" width="800" height="600"></canvas>
+  - Drawing code MUST run after DOMContentLoaded or be in a <script> tag at the END of <body>.
+  - An animation loop (requestAnimationFrame) MUST be started immediately — don't wait for user interaction.
+  - Draw SOMETHING visible on first frame (background color, initial state) so the canvas is never blank.
+- SCRIPT LOADING ORDER (critical — ReferenceError is the #2 failure mode):
+  - If file A defines class Foo and file B uses Foo, then <script src="A.js"></script> MUST come BEFORE <script src="B.js"></script> in index.html.
+  - Prefer putting ALL game logic in ONE file (e.g. game.js) to avoid load-order bugs. Only split into multiple files if absolutely necessary.
+  - NEVER use ES modules (import/export) — use classic <script> tags with global scope.
 
 OUTPUT — single JSON: {"path": "...", "content": "<full file>"}.
 """
