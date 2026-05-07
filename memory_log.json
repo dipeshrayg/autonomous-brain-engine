@@ -3387,6 +3387,56 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-07T02:14:48Z",
+      "attempted_at_unix": 1778120088,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 7 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "educational-math-puzzle-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 21,
+      "plan_pattern": "simulator",
+      "plan_domain": "Education",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<LI 'Addition Puzzle'>",
+          "expected": "Select and display the Addition Puzzle in the interactive canvas."
+        },
+        {
+          "control": "<LI 'Subtraction Puzzle'>",
+          "expected": "Select and display the Subtraction Puzzle in the interactive canvas."
+        },
+        {
+          "control": "<LI 'Multiplication Puzzle'>",
+          "expected": "Select and display the Multiplication Puzzle in the interactive canvas."
+        },
+        {
+          "control": "<LI 'Division Puzzle'>",
+          "expected": "Select and display the Division Puzzle in the interactive canvas."
+        },
+        {
+          "control": "<BUTTON.submit 'Get Hint'>",
+          "expected": "Provide a contextual hint for the selected puzzle."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive canvas for puzzle solving"
+        },
+        {
+          "feature": "Hint button that provides contextual help based on current puzzle state"
+        }
+      ],
+      "final_interaction": {
+        "tested": 7,
+        "live": 0,
+        "dead": 7
+      },
+      "final_interactive_count": 7
     }
   ]
 }
