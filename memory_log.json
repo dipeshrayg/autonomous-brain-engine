@@ -2024,6 +2024,32 @@
         "The 'smart-city-traffic-optimizer' refusal was marked as shippable, suggesting that the system can succeed in certain patterns at higher complexity when focused on achievable goals."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-07T04:44:47Z",
+      "issued_at_unix": 1778129087,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The pipeline is drifting, as recent projects show increasing complexity but frequent QA failures and partially usable shipped projects. The system is overreaching, with dead and missing controls recurring in refused builds and reliance on repetitive patterns like dashboards and visualizers. To correct course, the next project must reduce complexity, implement a multi-pane layout, include a backend simulation, and explore novel interaction mechanisms in a less-visited domain while ensuring all controls are functional. This will help stabilize quality and diversify outputs.",
+      "concerns": [
+        "Recent shipped projects show a steady increase in complexity, but many are partially usable (e.g., 'interactive-poetry-generator' and 'historical-events-simulator') indicating the system may be overreaching.",
+        "The system is producing an excessive number of non-functional builds at high complexity (e.g., 'financial-portfolio-simulator', 'dynamic-environmental-data-analyzer', and 'educational-math-puzzle-simulator'). QA failures dominate here, with dead and missing controls being a recurring issue.",
+        "Shipped projects are starting to feel repetitive in structure and interaction patterns. For example, dashboards and visualizers are overrepresented, while more challenging and diverse patterns like games or multi-pane workspaces are absent.",
+        "There is a lack of meaningful backend simulations or interactive logic in the recent projects, leading to shallow user experiences despite higher complexity scores."
+      ],
+      "directives": [
+        "Cap complexity for the next project at c=16 to ensure functionality and avoid overreaching.",
+        "Focus on a multi-pane workspace layout (left rail, main canvas, right inspector) to break the overuse of single-canvas patterns. Avoid dashboards or visualizers for this project.",
+        "Incorporate a non-trivial backend simulation (e.g., synthetic data generation, simulated user input, or a mock message bus) to add depth to interactivity and logic.",
+        "Select a domain that has not been explored recently — avoid Education, Environmental Science, and Healthcare. Prioritize underrepresented areas such as Finance or Urban Planning.",
+        "Introduce a novel interaction mechanism (e.g., drag-and-drop, gesture-based controls, or sequential workflows) to diversify user engagement beyond buttons and sliders.",
+        "Ensure all controls in the project are fully functional and tested before attempting advanced features. Dead or missing controls must be eliminated."
+      ],
+      "praise": [
+        "The system is demonstrating consistent progress in increasing complexity and tackling diverse domains like History, Bioinformatics, and Sports.",
+        "Refused builds show some shippable projects, such as 'smart-city-traffic-optimizer' and 'interactive-geometry-explorer,' indicating the potential for high-complexity functionality if QA issues are addressed."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
