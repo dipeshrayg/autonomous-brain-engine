@@ -2245,6 +2245,30 @@
         "Recent exploratory projects show an encouraging willingness to attempt new domains and concepts, despite their failure to meet QA standards."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-07T22:59:53Z",
+      "issued_at_unix": 1778194793,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a web-interactive rut, with failures in complexity and underexplored domains.",
+      "concerns": [
+        "Over-reliance on web-based projects with incremental improvements.",
+        "Recent repeated failures in educational and simulation-oriented projects suggest overcomplexity or lack of focus.",
+        "No significant progress in underrepresented types like web_3d, document, generative_art, and game_web."
+      ],
+      "directives": [
+        "The next project must be of type document, focusing on a markdown-based research article that explores a novel algorithm or conceptual framework in information theory or data compression (e.g., a tutorial on a new entropy encoding technique).",
+        "Focus on a single, clear deliverable: a well-formatted document with diagrams (ASCII or embedded SVG). Avoid interactive elements or complex tooling.",
+        "The document must include at least one original idea or approach, not just a summary of existing work.",
+        "Limit the scope to ensure a polished and complete output, no more than 1500 words with a clear introduction, body, and conclusion.",
+        "Avoid domains that have recently failed or been overused (e.g., education, simulators, or visualizers)."
+      ],
+      "praise": [
+        "Recent projects have shown consistent shipping in the web_interactive domain, demonstrating stability in this area.",
+        "The parametric-design-generator Python tool is a promising step toward type diversity."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
