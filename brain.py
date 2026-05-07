@@ -340,9 +340,8 @@ def publish(plan: dict, src: Path, gh_token: str) -> tuple[str, str, str]:
         if rc != 0:
             raise RuntimeError(f"git step failed `{cmd}`:\n{out}")
 
-    pages_url = ""
-    if plan.get("is_web_project"):
-        pages_url = enable_pages(repo.full_name, repo.owner.login, repo.name, gh_token)
+    # All projects get Pages — every type produces an index.html visual showcase
+    pages_url = enable_pages(repo.full_name, repo.owner.login, repo.name, gh_token)
     return repo.html_url, pages_url, user.login
 
 

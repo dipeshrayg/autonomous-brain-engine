@@ -97,10 +97,12 @@ PROJECT TYPES — pick ONE that genuinely fits the idea:
 
 ABSOLUTE CONSTRAINTS:
 1. Comply with GitHub TOS. No active malware, no exploits against systems without consent. Educational / diagnostic / synthetic demos only.
-2. Outputs that publish to GitHub Pages: must serve from index.html at repo root, no build step.
-3. Python tools: must run with `python <entry>` in a Codespaces dev container; declare deps in requirements.txt.
-4. Documents: must be readable on github.com directly (Markdown rendered).
-5. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .jsx, .scss, .vue, etc.). Plain languages only.
+2. EVERY project — regardless of type — MUST include an index.html at repo root that is viewable in GitHub Pages. This is the user's ONLY way to experience the project from the dashboard. The index.html must be a VISUAL SHOWCASE:
+   - web_interactive / web_3d / game_web / generative_art: index.html IS the project itself.
+   - python_tool: index.html is a RICH VISUAL SHOWCASE page. It must show: project title + description, architecture diagram (use HTML/CSS/SVG, not images), sample outputs (embedded SVG, ASCII art rendered in <pre>, or generated visualizations), the core algorithm explained visually with diagrams/animations, a live interactive demo element if possible (e.g. a JS port of the core algorithm), and a "Run in Codespaces" button. The index.html should make the viewer say "wow" even without running Python.
+   - document: index.html is a BEAUTIFULLY STYLED reader page. Render the document content as a polished web page with typography, diagrams, table of contents, and visual flair — NOT just raw markdown. Make it look like a published article on Medium or a research paper.
+3. Python tools: must ALSO run with `python <entry>` in a Codespaces dev container; declare deps in requirements.txt. The Python code is the real project; index.html is the showcase.
+4. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .jsx, .scss, .vue, etc.). Plain languages only.
 
 TYPE DIVERSITY — you MUST NOT repeat the same project_type as the previous build. The system enforces type rotation. Read the TYPE DIVERSITY REPORT in the user prompt to see which types are underrepresented, which are maxed out, and which is recommended. Once a type's max shipped complexity reaches its ceiling, that type is LOCKED and you must escalate to a higher-ceiling type. The ceilings are: document=20, generative_art=25, web_interactive=30, game_web=35, web_3d=35, python_tool=50.
 
@@ -181,8 +183,8 @@ RULES:
 - Production-quality. NO TODOs, placeholders, stubs.
 - Honor the plan's project_type:
   - web_interactive / web_3d / generative_art / game_web: HTML+CSS+JS at repo root, no build step. Plain .js / .html / .css ONLY (no .ts, .jsx, .scss, etc.). Prefer classic <script src="...">; modules require careful path handling. CDN libraries pinned to explicit version.
-  - python_tool: a runnable Python script with a clear entry point. requirements.txt for any deps. Must work with `python <entry>`.
-  - document: Markdown files with substantive content. Tables, ASCII diagrams, code blocks, references. Should render well on github.com.
+  - python_tool: Python files + requirements.txt for the core tool, BUT ALSO an index.html that is a rich visual showcase. The index.html should: have a polished dark-themed design, show the project architecture with SVG/CSS diagrams, demonstrate sample outputs visually, explain the core algorithm with interactive elements or animations in plain JS, and include a "Run in Codespaces" button. This page IS the user's first experience — make it impressive.
+  - document: The primary content goes in markdown files, BUT index.html must be a beautiful styled reader page that presents the content as a polished article with proper typography, table of contents, diagrams, and visual identity. Think: a published article on a professional blog, not raw markdown.
 - Every interactive control your sibling files reference MUST have its event listener wired in this file (if this is the file that owns it). Buttons that look interactive but do nothing are the worst possible bug — do not produce them.
 - For canvas + state-bearing UIs: the click handler must compute coordinates the SAME way the render code uses them. State + visual must stay in sync.
 - For randomize / reset: enumerate exactly which DOM elements + state slots are touched.
@@ -499,10 +501,11 @@ def _validate_plan(plan: dict, memory: dict) -> None:
         if p.name.lower() == "readme.md":
             has_readme = True
 
-    # Web projects need index.html. Python tools need a Python entry. Documents need a README.
-    if expected_web and not has_index:
+    # ALL projects need index.html for GitHub Pages visual showcase
+    if not has_index:
         raise PipelineError(
-            f"project_type={pt} requires index.html at repo root."
+            f"project_type={pt} requires index.html at repo root. "
+            "Every project must have a visual showcase page for the dashboard."
         )
     if pt == "python_tool":
         py_files = [f for f in files if f.get("path", "").endswith(".py")]

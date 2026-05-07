@@ -175,7 +175,7 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     }
   }
   // CSO ribbon
-  const csoAudits = (m.security_audits || []);
+  const csoAudits = (m.cso_reviews || m.security_audits || []);
   if (csoAudits.length) {
     const last = csoAudits[csoAudits.length - 1];
     document.getElementById('cso-ribbon').style.display = 'block';
@@ -230,9 +230,8 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
       <div class="meta">${typeBadge}${patternBadge}${domainBadge}${modelBadge}${qaBadge}${secBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">
-        ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}
-        ${(!p.pages_url && (projectType === 'document' || projectType === 'research')) ? `<a class="btn primary" href="${p.repo_url}#readme" target="_blank" rel="noopener">📄 Read it</a>` : ''}
-        ${(!p.pages_url && projectType === 'python_tool') ? `<a class="btn primary" href="${codespaces}" target="_blank" rel="noopener">⚡ Run in Codespaces</a>` : `${codespaces && p.pages_url ? `<a class="btn" href="${codespaces}" target="_blank" rel="noopener">⚡ Codespaces</a>` : ''}`}
+        ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : `<a class="btn primary" href="${p.repo_url}#readme" target="_blank" rel="noopener">📄 View</a>`}
+        ${codespaces ? `<a class="btn" href="${codespaces}" target="_blank" rel="noopener">⚡ Codespaces</a>` : ''}
         <a class="btn ghost" href="${p.repo_url}" target="_blank" rel="noopener">&lt;/&gt; Source</a>
       </div>
     `;
