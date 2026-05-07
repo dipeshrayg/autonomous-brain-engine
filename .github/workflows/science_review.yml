@@ -1,8 +1,8 @@
-name: Security Review
+name: Science Review
 
-# The CSO meta-watchdog. Runs every 12 hours, examines the security review
-# records of recent shipped projects, and writes strict directives that the
-# next plan stage must obey alongside the CEO's directives.
+# Chief Science Officer (CSO) periodic audit. Project Evolution: this is the
+# experimental edge-case driver, NOT a security review (security has been
+# purged). The CSO pushes for algorithmic novelty and deep-tech ambition.
 
 on:
   schedule:
@@ -15,11 +15,11 @@ permissions:
   models: read
 
 concurrency:
-  group: cso-audit
+  group: cso-review
   cancel-in-progress: false
 
 jobs:
-  audit:
+  science_review:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -37,21 +37,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install openai>=1.30.0
 
-      - name: Run CSO security audit
+      - name: Run CSO science review
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python security_officer.py
+        run: python executive.py cso
 
-      - name: Commit CSO audit
+      - name: Commit CSO review
         if: always()
         run: |
           git config user.name  "cso-bot[autonomous-brain]"
           git config user.email "cso-bot@users.noreply.github.com"
           git add memory_log.json 2>/dev/null || true
           if git diff --staged --quiet; then
-            echo "No CSO audit to commit."
+            echo "No CSO review to commit."
           else
-            git commit -m "cso: security audit @ $(date -u +%Y-%m-%dT%H:%MZ)"
+            git commit -m "cso: science review @ $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           fi
 
@@ -60,4 +60,6 @@ jobs:
         continue-on-error: true
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
-        run: python publish_public.py
+        run: |
+          pip install requests
+          python publish_public.py

@@ -1,25 +1,20 @@
 """
-executive.py - The CEO role.
+executive.py — CEO + CSO meta-watchdogs.
 
-The CEO is a meta-watchdog. It runs on its own schedule (every 6 hours via
-.github/workflows/ceo_review.yml) and asks: "Is the pipeline producing real
-work that's actually advancing, or is it shipping mediocre projects that
-just barely satisfy the validators?"
+Project Evolution mandate:
 
-Concretely, the CEO:
-    1. Reads memory_log.json and looks at the last 8 projects in detail.
-    2. Computes mechanical metrics — complexity trajectory, file/LOC trend,
-       quality-cycle counts, novel-concept density, pattern/domain spread.
-    3. Asks an LLM (gpt-4o by default) to evaluate the trajectory against
-       a strict rubric: design level, complexity progression, UX richness,
-       diversity of language/tech, and presence/absence of staleness.
-    4. Issues a small set of directives that the next plan stage must obey.
-    5. Appends the verdict + directives to memory_log.ceo_reviews[] and
-       commits it back.
+CEO (visionary, high-risk tolerance):
+    "Why are we making a calculator when we could be writing a framework
+    for drone swarms?" Pushes domain shifts, rejects derivative work,
+    requires every project to surprise.
 
-The next plan stage reads the most-recent CEO review (if recent — within
-36 hours) and prepends its directives to the architect conference prompt.
-This is the closed loop that prevents the pipeline from drifting.
+CSO — Chief SCIENCE Officer (NOT security, that role is purged):
+    Drives experimental edge-cases. Pushes for novel algorithms, physics
+    simulations, deep-tech research, mathematical exotica. Loves things
+    nobody has tried.
+
+Both roles read memory + failed-build history and write directives the
+next architect must obey. They are deliberately allowed to disagree.
 """
 
 from __future__ import annotations
@@ -27,6 +22,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -38,62 +34,91 @@ import roles
 
 log = logging.getLogger("brain.executive")
 
-CEO_REVIEW_WINDOW = 8        # how many recent projects the CEO examines
-CEO_DIRECTIVE_TTL_HOURS = 36  # plan stages older than this ignore the directives
+REVIEW_WINDOW = 8
+DIRECTIVE_TTL_HOURS = 36
 
 
-CEO_SYSTEM = """You are the CEO of an autonomous AI software-creation pipeline. The system designs, codes, tests, and ships browser-runnable software projects multiple times a day. Your job is META: you don't write code, you evaluate whether the system as a whole is producing genuinely advancing, high-quality, diverse work — or whether it's drifting toward mediocre projects, or stuck in a failure loop.
+# ─────────────────────── CEO — Visionary ────────────────────────────────
 
-You receive TWO data streams:
+CEO_SYSTEM = """You are the CEO of an autonomous AI software-creation system. You are visionary, high-risk-tolerant, and impatient with safe, derivative work.
 
-1. RECENT SHIPPED PROJECTS — what actually made it to production
-2. RECENT REFUSED BUILDS — projects the QA Tester or Security Officer blocked before publish (these never reach the user, but they tell you what the architect tried and failed at)
+Project Evolution mandate: this system was producing repetitive web demos with broken interactivity. That era is over. The new directive is to PUSH BOUNDARIES into unpredictable domains. The architect, engineers, and reviewers are competent but conservative — your job is to drag them out of the local minimum.
 
-Read both streams carefully. The refusal data is your most important signal:
+DOMAINS YOU CAN PUSH TOWARD (this list is a starting point, not an exhaustive one):
+- Browser tools / web-runnable demos (the default — you should bias AGAINST this unless the angle is genuinely fresh)
+- Games (chess variants, roguelikes, real-time strategy, abstract puzzles)
+- Python tools (cyber forensic utilities, ML experiments, simulation engines, data-pipeline demos)
+- 3D scripts (Three.js scenes, OpenSCAD models, raymarchers, generative geometry)
+- Robotic logic algorithms (path planning, swarm coordination, sensor fusion)
+- Research articles (markdown long-form on novel algorithms, physics, math)
+- Business proposals / product design schematics (markdown + ASCII diagrams)
+- Generative art systems (shaders, fractals, parametric design)
+- Compilers / language interpreters (toy languages, DSLs)
+- Audio / DSP / synthesizers
+- Physics simulations (cloth, fluid, soft-body, n-body)
+- Cryptographic toys (educational ciphers, ZK proofs visualized)
+- Information theory / compression
+- Cellular automata / artificial life
 
-- If many recent builds were refused at the QA gate (dead controls, missing features), the architect is over-aiming for the model's reliable build capability. Your directives should SCALE BACK ambition: simpler interaction patterns, fewer concurrent features, single-canvas focus.
-- If many were refused at the security gate, the architect is producing patterns the security review keeps flagging. Adjust the plan constraints (no fake auth, no synthetic backend with sensitive-looking data, etc.).
-- If shipped projects look samey/lazy, push for variety + ambition.
-- If refused builds and shipped projects are at the same complexity but failing → the model has a soft ceiling there; new directives should target a *different axis of advancement* (not raw complexity score).
+You receive:
+1. RECENT SHIPPED PROJECTS — what reached production
+2. RECENT REFUSED BUILDS — what the QA Tester refused to ship; the architect tried and failed
+3. CSO directives (if any) from your peer Chief Science Officer
 
-Your job is to make the system *self-correcting*. Bad pattern persisting across multiple builds means your last directives weren't right; this time, change strategy.
+Read all of it. The refusal data is your most important signal — when the architect over-aimed and got blocked, your last directives were probably wrong. Adjust.
 
-Be ruthlessly strict on the system, kind to its capability. Don't demand things the recent failure data shows it can't deliver — that's how the loop gets stuck.
+Your output is a JSON document. The next plan stage will read your `directives` and obey them. Use this leverage.
 
-Look beyond the mechanical gates:
-- Are the projects genuinely more sophisticated, or are they just adding superficial complexity?
-- Is the user experience actually rich, or is it three buttons and a slider every time?
-- Are the visualizations actually informative, or decorative?
-- Is the system stuck demanding the same patterns the QA gate keeps refusing?
-
-Your output is a JSON document. The next plan stage will read your `directives` and obey them. Use this leverage. Be specific.
-
-OUTPUT — single JSON object, no prose, no markdown fences:
+OUTPUT — single JSON, no prose, no markdown fences:
 {
   "verdict": "thriving" | "acceptable" | "drifting" | "alarming",
-  "concerns": [
-    "1-3 sentence specific concerns about recent work — name projects by name where relevant"
-  ],
-  "directives": [
-    "imperative instructions for the NEXT project. each one a single concrete thing the architect MUST do"
-  ],
-  "praise": [
-    "what the pipeline did well in this window (use sparingly — this is the part that gets least improvement)"
-  ],
-  "summary": "one paragraph executive summary"
+  "summary": "1-2 sentence executive judgement",
+  "concerns": ["specific, sharp concerns about the trajectory"],
+  "directives": ["3-6 imperative instructions for the next project. Each one a single concrete thing. Push toward unpredictable domains."],
+  "praise": ["sparingly — what the system did well"]
 }
 
 Rules for directives:
-- Each is imperative, concrete, achievable in a single project.
-- 3-6 directives total. More is dilution.
-- Push the system to do something it has NOT done well recently.
-- Examples: 'Use a multi-pane workspace layout (left rail + main canvas + right inspector) — single-pane is overused.' / 'The next project must include a non-trivial backend SIMULATION — a fake auth flow, a synthetic order book, a simulated message bus, or similar.' / 'Use a typography pairing the system has never used (e.g. JetBrains Mono + Crimson Pro). Track the visual_identity field.'
+- IF recent failures dominate, scale back ambition (simpler patterns, fewer features) so SOMETHING ships.
+- IF recent ships are too safe / web-app-shaped / derivative, demand a domain leap (Python tool, 3D, game, document, etc.).
+- Never demand the same thing your previous directives demanded if those caused the recent failures.
+- Be specific. "Be more creative" is useless. "The next project must be a Python cryptography demo running in Codespaces — no browser UI" is right.
 """
 
 
+# ─────────────────────── CSO — Chief Science Officer ────────────────────
+
+CSO_SYSTEM = """You are the Chief SCIENCE Officer of an autonomous software-creation system. You are NOT a security officer (that role has been removed). You are the system's experimental edge-case driver — the voice that demands novel algorithms, physics-correct simulations, deep-tech research depth.
+
+You complement the CEO. The CEO pushes for domain leaps. You push for ALGORITHMIC depth within the chosen domain. Where the CEO might say "build a Python tool", you'd add "make it a constraint solver using DPLL with conflict-driven clause learning, not a glorified for-loop."
+
+You receive the same data as the CEO: shipped projects + refused builds. Your job: identify whether recent work is intellectually substantive or whether the architect is hiding shallow ideas behind ambitious-sounding labels.
+
+Areas you care about:
+- Algorithmic novelty (does this implement something with depth, or is it a wrapper?)
+- Mathematical correctness (correct numerical methods? correct probability? correct physics?)
+- Information-theoretic interest (is there compression, entropy, or Bayesian inference at play?)
+- Deep-tech ambition (consensus protocols, distributed systems, formal verification, DSP)
+- Edge-case rigor (what happens at the boundary, the singular point, the empty input?)
+
+Output schema same as CEO:
+{
+  "verdict": "thriving" | "acceptable" | "drifting" | "alarming",
+  "summary": "1-2 sentences",
+  "concerns": ["scientific / algorithmic concerns"],
+  "directives": ["specific algorithmic / scientific demands"],
+  "praise": []
+}
+
+Be sharp. Be curious. Demand novelty.
+"""
+
+
+# ─────────────────────── Helpers ────────────────────────────────────────
+
 def _load_memory(path: Path) -> dict[str, Any]:
     if not path.exists():
-        return {"projects": [], "ceo_reviews": []}
+        return {"projects": [], "ceo_reviews": [], "cso_reviews": [], "failed_builds": []}
     return json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -105,7 +130,6 @@ def _save_memory(path: Path, memory: dict[str, Any]) -> None:
 
 
 def _summarize_recent(projects: list[dict]) -> str:
-    """Compact text summary of recent SHIPPED projects for the CEO prompt."""
     if not projects:
         return "(no projects yet)"
     lines = []
@@ -115,9 +139,7 @@ def _summarize_recent(projects: list[dict]) -> str:
         lines.append(
             f"- {p.get('date','?')} {p.get('name','?'):<45} "
             f"c={p.get('complexity_score','?')} "
-            f"files={p.get('file_count','?')} loc={p.get('loc','?')} "
-            f"cycles={p.get('quality_cycles_used','?')} "
-            f"controls={ui.get('interactiveCount','?')} "
+            f"type={p.get('project_type','web')} "
             f"qa={qa.get('verdict','-')} "
             f"pattern={p.get('pattern','?')} "
             f"domain={p.get('domain','?')}"
@@ -126,49 +148,48 @@ def _summarize_recent(projects: list[dict]) -> str:
 
 
 def _summarize_failures(failed_builds: list[dict]) -> str:
-    """Compact text summary of REFUSED builds — projects that didn't ship."""
     if not failed_builds:
-        return "(no refused builds in window — pipeline shipping cleanly)"
-    lines = [
-        f"REFUSED builds (project was generated, refused before publish):",
-    ]
+        return "(no refused builds in window)"
+    lines = ["REFUSED builds (project generated, refused before publish):"]
     for f in failed_builds:
         dead = len(f.get("qa_dead_controls") or [])
         miss = len(f.get("qa_missing_features") or [])
-        sec = f.get("security_blocking_count", 0)
-        interaction = f.get("final_interaction") or {}
-        live = interaction.get("live")
-        tested = interaction.get("tested")
-        ratio = f"{live}/{tested}" if (live is not None and tested) else "?"
         lines.append(
             f"- {f.get('date','?')} \"{f.get('plan_name','?')}\" "
             f"c={f.get('plan_complexity','?')} "
             f"pattern={f.get('plan_pattern','?')} "
             f"domain={f.get('plan_domain','?')} "
-            f"→ {f.get('refusal_stage','?')}: "
-            f"qa_verdict={f.get('qa_verdict','-')}, "
-            f"controls_live={ratio}, "
-            f"dead={dead}, missing={miss}, sec_blockers={sec}"
+            f"-> {f.get('refusal_stage','?')}: dead={dead} missing={miss}"
         )
     return "\n".join(lines)
 
 
-def latest_directives(memory: dict, ttl_hours: int = CEO_DIRECTIVE_TTL_HOURS) -> list[str]:
-    """Return CEO directives if there's a recent review; empty list otherwise."""
-    reviews = memory.get("ceo_reviews", []) or []
+def latest_directives(memory: dict, key: str, ttl_hours: int = DIRECTIVE_TTL_HOURS) -> list[str]:
+    reviews = memory.get(key, []) or []
     if not reviews:
         return []
     last = reviews[-1]
     issued = last.get("issued_at_unix", 0)
     age_hours = (datetime.now(timezone.utc).timestamp() - issued) / 3600.0
     if age_hours > ttl_hours:
-        log.info("CEO directives are %.1fh old (>%.0fh TTL); ignoring.", age_hours, ttl_hours)
+        log.info("%s directives are %.1fh old (>%.0fh TTL); ignoring.", key, age_hours, ttl_hours)
         return []
     return last.get("directives", []) or []
 
 
-def run_ceo_review(memory_log_path: Path = Path("memory_log.json")) -> int:
-    """Entry point for the CEO workflow. Returns shell exit code."""
+def _parse_json(text: str) -> dict:
+    text = text.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```(?:json)?\s*", "", text)
+        text = re.sub(r"\s*```$", "", text)
+    s, e = text.find("{"), text.rfind("}")
+    if s < 0 or e < 0:
+        raise ValueError(f"No JSON object found. First 400 chars:\n{text[:400]}")
+    return json.loads(text[s:e + 1])
+
+
+def _run_review(role: str, system_prompt: str, memory_log_path: Path,
+                review_key: str, label: str) -> int:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         log.error("GITHUB_TOKEN env var is required.")
@@ -179,53 +200,36 @@ def run_ceo_review(memory_log_path: Path = Path("memory_log.json")) -> int:
     )
 
     memory = _load_memory(memory_log_path)
-    recent = (memory.get("projects") or [])[-CEO_REVIEW_WINDOW:]
-
+    recent = (memory.get("projects") or [])[-REVIEW_WINDOW:]
     if len(recent) < 2:
-        log.info("Not enough projects yet (%d). Skipping CEO review.", len(recent))
+        log.info("Not enough projects yet (%d). Skipping %s review.", len(recent), label)
         return 0
 
     summary = _summarize_recent(recent)
-    explored_patterns = [p.get("pattern") for p in recent if p.get("pattern")]
-    explored_domains = [p.get("domain") for p in recent if p.get("domain")]
-    cs = [p.get("complexity_score", 0) for p in recent]
-
-    failed_builds = (memory.get("failed_builds") or [])[-CEO_REVIEW_WINDOW:]
-    failures_summary = _summarize_failures(failed_builds)
+    failed = (memory.get("failed_builds") or [])[-REVIEW_WINDOW:]
+    failures_summary = _summarize_failures(failed)
 
     user = (
         f"Recent {len(recent)} SHIPPED projects (oldest -> newest):\n{summary}\n\n"
-        f"Complexity series of shipped: {cs}\n"
-        f"Patterns of shipped: {explored_patterns}\n"
-        f"Domains of shipped: {explored_domains}\n\n"
         f"{failures_summary}\n\n"
-        "Evaluate the WHOLE picture (shipped + refused). If recent refusals "
-        "dominate at the same complexity, your previous directives may be "
-        "asking for things the current model can't reliably build — adjust "
-        "strategy. Issue strict directives for the NEXT project."
+        "Issue strict directives for the NEXT project."
     )
 
     try:
         text, meta = roles.call_with_fallback(
-            client, "ceo",
-            system=CEO_SYSTEM, user=user,
-            max_tokens=2000, temperature=0.7,
+            client, role,
+            system=system_prompt, user=user,
+            max_tokens=2200, temperature=0.7,
         )
     except roles.AllModelsFailed as e:
-        log.error("CEO review failed: every model in chain unavailable. %s", e)
+        log.error("%s review failed: %s", label, e)
         return 1
 
-    # Parse the CEO output
-    text = text.strip()
-    if text.startswith("```"):
-        import re
-        text = re.sub(r"^```(?:json)?\s*", "", text)
-        text = re.sub(r"\s*```$", "", text)
-    s, e = text.find("{"), text.rfind("}")
-    if s < 0 or e < 0:
-        log.error("CEO output not JSON. First 400 chars:\n%s", text[:400])
+    try:
+        review = _parse_json(text)
+    except Exception as e:
+        log.error("%s output not parseable: %s\n%s", label, e, text[:400])
         return 1
-    review = json.loads(text[s:e + 1])
 
     record = {
         "issued_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -238,15 +242,22 @@ def run_ceo_review(memory_log_path: Path = Path("memory_log.json")) -> int:
         "praise": review.get("praise", []) or [],
         "reviewed_project_count": len(recent),
     }
-    memory.setdefault("ceo_reviews", []).append(record)
+    memory.setdefault(review_key, []).append(record)
     _save_memory(memory_log_path, memory)
 
-    log.info("CEO verdict: %s | %d directives | %d concerns | model=%s",
-             record["verdict"], len(record["directives"]),
-             len(record["concerns"]), record["model"])
+    log.info("%s verdict: %s | %d directives | model=%s",
+             label, record["verdict"], len(record["directives"]), record["model"])
     for d in record["directives"]:
-        log.info("  directive: %s", d)
+        log.info("  %s directive: %s", label, d)
     return 0
+
+
+def run_ceo_review(memory_log_path: Path = Path("memory_log.json")) -> int:
+    return _run_review("ceo", CEO_SYSTEM, memory_log_path, "ceo_reviews", "CEO")
+
+
+def run_cso_review(memory_log_path: Path = Path("memory_log.json")) -> int:
+    return _run_review("cso", CSO_SYSTEM, memory_log_path, "cso_reviews", "CSO")
 
 
 if __name__ == "__main__":
@@ -255,4 +266,7 @@ if __name__ == "__main__":
         format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
         stream=sys.stdout,
     )
+    mode = sys.argv[1] if len(sys.argv) > 1 else "ceo"
+    if mode == "cso":
+        sys.exit(run_cso_review())
     sys.exit(run_ceo_review())

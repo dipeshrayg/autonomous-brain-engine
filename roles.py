@@ -1,32 +1,27 @@
 """
-roles.py - The boardroom: model registry, role assignments, and resilient calls.
+roles.py — Project Evolution boardroom.
 
-The system is organized hierarchically, in the spirit of a real engineering org:
+Personas (each opinionated, each free to disagree):
 
-    CEO              periodic top-level review (separate workflow)
-       │
-       ▼
-    VP Engineering   the watchdog (separate workflow, 15-min ticks)
-       │
-       ▼
-    Chief Architect  PLAN stage = 3-way conference + judge
-       │
-       ▼
-    Engineers        IMPLEMENT stage, file-by-file
-       │
-       ▼
-    Code Reviewers   CRITIQUE stage = 2-way parallel review + merge
-       │
-       ▼
-    Fixer/Polisher   iterative repair + final polish
-       │
-       ▼
-    QA (Playwright)  mechanical browser verification
+    CEO              visionary, high-risk; pushes new domains; rejects derivative
+    CSO              Chief Science Officer; experimental edge-cases, novel algorithms,
+                     physics simulations, deep-tech research
+    VP Engineering   pragmatic anchor; ensures wild ideas are technically feasible
+                     but never stifles the domain shift
+    Judge            single metric: "is this predictable?" If yes, reject.
+                     Synthesizes architect candidates after applying that test.
+    Architect cands  multi-model conference proposing project plans in parallel
+    Engineer         per-file implementation
+    Reviewer A/B     parallel critique conference
+    QA Tester        VISUAL + STATE-SYNC tester. Click nodes, verify
+                     coordinate-math matches render, simulate user pathways.
+    QA Fixer         repairs dead controls + state-sync bugs
+    Fixer/Polisher   iterative repair + final UX polish
 
-Each role is bound to a primary model, with an explicit fallback chain that's
-walked automatically when a primary is rate-limited or unavailable. The roles
-deliberately spread across multiple model families so per-model rate limits
-on the free tier never become a bottleneck.
+Note: the Security Officer role has been REMOVED in Project Evolution. The
+system trades pre-publish security review for build-friction reduction and
+domain expansion. Generated projects must still comply with platform TOS,
+but enforcement now lives in the system prompts, not a dedicated gate.
 """
 
 from __future__ import annotations
@@ -41,70 +36,59 @@ log = logging.getLogger("brain.roles")
 
 
 # ─────────────────────── Model registry ─────────────────────────────────
-# Names are GitHub-Models / Azure-endpoint compatible. Tier is informational.
 
 MODELS: dict[str, tuple[str, str]] = {
-    # Verified against the Azure GitHub Models endpoint (models.inference.ai.azure.com).
-    # Mistral-Large-2411, Meta-Llama-3.1-70B-Instruct, and Phi-3.5-MoE-instruct
-    # all return `unknown_model` 400s here — the endpoint has dropped them.
-    # We're back to OpenAI-only on this endpoint; conference diversity comes
-    # from temperature variation across role invocations rather than model
-    # variation. If a working alt-family model is added to the catalogue,
-    # plug it in here and the fallback chains will pick it up automatically.
-    "gpt-4o":          ("gpt-4o",                          "premium"),
-    "gpt-4o-mini":     ("gpt-4o-mini",                     "fast"),
+    "gpt-4o":      ("gpt-4o",      "premium"),
+    "gpt-4o-mini": ("gpt-4o-mini", "fast"),
 }
 
 
 # ─────────────────────── Role → primary model ───────────────────────────
 
 ROLE_PRIMARY: dict[str, str] = {
+    # Executive layer
     "ceo":                   "gpt-4o",
-    "cso":                   "gpt-4o",
-    # QA reviews the user-facing usability — does the project deliver the
-    # interactivity it promised? Catches "looks alive but does nothing" demos
-    # that pass mechanical render checks but are useless to a visitor.
-    "qa_tester":             "gpt-4o",
-    "qa_fixer":              "gpt-4o",
-    "security_officer":      "gpt-4o",
-    # Security remediation is harder than ordinary bugfixes — XSS, prototype
-    # pollution, etc. require careful rewrites. Use the strongest model.
-    "security_fixer":        "gpt-4o",
-    "architect_judge":       "gpt-4o",
-    # Two distinct candidates so the conference has actual diversity.
+    "cso":                   "gpt-4o",   # Chief Science Officer (experimental)
+    "vp_eng":                "gpt-4o",   # pragmatic feasibility check
+
+    # Plan stage
+    "architect_judge":       "gpt-4o",   # the Judge — predictability filter
     "architect_candidate_a": "gpt-4o-mini",
     "architect_candidate_b": "gpt-4o-mini",
+
+    # Build stages
     "engineer":              "gpt-4o",
     "reviewer_a":            "gpt-4o-mini",
     "reviewer_b":            "gpt-4o-mini",
+
+    # QA — now visual + state-sync, not just console-watching
+    "qa_tester":             "gpt-4o",
+    "qa_fixer":              "gpt-4o",
+
+    # Iteration helpers
     "fixer":                 "gpt-4o-mini",
     "polisher":              "gpt-4o-mini",
 }
 
-# Fallbacks tried in order when the primary errors. With only two working
-# models, the chain is simple: primary → other model → fail. AllModelsFailed
-# is raised only if both gpt-4o and gpt-4o-mini are unavailable
-# simultaneously (rare; usually transient rate-limit recovers within minutes).
+
 ROLE_FALLBACK: dict[str, list[str]] = {
     "ceo":                   ["gpt-4o-mini"],
     "cso":                   ["gpt-4o-mini"],
-    "qa_tester":             ["gpt-4o-mini"],
-    "qa_fixer":              ["gpt-4o-mini"],
-    "security_officer":      ["gpt-4o-mini"],
-    "security_fixer":        ["gpt-4o-mini"],
+    "vp_eng":                ["gpt-4o-mini"],
     "architect_judge":       ["gpt-4o-mini"],
     "architect_candidate_a": ["gpt-4o"],
     "architect_candidate_b": ["gpt-4o"],
     "engineer":              ["gpt-4o-mini"],
     "reviewer_a":            ["gpt-4o"],
     "reviewer_b":            ["gpt-4o"],
+    "qa_tester":             ["gpt-4o-mini"],
+    "qa_fixer":              ["gpt-4o-mini"],
     "fixer":                 ["gpt-4o"],
     "polisher":              ["gpt-4o"],
 }
 
 
 def model_for(role: str) -> str:
-    """Primary model id for a role."""
     key = ROLE_PRIMARY.get(role)
     if key is None:
         raise ValueError(f"Unknown role: {role}")
@@ -112,7 +96,6 @@ def model_for(role: str) -> str:
 
 
 def chain_for(role: str) -> list[str]:
-    """Primary + fallbacks, in order, for a role."""
     primary = ROLE_PRIMARY[role]
     fb = ROLE_FALLBACK.get(role, [])
     return [MODELS[k][0] for k in [primary, *fb]]
@@ -121,7 +104,7 @@ def chain_for(role: str) -> list[str]:
 # ─────────────────────── Resilient call ─────────────────────────────────
 
 class AllModelsFailed(RuntimeError):
-    """Raised when every model in a role's chain fails."""
+    pass
 
 
 def call_with_fallback(
@@ -136,24 +119,7 @@ def call_with_fallback(
     transient_attempts: int = 2,
     validator: "callable | None" = None,
 ) -> tuple[str, dict[str, Any]]:
-    """
-    Try every model in the role's chain until one succeeds.
-
-    For each model: up to `transient_attempts` retries on transient errors
-    (network, 5xx) before giving up on that model and falling back. Hard
-    failures (bad request, 4xx other than 429) are treated as transient
-    too — sometimes a specific model rejects a prompt format another
-    accepts, and the fallback handles that.
-
-    If `validator` is provided, it's called on the response text after each
-    successful API call. If it raises, the response is treated as a failure
-    and we fall through to the next model. This is how truncated/malformed
-    JSON ends up triggering a fallback rather than crashing the pipeline.
-
-    Returns:
-        (text, meta) where meta carries {model, attempt, prompt_tokens,
-        completion_tokens, role}.
-    """
+    """Walk the role's model chain until one returns a valid response."""
     chain = chain_for(role)
     last_err: Exception | None = None
 
@@ -174,8 +140,6 @@ def call_with_fallback(
                 resp = client.chat.completions.create(**kwargs)
                 text = resp.choices[0].message.content or ""
 
-                # If a validator was passed, run it now. If it throws, the
-                # response is unusable and we should try a different model.
                 if validator is not None:
                     try:
                         validator(text)
@@ -189,9 +153,6 @@ def call_with_fallback(
                             "(finish=%s, len=%d): %s",
                             role, model, attempt, finish_reason, len(text), ve,
                         )
-                        # If the response was likely truncated (`length`
-                        # finish_reason), no point retrying same model — go
-                        # straight to fallback.
                         if finish_reason == "length":
                             break
                         if attempt < transient_attempts:
@@ -200,9 +161,7 @@ def call_with_fallback(
                         break
 
                 meta: dict[str, Any] = {
-                    "role": role,
-                    "model": model,
-                    "attempt": attempt,
+                    "role": role, "model": model, "attempt": attempt,
                 }
                 if resp.usage:
                     meta["prompt_tokens"] = resp.usage.prompt_tokens
@@ -212,7 +171,7 @@ def call_with_fallback(
                          meta.get("prompt_tokens", -1),
                          meta.get("completion_tokens", -1))
                 return text, meta
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 last_err = e
                 msg = str(e)[:240]
                 rate_limited = "429" in msg or "rate" in msg.lower() or "quota" in msg.lower()

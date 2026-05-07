@@ -79,6 +79,8 @@ _DASHBOARD_HTML = """<!DOCTYPE html>
   .badge.qa-shippable{background:#1c2c33;color:#79c0ff}
   .badge.qa-partial{background:#33301c;color:#f1c40f}
   .badge.qa-blocked{background:#3a1c1c;color:#f85149}
+  .badge.type{background:#2a2a3a;color:#a8b3c7;text-transform:uppercase;
+              font-family:ui-monospace,Menlo,monospace;font-size:.7rem;letter-spacing:.5px}
   .ceo-head{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-bottom:.5rem}
   .ceo-tag{display:inline-block;padding:.15rem .6rem;background:#58a6ff;color:#0d1117;
            font-weight:700;font-size:.75rem;border-radius:4px;letter-spacing:.5px}
@@ -202,6 +204,8 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     const domainBadge = p.domain ? `<span class="badge domain">${p.domain}</span>` : '';
     const planModel = p.model_attribution && p.model_attribution.plan_judge;
     const modelBadge = planModel ? `<span class="badge model">plan: ${planModel}</span>` : '';
+    const projectType = p.project_type || 'web_interactive';
+    const typeBadge = `<span class="badge type">${projectType}</span>`;
     const sec = p.security_review || {};
     let secBadge = '';
     if (sec.verdict === 'secure') {
@@ -223,11 +227,12 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
       <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span></div>
-      <div class="meta">${patternBadge}${domainBadge}${modelBadge}${qaBadge}${secBadge}</div>
+      <div class="meta">${typeBadge}${patternBadge}${domainBadge}${modelBadge}${qaBadge}${secBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">
         ${p.pages_url ? `<a class="btn primary" href="${p.pages_url}" target="_blank" rel="noopener">▶ Run it</a>` : ''}
-        ${codespaces ? `<a class="btn" href="${codespaces}" target="_blank" rel="noopener">⚡ Codespaces</a>` : ''}
+        ${(!p.pages_url && (projectType === 'document' || projectType === 'research')) ? `<a class="btn primary" href="${p.repo_url}#readme" target="_blank" rel="noopener">📄 Read it</a>` : ''}
+        ${(!p.pages_url && projectType === 'python_tool') ? `<a class="btn primary" href="${codespaces}" target="_blank" rel="noopener">⚡ Run in Codespaces</a>` : `${codespaces && p.pages_url ? `<a class="btn" href="${codespaces}" target="_blank" rel="noopener">⚡ Codespaces</a>` : ''}`}
         <a class="btn ghost" href="${p.repo_url}" target="_blank" rel="noopener">&lt;/&gt; Source</a>
       </div>
     `;

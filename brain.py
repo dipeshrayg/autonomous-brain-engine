@@ -40,7 +40,8 @@ import pipeline
 import verifier
 import dashboard
 import executive
-import security_officer
+# security_officer removed in Project Evolution; CSO is now Chief Science Officer
+# in executive.py with role label "cso".
 
 # ─────────────────────── Configuration ──────────────────────────────────
 
@@ -159,7 +160,6 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
                   repo_url: str, pages_url: str, cycles: int,
                   verify_result: dict, model_per_file: dict[str, str],
                   ceo_directives: list[str] | None,
-                  security_report: dict | None = None,
                   qa_report: dict | None = None) -> None:
     now = datetime.now(timezone.utc)
     record = {
@@ -170,6 +170,7 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
         "repo_url": repo_url,
         "pages_url": pages_url,
         "language": plan["language"],
+        "project_type": plan.get("project_type", "web_interactive"),
         "tech_stack": plan.get("tech_stack", []),
         "complexity_score": int(plan.get("complexity_score", 0)),
         "concepts_demonstrated": plan.get("concepts_demonstrated", []),
@@ -191,17 +192,6 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
             "implement_per_file": model_per_file,
         },
         "ceo_directives_followed": list(ceo_directives or []),
-        "security_review": (
-            {
-                "verdict": security_report.get("verdict"),
-                "summary": security_report.get("summary"),
-                "model": security_report.get("__model__"),
-                "findings_count": len(security_report.get("findings") or []),
-                "findings": security_report.get("findings") or [],
-                "directives_for_future": security_report.get("directives_for_future") or [],
-            }
-            if security_report else None
-        ),
         "qa_review": (
             {
                 "verdict": qa_report.get("verdict"),
@@ -254,20 +244,36 @@ def merge_updates(files: dict[str, str], updates: dict[str, str]) -> dict[str, s
 # ─────────────────────── Verify (web vs fallback) ───────────────────────
 
 def verify_project(plan: dict, target: Path) -> dict[str, Any]:
-    """Run browser verify for web projects; return structured result."""
-    if not plan.get("is_web_project"):
-        # Fallback for non-web (rare under new prompt) - simple sanity check.
-        return {"errors": [], "issues": [], "metrics": {"non_web": True}, "screenshot": None}
-    try:
-        return verifier.verify_web(target, timeout=30)
-    except Exception as e:
-        log.exception("Browser verify crashed.")
-        return {
-            "errors": [f"verifier exception: {e}"],
-            "issues": [f"Browser verifier crashed: {e}. Check that index.html parses."],
-            "metrics": {},
-            "screenshot": None,
-        }
+    """Route verification by project_type. Web → Playwright; Python → run-it; Document → structure-check."""
+    pt = plan.get("project_type", "web_interactive")
+    web_types = {"web_interactive", "web_3d", "game_web", "generative_art"}
+
+    if pt in web_types:
+        try:
+            return verifier.verify_web(target, timeout=30)
+        except Exception as e:
+            log.exception("Browser verify crashed.")
+            return {
+                "errors": [f"verifier exception: {e}"],
+                "issues": [f"Browser verifier crashed: {e}. Check that index.html parses."],
+                "metrics": {},
+                "screenshot": None,
+            }
+    if pt == "python_tool":
+        try:
+            return verifier.verify_python(target, plan, timeout=60)
+        except Exception as e:
+            log.exception("Python verify crashed.")
+            return {"errors": [f"verifier exception: {e}"], "issues": [], "metrics": {}, "screenshot": None}
+    if pt == "document":
+        try:
+            return verifier.verify_document(target, plan)
+        except Exception as e:
+            log.exception("Document verify crashed.")
+            return {"errors": [f"verifier exception: {e}"], "issues": [], "metrics": {}, "screenshot": None}
+
+    # Unknown type — default to web
+    return verifier.verify_web(target, timeout=30)
 
 
 # ─────────────────────── Publish (PyGithub + git CLI) ───────────────────
@@ -473,29 +479,25 @@ def main() -> int:
     client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
 
     try:
-        # CEO directives — top-of-house guidance for the architect conference.
-        ceo_directives = executive.latest_directives(memory)
+        # CEO directives — visionary push for new domains.
+        ceo_directives = executive.latest_directives(memory, "ceo_reviews")
         if ceo_directives:
-            log.info("CEO has issued %d active directive(s) the architect must obey.",
-                     len(ceo_directives))
+            log.info("CEO has issued %d active directive(s).", len(ceo_directives))
             for d in ceo_directives:
                 log.info("  CEO: %s", d)
 
-        # CSO directives — security mandates from the most recent audit.
-        cso_directives = security_officer.latest_directives(memory)
+        # CSO directives — Chief Science Officer (algorithmic depth, novelty).
+        cso_directives = executive.latest_directives(memory, "cso_reviews")
         if cso_directives:
-            log.info("CSO has issued %d active security directive(s).", len(cso_directives))
+            log.info("CSO has issued %d active science directive(s).", len(cso_directives))
             for d in cso_directives:
                 log.info("  CSO: %s", d)
 
-        # Merge: CEO + CSO. Both must be obeyed. Architect sees both.
-        all_directives = list(ceo_directives) + [
-            f"[security] {d}" for d in cso_directives
-        ]
-
-        # 1. PLAN — multi-model architect conference
+        # 1. PLAN — Architect Conference
         log.info("════════ STAGE 1: ARCHITECT CONFERENCE ════════")
-        plan = pipeline.stage_plan(client, memory, ceo_directives=all_directives)
+        plan = pipeline.stage_plan(client, memory,
+                                   ceo_directives=ceo_directives,
+                                   cso_directives=cso_directives)
 
         # 2. IMPLEMENT
         log.info("════════ STAGE 2: IMPLEMENT (Engineer role) ════════")
@@ -669,67 +671,12 @@ def main() -> int:
                 residual_dead,
             )
 
-        # 6.5 SECURITY REVIEW (CSO role: per-project pre-publish gate).
-        # If critical/high findings, send to the Security Fixer (gpt-4o) for up
-        # to 3 remediation rounds, re-reviewing after each. Refuse to publish
-        # only if all rounds fail to clear the blocking findings.
-        log.info("════════ STAGE 6.5: SECURITY REVIEW (Security Officer) ════════")
-        sec_report = pipeline.stage_security_review(client, plan, files, final_verify)
-        sec_findings_to_record = sec_report
+        # SECURITY GATE — REMOVED in Project Evolution per user directive.
+        # Trade-off: less pre-publish review, more domain freedom, fewer false-
+        # positive blocks. The architect prompt still mandates TOS compliance;
+        # malicious patterns are guarded at the prompt level instead of a gate.
 
-        MAX_SEC_FIX_ROUNDS = 3
-        round_num = 0
-        while sec_report.get("verdict") == "publish_blocked" and round_num < MAX_SEC_FIX_ROUNDS:
-            round_num += 1
-            blocking_security = [
-                f for f in (sec_report.get("findings") or [])
-                if isinstance(f, dict) and f.get("severity") in ("critical", "high")
-            ]
-            log.warning(
-                "Security round %d/%d: %d blocking finding(s) — calling security_fixer (gpt-4o).",
-                round_num, MAX_SEC_FIX_ROUNDS, len(blocking_security),
-            )
-            sec_issues = [
-                f"[{f.get('severity')}] [{f.get('category')}] {f.get('issue')} "
-                f"-- suggestion: {f.get('suggestion')}"
-                for f in blocking_security
-            ]
-            updates = pipeline.stage_security_fix(client, plan, files, sec_issues)
-            if not updates:
-                log.warning("Security fixer produced no updates; aborting remediation loop.")
-                break
-            files = merge_updates(files, updates)
-            materialize(files, WORKSPACE)
-            final_verify = verify_project(plan, WORKSPACE)
-            sec_report = pipeline.stage_security_review(client, plan, files, final_verify)
-            sec_findings_to_record = sec_report
-
-        if sec_report.get("verdict") == "publish_blocked":
-            log.error("Security gate STILL blocking after %d round(s) — refusing to publish.",
-                      round_num)
-            still_blocking = [
-                f for f in (sec_report.get("findings") or [])
-                if isinstance(f, dict) and f.get("severity") in ("critical", "high")
-            ]
-            for f in still_blocking:
-                log.error("  [%s] [%s] %s",
-                          f.get("severity", "?").upper(),
-                          f.get("category", "?"),
-                          f.get("issue", "")[:200])
-            record_failure(
-                memory, plan,
-                stage="security_gate",
-                reason=(
-                    f"Security gate refused after {round_num} fix round(s); "
-                    f"{len(still_blocking)} critical/high finding(s) remained."
-                ),
-                qa_report=qa_findings_to_record,
-                security_report=sec_report,
-                verify_result=final_verify,
-            )
-            return 1
-
-        # 7. PUBLISH
+        # 7. PUBLISH (project_type aware: Pages enabled only for web types)
         log.info("════════ STAGE 7: PUBLISH ════════")
         repo_url, pages_url, owner = publish(plan, WORKSPACE, gh_token)
         log.info("Published: %s", repo_url)
@@ -741,7 +688,6 @@ def main() -> int:
         log.info("════════ STAGE 8: MEMORY + DASHBOARD ════════")
         append_record(memory, plan, files, repo_url, pages_url, cycles_used,
                       final_verify, impl_meta, ceo_directives,
-                      security_report=sec_findings_to_record,
                       qa_report=qa_findings_to_record)
         dashboard.render_dashboard(memory, owner=owner)
 

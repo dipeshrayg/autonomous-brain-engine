@@ -18,8 +18,11 @@ from __future__ import annotations
 
 import http.server
 import logging
+import re
 import socket
 import socketserver
+import subprocess
+import sys
 import threading
 import time
 from contextlib import contextmanager
@@ -505,6 +508,137 @@ def _run_interaction_test(page, max_controls: int = 12, settle_ms: int = 400) ->
         "dead_controls": dead,
         "live_count": live,
     }
+
+
+def verify_python(workspace: Path, plan: dict, timeout: int = 60) -> dict[str, Any]:
+    """
+    Run Python tool. Looks for an entry point (main.py / app.py / run.py / first .py
+    listed in plan.files). Installs requirements.txt if present. Reports back
+    exit code, stdout/stderr summary, presence of expected output files.
+    """
+    workspace = Path(workspace).resolve()
+    errors: list[str] = []
+    issues: list[str] = []
+    metrics: dict[str, Any] = {"project_type": "python_tool"}
+
+    # Install requirements.txt if it exists
+    req = workspace / "requirements.txt"
+    if req.exists():
+        try:
+            r = subprocess.run(
+                [sys.executable, "-m", "pip", "install", "-q", "-r", str(req)],
+                cwd=str(workspace),
+                capture_output=True, text=True, timeout=180,
+            )
+            if r.returncode != 0:
+                errors.append(f"pip install failed: {(r.stdout + r.stderr)[-2000:]}")
+                return {"errors": errors, "issues": issues, "metrics": metrics, "screenshot": None}
+        except Exception as e:
+            errors.append(f"pip install threw: {e}")
+            return {"errors": errors, "issues": issues, "metrics": metrics, "screenshot": None}
+
+    # Find entry point
+    candidates = ["main.py", "app.py", "run.py", "cli.py"]
+    entry = None
+    for c in candidates:
+        if (workspace / c).exists():
+            entry = c
+            break
+    if entry is None:
+        # Fall back to first .py in the plan that isn't __init__
+        for f in plan.get("files", []):
+            path = f.get("path", "")
+            if path.endswith(".py") and not path.endswith("__init__.py"):
+                entry = path
+                break
+    if entry is None:
+        py_files = list(workspace.glob("*.py"))
+        if py_files:
+            entry = py_files[0].name
+
+    if entry is None:
+        issues.append("No Python entry point found (main.py / app.py / run.py / cli.py).")
+        return {"errors": errors, "issues": issues, "metrics": metrics, "screenshot": None}
+
+    metrics["entry_point"] = entry
+    log.info("Python verify: running `python %s` (timeout=%ds)", entry, timeout)
+    try:
+        r = subprocess.run(
+            [sys.executable, entry],
+            cwd=str(workspace),
+            capture_output=True, text=True, timeout=timeout,
+            input="",  # no stdin
+        )
+        metrics["exit_code"] = r.returncode
+        metrics["stdout_chars"] = len(r.stdout or "")
+        metrics["stderr_chars"] = len(r.stderr or "")
+        if r.returncode != 0:
+            errors.append(
+                f"Script exited {r.returncode}.\n"
+                f"--- stdout ---\n{(r.stdout or '')[-1500:]}\n"
+                f"--- stderr ---\n{(r.stderr or '')[-1500:]}"
+            )
+        elif len(r.stdout or "") < 10 and not any(workspace.iterdir()):
+            issues.append("Script exited 0 but produced no output and no files. Is it actually doing anything?")
+    except subprocess.TimeoutExpired as e:
+        errors.append(f"Script timed out after {timeout}s.")
+        metrics["exit_code"] = "timeout"
+    except Exception as e:
+        errors.append(f"Script run failed: {e}")
+        metrics["exit_code"] = "error"
+
+    return {"errors": errors, "issues": issues, "metrics": metrics, "screenshot": None}
+
+
+def verify_document(workspace: Path, plan: dict) -> dict[str, Any]:
+    """
+    Validate a document-only project (markdown + assets). Checks substantive
+    content, readable structure, no broken local links.
+    """
+    workspace = Path(workspace).resolve()
+    errors: list[str] = []
+    issues: list[str] = []
+    metrics: dict[str, Any] = {"project_type": "document"}
+
+    md_files = list(workspace.rglob("*.md"))
+    if not md_files:
+        errors.append("No markdown files in document project.")
+        return {"errors": errors, "issues": issues, "metrics": metrics, "screenshot": None}
+
+    total_chars = 0
+    for md in md_files:
+        try:
+            content = md.read_text(encoding="utf-8", errors="ignore")
+            total_chars += len(content)
+        except Exception:
+            continue
+    metrics["md_file_count"] = len(md_files)
+    metrics["total_md_chars"] = total_chars
+
+    if total_chars < 2000:
+        issues.append(
+            f"Document project total content is only {total_chars} chars across "
+            f"{len(md_files)} files. A research article / proposal / schematic should be substantive."
+        )
+
+    # Check that link targets exist for relative links
+    for md in md_files:
+        try:
+            text = md.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            continue
+        for m in re.finditer(r"\[[^\]]+\]\(([^)]+)\)", text):
+            ref = m.group(1).strip()
+            if "://" in ref or ref.startswith(("#", "mailto:")):
+                continue
+            target = (md.parent / ref).resolve()
+            try:
+                target.relative_to(workspace)
+            except ValueError:
+                continue
+            if not target.exists():
+                issues.append(f"{md.name} references missing local file '{ref}'.")
+    return {"errors": errors, "issues": issues, "metrics": metrics, "screenshot": None}
 
 
 def verify_pages_live(pages_url: str, timeout: int = 180) -> bool:
