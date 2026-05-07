@@ -3876,6 +3876,28 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-05-07T23:22:32Z",
+      "attempted_at_unix": 1778196152,
+      "date": "2026-05-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 1 round(s). verdict=shippable, 0 dead controls, 0 missing features, 4 verifier blocker(s).",
+      "plan_name": "cooperative-puzzle-quest",
+      "plan_language": "JavaScript",
+      "plan_complexity": 23,
+      "plan_pattern": "cooperative-puzzle",
+      "plan_domain": "Gaming",
+      "plan_files_count": 7,
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 3,
+        "dead": 0
+      },
+      "final_interactive_count": 3
     }
   ]
 }
