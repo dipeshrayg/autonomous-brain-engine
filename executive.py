@@ -31,6 +31,7 @@ from typing import Any
 from openai import OpenAI
 
 import roles
+from pipeline import _type_diversity_summary
 
 log = logging.getLogger("brain.executive")
 
@@ -78,11 +79,15 @@ OUTPUT — single JSON, no prose, no markdown fences:
   "praise": ["sparingly — what the system did well"]
 }
 
+TYPE DIVERSITY MANDATE:
+The system MUST NOT build the same project_type twice in a row. Each type has a complexity ceiling — once reached, that type is locked. Read the TYPE DIVERSITY REPORT section to see which types are underrepresented and which are maxed. Your directives MUST specify a different project_type than the last shipped project. Cycle through: web_interactive, web_3d, python_tool, document, generative_art, game_web. Prioritize never-tried types.
+
 Rules for directives:
 - IF recent failures dominate, scale back ambition (simpler patterns, fewer features) so SOMETHING ships.
 - IF recent ships are too safe / web-app-shaped / derivative, demand a domain leap (Python tool, 3D, game, document, etc.).
 - Never demand the same thing your previous directives demanded if those caused the recent failures.
 - Be specific. "Be more creative" is useless. "The next project must be a Python cryptography demo running in Codespaces — no browser UI" is right.
+- ALWAYS specify which project_type to use next. Check the type diversity report and pick one that's underrepresented or never tried.
 """
 
 
@@ -209,10 +214,13 @@ def _run_review(role: str, system_prompt: str, memory_log_path: Path,
     failed = (memory.get("failed_builds") or [])[-REVIEW_WINDOW:]
     failures_summary = _summarize_failures(failed)
 
+    diversity = _type_diversity_summary(memory)
     user = (
         f"Recent {len(recent)} SHIPPED projects (oldest -> newest):\n{summary}\n\n"
         f"{failures_summary}\n\n"
-        "Issue strict directives for the NEXT project."
+        f"{diversity}\n\n"
+        "Issue strict directives for the NEXT project. "
+        "You MUST specify which project_type to use, based on the diversity report above."
     )
 
     try:

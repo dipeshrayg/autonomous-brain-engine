@@ -52,6 +52,29 @@ PROJECT_TYPES = (
     "game_web",
 )
 
+# Complexity ceilings per type — once a type's max shipped complexity reaches
+# its ceiling, the system MUST switch to a different type.  The ceiling
+# represents the practical depth limit: beyond it, the type can't express
+# more sophistication without a language/paradigm shift.
+TYPE_COMPLEXITY_CEILING: dict[str, int] = {
+    "document":        20,   # markdown can't show runnable depth beyond this
+    "generative_art":  25,   # visual output, limited algorithmic ceiling
+    "web_interactive": 30,   # vanilla JS/HTML has limits
+    "game_web":        35,   # browser game can get quite complex
+    "web_3d":          35,   # Three.js / WebGL is deep but still browser-bound
+    "python_tool":     50,   # Python is versatile, high ceiling
+}
+
+# Tier ordering: when current type is maxed, prefer the next tier up.
+TYPE_ESCALATION_ORDER = [
+    "document",           # easiest
+    "generative_art",     # visual + code
+    "web_interactive",    # interactive browser
+    "game_web",           # stateful browser
+    "web_3d",             # 3D browser
+    "python_tool",        # highest ceiling
+]
+
 
 # ─────────────────────── Prompts ────────────────────────────────────────
 
@@ -78,6 +101,8 @@ ABSOLUTE CONSTRAINTS:
 3. Python tools: must run with `python <entry>` in a Codespaces dev container; declare deps in requirements.txt.
 4. Documents: must be readable on github.com directly (Markdown rendered).
 5. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .jsx, .scss, .vue, etc.). Plain languages only.
+
+TYPE DIVERSITY — you MUST NOT repeat the same project_type as the previous build. The system enforces type rotation. Read the TYPE DIVERSITY REPORT in the user prompt to see which types are underrepresented, which are maxed out, and which is recommended. Once a type's max shipped complexity reaches its ceiling, that type is LOCKED and you must escalate to a higher-ceiling type. The ceilings are: document=20, generative_art=25, web_interactive=30, game_web=35, web_3d=35, python_tool=50.
 
 PATTERN ROTATION — your `pattern` should differ from the most recent shipped projects unless you're in recovery mode (CEO directive will say so).
 
@@ -281,6 +306,64 @@ def _call_role(client: OpenAI, role: str, system: str, user: str, *,
     return _parse_json(text), meta
 
 
+def _type_diversity_summary(memory: dict) -> str:
+    """Analyze project type distribution and recommend next type."""
+    projects = memory.get("projects", [])
+    if not projects:
+        return ""
+
+    # Count by type
+    type_counts: dict[str, int] = {}
+    type_max_complexity: dict[str, int] = {}
+    for p in projects:
+        pt = p.get("project_type", "web_interactive")
+        type_counts[pt] = type_counts.get(pt, 0) + 1
+        c = p.get("complexity_score", 0)
+        type_max_complexity[pt] = max(type_max_complexity.get(pt, 0), c)
+
+    lines = ["\n── TYPE DIVERSITY REPORT ──"]
+    lines.append("Types built so far:")
+    for pt in PROJECT_TYPES:
+        count = type_counts.get(pt, 0)
+        max_c = type_max_complexity.get(pt, 0)
+        ceiling = TYPE_COMPLEXITY_CEILING.get(pt, 50)
+        status = "MAXED OUT" if max_c >= ceiling else f"room to grow (ceiling={ceiling})"
+        lines.append(f"  {pt:20s}: {count:2d} shipped, max_complexity={max_c:3d}, {status}")
+
+    # Never-tried types
+    never_tried = [pt for pt in PROJECT_TYPES if type_counts.get(pt, 0) == 0]
+    if never_tried:
+        lines.append(f"\nNEVER TRIED (high priority): {', '.join(never_tried)}")
+
+    # Maxed-out types
+    maxed = [pt for pt in PROJECT_TYPES
+             if type_max_complexity.get(pt, 0) >= TYPE_COMPLEXITY_CEILING.get(pt, 50)]
+    if maxed:
+        lines.append(f"MAXED OUT (avoid unless recovery): {', '.join(maxed)}")
+
+    # Consecutive same-type streak
+    recent_types = [p.get("project_type", "web_interactive") for p in projects[-3:]]
+    if len(set(recent_types)) == 1 and len(recent_types) >= 2:
+        lines.append(f"\nSTREAK WARNING: last {len(recent_types)} projects are all '{recent_types[0]}'. "
+                     f"MUST switch to a different type now.")
+
+    # Recommend next type
+    best_candidates = []
+    for pt in TYPE_ESCALATION_ORDER:
+        max_c = type_max_complexity.get(pt, 0)
+        ceiling = TYPE_COMPLEXITY_CEILING.get(pt, 50)
+        if max_c < ceiling:
+            best_candidates.append((type_counts.get(pt, 0), pt))
+    if best_candidates:
+        # Prefer least-used types that still have room
+        best_candidates.sort()
+        lines.append(f"\nRECOMMENDED NEXT TYPE (least used with room): {best_candidates[0][1]}")
+        if len(best_candidates) > 1:
+            lines.append(f"  Runner-up: {best_candidates[1][1]}")
+
+    return "\n".join(lines)
+
+
 def _summarize_history(memory: dict) -> str:
     recent = memory.get("projects", [])[-HISTORY_WINDOW:]
     if not recent:
@@ -428,6 +511,31 @@ def _validate_plan(plan: dict, memory: dict) -> None:
                 "project_type=python_tool requires at least one .py file."
             )
 
+    # Type diversity enforcement
+    all_projects = memory.get("projects", [])
+    if all_projects and not in_recovery:
+        last_type = all_projects[-1].get("project_type", "web_interactive")
+        # Can't repeat the same type twice in a row
+        if pt == last_type:
+            raise PipelineError(
+                f"project_type={pt!r} was used in the previous build. "
+                f"Must switch types for diversity. Try one of: "
+                f"{[t for t in PROJECT_TYPES if t != pt]}"
+            )
+        # Can't use a type that has reached its complexity ceiling
+        type_max_c = max(
+            (p.get("complexity_score", 0) for p in all_projects
+             if p.get("project_type") == pt),
+            default=0,
+        )
+        ceiling = TYPE_COMPLEXITY_CEILING.get(pt, 50)
+        if type_max_c >= ceiling:
+            raise PipelineError(
+                f"project_type={pt!r} has reached its complexity ceiling "
+                f"(max shipped={type_max_c}, ceiling={ceiling}). "
+                f"Escalate to a higher-ceiling type."
+            )
+
     # Pattern + domain rotation (relaxed in recovery)
     last5 = memory.get("projects", [])[-5:]
     recent_patterns = [p.get("pattern") for p in last5 if p.get("pattern")]
@@ -480,7 +588,8 @@ def stage_plan(client: OpenAI, memory: dict,
     history = _summarize_history(memory)
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
-    base_user = f"Today is {today}. Produce today's design plan.\n\n{history}"
+    diversity = _type_diversity_summary(memory)
+    base_user = f"Today is {today}. Produce today's design plan.\n\n{history}{diversity}"
     if ceo_directives:
         base_user += "\n\nCEO DIRECTIVES (visionary, you must obey):\n" + "\n".join(f"- {d}" for d in ceo_directives)
     if cso_directives:
