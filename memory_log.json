@@ -1285,6 +1285,94 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-07",
+      "completed_at": "2026-05-07T22:50:29Z",
+      "completed_at_unix": 1778194229,
+      "name": "parametric-design-generator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-07-parametric-design-generator",
+      "pages_url": "",
+      "language": "Python",
+      "project_type": "python_tool",
+      "tech_stack": [
+        "matplotlib",
+        "numpy",
+        "SVG",
+        "IPython.display"
+      ],
+      "complexity_score": 21,
+      "concepts_demonstrated": [
+        "Parametric design",
+        "2D pattern generation",
+        "Export to SVG",
+        "Mathematical modeling",
+        "User-defined parameters"
+      ],
+      "novel_concepts": [
+        "Generative pattern structure",
+        "Dynamic parametric adjustments",
+        "Interactive layout customization"
+      ],
+      "advancement_axis": "Original ability to produce complex, customized artwork through mathematical manipulation of parameters.",
+      "pattern": "generative-art",
+      "domain": "Generative Art",
+      "visual_identity": "Monochrome palette with gradient overlays + modern sans-serif for clear documentation.",
+      "safety_notes": "Complies with GitHub TOS, focuses on educational and creative outputs.",
+      "file_count": 7,
+      "loc": 530,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "generator.py",
+        "exit_code": 0,
+        "stdout_chars": 0,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "generator.py": "gpt-4o",
+          "examples.py": "gpt-4o",
+          "requirements.txt": "gpt-4o",
+          "README.md": "gpt-4o",
+          "LICENSE": "gpt-4o",
+          "export.py": "gpt-4o",
+          "patterns.py": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a Python-based tool for generative art, specifically a parametric design system for creating intricate 2D patterns (e.g., tiling, fractals, or floral designs). No web interface is allowed — it must run in a Jupyter Notebook or as a standalone Python script.",
+        "Prioritize simplicity and focus on delivering a functional and cohesive core feature set. Dead and missing features must be minimized, even at the cost of scope reduction.",
+        "Avoid the Education domain entirely for the next project, as recent failures indicate that the system struggles with this area.",
+        "Do not build another dashboard, visualizer, explorer, or simulator for this project. Break from these repetitive patterns entirely.",
+        "Shift the focus to a domain that has not been explored recently, such as generative art, cryptography, or robotics. The emphasis should be on originality and technical depth.",
+        "Include a mechanism for the generated art to be exported as a standard 2D vector format (e.g., SVG) to ensure practical usability."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Parametric Design Generator displays patterns dynamically, but the export confirmation message does not persist visually as promised, and there are minor issues with the slider control updating visual state inconsistently.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "parameter_slider",
+            "expected": "Should adjust parameters and update the pattern dynamically",
+            "actual": "Slider changes parameters, but visual update occasionally fails due to stale reference of matplotlib figure",
+            "fix": "Ensure plt.draw() and plt.pause() refresh the correct canvas and validate the state reset in the update_pattern function."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Export confirmation message visibility",
+            "why_missing": "Export confirmation message is printed to the console but lacks UI representation as promised in the plan.",
+            "fix": "Implement an overlaid text element or dedicated UI dialog to visually display the confirmation message."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -1302,7 +1390,8 @@
     17,
     18,
     19,
-    20
+    20,
+    21
   ],
   "concepts_explored": [
     "neural networks",
@@ -1376,7 +1465,12 @@
     "Gene sequence analysis",
     "User interaction for data manipulation",
     "Real-time computation of genetic metrics",
-    "Dynamic visualization of genetic data"
+    "Dynamic visualization of genetic data",
+    "Parametric design",
+    "2D pattern generation",
+    "Export to SVG",
+    "Mathematical modeling",
+    "User-defined parameters"
   ],
   "patterns_used": [
     "visualizer",
@@ -1387,7 +1481,8 @@
     "generator",
     "visualizer",
     "simulator",
-    "analyzer"
+    "analyzer",
+    "generative-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -1398,7 +1493,8 @@
     "Arts",
     "Sports",
     "History",
-    "Bioinformatics"
+    "Bioinformatics",
+    "Generative Art"
   ],
   "ceo_reviews": [
     {
