@@ -4284,6 +4284,59 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-05-08T23:48:06Z",
+      "attempted_at_unix": 1778284086,
+      "date": "2026-05-08",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 3 missing features, 1 verifier blocker(s).",
+      "plan_name": "interactive-fractal-generator",
+      "plan_language": "javascript",
+      "plan_complexity": 26,
+      "plan_pattern": "fractal-generator",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select label='Fractal Type'>",
+          "expected": "Change fractal type and update canvas accordingly"
+        },
+        {
+          "control": "<input type='range' label='Zoom'>",
+          "expected": "Adjust zoom level and update canvas accordingly"
+        },
+        {
+          "control": "<input type='number' label='Iterations'>",
+          "expected": "Change the max iterations and update canvas detail level"
+        },
+        {
+          "control": "<input type='color' label='Color'>",
+          "expected": "Change the color palette for fractal and update canvas accordingly"
+        },
+        {
+          "control": "<button>Reset</button>",
+          "expected": "All parameters reset to default and canvas reverts to original state"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time parameter updates"
+        },
+        {
+          "feature": "Reset functionality"
+        },
+        {
+          "feature": "Fractal rendering and visual updates"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
