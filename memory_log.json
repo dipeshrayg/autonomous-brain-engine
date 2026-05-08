@@ -2599,6 +2599,29 @@
         "Explored new game mechanics with the abstract strategy puzzle, showing some willingness to innovate outside of traditional tools."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-08T20:16:17Z",
+      "issued_at_unix": 1778271377,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a pattern of safe, web-based projects, with increasing failures in creative and complex domains.",
+      "concerns": [
+        "Overreliance on web_interactive projects, which have dominated recent output.",
+        "High failure rate for experimental and creative projects, particularly in gaming and procedural generation.",
+        "Generative art and web_3d remain entirely unexplored, despite being high-potential domains."
+      ],
+      "directives": [
+        "The next project must be generative_art, focused on a procedural fractal generator using Three.js or another graphics library.",
+        "The project must be visually compelling and interactive but avoid complex game mechanics to ensure completion.",
+        "Limit scope to 3-5 distinct fractal types with parameters users can manipulate in real-time.",
+        "Absolutely avoid web_interactive or document types for the next project, regardless of angle.",
+        "Investigate why the 'procedural-fractal-explorer' and 'procedural-fractal-generator' projects failed QA to prevent similar issues."
+      ],
+      "praise": [
+        "Successfully shipped a Python tool and a game_web project recently, diversifying output slightly."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
