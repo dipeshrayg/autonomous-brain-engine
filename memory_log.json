@@ -4180,6 +4180,41 @@
         "dead": 1
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-08T11:05:37Z",
+      "attempted_at_unix": 1778238337,
+      "date": "2026-05-08",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "procedural-fractal-explorer",
+      "plan_language": "python",
+      "plan_complexity": 26,
+      "plan_pattern": "fractal-generator",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 6,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>",
+          "expected": "Adjust fractal depth parameter."
+        },
+        {
+          "control": "<input type='color'>",
+          "expected": "Modify the base color scheme for the fractal."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "<select> for Fractal Type"
+        }
+      ],
+      "final_interaction": {
+        "tested": 0,
+        "live": 0,
+        "dead": 0
+      },
+      "final_interactive_count": 0
     }
   ],
   "cso_reviews": [
