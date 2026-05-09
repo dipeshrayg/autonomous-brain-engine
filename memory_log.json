@@ -1565,6 +1565,110 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-05-09",
+      "completed_at": "2026-05-09T02:14:07Z",
+      "completed_at_unix": 1778292847,
+      "name": "procedural-fractal-generator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-09-procedural-fractal-generator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-09-procedural-fractal-generator/",
+      "language": "javascript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "Three.js",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 27,
+      "concepts_demonstrated": [
+        "Fractal generation",
+        "Real-time parameter manipulation",
+        "Escaping-time fractals",
+        "Iterated function systems",
+        "Zooming in fractal visualizations"
+      ],
+      "novel_concepts": [
+        "Adaptive rendering techniques",
+        "Parameter-space exploration",
+        "Advanced mathematical methods for fractals"
+      ],
+      "advancement_axis": "Utilizing advanced fractal rendering techniques to provide a richly interactive and visually diverse user experience.",
+      "pattern": "generative-fractal",
+      "domain": "Visual Arts",
+      "visual_identity": "A vibrant color palette with gradients, clean typography for legibility, and dynamic layout that emphasizes the visual output.",
+      "safety_notes": "No known vulnerabilities and compliant with GitHub TOS.",
+      "file_count": 6,
+      "loc": 672,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 223,
+        "bodyHtml": 3476,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 5,
+        "title": "Procedural Fractal Generator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#ff5733",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "fractal.js": "gpt-4o",
+          "paramControl.js": "gpt-4o",
+          "utilities.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be generative_art, focused on a procedural fractal generator using Three.js or another graphics library.",
+        "The project must be visually compelling and interactive but avoid complex game mechanics to ensure completion.",
+        "Limit scope to 3-5 distinct fractal types with parameters users can manipulate in real-time.",
+        "Absolutely avoid web_interactive or document types for the next project, regardless of angle.",
+        "Investigate why the 'procedural-fractal-explorer' and 'procedural-fractal-generator' projects failed QA to prevent similar issues."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The fractal generator is functional overall but has one dead control and minor visual errors; the color picker fails to apply changes to the canvas.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<input type='color'>",
+            "expected": "Changing the color should update the canvas with the new color scheme.",
+            "actual": "No observable state change or visual update occurs.",
+            "fix": "Ensure that the 'updateColorScheme' function properly updates the fractalParams.color property and triggers a canvas re-render."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -1585,7 +1689,8 @@
     20,
     21,
     22,
-    24
+    24,
+    27
   ],
   "concepts_explored": [
     "neural networks",
@@ -1672,7 +1777,12 @@
     "Procedural content generation",
     "Spatial reasoning challenges",
     "Dynamic level design",
-    "User interface interactivity"
+    "User interface interactivity",
+    "Fractal generation",
+    "Real-time parameter manipulation",
+    "Escaping-time fractals",
+    "Iterated function systems",
+    "Zooming in fractal visualizations"
   ],
   "patterns_used": [
     "visualizer",
@@ -1686,7 +1796,8 @@
     "analyzer",
     "generative-art",
     "research-paper",
-    "abstract-strategy-puzzle"
+    "abstract-strategy-puzzle",
+    "generative-fractal"
   ],
   "domains_used": [
     "Mathematics",
@@ -1700,7 +1811,8 @@
     "Bioinformatics",
     "Generative Art",
     "Information Theory",
-    "Games"
+    "Games",
+    "Visual Arts"
   ],
   "ceo_reviews": [
     {
