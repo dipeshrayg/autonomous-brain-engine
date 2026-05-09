@@ -4732,6 +4732,48 @@
         "dead": 1
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-09T18:45:49Z",
+      "attempted_at_unix": 1778352349,
+      "date": "2026-05-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 17 verifier blocker(s).",
+      "plan_name": "interactive-3d-cellular-automata-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 28,
+      "plan_pattern": "cellular-automata-visualizer",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select id='rule-selector'>",
+          "expected": "Switching between rules updates the cellular automata simulation and visualization in real-time."
+        },
+        {
+          "control": "<input type='range' id='parameter-slider'>",
+          "expected": "Adjusting the slider updates the activation threshold and changes the visuals by modifying the intensity of active cell colors."
+        },
+        {
+          "control": "<button id='reset'>Reset</button>",
+          "expected": "Clicking the button resets the simulation, refreshing the 3D grid, restoring cell states to their original values, and briefly flashing the grid."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "3D cellular automata visualization updates dynamically upon rule or parameter changes."
+        },
+        {
+          "feature": "Reset button functionality to restore the simulation."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
