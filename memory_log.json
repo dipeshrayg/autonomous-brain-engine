@@ -4705,6 +4705,33 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-09T15:43:27Z",
+      "attempted_at_unix": 1778341407,
+      "date": "2026-05-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "interactive-3d-cellular-automata-visualizer",
+      "plan_language": "javascript",
+      "plan_complexity": 28,
+      "plan_pattern": "cellular-automata-visualizer",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 6,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Custom Rules Textarea (textarea#custom-rules)",
+          "expected": "User-defined rules should update the simulation visually based on input."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 3,
+        "dead": 1
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
