@@ -4473,6 +4473,51 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-09T07:54:04Z",
+      "attempted_at_unix": 1778313244,
+      "date": "2026-05-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 5 verifier blocker(s).",
+      "plan_name": "3d-cellular-automata-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 29,
+      "plan_pattern": "3d-visualization",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Parameter slider",
+          "expected": "Adjusts rule parameter and updates cell states in the 3D scene."
+        },
+        {
+          "control": "Start/Stop button",
+          "expected": "Toggles simulation evolution, changes button text and color, and affects rendering loop."
+        },
+        {
+          "control": "Reset button",
+          "expected": "Resets simulation grid to initial state and clears the 3D canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Parameter adjustments reflect immediately in the cell states."
+        },
+        {
+          "feature": "Start/Stop button toggles the simulation process."
+        },
+        {
+          "feature": "Reset button returns the simulation to its original state."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
