@@ -4639,6 +4639,48 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-09T13:04:54Z",
+      "attempted_at_unix": 1778331894,
+      "date": "2026-05-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-fluid-dynamics-simulator",
+      "plan_language": "javascript",
+      "plan_complexity": 29,
+      "plan_pattern": "3d-dynamics",
+      "plan_domain": "Physics",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Fluid Velocity Slider (<input type='range'>, id='velocity-slider')",
+          "expected": "Adjusts fluid velocity and updates fluid motion speed visibly"
+        },
+        {
+          "control": "Fluid Viscosity Slider (<input type='range'>, id='viscosity-slider')",
+          "expected": "Adjusts fluid viscosity and changes flow patterns visibly"
+        },
+        {
+          "control": "Reset Button (<button>, id='reset-button')",
+          "expected": "Resets simulation parameters and clears previous flow patterns"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Simulation responds dynamically to user inputs"
+        },
+        {
+          "feature": "Fluid dynamics visualization with meaningful visual feedback"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
