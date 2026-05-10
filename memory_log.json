@@ -4873,6 +4873,51 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-10T05:56:31Z",
+      "attempted_at_unix": 1778392591,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 3 verifier blocker(s).",
+      "plan_name": "real-time-3d-pendulum-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 28,
+      "plan_pattern": "pendulum-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>",
+          "expected": "Pendulum length should update simulation state and reflect the new length visually in the canvas."
+        },
+        {
+          "control": "<input type='range'>",
+          "expected": "Initial angle should update simulation state and visually rotate the pendulum to the selected angle on the canvas."
+        },
+        {
+          "control": "<button>",
+          "expected": "Reset simulation should reset pendulum to its initial state (length=10, angle=30°) and reflect this visibly in the simulation."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Pendulum length adjustment."
+        },
+        {
+          "feature": "Initial angle adjustment."
+        },
+        {
+          "feature": "Simulation reset."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
