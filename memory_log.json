@@ -5056,6 +5056,56 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-10T13:05:15Z",
+      "attempted_at_unix": 1778418315,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "interactive-3d-bouncing-ball-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 28,
+      "plan_pattern": "polished-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<button type='button' id='start-simulation'>Start Simulation</button>",
+          "expected": "Simulation loop begins and ball starts bouncing."
+        },
+        {
+          "control": "<button type='button' id='pause-simulation'>Pause Simulation</button>",
+          "expected": "Simulation loop pauses and ball stops moving."
+        },
+        {
+          "control": "<button type='button' id='reset-simulation'>Reset Simulation</button>",
+          "expected": "Simulation resets and ball's position changes to its initial state."
+        },
+        {
+          "control": "<input type='range' id='bounce-height'/>",
+          "expected": "Changes the bounce height of the ball and updates its initial position visibly."
+        },
+        {
+          "control": "<input type='range' id='gravity'/>",
+          "expected": "Updates the gravity value and influences the ball's movement under gravity."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Ball starts bouncing and interacting with the ground upon simulation start."
+        },
+        {
+          "feature": "Interactive sliders modify bounce height and gravity in real time."
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
