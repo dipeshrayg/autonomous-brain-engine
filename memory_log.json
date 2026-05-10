@@ -4943,6 +4943,51 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-10T09:35:40Z",
+      "attempted_at_unix": 1778405740,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 6 verifier blocker(s).",
+      "plan_name": "3d-bouncing-ball-simulation",
+      "plan_language": "JavaScript",
+      "plan_complexity": 28,
+      "plan_pattern": "bouncing-ball-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'> (Gravity Strength)",
+          "expected": "Adjusts gravity strength and causes ball bounces to change height and frequency"
+        },
+        {
+          "control": "<input type='range'> (Surface Angle)",
+          "expected": "Adjusts surface angle and alters ball trajectory and speed"
+        },
+        {
+          "control": "<button> (Reset Simulation)",
+          "expected": "Resets ball position, gravity, and surface angle while updating visual representation"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Gravity adjustment affects ball bounce behavior"
+        },
+        {
+          "feature": "Surface angle adjustment alters ball trajectory and speed"
+        },
+        {
+          "feature": "Simulation reset updates all parameters and visual state"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
