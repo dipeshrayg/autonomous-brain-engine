@@ -5106,6 +5106,33 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-10T14:06:49Z",
+      "attempted_at_unix": 1778422009,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "interactive-3d-fluid-dynamics-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 30,
+      "plan_pattern": "fluid-dynamics-simulator",
+      "plan_domain": "Physics and Engineering",
+      "plan_files_count": 7,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "button[type='submit'] (Start Simulation)",
+          "expected": "Simulation loop starts; particles begin to flow based on set parameters"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 3,
+        "dead": 1
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
