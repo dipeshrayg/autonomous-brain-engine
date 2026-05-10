@@ -5158,6 +5158,49 @@
         "dead": 1
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-10T15:40:16Z",
+      "attempted_at_unix": 1778427616,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-lissajous-curve-explorer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 28,
+      "plan_pattern": "3d-visual-explorer",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "frequencyX",
+          "expected": "Curve dynamically updates to reflect changes in shape based on X-axis frequency."
+        },
+        {
+          "control": "frequencyY",
+          "expected": "Curve shape updates in real-time to reflect changes in Y-axis frequency."
+        },
+        {
+          "control": "amplitudeX",
+          "expected": "Curve morphs visually to show the impact of amplitude changes."
+        },
+        {
+          "control": "amplitudeY",
+          "expected": "Real-time display adjusts to show effects of Y-axis amplitude changes."
+        },
+        {
+          "control": "phase",
+          "expected": "Curve changes phase dynamically, recalibrating its oscillation patterns."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
