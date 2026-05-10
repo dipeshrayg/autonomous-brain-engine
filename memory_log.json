@@ -4821,6 +4821,33 @@
         "dead": 0
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-10T02:10:11Z",
+      "attempted_at_unix": 1778379011,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 8 verifier blocker(s).",
+      "plan_name": "simple-3d-bouncing-ball-simulator",
+      "plan_language": "javascript",
+      "plan_complexity": 29,
+      "plan_pattern": "basic-3d-simulator",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='color' id='ball-color-control'>",
+          "expected": "Changes the ball's color immediately upon selection."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
