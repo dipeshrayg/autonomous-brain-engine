@@ -4988,6 +4988,52 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-10T10:52:49Z",
+      "attempted_at_unix": 1778410369,
+      "date": "2026-05-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-bouncing-ball-simulator",
+      "plan_language": "javascript",
+      "plan_complexity": 28,
+      "plan_pattern": "bouncing-ball-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 7,
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Start Simulation button",
+          "expected": "Ball starts bouncing in the 3D space."
+        },
+        {
+          "control": "Initial Velocity input",
+          "expected": "Updates ball's initial velocity and reflects change in simulation."
+        },
+        {
+          "control": "Launch Angle input",
+          "expected": "Updates ball's launch angle and reflects change in simulation."
+        },
+        {
+          "control": "Stop Simulation button",
+          "expected": "Halts the animation loop and stops ball movement."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Ball movement and collision mechanics"
+        },
+        {
+          "feature": "Velocity and angle controls"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
