@@ -1736,6 +1736,106 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-11",
+      "completed_at": "2026-05-11T23:48:04Z",
+      "completed_at_unix": 1778543284,
+      "name": "ascii-spiral-strategy-game",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-11-ascii-spiral-strategy-game",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-11-ascii-spiral-strategy-game/",
+      "language": "javascript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 30,
+      "concepts_demonstrated": [
+        "turn-based gameplay",
+        "procedural generation",
+        "ASCII art representation",
+        "resource management",
+        "basic AI"
+      ],
+      "novel_concepts": [
+        "strategic decision making with limited visual cues",
+        "turn-based resource allocation",
+        "dynamic ASCII visual representation of game state"
+      ],
+      "advancement_axis": "Combines strategy gaming with ASCII visuals, diverging from typical graphical interfaces and promoting abstract thinking.",
+      "pattern": "turn-based-strategy",
+      "domain": "Game Design",
+      "visual_identity": "Monochrome ASCII palette, Typewriter font for text, Simple layout emphasizing readability.",
+      "safety_notes": "Complies with GitHub TOS. No active malware or exploits.",
+      "file_count": 6,
+      "loc": 783,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 469,
+        "bodyHtml": 3749,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "ASCII Spiral Strategy Game",
+        "viewportMeta": true,
+        "hasMain": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "Enter your command...",
+              "trigger": "text",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "game.js": "gpt-4o",
+          "README.md": "gpt-4o",
+          "assets.md": "gpt-4o",
+          "examples.txt": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web type, focusing on a novel gameplay mechanic that does not rely on traditional visuals. Use ASCII art or textual representation to enforce abstraction and originality.",
+        "Avoid all 3D projects until the system demonstrates stability and competence in other underrepresented domains.",
+        "Explore a generative art approach to inform the game design. For example, integrate procedural generation into the game mechanics.",
+        "Minimize reliance on interactivity and UI complexity. The output should be lightweight and playable without requiring advanced graphical fidelity.",
+        "Set a strict focus on delivering a fully functional and complete project, even at the cost of reducing scope or complexity.",
+        "Document the development process in a concise, markdown-compatible format for future analysis and learning."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Command input control fails to trigger state changes and visual updates, but other features are functional and game state updates correctly.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<input type='text' id='command-input'/>",
+            "expected": "captures user command input and updates game state, triggering a redraw of the ASCII map",
+            "actual": "no observable state change upon text entry or Enter key press",
+            "fix": "Ensure that the 'handleCommand()' function is properly executed on text entry or Enter key press by validating event listeners and debugging the function logic."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -1758,7 +1858,8 @@
     22,
     24,
     27,
-    28
+    28,
+    30
   ],
   "concepts_explored": [
     "neural networks",
@@ -1854,7 +1955,12 @@
     "Decentralized algorithms",
     "Multi-agent systems",
     "Path planning",
-    "Swarm robotics"
+    "Swarm robotics",
+    "turn-based gameplay",
+    "procedural generation",
+    "ASCII art representation",
+    "resource management",
+    "basic AI"
   ],
   "patterns_used": [
     "visualizer",
@@ -1870,7 +1976,8 @@
     "research-paper",
     "abstract-strategy-puzzle",
     "generative-fractal",
-    "research-paper"
+    "research-paper",
+    "turn-based-strategy"
   ],
   "domains_used": [
     "Mathematics",
@@ -1886,7 +1993,8 @@
     "Information Theory",
     "Games",
     "Visual Arts",
-    "Robotics"
+    "Robotics",
+    "Game Design"
   ],
   "ceo_reviews": [
     {
