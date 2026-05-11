@@ -5502,6 +5502,29 @@
       },
       "final_interactive_count": 3,
       "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-05-11T12:42:08Z",
+      "attempted_at_unix": 1778503328,
+      "date": "2026-05-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "interactive-3d-generative-geometry",
+      "plan_language": "JavaScript",
+      "plan_complexity": 30,
+      "plan_pattern": "geometry-explorer",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 0,
+        "live": 0,
+        "dead": 0
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
