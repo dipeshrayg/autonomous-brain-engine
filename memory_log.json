@@ -1669,6 +1669,73 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-11",
+      "completed_at": "2026-05-11T06:51:26Z",
+      "completed_at_unix": 1778482286,
+      "name": "decentralized-multi-agent-path-planning",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-11-decentralized-multi-agent-path-planning",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-11-decentralized-multi-agent-path-planning/",
+      "language": "markdown",
+      "project_type": "document",
+      "tech_stack": [],
+      "complexity_score": 28,
+      "concepts_demonstrated": [
+        "Decentralized algorithms",
+        "Multi-agent systems",
+        "Path planning",
+        "Swarm robotics"
+      ],
+      "novel_concepts": [
+        "Decentralized decision-making",
+        "Cooperative pathfinding",
+        "Dynamic environment responsiveness",
+        "Agent collaboration strategies"
+      ],
+      "advancement_axis": "Focus on decentralized methodologies contrasts with traditional centralized approaches, providing innovative frameworks.",
+      "pattern": "research-paper",
+      "domain": "Robotics",
+      "visual_identity": "Clean layout with a modern sans-serif font, blue and green color scheme to represent technology and nature, diagrams with clear labeling.",
+      "safety_notes": "Content is purely educational; no sensitive data is handled.",
+      "file_count": 7,
+      "loc": 738,
+      "quality_cycles_used": 0,
+      "final_verify_metrics": {
+        "project_type": "document",
+        "md_file_count": 6,
+        "total_md_chars": 33492
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "1_introduction.md": "gpt-4o",
+          "2_literature_review.md": "gpt-4o",
+          "3_methodology.md": "gpt-4o",
+          "4_results.md": "gpt-4o",
+          "5_conclusion.md": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type document, focusing on a practical and clear research deliverable in an underexplored domain like swarm robotics or sensor fusion.",
+        "Avoid web_3d entirely until after successful shipments in other types reset the failure streak.",
+        "Focus on producing a fully shippable project with minimal defects, emphasizing completeness and clarity over complexity.",
+        "Design the document project around a novel or underexplored concept, such as a whitepaper on decentralized multi-agent path planning algorithms.",
+        "Ensure the output is not only technically correct but also well-structured and visually clear, with diagrams and pseudocode where appropriate."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All promised features are functional, and interactive controls update both state and visuals correctly. The simulation and document navigation work seamlessly.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -1690,7 +1757,8 @@
     21,
     22,
     24,
-    27
+    27,
+    28
   ],
   "concepts_explored": [
     "neural networks",
@@ -1782,7 +1850,11 @@
     "Real-time parameter manipulation",
     "Escaping-time fractals",
     "Iterated function systems",
-    "Zooming in fractal visualizations"
+    "Zooming in fractal visualizations",
+    "Decentralized algorithms",
+    "Multi-agent systems",
+    "Path planning",
+    "Swarm robotics"
   ],
   "patterns_used": [
     "visualizer",
@@ -1797,7 +1869,8 @@
     "generative-art",
     "research-paper",
     "abstract-strategy-puzzle",
-    "generative-fractal"
+    "generative-fractal",
+    "research-paper"
   ],
   "domains_used": [
     "Mathematics",
@@ -1812,7 +1885,8 @@
     "Generative Art",
     "Information Theory",
     "Games",
-    "Visual Arts"
+    "Visual Arts",
+    "Robotics"
   ],
   "ceo_reviews": [
     {
