@@ -57,12 +57,12 @@ PROJECT_TYPES = (
 # represents the practical depth limit: beyond it, the type can't express
 # more sophistication without a language/paradigm shift.
 TYPE_COMPLEXITY_CEILING: dict[str, int] = {
-    "document":        20,   # markdown can't show runnable depth beyond this
-    "generative_art":  25,   # visual output, limited algorithmic ceiling
-    "web_interactive": 30,   # vanilla JS/HTML has limits
-    "game_web":        35,   # browser game can get quite complex
-    "web_3d":          35,   # Three.js / WebGL is deep but still browser-bound
-    "python_tool":     50,   # Python is versatile, high ceiling
+    "document":        35,   # markdown + styled HTML showcase can be rich
+    "generative_art":  40,   # visual algorithms, shaders, fractals — deep
+    "web_interactive": 40,   # vanilla JS/HTML with Canvas can go far
+    "game_web":        45,   # browser game with AI, procedural gen
+    "web_3d":          45,   # Three.js / WebGL is deep
+    "python_tool":     60,   # Python is versatile, highest ceiling
 }
 
 # Tier ordering: when current type is maxed, prefer the next tier up.
@@ -318,6 +318,32 @@ def _call_role(client: OpenAI, role: str, system: str, user: str, *,
     return _parse_json(text), meta
 
 
+def _type_failure_streaks(memory: dict) -> dict[str, int]:
+    """Count how many consecutive recent failures each type has (unbroken by a success)."""
+    failed = memory.get("failed_builds", [])
+    projects = memory.get("projects", [])
+    # Find the timestamp of the last successful ship
+    last_ship_unix = max(
+        (p.get("completed_at_unix", 0) for p in projects), default=0
+    )
+    # Count failures per type since last ship
+    type_fails: dict[str, int] = {}
+    for f in failed:
+        if f.get("attempted_at_unix", 0) > last_ship_unix:
+            pt = f.get("plan_type") or f.get("plan_pattern", "unknown")
+            # Try to extract type from the plan name heuristic or from stored data
+            # The failed_builds should store the type
+            ft = f.get("project_type", "unknown")
+            type_fails[ft] = type_fails.get(ft, 0) + 1
+    return type_fails
+
+
+def _banned_types(memory: dict) -> list[str]:
+    """Types that have failed 3+ times consecutively since last ship. Auto-banned."""
+    streaks = _type_failure_streaks(memory)
+    return [t for t, count in streaks.items() if count >= 3 and t != "unknown"]
+
+
 def _type_diversity_summary(memory: dict) -> str:
     """Analyze project type distribution and recommend next type."""
     projects = memory.get("projects", [])
@@ -353,18 +379,24 @@ def _type_diversity_summary(memory: dict) -> str:
     if maxed:
         lines.append(f"MAXED OUT (avoid unless recovery): {', '.join(maxed)}")
 
+    # Banned types (failed 3+ times consecutively since last ship)
+    banned = _banned_types(memory)
+    if banned:
+        lines.append(f"\nBANNED (failed 3+ times in a row — DO NOT USE): {', '.join(banned)}")
+        lines.append("These types are temporarily blocked. Pick a different type that the system can actually ship.")
+
     # Consecutive same-type streak
     recent_types = [p.get("project_type", "web_interactive") for p in projects[-3:]]
     if len(set(recent_types)) == 1 and len(recent_types) >= 2:
         lines.append(f"\nSTREAK WARNING: last {len(recent_types)} projects are all '{recent_types[0]}'. "
                      f"MUST switch to a different type now.")
 
-    # Recommend next type
+    # Recommend next type (excluding banned)
     best_candidates = []
     for pt in TYPE_ESCALATION_ORDER:
         max_c = type_max_complexity.get(pt, 0)
         ceiling = TYPE_COMPLEXITY_CEILING.get(pt, 50)
-        if max_c < ceiling:
+        if max_c < ceiling and pt not in banned:
             best_candidates.append((type_counts.get(pt, 0), pt))
     if best_candidates:
         # Prefer least-used types that still have room
@@ -523,6 +555,15 @@ def _validate_plan(plan: dict, memory: dict) -> None:
             raise PipelineError(
                 "project_type=python_tool requires at least one .py file."
             )
+
+    # Type ban enforcement — types that failed 3+ times are banned regardless of recovery
+    banned = _banned_types(memory)
+    if pt in banned:
+        raise PipelineError(
+            f"project_type={pt!r} is BANNED (failed {_type_failure_streaks(memory).get(pt, 0)} "
+            f"consecutive times since last ship). Pick a different type. "
+            f"Available: {[t for t in PROJECT_TYPES if t not in banned]}"
+        )
 
     # Type diversity enforcement
     all_projects = memory.get("projects", [])

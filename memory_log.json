@@ -3231,7 +3231,8 @@
         "tested": 3,
         "live": 2,
         "dead": 1
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T17:47:00Z",
@@ -3254,7 +3255,8 @@
         "tested": 9,
         "live": 3,
         "dead": 6
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T18:00:00Z",
@@ -3281,7 +3283,8 @@
         "tested": 3,
         "live": 1,
         "dead": 2
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T18:15:00Z",
@@ -3323,7 +3326,8 @@
         "tested": 3,
         "live": 0,
         "dead": 3
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T18:46:00Z",
@@ -3340,7 +3344,8 @@
         "tested": 3,
         "live": 0,
         "dead": 3
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T13:39:00Z",
@@ -3357,7 +3362,8 @@
         "tested": 3,
         "live": 2,
         "dead": 1
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T17:47:00Z",
@@ -3380,7 +3386,8 @@
         "tested": 9,
         "live": 3,
         "dead": 6
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T18:00:00Z",
@@ -3407,7 +3414,8 @@
         "tested": 3,
         "live": 1,
         "dead": 2
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T18:15:00Z",
@@ -3449,7 +3457,8 @@
         "tested": 3,
         "live": 0,
         "dead": 3
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-02T18:46:00Z",
@@ -3466,7 +3475,8 @@
         "tested": 3,
         "live": 0,
         "dead": 3
-      }
+      },
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-03T09:15:46Z",
@@ -3497,7 +3507,8 @@
         "live": 3,
         "dead": 2
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-03T10:40:52Z",
@@ -3532,7 +3543,8 @@
         "live": 2,
         "dead": 3
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-03T12:14:50Z",
@@ -3567,7 +3579,8 @@
         "live": 2,
         "dead": 3
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-03T14:02:19Z",
@@ -3609,7 +3622,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-03T14:52:18Z",
@@ -3651,7 +3665,8 @@
         "live": 1,
         "dead": 3
       },
-      "final_interactive_count": 4
+      "final_interactive_count": 4,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-04T14:46:21Z",
@@ -3673,7 +3688,8 @@
         "live": 3,
         "dead": 0
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-04T19:22:12Z",
@@ -3712,7 +3728,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-04T20:04:43Z",
@@ -3751,7 +3768,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-05T04:05:28Z",
@@ -3786,7 +3804,8 @@
         "live": 4,
         "dead": 3
       },
-      "final_interactive_count": 8
+      "final_interactive_count": 8,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-05T05:34:04Z",
@@ -3821,7 +3840,8 @@
         "live": 9,
         "dead": 3
       },
-      "final_interactive_count": 14
+      "final_interactive_count": 14,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-05T06:24:05Z",
@@ -3874,7 +3894,8 @@
         "live": 0,
         "dead": 6
       },
-      "final_interactive_count": 6
+      "final_interactive_count": 6,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-05T21:25:57Z",
@@ -3933,7 +3954,8 @@
         "live": 0,
         "dead": 6
       },
-      "final_interactive_count": 8
+      "final_interactive_count": 8,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-05T21:49:10Z",
@@ -3976,7 +3998,8 @@
         "live": 3,
         "dead": 5
       },
-      "final_interactive_count": 6
+      "final_interactive_count": 6,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-05T23:43:23Z",
@@ -4029,7 +4052,8 @@
         "live": 0,
         "dead": 5
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T05:43:05Z",
@@ -4056,7 +4080,8 @@
         "live": 1,
         "dead": 1
       },
-      "final_interactive_count": 7
+      "final_interactive_count": 7,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T10:22:21Z",
@@ -4106,7 +4131,8 @@
         "live": 0,
         "dead": 5
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T18:28:39Z",
@@ -4137,7 +4163,8 @@
         "live": 4,
         "dead": 2
       },
-      "final_interactive_count": 6
+      "final_interactive_count": 6,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T19:27:59Z",
@@ -4190,7 +4217,8 @@
         "live": 0,
         "dead": 8
       },
-      "final_interactive_count": 8
+      "final_interactive_count": 8,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T20:22:16Z",
@@ -4212,7 +4240,8 @@
         "live": 7,
         "dead": 0
       },
-      "final_interactive_count": 7
+      "final_interactive_count": 7,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T21:31:08Z",
@@ -4234,7 +4263,8 @@
         "live": 2,
         "dead": 0
       },
-      "final_interactive_count": 2
+      "final_interactive_count": 2,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T21:50:20Z",
@@ -4287,7 +4317,8 @@
         "live": 1,
         "dead": 8
       },
-      "final_interactive_count": 9
+      "final_interactive_count": 9,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-06T22:52:49Z",
@@ -4340,7 +4371,8 @@
         "live": 0,
         "dead": 5
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "game_web"
     },
     {
       "attempted_at": "2026-05-07T02:14:48Z",
@@ -4390,7 +4422,8 @@
         "live": 0,
         "dead": 7
       },
-      "final_interactive_count": 7
+      "final_interactive_count": 7,
+      "project_type": "game_web"
     },
     {
       "attempted_at": "2026-05-07T05:52:26Z",
@@ -4432,7 +4465,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-07T19:17:44Z",
@@ -4458,7 +4492,8 @@
         "live": null,
         "dead": 0
       },
-      "final_interactive_count": null
+      "final_interactive_count": null,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-07T23:22:32Z",
@@ -4480,7 +4515,8 @@
         "live": 3,
         "dead": 0
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "game_web"
     },
     {
       "attempted_at": "2026-05-07T23:33:29Z",
@@ -4502,7 +4538,8 @@
         "live": 3,
         "dead": 0
       },
-      "final_interactive_count": 4
+      "final_interactive_count": 4,
+      "project_type": "game_web"
     },
     {
       "attempted_at": "2026-05-07T23:45:38Z",
@@ -4529,7 +4566,8 @@
         "live": 2,
         "dead": 1
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "game_web"
     },
     {
       "attempted_at": "2026-05-07T23:58:08Z",
@@ -4556,7 +4594,8 @@
         "live": 1,
         "dead": 1
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "game_web"
     },
     {
       "attempted_at": "2026-05-08T11:05:37Z",
@@ -4591,7 +4630,8 @@
         "live": 0,
         "dead": 0
       },
-      "final_interactive_count": 0
+      "final_interactive_count": 0,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-08T19:40:18Z",
@@ -4613,7 +4653,8 @@
         "live": null,
         "dead": 0
       },
-      "final_interactive_count": null
+      "final_interactive_count": null,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-08T23:48:06Z",
@@ -4666,7 +4707,8 @@
         "live": 0,
         "dead": 5
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "unknown"
     },
     {
       "attempted_at": "2026-05-09T07:54:04Z",
@@ -4711,7 +4753,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T09:18:59Z",
@@ -4742,7 +4785,8 @@
         "live": 2,
         "dead": 1
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T10:39:38Z",
@@ -4764,7 +4808,8 @@
         "live": 3,
         "dead": 0
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T11:51:35Z",
@@ -4806,7 +4851,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T13:04:54Z",
@@ -4848,7 +4894,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T15:43:27Z",
@@ -4875,7 +4922,8 @@
         "live": 3,
         "dead": 1
       },
-      "final_interactive_count": 4
+      "final_interactive_count": 4,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T18:45:49Z",
@@ -4917,7 +4965,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-09T21:08:43Z",
@@ -4939,7 +4988,8 @@
         "live": 5,
         "dead": 0
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T02:10:11Z",
@@ -4966,7 +5016,8 @@
         "live": 2,
         "dead": 1
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T05:56:31Z",
@@ -5011,7 +5062,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T09:35:40Z",
@@ -5056,7 +5108,8 @@
         "live": 0,
         "dead": 3
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T10:52:49Z",
@@ -5102,7 +5155,8 @@
         "live": 0,
         "dead": 4
       },
-      "final_interactive_count": 4
+      "final_interactive_count": 4,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T11:53:04Z",
@@ -5124,7 +5178,8 @@
         "live": 3,
         "dead": 0
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T13:05:15Z",
@@ -5174,7 +5229,8 @@
         "live": 0,
         "dead": 5
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T14:06:49Z",
@@ -5201,7 +5257,8 @@
         "live": 3,
         "dead": 1
       },
-      "final_interactive_count": 4
+      "final_interactive_count": 4,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-10T15:40:16Z",
@@ -5244,7 +5301,8 @@
         "live": 0,
         "dead": 5
       },
-      "final_interactive_count": 5
+      "final_interactive_count": 5,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-11T02:21:01Z",
@@ -5296,7 +5354,8 @@
         "live": 0,
         "dead": 4
       },
-      "final_interactive_count": 4
+      "final_interactive_count": 4,
+      "project_type": "web_3d"
     },
     {
       "attempted_at": "2026-05-11T06:16:02Z",
@@ -5318,7 +5377,8 @@
         "live": 3,
         "dead": 0
       },
-      "final_interactive_count": 3
+      "final_interactive_count": 3,
+      "project_type": "web_3d"
     }
   ],
   "cso_reviews": [

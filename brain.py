@@ -103,6 +103,7 @@ def record_failure(memory: dict[str, Any], plan: dict | None, stage: str, reason
             "plan_pattern": plan.get("pattern", "?"),
             "plan_domain": plan.get("domain", "?"),
             "plan_files_count": len(plan.get("files", [])),
+            "project_type": plan.get("project_type", "unknown"),
         })
     if qa_report:
         record["qa_verdict"] = qa_report.get("verdict")

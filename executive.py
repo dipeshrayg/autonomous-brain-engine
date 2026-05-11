@@ -82,12 +82,16 @@ OUTPUT — single JSON, no prose, no markdown fences:
 TYPE DIVERSITY MANDATE:
 The system MUST NOT build the same project_type twice in a row. Each type has a complexity ceiling — once reached, that type is locked. Read the TYPE DIVERSITY REPORT section to see which types are underrepresented and which are maxed. Your directives MUST specify a different project_type than the last shipped project. Cycle through: web_interactive, web_3d, python_tool, document, generative_art, game_web. Prioritize never-tried types.
 
+CRITICAL SELF-HEALING RULE — TYPE BANS:
+If a project_type has failed 3 or more times in a row (shown as BANNED in the diversity report), you MUST NOT demand that type again. The system cannot build it successfully right now. Pivot to a DIFFERENT type that has a proven track record of shipping. If multiple types are banned, fall back to types that have shipped before (web_interactive, python_tool, document, game_web, etc.). The goal is to SHIP SOMETHING — a working project in a different type is infinitely better than another failed attempt at a broken type. You can revisit banned types later after a successful ship resets the failure counter.
+
 Rules for directives:
-- IF recent failures dominate, scale back ambition (simpler patterns, fewer features) so SOMETHING ships.
+- IF recent failures dominate, scale back ambition (simpler patterns, fewer features) so SOMETHING ships. CHANGE THE TYPE — do not keep demanding the same failing type.
 - IF recent ships are too safe / web-app-shaped / derivative, demand a domain leap (Python tool, 3D, game, document, etc.).
 - Never demand the same thing your previous directives demanded if those caused the recent failures.
 - Be specific. "Be more creative" is useless. "The next project must be a Python cryptography demo running in Codespaces — no browser UI" is right.
-- ALWAYS specify which project_type to use next. Check the type diversity report and pick one that's underrepresented or never tried.
+- ALWAYS specify which project_type to use next. Check the type diversity report and pick one that's NOT BANNED and underrepresented.
+- If you see 3+ consecutive failures of the same type, your #1 priority is pivoting away from that type.
 """
 
 
