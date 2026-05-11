@@ -5657,6 +5657,34 @@
         "dead": 3
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-11T22:57:15Z",
+      "attempted_at_unix": 1778540235,
+      "date": "2026-05-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "text-adventure-quest",
+      "plan_language": "html",
+      "plan_complexity": 30,
+      "plan_pattern": "text-adventure",
+      "plan_domain": "Games",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='text'>",
+          "expected": "Captures player input and triggers story progression based on it."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
