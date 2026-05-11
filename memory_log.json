@@ -5525,6 +5525,49 @@
         "dead": 0
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-11T15:52:26Z",
+      "attempted_at_unix": 1778514746,
+      "date": "2026-05-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 4 verifier blocker(s).",
+      "plan_name": "interactive-generative-geometry-explorer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 30,
+      "plan_pattern": "visual_explorer",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<button id='rotate'>Rotate</button>",
+          "expected": "Toggle rotation state and rotate geometry around Y-axis"
+        },
+        {
+          "control": "<button id='zoomIn'>Zoom In</button>",
+          "expected": "Move camera closer to geometry and update the view to reflect proximity changes"
+        },
+        {
+          "control": "<button id='zoomOut'>Zoom Out</button>",
+          "expected": "Move camera further from geometry and update the view to reflect distance changes"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "3D geometries render correctly"
+        },
+        {
+          "feature": "rotation and zoom work as intended"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
