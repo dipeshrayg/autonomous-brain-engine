@@ -5951,6 +5951,56 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-12T11:11:44Z",
+      "attempted_at_unix": 1778584304,
+      "date": "2026-05-12",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 3 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-cellular-automaton-explorer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 31,
+      "plan_pattern": "cellular-automaton-explorer",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Play/Pause Button",
+          "expected": "Toggle simulation state and update button text"
+        },
+        {
+          "control": "Rules Selector",
+          "expected": "Change rules and update visual pattern immediately"
+        },
+        {
+          "control": "Speed Slider",
+          "expected": "Adjust animation speed dynamically"
+        },
+        {
+          "control": "Restart Button",
+          "expected": "Reset simulation state and reinitialize visual grid"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Smooth 3D visualization updates"
+        },
+        {
+          "feature": "Stateful Play/Pause functionality"
+        },
+        {
+          "feature": "Immediate rule-based cellular automaton evolution"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
