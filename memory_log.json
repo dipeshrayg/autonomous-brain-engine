@@ -6026,6 +6026,42 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-12T17:09:04Z",
+      "attempted_at_unix": 1778605744,
+      "date": "2026-05-12",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "dynamic-audio-visual-symphony",
+      "plan_language": "python",
+      "plan_complexity": 32,
+      "plan_pattern": "dynamic-audio-visual",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 7,
+      "project_type": "python_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "export button",
+          "expected": "Exports current visual to a specified file format"
+        },
+        {
+          "control": "CLI input",
+          "expected": "User sets audio file and parameters for visualization, and sees dynamic updates"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Confirmation message with visual preview for export button"
+        }
+      ],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ],
   "cso_reviews": [
