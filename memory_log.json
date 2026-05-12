@@ -5854,6 +5854,38 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-05-12T07:38:31Z",
+      "attempted_at_unix": 1778571511,
+      "date": "2026-05-12",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-fractal-raymarcher",
+      "plan_language": "JavaScript",
+      "plan_complexity": 31,
+      "plan_pattern": "raymarching-art-tool",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "input#bgColor",
+          "expected": "Changes background color and visually updates canvas"
+        },
+        {
+          "control": "button#export",
+          "expected": "Triggers image export and prompts file download"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
