@@ -5818,6 +5818,42 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-12T06:06:07Z",
+      "attempted_at_unix": 1778565967,
+      "date": "2026-05-12",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-raymarcher-fractal-generator",
+      "plan_language": "Python",
+      "plan_complexity": 32,
+      "plan_pattern": "raymarching-art-tool",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 7,
+      "project_type": "python_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range' label='Fractal Complexity'>",
+          "expected": "Fractal detail increases in real-time as the slider is adjusted"
+        },
+        {
+          "control": "<input type='color' label='Background Color'>",
+          "expected": "Background color updates instantly upon selecting a new color"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "<button>Reset Fractal</button>"
+        }
+      ],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ],
   "cso_reviews": [
