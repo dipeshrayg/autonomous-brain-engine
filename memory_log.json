@@ -1836,6 +1836,109 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-12",
+      "completed_at": "2026-05-12T21:49:51Z",
+      "completed_at_unix": 1778622591,
+      "name": "textural-simulations-in-noise",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-12-textural-simulations-in-noise",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-12-textural-simulations-in-noise/",
+      "language": "javascript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 33,
+      "concepts_demonstrated": [
+        "Perlin noise",
+        "Simplex noise",
+        "Dynamic texture generation",
+        "Real-time rendering"
+      ],
+      "novel_concepts": [
+        "Interactive parameter adjustments",
+        "Non-fractal texture generation",
+        "Noise-based art output"
+      ],
+      "advancement_axis": "Focus on dynamic textural outputs using advanced noise algorithms in generative art.",
+      "pattern": "textural-noise-art",
+      "domain": "Generative Art",
+      "visual_identity": "A palette of soft pastels contrasted with deep greys; typography will be playful and modern, with floating elements that create a sense of depth.",
+      "safety_notes": "No user data collection or problematic interactions; strictly educational content in line with GitHub TOS.",
+      "file_count": 6,
+      "loc": 446,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 333,
+        "bodyHtml": 1709,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Textural Simulations in Noise",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#ff69b4",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "noise.js": "gpt-4o",
+          "README.md": "gpt-4o",
+          "LICENSE": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be generative_art, focusing on a novel and unexpected domain or method.",
+        "Target an underexplored area of generative art, such as dynamic text-based visuals or audio-reactive visualizations, to avoid repeating fractals or traditional procedural patterns.",
+        "Keep the scope minimal and focus on a single, fully functional feature to ensure successful shipping.",
+        "Avoid any reliance on web technologies or 3D rendering to prevent overlap with recent failures and overused types.",
+        "Implement rigorous internal testing of all project features before QA submission to minimize rejected builds."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Most interactive controls function as intended, but the color picker does not trigger state or visual changes, requiring a fix before shipping.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<input type='color'>",
+            "expected": "Change base color for the texture and update canvas colors in real-time.",
+            "actual": "No state change or visual response observed when color input is adjusted.",
+            "fix": "Ensure that the 'input' event listener on `colorPicker` correctly updates `baseColor` and triggers the `render()` function for live canvas updates."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -1859,7 +1962,8 @@
     24,
     27,
     28,
-    30
+    30,
+    33
   ],
   "concepts_explored": [
     "neural networks",
@@ -1960,7 +2064,11 @@
     "procedural generation",
     "ASCII art representation",
     "resource management",
-    "basic AI"
+    "basic AI",
+    "Perlin noise",
+    "Simplex noise",
+    "Dynamic texture generation",
+    "Real-time rendering"
   ],
   "patterns_used": [
     "visualizer",
@@ -1977,7 +2085,8 @@
     "abstract-strategy-puzzle",
     "generative-fractal",
     "research-paper",
-    "turn-based-strategy"
+    "turn-based-strategy",
+    "textural-noise-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -1994,7 +2103,8 @@
     "Games",
     "Visual Arts",
     "Robotics",
-    "Game Design"
+    "Game Design",
+    "Generative Art"
   ],
   "ceo_reviews": [
     {
