@@ -6221,6 +6221,52 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-05-13T06:06:25Z",
+      "attempted_at_unix": 1778652385,
+      "date": "2026-05-13",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 10 verifier blocker(s).",
+      "plan_name": "interactive-3d-cellular-automata",
+      "plan_language": "JavaScript",
+      "plan_complexity": 34,
+      "plan_pattern": "cellular-automata-simulation",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='number'>",
+          "expected": "Changes the grid size and updates the canvas visualization."
+        },
+        {
+          "control": "<select>",
+          "expected": "Selects a rule set and triggers cellular automata re-rendering based on the chosen rules."
+        },
+        {
+          "control": "<button id='reset'>Reset</button>",
+          "expected": "Resets the cellular grid to its initial state and updates the visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "User input to update grid size dynamically."
+        },
+        {
+          "feature": "Rule set selection updates cellular automata."
+        },
+        {
+          "feature": "Reset button restoring default grid size and rule set."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
