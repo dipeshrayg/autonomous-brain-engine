@@ -6290,6 +6290,46 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-13T09:33:40Z",
+      "attempted_at_unix": 1778664820,
+      "date": "2026-05-13",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 1 missing features, 2 verifier blocker(s).",
+      "plan_name": "3d-cellular-automata-simulation",
+      "plan_language": "JavaScript",
+      "plan_complexity": 34,
+      "plan_pattern": "cellular-automata-simulation",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>",
+          "expected": "Modifies simulation speed and updates the slider UI"
+        },
+        {
+          "control": "<select>",
+          "expected": "Changes automaton ruleset and reflects the change in simulation behavior"
+        },
+        {
+          "control": "<button>",
+          "expected": "Resets the simulation state and reflects the reset visually in 3D render"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive simulation rendering"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
