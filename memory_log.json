@@ -6534,6 +6534,59 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-13T19:06:52Z",
+      "attempted_at_unix": 1778699212,
+      "date": "2026-05-13",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 4 missing features, 5 verifier blocker(s).",
+      "plan_name": "minimalistic-3d-geometry-viewer",
+      "plan_language": "javascript",
+      "plan_complexity": 36,
+      "plan_pattern": "3d-geometry-explorer",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select>",
+          "expected": "Change active shape type and visually update shape."
+        },
+        {
+          "control": "<input type='range'>",
+          "expected": "Update shape dimensions and visually resize shape."
+        },
+        {
+          "control": "<button>",
+          "expected": "Trigger shape morphing animation and visibly alter geometry."
+        },
+        {
+          "control": "<button>",
+          "expected": "Toggle debugging aids (grid/axes) visibility."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive shape type change."
+        },
+        {
+          "feature": "Shape dimension manipulation."
+        },
+        {
+          "feature": "Shape morphing animation."
+        },
+        {
+          "feature": "Debugging visualization toggle."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
