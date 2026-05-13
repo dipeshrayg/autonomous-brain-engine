@@ -6587,6 +6587,52 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-13T19:31:37Z",
+      "attempted_at_unix": 1778700697,
+      "date": "2026-05-13",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 6 verifier blocker(s).",
+      "plan_name": "simple-3d-geometry-viewer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 36,
+      "plan_pattern": "simple-3d-geometry",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select id='shapeSelector'>",
+          "expected": "Changes the active shape displayed in the viewer."
+        },
+        {
+          "control": "<input type='range' id='sizeSlider'>",
+          "expected": "Modifies the size parameter of the selected shape."
+        },
+        {
+          "control": "<button id='resetButton'>Reset</button>",
+          "expected": "Resets all parameters to their default values."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time resizing via <input type='range' id='sizeSlider'>"
+        },
+        {
+          "feature": "Shape switching via <select id='shapeSelector'>"
+        },
+        {
+          "feature": "Reset functionality via <button id='resetButton'>"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
