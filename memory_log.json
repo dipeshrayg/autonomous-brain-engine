@@ -6267,6 +6267,29 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-13T07:51:33Z",
+      "attempted_at_unix": 1778658693,
+      "date": "2026-05-13",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "3d-cellular-automata-explorer",
+      "plan_language": "javascript",
+      "plan_complexity": 35,
+      "plan_pattern": "cellular-automata-explorer",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 2,
+        "live": 2,
+        "dead": 0
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
