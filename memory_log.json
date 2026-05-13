@@ -6484,6 +6484,56 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-13T17:17:10Z",
+      "attempted_at_unix": 1778692630,
+      "date": "2026-05-13",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 3 missing features, 6 verifier blocker(s).",
+      "plan_name": "minimalist-3d-geometry-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 36,
+      "plan_pattern": "3d-visualization-tool",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select>",
+          "expected": "Updates the shape displayed in the 3D canvas to the selected option"
+        },
+        {
+          "control": "<input type='range'>",
+          "expected": "Adjusts morphing intensity parameter and updates mesh geometry"
+        },
+        {
+          "control": "<button>",
+          "expected": "Resets visualization to default shape and morphing parameters"
+        },
+        {
+          "control": "<input type='checkbox'>",
+          "expected": "Toggles debug view (adds/removes grid helper from scene)"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive 3D canvas"
+        },
+        {
+          "feature": "Morphing controls"
+        },
+        {
+          "feature": "Visual debugging"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
