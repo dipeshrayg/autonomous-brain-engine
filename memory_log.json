@@ -7006,6 +7006,42 @@
         "dead": 3
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-14T21:02:43Z",
+      "attempted_at_unix": 1778792563,
+      "date": "2026-05-14",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "dynamic-concept-cosmos",
+      "plan_language": "javascript",
+      "plan_complexity": 37,
+      "plan_pattern": "exploratory-graph-puzzle",
+      "plan_domain": "Games",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<button class='explore'>",
+          "expected": "Trigger exploration phase and animate transition to new concept nodes"
+        },
+        {
+          "control": "<button class='pause'>",
+          "expected": "Toggle pause state and display 'Game Paused' overlay"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Adaptive difficulty visual response"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
