@@ -6856,6 +6856,42 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-14T15:52:02Z",
+      "attempted_at_unix": 1778773922,
+      "date": "2026-05-14",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "generative-particle-sculpture",
+      "plan_language": "JavaScript",
+      "plan_complexity": 39,
+      "plan_pattern": "particle-sculpture-generator",
+      "plan_domain": "Visual Arts",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Particle Count Slider (input[type='range'])",
+          "expected": "Increases/decreases the number of visible particles in real-time."
+        },
+        {
+          "control": "Particle Color Picker (input[type='color'])",
+          "expected": "Updates the colors of particles instantaneously based on user selection."
+        },
+        {
+          "control": "Reset Button (button#resetButton)",
+          "expected": "Restores the initial look of the 3D sculptural output."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
