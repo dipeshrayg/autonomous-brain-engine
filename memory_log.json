@@ -7042,6 +7042,29 @@
         "dead": 2
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-14T21:28:27Z",
+      "attempted_at_unix": 1778794107,
+      "date": "2026-05-14",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 0 round(s). verdict=shippable, 0 dead controls, 0 missing features, 16 verifier blocker(s).",
+      "plan_name": "adaptive-paradox-game",
+      "plan_language": "JavaScript",
+      "plan_complexity": 37,
+      "plan_pattern": "paradoxical-strategy",
+      "plan_domain": "Game Theory",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 3,
+        "dead": 0
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
