@@ -6942,6 +6942,46 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-14T19:35:03Z",
+      "attempted_at_unix": 1778787303,
+      "date": "2026-05-14",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 1 missing features, 10 verifier blocker(s).",
+      "plan_name": "neural-symbolic-hybrid-puzzle",
+      "plan_language": "JavaScript",
+      "plan_complexity": 42,
+      "plan_pattern": "hybrid-ai-puzzle",
+      "plan_domain": "Artificial Intelligence and Game Design",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='text' placeholder='Describe Puzzle'>",
+          "expected": "Neural network generates puzzle layout based on input."
+        },
+        {
+          "control": "<button id='generateButton'>Generate Puzzle</button>",
+          "expected": "Triggers neural network to generate puzzle layout and update visualization."
+        },
+        {
+          "control": "<button id='resetButton'>Reset</button>",
+          "expected": "Resets input, puzzle state, and visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Puzzle validation via symbolic reasoning."
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
