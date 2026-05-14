@@ -6892,6 +6892,56 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-14T17:07:07Z",
+      "attempted_at_unix": 1778778427,
+      "date": "2026-05-14",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 3 missing features, 1 verifier blocker(s).",
+      "plan_name": "dynamic-particle-sculpture-3d",
+      "plan_language": "JavaScript",
+      "plan_complexity": 37,
+      "plan_pattern": "generative-sculpture",
+      "plan_domain": "Visual Arts",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>",
+          "expected": "modifies particle speed and updates particle movement dynamics visually"
+        },
+        {
+          "control": "<input type='color'>",
+          "expected": "changes particle color and visually updates all particles"
+        },
+        {
+          "control": "<select>",
+          "expected": "changes particle attraction force type and alters particle behaviors dynamically"
+        },
+        {
+          "control": "<button>",
+          "expected": "resets simulation parameters and recreates initial visual state"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "real-time parameter adjustment"
+        },
+        {
+          "feature": "dynamic particle behavior adjustment"
+        },
+        {
+          "feature": "simulation reset functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
