@@ -6786,6 +6786,52 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-14T14:59:13Z",
+      "attempted_at_unix": 1778770753,
+      "date": "2026-05-14",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 3 verifier blocker(s).",
+      "plan_name": "3d-swarm-simulation",
+      "plan_language": "JavaScript",
+      "plan_complexity": 38,
+      "plan_pattern": "3d-simulation",
+      "plan_domain": "Computer Simulation",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<button>",
+          "expected": "Starts or stops the simulation, toggling button text from 'Start' to 'Stop' and initializing or halting agent movement."
+        },
+        {
+          "control": "<slider>",
+          "expected": "Adjusts the number of agents and dynamically updates the visible agent density in real time."
+        },
+        {
+          "control": "<slider>",
+          "expected": "Adjusts agent speed, dynamically altering their movement velocity."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Start/Stop simulation toggle"
+        },
+        {
+          "feature": "Agent density adjustment"
+        },
+        {
+          "feature": "Dynamic agent speed adjustment"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
