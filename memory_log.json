@@ -2108,6 +2108,94 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-15",
+      "completed_at": "2026-05-15T11:41:15Z",
+      "completed_at_unix": 1778845275,
+      "name": "emergent-patterns-generator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-15-emergent-patterns-generator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-15-emergent-patterns-generator/",
+      "language": "javascript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 38,
+      "concepts_demonstrated": [
+        "cellular automata",
+        "emergent behavior",
+        "user-defined parameters",
+        "interactive exploration",
+        "visual outputs"
+      ],
+      "novel_concepts": [
+        "ruleset customization",
+        "real-time interaction feedback",
+        "physics-driven simulations"
+      ],
+      "advancement_axis": "combining physics simulation with interactive emergent behavior exploration in cellular automata.",
+      "pattern": "emergent-patterns",
+      "domain": "Emergent Systems",
+      "visual_identity": "A vibrant color palette with gradients and a clean layout, utilizing modern typography to enhance readability.",
+      "safety_notes": "Ensure that all user inputs are sanitized to avoid code injection vulnerabilities. The algorithm should run entirely client-side, maintaining user data privacy.",
+      "file_count": 6,
+      "loc": 569,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 366,
+        "bodyHtml": 1306,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Emergent Patterns Generator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "scripts.js": "gpt-4o",
+          "README.md": "gpt-4o",
+          "assets/favicon.ico": "gpt-4o",
+          "assets/cell-templates.js": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a generative_art type. Avoid overcomplexity and focus on delivering a functional and visually compelling output, such as a novel parametric design system.",
+        "Explore emergent behavior in cellular automata or fractal systems for the generative_art project — ensure it prioritizes interactive exploration over static output.",
+        "Avoid any web_3d or game_web projects until the system demonstrates stability with simpler types.",
+        "After the generative_art project, pivot to a python_tool project focused on a novel, practical utility, such as a lightweight data visualization or cryptographic experiment.",
+        "Ensure the next project ships successfully even if it means scaling back ambition — prioritize stability and usability over complexity."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All promised features function as described, state management and visual rendering are synchronized, and the application remains interactive post-interaction.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2134,7 +2222,8 @@
     30,
     33,
     35,
-    36
+    36,
+    38
   ],
   "concepts_explored": [
     "neural networks",
@@ -2249,7 +2338,12 @@
     "Particle swarm optimization",
     "Bee algorithm",
     "Comparative analysis",
-    "Real-world applications"
+    "Real-world applications",
+    "cellular automata",
+    "emergent behavior",
+    "user-defined parameters",
+    "interactive exploration",
+    "visual outputs"
   ],
   "patterns_used": [
     "visualizer",
@@ -2269,7 +2363,8 @@
     "turn-based-strategy",
     "textural-noise-art",
     "visualization-tool",
-    "interdisciplinary-analysis"
+    "interdisciplinary-analysis",
+    "emergent-patterns"
   ],
   "domains_used": [
     "Mathematics",
@@ -2289,7 +2384,8 @@
     "Game Design",
     "Generative Art",
     "Cryptography",
-    "Computer Science"
+    "Computer Science",
+    "Emergent Systems"
   ],
   "ceo_reviews": [
     {
