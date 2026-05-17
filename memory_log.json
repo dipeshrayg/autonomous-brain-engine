@@ -7361,6 +7361,49 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-17T14:10:21Z",
+      "attempted_at_unix": 1779027021,
+      "date": "2026-05-17",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 2 missing features, 4 verifier blocker(s).",
+      "plan_name": "simple-raymarching-demo",
+      "plan_language": "JavaScript",
+      "plan_complexity": 40,
+      "plan_pattern": "raymarching-introduction",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "SELECT (shapeSelect)",
+          "expected": "Change the selected shape for rendering (sphere, box, plane)"
+        },
+        {
+          "control": "INPUT (colorPicker)",
+          "expected": "Change shape color dynamically"
+        },
+        {
+          "control": "INPUT (zoomRange)",
+          "expected": "Adjust camera zoom level and change perspective"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Dynamic shape rendering"
+        },
+        {
+          "feature": "Color picker functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
