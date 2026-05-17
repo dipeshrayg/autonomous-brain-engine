@@ -7325,6 +7325,42 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-17T13:07:17Z",
+      "attempted_at_unix": 1779023237,
+      "date": "2026-05-17",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 0 missing features, 2 verifier blocker(s).",
+      "plan_name": "simple-raymarching-demo",
+      "plan_language": "JavaScript",
+      "plan_complexity": 39,
+      "plan_pattern": "basic-raymarching",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Reset Camera",
+          "expected": "Camera position and orientation reset to initial state (0, 0, -5 for position, and (0, 0, 1) for direction)."
+        },
+        {
+          "control": "Camera Speed Slider",
+          "expected": "Changes the speed of camera movement, influencing how fast position updates for movement keys."
+        },
+        {
+          "control": "Field of View Slider",
+          "expected": "Updates the field of view used in the raymarching shader, resulting in a visible change in the perspective of the 3D scene."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
