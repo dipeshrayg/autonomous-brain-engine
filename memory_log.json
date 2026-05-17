@@ -7428,6 +7428,45 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-17T15:44:31Z",
+      "attempted_at_unix": 1779032671,
+      "date": "2026-05-17",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "adaptive-rogue-dungeon",
+      "plan_language": "javascript",
+      "plan_complexity": 39,
+      "plan_pattern": "adaptive-challenge",
+      "plan_domain": "Games",
+      "plan_files_count": 7,
+      "project_type": "game_web",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input id='difficulty-slider'>",
+          "expected": "Adjust difficulty level affecting enemy behavior."
+        },
+        {
+          "control": "<button id='volume-button'>",
+          "expected": "Toggle game volume."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Dynamic enemy interaction tied to procedural generation and real-time difficulty changes."
+        },
+        {
+          "feature": "Pause overlay integration."
+        }
+      ],
+      "final_interaction": {
+        "tested": 0,
+        "live": 0,
+        "dead": 0
+      },
+      "final_interactive_count": 6
     }
   ],
   "cso_reviews": [
