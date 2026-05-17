@@ -7282,6 +7282,49 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-05-17T11:03:07Z",
+      "attempted_at_unix": 1779015787,
+      "date": "2026-05-17",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 3 verifier blocker(s).",
+      "plan_name": "basic-raymarching-visualizer",
+      "plan_language": "javascript",
+      "plan_complexity": 40,
+      "plan_pattern": "basic-raymarching",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Reset Camera (button#resetCamera)",
+          "expected": "Reset the camera position and orientation to default values and update the visualization accordingly."
+        },
+        {
+          "control": "Zoom slider (input#zoomControl)",
+          "expected": "Adjust the camera's Z position and re-render the scene to reflect the new zoom level."
+        },
+        {
+          "control": "Shape selector (select#shapeSelect)",
+          "expected": "Change the `selectedShape` variable and update the scene to render the chosen 3D shape."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "<canvas id='renderCanvas'> - dynamic 3D visualization"
+        },
+        {
+          "feature": "Camera controls (WASD keys, mouse dragging)"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
