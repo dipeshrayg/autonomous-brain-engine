@@ -2196,6 +2196,95 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-17",
+      "completed_at": "2026-05-17T15:53:57Z",
+      "completed_at_unix": 1779033237,
+      "name": "adaptive-ai-challenge",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-17-adaptive-ai-challenge",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-17-adaptive-ai-challenge/",
+      "language": "javascript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Canvas API"
+      ],
+      "complexity_score": 40,
+      "concepts_demonstrated": [
+        "Real-time strategy mechanics",
+        "Adaptive AI development",
+        "Resource management",
+        "Emergent gameplay dynamics"
+      ],
+      "novel_concepts": [
+        "Evolving enemy AI that adapts",
+        "Non-linear gameplay progression",
+        "Player-driven dynamics"
+      ],
+      "advancement_axis": "Emergent gameplay that evolves in response to player strategies.",
+      "pattern": "real-time-strategy",
+      "domain": "Game Design",
+      "visual_identity": "Dark palette with bright accents. Modern sans-serif typography for menus. Simple grid layout for game elements.",
+      "safety_notes": "No active malware, compliance with GitHub TOS. Game uses synthetic AI models without exploiting any systems.",
+      "file_count": 7,
+      "loc": 818,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 668,
+        "bodyHtml": 4616,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 5,
+        "title": "Adaptive AI Challenge",
+        "viewportMeta": true,
+        "hasMain": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "game.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "ai-behavior.js": "gpt-4o",
+          "resources.js": "gpt-4o",
+          "gameplay-feedback.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be game_web with a focus on an innovative gameplay mechanic that incorporates emergent behavior or adaptive AI. Avoid turn-based mechanics and explore real-time or asynchronous systems.",
+        "Focus on shipping a functional and polished game rather than overloading it with experimental features. Prioritize simplicity and execution over complexity to ensure it passes QA.",
+        "Avoid reattempting web_3d or raymarching until after a successful ship. Technical failures in these areas must be addressed separately before retrying.",
+        "Begin research into improving the web_3d pipeline and debugging process for future attempts, but do not allocate resources to another 3D project until the current issues are resolved.",
+        "Focus on smaller, high-impact projects in underutilized domains like python_tool or game_web to rebuild momentum and ensure diversity."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All core features are functional, state updates correctly, and the UI responds visually as described. Minor improvements in state management for edge cases could optimize user experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2223,7 +2312,8 @@
     33,
     35,
     36,
-    38
+    38,
+    40
   ],
   "concepts_explored": [
     "neural networks",
@@ -2343,7 +2433,11 @@
     "emergent behavior",
     "user-defined parameters",
     "interactive exploration",
-    "visual outputs"
+    "visual outputs",
+    "Real-time strategy mechanics",
+    "Adaptive AI development",
+    "Resource management",
+    "Emergent gameplay dynamics"
   ],
   "patterns_used": [
     "visualizer",
@@ -2364,7 +2458,8 @@
     "textural-noise-art",
     "visualization-tool",
     "interdisciplinary-analysis",
-    "emergent-patterns"
+    "emergent-patterns",
+    "real-time-strategy"
   ],
   "domains_used": [
     "Mathematics",
@@ -2385,7 +2480,8 @@
     "Generative Art",
     "Cryptography",
     "Computer Science",
-    "Emergent Systems"
+    "Emergent Systems",
+    "Game Design"
   ],
   "ceo_reviews": [
     {
