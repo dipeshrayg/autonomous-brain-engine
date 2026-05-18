@@ -2285,6 +2285,79 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-18",
+      "completed_at": "2026-05-18T12:59:12Z",
+      "completed_at_unix": 1779109152,
+      "name": "interactive-cryptographic-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-18-interactive-cryptographic-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-18-interactive-cryptographic-simulator/",
+      "language": "python",
+      "project_type": "python_tool",
+      "tech_stack": [
+        "python",
+        "matplotlib",
+        "numpy",
+        "pytest"
+      ],
+      "complexity_score": 42,
+      "concepts_demonstrated": [
+        "zero-knowledge proofs",
+        "homomorphic encryption",
+        "interactive visualization",
+        "data input/output",
+        "educational interface"
+      ],
+      "novel_concepts": [
+        "adaptive sampling for cryptographic visualization",
+        "real-world scenario simulation in cryptography"
+      ],
+      "advancement_axis": "emphasizes educational value while integrating advanced cryptographic techniques.",
+      "pattern": "interactive-educational",
+      "domain": "Cryptography",
+      "visual_identity": "blue, green, and white palette; clean sans-serif typography; structured layout with diagrams and console output.",
+      "safety_notes": "All data processed is synthetic and educational, with no real cryptographic risks involved.",
+      "file_count": 8,
+      "loc": 635,
+      "quality_cycles_used": 2,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "src/crypto_simulator.py",
+        "exit_code": 0,
+        "stdout_chars": 0,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/__init__.py": "gpt-4o",
+          "src/crypto_simulator.py": "gpt-4o",
+          "src/visualization.py": "gpt-4o",
+          "src/tests/test_crypto.py": "gpt-4o",
+          "src/docs/user_guide.md": "gpt-4o",
+          "index.html": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a python_tool, focusing on cryptographic or computational applications to capitalize on prior success in this type and domain.",
+        "Develop a Python-based educational cryptographic tool that demonstrates and visualizes advanced concepts such as zero-knowledge proofs or homomorphic encryption, with a clear and interactive interface in the console or a minimal local GUI.",
+        "Ensure the project includes robust testing and documentation to guarantee shippability and address prior quality issues.",
+        "Incorporate a unique and innovative angle, such as integrating cutting-edge cryptographic techniques or simulating a practical real-world use case.",
+        "After shipping the python_tool, plan a game_web project next, exploring a completely new gameplay genre (e.g., an abstract puzzle game or a hybrid educational-game concept)."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All promised features are functional, with correct state synchronization and meaningful visual outputs. The application survives post-interaction scenarios without major issues.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2313,7 +2386,8 @@
     35,
     36,
     38,
-    40
+    40,
+    42
   ],
   "concepts_explored": [
     "neural networks",
@@ -2437,7 +2511,12 @@
     "Real-time strategy mechanics",
     "Adaptive AI development",
     "Resource management",
-    "Emergent gameplay dynamics"
+    "Emergent gameplay dynamics",
+    "zero-knowledge proofs",
+    "homomorphic encryption",
+    "interactive visualization",
+    "data input/output",
+    "educational interface"
   ],
   "patterns_used": [
     "visualizer",
@@ -2459,7 +2538,8 @@
     "visualization-tool",
     "interdisciplinary-analysis",
     "emergent-patterns",
-    "real-time-strategy"
+    "real-time-strategy",
+    "interactive-educational"
   ],
   "domains_used": [
     "Mathematics",
@@ -2481,7 +2561,8 @@
     "Cryptography",
     "Computer Science",
     "Emergent Systems",
-    "Game Design"
+    "Game Design",
+    "Cryptography"
   ],
   "ceo_reviews": [
     {
