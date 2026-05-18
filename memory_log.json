@@ -7612,6 +7612,49 @@
         "dead": 0
       },
       "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-05-18T05:48:18Z",
+      "attempted_at_unix": 1779083298,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "soft-body-physics-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 41,
+      "plan_pattern": "soft-body-physics",
+      "plan_domain": "Physics Simulation",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>",
+          "expected": "Modifies the stiffness of the jelly material and re-renders the deformation in real-time."
+        },
+        {
+          "control": "<input type='color'>",
+          "expected": "Changes the color of the jelly material and updates the visual color instantly."
+        },
+        {
+          "control": "<button>",
+          "expected": "Resets the simulation to its initial parameters, including physics.stiffness as 50 and physics.color as #00ff00, and reinstates the original state and properties of the soft-body."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time responsiveness of controls"
+        },
+        {
+          "feature": "Reset button functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
