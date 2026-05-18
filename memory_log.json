@@ -7655,6 +7655,52 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-18T06:34:02Z",
+      "attempted_at_unix": 1779086042,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 6 verifier blocker(s).",
+      "plan_name": "soft-body-physics-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 41,
+      "plan_pattern": "soft-body-physics",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range' id='elasticityControl'>",
+          "expected": "Adjust elasticity of soft-body materials and see immediate visual changes in deformation"
+        },
+        {
+          "control": "<input type='range' id='frictionControl'>",
+          "expected": "Adjust friction coefficient affecting object movement and see dynamic visual changes"
+        },
+        {
+          "control": "<button id='resetButton'>Reset</button>",
+          "expected": "Reset simulation parameters to defaults and visually restore initial state"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Elasticity Control"
+        },
+        {
+          "feature": "Friction Control"
+        },
+        {
+          "feature": "Reset Button"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
