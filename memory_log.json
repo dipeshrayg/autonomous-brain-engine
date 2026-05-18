@@ -7937,6 +7937,38 @@
         "dead": 0
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-18T20:24:38Z",
+      "attempted_at_unix": 1779135878,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "dynamic-surface-raymarcher",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "adaptive-raymarching",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "input#sdf-parameter",
+          "expected": "Adjust Surface Parameter and re-render the 3D surface dynamically."
+        },
+        {
+          "control": "button#reset-button",
+          "expected": "Reset parameters to default values and refresh the 3D surface."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
