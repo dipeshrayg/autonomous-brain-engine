@@ -7868,6 +7868,52 @@
         "dead": 2
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-18T18:35:47Z",
+      "attempted_at_unix": 1779129347,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 29 verifier blocker(s).",
+      "plan_name": "dynamic-raymarching-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 43,
+      "plan_pattern": "raymarching-visualizer",
+      "plan_domain": "Mathematics/3D Graphics",
+      "plan_files_count": 8,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input.type='range'>",
+          "expected": "Adjusts geometry parameter and updates 3D model in real-time"
+        },
+        {
+          "control": "<button>",
+          "expected": "Resets geometry parameter and fractal mode, updating the scene"
+        },
+        {
+          "control": "<input.type='button'>",
+          "expected": "Toggles fractal mode and updates the visual representation of geometry"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time updates to the 3D model as the user interacts with the slider"
+        },
+        {
+          "feature": "Reset functionality"
+        },
+        {
+          "feature": "Fractal structure toggle functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
