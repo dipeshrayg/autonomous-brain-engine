@@ -7914,6 +7914,29 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-18T19:23:27Z",
+      "attempted_at_unix": 1779132207,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "dynamic-raymarching-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 43,
+      "plan_pattern": "interactive-geometric-vis",
+      "plan_domain": "Mathematics/Computer Science",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 4,
+        "dead": 0
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
