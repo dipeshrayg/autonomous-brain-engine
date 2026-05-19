@@ -8161,6 +8161,49 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T06:51:38Z",
+      "attempted_at_unix": 1779173498,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "evolving-cellular-automaton-3d",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "evolving-visualization",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>#ruleSlider",
+          "expected": "Modifies rule parameters and updates the 3D visualization."
+        },
+        {
+          "control": "<input type='range'>#speedSlider",
+          "expected": "Adjusts animation speed for the cellular automaton."
+        },
+        {
+          "control": "<button>#resetButton",
+          "expected": "Resets cellular automaton to initial state and updates the 3D visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time interactivity with automaton rules via sliders."
+        },
+        {
+          "feature": "Reset button functionality."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 1,
+        "dead": 3
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
