@@ -8091,6 +8091,52 @@
         "dead": 2
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T02:56:22Z",
+      "attempted_at_unix": 1779159382,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 1 verifier blocker(s).",
+      "plan_name": "emergent-abstract-puzzle-3d",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "abstract-puzzle-3d",
+      "plan_domain": "Games",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<color-palette>",
+          "expected": "Changing the color should update the material color of the elements in the 3D canvas."
+        },
+        {
+          "control": "<slider>",
+          "expected": "Adjusting the slider should change the size of the elements in the 3D canvas, visibly altering their size."
+        },
+        {
+          "control": "<button>",
+          "expected": "Reset Puzzle should clear and re-render the canvas with default color, size, and positions."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Canvas meaningful state reflection"
+        },
+        {
+          "feature": "Dynamic pattern emergence via color and size manipulation"
+        },
+        {
+          "feature": "Adaptive difficulty based on engagement"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
