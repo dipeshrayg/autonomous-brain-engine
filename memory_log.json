@@ -8429,6 +8429,52 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T23:06:14Z",
+      "attempted_at_unix": 1779231974,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "basic-raymarching-visualizer",
+      "plan_language": "javascript",
+      "plan_complexity": 47,
+      "plan_pattern": "basic-raymarching-visualization",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select id='shape-selector'>",
+          "expected": "Selecting a shape should update the rendered geometric primitive to match the selection."
+        },
+        {
+          "control": "<input type='range' id='size-range'>",
+          "expected": "Adjusting the slider should resize the shape shown in the canvas in real-time."
+        },
+        {
+          "control": "<button id='regenerate-button'>",
+          "expected": "Clicking the button should regenerate the scene with updated parameters or shapes and re-render the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Raymarching visualization in canvas."
+        },
+        {
+          "feature": "Dynamic size adjustments for shapes."
+        },
+        {
+          "feature": "Shape selection functionality."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
