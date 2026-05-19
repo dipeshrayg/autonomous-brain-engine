@@ -8475,6 +8475,38 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T23:54:59Z",
+      "attempted_at_unix": 1779234899,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "simple-raymarching-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 47,
+      "plan_pattern": "basic-raymarching-visualizer",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='color' id='lightColor' />",
+          "expected": "Changes the light color and updates the scene lighting"
+        },
+        {
+          "control": "<button onclick='resetScene()'>Reset</button>",
+          "expected": "Resets parameters and updates the scene visually"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
