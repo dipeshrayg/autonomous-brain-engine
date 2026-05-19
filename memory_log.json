@@ -8229,6 +8229,49 @@
         "dead": 3
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-19T12:40:27Z",
+      "attempted_at_unix": 1779194427,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "generative-3d-patterns-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "generative-patterns",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range' id='parameter-slider'>",
+          "expected": "modifies pattern generation parameters and updates 3D visualization"
+        },
+        {
+          "control": "<button id='reset-button'>",
+          "expected": "resets parameters and refreshes 3D scene"
+        },
+        {
+          "control": "<input type='range' id='zoom-slider'>",
+          "expected": "adjusts camera zoom level dynamically"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive parameter adjustment (via sliders)"
+        },
+        {
+          "feature": "Reset functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
