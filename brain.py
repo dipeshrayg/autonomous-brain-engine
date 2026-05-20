@@ -251,7 +251,7 @@ def verify_project(plan: dict, target: Path) -> dict[str, Any]:
 
     if pt in web_types:
         try:
-            return verifier.verify_web(target, timeout=30)
+            return verifier.verify_web(target, timeout=30, project_type=pt)
         except Exception as e:
             log.exception("Browser verify crashed.")
             return {

@@ -183,7 +183,7 @@ _METRICS_JS = """() => {
 }"""
 
 
-def verify_web(workspace: Path, timeout: int = 30) -> dict[str, Any]:
+def verify_web(workspace: Path, timeout: int = 30, project_type: str = "web_interactive") -> dict[str, Any]:
     """
     Load index.html in headless Chrome, return errors + metrics + issues.
 
@@ -311,7 +311,13 @@ def verify_web(workspace: Path, timeout: int = 30) -> dict[str, Any]:
     if metrics.get("bodyHtml", 0) < 250:
         issues.append("Page body has <250 chars of HTML — the page is essentially empty.")
     if metrics.get("canvasCount", 0) > 0 and metrics.get("canvasBlank"):
-        issues.append("A <canvas> exists but is blank — the visualization is not rendering. Check that drawing happens after DOM ready, the canvas has a size, the animation loop is started, and content is actually being drawn.")
+        if project_type == "web_3d":
+            # WebGL canvases always read as blank via 2D ctx pixel sampling in headless
+            # Chromium (no GPU). Don't gate on canvas content for web_3d — the QA Tester
+            # and control-interaction tests are the real gates here.
+            pass
+        else:
+            issues.append("A <canvas> exists but is blank — the visualization is not rendering. Check that drawing happens after DOM ready, the canvas has a size, the animation loop is started, and content is actually being drawn.")
     cs = metrics.get("canvasSize") or {}
     if cs.get("cssW") == 0 or cs.get("cssH") == 0:
         issues.append("Canvas has 0 CSS size — set width/height in CSS or attributes.")

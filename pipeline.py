@@ -199,6 +199,13 @@ RULES:
   - If file A defines class Foo and file B uses Foo, then <script src="A.js"></script> MUST come BEFORE <script src="B.js"></script> in index.html.
   - Prefer putting ALL game logic in ONE file (e.g. game.js) to avoid load-order bugs. Only split into multiple files if absolutely necessary.
   - NEVER use ES modules (import/export) — use classic <script> tags with global scope.
+- INPUT WIRING (critical — dead number/text inputs are the #3 failure mode):
+  - Every <input type="number">, <input type="text">, and <textarea> MUST have an oninput or onchange event listener that reads .value and triggers a state update + re-render.
+  - Never let a user-editable field sit unwired. If the field sets grid size, call resizeGrid() in the listener. If it sets a parameter, re-run the simulation.
+  - Pattern: input.addEventListener('input', e => { state.param = +e.target.value; redraw(); });
+- WEB_3D CONTROLS (critical — sliders in WebGL scenes must trigger re-render):
+  - In Three.js / WebGL projects, every slider/button MUST call renderer.render(scene, camera) or trigger the animation loop after updating the uniform/material/geometry.
+  - Controls that mutate a Three.js uniform but don't re-render produce dead controls. Always call render() or ensure the RAF loop is running before user interaction begins.
 
 OUTPUT — single JSON: {"path": "...", "content": "<full file>"}.
 """
