@@ -2360,33 +2360,196 @@
       }
     },
     {
-      "name": "2026-05-19-dynamic-audio-visual-sculpture",
+      "date": "2026-05-18",
+      "completed_at": "2026-05-18T21:28:43Z",
+      "completed_at_unix": 1779139723,
+      "name": "abstract-symmetry-puzzle",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-18-abstract-symmetry-puzzle",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-18-abstract-symmetry-puzzle/",
+      "language": "HTML+JS",
+      "project_type": "game_web",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 43,
+      "concepts_demonstrated": [
+        "abstract representation",
+        "symmetry manipulation",
+        "complex interaction principles",
+        "emergent puzzle-solving"
+      ],
+      "novel_concepts": [
+        "non-traditional puzzle mechanics",
+        "interactive symmetry exploration",
+        "dynamic pattern evolution",
+        "geometric harmony"
+      ],
+      "advancement_axis": "Fluid transitions between regions based on user-defined symmetry principles promote unexpected complexity.",
+      "pattern": "abstract-puzzle",
+      "domain": "Mathematics",
+      "visual_identity": "Pastel color palette with an emphasis on soft tones, modern sans-serif typography, and minimalistic layout focusing on algorithmically generated shapes.",
+      "safety_notes": "All interactions are educational and non-exploitative, adhering to GitHub TOS.",
+      "file_count": 7,
+      "loc": 754,
+      "quality_cycles_used": 3,
+      "final_verify_metrics": {
+        "bodyText": 232,
+        "bodyHtml": 4288,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 5,
+        "scriptCount": 4,
+        "title": "Abstract Symmetry Puzzle",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "game.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "symmetry.js": "gpt-4o",
+          "interaction.js": "gpt-4o",
+          "instructions.html": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web type, focusing on an unconventional, abstract puzzle with emergent complexity (e.g., inspired by cellular automata or information theory).",
+        "Do not return to document or web_3d types until other domains are further explored and stabilized.",
+        "Avoid soft-body physics and raymarching projects entirely for the next three cycles to allow for recalibration.",
+        "Prioritize integrating cross-disciplinary concepts (e.g., machine learning, cryptography, or generative art) into the game_web project to push boundaries and avoid derivative work.",
+        "Explore novel interaction mechanics or rule systems that are not based on traditional gaming paradigms (e.g., no grids, no direct player movement, etc.).",
+        "Ensure the project scope is feasible for shipping in the next cycle to maintain momentum and confidence."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All interactive controls function correctly, visual updates reflect state changes accurately, and the game maintains integrity after interactions.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
+    },
+    {
       "date": "2026-05-19",
-      "shipped_at": "2026-05-19T16:53:50Z",
-      "shipped_at_unix": 1747669830,
+      "completed_at": "2026-05-19T16:56:54Z",
+      "completed_at_unix": 1779209814,
+      "name": "dynamic-audio-visual-sculpture",
       "repo_url": "https://github.com/dipeshrayg/2026-05-19-dynamic-audio-visual-sculpture",
       "pages_url": "https://dipeshrayg.github.io/2026-05-19-dynamic-audio-visual-sculpture/",
-      "complexity_score": 45,
-      "project_type": "generative_art",
       "language": "JavaScript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 45,
+      "concepts_demonstrated": [
+        "real-time audio manipulation",
+        "dynamic visual responses",
+        "user interaction with audio-visual feedback",
+        "parameter-driven generation"
+      ],
+      "novel_concepts": [
+        "dynamic audio-visual feedback systems",
+        "interactive pattern evolution based on audio inputs"
+      ],
+      "advancement_axis": "Combining audio generation with visual output creates an unpredictable interaction that evolves uniquely with each input.",
       "pattern": "audio-visual-sculpture",
       "domain": "Generative Art",
-      "files": [
-        "index.html",
-        "script.js",
-        "style.css"
+      "visual_identity": "A vibrant color palette featuring neon hues on a dark background, with a mix of modern sans-serif typography for a clean and technological aesthetic.",
+      "safety_notes": "All components comply with GitHub TOS. No malware or exploits; purely educational and synthetic in nature.",
+      "file_count": 6,
+      "loc": 436,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 202,
+        "bodyHtml": 1201,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Dynamic Audio-Visual Sculpture",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "440",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o",
+          "LICENSE": "gpt-4o",
+          "assets/": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be generative_art, as it has room to grow and is underutilized.",
+        "Focus on a novel pattern within generative_art, such as dynamic generative audio-visual systems or interactive fractals, to push boundaries.",
+        "Avoid any 3D-related complexity (e.g., raymarching, 3D visualization) to ensure the project ships successfully.",
+        "Prioritize simplicity in the design, ensuring all core features are implemented and functional to avoid QA refusal.",
+        "After shipping a generative_art project, pivot to a python_tool type to maintain diversity and avoid overuse of game_web."
       ],
       "qa_review": {
         "verdict": "partially_usable",
-        "dead_controls": [],
+        "summary": "The primary interactive features, including amplitude and playback controls, are functional and provide meaningful audio-visual feedback, but the frequency range slider does not modify state or visuals as intended.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<input type='range' id='frequency'>",
+            "expected": "Modifies audio frequency and reshapes visuals based on frequency",
+            "actual": "No observable state change detected during interaction",
+            "fix": "Ensure that the event listener for the frequency slider updates the 'state.frequency' property and invokes both 'updateAudioParameters' and 'renderVisuals' properly. The current implementation of the 'frequencyInput' listener might be missing a connection to the state update."
+          }
+        ],
         "missing_features": []
-      },
-      "final_verify_metrics": {
-        "interactive_tested": 4,
-        "interactive_live": 4,
-        "interactive_dead": 0
-      },
-      "note": "Memory record recovered — Pages fixed 2026-05-20 (canvas reset bug + oscillator reuse bug patched)"
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2416,7 +2579,9 @@
     36,
     38,
     40,
-    42
+    42,
+    43,
+    45
   ],
   "concepts_explored": [
     "neural networks",
@@ -2546,7 +2711,14 @@
     "interactive visualization",
     "data input/output",
     "educational interface",
-    "audio-visual-sculpture"
+    "abstract representation",
+    "symmetry manipulation",
+    "complex interaction principles",
+    "emergent puzzle-solving",
+    "real-time audio manipulation",
+    "dynamic visual responses",
+    "user interaction with audio-visual feedback",
+    "parameter-driven generation"
   ],
   "patterns_used": [
     "visualizer",
@@ -2569,7 +2741,9 @@
     "interdisciplinary-analysis",
     "emergent-patterns",
     "real-time-strategy",
-    "interactive-educational"
+    "interactive-educational",
+    "abstract-puzzle",
+    "audio-visual-sculpture"
   ],
   "domains_used": [
     "Mathematics",
@@ -2592,7 +2766,9 @@
     "Computer Science",
     "Emergent Systems",
     "Game Design",
-    "Cryptography"
+    "Cryptography",
+    "Mathematics",
+    "Generative Art"
   ],
   "ceo_reviews": [
     {
@@ -4340,6 +4516,152 @@
       "praise": [
         "Strong performance in shipping partially and fully usable python_tool and generative_art projects.",
         "The adaptive-ai-challenge game_web project demonstrates successful execution with increasing complexity."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-18T20:44:20Z",
+      "issued_at_unix": 1779137060,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system demonstrates good diversity and achieved several shippable projects, but repeated failures in web_3d and physics simulations highlight a need for strategic redirection.",
+      "concerns": [
+        "Repeated failures in web_3d with raymarching and interactive graphics suggest the system is overreaching in this domain.",
+        "Soft-body physics simulations have failed multiple times, indicating this area is not ready for productive exploration.",
+        "Recent successful projects lack high-risk novelty; the system is veering toward safe patterns, especially in game_web and python_tool."
+      ],
+      "directives": [
+        "The next project must be a game_web type, focusing on an unconventional, abstract puzzle with emergent complexity (e.g., inspired by cellular automata or information theory).",
+        "Do not return to document or web_3d types until other domains are further explored and stabilized.",
+        "Avoid soft-body physics and raymarching projects entirely for the next three cycles to allow for recalibration.",
+        "Prioritize integrating cross-disciplinary concepts (e.g., machine learning, cryptography, or generative art) into the game_web project to push boundaries and avoid derivative work.",
+        "Explore novel interaction mechanics or rule systems that are not based on traditional gaming paradigms (e.g., no grids, no direct player movement, etc.).",
+        "Ensure the project scope is feasible for shipping in the next cycle to maintain momentum and confidence."
+      ],
+      "praise": [
+        "Successfully shipped a shippable, high-complexity python_tool project with an interactive educational focus.",
+        "Generative art projects have exhibited an upward trajectory in complexity and quality, nearing their ceiling."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-19T05:13:12Z",
+      "issued_at_unix": 1779167592,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stagnating in familiar domains (game_web, generative_art, python_tool) while failing to deliver on riskier projects. A pivot to unexplored territory is critical.",
+      "concerns": [
+        "Multiple consecutive failures in soft-body physics and raymarching projects indicate instability in physics simulations and 3D domains.",
+        "Over-reliance on game_web and generative_art projects, which are approaching their complexity ceilings.",
+        "No shipped web_3d projects despite it being a recommended and unexplored type."
+      ],
+      "directives": [
+        "The next project must be a web_3d type. Create an interactive and dynamic 3D visualization of an evolving cellular automaton using Three.js. Focus on simplicity and robustness to ensure a successful ship.",
+        "Avoid physics simulations and raymarching for now. Reduce project complexity to focus on building a functional 3D prototype.",
+        "Integrate real-time interactivity into the 3D visualization to add novelty and increase user engagement, such as allowing users to manipulate the initial conditions or rules of the automaton.",
+        "Do not attempt any more game_web or document projects in the immediate next cycle; focus on diversifying into underrepresented types.",
+        "Prioritize QA testing during development to ensure all required components are functional before submission, minimizing the risk of rejection."
+      ],
+      "praise": [
+        "Consistent delivery of shippable projects in game_web and generative_art domains.",
+        "Improved complexity in recent python_tool projects, demonstrating growth in that domain."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-19T10:43:04Z",
+      "issued_at_unix": 1779187384,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects are clustering around safe domains, with repeated failures in physics and raymarching. We need to break into underexplored areas like web_3d to unlock new opportunities.",
+      "concerns": [
+        "Repeated failures in physics simulations and raymarching indicate over-ambition or lack of readiness.",
+        "Over-reliance on game_web and generative_art types risks stagnation in creative direction.",
+        "No web_3d projects have shipped, leaving a key domain unexplored."
+      ],
+      "directives": [
+        "The next project must be of type web_3d, targeting a novel and interactive 3D visual experience — avoid physics simulations and raymarching to circumvent recent failure patterns.",
+        "Focus on generative geometry or artistic 3D visualizations using Three.js. Prioritize simplicity and robustness to ensure it ships.",
+        "Restrict interactivity to a small, well-tested feature set (e.g., camera controls, object rotation, or simple parameter sliders).",
+        "Choose a domain that is distinct from recent projects, such as generative art or cellular automata, but integrate it into a 3D context.",
+        "Avoid overcomplicated simulations or physics-based interactions for this cycle — revisit these only after a successful ship in another type.",
+        "Implement rigorous internal testing for all interactive elements before QA submission to avoid repeated dead and missing features."
+      ],
+      "praise": [
+        "Strong shipping cadence and increased complexity in recent projects.",
+        "Notable success in delivering a shippable and engaging Python tool for cryptographic simulation."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-19T16:30:37Z",
+      "issued_at_unix": 1779208237,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system has shipped projects, but recent failures in web_3d and over-reliance on game_web types highlight a lack of type diversity.",
+      "concerns": [
+        "Web_3d projects have repeatedly failed and are now banned, indicating overreach or insufficient capability in this domain.",
+        "Game_web types are overrepresented and nearing their complexity ceiling, risking stagnation.",
+        "Document types are maxed out and should not be revisited until other domains progress further."
+      ],
+      "directives": [
+        "The next project must be generative_art, as it has room to grow and is underutilized.",
+        "Focus on a novel pattern within generative_art, such as dynamic generative audio-visual systems or interactive fractals, to push boundaries.",
+        "Avoid any 3D-related complexity (e.g., raymarching, 3D visualization) to ensure the project ships successfully.",
+        "Prioritize simplicity in the design, ensuring all core features are implemented and functional to avoid QA refusal.",
+        "After shipping a generative_art project, pivot to a python_tool type to maintain diversity and avoid overuse of game_web."
+      ],
+      "praise": [
+        "The system successfully shipped a range of projects across different domains, with recent successes in python_tool and game_web types.",
+        "The adaptive-ai-challenge and interactive-cryptographic-simulator demonstrated increasing complexity and polish."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-19T20:51:00Z",
+      "issued_at_unix": 1779223860,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a pattern of revisiting safe types like generative_art and game_web, while failing repeatedly in more ambitious domains like web_3d and physics simulations.",
+      "concerns": [
+        "Repeated failures in web_3d and physics-related simulations suggest overreach without adequate preparation.",
+        "Generative_art and document types are maxed out and should not be revisited in the short term.",
+        "The system is avoiding the web_3d type entirely despite it being underrepresented and having room to grow."
+      ],
+      "directives": [
+        "The next project must be of type web_3d, focusing on a manageable and foundational concept to ensure success.",
+        "Develop a simple interactive raymarching visualizer for basic geometric primitives (e.g., spheres, cubes) to address the repeated raymarching failures.",
+        "Include a robust QA checklist for web_3d projects to identify and fix dead or missing components early in the pipeline.",
+        "Avoid using document or generative_art types entirely for the next three projects to ensure diversity.",
+        "Prepare a fallback plan for web_3d failures: if the raymarcher cannot ship, pivot to a simple voxel-based 3D visualizer to ensure delivery.",
+        "Push for minimal viable interactivity rather than overly complex features to maximize the chance of shipping."
+      ],
+      "praise": [
+        "Recent projects like 'adaptive-ai-challenge' and 'interactive-cryptographic-simulator' demonstrate strong execution in game and Python tool domains."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-20T05:15:32Z",
+      "issued_at_unix": 1779254132,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system has delivered several projects, but they lack diversity and exhibit repeated failures in the web_3d domain.",
+      "concerns": [
+        "Over-reliance on generative_art and game_web projects, which are nearing their complexity ceilings.",
+        "Persistent failures in the web_3d domain, indicating significant technical challenges.",
+        "Insufficient exploration of underrepresented or novel domains, leading to stagnation."
+      ],
+      "directives": [
+        "The next project must be a python_tool focusing on an innovative domain such as cellular automata or information theory (e.g., a tool to visualize and simulate complex automata patterns).",
+        "Prioritize simplicity and robustness in this project to ensure it ships successfully.",
+        "Avoid any raymarching or 3D-related tasks, as the system cannot handle them effectively at this time.",
+        "Revisit the core architecture of the web_3d pipeline to diagnose and resolve persistent failures, but do not attempt another web_3d project until a successful type has shipped.",
+        "For future projects, explore emerging domains like robotic logic algorithms or audio/DSP for novelty and boundary-pushing."
+      ],
+      "praise": [
+        "The system has shown strong performance in game_web and generative_art projects, reaching near the top of the complexity ceiling in these domains.",
+        "The recent python_tool projects have demonstrated increasing complexity and quality, showing potential for further growth in this area."
       ],
       "reviewed_project_count": 8
     }
@@ -7944,6 +8266,345 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-18T19:23:27Z",
+      "attempted_at_unix": 1779132207,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "dynamic-raymarching-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 43,
+      "plan_pattern": "interactive-geometric-vis",
+      "plan_domain": "Mathematics/Computer Science",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 4,
+        "dead": 0
+      },
+      "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-18T20:24:38Z",
+      "attempted_at_unix": 1779135878,
+      "date": "2026-05-18",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "dynamic-surface-raymarcher",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "adaptive-raymarching",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "input#sdf-parameter",
+          "expected": "Adjust Surface Parameter and re-render the 3D surface dynamically."
+        },
+        {
+          "control": "button#reset-button",
+          "expected": "Reset parameters to default values and refresh the 3D surface."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T02:56:22Z",
+      "attempted_at_unix": 1779159382,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 1 verifier blocker(s).",
+      "plan_name": "emergent-abstract-puzzle-3d",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "abstract-puzzle-3d",
+      "plan_domain": "Games",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<color-palette>",
+          "expected": "Changing the color should update the material color of the elements in the 3D canvas."
+        },
+        {
+          "control": "<slider>",
+          "expected": "Adjusting the slider should change the size of the elements in the 3D canvas, visibly altering their size."
+        },
+        {
+          "control": "<button>",
+          "expected": "Reset Puzzle should clear and re-render the canvas with default color, size, and positions."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Canvas meaningful state reflection"
+        },
+        {
+          "feature": "Dynamic pattern emergence via color and size manipulation"
+        },
+        {
+          "feature": "Adaptive difficulty based on engagement"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T06:51:38Z",
+      "attempted_at_unix": 1779173498,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "evolving-cellular-automaton-3d",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "evolving-visualization",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>#ruleSlider",
+          "expected": "Modifies rule parameters and updates the 3D visualization."
+        },
+        {
+          "control": "<input type='range'>#speedSlider",
+          "expected": "Adjusts animation speed for the cellular automaton."
+        },
+        {
+          "control": "<button>#resetButton",
+          "expected": "Resets cellular automaton to initial state and updates the 3D visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time interactivity with automaton rules via sliders."
+        },
+        {
+          "feature": "Reset button functionality."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 1,
+        "dead": 3
+      },
+      "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-19T12:40:27Z",
+      "attempted_at_unix": 1779194427,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "generative-3d-patterns-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 44,
+      "plan_pattern": "generative-patterns",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range' id='parameter-slider'>",
+          "expected": "modifies pattern generation parameters and updates 3D visualization"
+        },
+        {
+          "control": "<button id='reset-button'>",
+          "expected": "resets parameters and refreshes 3D scene"
+        },
+        {
+          "control": "<input type='range' id='zoom-slider'>",
+          "expected": "adjusts camera zoom level dynamically"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive parameter adjustment (via sliders)"
+        },
+        {
+          "feature": "Reset functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T23:06:14Z",
+      "attempted_at_unix": 1779231974,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "basic-raymarching-visualizer",
+      "plan_language": "javascript",
+      "plan_complexity": 47,
+      "plan_pattern": "basic-raymarching-visualization",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<select id='shape-selector'>",
+          "expected": "Selecting a shape should update the rendered geometric primitive to match the selection."
+        },
+        {
+          "control": "<input type='range' id='size-range'>",
+          "expected": "Adjusting the slider should resize the shape shown in the canvas in real-time."
+        },
+        {
+          "control": "<button id='regenerate-button'>",
+          "expected": "Clicking the button should regenerate the scene with updated parameters or shapes and re-render the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Raymarching visualization in canvas."
+        },
+        {
+          "feature": "Dynamic size adjustments for shapes."
+        },
+        {
+          "feature": "Shape selection functionality."
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-19T23:54:59Z",
+      "attempted_at_unix": 1779234899,
+      "date": "2026-05-19",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "simple-raymarching-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 47,
+      "plan_pattern": "basic-raymarching-visualizer",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='color' id='lightColor' />",
+          "expected": "Changes the light color and updates the scene lighting"
+        },
+        {
+          "control": "<button onclick='resetScene()'>Reset</button>",
+          "expected": "Resets parameters and updates the scene visually"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-20T04:52:03Z",
+      "attempted_at_unix": 1779252723,
+      "date": "2026-05-20",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 4 verifier blocker(s).",
+      "plan_name": "dynamic-raymarching-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 46,
+      "plan_pattern": "dynamic-raymarching-visualization",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='range'>",
+          "expected": "modifies the raymarching step size"
+        },
+        {
+          "control": "<select>",
+          "expected": "selects geometric primitive type (sphere/cube)"
+        },
+        {
+          "control": "<input type='color'>",
+          "expected": "changes the ambient light color"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive controls modifying visual output"
+        },
+        {
+          "feature": "Distinct and editable geometric primitives"
+        },
+        {
+          "feature": "Lighting responding to user input"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-20T06:38:07Z",
+      "attempted_at_unix": 1779259087,
+      "date": "2026-05-20",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "cellular-automata-visualization-tool",
+      "plan_language": "Python",
+      "plan_complexity": 46,
+      "plan_pattern": "cellular-automata-simulation",
+      "plan_domain": "Complex Systems",
+      "plan_files_count": 6,
+      "project_type": "python_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='number' id='gridSize'>",
+          "expected": "Grid size should update and canvas should dynamically redraw with correct grid resolution."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ],
   "cso_reviews": [
@@ -8370,6 +9031,55 @@
       "praise": [
         "Decentralized-multi-agent-path-planning demonstrated strong algorithmic depth with potential applications in robotics and autonomous systems.",
         "Comparative-swarm-intelligence-algorithms showed interdisciplinary ambition with a solid analysis framework for evaluating multiple algorithms."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-19T08:00:28Z",
+      "issued_at_unix": 1779177628,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic depth and edge-case rigor, with a pattern of superficial implementations hiding under ambitious labels. Repeated failures in physics-based simulation and raymarching suggest foundational gaps in numerical methods and computational geometry expertise.",
+      "concerns": [
+        "Generative art projects lack evidence of algorithmic novelty (e.g., no mention of advanced noise models like Perlin, Worley, or cellular automata).",
+        "Cryptographic tools show limited ambition, focusing on visualization rather than mathematical depth (e.g., no mention of zero-knowledge proofs or lattice-based cryptography).",
+        "Refusal of physics simulation projects indicates weak numerical stability and edge-case handling in soft-body physics.",
+        "No shipped projects in web_3D despite it being an unexplored high-priority type."
+      ],
+      "directives": [
+        "Prioritize a web_3D project to address the unexplored domain and type diversity gap. Ensure the project leverages adaptive raymarching algorithms with edge-case rigor for singularities and empty inputs.",
+        "Demand deep physics-correct numerical methods for simulations, including implicit integration schemes for stability in soft-body dynamics.",
+        "Incorporate advanced generative algorithms like cellular automata or reaction-diffusion systems for emergent patterns in visualizations.",
+        "Require information-theoretic depth in cryptographic tools, such as probabilistic encryption schemes or entropy-based analysis."
+      ],
+      "praise": [
+        "Efforts to explore emergent systems and swarm intelligence are commendable, showing interdisciplinary ambition.",
+        "Shipping an interactive cryptographic simulator demonstrates potential for educational tools, though algorithmic depth is needed."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-19T18:19:46Z",
+      "issued_at_unix": 1779214786,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects show algorithmic shallowness, with generative art and cryptography tools leaning towards surface-level implementations. Refused builds highlight promising but underdeveloped deep-tech directions.",
+      "concerns": [
+        "Generative art projects lack mathematical rigor or novel algorithmic approaches (e.g., dynamic-audio-visual-sculpture and textural-simulations-in-noise).",
+        "Cryptography tools (visual-cryptography-tool, interactive-cryptographic-simulator) appear to be wrappers rather than implementations of deep cryptographic techniques (e.g., lattice-based crypto, zero-knowledge proofs).",
+        "Physics-based simulation (soft-body physics) projects failed QA, suggesting insufficient algorithmic depth or numerical correctness.",
+        "Edge-case rigor is absent in most projects, with no evidence of robust handling for boundary conditions or singularities."
+      ],
+      "directives": [
+        "Focus the next project on 'web_3d' type to address the lack of diversity and push algorithmic innovation in graphics and simulations.",
+        "Develop a 'dynamic-raymarching-visualizer' with adaptive raymarching algorithms leveraging numerical methods for precision and edge-case handling (e.g., surface intersections, singular points).",
+        "Incorporate a physically accurate light transport model (e.g., photon mapping or bidirectional path tracing) to ensure simulation fidelity.",
+        "Integrate procedural generation algorithms with information-theoretic principles, such as maximizing entropy or utilizing fractal geometry, for emergent 3D structures.",
+        "Implement formal verification techniques for the raymarching logic to ensure correctness under extreme edge cases (e.g., degenerate geometry)."
+      ],
+      "praise": [
+        "Comparative-swarm-intelligence-algorithms offers an interdisciplinary analysis, which is intellectually substantive.",
+        "Emergent-patterns-generator demonstrates ambition in emergent systems, though it could benefit from deeper mathematical modeling."
       ],
       "reviewed_project_count": 8
     }
