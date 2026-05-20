@@ -8577,6 +8577,34 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-20T06:38:07Z",
+      "attempted_at_unix": 1779259087,
+      "date": "2026-05-20",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "cellular-automata-visualization-tool",
+      "plan_language": "Python",
+      "plan_complexity": 46,
+      "plan_pattern": "cellular-automata-simulation",
+      "plan_domain": "Complex Systems",
+      "plan_files_count": 6,
+      "project_type": "python_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<input type='number' id='gridSize'>",
+          "expected": "Grid size should update and canvas should dynamically redraw with correct grid resolution."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ],
   "cso_reviews": [
