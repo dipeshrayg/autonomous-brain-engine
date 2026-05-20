@@ -2358,6 +2358,35 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "name": "2026-05-19-dynamic-audio-visual-sculpture",
+      "date": "2026-05-19",
+      "shipped_at": "2026-05-19T16:53:50Z",
+      "shipped_at_unix": 1747669830,
+      "repo_url": "https://github.com/dipeshrayg/2026-05-19-dynamic-audio-visual-sculpture",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-19-dynamic-audio-visual-sculpture/",
+      "complexity_score": 45,
+      "project_type": "generative_art",
+      "language": "JavaScript",
+      "pattern": "audio-visual-sculpture",
+      "domain": "Generative Art",
+      "files": [
+        "index.html",
+        "script.js",
+        "style.css"
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "dead_controls": [],
+        "missing_features": []
+      },
+      "final_verify_metrics": {
+        "interactive_tested": 4,
+        "interactive_live": 4,
+        "interactive_dead": 0
+      },
+      "note": "Memory record recovered — Pages fixed 2026-05-20 (canvas reset bug + oscillator reuse bug patched)"
     }
   ],
   "complexity_trajectory": [
@@ -2516,7 +2545,8 @@
     "homomorphic encryption",
     "interactive visualization",
     "data input/output",
-    "educational interface"
+    "educational interface",
+    "audio-visual-sculpture"
   ],
   "patterns_used": [
     "visualizer",
