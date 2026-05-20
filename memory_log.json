@@ -2550,6 +2550,92 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-20",
+      "completed_at": "2026-05-20T08:09:49Z",
+      "completed_at_unix": 1779264589,
+      "name": "cellular-automata-simulation-tool",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-20-cellular-automata-simulation-tool",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-20-cellular-automata-simulation-tool/",
+      "language": "python",
+      "project_type": "python_tool",
+      "tech_stack": [
+        "python",
+        "numpy",
+        "matplotlib",
+        "tkinter"
+      ],
+      "complexity_score": 47,
+      "concepts_demonstrated": [
+        "cellular automata",
+        "simulation",
+        "interactive visualization",
+        "parameter manipulation"
+      ],
+      "novel_concepts": [
+        "advanced constraint solving",
+        "Bayesian inference optimization",
+        "formal verification techniques"
+      ],
+      "advancement_axis": "Integrating advanced algorithms into a user-friendly simulation tool.",
+      "pattern": "cellular-automata-simulation",
+      "domain": "Computer Science",
+      "visual_identity": "Earthy color palette with organic shapes, minimalist typography, and a clear layout focused on usability.",
+      "safety_notes": "The application handles user inputs carefully to avoid unexpected crashes. Thorough testing is conducted to ensure edge cases are managed.",
+      "file_count": 7,
+      "loc": 817,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "main.py",
+        "exit_code": 0,
+        "stdout_chars": 184,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "requirements.txt": "gpt-4o",
+          "main.py": "gpt-4o",
+          "rules.py": "gpt-4o",
+          "utils.py": "gpt-4o",
+          "visualization.py": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a python_tool focusing on an innovative domain such as cellular automata or information theory (e.g., a tool to visualize and simulate complex automata patterns).",
+        "Prioritize simplicity and robustness in this project to ensure it ships successfully.",
+        "Avoid any raymarching or 3D-related tasks, as the system cannot handle them effectively at this time.",
+        "Revisit the core architecture of the web_3d pipeline to diagnose and resolve persistent failures, but do not attempt another web_3d project until a successful type has shipped.",
+        "For future projects, explore emerging domains like robotic logic algorithms or audio/DSP for novelty and boundary-pushing."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Several key controls function but there are issues with neighborhood tooltips persisting and grid-size validation breaking interaction. Grid visualization updates correctly with simulation, but there are state-sync issues in specific controls.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "button#reset_simulation",
+            "expected": "clears the grid and restarts with the default parameters",
+            "actual": "clears the grid visually but defaults are not re-applied; simulation cannot restart as initial grid is undefined",
+            "fix": "Ensure resetSimulation() initializes the grid with default settings and updates state.gridSize."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "input#grid_size validation",
+            "why_missing": "Validation on the input disables the run button when an invalid number is entered, but does not re-enable it when corrected.",
+            "fix": "Ensure that validateGridSizeInput() re-enables the run button when valid numbers are entered."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2581,7 +2667,8 @@
     40,
     42,
     43,
-    45
+    45,
+    47
   ],
   "concepts_explored": [
     "neural networks",
@@ -2718,7 +2805,8 @@
     "real-time audio manipulation",
     "dynamic visual responses",
     "user interaction with audio-visual feedback",
-    "parameter-driven generation"
+    "parameter-driven generation",
+    "simulation"
   ],
   "patterns_used": [
     "visualizer",
@@ -2743,7 +2831,8 @@
     "real-time-strategy",
     "interactive-educational",
     "abstract-puzzle",
-    "audio-visual-sculpture"
+    "audio-visual-sculpture",
+    "cellular-automata-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -2768,7 +2857,8 @@
     "Game Design",
     "Cryptography",
     "Mathematics",
-    "Generative Art"
+    "Generative Art",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
