@@ -2636,6 +2636,95 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-05-21",
+      "completed_at": "2026-05-21T12:40:33Z",
+      "completed_at_unix": 1779367233,
+      "name": "swarm-coordination-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-21-swarm-coordination-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-21-swarm-coordination-simulator/",
+      "language": "python",
+      "project_type": "python_tool",
+      "tech_stack": [
+        "numpy",
+        "matplotlib"
+      ],
+      "complexity_score": 48,
+      "concepts_demonstrated": [
+        "Robot coordination",
+        "Swarm algorithms",
+        "Dynamic feedback systems",
+        "Agent-based modeling"
+      ],
+      "novel_concepts": [
+        "Decentralized decision-making",
+        "Real-time coordination strategies",
+        "Emergent behavior in collective systems"
+      ],
+      "advancement_axis": "Focus on robust algorithmic functions rather than superficial interactive elements.",
+      "pattern": "swarm-coordination-simulator",
+      "domain": "Robotics",
+      "visual_identity": "Palette of soft blues and greens, clean typography focused on readability, and a structured output layout.",
+      "safety_notes": "No usage of malicious soft-ware. Simulator operates in compliance with educational and ethical guidelines.",
+      "file_count": 6,
+      "loc": 670,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "simulation.py",
+        "exit_code": 0,
+        "stdout_chars": 47,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "README.md": "gpt-4o",
+          "requirements.txt": "gpt-4o",
+          "simulation.py": "gpt-4o",
+          "visualization.py": "gpt-4o",
+          "tests.py": "gpt-4o",
+          "index.html": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a python_tool focused on robotics, specifically a swarm coordination simulator with dynamic, real-time feedback.",
+        "Do not include any 3D rendering or web-based interactivity; focus solely on core algorithmic functionality and visualization via terminal or simple plots.",
+        "Avoid cryptography and cellular automata domains entirely to prevent redundancy — explore a robotics or AI planning concept instead.",
+        "Demand robustness over scope: ensure the delivered project passes QA with no dead or missing features, even if the scope must be reduced.",
+        "Prioritize scalability in the system design so future iterations can add complexity or visualization layers."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The swarm coordination simulator functions for basic controls but has significant state-sync and visual-update issues that need fixing for full usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "input[type='number']",
+            "expected": "Updates number of agents and visibly alters the swarm simulation display",
+            "actual": "Number of agents updates state but visualization does not immediately reflect the change until simulation is manually restarted",
+            "fix": "Ensure `update_num_agents` triggers a full re-render of visualization in real-time by explicitly calling `refresh_visualization()` after state mutation."
+          },
+          {
+            "control": "button",
+            "expected": "Runs simulation and shows animated agent movement on canvas",
+            "actual": "Simulation state updates but animation on canvas does not start reliably; often requires manual intervention (e.g., re-triggering visualize)",
+            "fix": "Ensure `on_button_click_run_simulation()` properly invokes both `run()` and `visualize()` without race conditions or reliance on stale states."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "real-time update of interaction radius",
+            "why_missing": "Changing the interaction radius updates state but does not visibly alter agent paths or interaction zones immediately.",
+            "fix": "Link `update_interaction_radius` to the visualization pipeline to trigger live re-computation and re-render of interaction zones without waiting for simulation restart."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2668,7 +2757,8 @@
     42,
     43,
     45,
-    47
+    47,
+    48
   ],
   "concepts_explored": [
     "neural networks",
@@ -2806,7 +2896,11 @@
     "dynamic visual responses",
     "user interaction with audio-visual feedback",
     "parameter-driven generation",
-    "simulation"
+    "simulation",
+    "Robot coordination",
+    "Swarm algorithms",
+    "Dynamic feedback systems",
+    "Agent-based modeling"
   ],
   "patterns_used": [
     "visualizer",
@@ -2832,7 +2926,8 @@
     "interactive-educational",
     "abstract-puzzle",
     "audio-visual-sculpture",
-    "cellular-automata-simulation"
+    "cellular-automata-simulation",
+    "swarm-coordination-simulator"
   ],
   "domains_used": [
     "Mathematics",
@@ -2858,7 +2953,8 @@
     "Cryptography",
     "Mathematics",
     "Generative Art",
-    "Computer Science"
+    "Computer Science",
+    "Robotics"
   ],
   "ceo_reviews": [
     {
