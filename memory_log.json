@@ -2725,6 +2725,92 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-05-21",
+      "completed_at": "2026-05-21T22:34:22Z",
+      "completed_at_unix": 1779402862,
+      "name": "simple-3d-cellular-automata",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-21-simple-3d-cellular-automata",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-21-simple-3d-cellular-automata/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 50,
+      "concepts_demonstrated": [
+        "Cellular automata",
+        "3D spatial visualization",
+        "Neighbor interaction dynamics"
+      ],
+      "novel_concepts": [
+        "Spatial state changes in 3D",
+        "Basic interaction controls",
+        "User-defined initial configurations"
+      ],
+      "advancement_axis": "Established foundational approaches to 3D conceptual modeling and cellular interactions, paving the way for more complex future simulations.",
+      "pattern": "cellular-automata-visualization",
+      "domain": "Computer Graphics",
+      "visual_identity": "Light blues and greens for a calming palette, modern sans-serif typography, with a grid-based layout designed for clarity in state representation.",
+      "safety_notes": "Project complies with GitHub TOS. Contains no active malware or harmful features, designed for educational purposes.",
+      "file_count": 6,
+      "loc": 454,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 222,
+        "bodyHtml": 1360,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "3D Cellular Automata Visualization",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o-mini",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "lib/three.min.js": "gpt-4o",
+          "README.md": "gpt-4o",
+          "examples/data.json": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type web_3d, focusing on a novel, simple, and shippable implementation to establish a baseline for this underexplored type.",
+        "Develop a basic interactive 3D cellular automata visualization using Three.js. Prioritize simplicity and correctness over complexity or ambitious features.",
+        "Use a modular architecture to enable future expansions but ensure the core implementation is minimal and robust enough to pass QA.",
+        "Avoid features that have caused failures, such as soft-body physics or overly complex simulations, until stability in the 3D domain is proven.",
+        "Do not repeat any time-manipulation or swarm-based concepts in the near term; focus on a new, approachable domain."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All controls function correctly, visual updates reflect state changes, and the promised features of the 3D cellular automata visualization are fully operational.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -2758,7 +2844,8 @@
     43,
     45,
     47,
-    48
+    48,
+    50
   ],
   "concepts_explored": [
     "neural networks",
@@ -2900,7 +2987,10 @@
     "Robot coordination",
     "Swarm algorithms",
     "Dynamic feedback systems",
-    "Agent-based modeling"
+    "Agent-based modeling",
+    "Cellular automata",
+    "3D spatial visualization",
+    "Neighbor interaction dynamics"
   ],
   "patterns_used": [
     "visualizer",
@@ -2927,7 +3017,8 @@
     "abstract-puzzle",
     "audio-visual-sculpture",
     "cellular-automata-simulation",
-    "swarm-coordination-simulator"
+    "swarm-coordination-simulator",
+    "cellular-automata-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -2954,7 +3045,8 @@
     "Mathematics",
     "Generative Art",
     "Computer Science",
-    "Robotics"
+    "Robotics",
+    "Computer Graphics"
   ],
   "ceo_reviews": [
     {
