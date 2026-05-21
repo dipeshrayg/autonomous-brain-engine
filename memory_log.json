@@ -9174,6 +9174,50 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-21T19:08:07Z",
+      "attempted_at_unix": 1779390487,
+      "date": "2026-05-21",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 1 missing features, 9 verifier blocker(s).",
+      "plan_name": "visual-3d-abstract-puzzle",
+      "plan_language": "JavaScript",
+      "plan_complexity": 50,
+      "plan_pattern": "abstract-3d-puzzle",
+      "plan_domain": "Games",
+      "plan_files_count": 7,
+      "project_type": "web_3d",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "button#reset",
+          "expected": "resets the puzzle state to the initial configuration and smoothly reverts shapes to their starting positions"
+        },
+        {
+          "control": "button#generate-new",
+          "expected": "generates a new puzzle configuration and fades out existing shapes while fading in new shapes"
+        },
+        {
+          "control": "input#difficulty-control",
+          "expected": "updates puzzle difficulty and regenerates puzzle configurations dynamically"
+        },
+        {
+          "control": "button#pause",
+          "expected": "toggles game pause state and updates button label ('Pause' / 'Resume') while halting animations"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "3D-shape manipulation"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
