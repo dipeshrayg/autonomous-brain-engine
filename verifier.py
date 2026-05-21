@@ -358,6 +358,7 @@ _SNAPSHOT_JS = """() => {
     let cHash = 'none';
     if (c) {
         try {
+            // Try 2D canvas first (web_interactive, generative_art, game_web)
             const ctx = c.getContext('2d');
             if (ctx && c.width && c.height) {
                 const w = Math.min(c.width, 100), h = Math.min(c.height, 100);
@@ -368,14 +369,31 @@ _SNAPSHOT_JS = """() => {
                 }
                 cHash = h32;
             }
-        } catch (e) { /* tainted canvas, leave as 'none' */ }
+        } catch (e) { /* tainted or WebGL canvas */ }
+        if (cHash === 'none') {
+            try {
+                // Fallback: WebGL canvas (web_3d / Three.js projects)
+                const gl = c.getContext('webgl') || c.getContext('webgl2');
+                if (gl && c.width && c.height) {
+                    const px = new Uint8Array(4);
+                    // Sample centre pixel + a corner to catch uniform changes
+                    gl.readPixels(Math.floor(c.width/2), Math.floor(c.height/2), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
+                    cHash = (px[0] << 16) | (px[1] << 8) | px[2];
+                }
+            } catch (e) { /* WebGL readPixels may also fail in headless */ }
+        }
     }
+    // Also capture all numeric value-display elements (e.g. <span class="value-display">)
+    // web_3d controls update these; DOM text change = live control confirmed
+    const displays = [...document.querySelectorAll('[data-value],[class*="display"],[class*="readout"],[class*="value"],[id*="display"],[id*="readout"],[id*="value"]')]
+        .map(el => el.textContent || '').join('|').slice(0, 300);
     return {
         html_size: document.body.innerHTML.length,
         text: (document.body.innerText || '').slice(0, 500),
         canvas: cHash,
         ls: JSON.stringify(Object.entries(localStorage)).length,
         scroll: window.scrollY,
+        displays,
     };
 }"""
 
@@ -497,6 +515,7 @@ def _run_interaction_test(page, max_controls: int = 12, settle_ms: int = 400) ->
             or before["canvas"] != after["canvas"]
             or before["ls"] != after["ls"]
             or before["scroll"] != after["scroll"]
+            or before.get("displays", "") != after.get("displays", "")
         )
 
         if changed:

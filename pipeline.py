@@ -203,9 +203,14 @@ RULES:
   - Every <input type="number">, <input type="text">, and <textarea> MUST have an oninput or onchange event listener that reads .value and triggers a state update + re-render.
   - Never let a user-editable field sit unwired. If the field sets grid size, call resizeGrid() in the listener. If it sets a parameter, re-run the simulation.
   - Pattern: input.addEventListener('input', e => { state.param = +e.target.value; redraw(); });
-- WEB_3D CONTROLS (critical — sliders in WebGL scenes must trigger re-render):
-  - In Three.js / WebGL projects, every slider/button MUST call renderer.render(scene, camera) or trigger the animation loop after updating the uniform/material/geometry.
-  - Controls that mutate a Three.js uniform but don't re-render produce dead controls. Always call render() or ensure the RAF loop is running before user interaction begins.
+- WEB_3D CONTROLS (critical — ALL Three.js/WebGL controls must pass the interaction test):
+  - Every slider/button MUST call renderer.render(scene, camera) or ensure the animation RAF loop is already running continuously BEFORE any user interaction.
+  - MANDATORY DOM VALUE DISPLAYS: For EVERY slider and numeric control, add a paired <span> or <div> that shows the current value and updates on each input event. Example:
+      <label>Speed: <span id="speed-val">1.0</span></label>
+      <input type="range" id="speed" min="0.1" max="5" step="0.1" value="1.0">
+      // In JS: speedSlider.addEventListener('input', e => { state.speed = +e.target.value; document.getElementById('speed-val').textContent = state.speed.toFixed(1); renderer.render(scene, camera); });
+  - These DOM text updates are HOW the automated interaction test detects that a control is alive. Without them, every Three.js control appears dead.
+  - Never rely on the WebGL canvas pixel change alone — always pair every control with a DOM text readout.
 
 OUTPUT — single JSON: {"path": "...", "content": "<full file>"}.
 """
