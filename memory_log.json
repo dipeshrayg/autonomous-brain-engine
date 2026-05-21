@@ -8912,6 +8912,49 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-21T06:29:04Z",
+      "attempted_at_unix": 1779344944,
+      "date": "2026-05-21",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 0 verifier blocker(s).",
+      "plan_name": "time-manipulation-adventure",
+      "plan_language": "javascript",
+      "plan_complexity": 48,
+      "plan_pattern": "time-manipulating-puzzle",
+      "plan_domain": "Game Design",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<button type='button'>Rewind</button>",
+          "expected": "Rewinds the game state to the previous moment and displays visually rewound states."
+        },
+        {
+          "control": "<button type='button'>Fast Forward</button>",
+          "expected": "Speeds up time and advances game state, updating the visuals accordingly."
+        },
+        {
+          "control": "<button type='button'>Play</button>",
+          "expected": "Initializes or restarts the game with a fresh state and resets the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Time manipulation mechanics (Rewind, Fast Forward, Play)"
+        },
+        {
+          "feature": "Dynamic puzzles adapting to time manipulation"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
