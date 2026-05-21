@@ -8955,6 +8955,49 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-21T08:23:32Z",
+      "attempted_at_unix": 1779351812,
+      "date": "2026-05-21",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 3 verifier blocker(s).",
+      "plan_name": "emergent-time-escape-puzzle",
+      "plan_language": "javascript",
+      "plan_complexity": 48,
+      "plan_pattern": "time-manipulation-puzzle",
+      "plan_domain": "Game Development",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Rewind Time button (<button>#rewind-button)",
+          "expected": "Triggers time rewind and shows a visual ripple effect on canvas"
+        },
+        {
+          "control": "Pause Time button (<button>#pause-button)",
+          "expected": "Pauses AI movement and displays 'Paused' overlay on canvas"
+        },
+        {
+          "control": "Speed Up Time button (<button>#speedup-button)",
+          "expected": "Speeds up visual effects and gameplay entities on canvas"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Canvas rendering updates with time manipulation"
+        },
+        {
+          "feature": "Visual time ripple effect for rewind"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
