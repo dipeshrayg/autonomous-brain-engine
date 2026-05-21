@@ -8998,6 +8998,38 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-21T10:07:28Z",
+      "attempted_at_unix": 1779358048,
+      "date": "2026-05-21",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 1 missing features, 4 verifier blocker(s).",
+      "plan_name": "swarm-navigators-challenge",
+      "plan_language": "javascript",
+      "plan_complexity": 48,
+      "plan_pattern": "dynamic-swarm-challenge",
+      "plan_domain": "Game Design",
+      "plan_files_count": 7,
+      "project_type": "game_web",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "<button type='button'>Start Game</button>",
+          "expected": "initiate the game state and transition to main game view"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Scoreboard updates during gameplay"
+        }
+      ],
+      "final_interaction": {
+        "tested": 2,
+        "live": 1,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
