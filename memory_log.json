@@ -9357,6 +9357,29 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-22T06:39:44Z",
+      "attempted_at_unix": 1779431984,
+      "date": "2026-05-22",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 0 round(s). verdict=partially_usable, 0 dead controls, 0 missing features, 2 verifier blocker(s).",
+      "plan_name": "emergent-ai-battle-arena",
+      "plan_language": "JavaScript",
+      "plan_complexity": 51,
+      "plan_pattern": "emergent-gameplay",
+      "plan_domain": "Game Design",
+      "plan_files_count": 7,
+      "project_type": "game_web",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 4,
+        "dead": 0
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
