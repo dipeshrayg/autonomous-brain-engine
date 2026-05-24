@@ -1,0 +1,64 @@
+name: Self-Improvement (CTO)
+
+# The CTO meta-agent. Runs after every CEO review and after daily builds.
+# Reads failure patterns from memory_log.json, reads the pipeline source,
+# and patches its own code to fix recurring problems.
+#
+# This is the layer that gives the system true autonomy — it can fix
+# its own prompts, its own verifier logic, and its own quality gates
+# without any human intervention.
+
+on:
+  workflow_run:
+    workflows: ["CEO Review"]
+    types: [completed]
+  schedule:
+    - cron: "45 3 * * *"    # 03:45 UTC daily — after overnight builds
+    - cron: "45 15 * * *"   # 15:45 UTC daily — midday check
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  models: read
+
+concurrency:
+  group: self-improve
+  cancel-in-progress: false
+
+jobs:
+  improve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # need full history for accurate git push
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai>=1.30.0
+
+      - name: Run CTO self-improvement
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python self_improve.py
+
+      - name: Pull before push (avoid conflicts with concurrent pipeline runs)
+        if: always()
+        run: |
+          git config user.name  "cto-bot[autonomous-brain]"
+          git config user.email "cto-bot@users.noreply.github.com"
+          git pull --rebase origin main || true
+
+      - name: Push any patches
+        if: always()
+        run: |
+          git push || true

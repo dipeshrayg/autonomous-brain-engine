@@ -49,6 +49,7 @@ ROLE_PRIMARY: dict[str, str] = {
     # Executive layer
     "ceo":                   "gpt-4o",
     "cso":                   "gpt-4o",   # Chief Science Officer (experimental)
+    "cto":                   "gpt-4o",   # Chief Technology Officer (self-improvement)
     "vp_eng":                "gpt-4o",   # pragmatic feasibility check
 
     # Plan stage
@@ -74,6 +75,7 @@ ROLE_PRIMARY: dict[str, str] = {
 ROLE_FALLBACK: dict[str, list[str]] = {
     "ceo":                   ["gpt-4o-mini"],
     "cso":                   ["gpt-4o-mini"],
+    "cto":                   ["gpt-4o-mini"],
     "vp_eng":                ["gpt-4o-mini"],
     "architect_judge":       ["gpt-4o-mini"],
     "architect_candidate_a": ["gpt-4o"],
