@@ -268,13 +268,12 @@ def render_dashboard(memory: dict[str, Any], owner: str,
         run_cell = " · ".join(run_links) if run_links else "—"
         pattern = p.get("pattern", "—")
         domain = p.get("domain", "—")
-        plan_model = (p.get("model_attribution") or {}).get("plan_judge", "—")
         rows.append(
             f"| {p.get('date')} | [{p.get('name')}]({p.get('repo_url')}) "
             f"| {p.get('language')} | {p.get('complexity_score')} | {pattern} | {domain} "
-            f"| {plan_model} | {concepts} | {run_cell} |"
+            f"| {concepts} | {run_cell} |"
         )
-    table = "\n".join(rows) if rows else "| — | _no projects yet_ | — | — | — | — | — | — | — |"
+    table = "\n".join(rows) if rows else "| - | _no projects yet_ | - | - | - | - | - | - |"
 
     # CEO board summary
     ceo_block = ""
