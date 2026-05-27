@@ -18,11 +18,12 @@ without any human intervention.
 
 | Metric | Value |
 |---|---|
-| Projects shipped | 29+ |
-| Refused builds | 90+ |
+| Projects shipped | 34+ |
+| Refused builds | 108+ |
 | Complexity range | 3 to 52 (open-ended, no cap) |
-| Project types | 10 types |
-| AI models in boardroom | 8 across 3 providers |
+| Project types available | 10 types |
+| Project types shipped so far | 6 types |
+| AI models in boardroom | 13 roles across 3 providers |
 | Providers | GitHub Models + Groq + Google AI Studio |
 | Daily builds | Up to 5/day, fully autonomous |
 | Human interventions required | 0 |
@@ -40,10 +41,11 @@ without any human intervention.
 | Hosting | GitHub Pages (static, unlimited bandwidth) |
 | Storage | GitHub repos + memory_log.json |
 
-### The Boardroom: 8 models, 3 providers
+### The Boardroom: 13 roles, 3 providers
 
 Each role uses a different model family so the adversarial conference
-produces genuinely diverse perspectives:
+produces genuinely diverse perspectives. Groq is used for Mistral and Meta
+models due to its ultra-fast free-tier inference:
 
 | Role | Model | Provider | Purpose |
 |---|---|---|---|
@@ -63,17 +65,19 @@ produces genuinely diverse perspectives:
 
 All roles have gpt-4o / gpt-4o-mini as guaranteed final fallback.
 Missing API keys are silently skipped - the pipeline never crashes.
+Groq provides the Mistral (Mixtral) and Meta (Llama) perspectives at zero cost.
 
 ### Pipeline stages
 
 ```
 STAGE 1    ARCHITECT CONFERENCE
-           Candidate A (Mixtral via Groq) + Candidate B (Llama via Groq) propose plans in parallel
+           Candidate A (Mixtral/Groq) + Candidate B (Llama/Groq) propose plans in parallel
            Validator: banned types, repeated patterns, complexity floor, novel concept check
            Judge (GPT-4o) synthesises or proposes its own unpredictable plan
 
 STAGE 2    IMPLEMENT
            Engineer (GPT-4o) writes each file with full sibling context
+           Encoding rules enforced: UTF-8 charset meta, utf-8 open() calls
 
 STAGE 3+4  QUALITY LOOP (up to 8 rounds)
            Reviewer A (Mixtral/Groq) + Reviewer B (Gemini) in parallel
@@ -85,6 +89,7 @@ STAGE 5    POLISH (with rollback)
 
 STAGE 6    FINAL VERIFY
            Playwright: page load, canvas render, control interaction tests
+           WebGL pixel sampling for 3D/shader projects
            Console error analysis (noise-filtered)
 
 STAGE 6.4  QA REVIEW
@@ -111,18 +116,18 @@ STAGE 8    MEMORY + DASHBOARD
 
 ### Project types (10)
 
-| Type | Description | Verifier |
-|---|---|---|
-| web_interactive | HTML+JS+Canvas browser demos | Playwright |
-| web_3d | Three.js/WebGL scenes | Playwright |
-| game_web | Browser games with rules + state | Playwright |
-| generative_art | Visual output (canvas/SVG) | Playwright |
-| shader_art | GLSL fragment shaders, pure WebGL | Playwright |
-| typescript_app | TypeScript via esm.sh CDN | Playwright |
-| python_tool | Standalone Python programs | Subprocess |
-| data_viz | Python matplotlib/plotly + SVG embed | Subprocess |
-| cli_tool | Rust or Go CLI + Codespaces devcontainer | File check + Playwright |
-| document | Markdown research/proposals | Structure check |
+| Type | Description | Verifier | Status |
+|---|---|---|---|
+| web_interactive | HTML+JS+Canvas browser demos | Playwright | Active (15 shipped) |
+| game_web | Browser games with rules + state | Playwright | Active (5 shipped) |
+| python_tool | Standalone Python programs | Subprocess | Active (6 shipped) |
+| generative_art | Visual output (canvas/SVG) | Playwright | Active (4 shipped) |
+| document | Markdown research/proposals | Structure check | Active (3 shipped) |
+| web_3d | Three.js/WebGL scenes | Playwright | Active (1 shipped) |
+| shader_art | GLSL fragment shaders, pure WebGL | Playwright | New - targeting |
+| data_viz | Python matplotlib/plotly + SVG embed | Subprocess | New - targeting |
+| typescript_app | TypeScript via esm.sh CDN | Playwright | New - targeting |
+| cli_tool | Rust or Go CLI + Codespaces devcontainer | File check + Playwright | New - targeting |
 
 All types produce an index.html for GitHub Pages.
 
@@ -135,6 +140,15 @@ After every CEO review, self_improve.py:
 4. Validates Python syntax with ast.parse() before writing
 5. Commits the patch - next build runs improved code automatically
 6. Logs all improvements to memory_log.json (never re-applies the same fix)
+
+### Quality gates
+
+- **Type ban system**: any project type that fails 3+ times consecutively is auto-banned until a different type ships
+- **Complexity floor**: each plan must meet a minimum complexity threshold (rises with type history)
+- **Novel concept check**: plan must introduce at least one concept not in the last 14 projects
+- **Predictability filter**: Judge rejects derivative ideas before any code is written
+- **Interaction test**: Playwright clicks every button and slider, flags dead controls before ship
+- **QA verdict**: LLM simulates user pathways and issues shippable / partially_usable / non_functional verdict
 
 ---
 
@@ -164,8 +178,8 @@ After every CEO review, self_improve.py:
 | Secret | Where to get it | Required |
 |---|---|---|
 | GH_PAT | GitHub > Settings > Developer Settings > PAT (repo scope) | Yes |
-| GROQ_API_KEY | console.groq.com > API Keys | Recommended (free) |
-| GOOGLE_AI_KEY | aistudio.google.com > Get API Key | Recommended (free) |
+| GROQ_API_KEY | console.groq.com > API Keys | Recommended (free, provides Llama + Mixtral) |
+| GOOGLE_AI_KEY | aistudio.google.com > Get API Key | Recommended (free, provides Gemini) |
 
 GITHUB_TOKEN is provided automatically by GitHub Actions.
 If GROQ_API_KEY or GOOGLE_AI_KEY are absent, those models are silently
