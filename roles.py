@@ -1,32 +1,37 @@
 """
-roles.py — Project Evolution boardroom.
+roles.py — Multi-provider boardroom with genuine model diversity.
 
-Personas (each opinionated, each free to disagree):
+Every role now pulls from a different AI family so the adversarial
+conference actually has adversarial perspectives:
 
-    CEO              visionary, high-risk; pushes new domains; rejects derivative
-    CSO              Chief Science Officer; experimental edge-cases, novel algorithms,
-                     physics simulations, deep-tech research
-    VP Engineering   pragmatic anchor; ensures wild ideas are technically feasible
-                     but never stifles the domain shift
-    Judge            single metric: "is this predictable?" If yes, reject.
-                     Synthesizes architect candidates after applying that test.
-    Architect cands  multi-model conference proposing project plans in parallel
-    Engineer         per-file implementation
-    Reviewer A/B     parallel critique conference
-    QA Tester        VISUAL + STATE-SYNC tester. Click nodes, verify
-                     coordinate-math matches render, simulate user pathways.
-    QA Fixer         repairs dead controls + state-sync bugs
-    Fixer/Polisher   iterative repair + final UX polish
+    CEO              gpt-4o              (OpenAI — strategic synthesis)
+    CSO              llama-3.3-70b       (Meta via Groq — scientific novelty)
+    CTO              gemini-2.0-flash    (Google — code & self-improvement)
+    Architect A      Mistral-Large       (Mistral via GitHub Models)
+    Architect B      Meta-Llama-3.3-70B  (Meta via GitHub Models)
+    Judge            gpt-4o              (OpenAI — predictability filter)
+    Engineer         gpt-4o              (OpenAI — implementation quality)
+    Reviewer A       Mistral-Large       (Mistral — different lens from GPT)
+    Reviewer B       gemini-2.0-flash    (Google — third perspective)
+    QA Tester        gpt-4o              (OpenAI — strict user-pathway sim)
+    QA Fixer         gemini-2.0-flash    (Google — fast, capable repair)
+    Fixer            gpt-4o-mini         (OpenAI fast — iterative repair)
+    Polisher         Phi-4               (Microsoft via GitHub Models — UX polish)
 
-Note: the Security Officer role has been REMOVED in Project Evolution. The
-system trades pre-publish security review for build-friction reduction and
-domain expansion. Generated projects must still comply with platform TOS,
-but enforcement now lives in the system prompts, not a dedicated gate.
+Providers used (all zero-cost):
+    github   — GitHub Models API (GITHUB_TOKEN, always available in Actions)
+    groq     — Groq cloud (GROQ_API_KEY secret, free tier, very fast)
+    google   — Google AI Studio (GOOGLE_AI_KEY secret, Gemini free tier)
+
+If a provider's API key is missing, that model is silently skipped and the
+chain falls through to the next available model. The pipeline never crashes
+due to a missing optional key.
 """
 
 from __future__ import annotations
 
 import logging
+import os
 import time
 from typing import Any
 
@@ -35,82 +40,154 @@ from openai import OpenAI
 log = logging.getLogger("brain.roles")
 
 
-# ─────────────────────── Model registry ─────────────────────────────────
+# ─────────────────────── Provider registry ──────────────────────────────
 
-MODELS: dict[str, tuple[str, str]] = {
-    "gpt-4o":      ("gpt-4o",      "premium"),
-    "gpt-4o-mini": ("gpt-4o-mini", "fast"),
+PROVIDERS: dict[str, dict[str, str]] = {
+    "github": {
+        "base_url": "https://models.inference.ai.azure.com",
+        "env_var":  "GITHUB_TOKEN",
+    },
+    "groq": {
+        "base_url": "https://api.groq.com/openai/v1",
+        "env_var":  "GROQ_API_KEY",
+    },
+    "google": {
+        "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        "env_var":  "GOOGLE_AI_KEY",
+    },
+}
+
+# model_id → provider key
+MODEL_PROVIDER: dict[str, str] = {
+    # GitHub Models (OpenAI family)
+    "gpt-4o":                        "github",
+    "gpt-4o-mini":                   "github",
+    # GitHub Models (Microsoft)
+    "Phi-4":                         "github",
+    "Phi-3.5-mini-instruct":         "github",
+    # GitHub Models (Mistral)
+    "Mistral-Large-2411":            "github",
+    "Mistral-small":                 "github",
+    # GitHub Models (Meta)
+    "Meta-Llama-3.3-70B-Instruct":   "github",
+    "Meta-Llama-3.1-8B-Instruct":    "github",
+    # GitHub Models (Cohere)
+    "Cohere-command-r-plus-08-2024": "github",
+    # Groq (Meta Llama — ultra-fast inference)
+    "llama-3.3-70b-versatile":       "groq",
+    "llama-3.1-8b-instant":          "groq",
+    "mixtral-8x7b-32768":            "groq",
+    # Google AI Studio (Gemini)
+    "gemini-2.0-flash":              "google",
+    "gemini-1.5-flash":              "google",
+    "gemini-1.5-pro":                "google",
 }
 
 
-# ─────────────────────── Role → primary model ───────────────────────────
+def _get_client(model_id: str) -> OpenAI | None:
+    """Build an OpenAI-compatible client for the model's provider.
+    Returns None if the required API key is not set."""
+    provider_key = MODEL_PROVIDER.get(model_id, "github")
+    provider = PROVIDERS[provider_key]
+    api_key = os.environ.get(provider["env_var"])
+    if not api_key:
+        log.debug("Provider %s: env var %s not set — skipping model %s",
+                  provider_key, provider["env_var"], model_id)
+        return None
+    return OpenAI(base_url=provider["base_url"], api_key=api_key)
 
-ROLE_PRIMARY: dict[str, str] = {
-    # Executive layer
-    "ceo":                   "gpt-4o",
-    "cso":                   "gpt-4o",   # Chief Science Officer (experimental)
-    "cto":                   "gpt-4o",   # Chief Technology Officer (self-improvement)
-    "vp_eng":                "gpt-4o",   # pragmatic feasibility check
 
-    # Plan stage
-    "architect_judge":       "gpt-4o",   # the Judge — predictability filter
-    "architect_candidate_a": "gpt-4o-mini",
-    "architect_candidate_b": "gpt-4o-mini",
+# ─────────────────────── Role → model chain ─────────────────────────────
+# Each entry: [primary, fallback1, fallback2, ...]
+# Models from different families = genuinely adversarial boardroom.
+# github models are always attempted since GITHUB_TOKEN is always present.
 
-    # Build stages
-    "engineer":              "gpt-4o",
-    "reviewer_a":            "gpt-4o-mini",
-    "reviewer_b":            "gpt-4o-mini",
+ROLE_CHAIN: dict[str, list[str]] = {
+    # ── Executive layer ──────────────────────────────────────────────────
+    "ceo": [
+        "gpt-4o",                       # OpenAI — strategic synthesis
+        "Mistral-Large-2411",           # Mistral fallback
+        "gpt-4o-mini",
+    ],
+    "cso": [
+        "llama-3.3-70b-versatile",      # Meta via Groq — scientific novelty
+        "Meta-Llama-3.3-70B-Instruct",  # Meta via GitHub fallback
+        "gpt-4o",
+    ],
+    "cto": [
+        "gemini-2.0-flash",             # Google — code + self-improvement
+        "gemini-1.5-flash",             # Google fallback
+        "gpt-4o",                       # OpenAI final fallback
+    ],
+    "vp_eng": [
+        "Mistral-Large-2411",           # Mistral — pragmatic engineering
+        "gpt-4o",
+        "gpt-4o-mini",
+    ],
 
-    # QA — now visual + state-sync, not just console-watching
-    "qa_tester":             "gpt-4o",
-    "qa_fixer":              "gpt-4o",
+    # ── Planning layer ────────────────────────────────────────────────────
+    "architect_candidate_a": [
+        "Mistral-Large-2411",           # Mistral — different creative axis
+        "Meta-Llama-3.3-70B-Instruct",  # Meta fallback
+        "gpt-4o-mini",
+    ],
+    "architect_candidate_b": [
+        "Meta-Llama-3.3-70B-Instruct",  # Meta — open-source perspective
+        "llama-3.3-70b-versatile",      # Meta via Groq fallback
+        "gpt-4o-mini",
+    ],
+    "architect_judge": [
+        "gpt-4o",                       # OpenAI — predictability filter
+        "Mistral-Large-2411",
+    ],
 
-    # Iteration helpers
-    "fixer":                 "gpt-4o-mini",
-    "polisher":              "gpt-4o-mini",
+    # ── Implementation layer ──────────────────────────────────────────────
+    "engineer": [
+        "gpt-4o",                       # OpenAI — best implementation quality
+        "gemini-2.0-flash",             # Google fallback — strong coder
+        "gpt-4o-mini",
+    ],
+    "reviewer_a": [
+        "Mistral-Large-2411",           # Mistral — genuinely different from GPT
+        "Meta-Llama-3.3-70B-Instruct",
+        "gpt-4o-mini",
+    ],
+    "reviewer_b": [
+        "gemini-2.0-flash",             # Google — third independent perspective
+        "gemini-1.5-flash",
+        "gpt-4o-mini",
+    ],
+    "fixer": [
+        "gpt-4o-mini",
+        "Phi-4",                        # Microsoft — good at targeted fixes
+        "gpt-4o",
+    ],
+    "polisher": [
+        "Phi-4",                        # Microsoft Phi — good at UX refinement
+        "gpt-4o-mini",
+    ],
+
+    # ── QA layer ──────────────────────────────────────────────────────────
+    "qa_tester": [
+        "gpt-4o",                       # OpenAI — strict user-pathway simulation
+        "gemini-2.0-flash",
+    ],
+    "qa_fixer": [
+        "gemini-2.0-flash",             # Google — fast, capable repair
+        "gpt-4o",
+        "gpt-4o-mini",
+    ],
 }
 
 
-ROLE_FALLBACK: dict[str, list[str]] = {
-    "ceo":                   ["gpt-4o-mini"],
-    "cso":                   ["gpt-4o-mini"],
-    "cto":                   ["gpt-4o-mini"],
-    "vp_eng":                ["gpt-4o-mini"],
-    "architect_judge":       ["gpt-4o-mini"],
-    "architect_candidate_a": ["gpt-4o"],
-    "architect_candidate_b": ["gpt-4o"],
-    "engineer":              ["gpt-4o-mini"],
-    "reviewer_a":            ["gpt-4o"],
-    "reviewer_b":            ["gpt-4o"],
-    "qa_tester":             ["gpt-4o-mini"],
-    "qa_fixer":              ["gpt-4o-mini"],
-    "fixer":                 ["gpt-4o"],
-    "polisher":              ["gpt-4o"],
-}
-
-
-def model_for(role: str) -> str:
-    key = ROLE_PRIMARY.get(role)
-    if key is None:
-        raise ValueError(f"Unknown role: {role}")
-    return MODELS[key][0]
-
-
-def chain_for(role: str) -> list[str]:
-    primary = ROLE_PRIMARY[role]
-    fb = ROLE_FALLBACK.get(role, [])
-    return [MODELS[k][0] for k in [primary, *fb]]
-
-
-# ─────────────────────── Resilient call ─────────────────────────────────
+# ─────────────────────── Resilient multi-provider call ──────────────────
 
 class AllModelsFailed(RuntimeError):
     pass
 
 
 def call_with_fallback(
-    client: OpenAI,
+    client: OpenAI,          # kept for API compat — ignored (we build per-model clients)
     role: str,
     *,
     system: str,
@@ -121,25 +198,39 @@ def call_with_fallback(
     transient_attempts: int = 2,
     validator: "callable | None" = None,
 ) -> tuple[str, dict[str, Any]]:
-    """Walk the role's model chain until one returns a valid response."""
-    chain = chain_for(role)
+    """
+    Walk the role's model chain across multiple providers until one succeeds.
+    Each model may use a different provider (GitHub, Groq, Google).
+    Missing API keys are silently skipped.
+    """
+    chain = ROLE_CHAIN.get(role)
+    if not chain:
+        raise ValueError(f"Unknown role: {role!r}")
+
     last_err: Exception | None = None
 
-    for model in chain:
+    for model_id in chain:
+        provider_client = _get_client(model_id)
+        if provider_client is None:
+            continue  # API key not configured — skip silently
+
         for attempt in range(1, transient_attempts + 1):
             try:
                 kwargs: dict[str, Any] = dict(
-                    model=model,
+                    model=model_id,
                     messages=[
                         {"role": "system", "content": system},
-                        {"role": "user", "content": user},
+                        {"role": "user",   "content": user},
                     ],
                     max_tokens=max_tokens,
                     temperature=temperature,
                 )
-                if json_mode:
+                # Gemini doesn't support json_object response_format reliably
+                provider_key = MODEL_PROVIDER.get(model_id, "github")
+                if json_mode and provider_key != "google":
                     kwargs["response_format"] = {"type": "json_object"}
-                resp = client.chat.completions.create(**kwargs)
+
+                resp = provider_client.chat.completions.create(**kwargs)
                 text = resp.choices[0].message.content or ""
 
                 if validator is not None:
@@ -153,7 +244,7 @@ def call_with_fallback(
                         log.warning(
                             "[role=%s] model=%s attempt %d validator rejected "
                             "(finish=%s, len=%d): %s",
-                            role, model, attempt, finish_reason, len(text), ve,
+                            role, model_id, attempt, finish_reason, len(text), ve,
                         )
                         if finish_reason == "length":
                             break
@@ -163,32 +254,39 @@ def call_with_fallback(
                         break
 
                 meta: dict[str, Any] = {
-                    "role": role, "model": model, "attempt": attempt,
+                    "role": role, "model": model_id,
+                    "provider": MODEL_PROVIDER.get(model_id, "github"),
+                    "attempt": attempt,
                 }
                 if resp.usage:
-                    meta["prompt_tokens"] = resp.usage.prompt_tokens
+                    meta["prompt_tokens"]     = resp.usage.prompt_tokens
                     meta["completion_tokens"] = resp.usage.completion_tokens
-                log.info("[role=%s] model=%s attempt=%d OK (in=%d out=%d)",
-                         role, model, attempt,
-                         meta.get("prompt_tokens", -1),
-                         meta.get("completion_tokens", -1))
+                log.info("[role=%s] model=%s attempt=%d OK (in=%s out=%s)",
+                         role, model_id, attempt,
+                         meta.get("prompt_tokens", "?"),
+                         meta.get("completion_tokens", "?"))
                 return text, meta
+
             except Exception as e:
                 last_err = e
-                msg = str(e)[:240]
-                rate_limited = "429" in msg or "rate" in msg.lower() or "quota" in msg.lower()
-                if rate_limited:
-                    log.warning("[role=%s] model=%s rate-limited; falling back. %s",
-                                role, model, msg)
-                    break
+                msg = str(e)[:280]
+                rate_limited = (
+                    "429" in msg or "rate" in msg.lower()
+                    or "quota" in msg.lower() or "tokens_limit" in msg.lower()
+                )
+                too_large = "413" in msg or "tokens_limit_reached" in msg
+                if rate_limited or too_large:
+                    log.warning("[role=%s] model=%s attempt %d failed (%s); falling back",
+                                role, model_id, attempt, msg[:120])
+                    break  # try next model immediately
                 if attempt < transient_attempts:
                     backoff = 2 ** attempt
                     log.warning("[role=%s] model=%s attempt %d failed (%s); retrying in %ds",
-                                role, model, attempt, msg, backoff)
+                                role, model_id, attempt, msg[:120], backoff)
                     time.sleep(backoff)
                     continue
                 log.warning("[role=%s] model=%s exhausted retries (%s); falling back",
-                            role, model, msg)
+                            role, model_id, msg[:120])
                 break
 
     raise AllModelsFailed(
