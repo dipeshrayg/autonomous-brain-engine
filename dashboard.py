@@ -293,7 +293,9 @@ def render_dashboard(memory: dict[str, Any], owner: str,
                if last.get('concerns') else "")
         )
 
-    refused_count = len(memory.get("failed_builds", []))
+    # failed_builds is stripped by sanitize_memory before public sync;
+    # failed_builds_count is preserved as a scalar so the count survives.
+    refused_count = memory.get("failed_builds_count", len(memory.get("failed_builds", [])))
     type_counts: dict[str, int] = {}
     for p in projects:
         pt = p.get("project_type", "web_interactive")

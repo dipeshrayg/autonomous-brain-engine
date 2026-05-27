@@ -79,6 +79,8 @@ def sanitize_memory(memory: dict[str, Any]) -> dict[str, Any]:
             }
 
     # Refused-build history is private (full coaching data for CEO).
+    # Preserve the count so the public dashboard can display it accurately.
+    out["failed_builds_count"] = len(out.get("failed_builds", []))
     out.pop("failed_builds", None)
 
     # CEO + CSO: verdict + summary only (concerns + directives are internal coaching)
