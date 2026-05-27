@@ -256,7 +256,7 @@ def render_dashboard(memory: dict[str, Any], owner: str,
     latest = projects[0]["date"] if projects else "—"
 
     rows: list[str] = []
-    for p in projects[:30]:
+    for p in projects:
         concepts = ", ".join((p.get("concepts_demonstrated") or [])[:3])
         gh_path = (p.get("repo_url") or "").replace("https://github.com/", "")
         cs_url = f"https://codespaces.new/{gh_path}" if gh_path else ""
