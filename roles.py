@@ -129,12 +129,14 @@ ROLE_CHAIN: dict[str, list[str]] = {
     "architect_candidate_a": [
         "Mistral-Large-2411",           # Mistral — different creative axis
         "Meta-Llama-3.3-70B-Instruct",  # Meta fallback
-        "gpt-4o-mini",
+        "gpt-4o-mini",                  # OpenAI guaranteed fallback
+        "gpt-4o",
     ],
     "architect_candidate_b": [
         "Meta-Llama-3.3-70B-Instruct",  # Meta — open-source perspective
         "llama-3.3-70b-versatile",      # Meta via Groq fallback
-        "gpt-4o-mini",
+        "gpt-4o-mini",                  # OpenAI guaranteed fallback
+        "gpt-4o",
     ],
     "architect_judge": [
         "gpt-4o",                       # OpenAI — predictability filter
@@ -150,12 +152,12 @@ ROLE_CHAIN: dict[str, list[str]] = {
     "reviewer_a": [
         "Mistral-Large-2411",           # Mistral — genuinely different from GPT
         "Meta-Llama-3.3-70B-Instruct",
-        "gpt-4o-mini",
+        "gpt-4o-mini",                  # guaranteed fallback
     ],
     "reviewer_b": [
         "gemini-2.0-flash",             # Google — third independent perspective
         "gemini-1.5-flash",
-        "gpt-4o-mini",
+        "gpt-4o-mini",                  # guaranteed fallback
     ],
     "fixer": [
         "gpt-4o-mini",

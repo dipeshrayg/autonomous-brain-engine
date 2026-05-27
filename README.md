@@ -1,164 +1,200 @@
-# Autonomous Brain — Engine (private)
+# Autonomous Brain - Engine
 
-The private orchestrator that drives the public showcase at
-[github.com/dipeshrayg/autonomous-brain](https://github.com/dipeshrayg/autonomous-brain)
-and its live dashboard at [dipeshrayg.github.io/autonomous-brain](https://dipeshrayg.github.io/autonomous-brain/).
+The orchestrator that drives the public showcase at
+[dipeshrayg.github.io/autonomous-brain](https://dipeshrayg.github.io/autonomous-brain/).
 
-This repo must remain private. The prompts, model routing, CEO/CSO directives,
-internal critique transcripts, and full per-project model attribution all live
-here. Only sanitized snapshots reach the public side, pushed by
-[`publish_public.py`](publish_public.py) at the end of every workflow run.
+A zero-cost, fully autonomous multi-agent LLM pipeline that continuously conceives,
+architects, implements, quality-assures, and publishes novel software projects
+without any human intervention.
 
----
-
-## The pipeline at a glance
-
-Each daily build runs a 7-stage pipeline. Every stage is a separate LLM call
-or mechanical check; the next stage only runs if the previous succeeds.
-
-```
-PLAN  →  IMPLEMENT  →  CRITIQUE  →  FIX  →  POLISH  →  SECURITY  →  PUBLISH
-```
-
-- **PLAN** — multi-model architect *conference*. Two candidate models propose
-  a project plan in parallel; a judge model synthesizes the winner.
-- **IMPLEMENT** — one LLM call per file. The Engineer writes each file with
-  the plan and sibling files in context.
-- **CRITIQUE** — multi-model reviewer *conference*. Two reviewers find bugs in
-  parallel; their must-fix lists merge; most-pessimistic verdict wins.
-- **FIX** — Fixer applies the merged issues. Quality loop repeats up to 8×.
-- **POLISH** — Polisher elevates UX. Has automatic rollback if it regresses.
-- **SECURITY** — Chief Security Officer reviews for XSS, prototype pollution,
-  CDN integrity, prompt-injection, privacy, deception. Hard veto on
-  critical/high findings. One Fixer round granted; if still blocking, refuse
-  to publish.
-- **PUBLISH** — create new public repo `YYYY-MM-DD-<name>`, push code,
-  enable Pages, append to memory, regenerate dashboard, sync to public repo.
+**Total infrastructure cost: $0**
 
 ---
 
-## The boardroom
+## Live stats
 
-A hierarchy of LLMs with distinct roles. Models are routed via [`roles.py`](roles.py)
-with explicit fallback chains so per-model rate limits never break the pipeline.
-
-| Role | Primary model | Cadence | Source |
-|---|---|---|---|
-| **CEO** | gpt-4o | Every 6h | [`executive.py`](executive.py), [`ceo_review.yml`](.github/workflows/ceo_review.yml) |
-| **CSO** | gpt-4o | Every 12h | [`security_officer.py`](security_officer.py), [`security_review.yml`](.github/workflows/security_review.yml) |
-| **VP Engineering** (watchdog) | n/a (script) | Every 30 min | [`watchdog.yml`](.github/workflows/watchdog.yml) |
-| **Architect — Judge** | gpt-4o | per build | [`pipeline.py`](pipeline.py) `stage_plan` |
-| **Architect — Candidate A** | gpt-4o-mini | per build | conference |
-| **Architect — Candidate B** | Phi-3.5-MoE | per build | conference |
-| **Engineer** | gpt-4o | per file | [`pipeline.py`](pipeline.py) `stage_implement` |
-| **Reviewer A** | gpt-4o-mini | per cycle | conference |
-| **Reviewer B** | Phi-3.5-MoE | per cycle | conference |
-| **Security Officer** | gpt-4o | per build | [`pipeline.py`](pipeline.py) `stage_security_review` |
-| **Fixer** | gpt-4o-mini | per cycle | [`pipeline.py`](pipeline.py) `stage_fix` |
-| **Polisher** | gpt-4o-mini | once | [`pipeline.py`](pipeline.py) `stage_polish` |
-| **QA** | Playwright + Chromium | per cycle | [`verifier.py`](verifier.py) |
-
-Both the CEO and CSO write directives into `memory_log.json`; the next
-architect prompt receives the union of the most recent CEO and CSO
-directives, both of which it must obey.
-
----
-
-## Files
-
-| File | Job |
+| Metric | Value |
 |---|---|
-| [`brain.py`](brain.py) | Orchestrator — the slim entry point, runs the 7-stage pipeline. |
-| [`pipeline.py`](pipeline.py) | All LLM stage functions, prompts, plan validator. |
-| [`verifier.py`](verifier.py) | Playwright + Chromium real-browser verification. Detects blank canvas, runaway resize, dangling references, missing controls, console/page errors. |
-| [`executive.py`](executive.py) | CEO periodic trajectory review. |
-| [`security_officer.py`](security_officer.py) | CSO periodic security audit. |
-| [`roles.py`](roles.py) | Model registry, role→model map, resilient `call_with_fallback`. |
-| [`dashboard.py`](dashboard.py) | Generates public-facing README + index.html from the ledger. |
-| [`publish_public.py`](publish_public.py) | Sanitizes memory + cross-repo push to the public dashboard. |
-| [`memory_log.json`](memory_log.json) | Full history: every project, CEO review, CSO audit, with model attribution. Engine-only fields are stripped before reaching public. |
-| `.github/workflows/` | All four scheduled workflows. |
+| Projects shipped | 29+ |
+| Refused builds | 90+ |
+| Complexity range | 3 to 52 (open-ended, no cap) |
+| Project types | 10 types |
+| AI models in boardroom | 8 across 3 providers |
+| Providers | GitHub Models + Groq + Google AI Studio |
+| Daily builds | Up to 5/day, fully autonomous |
+| Human interventions required | 0 |
 
 ---
 
-## Schedules
+## Architecture
 
-| Workflow | Cadence (UTC) | Job |
+### Infrastructure (all free-tier)
+
+| Layer | Resource |
+|---|---|
+| Compute | GitHub Actions (public repo = unlimited minutes) |
+| LLM inference | GitHub Models API + Groq + Google AI Studio |
+| Hosting | GitHub Pages (static, unlimited bandwidth) |
+| Storage | GitHub repos + memory_log.json |
+
+### The Boardroom: 8 models, 3 providers
+
+Each role uses a different model family so the adversarial conference
+produces genuinely diverse perspectives:
+
+| Role | Model | Provider | Purpose |
+|---|---|---|---|
+| CEO | gpt-4o | GitHub Models | Visionary strategy, domain pivots |
+| CSO | llama-3.3-70b-versatile | Groq | Scientific novelty, algorithmic depth |
+| CTO | gemini-2.0-flash | Google AI Studio | Self-improvement, code patches |
+| Architect A | Mistral-Large-2411 | GitHub Models | Creative planning (Mistral lens) |
+| Architect B | Meta-Llama-3.3-70B | GitHub Models | Creative planning (Meta lens) |
+| Judge | gpt-4o | GitHub Models | Predictability filter |
+| Engineer | gpt-4o | GitHub Models | Per-file implementation |
+| Reviewer A | Mistral-Large-2411 | GitHub Models | Code review (Mistral lens) |
+| Reviewer B | gemini-2.0-flash | Google AI Studio | Code review (Gemini lens) |
+| QA Tester | gpt-4o | GitHub Models | User-pathway simulation |
+| QA Fixer | gemini-2.0-flash | Google AI Studio | Repairs dead controls |
+| Polisher | Phi-4 | GitHub Models | UX refinement |
+| Fixer | gpt-4o-mini | GitHub Models | Iterative repair |
+
+All roles have gpt-4o / gpt-4o-mini as guaranteed final fallback.
+Missing API keys are silently skipped - the pipeline never crashes.
+
+### Pipeline stages
+
+```
+STAGE 1    ARCHITECT CONFERENCE
+           Candidate A (Mistral) + Candidate B (Llama) propose plans in parallel
+           Validator: banned types, repeated patterns, complexity floor, novel concept check
+           Judge (GPT-4o) synthesises or proposes its own unpredictable plan
+
+STAGE 2    IMPLEMENT
+           Engineer (GPT-4o) writes each file with full sibling context
+
+STAGE 3+4  QUALITY LOOP (up to 8 rounds)
+           Reviewer A (Mistral) + Reviewer B (Gemini) in parallel
+           Fixer applies merged feedback
+           Playwright interaction test after each round
+
+STAGE 5    POLISH (with rollback)
+           Polisher (Phi-4) refines UX; rolled back if quality regresses
+
+STAGE 6    FINAL VERIFY
+           Playwright: page load, canvas render, control interaction tests
+           Console error analysis (noise-filtered)
+
+STAGE 6.4  QA REVIEW
+           QA Tester (GPT-4o) verdict; up to 3 rounds with QA Fixer (Gemini)
+           Ships with partially_usable badge if residual issues remain
+
+STAGE 7    PUBLISH
+           New public GitHub repo created via API
+           GitHub Pages enabled -> live URL
+
+STAGE 8    MEMORY + DASHBOARD
+           memory_log.json updated; public dashboard regenerated
+```
+
+### Autonomous workflows
+
+| Workflow | Schedule | Purpose |
 |---|---|---|
-| **Daily Build** | 9 staggered crons; ≥5h spacing; ≤5 projects/day | The full pipeline |
-| **Watchdog** | every 30 min | Force-dispatch when below target; quiet hours 23-02 UTC |
-| **CEO Review** | 01:11 / 07:11 / 13:11 / 19:11 | Trajectory review + directives |
-| **Security Review** | 04:29 / 16:29 | Security audit + directives |
+| daily_build.yml | 9x/day cron | Main build pipeline |
+| watchdog.yml | Every 30 min | Dispatches builds if idle >5h |
+| ceo_review.yml | 4x/day | CEO strategy + directives |
+| science_review.yml | 2x/day | CSO scientific depth audit |
+| self_improve.yml | After CEO + 2x/day | CTO patches its own source code |
 
-Every workflow that mutates `memory_log.json` ends with a **Sync public
-dashboard** step that runs `publish_public.py` to push a sanitized snapshot
-to the public repo. `continue-on-error: true` means a transient sync hiccup
-just retries on the next workflow tick.
+### Project types (10)
 
----
-
-## Memory schema
-
-Per-project records carry:
-
-- `name`, `date`, `completed_at_unix`, `repo_url`, `pages_url`, `language`
-- `complexity_score` (open scale, no cap)
-- `pattern` (visualizer / dashboard / generator / …) and `domain` (must
-  rotate from last 5)
-- `concepts_demonstrated`, `novel_concepts`, `advancement_axis`
-- `tech_stack`, `visual_identity`
-- `file_count`, `loc`, `quality_cycles_used`
-- `final_verify_metrics` (canvas, controls, etc.)
-- **`model_attribution`** (private-only) — which model did the plan judging,
-  which were the candidates, which model implemented each file
-- **`ceo_directives_followed`** (private-only) — verbatim CEO directives
-  active for that build
-- **`security_review`** — verdict + count + full findings array
-
-Top-level: `projects[]`, `ceo_reviews[]`, `security_audits[]`,
-`complexity_trajectory[]`, `concepts_explored[]`, `patterns_used[]`,
-`domains_used[]`.
-
----
-
-## Secrets required
-
-| Secret | Where | Why |
+| Type | Description | Verifier |
 |---|---|---|
-| `GH_PAT` | engine repo (and public repo, kept in sync) | Fine-grained PAT, scoped All-repos with Administration:write, Contents:write, Pages:write, Workflows:write, Metadata:read. Used to create new daily project repos AND to push the dashboard to the public repo. |
-| `GITHUB_TOKEN` | auto-injected | `models: read` for LLM calls, `contents: write` for memory commits, `actions: write` for watchdog dispatch. |
+| web_interactive | HTML+JS+Canvas browser demos | Playwright |
+| web_3d | Three.js/WebGL scenes | Playwright |
+| game_web | Browser games with rules + state | Playwright |
+| generative_art | Visual output (canvas/SVG) | Playwright |
+| shader_art | GLSL fragment shaders, pure WebGL | Playwright |
+| typescript_app | TypeScript via esm.sh CDN | Playwright |
+| python_tool | Standalone Python programs | Subprocess |
+| data_viz | Python matplotlib/plotly + SVG embed | Subprocess |
+| cli_tool | Rust or Go CLI + Codespaces devcontainer | File check + Playwright |
+| document | Markdown research/proposals | Structure check |
+
+All types produce an index.html for GitHub Pages.
+
+### Self-improvement (CTO agent)
+
+After every CEO review, self_improve.py:
+1. Analyses last 30 failed builds for recurring patterns
+2. Extracts only the relevant pipeline section (within 8k token API limit)
+3. Proposes one surgical old_string/new_string patch (Gemini primary, GPT-4o fallback)
+4. Validates Python syntax with ast.parse() before writing
+5. Commits the patch - next build runs improved code automatically
+6. Logs all improvements to memory_log.json (never re-applies the same fix)
 
 ---
 
-## Operational notes
+## Key files
 
-- **Cost: $0** as long as we stay within free-tier rate limits on both
-  GitHub Models (per-model daily caps) and GitHub Actions
-  (private repos: 2000 min/month — current projection ~1700).
-- **PAT rotation** is the only manual touch the system needs. The PAT
-  expires per its `Expiration` setting; rotate via:
-  ```
-  gh secret set GH_PAT --repo dipeshrayg/autonomous-brain-engine
-  gh secret set GH_PAT --repo dipeshrayg/autonomous-brain
-  ```
-- **Pause everything**: disable `daily_build.yml` and `watchdog.yml` via
-  `gh api -X PUT repos/dipeshrayg/autonomous-brain-engine/actions/workflows/<file>/disable`.
-  CEO + Security Review can stay running — they don't depend on the PAT.
+| File | Purpose |
+|---|---|
+| brain.py | Main orchestrator - all pipeline stages |
+| pipeline.py | LLM prompts + plan validation + type logic |
+| verifier.py | Playwright verification + Python subprocess runner |
+| executive.py | CEO + CSO meta-review agents |
+| self_improve.py | CTO self-improvement agent |
+| roles.py | Multi-provider model registry + resilient call chain |
+| dashboard.py | HTML dashboard generator |
+| publish_public.py | Pushes dashboard to public GitHub Pages repo |
+| memory_log.json | Persistent state: projects, failures, all reviews |
+| generate_paper.py | ReportLab PDF generator for the research paper |
+| research_paper.md | Research paper source (markdown) |
+| Dipesh_Ray_Autonomous_Brain_Research_Paper.pdf | Published research paper |
 
 ---
 
-## Public face (what outsiders see)
+## Setup
 
-The public repo at [dipeshrayg/autonomous-brain](https://github.com/dipeshrayg/autonomous-brain)
-contains only:
+### Required secrets
 
-- `README.md` — a project showcase with no engine internals
-- `index.html` — the live dashboard (renders cards from `memory_log.json`)
-- `memory_log.json` — sanitized snapshot
-- `SECURITY.md` — security policy
+| Secret | Where to get it | Required |
+|---|---|---|
+| GH_PAT | GitHub > Settings > Developer Settings > PAT (repo scope) | Yes |
+| GROQ_API_KEY | console.groq.com > API Keys | Recommended (free) |
+| GOOGLE_AI_KEY | aistudio.google.com > Get API Key | Recommended (free) |
 
-Pushed automatically by every engine workflow run. The Pages URL never
-breaks during normal operation.
+GITHUB_TOKEN is provided automatically by GitHub Actions.
+If GROQ_API_KEY or GOOGLE_AI_KEY are absent, those models are silently
+skipped and the pipeline falls back to gpt-4o / gpt-4o-mini.
 
-The daily project repos (`dipeshrayg/YYYY-MM-DD-*`) are also public — those
-are intentional outputs, the playable demos visitors come for.
+### Run locally
+
+```bash
+pip install -r requirements.txt
+python -m playwright install --with-deps chromium
+export GITHUB_TOKEN=ghp_...   # needs models:read scope (Actions token only)
+export GH_PAT=ghp_...         # needs repo scope
+export GROQ_API_KEY=gsk_...   # optional, free at console.groq.com
+export GOOGLE_AI_KEY=AIza...  # optional, free at aistudio.google.com
+python brain.py
+```
+
+Note: local GITHUB_TOKEN does not have the models:read scope that GitHub Actions
+tokens have automatically. Run via Actions or use a PAT with models scope.
+
+---
+
+## Research
+
+Full research paper documenting 21 days of operation, emergent behaviours,
+and system architecture:
+
+- research_paper.md - source text
+- Dipesh_Ray_Autonomous_Brain_Research_Paper.pdf - formatted PDF (ReportLab + matplotlib)
+- ORCID: https://orcid.org/0009-0001-9970-0220
+- Dashboard: https://dipeshrayg.github.io/autonomous-brain/
+
+---
+
+*Built and operated by Dipesh Ray. All infrastructure costs: $0.*
