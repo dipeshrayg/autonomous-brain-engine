@@ -4,19 +4,19 @@ roles.py — Multi-provider boardroom with genuine model diversity.
 Every role now pulls from a different AI family so the adversarial
 conference actually has adversarial perspectives:
 
-    CEO              gpt-4o              (OpenAI — strategic synthesis)
-    CSO              llama-3.3-70b       (Meta via Groq — scientific novelty)
-    CTO              gemini-2.0-flash    (Google — code & self-improvement)
-    Architect A      Mistral-Large       (Mistral via GitHub Models)
-    Architect B      Meta-Llama-3.3-70B  (Meta via GitHub Models)
-    Judge            gpt-4o              (OpenAI — predictability filter)
-    Engineer         gpt-4o              (OpenAI — implementation quality)
-    Reviewer A       Mistral-Large       (Mistral — different lens from GPT)
-    Reviewer B       gemini-2.0-flash    (Google — third perspective)
-    QA Tester        gpt-4o              (OpenAI — strict user-pathway sim)
-    QA Fixer         gemini-2.0-flash    (Google — fast, capable repair)
-    Fixer            gpt-4o-mini         (OpenAI fast — iterative repair)
-    Polisher         Phi-4               (Microsoft via GitHub Models — UX polish)
+    CEO              gpt-4o                  (OpenAI — strategic synthesis)
+    CSO              llama-3.3-70b           (Meta via Groq — scientific novelty)
+    CTO              gemini-2.0-flash        (Google — code & self-improvement)
+    Architect A      mixtral-8x7b-32768      (Mistral via Groq — creative axis)
+    Architect B      llama-3.3-70b-versatile (Meta via Groq — open-source perspective)
+    Judge            gpt-4o                  (OpenAI — predictability filter)
+    Engineer         gpt-4o                  (OpenAI — implementation quality)
+    Reviewer A       mixtral-8x7b-32768      (Mistral via Groq — different lens)
+    Reviewer B       gemini-2.0-flash        (Google — third perspective)
+    QA Tester        gpt-4o                  (OpenAI — strict user-pathway sim)
+    QA Fixer         gemini-2.0-flash        (Google — fast, capable repair)
+    Fixer            gpt-4o-mini             (OpenAI fast — iterative repair)
+    Polisher         Phi-4                   (Microsoft via GitHub Models — UX polish)
 
 Providers used (all zero-cost):
     github   — GitHub Models API (GITHUB_TOKEN, always available in Actions)
@@ -59,28 +59,22 @@ PROVIDERS: dict[str, dict[str, str]] = {
 
 # model_id → provider key
 MODEL_PROVIDER: dict[str, str] = {
-    # GitHub Models (OpenAI family)
+    # GitHub Models (OpenAI family — always available via GITHUB_TOKEN)
     "gpt-4o":                        "github",
     "gpt-4o-mini":                   "github",
-    # GitHub Models (Microsoft)
+    # GitHub Models (Microsoft Phi — confirmed working)
     "Phi-4":                         "github",
     "Phi-3.5-mini-instruct":         "github",
-    # GitHub Models (Mistral)
-    "Mistral-Large-2411":            "github",
-    "Mistral-small":                 "github",
-    # GitHub Models (Meta)
-    "Meta-Llama-3.3-70B-Instruct":   "github",
-    "Meta-Llama-3.1-8B-Instruct":    "github",
-    # GitHub Models (Cohere)
-    "Cohere-command-r-plus-08-2024": "github",
-    # Groq (Meta Llama — ultra-fast inference)
+    # Groq (Meta Llama — ultra-fast inference, confirmed working)
     "llama-3.3-70b-versatile":       "groq",
+    "llama-3.1-70b-versatile":       "groq",
     "llama-3.1-8b-instant":          "groq",
+    # Groq (Mistral via Groq — confirmed working)
     "mixtral-8x7b-32768":            "groq",
-    # Google AI Studio (Gemini)
+    # Google AI Studio (Gemini — free tier, may hit quota)
     "gemini-2.0-flash":              "google",
+    "gemini-2.0-flash-lite":         "google",
     "gemini-1.5-flash":              "google",
-    "gemini-1.5-pro":                "google",
 }
 
 
@@ -106,41 +100,40 @@ ROLE_CHAIN: dict[str, list[str]] = {
     # ── Executive layer ──────────────────────────────────────────────────
     "ceo": [
         "gpt-4o",                       # OpenAI — strategic synthesis
-        "Mistral-Large-2411",           # Mistral fallback
+        "llama-3.3-70b-versatile",      # Meta via Groq fallback
         "gpt-4o-mini",
     ],
     "cso": [
-        "llama-3.3-70b-versatile",      # Meta via Groq — scientific novelty
-        "Meta-Llama-3.3-70B-Instruct",  # Meta via GitHub fallback
+        "llama-3.3-70b-versatile",      # Meta via Groq — scientific novelty (confirmed working)
+        "llama-3.1-70b-versatile",      # Meta via Groq fallback
         "gpt-4o",
     ],
     "cto": [
         "gemini-2.0-flash",             # Google — code + self-improvement
-        "gemini-1.5-flash",             # Google fallback
+        "gemini-2.0-flash-lite",        # Google lighter model (less quota pressure)
+        "gemini-1.5-flash",             # Google legacy fallback
         "gpt-4o",                       # OpenAI final fallback
     ],
     "vp_eng": [
-        "Mistral-Large-2411",           # Mistral — pragmatic engineering
+        "mixtral-8x7b-32768",           # Mistral via Groq — pragmatic engineering
         "gpt-4o",
         "gpt-4o-mini",
     ],
 
     # ── Planning layer ────────────────────────────────────────────────────
     "architect_candidate_a": [
-        "Mistral-Large-2411",           # Mistral — different creative axis
-        "Meta-Llama-3.3-70B-Instruct",  # Meta fallback
+        "mixtral-8x7b-32768",           # Mistral via Groq — different creative axis (confirmed working)
+        "llama-3.1-70b-versatile",      # Meta via Groq fallback
         "gpt-4o-mini",                  # OpenAI guaranteed fallback
-        "gpt-4o",
     ],
     "architect_candidate_b": [
-        "Meta-Llama-3.3-70B-Instruct",  # Meta — open-source perspective
-        "llama-3.3-70b-versatile",      # Meta via Groq fallback
+        "llama-3.3-70b-versatile",      # Meta via Groq — open-source perspective (confirmed working)
+        "mixtral-8x7b-32768",           # Mistral via Groq fallback
         "gpt-4o-mini",                  # OpenAI guaranteed fallback
-        "gpt-4o",
     ],
     "architect_judge": [
         "gpt-4o",                       # OpenAI — predictability filter
-        "Mistral-Large-2411",
+        "llama-3.3-70b-versatile",      # Groq fallback
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
@@ -150,13 +143,14 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "gpt-4o-mini",
     ],
     "reviewer_a": [
-        "Mistral-Large-2411",           # Mistral — genuinely different from GPT
-        "Meta-Llama-3.3-70B-Instruct",
+        "mixtral-8x7b-32768",           # Mistral via Groq — genuinely different from GPT (confirmed working)
+        "llama-3.1-8b-instant",         # Meta via Groq — fast second opinion
         "gpt-4o-mini",                  # guaranteed fallback
     ],
     "reviewer_b": [
         "gemini-2.0-flash",             # Google — third independent perspective
-        "gemini-1.5-flash",
+        "gemini-2.0-flash-lite",        # Google lighter fallback
+        "gemini-1.5-flash",             # Google legacy fallback
         "gpt-4o-mini",                  # guaranteed fallback
     ],
     "fixer": [
@@ -173,9 +167,11 @@ ROLE_CHAIN: dict[str, list[str]] = {
     "qa_tester": [
         "gpt-4o",                       # OpenAI — strict user-pathway simulation
         "gemini-2.0-flash",
+        "llama-3.3-70b-versatile",      # Groq fallback
     ],
     "qa_fixer": [
         "gemini-2.0-flash",             # Google — fast, capable repair
+        "gemini-2.0-flash-lite",        # Google lighter fallback
         "gpt-4o",
         "gpt-4o-mini",
     ],

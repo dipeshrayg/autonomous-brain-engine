@@ -236,6 +236,19 @@ RULES:
   - These DOM text updates are HOW the automated interaction test detects that a control is alive. Without them, every Three.js control appears dead.
   - Never rely on the WebGL canvas pixel change alone — always pair every control with a DOM text readout.
 
+ENCODING (critical — many shipped projects have broken characters):
+- EVERY HTML file MUST have <meta charset="UTF-8"> as the VERY FIRST tag inside <head>, before any other tags.
+  Correct: <head><meta charset="UTF-8"><title>...</title></head>
+  Wrong: <head><title>...</title><meta charset="UTF-8"></head>
+- EVERY Python file MUST start with: # -*- coding: utf-8 -*-
+- ALL Python file open() / write() calls MUST include encoding='utf-8':
+  Correct: open('output.txt', 'w', encoding='utf-8')
+  Wrong: open('output.txt', 'w')
+- ALL Python print() and logging calls: avoid raw Unicode symbols (►, ✓, ═, etc.) unless you call sys.stdout.reconfigure(encoding='utf-8') first. Use ASCII alternatives (>, ok, =) or escape: \\u2714
+- HTML entities: use &amp; &lt; &gt; &quot; for special chars in HTML content. Never embed raw < > & in visible text.
+- JSON files: always utf-8, no BOM.
+- CSS font stacks and content: no special Unicode chars in CSS content: '' values unless you are 100% certain the charset meta is in place.
+
 OUTPUT — single JSON: {"path": "...", "content": "<full file>"}.
 """
 

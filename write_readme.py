@@ -1,3 +1,6 @@
+from pathlib import Path
+
+readme = """\
 # Autonomous Brain - Engine
 
 The orchestrator that drives the public showcase at
@@ -198,3 +201,7 @@ and system architecture:
 ---
 
 *Built and operated by Dipesh Ray. All infrastructure costs: $0.*
+"""
+
+Path("F:/github forever/README.md").write_text(readme, encoding="utf-8")
+print("README written:", len(readme), "chars")
