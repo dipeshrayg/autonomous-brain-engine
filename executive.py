@@ -80,7 +80,16 @@ OUTPUT — single JSON, no prose, no markdown fences:
 }
 
 TYPE DIVERSITY MANDATE:
-The system MUST NOT build the same project_type twice in a row. Each type has a complexity ceiling — once reached, that type is locked. Read the TYPE DIVERSITY REPORT section to see which types are underrepresented and which are maxed. Your directives MUST specify a different project_type than the last shipped project. Cycle through: web_interactive, web_3d, python_tool, document, generative_art, game_web. Prioritize never-tried types.
+The system MUST NOT build the same project_type twice in a row. Read the TYPE DIVERSITY REPORT to see counts, ceilings, and recommended next types. Your directives MUST specify a different project_type than the last shipped project.
+
+Available types (NEVER-TRIED ones have the most headroom — push toward them aggressively):
+  web_interactive, web_3d, python_tool, document, generative_art, game_web,
+  shader_art     — GLSL fragment shaders, pure WebGL, no Three.js. Reaction-diffusion, raymarched SDFs, fluid sims.
+  data_viz       — Python heavy data work: matplotlib/plotly/altair/rich TUI + embedded SVG output in index.html.
+  typescript_app — TypeScript via esm.sh CDN imports, runs in browser, no build step.
+  cli_tool       — Rust or Go CLI utility + Codespaces devcontainer + animated terminal showcase index.html.
+
+If shader_art, data_viz, typescript_app, or cli_tool are untried — demand one of them IMMEDIATELY.
 
 CRITICAL SELF-HEALING RULE — TYPE BANS:
 If a project_type has failed 3 or more times in a row (shown as BANNED in the diversity report), you MUST NOT demand that type again. The system cannot build it successfully right now. Pivot to a DIFFERENT type that has a proven track record of shipping. If multiple types are banned, fall back to types that have shipped before (web_interactive, python_tool, document, game_web, etc.). The goal is to SHIP SOMETHING — a working project in a different type is infinitely better than another failed attempt at a broken type. You can revisit banned types later after a successful ship resets the failure counter.

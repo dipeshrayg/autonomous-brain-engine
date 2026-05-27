@@ -50,29 +50,39 @@ PROJECT_TYPES = (
     "document",
     "generative_art",
     "game_web",
+    "shader_art",       # GLSL fragment shaders — pure WebGL, no Three.js
+    "data_viz",         # Python heavy data visualisation (matplotlib/plotly/rich TUI)
+    "typescript_app",   # TypeScript compiled to a single JS bundle via a CDN transpiler
+    "cli_tool",         # Rust or Go compiled CLI (ships Codespaces devcontainer + index.html showcase)
 )
 
-# Complexity ceilings per type — once a type's max shipped complexity reaches
-# its ceiling, the system MUST switch to a different type.  The ceiling
-# represents the practical depth limit: beyond it, the type can't express
-# more sophistication without a language/paradigm shift.
+# Complexity ceilings per type.  Open-ended by design — ceilings are HIGH
+# so the system can keep growing without getting trapped.
 TYPE_COMPLEXITY_CEILING: dict[str, int] = {
-    "document":        35,   # markdown + styled HTML showcase can be rich
-    "generative_art":  40,   # visual algorithms, shaders, fractals — deep
-    "web_interactive": 40,   # vanilla JS/HTML with Canvas can go far
-    "game_web":        45,   # browser game with AI, procedural gen
-    "web_3d":          45,   # Three.js / WebGL is deep
-    "python_tool":     60,   # Python is versatile, highest ceiling
+    "document":        60,
+    "generative_art":  80,
+    "web_interactive": 80,
+    "game_web":        90,
+    "web_3d":          90,
+    "shader_art":      80,   # GLSL shaders — deep algorithmic space
+    "data_viz":        80,   # heavy Python data work
+    "typescript_app":  85,
+    "cli_tool":        90,   # Rust/Go — virtually no ceiling
+    "python_tool":    100,   # highest ceiling
 }
 
 # Tier ordering: when current type is maxed, prefer the next tier up.
 TYPE_ESCALATION_ORDER = [
-    "document",           # easiest
-    "generative_art",     # visual + code
-    "web_interactive",    # interactive browser
-    "game_web",           # stateful browser
-    "web_3d",             # 3D browser
-    "python_tool",        # highest ceiling
+    "document",
+    "generative_art",
+    "shader_art",
+    "web_interactive",
+    "data_viz",
+    "game_web",
+    "typescript_app",
+    "web_3d",
+    "python_tool",
+    "cli_tool",
 ]
 
 
@@ -86,12 +96,22 @@ PROJECT TYPES — pick ONE that genuinely fits the idea:
 
     web_interactive   HTML+JS+Canvas demo in a browser. The default; pick something else if you can.
     web_3d            Three.js / WebGL scene loaded from CDN, runs in browser.
+    shader_art        GLSL fragment shader running in a bare WebGL canvas — NO Three.js.
+                      Self-contained: one HTML file, one inline or linked shader.
+                      Examples: raymarched SDF scenes, reaction-diffusion, fluid sim in a shader,
+                      Mandelbrot variations, domain-warped noise fields.
     python_tool       Python program. User runs it in GitHub Codespaces or locally.
-                      No Pages. Examples: cyber-forensic utility, ML experiment,
-                      simulation engine, data-pipeline demo.
+                      Examples: cyber-forensic utility, ML experiment, simulation engine,
+                      data-pipeline demo, constraint solver, generative music sequencer.
+    data_viz          Python-heavy data visualisation. Uses matplotlib, plotly, altair, or a
+                      rich TUI (textual/rich). Produces charts, dashboards, or animated plots.
+                      index.html embeds the generated SVG/HTML output directly.
+    typescript_app    TypeScript app transpiled in-browser via esm.sh or skypack CDN imports.
+                      No build step. Type-safe logic runs directly in the browser.
+    cli_tool          Rust or Go CLI tool. Ships a Codespaces devcontainer with build script.
+                      index.html is an animated terminal-style showcase of the tool's output.
     document          Markdown + asset files. Research article, business proposal,
                       product design schematic, ASCII-diagrammed system architecture.
-                      The "deliverable" is reading material, not running code.
     generative_art    Hybrid: produces visual output (web canvas OR static images).
     game_web          Browser game — rules, state, win condition, multiple screens.
 
@@ -105,7 +125,7 @@ ABSOLUTE CONSTRAINTS:
 4. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .jsx, .scss, .vue, etc.). Plain languages only.
 5. NO BACKEND SERVERS, WebSockets, or localhost connections. Everything web-facing runs as STATIC files on GitHub Pages — no Node.js server, no Express, no WebSocket server. Multiplayer/cooperative features must use local-only simulation (AI opponents, hot-seat multiplayer, or single-player with simulated cooperation).
 
-TYPE DIVERSITY — you MUST NOT repeat the same project_type as the previous build. The system enforces type rotation. Read the TYPE DIVERSITY REPORT in the user prompt to see which types are underrepresented, which are maxed out, and which is recommended. Once a type's max shipped complexity reaches its ceiling, that type is LOCKED and you must escalate to a higher-ceiling type. The ceilings are: document=20, generative_art=25, web_interactive=30, game_web=35, web_3d=35, python_tool=50.
+TYPE DIVERSITY — you MUST NOT repeat the same project_type as the previous build. The system enforces type rotation. Read the TYPE DIVERSITY REPORT in the user prompt — it shows shipped counts, max complexity, ceilings, and recommended next types. Prioritise NEVER-TRIED types (shader_art, data_viz, typescript_app, cli_tool) — they have the most headroom and are most likely to surprise.
 
 PATTERN ROTATION — your `pattern` should differ from the most recent shipped projects unless you're in recovery mode (CEO directive will say so).
 
@@ -183,9 +203,13 @@ IMPLEMENT_SYSTEM = """You are implementing ONE file of a multi-file project. You
 RULES:
 - Production-quality. NO TODOs, placeholders, stubs.
 - Honor the plan's project_type:
-  - web_interactive / web_3d / generative_art / game_web: HTML+CSS+JS at repo root, no build step. Plain .js / .html / .css ONLY (no .ts, .jsx, .scss, etc.). Prefer classic <script src="...">; modules require careful path handling. CDN libraries pinned to explicit version.
-  - python_tool: Python files + requirements.txt for the core tool, BUT ALSO an index.html that is a rich visual showcase. The index.html should: have a polished dark-themed design, show the project architecture with SVG/CSS diagrams, demonstrate sample outputs visually, explain the core algorithm with interactive elements or animations in plain JS, and include a "Run in Codespaces" button. This page IS the user's first experience — make it impressive.
-  - document: The primary content goes in markdown files, BUT index.html must be a beautiful styled reader page that presents the content as a polished article with proper typography, table of contents, diagrams, and visual identity. Think: a published article on a professional blog, not raw markdown.
+  - web_interactive / web_3d / generative_art / game_web: HTML+CSS+JS at repo root, no build step. Plain .js / .html / .css ONLY. Prefer classic <script src="...">; CDN libraries pinned to explicit version.
+  - shader_art: A single index.html with an inline or linked GLSL fragment shader running in a bare WebGL canvas. NO Three.js. Use a minimal boilerplate: fullscreen canvas, vertex shader that draws a quad, fragment shader for all visual logic. Pass uniforms: u_time (float), u_resolution (vec2), u_mouse (vec2). Add 2-4 sliders that update uniforms via gl.uniform1f — each slider MUST update a <span> value display so the interaction test detects it.
+  - python_tool / data_viz: Python files + requirements.txt for the core tool, PLUS a rich index.html visual showcase. Dark-themed, SVG architecture diagram, sample outputs rendered as inline SVG/ASCII, core algorithm explained with JS animations, "Run in Codespaces" button.
+  - data_viz: The Python script generates a matplotlib/plotly figure and saves it as SVG. index.html embeds the SVG inline and adds interactive controls via plain JS (zoom, filter, highlight).
+  - typescript_app: Use <script type="module"> with esm.sh CDN imports for TypeScript-like type-safe patterns. No build step — import directly from https://esm.sh/package@version. Write modern JS with JSDoc types if TypeScript via CDN is unavailable.
+  - cli_tool: Rust or Go source files + a .devcontainer/devcontainer.json for Codespaces + a build.sh. index.html is a terminal-style animated showcase: dark background, monospace font, typewriter effect showing the CLI in action, syntax-highlighted sample output.
+  - document: Markdown files + index.html as a beautifully styled reader page. Typography, table of contents, diagrams. Think published research article, not raw markdown.
 - Every interactive control your sibling files reference MUST have its event listener wired in this file (if this is the file that owns it). Buttons that look interactive but do nothing are the worst possible bug — do not produce them.
 - For canvas + state-bearing UIs: the click handler must compute coordinates the SAME way the render code uses them. State + visual must stay in sync.
 - For randomize / reset: enumerate exactly which DOM elements + state slots are touched.

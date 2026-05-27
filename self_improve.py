@@ -45,6 +45,91 @@ PATCHABLE_FILES = {
     "dashboard.py": Path("dashboard.py"),
 }
 
+# Named sections to extract from source files — keyed by failure pattern.
+# We only send the relevant section to stay within the 8000-token API limit.
+_SECTION_MARKERS = {
+    "pipeline.py": {
+        "IMPLEMENT_SYSTEM": ("IMPLEMENT_SYSTEM", "CRITIQUE_SYSTEM"),
+        "PLAN_SYSTEM":      ("PLAN_SYSTEM", "JUDGE_SYSTEM"),
+        "CRITIQUE_SYSTEM":  ("CRITIQUE_SYSTEM", "FIX_SYSTEM"),
+        "QA_REVIEW_SYSTEM": ("QA_REVIEW_SYSTEM", 'if __name__'),
+        "_validate_plan":   ("def _validate_plan", "def stage_plan"),
+    },
+    "verifier.py": {
+        "_SNAPSHOT_JS":     ("_SNAPSHOT_JS", "_LIST_CONTROLS_JS"),
+        "_TRIGGER_JS":      ("_TRIGGER_JS", "def _run_interaction_test"),
+        "interaction_test": ("def _run_interaction_test", "def verify_web"),
+        "issue_detection":  ("# Heuristic issue detection", "return {"),
+    },
+    "executive.py": {
+        "CEO_SYSTEM":       ("CEO_SYSTEM", "CSO_SYSTEM"),
+    },
+}
+
+
+def _extract_section(file_path: Path, start_marker: str, end_marker: str) -> str:
+    """Extract the text between two string markers in a file."""
+    content = file_path.read_text(encoding="utf-8")
+    s = content.find(start_marker)
+    if s < 0:
+        return content[:3000]  # fallback
+    e = content.find(end_marker, s + len(start_marker))
+    if e < 0:
+        return content[s:s + 3000]
+    return content[s:e]
+
+
+def _pick_relevant_source(analysis: dict) -> str:
+    """
+    Pick only the source sections most relevant to the top failure pattern.
+    Keeps total chars well under the 8000-token API limit.
+    """
+    top_reason = max(
+        analysis.get("by_reason", {}).items(),
+        key=lambda x: x[1],
+        default=("dead_controls", 1)
+    )[0]
+    top_type = max(
+        analysis.get("by_type", {}).items(),
+        key=lambda x: x[1],
+        default=("web_3d", 1)
+    )[0]
+
+    sections = []
+
+    if top_reason == "dead_controls":
+        # The engineer prompt is the fix target
+        sections.append(("pipeline.py", "IMPLEMENT_SYSTEM", "CRITIQUE_SYSTEM"))
+        if top_type == "web_3d":
+            sections.append(("verifier.py", "_SNAPSHOT_JS", "_LIST_CONTROLS_JS"))
+            sections.append(("verifier.py", "_TRIGGER_JS", "def _run_interaction_test"))
+    elif top_reason == "blank_canvas":
+        sections.append(("verifier.py", "# Heuristic issue detection", "return {"))
+        sections.append(("pipeline.py", "IMPLEMENT_SYSTEM", "CRITIQUE_SYSTEM"))
+    elif top_reason in ("concept_exhaustion", "type_ban"):
+        sections.append(("pipeline.py", "PLAN_SYSTEM", "JUDGE_SYSTEM"))
+        sections.append(("executive.py", "CEO_SYSTEM", "CSO_SYSTEM"))
+    else:
+        sections.append(("pipeline.py", "IMPLEMENT_SYSTEM", "CRITIQUE_SYSTEM"))
+
+    parts = []
+    total = 0
+    MAX_TOTAL = 5000  # chars, safely under 8k tokens
+
+    for fname, start, end in sections:
+        fpath = PATCHABLE_FILES.get(fname)
+        if not fpath or not fpath.exists():
+            continue
+        snippet = _extract_section(fpath, start, end)
+        if total + len(snippet) > MAX_TOTAL:
+            snippet = snippet[:MAX_TOTAL - total]
+        parts.append(f"=== {fname} | section: {start[:40]} ===\n{snippet}")
+        total += len(snippet)
+        if total >= MAX_TOTAL:
+            break
+
+    return "\n\n".join(parts)
+
 # How many recent failures to analyse
 FAILURE_WINDOW = 30
 # Don't patch if fewer than this many failures exist since last improvement
@@ -286,19 +371,8 @@ def run_self_improve(memory_log_path: Path = MEMORY_PATH) -> int:
         log.info("No failures to analyse.")
         return 0
 
-    # Read source files (truncated to avoid token overflow)
-    MAX_FILE_CHARS = 8000
-    source_blocks = []
-    for fname, fpath in PATCHABLE_FILES.items():
-        if fpath.exists():
-            content = fpath.read_text(encoding="utf-8")
-            if len(content) > MAX_FILE_CHARS:
-                # Send first half + last half so LLM sees both prompts and logic
-                half = MAX_FILE_CHARS // 2
-                content = content[:half] + "\n\n... [TRUNCATED] ...\n\n" + content[-half:]
-            source_blocks.append(f"=== {fname} ===\n{content}")
-
-    sources = "\n\n".join(source_blocks)
+    # Extract only the relevant source sections (stays within 8k token API limit)
+    sources = _pick_relevant_source(analysis)
     prev = _previous_improvements(memory)
 
     user_prompt = (

@@ -247,7 +247,15 @@ def merge_updates(files: dict[str, str], updates: dict[str, str]) -> dict[str, s
 def verify_project(plan: dict, target: Path) -> dict[str, Any]:
     """Route verification by project_type. Web → Playwright; Python → run-it; Document → structure-check."""
     pt = plan.get("project_type", "web_interactive")
-    web_types = {"web_interactive", "web_3d", "game_web", "generative_art"}
+    # All browser-rendered types — verified with Playwright
+    web_types = {
+        "web_interactive", "web_3d", "game_web", "generative_art",
+        "shader_art", "typescript_app",
+    }
+    # Python-executed types
+    python_types = {"python_tool", "data_viz"}
+    # CLI tools need build step — verify the index.html showcase + check build files exist
+    cli_types = {"cli_tool"}
 
     if pt in web_types:
         try:
@@ -260,11 +268,25 @@ def verify_project(plan: dict, target: Path) -> dict[str, Any]:
                 "metrics": {},
                 "screenshot": None,
             }
-    if pt == "python_tool":
+    if pt in python_types:
         try:
             return verifier.verify_python(target, plan, timeout=60)
         except Exception as e:
             log.exception("Python verify crashed.")
+            return {"errors": [f"verifier exception: {e}"], "issues": [], "metrics": {}, "screenshot": None}
+    if pt in cli_types:
+        try:
+            # Verify index.html showcase loads + check source files exist
+            web_result = verifier.verify_web(target, timeout=30, project_type=pt)
+            # Also check that at least one source file (*.rs or *.go) exists
+            src_files = list(target.rglob("*.rs")) + list(target.rglob("*.go"))
+            if not src_files:
+                web_result.setdefault("issues", []).append(
+                    "cli_tool: no .rs or .go source files found. Include the actual source."
+                )
+            return web_result
+        except Exception as e:
+            log.exception("CLI verify crashed.")
             return {"errors": [f"verifier exception: {e}"], "issues": [], "metrics": {}, "screenshot": None}
     if pt == "document":
         try:
