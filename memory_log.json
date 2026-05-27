@@ -2968,6 +2968,86 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-27",
+      "completed_at": "2026-05-27T22:10:43Z",
+      "completed_at_unix": 1779919843,
+      "name": "entropy-scanner",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-27-entropy-scanner",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-27-entropy-scanner/",
+      "language": "Rust",
+      "project_type": "cli_tool",
+      "tech_stack": [
+        "Rust",
+        "Cargo",
+        "GitHub Codespaces"
+      ],
+      "complexity_score": 55,
+      "concepts_demonstrated": [
+        "constraint satisfaction problems",
+        "information-theoretic principles",
+        "entropy analysis"
+      ],
+      "novel_concepts": [
+        "conflict-driven clause learning",
+        "Bayesian inference for entropy estimation"
+      ],
+      "advancement_axis": "application of advanced algorithms and mathematical concepts for real-time file entropy analysis",
+      "pattern": "entropy-analysis-tool",
+      "domain": "Information Security",
+      "visual_identity": "dark theme, monospace font, ASCII art",
+      "safety_notes": "This project does not involve any potential security risks or malicious activities",
+      "file_count": 6,
+      "loc": 755,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 135,
+        "bodyHtml": 3289,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Entropy Scanner Showcase",
+        "viewportMeta": true,
+        "hasMain": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/main.rs": "gpt-4o",
+          "src/lib.rs": "gpt-4o",
+          "src/utils.rs": "gpt-4o",
+          "index.html": "gpt-4o",
+          "Cargo.toml": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a cli_tool. Focus on a concise and functional utility with a clear purpose.",
+        "Develop a command-line tool for visualizing file entropy in real-time, using Rust or Go. Include an animated terminal showcase embedded in an index.html file.",
+        "Avoid complex interactivity or excessive features to ensure a high chance of shipping successfully.",
+        "Shift temporarily away from game-based or physics-heavy domains to rebuild momentum in novel, underexplored areas.",
+        "Do not attempt game_web, python_tool, or web_3d until at least two other underused types have shipped."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All interactive controls are functional, state changes correctly sync with visual outputs, and no critical defects were found in post-interaction stability or visual representation.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -3004,7 +3084,8 @@
     48,
     50,
     51,
-    52
+    52,
+    55
   ],
   "concepts_explored": [
     "neural networks",
@@ -3158,7 +3239,10 @@
     "Huffman coding",
     "Run-Length Encoding",
     "Interactive visualization",
-    "Information Theory"
+    "Information Theory",
+    "constraint satisfaction problems",
+    "information-theoretic principles",
+    "entropy analysis"
   ],
   "patterns_used": [
     "visualizer",
@@ -3188,7 +3272,8 @@
     "swarm-coordination-simulator",
     "cellular-automata-visualization",
     "dynamic-strategy-battle",
-    "interactive-educational-tool"
+    "interactive-educational-tool",
+    "entropy-analysis-tool"
   ],
   "domains_used": [
     "Mathematics",
@@ -3218,7 +3303,8 @@
     "Robotics",
     "Computer Graphics",
     "Game Design",
-    "Information Theory"
+    "Information Theory",
+    "Information Security"
   ],
   "ceo_reviews": [
     {
