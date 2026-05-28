@@ -205,8 +205,8 @@ RULES:
 - Honor the plan's project_type:
   - web_interactive / web_3d / generative_art / game_web: HTML+CSS+JS at repo root, no build step. Plain .js / .html / .css ONLY. Prefer classic <script src="...">; CDN libraries pinned to explicit version.
   - shader_art: A single index.html with an inline or linked GLSL fragment shader running in a bare WebGL canvas. NO Three.js. Use a minimal boilerplate: fullscreen canvas, vertex shader that draws a quad, fragment shader for all visual logic. Pass uniforms: u_time (float), u_resolution (vec2), u_mouse (vec2). Add 2-4 sliders that update uniforms via gl.uniform1f — each slider MUST update a <span> value display so the interaction test detects it.
-  - python_tool / data_viz: Python files + requirements.txt for the core tool, PLUS a rich index.html visual showcase. Dark-themed, SVG architecture diagram, sample outputs rendered as inline SVG/ASCII, core algorithm explained with JS animations, "Run in Codespaces" button.
-  - data_viz: The Python script generates a matplotlib/plotly figure and saves it as SVG. index.html embeds the SVG inline and adds interactive controls via plain JS (zoom, filter, highlight).
+  - python_tool: Python files + requirements.txt for the core tool, PLUS an index.html that IS ITSELF A FULLY WORKING INTERACTIVE DEMO in pure JavaScript. The JS in index.html must implement the SAME algorithm as the Python — NOT just describe it. A human visiting the GitHub Pages URL must be able to type input, click a button, and see real computed output instantly, without installing Python. Examples: if the Python does Huffman compression, the JS must also do Huffman compression and show compressed bytes. If the Python analyses entropy, the JS must compute Shannon entropy and display the result. The Python files are for Codespaces power users; the index.html is the primary human-facing product.
+  - data_viz: The Python script generates a matplotlib/plotly figure and saves it as SVG. index.html embeds a HARDCODED sample SVG of actual data (not a placeholder) AND adds interactive controls via plain JS (zoom, filter, highlight, dataset swap). A human must be able to interact with real data immediately on page load — no Python required.
   - typescript_app: Use <script type="module"> with esm.sh CDN imports for TypeScript-like type-safe patterns. No build step — import directly from https://esm.sh/package@version. Write modern JS with JSDoc types if TypeScript via CDN is unavailable.
   - cli_tool: Rust or Go source files + a .devcontainer/devcontainer.json for Codespaces + a build.sh. index.html is a terminal-style animated showcase: dark background, monospace font, typewriter effect showing the CLI in action, syntax-highlighted sample output.
   - document: Markdown files + index.html as a beautifully styled reader page. Typography, table of contents, diagrams. Think published research article, not raw markdown.
@@ -253,7 +253,12 @@ OUTPUT — single JSON: {"path": "...", "content": "<full file>"}.
 """
 
 
-CRITIQUE_SYSTEM = """You are a senior engineer doing a brutal pre-ship code review. You receive the plan, the source files, and the browser-verify result (which now includes mechanical interaction-test results — controls that produce no state change are flagged as "dead").
+CRITIQUE_SYSTEM = """You are a senior engineer doing a brutal pre-ship code review. Your #1 question: CAN A HUMAN VISITING THE GITHUB PAGES URL ACTUALLY USE THIS?
+
+Before anything else, ask:
+- If project_type is python_tool: does index.html contain working JAVASCRIPT that runs the algorithm and shows computed output? If it's just a description/showcase with no JS computation, flag as CRITICAL — the entire page is non-functional for a human.
+- If project_type is web_interactive/game_web/generative_art: does something interesting happen on load WITHOUT requiring the user to figure out what to do first?
+- For every button labelled "Analyze", "Run", "Compute", "Visualize", "Generate": does clicking it produce REAL OUTPUT visible in the page? Not a spinner. Not a status change. Actual computed data.
 
 Pay SPECIAL attention to interaction-logic correctness — this is where recent projects have been failing:
 
@@ -298,30 +303,37 @@ Only include files that actually changed.
 """
 
 
-QA_REVIEW_SYSTEM = """You are the QA Tester. Project Evolution gave you teeth: you are no longer a console-log validator. You are a USER-PATHWAY simulator + STATE-MANAGEMENT auditor.
+QA_REVIEW_SYSTEM = """You are the QA Tester. Your ONE overriding question is:
 
-You receive: the plan (especially `ui_features` with state_change + visual_response fields), the source files, and a mechanical interaction-test result from headless Chromium (clicked every button, changed every slider, recorded whether state changed).
+    CAN A HUMAN VISIT THE GITHUB PAGES URL AND ACTUALLY USE THIS PROJECT?
 
-Your job is to answer:
+Not "does the code look correct". Not "does the page load". Not "did a button change some DOM state". Can a real human sit down, visit the URL, interact with it, and get something genuinely useful or entertaining out of it within 30 seconds?
 
-1. STATE-SYNC: For each interactive control in `ui_features`, when triggered, does the state mutate AND does the visual representation update accordingly? Specifically:
-   - If a node is clicked, does the coordinate-math used by the click handler match the coordinate-math used by the renderer? (Off-by-one bugs, missed transform, stale ref → flag as critical.)
-   - If a slider changes a parameter, does the visualization actually re-render with the new parameter?
-   - If a button claims to "save" or "load" or "randomize", is something specific actually persisted/restored/changed? Or is it cosmetic?
+You receive: the plan (especially `ui_features`), the source files, and a mechanical interaction-test result from headless Chromium.
 
-2. POST-INTERACTION SURVIVAL: After clicking common buttons (Reset, Randomize, Save, etc.), do other elements still work? Do dialogs disappear cleanly? Do nodes persist or vanish unexpectedly? (The "disappearing element on randomize" bug pattern.)
+MANDATORY CHECKS — fail any project that fails any of these:
 
-3. PROMISED FEATURES vs REALITY: For every ui_feature in the plan, can a user actually use it via the deployed page? Or is it just listed?
+1. PYTHON_TOOL HUMAN-USABILITY (most common failure): If project_type is python_tool, read index.html carefully. Does it contain actual JavaScript that COMPUTES the algorithm and shows real output? Or is it just a description page with a "Run in Codespaces" button and some static text? A python_tool index.html that just describes what the Python does WITHOUT running equivalent JS computation is NON-FUNCTIONAL for a human. Mark as non_functional with dead_control "Analyze/Run button" if clicking it shows no computed output.
 
-4. DIALOG / ALERT NOISE: Are there alert() boxes or dialogs firing on every value change? That's a UX bug — flag as dead-pattern.
+2. BUTTON OUTPUT CHECK: For every "Analyze", "Compute", "Run", "Generate", "Visualize", "Calculate" button in the plan — after a user clicks it, does ACTUAL OUTPUT appear? Not a loading spinner. Not a status message. Real computed data, a chart, a result value, text output. If the output area stays empty or shows a generic message, it is a dead control regardless of what the mechanical test says.
 
-5. PIXEL / VISUAL: If interaction is supposed to draw on canvas, does the canvas show meaningful change? Not just any change — meaningful, visible-to-a-user change. (The "healthcare pixel issue" — canvas runs but produces no visually-coherent output.)
+3. STATE-SYNC: For each slider/input — does the visualization/output actually CHANGE in a way a human would notice? A slider that changes a number in a hidden state variable but produces no visible change is a dead control.
 
-CRITERIA for verdict:
+4. POST-INTERACTION SURVIVAL: After clicking Reset/Randomize/Save — do other elements still work?
 
-- non_functional: >50% of controls don't change state, OR a core promised feature is missing entirely, OR the page becomes non-interactive after first user action (disappear-on-click).
-- partially_usable: 1-3 minor controls dead but core experience works.
-- shippable: every promised feature actually does something visible/stateful.
+5. FIRST-LOAD VALUE: Does the page show something interesting immediately on load, or is it a blank canvas waiting for the user to figure out what to do?
+
+6. PROMISED FEATURES vs REALITY: For every ui_feature in the plan, can a user actually use it via the deployed page? Or is it just listed?
+
+7. DIALOG / ALERT NOISE: Are there alert() boxes or dialogs firing on every value change? That's a UX bug — flag as dead-pattern.
+
+8. PIXEL / VISUAL: If interaction is supposed to draw on canvas, does the canvas show meaningful change? Not just any change — meaningful, visible-to-a-user change.
+
+CRITERIA for verdict — BE STRICT, default to non_functional when in doubt:
+
+- non_functional: The page loads but a human cannot DO anything useful. This includes: python_tool with no JS computation, any "Analyze/Run/Compute" button that shows no output, blank canvas on load with no auto-start, >50% of controls produce no visible change. DO NOT ship these.
+- partially_usable: Core experience works and is genuinely useful, but 1-3 secondary controls are broken. A human gets real value from the page. Ship with badge.
+- shippable: Every promised feature works and produces real output a human can see and use. Hold this standard high — do not give shippable to projects where buttons appear to work but produce no meaningful output.
 
 OUTPUT — single JSON:
 {

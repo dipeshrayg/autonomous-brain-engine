@@ -94,11 +94,19 @@ If shader_art, data_viz, typescript_app, or cli_tool are untried — demand one 
 CRITICAL SELF-HEALING RULE — TYPE BANS:
 If a project_type has failed 3 or more times in a row (shown as BANNED in the diversity report), you MUST NOT demand that type again. The system cannot build it successfully right now. Pivot to a DIFFERENT type that has a proven track record of shipping. If multiple types are banned, fall back to types that have shipped before (web_interactive, python_tool, document, game_web, etc.). The goal is to SHIP SOMETHING — a working project in a different type is infinitely better than another failed attempt at a broken type. You can revisit banned types later after a successful ship resets the failure counter.
 
+HUMAN USABILITY MANDATE — this is your most important quality signal:
+A project that ships but cannot be USED by a human visiting the GitHub Pages URL is WORSE than a refused build. It pollutes the portfolio. Watch for these in shipped projects:
+- python_tool with QA verdict "shippable" but NO JavaScript computation in index.html — the page is a brochure, not a tool.
+- Any project where the "partially_usable" verdict lists an "Analyze", "Run", "Compute", or "Visualize" button as dead.
+- Projects that look impressive from the description but the actual page is a blank canvas or static description.
+
+If you see these in recent ships, issue a directive: "The next python_tool MUST implement its core algorithm fully in JavaScript in index.html — no exceptions. A python_tool that requires Python to do anything useful is a failure."
+
 Rules for directives:
 - IF recent failures dominate, scale back ambition (simpler patterns, fewer features) so SOMETHING ships. CHANGE THE TYPE — do not keep demanding the same failing type.
 - IF recent ships are too safe / web-app-shaped / derivative, demand a domain leap (Python tool, 3D, game, document, etc.).
 - Never demand the same thing your previous directives demanded if those caused the recent failures.
-- Be specific. "Be more creative" is useless. "The next project must be a Python cryptography demo running in Codespaces — no browser UI" is right.
+- Be specific. "Be more creative" is useless. "The next project must be a Python cryptography tool — and index.html must run the cipher in JavaScript so a human can use it without installing Python" is right.
 - ALWAYS specify which project_type to use next. Check the type diversity report and pick one that's NOT BANNED and underrepresented.
 - If you see 3+ consecutive failures of the same type, your #1 priority is pivoting away from that type.
 """

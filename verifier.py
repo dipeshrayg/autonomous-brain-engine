@@ -376,17 +376,22 @@ _SNAPSHOT_JS = """() => {
                 const gl = c.getContext('webgl') || c.getContext('webgl2');
                 if (gl && c.width && c.height) {
                     const px = new Uint8Array(4);
-                    // Sample centre pixel + a corner to catch uniform changes
                     gl.readPixels(Math.floor(c.width/2), Math.floor(c.height/2), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);
                     cHash = (px[0] << 16) | (px[1] << 8) | px[2];
                 }
             } catch (e) { /* WebGL readPixels may also fail in headless */ }
         }
     }
-    // Also capture all numeric value-display elements (e.g. <span class="value-display">)
-    // web_3d controls update these; DOM text change = live control confirmed
+    // Capture value-display spans (web_3d slider readouts)
     const displays = [...document.querySelectorAll('[data-value],[class*="display"],[class*="readout"],[class*="value"],[id*="display"],[id*="readout"],[id*="value"]')]
         .map(el => el.textContent || '').join('|').slice(0, 300);
+    // Capture output areas — the key signal for python_tool and compute-button projects.
+    // If a human clicks "Analyze" and this grows, the button did real work.
+    const outputText = [...document.querySelectorAll(
+        '[id*="output"],[id*="result"],[id*="analysis"],[id*="chart"],[id*="graph"],[id*="viz"],' +
+        '[class*="output"],[class*="result"],[class*="analysis"],[class*="chart"],[class*="graph"],' +
+        'pre, code, .output, #output, #result, #results, #analysis'
+    )].map(el => (el.textContent || '').trim()).filter(t => t.length > 0).join('|').slice(0, 600);
     return {
         html_size: document.body.innerHTML.length,
         text: (document.body.innerText || '').slice(0, 500),
@@ -394,6 +399,8 @@ _SNAPSHOT_JS = """() => {
         ls: JSON.stringify(Object.entries(localStorage)).length,
         scroll: window.scrollY,
         displays,
+        output_text: outputText,
+        output_len: outputText.length,
     };
 }"""
 
@@ -516,18 +523,38 @@ def _run_interaction_test(page, max_controls: int = 12, settle_ms: int = 400) ->
             or before["ls"] != after["ls"]
             or before["scroll"] != after["scroll"]
             or before.get("displays", "") != after.get("displays", "")
+            or before.get("output_text", "") != after.get("output_text", "")
+            or (after.get("output_len", 0) > before.get("output_len", 0) + 20)
+        )
+        # Compute-labelled buttons that produce no output text AND no canvas change
+        # are cosmetic even if html_size changed (e.g. spinner appeared).
+        is_compute_label = any(
+            kw in (c.get("label") or "").lower()
+            for kw in ("analyz", "comput", "run", "generat", "visualiz", "calculat",
+                       "process", "encrypt", "compress", "decode", "solve", "simulate")
+        )
+        no_output_produced = (
+            is_compute_label
+            and after.get("output_len", 0) < 10
+            and before.get("canvas") == after.get("canvas")
         )
 
-        if changed:
+        if changed and not no_output_produced:
             live += 1
         else:
+            reason = (
+                "compute button: DOM changed but no output text appeared and canvas "
+                "did not change — button is cosmetic, not functional for a human"
+                if (changed and no_output_produced)
+                else "no observable state change"
+            )
             dead.append({
                 "index": idx,
                 "tag": c["tag"],
                 "type": c["type"],
                 "label": c["label"],
                 "trigger": outcome,
-                "reason": "no observable state change",
+                "reason": reason,
             })
 
     log.info(
