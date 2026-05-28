@@ -3048,6 +3048,78 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-05-28",
+      "completed_at": "2026-05-28T06:26:19Z",
+      "completed_at_unix": 1779949579,
+      "name": "eco-system-dynamics-visualizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-05-28-eco-system-dynamics-visualizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-05-28-eco-system-dynamics-visualizer/",
+      "language": "Python",
+      "project_type": "data_viz",
+      "tech_stack": [
+        "Python",
+        "matplotlib",
+        "plotly",
+        "pandas",
+        "numpy"
+      ],
+      "complexity_score": 60,
+      "concepts_demonstrated": [
+        "ecological systems",
+        "information-theoretic principles",
+        "advanced algorithms",
+        "data visualization"
+      ],
+      "novel_concepts": [
+        "application of information-theoretic principles in ecological systems",
+        "utilization of advanced algorithms for data preprocessing"
+      ],
+      "advancement_axis": "exploration of underrepresented project types and application of information-theoretic principles",
+      "pattern": "eco-system-dynamics-visualization",
+      "domain": "Biology",
+      "visual_identity": "color palette: green, blue, and earth tones; typography: Open Sans; layout personality: clean and minimalist",
+      "safety_notes": "no safety concerns",
+      "file_count": 6,
+      "loc": 664,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "data_preprocessing.py",
+        "exit_code": 0,
+        "stdout_chars": 209,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "data_preprocessing.py": "gpt-4o",
+          "visualization.py": "gpt-4o",
+          "user_interaction.py": "gpt-4o",
+          "requirements.txt": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a data_viz type with a focus on creating a highly interactive and visually compelling statistical or scientific visualization using Python (matplotlib, plotly, or similar).",
+        "Avoid recurring themes like cellular automata or swarm mechanics. Explore a new domain, such as biology (e.g., genetic algorithms, ecological systems) or physics (e.g., climate data trends).",
+        "Simplify the scope of the next project to ensure it ships successfully — focus on a single, complete visualization with no extraneous features.",
+        "Do not attempt another game_web or python_tool next — prioritize exploring underrepresented project types.",
+        "After this data_viz project, shift focus to shader_art as the next never-tried type to maintain momentum in exploring new domains."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "All controls function correctly to update state and visualization as intended, with no critical bugs or missing features observed.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -3085,7 +3157,8 @@
     50,
     51,
     52,
-    55
+    55,
+    60
   ],
   "concepts_explored": [
     "neural networks",
@@ -3242,7 +3315,10 @@
     "Information Theory",
     "constraint satisfaction problems",
     "information-theoretic principles",
-    "entropy analysis"
+    "entropy analysis",
+    "ecological systems",
+    "advanced algorithms",
+    "data visualization"
   ],
   "patterns_used": [
     "visualizer",
@@ -3273,7 +3349,8 @@
     "cellular-automata-visualization",
     "dynamic-strategy-battle",
     "interactive-educational-tool",
-    "entropy-analysis-tool"
+    "entropy-analysis-tool",
+    "eco-system-dynamics-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -3304,7 +3381,8 @@
     "Computer Graphics",
     "Game Design",
     "Information Theory",
-    "Information Security"
+    "Information Security",
+    "Biology"
   ],
   "ceo_reviews": [
     {
