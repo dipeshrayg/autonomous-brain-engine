@@ -6130,6 +6130,30 @@
         "The system has shown capability in pushing the boundaries of data visualization and CLI tools with meaningful functionality."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-28T17:01:05Z",
+      "issued_at_unix": 1779987665,
+      "model": "gpt-4o",
+      "verdict": "acceptable",
+      "summary": "The system is shipping projects but has shown a pattern of partial usability and repeated failures in certain domains, indicating a need for tighter scope and better execution.",
+      "concerns": [
+        "Repeated failures in shader_art have resulted in a ban, indicating overreach in this domain.",
+        "Several shipped projects have 'partially_usable' verdicts, suggesting issues with user accessibility and interactivity.",
+        "Recent successes have clustered around safe, well-trodden domains like python_tool and data_viz, risking stagnation."
+      ],
+      "directives": [
+        "The next project must use the typescript_app type, as it has never been tried and is the highest-priority type for exploration.",
+        "The project must focus on a novel domain, such as real-time collaborative tools or a lightweight experimental IDE for coding within the browser.",
+        "Ensure the project achieves full interactivity and usability in the browser — no dead buttons, missing features, or external dependencies that block user engagement.",
+        "Avoid over-complexity in scope; focus on delivering a polished, functional prototype with clear utility.",
+        "Incorporate a unique element that distinguishes this project from prior shipped work, such as multi-user interactivity, unconventional UX patterns, or a novel algorithm."
+      ],
+      "praise": [
+        "The system successfully shipped a CLI tool and data visualization project recently, demonstrating versatility.",
+        "The shipped projects have pushed into diverse domains like biology and information security, which is encouraging."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
