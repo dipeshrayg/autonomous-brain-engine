@@ -10479,6 +10479,34 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-28T16:48:45Z",
+      "attempted_at_unix": 1779986925,
+      "date": "2026-05-28",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 65,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 7,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Initial Conditions Dropdown",
+          "expected": "Change in reaction-diffusion pattern based on initial condition (Random, Circular, Stripe)"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
