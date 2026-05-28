@@ -10447,6 +10447,38 @@
         "dead": 0
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-28T14:41:32Z",
+      "attempted_at_unix": 1779979292,
+      "date": "2026-05-28",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 4 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-simulator",
+      "plan_language": "GLSL",
+      "plan_complexity": 65,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Save Settings button",
+          "expected": "Save the current simulation settings and confirm with a message."
+        },
+        {
+          "control": "Load Settings button",
+          "expected": "Load the previously saved simulation settings and apply them to the sliders and simulation."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
