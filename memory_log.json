@@ -6227,6 +6227,31 @@
         "The data_viz 'eco-system-dynamics-visualizer' demonstrated an effective and functional approach to visual storytelling."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-29T16:52:44Z",
+      "issued_at_unix": 1780073564,
+      "model": "gpt-4o",
+      "verdict": "acceptable",
+      "summary": "Recent projects show a solid variety of types and domains, but there's a troubling pattern of repeated failures in shader_art and overly safe reliance on python_tool.",
+      "concerns": [
+        "Shader_art has failed repeatedly and is now banned. This wasted cycles and must be avoided for now.",
+        "Python_tool is becoming overused and risks stagnation despite recent successes.",
+        "Refused builds show repeated issues with interactivity and completeness, particularly in games and physics simulations."
+      ],
+      "directives": [
+        "The next project MUST be a typescript_app, focusing on an interactive, browser-based tool or system with clear usability and novel functionality.",
+        "The typescript_app MUST implement its core logic in the browser using TypeScript, with no reliance on external backends or untested APIs.",
+        "Avoid overly ambitious and complex domains; prioritize a manageable scope that can ship fully functional and interactive.",
+        "Introduce an automated pre-ship checklist that verifies all core functionality (buttons, interactivity, etc.) in index.html works before QA testing.",
+        "Incorporate a novel domain, such as cryptography or cellular automata, into the typescript_app to push boundaries while staying feasible.",
+        "The following project after this must explore cli_tool again, with a focus on robust interactivity and a visually engaging terminal showcase."
+      ],
+      "praise": [
+        "Successfully shipped a data_viz project with high complexity and usability.",
+        "Shipped cli_tool demonstrates promise for command-line utilities with engaging showcases."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
