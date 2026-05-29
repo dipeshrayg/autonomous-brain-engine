@@ -6252,6 +6252,30 @@
         "Shipped cli_tool demonstrates promise for command-line utilities with engaging showcases."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-05-29T21:15:46Z",
+      "issued_at_unix": 1780089346,
+      "model": "gpt-4o",
+      "verdict": "acceptable",
+      "summary": "Recent projects have been shipping successfully, but the system is stagnating in safe domains. We must aggressively push into new, untried types to expand capabilities.",
+      "concerns": [
+        "Lack of progress in shipping shader_art projects, with multiple failed builds.",
+        "Over-reliance on python_tool projects — three shipped recently in quick succession.",
+        "A recent trend of partially usable projects, indicating incomplete or underwhelming implementations."
+      ],
+      "directives": [
+        "The next project MUST use the typescript_app type — this is a never-tried type with significant room for growth.",
+        "The typescript_app must demonstrate a novel, interactive feature, such as a real-time collaborative editor or a tool that visualizes algorithmic processes.",
+        "Ensure the typescript_app is fully functional and usable by a human directly through the browser, with all interactive elements working properly — no dead buttons or partially implemented features.",
+        "Do NOT attempt shader_art for the next project, as it is currently banned. Revisit only after achieving successful ships in other types.",
+        "Avoid python_tool for the next project to maintain type diversity and prevent excessive repetition.",
+        "Focus on a project that pushes boundaries into new domains, such as information theory, generative art, or abstract games, implemented using TypeScript in the browser."
+      ],
+      "praise": [
+        "Strong recent execution in shipping diverse project types, particularly the successful cli_tool and data_viz projects."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
