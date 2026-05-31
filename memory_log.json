@@ -11127,6 +11127,60 @@
         "dead": 3
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-31T18:13:09Z",
+      "attempted_at_unix": 1780251189,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 6 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "crypto-visualizer-app",
+      "plan_language": "JavaScript",
+      "plan_complexity": 10,
+      "plan_pattern": "interactive-cryptography-education",
+      "plan_domain": "Cryptography",
+      "plan_files_count": 6,
+      "project_type": "typescript_app",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "input[type='number'] 'Key Size'",
+          "expected": "Updates the key generation visualization to reflect the selected key size."
+        },
+        {
+          "control": "button 'Generate Keys'",
+          "expected": "Displays the generated keys and animates the modular arithmetic computations."
+        },
+        {
+          "control": "textarea 'Plaintext Input'",
+          "expected": "Updates the interactive visualization to reflect the input message."
+        },
+        {
+          "control": "button 'Encrypt'",
+          "expected": "Displays the encrypted message and animates the encryption process."
+        },
+        {
+          "control": "button 'Decrypt'",
+          "expected": "Displays the decrypted message and animates the decryption process."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive cryptographic visualizations."
+        },
+        {
+          "feature": "Encryption and decryption animations."
+        },
+        {
+          "feature": "Mini-game interface and interaction."
+        }
+      ],
+      "final_interaction": {
+        "tested": 6,
+        "live": 0,
+        "dead": 6
+      },
+      "final_interactive_count": 7
     }
   ],
   "cso_reviews": [
