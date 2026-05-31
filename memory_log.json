@@ -11181,6 +11181,38 @@
         "dead": 6
       },
       "final_interactive_count": 7
+    },
+    {
+      "attempted_at": "2026-05-31T18:57:23Z",
+      "attempted_at_unix": 1780253843,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "probabilistic-constraint-visualization",
+      "plan_language": "JavaScript",
+      "plan_complexity": 5,
+      "plan_pattern": "probabilistic-csp-visualizer",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 5,
+      "project_type": "web_interactive",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "button#solve 'Solve'",
+          "expected": "Graph updates dynamically as the algorithm progresses, highlighting resolved and unresolved nodes"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Dynamic solving visualization"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 3,
+        "dead": 1
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
