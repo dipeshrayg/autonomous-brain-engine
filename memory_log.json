@@ -11083,6 +11083,50 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=10 below floor 61 (max recent=60). The scale is open-ended; surpass yesterday.",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-05-31T16:59:04Z",
+      "attempted_at_unix": 1780246744,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 4 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "cryptographic-visual-edu-app",
+      "plan_language": "JavaScript",
+      "plan_complexity": 10,
+      "plan_pattern": "interactive-educational-tool-revisited",
+      "plan_domain": "Cryptography",
+      "plan_files_count": 6,
+      "project_type": "typescript_app",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "button 'Generate Keys'",
+          "expected": "Should display animated steps showing the creation of public and private keys."
+        },
+        {
+          "control": "textarea.input 'Plaintext Message'",
+          "expected": "Should display the updated plaintext in the Caesar cipher visualization."
+        },
+        {
+          "control": "button 'Encrypt Message'",
+          "expected": "Should display the ciphertext and highlight the encryption process visually."
+        },
+        {
+          "control": "button 'Decrypt Message'",
+          "expected": "Should show the step-by-step decryption process and reveal the original message."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive modular arithmetic visualization"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
