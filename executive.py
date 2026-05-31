@@ -86,10 +86,13 @@ Available types (NEVER-TRIED ones have the most headroom — push toward them ag
   web_interactive, web_3d, python_tool, document, generative_art, game_web,
   shader_art     — GLSL fragment shaders, pure WebGL, no Three.js. Reaction-diffusion, raymarched SDFs, fluid sims.
   data_viz       — Python heavy data work: matplotlib/plotly/altair/rich TUI + embedded SVG output in index.html.
-  typescript_app — TypeScript via esm.sh CDN imports, runs in browser, no build step.
+  typescript_app — Modern JS app using ES module imports from esm.sh CDN. IMPORTANT: files are .js and .html only,
+                   NOT .ts — GitHub Pages cannot compile TypeScript. The architect must use plain .js files with
+                   <script type="module"> and import libraries like d3, vue, or chart.js from https://esm.sh/.
   cli_tool       — Rust or Go CLI utility + Codespaces devcontainer + animated terminal showcase index.html.
 
-If shader_art, data_viz, typescript_app, or cli_tool are untried — demand one of them IMMEDIATELY.
+If shader_art, data_viz, typescript_app, or cli_tool are untried — demand one of them. But only demand
+typescript_app if you understand: the architect must produce .js files, NOT .ts files.
 
 CRITICAL SELF-HEALING RULE — TYPE BANS:
 If a project_type has failed 3 or more times in a row (shown as BANNED in the diversity report), you MUST NOT demand that type again. The system cannot build it successfully right now. Pivot to a DIFFERENT type that has a proven track record of shipping. If multiple types are banned, fall back to types that have shipped before (web_interactive, python_tool, document, game_web, etc.). The goal is to SHIP SOMETHING — a working project in a different type is infinitely better than another failed attempt at a broken type. You can revisit banned types later after a successful ship resets the failure counter.

@@ -499,6 +499,7 @@ def main() -> int:
              today, today_count, MAX_PROJECTS_PER_DAY, today_count + 1)
 
     client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
+    ceo_directives: list[str] = []  # initialise before try so except block can reference it
 
     try:
         # CEO directives — visionary push for new domains.
@@ -718,6 +719,36 @@ def main() -> int:
 
     except pipeline.PipelineError as e:
         log.error("Pipeline error: %s", e)
+        # Log to failed_builds so the CEO learns and recovery mode eventually activates.
+        # Without this, conference failures are invisible — CEO keeps demanding the same
+        # failing type indefinitely, and in_recovery never triggers.
+        try:
+            err_str = str(e)
+            # Extract demanded type from CEO directives if available
+            demanded_type = "unknown"
+            for directive in (ceo_directives or []):
+                for pt in pipeline.PROJECT_TYPES:
+                    if pt in directive.lower():
+                        demanded_type = pt
+                        break
+            # Also try to detect from error message itself
+            for pt in pipeline.PROJECT_TYPES:
+                if pt in err_str:
+                    demanded_type = pt
+                    break
+            record_failure(
+                memory,
+                plan=None,
+                stage="architect_conference",
+                reason=f"Conference failed: {err_str[:300]}",
+            )
+            # Patch the project_type into the last record so type-ban logic works
+            if memory.get("failed_builds"):
+                memory["failed_builds"][-1]["project_type"] = demanded_type
+                save_memory(memory)
+            log.info("Logged conference failure (type=%s) to failed_builds.", demanded_type)
+        except Exception as log_err:
+            log.warning("Could not log conference failure: %s", log_err)
         return 1
     except Exception:
         log.error("Unhandled error:\n%s", traceback.format_exc())

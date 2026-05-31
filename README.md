@@ -49,11 +49,11 @@ models due to its ultra-fast free-tier inference:
 | CEO | gpt-4o | GitHub Models | Visionary strategy, domain pivots |
 | CSO | llama-3.3-70b-versatile | Groq | Scientific novelty, algorithmic depth |
 | CTO | gemini-2.0-flash | Google AI Studio | Self-improvement, code patches |
-| Architect A | mixtral-8x7b-32768 | Groq | Creative planning (Mistral lens) |
-| Architect B | llama-3.3-70b-versatile | Groq | Creative planning (Meta lens) |
+| Architect A | deepseek-r1-distill-llama-70b | Groq | Creative planning (DeepSeek reasoning) |
+| Architect B | llama-3.3-70b-versatile | Groq | Creative planning (Meta Llama lens) |
 | Judge | gpt-4o | GitHub Models | Predictability filter |
 | Engineer | gpt-4o | GitHub Models | Per-file implementation |
-| Reviewer A | mixtral-8x7b-32768 | Groq | Code review (Mistral lens) |
+| Reviewer A | gemma2-9b-it | Groq | Code review (Google Gemma lens) |
 | Reviewer B | gemini-2.0-flash | Google AI Studio | Code review (Gemini lens) |
 | QA Tester | gpt-4o | GitHub Models | User-pathway simulation |
 | QA Fixer | gemini-2.0-flash | Google AI Studio | Repairs dead controls |
@@ -77,7 +77,7 @@ STAGE 2    IMPLEMENT
            Encoding rules enforced: UTF-8 charset meta, utf-8 open() calls
 
 STAGE 3+4  QUALITY LOOP (up to 8 rounds)
-           Reviewer A (Mixtral/Groq) + Reviewer B (Gemini) in parallel
+           Reviewer A (Gemma/Groq) + Reviewer B (Gemini) in parallel
            Fixer applies merged feedback
            Playwright interaction test after each round
 
