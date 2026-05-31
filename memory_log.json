@@ -10966,6 +10966,33 @@
         "dead": 2
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-31T13:17:37Z",
+      "attempted_at_unix": 1780233457,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 0 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-visualizer",
+      "plan_language": "GLSL",
+      "plan_complexity": 70,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [
+        {
+          "feature": "initial conditions input field"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 4,
+        "dead": 1
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
