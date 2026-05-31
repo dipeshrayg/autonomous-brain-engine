@@ -11331,6 +11331,57 @@
         "dead": 1
       },
       "final_interactive_count": 2
+    },
+    {
+      "attempted_at": "2026-05-31T23:54:14Z",
+      "attempted_at_unix": 1780271654,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "robotic-logic-simulator",
+      "plan_language": "Rust",
+      "plan_complexity": 65,
+      "plan_pattern": "robotic-logic-simulation",
+      "plan_domain": "Robotics",
+      "plan_files_count": 7,
+      "project_type": "cli_tool",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Select dropdown (SELECT with label 'DPLL\\nCellular Automata')",
+          "expected": "Selecting an algorithm should update the simulation state and show it in the UI."
+        },
+        {
+          "control": "Text input (INPUT with label 'Path to config file')",
+          "expected": "Entering a file path should update the simulation parameters and enable the Start Simulation button if valid."
+        },
+        {
+          "control": "Start Simulation button",
+          "expected": "Clicking the button should trigger the simulation and display the output."
+        },
+        {
+          "control": "Pause Simulation button",
+          "expected": "Clicking the button should pause the simulation and provide feedback to the user."
+        },
+        {
+          "control": "Restart Simulation button",
+          "expected": "Clicking the button should restart the simulation and reset the UI to its initial state."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time simulation visualization and output"
+        },
+        {
+          "feature": "Interactive UI for parameters and controls"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
