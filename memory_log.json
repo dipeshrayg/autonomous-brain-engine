@@ -10752,6 +10752,38 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-05-31T00:26:30Z",
+      "attempted_at_unix": 1780187190,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "cryptographic-simulation-app",
+      "plan_language": "JavaScript",
+      "plan_complexity": 62,
+      "plan_pattern": "interactive-educational-tool",
+      "plan_domain": "Cryptography",
+      "plan_files_count": 7,
+      "project_type": "typescript_app",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Input text field (id='dataInput')",
+          "expected": "Input text should update the output visualization in real-time."
+        },
+        {
+          "control": "Algorithm selection dropdown (id='algorithmSelect')",
+          "expected": "Algorithm selection should change the visualization to represent the selected algorithm's method in real-time."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 1,
+        "dead": 2
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
