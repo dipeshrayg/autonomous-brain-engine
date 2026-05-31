@@ -4,19 +4,19 @@ roles.py — Multi-provider boardroom with genuine model diversity.
 Every role now pulls from a different AI family so the adversarial
 conference actually has adversarial perspectives:
 
-    CEO              gpt-4o                      (OpenAI — strategic synthesis)
-    CSO              llama-3.3-70b-versatile     (Meta via Groq — scientific novelty)
-    CTO              gemini-2.0-flash            (Google — code & self-improvement)
-    Architect A      deepseek-r1-distill-llama-70b (DeepSeek via Groq — chain-of-thought reasoning)
-    Architect B      llama-3.3-70b-versatile     (Meta via Groq — open-source perspective)
-    Judge            gpt-4o                      (OpenAI — predictability filter)
-    Engineer         gpt-4o                      (OpenAI — implementation quality)
-    Reviewer A       gemma2-9b-it                (Google Gemma via Groq — different lens)
-    Reviewer B       gemini-2.0-flash            (Google — third perspective)
-    QA Tester        gpt-4o                      (OpenAI — strict user-pathway sim)
-    QA Fixer         gemini-2.0-flash            (Google — fast, capable repair)
-    Fixer            gpt-4o-mini                 (OpenAI fast — iterative repair)
-    Polisher         Phi-4                       (Microsoft via GitHub Models — UX polish)
+    CEO              gpt-4o                                    (OpenAI — strategic synthesis)
+    CSO              llama-3.3-70b-versatile                   (Meta via Groq — scientific novelty)
+    CTO              gemini-2.0-flash                          (Google — code & self-improvement)
+    Architect A      meta-llama/llama-4-scout-17b-16e-instruct (Llama 4 via Groq — newest generation)
+    Architect B      llama-3.3-70b-versatile                   (Meta via Groq — open-source perspective)
+    Judge            gpt-4o                                    (OpenAI — predictability filter)
+    Engineer         gpt-4o                                    (OpenAI — implementation quality)
+    Reviewer A       llama-3.3-70b-versatile                   (Groq — second opinion)
+    Reviewer B       gemini-2.0-flash                          (Google — third perspective)
+    QA Tester        gpt-4o                                    (OpenAI — strict user-pathway sim)
+    QA Fixer         gemini-2.0-flash → gpt-4o                 (Google primary, OpenAI fallback)
+    Fixer            gpt-4o-mini                               (OpenAI fast — iterative repair)
+    Polisher         Phi-4                                     (Microsoft via GitHub Models — UX polish)
 
 Providers used (all zero-cost):
     github   — GitHub Models API (GITHUB_TOKEN, always available in Actions)
@@ -64,18 +64,14 @@ MODEL_PROVIDER: dict[str, str] = {
     "gpt-4o-mini":                      "github",
     # GitHub Models (Microsoft Phi — confirmed working)
     "Phi-4":                            "github",
-    "Phi-3.5-mini-instruct":            "github",
-    # Groq (Meta Llama — confirmed working)
+    # Groq (Meta Llama — llama-3.3-70b-versatile confirmed working)
     "llama-3.3-70b-versatile":          "groq",
     "llama-3.1-8b-instant":             "groq",
-    # Groq (DeepSeek — chain-of-thought reasoning, different perspective from Llama)
-    "deepseek-r1-distill-llama-70b":    "groq",
-    # Groq (Google Gemma — yet another model family)
-    "gemma2-9b-it":                     "groq",
-    # Google AI Studio (Gemini — free tier)
+    # Groq (Llama 4 — newer generation, may be available)
+    "meta-llama/llama-4-scout-17b-16e-instruct": "groq",
+    # Google AI Studio (Gemini — free tier, quota-limited; gemini-2.0-flash primary)
     "gemini-2.0-flash":                 "google",
     "gemini-2.0-flash-lite":            "google",
-    "gemini-1.5-flash":                 "google",
 }
 
 
@@ -116,20 +112,19 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "gpt-4o",                       # OpenAI final fallback
     ],
     "vp_eng": [
-        "llama-3.3-70b-versatile",      # Meta via Groq — pragmatic engineering
-        "gpt-4o",
+        "llama-3.3-70b-versatile",      # Groq — pragmatic engineering
         "gpt-4o-mini",
     ],
 
     # ── Planning layer ────────────────────────────────────────────────────
     "architect_candidate_a": [
-        "deepseek-r1-distill-llama-70b", # DeepSeek via Groq — chain-of-thought, different reasoning
-        "llama-3.3-70b-versatile",       # Meta via Groq fallback
+        "meta-llama/llama-4-scout-17b-16e-instruct",  # Llama 4 via Groq — newest generation
+        "llama-3.3-70b-versatile",       # Llama 3.3 via Groq fallback (confirmed working)
         "gpt-4o-mini",                   # OpenAI guaranteed fallback
     ],
     "architect_candidate_b": [
-        "llama-3.3-70b-versatile",      # Meta via Groq — open-source perspective (confirmed working)
-        "deepseek-r1-distill-llama-70b", # DeepSeek fallback
+        "llama-3.3-70b-versatile",      # Meta via Groq — confirmed working
+        "meta-llama/llama-4-scout-17b-16e-instruct",  # Llama 4 fallback
         "gpt-4o-mini",                  # OpenAI guaranteed fallback
     ],
     "architect_judge": [
@@ -144,9 +139,8 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "gpt-4o-mini",
     ],
     "reviewer_a": [
-        "gemma2-9b-it",                 # Google Gemma via Groq — different family from Meta/DeepSeek
-        "llama-3.1-8b-instant",         # Meta via Groq — fast second opinion
-        "gpt-4o-mini",                  # guaranteed fallback
+        "llama-3.3-70b-versatile",      # Groq — different from GPT reviewer_b fallback
+        "gpt-4o-mini",                  # guaranteed fallback (llama-3.1-8b-instant 413s on large reviews)
     ],
     "reviewer_b": [
         "gemini-2.0-flash",             # Google — third independent perspective
