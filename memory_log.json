@@ -11213,6 +11213,60 @@
         "dead": 1
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-05-31T19:37:18Z",
+      "attempted_at_unix": 1780256238,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 3 missing features, 6 verifier blocker(s).",
+      "plan_name": "crypto-visualizer-app",
+      "plan_language": "JavaScript",
+      "plan_complexity": 10,
+      "plan_pattern": "interactive-crypto-visualizer",
+      "plan_domain": "Cryptography",
+      "plan_files_count": 6,
+      "project_type": "typescript_app",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Key Size input",
+          "expected": "Updates the prime generation visualization to reflect the selected key size."
+        },
+        {
+          "control": "Message Input textarea",
+          "expected": "Displays the inputted message in the appropriate output panel."
+        },
+        {
+          "control": "Generate Keys button",
+          "expected": "Displays the generated public and private keys in the output panel and updates the key generation visualization."
+        },
+        {
+          "control": "Encrypt button",
+          "expected": "Displays the encrypted message in the output panel and updates the encryption visualization."
+        },
+        {
+          "control": "Decrypt button",
+          "expected": "Displays the decrypted message alongside the original plaintext in the output panel and updates the decryption visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive visualization of prime generation"
+        },
+        {
+          "feature": "Display of plaintext and encrypted message"
+        },
+        {
+          "feature": "Decryption process"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
