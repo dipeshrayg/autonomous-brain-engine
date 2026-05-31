@@ -10993,6 +10993,63 @@
         "dead": 1
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-31T14:27:19Z",
+      "attempted_at_unix": 1780237639,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 6 dead controls, 4 missing features, 4 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 65,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Chemistry",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "slider (reaction-rate)",
+          "expected": "Updates reaction rate parameter and changes chemical pattern."
+        },
+        {
+          "control": "slider (feed-rate)",
+          "expected": "Updates feed rate parameter and changes chemical pattern."
+        },
+        {
+          "control": "slider (kill-rate)",
+          "expected": "Updates kill rate parameter and changes chemical pattern."
+        },
+        {
+          "control": "slider (diffusion-ratio)",
+          "expected": "Updates diffusion ratio parameter and changes chemical pattern."
+        },
+        {
+          "control": "button (Reset Simulation)",
+          "expected": "Reinitializes the chemical pattern and updates the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "real-time reaction-diffusion simulation"
+        },
+        {
+          "feature": "visualization of chemical patterns using WebGL"
+        },
+        {
+          "feature": "correct calculation and display of entropy"
+        },
+        {
+          "feature": "analysis of pattern compression"
+        }
+      ],
+      "final_interaction": {
+        "tested": 6,
+        "live": 0,
+        "dead": 6
+      },
+      "final_interactive_count": 6
     }
   ],
   "cso_reviews": [
