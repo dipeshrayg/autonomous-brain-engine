@@ -11292,6 +11292,45 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-05-31T21:27:19Z",
+      "attempted_at_unix": 1780262839,
+      "date": "2026-05-31",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 2 dead controls, 2 missing features, 0 verifier blocker(s).",
+      "plan_name": "swarm-logic-simulator",
+      "plan_language": "Rust",
+      "plan_complexity": 65,
+      "plan_pattern": "swarm-simulation",
+      "plan_domain": "Artificial Life",
+      "plan_files_count": 6,
+      "project_type": "cli_tool",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Parameter input field",
+          "expected": "Change simulator parameters and update visualization"
+        },
+        {
+          "control": "Run button",
+          "expected": "Start the simulation and display swarm behavior on the canvas"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Visualization of swarm behavior"
+        },
+        {
+          "feature": "Parameter parsing and application"
+        }
+      ],
+      "final_interaction": {
+        "tested": 2,
+        "live": 1,
+        "dead": 1
+      },
+      "final_interactive_count": 2
     }
   ],
   "cso_reviews": [
