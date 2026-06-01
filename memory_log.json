@@ -11514,6 +11514,38 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-01T09:26:33Z",
+      "attempted_at_unix": 1780305993,
+      "date": "2026-06-01",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 70,
+      "plan_pattern": "reaction-diffusion-patterns",
+      "plan_domain": "Computational Biology",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "colorPicker",
+          "expected": "Change the color palette of the reaction-diffusion visualization"
+        },
+        {
+          "control": "resetButton",
+          "expected": "Reset the simulation state and restart visualization"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
