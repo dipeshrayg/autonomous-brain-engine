@@ -11601,6 +11601,29 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-01T18:32:55Z",
+      "attempted_at_unix": 1780338775,
+      "date": "2026-06-01",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "bayesian-reaction-diffusion",
+      "plan_language": "GLSL",
+      "plan_complexity": 70,
+      "plan_pattern": "bayesian-reaction-diffusion",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 7,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 5,
+        "dead": 0
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
