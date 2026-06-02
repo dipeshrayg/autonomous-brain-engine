@@ -11845,6 +11845,54 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 71 (max recent=70). The scale is open-ended; surpass yesterday.",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-02T09:59:12Z",
+      "attempted_at_unix": 1780394352,
+      "date": "2026-06-02",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 1 missing features, 3 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 75,
+      "plan_pattern": "reaction-diffusion-patterns",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Feed Rate Slider",
+          "expected": "Adjust feed rate and see changes in shader output."
+        },
+        {
+          "control": "Kill Rate Slider",
+          "expected": "Adjust kill rate and see changes in shader output."
+        },
+        {
+          "control": "Diffusion A Slider",
+          "expected": "Adjust diffusion A and see changes in shader output."
+        },
+        {
+          "control": "Diffusion B Slider",
+          "expected": "Adjust diffusion B and see changes in shader output."
+        },
+        {
+          "control": "Reset Button",
+          "expected": "Reset shader parameters to default and see canvas update."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Shader output on first load"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
