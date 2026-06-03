@@ -12451,6 +12451,57 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-03T21:15:51Z",
+      "attempted_at_unix": 1780521351,
+      "date": "2026-06-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 3 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 95,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "feed rate slider",
+          "expected": "Adjusting the slider should update the shader parameter and reflect changes in the visual output in real time."
+        },
+        {
+          "control": "kill rate slider",
+          "expected": "Adjusting the slider should update the shader parameter and reflect changes in the visual output in real time."
+        },
+        {
+          "control": "diffusion A slider",
+          "expected": "Adjusting the slider should update the shader parameter and reflect changes in the visual output in real time."
+        },
+        {
+          "control": "diffusion B slider",
+          "expected": "Adjusting the slider should update the shader parameter and reflect changes in the visual output in real time."
+        },
+        {
+          "control": "reset button",
+          "expected": "Clicking the reset button should reset the sliders and shader parameters to default values and update the visual output accordingly."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "real-time visual response to slider adjustments"
+        },
+        {
+          "feature": "resetting shader parameters to default"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
