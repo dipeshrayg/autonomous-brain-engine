@@ -12136,6 +12136,34 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', '",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-03T00:27:34Z",
+      "attempted_at_unix": 1780446454,
+      "date": "2026-06-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "glsl-noise-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 90,
+      "plan_pattern": "glsl-noise-patterns",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Color selector (SELECT element, ID: colorSelect)",
+          "expected": "Changing the selected color should update the noise pattern to reflect the chosen color (e.g., red, green, blue, or white)."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
