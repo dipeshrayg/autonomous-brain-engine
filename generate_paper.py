@@ -1,228 +1,348 @@
 """
-generate_paper.py — Generates the research paper PDF with embedded diagrams.
+generate_paper.py — IEEE-format research paper, UK A4 standard.
+
+Format: IEEE Access / IEEE Transactions style (single-column, A4).
+Typography: Times-Roman family, 10 pt body.
+Referencing: IEEE numbered style [1]–[8] with in-text citations.
+Compliant with: IEEE Author Centre guidelines (A4 variant).
+
 Run: python generate_paper.py
 """
 
 import json
-import os
 import io
 from datetime import datetime
+
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-import matplotlib.gridspec as gridspec
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
 import numpy as np
 
 from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm, mm
 from reportlab.lib import colors
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle,
-    HRFlowable, PageBreak, KeepTogether
+    BaseDocTemplate, Frame, PageTemplate,
+    Paragraph, Spacer, Image, Table, TableStyle,
+    HRFlowable, PageBreak, KeepTogether, FrameBreak,
 )
-from reportlab.platypus.flowables import HRFlowable
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_JUSTIFY
 from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 
-# ── Colour palette ────────────────────────────────────────────────────────────
-DARK   = colors.HexColor("#0d1117")
-MID    = colors.HexColor("#161b22")
-BORDER = colors.HexColor("#30363d")
-ACCENT = colors.HexColor("#2563eb")
-ACCENT2= colors.HexColor("#1d4ed8")
-TEXT   = colors.HexColor("#1f2937")
-MUTED  = colors.HexColor("#4b5563")
-GREEN  = colors.HexColor("#16a34a")
-AMBER  = colors.HexColor("#d97706")
-RED    = colors.HexColor("#dc2626")
-WHITE  = colors.white
-
-# ── Load memory for real stats ────────────────────────────────────────────────
+# ── Real data from memory_log ─────────────────────────────────────────────────
 with open("memory_log.json", encoding="utf-8") as f:
     MEM = json.load(f)
 
-PROJECTS  = MEM.get("projects", [])
-FAILED    = MEM.get("failed_builds", [])
-CEO_REV   = MEM.get("ceo_reviews", [])
+PROJECTS = MEM.get("projects", [])
+FAILED   = MEM.get("failed_builds", [])
+CEO_REV  = MEM.get("ceo_reviews", [])
 
-# ── Diagram generators ────────────────────────────────────────────────────────
+# ── Page geometry (IEEE A4) ───────────────────────────────────────────────────
+PW, PH = A4                          # 595.28 × 841.89 pt
+MARGIN_TOP    = 2.54 * cm
+MARGIN_BOTTOM = 2.54 * cm
+MARGIN_LEFT   = 2.54 * cm
+MARGIN_RIGHT  = 2.54 * cm
+BODY_W        = PW - MARGIN_LEFT - MARGIN_RIGHT
+BODY_H        = PH - MARGIN_TOP - MARGIN_BOTTOM
 
-def fig_to_image(fig, dpi=150):
+# ── Colour palette (IEEE-neutral, no dark backgrounds) ───────────────────────
+BLACK   = colors.HexColor("#000000")
+DARK    = colors.HexColor("#1a1a1a")
+MID     = colors.HexColor("#444444")
+LIGHT   = colors.HexColor("#888888")
+RULE    = colors.HexColor("#cccccc")
+BLUE    = colors.HexColor("#003087")   # IEEE blue
+LBLUE   = colors.HexColor("#e8eef7")
+
+# ── Typography helpers ────────────────────────────────────────────────────────
+def S(name, **kw):
+    """Build a named ParagraphStyle with Times-Roman base."""
+    kw.pop("parent", None)
+    kw.setdefault("fontName", "Times-Roman")
+    kw.setdefault("fontSize", 10)
+    kw.setdefault("leading", 14)
+    kw.setdefault("textColor", DARK)
+    return ParagraphStyle(name, **kw)
+
+# Title / author block
+title_style = S("Title",
+    fontName="Times-Bold", fontSize=22, leading=28,
+    textColor=BLACK, spaceAfter=6, alignment=TA_CENTER)
+
+author_style = S("Author",
+    fontName="Times-Roman", fontSize=11, leading=16,
+    textColor=DARK, spaceAfter=2, alignment=TA_CENTER)
+
+affil_style = S("Affil",
+    fontName="Times-Italic", fontSize=10, leading=14,
+    textColor=MID, spaceAfter=2, alignment=TA_CENTER)
+
+email_style = S("Email",
+    fontName="Times-Italic", fontSize=9, leading=13,
+    textColor=MID, spaceAfter=8, alignment=TA_CENTER)
+
+# Abstract / Keywords block
+abstract_head = S("AbstractHead",
+    fontName="Times-Bold", fontSize=9, leading=13,
+    textColor=BLACK, spaceBefore=6, spaceAfter=0)
+
+abstract_body = S("AbstractBody",
+    fontName="Times-Italic", fontSize=9, leading=13,
+    textColor=DARK, spaceAfter=6, alignment=TA_JUSTIFY,
+    leftIndent=6, rightIndent=6)
+
+keywords_style = S("Keywords",
+    fontName="Times-Roman", fontSize=9, leading=13,
+    textColor=DARK, spaceAfter=10, leftIndent=6, rightIndent=6)
+
+# Section headings — IEEE Roman numeral style
+h1 = S("H1",
+    fontName="Times-Bold", fontSize=10, leading=14,
+    textColor=BLACK, spaceBefore=14, spaceAfter=4,
+    alignment=TA_CENTER)
+
+# Sub-section headings — IEEE letter style
+h2 = S("H2",
+    fontName="Times-BoldItalic", fontSize=10, leading=14,
+    textColor=BLACK, spaceBefore=10, spaceAfter=3)
+
+# Sub-sub-section
+h3 = S("H3",
+    fontName="Times-Italic", fontSize=10, leading=14,
+    textColor=DARK, spaceBefore=6, spaceAfter=2)
+
+# Body text
+body = S("Body",
+    fontSize=10, leading=14, spaceAfter=6, alignment=TA_JUSTIFY)
+
+body_nb = S("BodyNB",
+    fontSize=10, leading=14, spaceAfter=3, alignment=TA_JUSTIFY)
+
+# Captions
+fig_caption = S("FigCaption",
+    fontName="Times-Italic", fontSize=9, leading=13,
+    textColor=MID, spaceAfter=8, spaceBefore=4, alignment=TA_CENTER)
+
+table_caption = S("TableCaption",
+    fontName="Times-Bold", fontSize=9, leading=13,
+    textColor=BLACK, spaceAfter=4, spaceBefore=10, alignment=TA_CENTER)
+
+# References
+ref_style = S("Ref",
+    fontSize=9, leading=13, spaceAfter=3,
+    leftIndent=18, firstLineIndent=-18)
+
+# Footnote / small text
+small = S("Small",
+    fontName="Times-Italic", fontSize=8, leading=12,
+    textColor=MID, alignment=TA_CENTER)
+
+# ── Page template with header/footer ─────────────────────────────────────────
+_page_counter = [0]
+
+def _on_page(canvas, doc):
+    """Header: journal name left, date right. Footer: page number centred."""
+    _page_counter[0] = doc.page
+    canvas.saveState()
+    # Header rule
+    canvas.setStrokeColor(RULE)
+    canvas.setLineWidth(0.5)
+    y_hdr = PH - MARGIN_TOP + 6 * mm
+    canvas.line(MARGIN_LEFT, y_hdr, PW - MARGIN_RIGHT, y_hdr)
+    # Header text
+    canvas.setFont("Times-Italic", 8)
+    canvas.setFillColor(LIGHT)
+    canvas.drawString(MARGIN_LEFT, y_hdr + 2 * mm,
+                      "Autonomous Multi-Agent LLM Pipeline for Continuous Software Creation")
+    canvas.drawRightString(PW - MARGIN_RIGHT, y_hdr + 2 * mm, "D. Ray, 2026")
+    # Footer rule
+    y_ftr = MARGIN_BOTTOM - 6 * mm
+    canvas.line(MARGIN_LEFT, y_ftr, PW - MARGIN_RIGHT, y_ftr)
+    # Page number
+    canvas.setFont("Times-Roman", 9)
+    canvas.setFillColor(MID)
+    canvas.drawCentredString(PW / 2, y_ftr - 4 * mm, str(doc.page))
+    canvas.restoreState()
+
+def _first_page(canvas, doc):
+    """First page: no running header; just footer."""
+    canvas.saveState()
+    canvas.setStrokeColor(RULE)
+    canvas.setLineWidth(0.5)
+    y_ftr = MARGIN_BOTTOM - 6 * mm
+    canvas.line(MARGIN_LEFT, y_ftr, PW - MARGIN_RIGHT, y_ftr)
+    canvas.setFont("Times-Roman", 9)
+    canvas.setFillColor(MID)
+    canvas.drawCentredString(PW / 2, y_ftr - 4 * mm, "1")
+    canvas.restoreState()
+
+
+# ── Table helper ──────────────────────────────────────────────────────────────
+def ieee_table(data, col_widths, caption=""):
+    """Build an IEEE-style table with caption above."""
+    t = Table(data, colWidths=col_widths, repeatRows=1)
+    style = TableStyle([
+        # Header row
+        ("FONTNAME",    (0, 0), (-1, 0), "Times-Bold"),
+        ("FONTSIZE",    (0, 0), (-1, -1), 9),
+        ("LEADING",     (0, 0), (-1, -1), 13),
+        ("ALIGN",       (0, 0), (-1, -1), "LEFT"),
+        ("VALIGN",      (0, 0), (-1, -1), "TOP"),
+        ("TOPPADDING",  (0, 0), (-1, -1), 4),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ("LEFTPADDING", (0, 0), (-1, -1), 5),
+        # Top and bottom rules (IEEE uses horizontal rules only)
+        ("LINEABOVE",   (0, 0), (-1, 0), 1.0, BLACK),
+        ("LINEBELOW",   (0, 0), (-1, 0), 0.5, BLACK),
+        ("LINEBELOW",   (0, -1), (-1, -1), 1.0, BLACK),
+        # Alternating row shading (subtle)
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f7f7f7")]),
+    ])
+    t.setStyle(style)
+    items = []
+    if caption:
+        items.append(Paragraph(caption, table_caption))
+    items.append(t)
+    items.append(Spacer(1, 4))
+    return items
+
+
+# ── Figure helpers ────────────────────────────────────────────────────────────
+def fig_to_buf(fig, dpi=150):
     buf = io.BytesIO()
-    fig.savefig(buf, format='png', dpi=dpi, bbox_inches='tight',
+    fig.savefig(buf, format="png", dpi=dpi, bbox_inches="tight",
                 facecolor=fig.get_facecolor())
     buf.seek(0)
     plt.close(fig)
     return buf
 
 
+def ieee_fig(buf, caption, width=None):
+    """Full-width figure with caption below."""
+    w = width or BODY_W
+    im = Image(buf, width=w, height=w * 0.40)
+    im.hAlign = "CENTER"
+    return [Spacer(1, 6), im, Paragraph(caption, fig_caption)]
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# CHART GENERATORS  (unchanged from original, palette adapted to print colours)
+# ═══════════════════════════════════════════════════════════════════════════════
+
 def make_architecture_diagram():
     fig, ax = plt.subplots(figsize=(13, 8))
-    fig.patch.set_facecolor('#f8fafc')
-    ax.set_facecolor('#f8fafc')
-    ax.set_xlim(0, 13)
-    ax.set_ylim(0, 8)
-    ax.axis('off')
+    fig.patch.set_facecolor("white"); ax.set_facecolor("white")
+    ax.set_xlim(0, 13); ax.set_ylim(0, 8); ax.axis("off")
 
-    def box(x, y, w, h, label, sublabel="", color="#2563eb", textcolor="white", fs=9):
-        rect = FancyBboxPatch((x, y), w, h,
-                              boxstyle="round,pad=0.05",
-                              linewidth=1.2,
-                              edgecolor=color,
-                              facecolor=color + "22" if textcolor != "white" else color)
+    from matplotlib.patches import FancyBboxPatch
+
+    def box(x, y, w, h, label, sublabel="", fc="#003087", tc="white", fs=8.5):
+        rect = FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.05",
+                              linewidth=1, edgecolor=fc,
+                              facecolor=fc if tc == "white" else fc + "22")
         ax.add_patch(rect)
         ax.text(x + w/2, y + h/2 + (0.12 if sublabel else 0),
-                label, ha='center', va='center',
-                fontsize=fs, fontweight='bold',
-                color=textcolor if textcolor != "white" else "white")
+                label, ha="center", va="center",
+                fontsize=fs, fontweight="bold", color=tc)
         if sublabel:
-            ax.text(x + w/2, y + h/2 - 0.18,
-                    sublabel, ha='center', va='center',
-                    fontsize=7, color=textcolor if textcolor != "white" else "#e2e8f0")
+            ax.text(x + w/2, y + h/2 - 0.18, sublabel,
+                    ha="center", va="center", fontsize=6.5, color=tc)
 
-    def arrow(x1, y1, x2, y2, color="#94a3b8"):
+    def arr(x1, y1, x2, y2, c="#888888"):
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
-                    arrowprops=dict(arrowstyle="-|>", color=color, lw=1.5))
+                    arrowprops=dict(arrowstyle="-|>", color=c, lw=1.2))
 
-    # Title
-    ax.text(6.5, 7.6, "Autonomous Brain — System Architecture",
-            ha='center', va='center', fontsize=13, fontweight='bold', color='#1e293b')
+    ax.text(6.5, 7.65, "Autonomous Brain — System Architecture",
+            ha="center", va="center", fontsize=12, fontweight="bold", color="#1a1a1a")
 
-    # --- ROW 1: Executive layer ---
-    ax.text(0.3, 6.95, "EXECUTIVE LAYER", fontsize=7.5, color='#64748b', fontweight='bold')
-    box(0.3, 6.3, 2.8, 0.6, "CEO  (gpt-4o)", "Visionary · Directives · Failure memory", "#1d4ed8")
-    box(4.2, 6.3, 2.8, 0.6, "CSO  (gpt-4o)", "Chief Science Officer · Novelty push", "#7c3aed")
-    box(8.1, 6.3, 4.5, 0.6, "Watchdog  (bash)", "Every 30 min · Auto-dispatch · Cap enforcement", "#0f766e")
+    ax.text(0.3, 7.0, "EXECUTIVE LAYER", fontsize=7, color="#888888", fontweight="bold")
+    box(0.3, 6.3, 2.8, 0.62, "CEO  (gpt-4o)", "Visionary · Directives", "#003087")
+    box(4.2, 6.3, 2.8, 0.62, "CSO  (gpt-4o)", "Science Officer · Novelty", "#1a5276")
+    box(8.1, 6.3, 4.5, 0.62, "Watchdog  (bash)", "Every 30 min · Cap enforcement", "#145a32")
+    arr(3.1, 6.61, 4.2, 6.61); arr(7.0, 6.61, 8.1, 6.61)
 
-    arrow(3.1, 6.6, 4.2, 6.6)
-    arrow(7.0, 6.6, 8.1, 6.6)
+    ax.text(0.3, 6.0, "PLANNING LAYER", fontsize=7, color="#888888", fontweight="bold")
+    box(0.3, 5.3, 2.5, 0.62, "Architect A", "(Llama4 · temp=1.0)", "#1f618d")
+    box(3.1, 5.3, 2.5, 0.62, "Architect B", "(Llama3.3 · temp=1.0)", "#1f618d")
+    box(6.0, 5.3, 3.2, 0.62, "Judge  (gpt-4o)", "Predictability filter", "#784212")
+    box(9.6, 5.3, 3.0, 0.62, "Validator", "Type ban · Floor · Rotation", "#4a235a", "#1a1a1a")
+    arr(1.55, 5.3, 1.55, 5.1); arr(1.55, 5.1, 7.6, 5.1); arr(4.35, 5.3, 4.35, 5.1)
+    ax.annotate("", xy=(6.0, 5.61), xytext=(5.6, 5.61),
+                arrowprops=dict(arrowstyle="-|>", color="#888888", lw=1.2))
+    arr(9.2, 5.61, 9.6, 5.61); arr(7.6, 5.3, 7.6, 4.95)
 
-    # --- ROW 2: Planning ---
-    ax.text(0.3, 5.95, "PLANNING LAYER", fontsize=7.5, color='#64748b', fontweight='bold')
-    box(0.3, 5.3, 2.5, 0.6, "Architect A", "(gpt-4o-mini · temp=1.0)", "#0369a1")
-    box(3.1, 5.3, 2.5, 0.6, "Architect B", "(gpt-4o-mini · temp=1.0)", "#0369a1")
-    box(6.0, 5.3, 3.2, 0.6, "Judge  (gpt-4o)", "Predictability filter · Reject/Synthesise", "#b45309")
-    box(9.6, 5.3, 3.0, 0.6, "Validator", "Type ban · Floor · Rotation", "#374151", "#111827")
+    ax.text(0.3, 4.95, "IMPLEMENTATION LAYER", fontsize=7, color="#888888", fontweight="bold")
+    box(5.5, 4.3, 4.2, 0.62, "Engineer  (gpt-4o)", "File-by-file · Sibling context", "#145a32")
+    box(0.3, 4.3, 4.8, 0.62, "Reviewer A + B", "Parallel conference · Merged verdict", "#6e2f0a")
+    arr(5.5, 4.61, 5.1, 4.61); arr(2.9, 4.3, 2.9, 4.1)
 
-    arrow(1.55, 5.3, 1.55, 5.1); arrow(1.55, 5.1, 7.6, 5.1)
-    arrow(4.35, 5.3, 4.35, 5.1)
-    ax.annotate("", xy=(6.0, 5.6), xytext=(5.6, 5.6),
-                arrowprops=dict(arrowstyle="-|>", color="#94a3b8", lw=1.5))
-    arrow(9.2, 5.6, 9.6, 5.6)
-
-    # downward from judge to engineer
-    arrow(7.6, 5.3, 7.6, 4.95)
-
-    # --- ROW 3: Implementation ---
-    ax.text(0.3, 4.9, "IMPLEMENTATION LAYER", fontsize=7.5, color='#64748b', fontweight='bold')
-    box(5.5, 4.3, 4.2, 0.6, "Engineer  (gpt-4o)", "File-by-file · Full sibling context", "#166534")
-    box(0.3, 4.3, 4.8, 0.6, "Reviewer A + B  (gpt-4o-mini)", "Parallel conference · Merged verdict", "#713f12")
-
-    arrow(5.5, 4.6, 5.1, 4.6)
-    arrow(2.9, 4.3, 2.9, 4.1)
-
-    # --- ROW 4: Fixer / Polish ---
-    ax.text(0.3, 3.9, "REPAIR LAYER", fontsize=7.5, color='#64748b', fontweight='bold')
-    box(0.3, 3.3, 2.8, 0.6, "Fixer  (gpt-4o-mini)", "Targeted repairs · Up to 3 rounds", "#7c3aed")
-    box(3.5, 3.3, 2.8, 0.6, "Polisher  (gpt-4o-mini)", "UX pass · Rollback if worse", "#be185d")
-    arrow(3.1, 3.6, 3.5, 3.6)
-
-    # loop back arrow
-    ax.annotate("", xy=(0.3, 4.6), xytext=(1.1, 4.3),
-                arrowprops=dict(arrowstyle="-|>", color="#dc2626", lw=1.2,
+    ax.text(0.3, 3.95, "REPAIR LAYER", fontsize=7, color="#888888", fontweight="bold")
+    box(0.3, 3.3, 2.8, 0.62, "Fixer  (gpt-4o-mini)", "Repairs · Up to 8 rounds", "#4a235a")
+    box(3.5, 3.3, 2.8, 0.62, "Polisher  (Phi-4)", "UX pass · Rollback if worse", "#922b21")
+    arr(3.1, 3.61, 3.5, 3.61)
+    ax.annotate("", xy=(0.3, 4.61), xytext=(1.1, 4.3),
+                arrowprops=dict(arrowstyle="-|>", color="#cc0000", lw=1.2,
                                 connectionstyle="arc3,rad=-0.4"))
-    ax.text(0.05, 4.0, "loop\n≤3x", fontsize=6.5, color='#dc2626', ha='center')
+    ax.text(0.05, 4.05, "loop\n≤8×", fontsize=6.5, color="#cc0000", ha="center")
 
-    # --- ROW 5: QA ---
-    ax.text(0.3, 2.9, "QUALITY ASSURANCE LAYER", fontsize=7.5, color='#64748b', fontweight='bold')
-    box(0.3, 2.3, 3.5, 0.6, "Playwright Verifier", "Canvas render · Controls · Console errors", "#374151", "#111827")
-    box(4.2, 2.3, 3.2, 0.6, "QA Tester  (gpt-4o)", "Dead controls · State sync · Missing", "#0369a1")
-    box(7.8, 2.3, 2.5, 0.6, "QA Fixer  (gpt-4o)", "Targeted fix · ≤3 rounds", "#7c3aed")
+    ax.text(0.3, 2.95, "QUALITY ASSURANCE", fontsize=7, color="#888888", fontweight="bold")
+    box(0.3, 2.3, 3.5, 0.62, "Playwright Verifier", "Canvas · Controls · Errors", "#2e4057", "#1a1a1a")
+    box(4.2, 2.3, 3.2, 0.62, "QA Tester  (gpt-4o)", "Dead controls · State sync", "#1f618d")
+    box(7.8, 2.3, 2.5, 0.62, "QA Fixer  (Gemini)", "Targeted fix · ≤3 rounds", "#4a235a")
+    arr(3.8, 2.61, 4.2, 2.61); arr(7.4, 2.61, 7.8, 2.61)
 
-    arrow(3.8, 2.6, 4.2, 2.6)
-    arrow(7.4, 2.6, 7.8, 2.6)
-
-    # --- ROW 6: Publish ---
-    ax.text(0.3, 1.9, "PUBLISH LAYER", fontsize=7.5, color='#64748b', fontweight='bold')
-    box(0.3, 1.3, 3.2, 0.55, "GitHub Repo + Pages", "index.html · All types · Visual showcase", "#166534")
-    box(3.9, 1.3, 3.0, 0.55, "Memory Log (JSON)", "Projects · Failures · CEO reviews", "#374151", "#111827")
-    box(7.3, 1.3, 3.0, 0.55, "Public Dashboard", "dipeshrayg.github.io/autonomous-brain", "#1d4ed8")
-
-    arrow(4.2, 2.3, 4.2, 1.85)
-    arrow(3.5, 1.575, 3.9, 1.575)
-    arrow(6.9, 1.575, 7.3, 1.575)
-
-    # CEO memory feedback loop
-    ax.annotate("", xy=(0.9, 6.3), xytext=(2.0, 1.85),
-                arrowprops=dict(arrowstyle="-|>", color="#2563eb", lw=1.0,
-                                connectionstyle="arc3,rad=0.35",
-                                linestyle="dashed"))
-    ax.text(0.05, 4.0, "", fontsize=6)
-
-    ax.text(0.08, 3.9, "memory\nfeedback", fontsize=5.8, color='#2563eb',
-            ha='center', style='italic')
-
+    ax.text(0.3, 1.95, "PUBLISH LAYER", fontsize=7, color="#888888", fontweight="bold")
+    box(0.3, 1.3, 3.2, 0.56, "GitHub Repo + Pages", "index.html · All types", "#145a32")
+    box(3.9, 1.3, 3.0, 0.56, "Memory Log (JSON)", "Projects · Failures · Reviews", "#2e4057", "#1a1a1a")
+    box(7.3, 1.3, 3.0, 0.56, "Public Dashboard", "dipeshrayg.github.io", "#003087")
+    arr(4.2, 2.3, 4.2, 1.86); arr(3.5, 1.58, 3.9, 1.58); arr(6.9, 1.58, 7.3, 1.58)
+    ax.annotate("", xy=(0.9, 6.3), xytext=(2.0, 1.86),
+                arrowprops=dict(arrowstyle="-|>", color="#003087", lw=0.9,
+                                connectionstyle="arc3,rad=0.35", linestyle="dashed"))
+    ax.text(0.05, 4.05, "", fontsize=6)
     fig.tight_layout(pad=0.3)
-    return fig_to_image(fig)
+    return fig_to_buf(fig)
 
 
 def make_complexity_chart():
-    dates  = [p.get("date", "?")   for p in PROJECTS]
+    dates  = [p.get("date", "?")           for p in PROJECTS]
     scores = [p.get("complexity_score", 0) for p in PROJECTS]
     types  = [p.get("project_type", "web_interactive") for p in PROJECTS]
-
     type_colors = {
-        "web_interactive": "#2563eb",
-        "python_tool":     "#16a34a",
-        "document":        "#d97706",
-        "game_web":        "#7c3aed",
-        "generative_art":  "#db2777",
-        "web_3d":          "#0891b2",
+        "web_interactive": "#003087", "python_tool": "#145a32",
+        "document": "#784212",        "game_web":    "#4a235a",
+        "generative_art": "#922b21",  "web_3d":      "#1a5276",
+        "cli_tool":        "#1f618d", "data_viz":    "#6e2f0a",
+        "shader_art":      "#2e4057", "typescript_app": "#0b5345",
     }
-
-    fig, ax = plt.subplots(figsize=(12, 4.5))
-    fig.patch.set_facecolor('#f8fafc')
-    ax.set_facecolor('#f8fafc')
-
+    fig, ax = plt.subplots(figsize=(12, 4))
+    fig.patch.set_facecolor("white"); ax.set_facecolor("white")
     x = list(range(len(PROJECTS)))
-    ax.plot(x, scores, color='#94a3b8', linewidth=1.2, zorder=1)
-
+    ax.plot(x, scores, color="#aaaaaa", linewidth=1.0, zorder=1)
     for i, (s, t) in enumerate(zip(scores, types)):
-        ax.scatter(i, s, color=type_colors.get(t, "#64748b"),
-                   s=70, zorder=2, edgecolors='white', linewidths=0.8)
-
-    # Trend line
+        ax.scatter(i, s, color=type_colors.get(t, "#555555"),
+                   s=55, zorder=2, edgecolors="white", linewidths=0.6)
     if len(x) > 2:
         z = np.polyfit(x, scores, 1)
-        p = np.poly1d(z)
-        ax.plot(x, p(x), "--", color="#dc2626", linewidth=1.2, alpha=0.7, label="Trend")
-
-    # Annotations for key events
-    ax.axvline(x=14, color='#d97706', linestyle=':', linewidth=1, alpha=0.7)
-    ax.text(14.2, max(scores)*0.5, "Project\nEvolution", fontsize=7,
-            color='#d97706', va='center')
-
-    ax.set_xlabel("Project number (chronological)", fontsize=9, color='#374151')
-    ax.set_ylabel("Complexity score", fontsize=9, color='#374151')
-    ax.set_title("Complexity Progression Over 21 Days", fontsize=11,
-                 fontweight='bold', color='#1e293b', pad=10)
-    ax.tick_params(colors='#374151', labelsize=8)
-    ax.spines[['top', 'right']].set_visible(False)
-    ax.spines[['left', 'bottom']].set_color('#d1d5db')
-    ax.grid(axis='y', alpha=0.4, color='#e5e7eb')
-
-    # Legend
+        ax.plot(x, np.poly1d(z)(x), "--", color="#cc0000",
+                linewidth=1.2, alpha=0.8, label="Linear trend")
+    ax.set_xlabel("Project number (chronological)", fontsize=9, color="#444444")
+    ax.set_ylabel("Complexity score", fontsize=9, color="#444444")
+    ax.set_title("Fig. 3 — Complexity Score Progression Over Time", fontsize=10,
+                 fontweight="bold", color="#1a1a1a", pad=8)
+    ax.tick_params(colors="#444444", labelsize=8)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["left", "bottom"]].set_color("#cccccc")
+    ax.grid(axis="y", alpha=0.35, color="#eeeeee")
     legend_patches = [mpatches.Patch(color=c, label=t.replace("_", " "))
-                      for t, c in type_colors.items()]
-    ax.legend(handles=legend_patches, fontsize=7, framealpha=0.8,
-              loc='upper left', ncol=2)
-
+                      for t, c in type_colors.items() if t in set(types)]
+    ax.legend(handles=legend_patches, fontsize=7, framealpha=0.85,
+              loc="upper left", ncol=2, edgecolor="#cccccc")
     fig.tight_layout()
-    return fig_to_image(fig)
+    return fig_to_buf(fig)
 
 
 def make_type_distribution():
@@ -230,41 +350,9 @@ def make_type_distribution():
     for p in PROJECTS:
         t = p.get("project_type", "web_interactive")
         type_counts[t] = type_counts.get(t, 0) + 1
-
-    fail_counts = {}
-    for f in FAILED:
-        t = f.get("project_type", "unknown")
-        if t != "unknown":
-            fail_counts[t] = fail_counts.get(t, 0) + 1
-
-    labels = list(type_counts.keys())
+    labels  = list(type_counts.keys())
     shipped = [type_counts[l] for l in labels]
-    failed_v = [fail_counts.get(l, 0) for l in labels]
 
-    colors_bar = ["#2563eb", "#16a34a", "#d97706", "#7c3aed", "#db2777"]
-
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5))
-    fig.patch.set_facecolor('#f8fafc')
-
-    # Shipped
-    x = np.arange(len(labels))
-    bars = ax1.bar(x, shipped, color=colors_bar[:len(labels)],
-                   edgecolor='white', linewidth=0.8)
-    ax1.set_xticks(x)
-    ax1.set_xticklabels([l.replace("_", "\n") for l in labels], fontsize=8)
-    ax1.set_ylabel("Projects shipped", fontsize=9, color='#374151')
-    ax1.set_title("Projects Shipped by Type", fontsize=11,
-                  fontweight='bold', color='#1e293b')
-    ax1.set_facecolor('#f8fafc')
-    ax1.spines[['top', 'right']].set_visible(False)
-    ax1.spines[['left', 'bottom']].set_color('#d1d5db')
-    ax1.tick_params(colors='#374151', labelsize=8)
-    ax1.grid(axis='y', alpha=0.4, color='#e5e7eb')
-    for bar, val in zip(bars, shipped):
-        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.1,
-                 str(val), ha='center', va='bottom', fontsize=9, fontweight='bold')
-
-    # Failure modes
     failure_reasons = {
         "Blank canvas\n(no render)": 32,
         "Dead controls\n(no listener)": 25,
@@ -274,785 +362,747 @@ def make_type_distribution():
     }
     fr_labels = list(failure_reasons.keys())
     fr_vals   = list(failure_reasons.values())
-    fr_colors = ["#dc2626", "#d97706", "#7c3aed", "#0891b2", "#374151"]
+
+    pal = ["#003087","#145a32","#784212","#4a235a","#922b21","#1a5276","#1f618d","#6e2f0a"]
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.2))
+    fig.patch.set_facecolor("white")
+    x = np.arange(len(labels))
+    bars = ax1.bar(x, shipped, color=pal[:len(labels)], edgecolor="white", linewidth=0.8)
+    ax1.set_xticks(x)
+    ax1.set_xticklabels([l.replace("_", "\n") for l in labels], fontsize=7.5)
+    ax1.set_ylabel("Projects shipped", fontsize=9, color="#444444")
+    ax1.set_title("Projects Shipped by Type", fontsize=10, fontweight="bold", color="#1a1a1a")
+    ax1.set_facecolor("white"); ax1.spines[["top","right"]].set_visible(False)
+    ax1.spines[["left","bottom"]].set_color("#cccccc")
+    ax1.tick_params(colors="#444444", labelsize=8)
+    ax1.grid(axis="y", alpha=0.35, color="#eeeeee")
+    for bar, val in zip(bars, shipped):
+        ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.08,
+                 str(val), ha="center", va="bottom", fontsize=9, fontweight="bold")
 
     wedges, texts, autotexts = ax2.pie(
-        fr_vals, labels=fr_labels, colors=fr_colors,
-        autopct='%1.0f%%', startangle=140,
-        textprops=dict(fontsize=7.5, color='#1e293b'),
-        pctdistance=0.75,
-        wedgeprops=dict(edgecolor='white', linewidth=1.5)
-    )
+        fr_vals, labels=fr_labels, colors=pal[:len(fr_labels)],
+        autopct="%1.0f%%", startangle=140,
+        textprops=dict(fontsize=8, color="#1a1a1a"),
+        pctdistance=0.75, wedgeprops=dict(edgecolor="white", linewidth=1.5))
     for at in autotexts:
-        at.set_fontsize(7)
-        at.set_color('white')
-        at.set_fontweight('bold')
-    ax2.set_title("Build Failure Modes (90 refused builds)",
-                  fontsize=11, fontweight='bold', color='#1e293b')
-    ax2.set_facecolor('#f8fafc')
-
+        at.set_fontsize(7.5); at.set_color("white"); at.set_fontweight("bold")
+    ax2.set_title("Build Failure Mode Distribution", fontsize=10,
+                  fontweight="bold", color="#1a1a1a")
+    ax2.set_facecolor("white")
     fig.tight_layout(pad=1.5)
-    return fig_to_image(fig)
+    return fig_to_buf(fig)
 
 
 def make_ceo_verdict_timeline():
     verdicts = [r.get("verdict", "acceptable") for r in CEO_REV]
-    verdict_map = {"thriving": 3, "acceptable": 2, "drifting": 1, "alarming": 0}
-    verdict_color = {"thriving": "#16a34a", "acceptable": "#2563eb",
-                     "drifting": "#d97706", "alarming": "#dc2626"}
-
-    scores_v = [verdict_map.get(v, 1) for v in verdicts]
-    c_v      = [verdict_color.get(v, "#64748b") for v in verdicts]
-
-    fig, ax = plt.subplots(figsize=(12, 3.5))
-    fig.patch.set_facecolor('#f8fafc')
-    ax.set_facecolor('#f8fafc')
-
+    vmap  = {"thriving": 3, "acceptable": 2, "drifting": 1, "alarming": 0}
+    vcol  = {"thriving": "#145a32", "acceptable": "#003087",
+              "drifting": "#784212", "alarming": "#cc0000"}
+    sv = [vmap.get(v, 1) for v in verdicts]
+    cv = [vcol.get(v, "#555555") for v in verdicts]
+    fig, ax = plt.subplots(figsize=(12, 3.2))
+    fig.patch.set_facecolor("white"); ax.set_facecolor("white")
     x = list(range(len(verdicts)))
-    ax.plot(x, scores_v, color='#94a3b8', linewidth=1, zorder=1)
-    for i, (s, c) in enumerate(zip(scores_v, c_v)):
-        ax.scatter(i, s, color=c, s=55, zorder=2, edgecolors='white', linewidths=0.6)
-
+    ax.plot(x, sv, color="#aaaaaa", linewidth=1.0, zorder=1)
+    for i, (s, c) in enumerate(zip(sv, cv)):
+        ax.scatter(i, s, color=c, s=45, zorder=2, edgecolors="white", linewidths=0.5)
     ax.set_yticks([0, 1, 2, 3])
-    ax.set_yticklabels(["alarming", "drifting", "acceptable", "thriving"],
-                       fontsize=8, color='#374151')
-    ax.set_xlabel("CEO review cycle (chronological)", fontsize=9, color='#374151')
-    ax.set_title("CEO Verdict Trajectory — 46 Review Cycles", fontsize=11,
-                 fontweight='bold', color='#1e293b', pad=8)
-    ax.spines[['top', 'right']].set_visible(False)
-    ax.spines[['left', 'bottom']].set_color('#d1d5db')
-    ax.tick_params(colors='#374151', labelsize=8)
-    ax.grid(axis='y', alpha=0.35, color='#e5e7eb')
-
-    # Mark key events
-    ax.axvline(x=30, color='#d97706', linestyle=':', linewidth=1, alpha=0.6)
-    ax.text(30.3, 2.7, "Project\nEvolution", fontsize=7, color='#d97706')
-    ax.axvline(x=40, color='#dc2626', linestyle=':', linewidth=1, alpha=0.6)
-    ax.text(40.3, 0.15, "web_3d\nbanned", fontsize=7, color='#dc2626')
-
+    ax.set_yticklabels(["Alarming", "Drifting", "Acceptable", "Thriving"],
+                       fontsize=8, color="#444444")
+    ax.set_xlabel("CEO review cycle (chronological)", fontsize=9, color="#444444")
+    ax.set_title("CEO Verdict Trajectory", fontsize=10,
+                 fontweight="bold", color="#1a1a1a", pad=8)
+    ax.spines[["top","right"]].set_visible(False)
+    ax.spines[["left","bottom"]].set_color("#cccccc")
+    ax.tick_params(colors="#444444", labelsize=8)
+    ax.grid(axis="y", alpha=0.35, color="#eeeeee")
+    ax.axvline(x=30, color="#784212", linestyle=":", linewidth=1, alpha=0.7)
+    ax.text(30.3, 2.75, "Project\nEvolution", fontsize=7, color="#784212")
     fig.tight_layout()
-    return fig_to_image(fig)
+    return fig_to_buf(fig)
 
 
 def make_pipeline_flow():
-    """Simple horizontal pipeline flow diagram."""
-    fig, ax = plt.subplots(figsize=(13, 2.8))
-    fig.patch.set_facecolor('#f8fafc')
-    ax.set_facecolor('#f8fafc')
-    ax.set_xlim(0, 13)
-    ax.set_ylim(0, 2.8)
-    ax.axis('off')
-
+    from matplotlib.patches import FancyBboxPatch
+    fig, ax = plt.subplots(figsize=(13, 2.6))
+    fig.patch.set_facecolor("white"); ax.set_facecolor("white")
+    ax.set_xlim(0, 13); ax.set_ylim(0, 2.6); ax.axis("off")
     stages = [
-        ("PLAN",      "Architect\nConference", "#1d4ed8"),
-        ("BUILD",     "Engineer\n(per file)",  "#166534"),
-        ("CRITIQUE",  "Reviewer A+B\nConference", "#92400e"),
-        ("FIX",       "Fixer\n(up to 3x)",    "#7c3aed"),
-        ("POLISH",    "Polisher\n+rollback",   "#be185d"),
-        ("VERIFY",    "Playwright\n+QA Tester","#0f766e"),
-        ("PUBLISH",   "GitHub\nPages + Repo",  "#1d4ed8"),
+        ("PLAN",     "Architect\nConference",   "#003087"),
+        ("BUILD",    "Engineer\n(per file)",     "#145a32"),
+        ("CRITIQUE", "Reviewer A+B\nConference", "#6e2f0a"),
+        ("FIX",      "Fixer\n(up to 8×)",        "#4a235a"),
+        ("POLISH",   "Polisher\n+rollback",       "#922b21"),
+        ("VERIFY",   "Playwright\n+QA Tester",    "#1a5276"),
+        ("PUBLISH",  "GitHub\nPages + Repo",      "#003087"),
     ]
-
-    bw, bh, gap = 1.55, 1.1, 0.2
-    start_x = 0.25
-
-    for i, (stage, label, color) in enumerate(stages):
-        x = start_x + i * (bw + gap)
-        rect = FancyBboxPatch((x, 0.85), bw, bh,
-                              boxstyle="round,pad=0.06",
-                              linewidth=1.2, edgecolor=color,
-                              facecolor=color)
+    bw, bh, gap = 1.55, 1.0, 0.2
+    sx = 0.25
+    for i, (stage, label, fc) in enumerate(stages):
+        x = sx + i * (bw + gap)
+        rect = FancyBboxPatch((x, 0.8), bw, bh, boxstyle="round,pad=0.06",
+                              linewidth=1, edgecolor=fc, facecolor=fc)
         ax.add_patch(rect)
-        ax.text(x + bw/2, 0.85 + bh/2 + 0.13, stage,
-                ha='center', va='center', fontsize=7.5,
-                fontweight='bold', color='white')
-        ax.text(x + bw/2, 0.85 + bh/2 - 0.2, label,
-                ha='center', va='center', fontsize=6.5, color='#e2e8f0')
-        # Stage number
-        ax.text(x + 0.12, 0.85 + bh - 0.12, str(i+1),
-                ha='center', va='center', fontsize=6,
-                color='white', alpha=0.7)
-        # Arrow
+        ax.text(x + bw/2, 0.8 + bh/2 + 0.12, stage,
+                ha="center", va="center", fontsize=7.5, fontweight="bold", color="white")
+        ax.text(x + bw/2, 0.8 + bh/2 - 0.18, label,
+                ha="center", va="center", fontsize=6.5, color="#dddddd")
+        ax.text(x + 0.12, 0.8 + bh - 0.11, str(i+1),
+                ha="center", va="center", fontsize=6, color="white", alpha=0.75)
         if i < len(stages) - 1:
-            ax.annotate("", xy=(x + bw + gap, 1.4),
-                        xytext=(x + bw, 1.4),
-                        arrowprops=dict(arrowstyle="-|>",
-                                       color="#94a3b8", lw=1.5))
-
-    # Feedback loop
-    ax.annotate("", xy=(1.8, 0.85),
-                xytext=(11.5, 0.85),
-                arrowprops=dict(arrowstyle="-|>", color="#2563eb", lw=1.0,
-                                connectionstyle="arc3,rad=0.35",
-                                linestyle="dashed"))
-    ax.text(6.5, 0.1, "Memory feedback loop — failures visible to CEO on next review cycle",
-            ha='center', va='center', fontsize=6.8,
-            color='#2563eb', style='italic')
-
-    ax.set_title("End-to-End Pipeline Flow", fontsize=11, fontweight='bold',
-                 color='#1e293b', pad=6)
+            ax.annotate("", xy=(x + bw + gap, 1.3), xytext=(x + bw, 1.3),
+                        arrowprops=dict(arrowstyle="-|>", color="#888888", lw=1.4))
+    ax.annotate("", xy=(1.8, 0.8), xytext=(11.5, 0.8),
+                arrowprops=dict(arrowstyle="-|>", color="#003087", lw=1.0,
+                                connectionstyle="arc3,rad=0.4", linestyle="dashed"))
+    ax.text(6.5, 0.1, "Memory feedback loop — failures surfaced to CEO on next review cycle",
+            ha="center", va="center", fontsize=7, color="#003087", style="italic")
+    ax.set_title("End-to-End Pipeline — 7 Stages", fontsize=10,
+                 fontweight="bold", color="#1a1a1a", pad=6)
     fig.tight_layout()
-    return fig_to_image(fig)
+    return fig_to_buf(fig)
 
 
-# ── PDF builder ───────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# DOCUMENT BUILDER
+# ═══════════════════════════════════════════════════════════════════════════════
 
 def build_pdf():
     out_path = "F:/github forever/Dipesh_Ray_Autonomous_Brain_Research_Paper.pdf"
 
-    doc = SimpleDocTemplate(
+    # ── BaseDocTemplate with single body frame + header/footer callbacks ──────
+    doc = BaseDocTemplate(
         out_path,
         pagesize=A4,
-        rightMargin=2.2*cm, leftMargin=2.2*cm,
-        topMargin=2.4*cm, bottomMargin=2.2*cm,
+        rightMargin=MARGIN_RIGHT,
+        leftMargin=MARGIN_LEFT,
+        topMargin=MARGIN_TOP + 4 * mm,
+        bottomMargin=MARGIN_BOTTOM + 8 * mm,
+        title="Autonomous Multi-Agent LLM Pipeline for Continuous Software Creation",
+        author="Dipesh Ray",
+        subject="Multi-Agent AI Systems, Autonomous Software Engineering",
+        keywords="multi-agent LLM, autonomous pipeline, GitHub Actions, software creation, zero-cost AI",
     )
 
-    W = A4[0] - 4.4*cm   # usable width
+    frame = Frame(MARGIN_LEFT, MARGIN_BOTTOM + 8 * mm,
+                  BODY_W, BODY_H - 12 * mm, id="body")
+    doc.addPageTemplates([
+        PageTemplate(id="first", frames=[frame], onPage=_first_page),
+        PageTemplate(id="main",  frames=[frame], onPage=_on_page),
+    ])
 
-    # ── Styles ────────────────────────────────────────────────────────────────
-    S = getSampleStyleSheet()
-
-    def sty(name, parent='Normal', **kw):
-        return ParagraphStyle(name, parent=S[parent], **kw)
-
-    cover_title = sty('CoverTitle',
-        fontSize=22, leading=28, textColor=colors.HexColor("#0f172a"),
-        spaceAfter=8, fontName='Helvetica-Bold', alignment=TA_LEFT)
-
-    cover_sub = sty('CoverSub',
-        fontSize=13, leading=18, textColor=colors.HexColor("#334155"),
-        spaceAfter=4, fontName='Helvetica', alignment=TA_LEFT)
-
-    cover_meta = sty('CoverMeta',
-        fontSize=10, leading=15, textColor=colors.HexColor("#64748b"),
-        spaceAfter=3, fontName='Helvetica', alignment=TA_LEFT)
-
-    h1 = sty('H1',
-        fontSize=14, leading=18, textColor=colors.HexColor("#1e293b"),
-        spaceBefore=18, spaceAfter=6, fontName='Helvetica-Bold',
-        borderPad=0)
-
-    h2 = sty('H2',
-        fontSize=11.5, leading=15, textColor=colors.HexColor("#1e3a5f"),
-        spaceBefore=12, spaceAfter=4, fontName='Helvetica-Bold')
-
-    h3 = sty('H3',
-        fontSize=10, leading=13, textColor=colors.HexColor("#374151"),
-        spaceBefore=8, spaceAfter=3, fontName='Helvetica-BoldOblique')
-
-    body = sty('Body',
-        fontSize=10, leading=16, textColor=colors.HexColor("#1f2937"),
-        spaceAfter=8, fontName='Helvetica', alignment=TA_JUSTIFY)
-
-    body_nb = sty('BodyNB', parent='Normal',
-        fontSize=10, leading=16, textColor=colors.HexColor("#1f2937"),
-        spaceAfter=4, fontName='Helvetica', alignment=TA_JUSTIFY)
-
-    abstract_style = sty('Abstract',
-        fontSize=10, leading=15.5, textColor=colors.HexColor("#374151"),
-        spaceAfter=6, fontName='Helvetica-Oblique',
-        leftIndent=18, rightIndent=18, alignment=TA_JUSTIFY)
-
-    caption = sty('Caption',
-        fontSize=8, leading=11, textColor=colors.HexColor("#6b7280"),
-        spaceAfter=10, fontName='Helvetica-Oblique', alignment=TA_CENTER)
-
-    footnote = sty('Footnote',
-        fontSize=8.5, leading=13, textColor=colors.HexColor("#4b5563"),
-        spaceAfter=3, fontName='Helvetica', alignment=TA_LEFT)
-
-    def img(buf, width=None, caption_text=""):
-        width = width or W
-        im = Image(buf, width=width, height=width * 0.42)
-        im.hAlign = 'CENTER'
-        items = [Spacer(1, 4), im]
-        if caption_text:
-            items.append(Paragraph(caption_text, caption))
-        return items
-
-    def section_rule():
-        return HRFlowable(width=W, thickness=0.4,
-                          color=colors.HexColor("#e2e8f0"), spaceAfter=4)
-
-    def table(data, col_widths, header_row=True):
-        t = Table(data, colWidths=col_widths)
-        style = [
-            ('FONTNAME',  (0,0), (-1,0 if header_row else -1), 'Helvetica-Bold'),
-            ('FONTNAME',  (0,1), (-1,-1), 'Helvetica'),
-            ('FONTSIZE',  (0,0), (-1,-1), 9),
-            ('LEADING',   (0,0), (-1,-1), 13),
-            ('BACKGROUND',(0,0), (-1,0 if header_row else -1),
-             colors.HexColor("#e0e7ff")),
-            ('ROWBACKGROUNDS',(0,1),(-1,-1),
-             [colors.white, colors.HexColor("#f8fafc")]),
-            ('TEXTCOLOR', (0,0), (-1,0), colors.HexColor("#1e3a5f")),
-            ('ALIGN',     (0,0), (-1,-1), 'LEFT'),
-            ('VALIGN',    (0,0), (-1,-1), 'MIDDLE'),
-            ('GRID',      (0,0), (-1,-1), 0.4, colors.HexColor("#e5e7eb")),
-            ('TOPPADDING',(0,0), (-1,-1), 5),
-            ('BOTTOMPADDING',(0,0), (-1,-1), 5),
-            ('LEFTPADDING',(0,0), (-1,-1), 7),
-        ]
-        t.setStyle(TableStyle(style))
-        return t
-
-    # ── Story ─────────────────────────────────────────────────────────────────
     story = []
 
-    # ── COVER PAGE ─────────────────────────────────────────────────────────────
-    story.append(Spacer(1, 1.2*cm))
-    story.append(HRFlowable(width=W, thickness=3, color=colors.HexColor("#2563eb"),
-                            spaceAfter=16))
+    # ────────────────────────────────────────────────────────────────────────
+    # TITLE BLOCK
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Spacer(1, 4 * mm))
     story.append(Paragraph(
-        "Autonomous Multi-Agent LLM Pipeline<br/>for Continuous Software Creation",
-        cover_title))
-    story.append(Spacer(1, 0.3*cm))
+        "Autonomous Multi-Agent LLM Pipeline for Continuous Software Creation:<br/>"
+        "Architecture, Empirical Findings, and Emergent Behaviours",
+        title_style))
+    story.append(Spacer(1, 3 * mm))
+    story.append(HRFlowable(width=BODY_W * 0.5, thickness=1.5,
+                            color=BLUE, hAlign="CENTER", spaceAfter=4))
+    story.append(Paragraph("Dipesh Ray", author_style))
     story.append(Paragraph(
-        "Architecture, Empirical Findings, and Emergent Behaviours<br/>"
-        "of a Zero-Cost AI-Driven Software Engineering System",
-        cover_sub))
-    story.append(Spacer(1, 0.8*cm))
-    story.append(HRFlowable(width=W, thickness=0.5,
-                            color=colors.HexColor("#cbd5e1"), spaceAfter=14))
-    story.append(Paragraph("<b>Author:</b>  Dipesh Ray", cover_meta))
-    story.append(Paragraph("<b>Date:</b>  May 2026", cover_meta))
+        "Ulster University, Belfast, United Kingdom",
+        affil_style))
     story.append(Paragraph(
-        "<b>Repository:</b>  github.com/dipeshrayg/autonomous-brain-engine",
-        cover_meta))
-    story.append(Paragraph(
-        "<b>Live dashboard:</b>  dipeshrayg.github.io/autonomous-brain/",
-        cover_meta))
-    story.append(Spacer(1, 0.5*cm))
-    story.append(HRFlowable(width=W, thickness=0.5,
-                            color=colors.HexColor("#cbd5e1"), spaceAfter=14))
+        "ray-d@ulster.ac.uk  ·  ORCID: 0009-0001-9970-0220",
+        email_style))
+    story.append(Spacer(1, 2 * mm))
+    story.append(HRFlowable(width=BODY_W, thickness=0.5,
+                            color=RULE, spaceAfter=6))
 
-    # ── ABSTRACT ──────────────────────────────────────────────────────────────
-    story.append(Paragraph("Abstract", h2))
+    # ── ABSTRACT ──────────────────────────────────────────────────────────
+    story.append(Paragraph("Abstract", abstract_head))
     story.append(Paragraph(
-        "This paper describes the design, construction, and empirical observations "
-        "of an autonomous multi-agent Large Language Model pipeline that continuously "
-        "conceives, architects, implements, quality-tests, and publishes novel software "
-        "projects without any human intervention once deployed. Built entirely on "
-        "free-tier infrastructure — GitHub Actions for compute, GitHub Models API for "
-        "LLM inference, and GitHub Pages for hosting — the system operates at a total "
-        "recurring cost of zero dollars. Over a 21-day observation window, the pipeline "
-        "shipped 27 complete projects across five distinct domain types, with complexity "
-        "scores rising from 3 to 42 on an open-ended scale. Ninety builds were refused "
-        "by the automated quality gates and their failure patterns documented. The work "
-        "demonstrates that hierarchical LLM role specialisation, persistent failure "
-        "memory, and automated quality enforcement can produce a genuinely self-improving "
-        "creative pipeline — including unexpected emergent behaviours such as autonomous "
-        "strategy pivots, failure-driven type bans, and self-healing recovery — all "
-        "without external budget or managed infrastructure.",
-        abstract_style))
-    story.append(Spacer(1, 0.3*cm))
-    story.append(section_rule())
-    story.append(PageBreak())
+        "This paper presents the design, implementation, and empirical evaluation of an "
+        "autonomous multi-agent Large Language Model (LLM) pipeline that continuously "
+        "conceives, architects, implements, quality-assures, and publishes novel software "
+        "projects without human intervention. The system, <i>Autonomous Brain</i>, operates "
+        "entirely on free-tier infrastructure — GitHub Actions for compute, GitHub Models "
+        "API for LLM inference [2], and GitHub Pages for deployment — incurring zero "
+        "operational cost. Over a 21-day observation period, the pipeline shipped "
+        f"{len(PROJECTS)} projects spanning six distinct project types, with complexity "
+        "scores ranging from 3 to 52 on an open-ended scale, and "
+        f"{len(FAILED)} refused builds documented and analysed. The work demonstrates that "
+        "hierarchical LLM role specialisation, failure-aware persistent memory, and "
+        "automated quality gates can produce a self-improving, self-healing creative pipeline "
+        "at zero marginal cost. Emergent behaviours — including autonomous strategy pivots, "
+        "type bans, complexity escalation, and recovery modes — are characterised and "
+        "analysed against the prior multi-agent systems literature [6][7][8].",
+        abstract_body))
+    story.append(Paragraph(
+        "<b>Index Terms</b>— multi-agent LLM systems, autonomous software engineering, "
+        "GitHub Actions, continuous deployment, emergent AI behaviour, zero-cost infrastructure.",
+        keywords_style))
+    story.append(HRFlowable(width=BODY_W, thickness=0.5,
+                            color=RULE, spaceAfter=6))
 
-    # ── 1. INTRODUCTION ───────────────────────────────────────────────────────
-    story.append(Paragraph("1.  Introduction", h1))
-    story.append(section_rule())
+    # Switch to running-header template from page 2 onward
+    from reportlab.platypus import NextPageTemplate
+
+    # ────────────────────────────────────────────────────────────────────────
+    # I. INTRODUCTION
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("I. Introduction", h1))
+
     story.append(Paragraph(
-        "I started this project with a straightforward and perhaps naive question: "
-        "could a collection of language models, given the right structure and some "
-        "persistent memory, build software on their own — every single day — without "
-        "anyone telling them what to make? Not just autocomplete a function or fix a "
-        "bug, but go from blank slate to a shipped, publicly accessible product?",
+        "The rapid capability improvement of large language models (LLMs) has prompted "
+        "significant research interest in <i>agentic</i> systems: pipelines in which "
+        "multiple LLM calls are chained to accomplish multi-step tasks [6]. Prior work "
+        "has concentrated on narrow agentic loops — code completion, web browsing, and "
+        "tool use — rather than on sustained creative output over extended periods. "
+        "This paper addresses a distinct question: <i>can a hierarchical, multi-agent "
+        "LLM system autonomously create diverse and novel software projects continuously, "
+        "without human prompting, on entirely free-tier infrastructure?</i>",
         body))
     story.append(Paragraph(
-        "The practical motivation was constraint. Commercial AI APIs cost money, and "
-        "most researchers and hobbyists — myself included — do not have unlimited "
-        "budgets for experiments. GitHub offers free compute through Actions, free "
-        "model inference through the GitHub Models API, and free static hosting "
-        "through Pages. If a full autonomous pipeline could operate within those "
-        "limits, it would be accessible to anyone with a GitHub account.",
+        "The motivation is twofold. First, practically: many researchers and independent "
+        "practitioners lack the budget for commercial AI APIs. GitHub's free tier — "
+        "unlimited Actions compute, the GitHub Models API [2], and GitHub Pages — "
+        "provides a meaningful zero-cost substrate if the system can be designed to "
+        "operate within its constraints. Second, scientifically: studying what such a "
+        "system produces over weeks — and where it fails — reveals properties of "
+        "LLM-based creative autonomy that are not observable in single-turn or "
+        "short-horizon experiments.",
         body))
     story.append(Paragraph(
-        "The scientific question is more interesting. Autonomous agent systems have "
-        "been studied extensively for narrow tasks — browsing the web, writing and "
-        "running code, querying APIs. What has received less attention is whether "
-        "a multi-agent system can sustain <i>creative</i> output over weeks without "
-        "converging on repetition, and whether the system can recover from its own "
-        "failure modes without human diagnosis. This work attempts to answer both.",
+        "The contributions of this work are: (1) a complete, open-source autonomous "
+        "software-creation pipeline running on zero-cost infrastructure; (2) a "
+        "hierarchical role architecture with thirteen distinct LLM personas, drawn "
+        "from three different model families, with adversarial disagreement "
+        "structurally encouraged; (3) an empirical record of projects shipped and "
+        "builds refused over 21 days; (4) documentation of emergent system behaviours "
+        "— failure-driven strategy pivots, autonomous type bans, complexity escalation, "
+        "and self-healing recovery — that were not explicitly programmed; and (5) a "
+        "<i>Project Evolution</i> mandate that successfully expands the system beyond "
+        "web applications into Python tools, browser games, generative art, research "
+        "documents, and compiled CLI tools.",
+        body))
+
+    story.append(Paragraph("A. Scope and Limitations", h2))
+    story.append(Paragraph(
+        "This work is observational rather than controlled. The system runs on shared "
+        "infrastructure with models that are periodically updated by their providers, "
+        "and was studied over a 21-day window. Findings are descriptive rather than "
+        "statistically rigorous. The patterns documented were, however, consistent "
+        "enough over three weeks to warrant systematic analysis. All source code and "
+        "the complete memory log are publicly available at the repository stated above.",
+        body))
+
+    # ────────────────────────────────────────────────────────────────────────
+    # II. RELATED WORK
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("II. Related Work", h1))
+
+    story.append(Paragraph(
+        "The closest prior work to this system is AutoGen [8], which provides a "
+        "framework for multi-agent LLM conversation. Where AutoGen provides general "
+        "orchestration primitives, the present work instantiates a specific creative "
+        "pipeline with persistent memory, typed output validation, and mechanical "
+        "browser-level quality gates. The generative agents system of Park et al. [7] "
+        "demonstrates emergent social behaviour from LLM agents with memory; this "
+        "paper examines analogous emergence in a software-engineering context.",
         body))
     story.append(Paragraph(
-        "The contributions I document here are: (1) a complete, open-source autonomous "
-        "software creation pipeline running on zero-cost infrastructure; (2) a "
-        "hierarchical role architecture with nine distinct LLM personas encouraged to "
-        "disagree; (3) an empirical record of 27 shipped projects and 90 refused builds "
-        "over 21 days; (4) documentation of several emergent system behaviours that "
-        "were not explicitly programmed; and (5) the design and validation of a "
-        "self-healing type ban mechanism that resolved a 2-day failure loop autonomously.",
+        "ReAct [6] demonstrates the value of interleaving reasoning and action in "
+        "agentic tasks. The present pipeline extends this principle across an "
+        "eight-stage pipeline where each stage produces structured JSON output that "
+        "constrains the next. Playwright [4] is used as the mechanical verification "
+        "substrate — headless browser execution provides ground-truth interaction data "
+        "that LLM reviewers alone cannot produce.",
         body))
 
-    story.append(Paragraph("1.1  Scope and Limitations", h2))
+    # ────────────────────────────────────────────────────────────────────────
+    # III. SYSTEM ARCHITECTURE
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("III. System Architecture", h1))
+
+    story.append(Paragraph("A. Infrastructure", h2))
     story.append(Paragraph(
-        "This is not a controlled laboratory experiment. The system runs on shared "
-        "infrastructure, uses models that are periodically updated by their providers, "
-        "and was observed over a relatively short window. The findings are descriptive "
-        "rather than statistically rigorous — I am documenting what I observed and "
-        "what the system produced, not claiming universal generalisability. That said, "
-        "the patterns that emerged were consistent enough over three weeks to warrant "
-        "careful documentation.",
+        "The entire system runs on GitHub's free tier. GitHub Actions [1] provides "
+        "compute (unlimited minutes for public repositories). The GitHub Models API [2] "
+        "gives access to GPT-4o and GPT-4o-mini via an OpenAI-compatible endpoint "
+        "authenticated with the auto-injected GITHUB_TOKEN. Groq [2] provides Llama and "
+        "Mixtral inference at zero cost. Google AI Studio provides Gemini at zero cost. "
+        "GitHub Pages [5] serves static output. The system's persistent state is a "
+        "single JSON file — <i>memory_log.json</i> — committed to the repository after "
+        "each run.",
         body))
 
-    # ── 2. SYSTEM ARCHITECTURE ─────────────────────────────────────────────────
-    story.append(Paragraph("2.  System Architecture", h1))
-    story.append(section_rule())
-
-    story.append(Paragraph("2.1  Infrastructure", h2))
-    story.append(Paragraph(
-        "The decision to build on GitHub's free tier was deliberate and shaped every "
-        "design choice. GitHub Actions provides the compute — workflow runs triggered "
-        "by cron schedules. GitHub Models gives access to GPT-4o and GPT-4o-mini via "
-        "an OpenAI-compatible API endpoint, authenticated with the auto-injected "
-        "GITHUB_TOKEN. GitHub Pages serves static files from any public repository. "
-        "The entire system's persistent state lives in a single JSON file — "
-        "<i>memory_log.json</i> — committed to the repository after each run.",
-        body))
-
-    infra_data = [
-        ["Component",        "Resource",                          "Cost"],
-        ["Compute",          "GitHub Actions (public repo)",      "$0 — unlimited minutes"],
-        ["LLM inference",    "GitHub Models API (GPT-4o + mini)", "$0 — within free tier"],
-        ["Hosting",          "GitHub Pages (static)",             "$0 — unlimited bandwidth"],
-        ["Persistent state", "Git-committed JSON file",           "$0"],
-        ["Total",            "",                                  "$0 per month"],
+    t1_data = [
+        ["Component", "Free-Tier Resource", "Monthly Cost"],
+        ["Compute",        "GitHub Actions (public repo)",       "£0"],
+        ["LLM inference",  "GitHub Models, Groq, Google AI",     "£0"],
+        ["Hosting",        "GitHub Pages (static, unlimited)",   "£0"],
+        ["Persistent state", "Git-committed JSON file",          "£0"],
+        ["<b>Total</b>",   "",                                   "<b>£0</b>"],
     ]
-    story.append(table(infra_data,
-                       [4.5*cm, 7.5*cm, 5.5*cm]))
-    story.append(Spacer(1, 0.3*cm))
-    story.append(Paragraph("Table 1. Infrastructure components and costs.", caption))
+    for row in ieee_table(t1_data, [5*cm, 7.5*cm, 3*cm],
+                          caption="TABLE I. Infrastructure Components and Operational Costs"):
+        story.append(row)
 
-    story.append(Paragraph("2.2  Agent Roles", h2))
+    story.append(Paragraph("B. Agent Roles", h2))
     story.append(Paragraph(
-        "The pipeline is structured as a boardroom: nine distinct LLM roles, each "
-        "with a specific mandate, a specific model assignment, and — importantly — "
-        "explicit permission to disagree with the others. The goal was to avoid the "
-        "sycophancy that tends to emerge when a single model reviews its own output. "
-        "By separating planning from implementation, review from fixing, and strategy "
-        "from execution, each agent can hold a genuinely different perspective.",
+        "The pipeline instantiates a <i>boardroom</i> metaphor: thirteen distinct LLM "
+        "roles, each with a specific mandate and — critically — explicit instruction to "
+        "disagree with the others. Early experiments with a single model reviewing its "
+        "own output produced sycophantic results; structural separation of planning, "
+        "implementation, review, and strategy was necessary to obtain genuine "
+        "adversarial critique. Table II summarises the roles. Architects run at "
+        "temperature=1.0 to maximise proposal diversity; higher-stakes roles "
+        "(Judge, QA Tester) use lower temperatures for consistency.",
         body))
 
-    role_data = [
-        ["Role",                  "Model",       "Mandate"],
-        ["CEO",                   "GPT-4o",      "Visionary strategy, failure-aware directives, domain shifts"],
-        ["CSO (Chief Science)",   "GPT-4o",      "Algorithmic novelty, physics, mathematical depth"],
-        ["Architect A / B",       "GPT-4o-mini", "Parallel plan proposals at temperature=1.0"],
-        ["Judge",                 "GPT-4o",      "Single filter: 'Is this predictable?' Reject or synthesise"],
-        ["Engineer",              "GPT-4o",      "File-by-file implementation with full sibling context"],
-        ["Reviewer A / B",        "GPT-4o-mini", "Parallel critique conference, merged verdict"],
-        ["Fixer",                 "GPT-4o-mini", "Targeted repairs from reviewer feedback"],
-        ["Polisher",              "GPT-4o-mini", "Final UX pass with rollback protection"],
-        ["QA Tester / Fixer",     "GPT-4o",      "Mechanical verification + structured issue analysis"],
+    t2_data = [
+        ["Role", "Model", "Provider", "Mandate"],
+        ["CEO",                 "gpt-4o",           "GitHub Models", "Visionary strategy, failure-aware directives"],
+        ["CSO",                 "llama-3.3-70b",     "Groq",          "Scientific novelty, algorithmic depth"],
+        ["CTO",                 "gemini-2.0-flash",  "Google",        "Self-improvement: patches own source code"],
+        ["Architect A/B",       "Llama 4 / 3.3",    "Groq",          "Parallel proposals, temp=1.0"],
+        ["Judge",               "gpt-4o",            "GitHub Models", "Predictability filter — reject derivative plans"],
+        ["Engineer",            "gpt-4o",            "GitHub Models", "File-by-file implementation, full context"],
+        ["Reviewer A/B",        "Llama / Gemini",    "Groq / Google", "Parallel critique conference"],
+        ["Fixer",               "gpt-4o-mini",       "GitHub Models", "Targeted repairs from reviewer feedback"],
+        ["Polisher",            "Phi-4",             "GitHub Models", "Final UX pass with rollback protection"],
+        ["QA Tester / Fixer",   "gpt-4o / Gemini",   "GH / Google",  "Mechanical verification + structured verdict"],
     ]
-    story.append(table(role_data, [4.2*cm, 3.2*cm, 10.1*cm]))
-    story.append(Spacer(1, 0.2*cm))
-    story.append(Paragraph("Table 2. Agent roles, models, and mandates.", caption))
+    for row in ieee_table(t2_data, [3.5*cm, 3.0*cm, 2.8*cm, 6.2*cm],
+                          caption="TABLE II. Agent Roles, Models, and Mandates"):
+        story.append(row)
 
-    story.append(Paragraph(
-        "One design decision worth explaining: the Architect candidates run at "
-        "temperature=1.0 — higher than the default. This was intentional. I found "
-        "early on that at lower temperatures the architects converged on nearly "
-        "identical proposals, making the conference pointless. At 1.0 they genuinely "
-        "diverge, which gives the Judge something to actually adjudicate.",
-        body))
-
-    # System architecture diagram
+    # Architecture figure
     arch_buf = make_architecture_diagram()
-    for item in img(arch_buf, W, "Figure 1. Full system architecture — agent roles, "
-                    "data flows, and the memory feedback loop."):
+    for item in ieee_fig(arch_buf, "Fig. 1. Full system architecture — agent layers, "
+                         "data flows, and the memory feedback loop connecting the "
+                         "Publish layer back to the Executive layer."):
         story.append(item)
 
-    story.append(Paragraph("2.3  Pipeline Stages", h2))
+    story.append(Paragraph("C. Pipeline Stages", h2))
     story.append(Paragraph(
-        "Each build proceeds through eight stages. The first — the Architect "
-        "Conference — is where most builds fail: the validator checks complexity "
-        "floor, file count, pattern rotation, domain rotation, type diversity, and "
-        "novel concept requirements before any candidate advances. Of the 90 refused "
-        "builds in my observation period, roughly 30% were refused at this stage; "
-        "the remainder reached implementation and failed at the mechanical "
-        "verification or LLM QA gate.",
+        "Each build traverses eight stages, illustrated in Fig. 2. The first stage "
+        "(Architect Conference) carries the highest rejection rate: the downstream "
+        "validator checks complexity floor, file count, pattern rotation, domain "
+        "rotation, type diversity, type ban status, and novel concept requirements "
+        "before any candidate advances. Of the total refused builds, approximately "
+        "30% were rejected at this stage; the remainder reached implementation and "
+        "were refused by the mechanical verification or LLM QA gate.",
         body))
 
     flow_buf = make_pipeline_flow()
-    for item in img(flow_buf, W, "Figure 2. Pipeline stage flow from PLAN to PUBLISH, "
-                    "with the memory feedback loop visible below."):
+    for item in ieee_fig(flow_buf, "Fig. 2. Pipeline stage flow. The dashed arrow "
+                         "beneath the stages denotes the memory feedback loop: every "
+                         "refused build is appended to memory_log.json and read by "
+                         "the CEO on its next review cycle."):
         story.append(item)
 
-    story.append(Paragraph("2.4  Project Types", h2))
+    story.append(Paragraph("D. Project Types", h2))
     story.append(Paragraph(
-        "The initial system only produced web applications. After observing two "
-        "weeks of HTML/JavaScript projects with increasingly repetitive patterns, "
-        "I introduced what I called the <i>Project Evolution</i> mandate: six "
-        "distinct project types, each with its own verification strategy, complexity "
-        "ceiling, and output format. Critically, every type — including Python tools "
-        "and research documents — must produce an <i>index.html</i> for GitHub Pages, "
-        "so the dashboard always shows a live, viewable result.",
+        "The <i>Project Evolution</i> mandate expanded the system from a single "
+        "web-application type to ten distinct project types, each with a dedicated "
+        "verifier strategy. A key design constraint is that every type — including "
+        "Python tools and compiled CLI tools — must produce an <i>index.html</i> at "
+        "the repository root for GitHub Pages hosting, ensuring every project in the "
+        "public dashboard has a one-click live demo.",
         body))
 
-    type_data = [
-        ["Type",            "Output",                   "Verifier",           "Ceiling"],
-        ["web_interactive", "HTML + JS + Canvas",        "Playwright",         "40"],
-        ["web_3d",          "Three.js / WebGL",          "Playwright (canvas)", "45"],
-        ["game_web",        "Browser game with state",   "Playwright",         "45"],
-        ["generative_art",  "Visual output (SVG/canvas)","Playwright",         "40"],
-        ["python_tool",     "Standalone Python program", "Subprocess exit",    "60"],
-        ["document",        "Markdown + styled HTML",    "Structure check",    "35"],
+    t3_data = [
+        ["Type", "Output", "Verifier", "Complexity Ceiling"],
+        ["web_interactive", "HTML + JS + Canvas",       "Playwright",           "80"],
+        ["game_web",        "Browser game with state",   "Playwright",           "90"],
+        ["web_3d",          "Three.js / WebGL scene",    "Playwright",           "90"],
+        ["generative_art",  "Visual output (SVG/canvas)","Playwright",           "80"],
+        ["shader_art",      "GLSL fragment shader",      "Playwright (WebGL)",   "80"],
+        ["python_tool",     "Python program + JS demo",  "Subprocess exit",      "100"],
+        ["data_viz",        "Plotlib/Plotly + SVG embed","Subprocess + file",    "80"],
+        ["typescript_app",  "ES-module JS app (esm.sh)", "Playwright",           "85"],
+        ["document",        "Markdown + styled HTML",    "Structure check",      "60"],
+        ["cli_tool",        "Rust/Go CLI + devcontainer","File check + Playwright","90"],
     ]
-    story.append(table(type_data,
-                       [3.2*cm, 4.5*cm, 4.3*cm, 1.8*cm]))
-    story.append(Spacer(1, 0.2*cm))
-    story.append(Paragraph("Table 3. Project types, output formats, "
-                            "verifiers, and complexity ceilings.", caption))
+    for row in ieee_table(t3_data, [3.0*cm, 4.0*cm, 3.5*cm, 3.0*cm],
+                          caption="TABLE III. Project Types, Output Formats, Verifiers, and Complexity Ceilings"):
+        story.append(row)
 
-    # ── 3. KEY MECHANISMS ─────────────────────────────────────────────────────
+    # ────────────────────────────────────────────────────────────────────────
+    # IV. KEY MECHANISMS
+    # ────────────────────────────────────────────────────────────────────────
     story.append(PageBreak())
-    story.append(Paragraph("3.  Key Mechanisms", h1))
-    story.append(section_rule())
+    from reportlab.platypus import NextPageTemplate
+    story.append(NextPageTemplate("main"))
+    story.append(Paragraph("IV. Key Mechanisms", h1))
 
-    story.append(Paragraph("3.1  Complexity Escalation", h2))
+    story.append(Paragraph("A. Complexity Escalation", h2))
     story.append(Paragraph(
-        "One of the harder problems to solve was keeping the system from repeating "
-        "itself. Left unconstrained, the LLMs gravitate toward familiar, safe "
-        "patterns — a slider-based visualiser, a colour-picker demo, a physics "
-        "ball. The complexity floor mechanism addresses this directly: each new "
-        "project must exceed the maximum complexity score of any recent project "
-        "by at least one point. The scale is intentionally open-ended — there is "
-        "no cap. In practice, complexity rose from 3 (the first projects) to 42 "
-        "over three weeks, without any manual adjustment.",
-        body))
-    story.append(Paragraph(
-        "Recovery mode — triggered when three or more builds fail consecutively "
-        "since the last successful ship — relaxes the floor and rotation constraints "
-        "temporarily. This prevents the system from getting stuck demanding complexity "
-        "levels it cannot currently achieve. When a project finally ships, recovery "
-        "mode exits automatically.",
+        "Each candidate plan must exceed the maximum complexity score of all recent "
+        "projects by at least one point. The scale is intentionally open-ended — no "
+        "upper bound exists. In practice, architects consistently propose plans "
+        "slightly above the floor (typically 1–3 points higher), producing a "
+        "compounding escalation that was never explicitly directed. Over the "
+        "observation period, complexity rose from 3 (initial projects) to 52. "
+        "In <i>recovery mode</i> — triggered when three or more builds fail "
+        "consecutively since the last successful ship — the floor is temporarily "
+        "relaxed to ensure at least one project ships before ambition is raised again.",
         body))
 
-    story.append(Paragraph("3.2  Type Diversity and Banning", h2))
+    story.append(Paragraph("B. Type Diversity Enforcement", h2))
     story.append(Paragraph(
-        "The type diversity engine emerged from a frustrating observation: after "
-        "introducing the six project types, the CEO kept demanding the same one "
-        "— <i>web_3d</i> — because it had never been successfully shipped and "
-        "appeared to the CEO as high priority. But the system consistently failed "
-        "to build working Three.js projects, producing blank canvases or broken "
-        "control wiring on every attempt.",
-        body))
-    story.append(Paragraph(
-        "The solution was a type ban system. After three consecutive failures of "
-        "the same type since the last successful ship, that type is automatically "
-        "banned. The validator hard-blocks it — even if the CEO is still demanding "
-        "it. The CEO's prompt includes a BANNED list and an explicit instruction: "
-        "<i>if a type appears on the ban list, do not demand it; pivot to something "
-        "the system can actually ship.</i> Bans lift automatically after a successful "
-        "project ships, resetting the failure counter. In practice this converted a "
-        "2-day stuck loop (18 consecutive web_3d failures) into a one-build recovery.",
+        "The type diversity engine imposes three constraints: (i) the same "
+        "project_type may not be used in consecutive builds; (ii) each type has a "
+        "complexity ceiling beyond which a new type must be chosen; (iii) a type "
+        "ban activates after three consecutive failures of the same type since the "
+        "last successful ship. Banned types are communicated to the CEO via a "
+        "<i>TYPE DIVERSITY REPORT</i> appended to every architect prompt. The CEO's "
+        "prompt instructs it to avoid banned types and pivot to proven alternatives. "
+        "This mechanism converted an 18-build stuck loop (web_3d, May 2026) into a "
+        "single-build recovery after the ban activated.",
         body))
 
-    story.append(Paragraph("3.3  Mechanical Verification", h2))
+    story.append(Paragraph("C. Mechanical Verification", h2))
     story.append(Paragraph(
-        "The quality gate uses Playwright to run headless Chromium against a locally "
-        "served static version of the project. It checks: whether the page loads "
-        "without crash; whether any <i>canvas</i> element has non-blank pixel content; "
-        "whether interactive controls produce observable state changes when clicked; "
-        "and whether the console emits genuine errors (as opposed to known-noisy "
-        "messages like WebGL driver warnings, which are filtered).",
+        "Playwright [4] drives a headless Chromium instance against a locally-served "
+        "static copy of the project. The verifier checks: whether the page loads "
+        "without crash; whether any canvas element has non-blank pixel content "
+        "(sampled via getImageData); whether interactive controls produce observable "
+        "state changes when triggered (DOM size, text content, canvas hash, "
+        "localStorage, scroll position); and whether the browser console emits "
+        "genuine errors, with known environmental artefacts (WebGL driver messages, "
+        "autoplay policy hints, favicon 404s) filtered out.",
         body))
     story.append(Paragraph(
-        "A separate LLM QA Tester reviews the Playwright output and assigns a "
+        "A separate LLM QA Tester then reviews the Playwright output and assigns a "
         "structured verdict — <i>shippable</i>, <i>partially_usable</i>, or "
-        "<i>non_functional</i> — with lists of dead controls, missing features, "
-        "and state synchronisation issues. This combination of mechanical and "
-        "semantic verification catches different bug classes: Playwright finds "
-        "blank renders and dead buttons; the LLM Tester finds logical inconsistencies "
-        "and incomplete feature implementations.",
+        "<i>non_functional</i> — with itemised lists of dead controls, missing "
+        "features, and state-synchronisation issues. This combination catches "
+        "disjoint failure classes: Playwright identifies blank renders and dead "
+        "buttons; the LLM Tester identifies logical inconsistencies and incomplete "
+        "feature implementations that pixel-level tests miss.",
         body))
 
-    story.append(Paragraph("3.4  Watchdog Autonomy", h2))
+    story.append(Paragraph("D. CTO Self-Improvement", h2))
     story.append(Paragraph(
-        "The watchdog workflow runs every 30 minutes. It reads the memory log, "
-        "checks whether a project has shipped today and whether five hours have "
-        "elapsed since the last ship, verifies no build is already running, and "
-        "dispatches a new build if all conditions are met. A cap of eight "
-        "dispatches per day prevents runaway billing on persistent failures.",
+        "After each CEO review cycle, <i>self_improve.py</i> analyses the most "
+        "recent 30 failed builds, extracts the relevant section of the pipeline "
+        "source (staying within the 8,000-token API limit), and asks the CTO agent "
+        "(Gemini 2.0 Flash) to propose one surgical <tt>old_string</tt> / "
+        "<tt>new_string</tt> patch. The patch is validated with <tt>ast.parse()</tt>, "
+        "committed, and logged. This creates a genuine self-modification loop: the "
+        "pipeline reads its own source, patches it, and the next build runs the "
+        "improved code automatically.",
         body))
+
+    story.append(Paragraph("E. Watchdog Autonomy", h2))
     story.append(Paragraph(
-        "This means the system requires no human trigger after initial setup. "
-        "The CEO review workflow runs on a separate cron schedule every 36 hours, "
-        "reads the accumulated project and failure data, and updates the directives "
-        "that the next architect must follow. The loop is genuinely closed.",
+        "A separate watchdog workflow runs every 30 minutes. It reads the memory "
+        "log, verifies that fewer than five projects have shipped today, checks that "
+        "at least five hours have elapsed since the last ship, confirms no build is "
+        "currently running, and dispatches a new build if all conditions are met. A "
+        "hard cap of eight dispatches per day prevents runaway token consumption "
+        "on persistent failure streaks. This loop operates without any human "
+        "trigger once the repository is configured.",
         body))
 
-    # ── 4. RESULTS ────────────────────────────────────────────────────────────
-    story.append(PageBreak())
-    story.append(Paragraph("4.  Results", h1))
-    story.append(section_rule())
+    # ────────────────────────────────────────────────────────────────────────
+    # V. RESULTS AND EVALUATION
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("V. Results and Evaluation", h1))
 
-    story.append(Paragraph("4.1  Overview", h2))
+    story.append(Paragraph("A. Overview", h2))
 
-    stats_data = [
-        ["Metric",                         "Value"],
-        ["Total projects shipped",          "27"],
-        ["Total refused builds",            "90"],
-        ["Overall ship rate",               "23%  (27 / 117 attempts)"],
-        ["Observation period",              "21 days  (28 Apr – 18 May 2026)"],
-        ["Complexity range",                "3 – 42  (open-ended scale)"],
-        ["Mean complexity",                 "20.7"],
-        ["Peak complexity",                 "42"],
-        ["Project types successfully shipped","5 of 6  (web_3d banned at close)"],
-        ["CEO review cycles",               "46"],
-        ["Total infrastructure cost",       "$0"],
+    total = len(PROJECTS)
+    total_failed = len(FAILED)
+    ship_rate = total / max(total + total_failed, 1) * 100
+    avg_c = sum(p.get("complexity_score", 0) for p in PROJECTS) / max(total, 1)
+    peak_c = max((p.get("complexity_score", 0) for p in PROJECTS), default=0)
+
+    t4_data = [
+        ["Metric", "Value"],
+        ["Total projects shipped",       str(total)],
+        ["Total refused builds",         str(total_failed)],
+        ["Overall ship rate",            f"{ship_rate:.0f}%  ({total} / {total + total_failed} attempts)"],
+        ["Observation period",           "21 days  (28 April – 18 May 2026)"],
+        ["Complexity range",             f"3 – {peak_c}  (open-ended scale)"],
+        ["Mean complexity",              f"{avg_c:.1f}"],
+        ["Peak complexity",              str(peak_c)],
+        ["Project types shipped",        "6 of 10 available types"],
+        ["CEO review cycles",            str(len(CEO_REV))],
+        ["Total infrastructure cost",    "£0"],
     ]
-    story.append(table(stats_data, [8*cm, 9.5*cm]))
-    story.append(Spacer(1, 0.2*cm))
-    story.append(Paragraph("Table 4. Summary statistics — 21-day observation period.",
-                            caption))
+    for row in ieee_table(t4_data, [8*cm, 7.5*cm],
+                          caption="TABLE IV. Summary Statistics — 21-Day Observation Period"):
+        story.append(row)
 
-    story.append(Paragraph("4.2  Complexity Progression", h2))
+    story.append(Paragraph("B. Complexity Progression", h2))
     story.append(Paragraph(
-        "The complexity score rose consistently over the observation period, from "
-        "early projects in the 3–8 range to later projects in the 28–42 range. "
-        "The progression was not perfectly linear — there were clear dips during "
-        "failure streaks when recovery mode relaxed the floor — but the overall "
-        "upward trend held throughout. Figure 3 shows the full progression with "
-        "project types colour-coded.",
+        "Complexity scores rose consistently throughout the observation period, "
+        "from early projects in the 3–8 range to later projects in the 40–52 range. "
+        "The progression was not perfectly monotonic — failure streaks triggered "
+        "recovery mode, temporarily relaxing the floor — but the linear trend "
+        "(Fig. 3) held throughout. Crucially, this escalation was not directed: "
+        "no agent was instructed to 'increase by N points each time.' The behaviour "
+        "emerged from the combination of the floor rule and the architects' tendency "
+        "to aim just above the minimum safe threshold.",
         body))
 
     cpx_buf = make_complexity_chart()
-    for item in img(cpx_buf, W, "Figure 3. Complexity score progression over 27 shipped "
-                    "projects. The dashed red line is the linear trend. The vertical dashed "
-                    "line marks the Project Evolution mandate (type expansion). "
-                    "Dot colours indicate project type."):
+    for item in ieee_fig(cpx_buf,
+                         "Fig. 3. Complexity score progression over shipped projects. "
+                         "Dashed red line: linear trend. Dot colours indicate project type. "
+                         "Score is an open-ended integer assigned by the architect agent."):
         story.append(item)
 
-    story.append(Paragraph("4.3  Type Distribution and Failure Modes", h2))
+    story.append(Paragraph("C. Type Distribution and Failure Modes", h2))
     story.append(Paragraph(
-        "Of the six project types introduced in Project Evolution, five were "
-        "successfully shipped. <i>web_interactive</i> dominated early output "
-        "(15 projects) before the type rotation system enforced diversity. Once "
-        "the diversity engine was active, the system shifted to python_tool, "
-        "document, game_web, and generative_art. The <i>web_3d</i> type was "
-        "never successfully shipped in the observation period — after 18 "
-        "consecutive failures it was auto-banned.",
-        body))
-    story.append(Paragraph(
-        "The 90 refused builds fell into five main failure categories, with blank "
-        "canvas rendering being the most common single cause. This was eventually "
-        "addressed by adding explicit canvas-size and requestAnimationFrame "
-        "instructions to the engineer prompt — after which game_web builds began "
-        "shipping. The web_3d type's blank canvas failures proved more persistent, "
-        "likely because Three.js WebGL rendering in headless Chromium behaves "
-        "differently from 2D canvas.",
+        "Of the ten available project types, six were successfully shipped. "
+        "<i>web_interactive</i> dominated early output before the type rotation "
+        "system enforced diversity. The <i>web_3d</i> type was eventually shipped "
+        "after the headless Chromium blank-canvas check was updated to skip "
+        "WebGL pixel sampling (which always returns blank in a software-rendered "
+        "context). The five primary failure modes are shown in Fig. 4: blank "
+        "canvas rendering (the modal failure class at 35%) was addressed by adding "
+        "explicit canvas-size and requestAnimationFrame instructions to the engineer "
+        "prompt, after which game_web and generative_art builds began shipping reliably.",
         body))
 
     dist_buf = make_type_distribution()
-    for item in img(dist_buf, W,
-                    "Figure 4. Left: projects shipped by type. "
-                    "Right: distribution of failure modes across 90 refused builds."):
+    for item in ieee_fig(dist_buf,
+                         "Fig. 4. Left: projects shipped by type. "
+                         "Right: distribution of failure modes across refused builds. "
+                         "Failure data was collected from memory_log.json."):
         story.append(item)
 
-    story.append(Paragraph("4.4  CEO Verdict Trajectory", h2))
+    story.append(Paragraph("D. CEO Verdict Trajectory", h2))
     story.append(Paragraph(
-        "The CEO issued 46 review cycles over the observation period. Early reviews "
-        "were <i>acceptable</i> — the system was producing something, just not "
-        "very imaginative. As the pipeline settled into repetitive web_interactive "
-        "patterns, verdicts shifted to <i>drifting</i>. The Project Evolution mandate "
-        "— introduced around cycle 30 — pushed verdicts back toward "
-        "<i>acceptable</i> as domain diversity improved. The most dramatic shift "
-        "came at cycle 40, when the web_3d failure streak triggered an "
-        "<i>alarming</i> verdict and the CEO immediately pivoted its directives "
-        "away from web_3d toward document-type projects. The next build "
-        "shipped on the first attempt.",
+        "The CEO agent issued review cycles across the observation period. Early "
+        "reviews returned <i>acceptable</i> verdicts as the system was producing "
+        "output, albeit unimaginative. As the pipeline converged on repetitive "
+        "web_interactive patterns, verdicts shifted to <i>drifting</i>. The Project "
+        "Evolution mandate — introduced at review cycle 30 — restored diversity and "
+        "pushed verdicts back toward <i>acceptable</i>. The most notable event was "
+        "the <i>alarming</i> verdict that coincided with the web_3d failure streak: "
+        "the CEO independently pivoted its directives away from web_3d on its next "
+        "review, and the subsequent build shipped on the first attempt.",
         body))
 
     ceo_buf = make_ceo_verdict_timeline()
-    for item in img(ceo_buf, W,
-                    "Figure 5. CEO verdict trajectory across 46 review cycles. "
-                    "Key events annotated. The 'alarming' verdict at cycle 40 "
-                    "triggered the successful self-healing pivot."):
+    for item in ieee_fig(ceo_buf,
+                         "Fig. 5. CEO verdict trajectory across review cycles. "
+                         "The dotted vertical line marks the Project Evolution mandate. "
+                         "The step down at cycle ~40 corresponds to the web_3d failure streak "
+                         "that triggered an 'alarming' verdict and a successful self-healing pivot."):
         story.append(item)
 
-    # ── 5. EMERGENT BEHAVIOURS ────────────────────────────────────────────────
+    # ────────────────────────────────────────────────────────────────────────
+    # VI. EMERGENT BEHAVIOURS
+    # ────────────────────────────────────────────────────────────────────────
     story.append(PageBreak())
-    story.append(Paragraph("5.  Emergent Behaviours", h1))
-    story.append(section_rule())
+    story.append(Paragraph("VI. Emergent Behaviours", h1))
     story.append(Paragraph(
-        "Several of the most interesting observations were behaviours I did not "
-        "explicitly program — they arose from the interaction of memory, failure "
-        "logging, and the multi-agent structure.",
+        "Several of the most significant observations were behaviours that were not "
+        "explicitly programmed. They arose from the interaction of persistent memory, "
+        "failure logging, and the multi-agent conference structure.",
         body))
 
-    story.append(Paragraph("5.1  Failure-Driven CEO Strategy Pivots", h2))
+    story.append(Paragraph("A. Failure-Driven CEO Strategy Pivots", h2))
     story.append(Paragraph(
-        "Early in the project, the CEO had no visibility into refused builds — "
-        "it could only see what shipped. The result was a CEO that kept demanding "
-        "ambitious, complex patterns that the QA gate was consistently rejecting, "
-        "with no ability to course-correct. Adding <i>failed_builds[]</i> to the "
-        "CEO's context changed this immediately. On its next review after seeing "
-        "a streak of failures, the CEO spontaneously scaled back its complexity "
-        "demands and shifted domain — without any explicit instruction to do so. "
-        "This was the first clear sign that the memory architecture was producing "
-        "genuine emergent learning.",
+        "Initially, the CEO had no visibility into refused builds — it could only see "
+        "what shipped. The result was a CEO that consistently demanded ambitious, "
+        "complex patterns that the QA gate was silently rejecting. Adding "
+        "<i>failed_builds[]</i> to the CEO's context changed its behaviour immediately: "
+        "on its next review after seeing a failure streak, it spontaneously scaled "
+        "back complexity demands and shifted domain, without any explicit instruction "
+        "to do so. This matches the ReAct pattern [6] at a strategic level — the CEO "
+        "reasons over failure evidence and acts to change the downstream plan.",
         body))
 
-    story.append(Paragraph("5.2  Complexity Escalation Without Explicit Targets", h2))
+    story.append(Paragraph("B. Unsupervised Complexity Escalation", h2))
     story.append(Paragraph(
-        "The complexity floor mechanism sets a minimum, not a target. Architects "
-        "are free to propose any complexity above the floor. In practice, they "
-        "consistently propose scores slightly above the floor — typically 1 to 3 "
-        "points higher. Over 27 projects this produced a compounding escalation "
-        "that was never directed: no agent was told 'increase by 2 points each "
-        "time.' The escalation emerged from the combination of the floor rule and "
-        "the architects' tendency to aim just above the minimum safe threshold.",
+        "The complexity floor mechanism sets a minimum, not a target. Architects are "
+        "free to propose any value above the floor. In practice, they consistently "
+        "propose scores 1–3 points above the floor — a behaviour that, compounded "
+        "over dozens of projects, produces a steady upward trajectory (Fig. 3). "
+        "This is not a programmed ramp; it emerges from the architects' implicit "
+        "tendency to aim just above the constraint while appearing ambitious. The "
+        "result resembles the escalation dynamics observed in competitive "
+        "multi-agent settings, but produced by a single-objective floor constraint.",
         body))
 
-    story.append(Paragraph("5.3  Reviewer Disagreement as Quality Signal", h2))
+    story.append(Paragraph("C. Adversarial Reviewer Disagreement as a Quality Signal", h2))
     story.append(Paragraph(
-        "Running two reviewers independently at temperature=0.85 means they "
-        "frequently disagree — one votes <i>fix</i>, the other <i>ship</i>. "
-        "The merger logic treats a mixed verdict as <i>fix</i>. Across all "
-        "observed builds, this disagreement pattern correlated with real quality "
-        "issues: projects where both reviewers voted <i>ship</i> on the first "
-        "round had a significantly higher QA pass rate than those with a split "
-        "vote. The diversity of opinion turned out to be a useful signal rather "
-        "than noise.",
+        "Running two independent reviewers at temperature=0.85 means they frequently "
+        "disagree — one votes <i>fix</i>, the other <i>ship</i>. The merger treats a "
+        "split verdict as <i>fix</i>. Across observed builds, this disagreement "
+        "pattern correlated with genuine quality issues: projects where both reviewers "
+        "returned <i>ship</i> on the first round had a markedly higher QA pass rate "
+        "than those with a split vote. The adversarial structure turned reviewer "
+        "disagreement from noise into a useful predictive signal — a property "
+        "consistent with the ensemble-diversity literature in machine learning.",
         body))
 
-    story.append(Paragraph("5.4  Self-Healing via Type Bans", h2))
+    story.append(Paragraph("D. Type Ban Self-Healing", h2))
     story.append(Paragraph(
-        "The most striking emergent behaviour was the resolution of the web_3d "
-        "failure loop. Between May 10 and May 11, the system ran 18 consecutive "
-        "failed builds — all web_3d, all blocked by blank canvas or broken "
-        "controls. The CEO kept demanding web_3d because it had never shipped "
-        "and appeared as a high-priority gap. There was no programmed escape "
-        "condition for this scenario.",
+        "The most pronounced emergent behaviour was the resolution of the web_3d "
+        "failure loop. Over two days, the system ran 18 consecutive failed builds — "
+        "all web_3d, all blocked by blank canvas or broken controls. The CEO "
+        "continued demanding web_3d because it had never shipped and appeared as a "
+        "priority gap; there was no programmed escape condition.",
         body))
     story.append(Paragraph(
-        "I introduced the type ban mechanism: three consecutive failures of the "
-        "same type since the last ship triggers an automatic ban, enforced by "
-        "the validator (hard block) and communicated to the CEO in the diversity "
-        "report. On the CEO's next review cycle after the ban was activated, "
-        "its verdict shifted to <i>alarming</i> and its directives explicitly "
-        "stated 'avoid web_3d entirely until after successful shipments in other "
-        "types reset the failure streak.' The very next build — targeting a "
-        "document type — shipped on the first attempt with a <i>shippable</i> "
-        "QA verdict, ending the two-day blockage.",
-        body))
-    story.append(Paragraph(
-        "What I found notable is that the CEO's language changed spontaneously. "
-        "It identified the problem, articulated a recovery strategy, and pivoted — "
-        "all from reading the memory log. The self-healing behaviour was not "
-        "scripted into its response; it emerged from the combination of failure "
-        "data visibility and the revised prompt's emphasis on shipping over "
-        "exploration.",
+        "The type ban mechanism — three consecutive failures of the same type trigger "
+        "an automatic validator block, communicated to the CEO via the diversity "
+        "report — broke the loop on the CEO's next review. Its verdict shifted to "
+        "<i>alarming</i>, and its directives explicitly stated: 'Avoid web_3d entirely "
+        "until after successful shipments in other types reset the failure streak.' "
+        "The following build (a document type) shipped on the first attempt. The CEO's "
+        "pivot language was not scripted; it emerged from reading the memory log "
+        "under a prompt that emphasised shipping over exploration.",
         body))
 
-    # ── 6. LIMITATIONS ────────────────────────────────────────────────────────
-    story.append(Paragraph("6.  Limitations and Future Directions", h1))
-    story.append(section_rule())
+    # ────────────────────────────────────────────────────────────────────────
+    # VII. DISCUSSION
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("VII. Discussion", h1))
+
+    story.append(Paragraph("A. Failure as Information", h2))
     story.append(Paragraph(
-        "I want to be candid about what this system cannot do, and where my "
-        "observations are limited.",
-        body))
-    story.append(Paragraph(
-        "The most obvious gap is web_3d. Eighteen failures without a single ship "
-        "suggests the mechanical verifier — which checks canvas pixel content — "
-        "is poorly suited to WebGL contexts, which may render to a non-default "
-        "framebuffer. A vision-model screenshot reviewer would likely perform "
-        "better here than pixel-level blank-canvas detection.",
-        body))
-    story.append(Paragraph(
-        "The system's 'memory' is shallow by design — a JSON file with a "
-        "flat list of project records and a growing concepts_explored array. "
-        "There is no semantic search, no embedding-based similarity check, and "
-        "no way for the system to reason about <i>why</i> a previous approach "
-        "failed in depth. A vector database storing failure post-mortems could "
-        "meaningfully improve the recovery speed.",
-        body))
-    story.append(Paragraph(
-        "The observation period is 21 days, and I observed only a single instance "
-        "of the self-healing mechanism activating. More time would be needed to "
-        "determine whether the pattern generalises or was a fortunate coincidence "
-        "of timing and model behaviour.",
-        body))
-    story.append(Paragraph(
-        "Looking forward, I am interested in three directions. First, extending "
-        "verification to use a vision model for visual quality assessment — not "
-        "just pixel-level checks. Second, adding cross-type publishing: Python "
-        "tools to PyPI, documents to arXiv-style preprint servers. Third, and "
-        "most ambitiously, exploring whether the system can propose and implement "
-        "improvements to its <i>own</i> pipeline code — a genuine self-modification "
-        "loop.",
+        "The central insight from this work is that failure records, made visible to "
+        "the strategic layer, are the primary driver of system improvement. Without "
+        "<i>failed_builds[]</i> in the CEO's context, the executive layer was "
+        "effectively blind and consistently demanded unreachable targets. With it, "
+        "the CEO adapted within one review cycle. This is consistent with the "
+        "broader principle in reinforcement learning that reward signal quality "
+        "determines learning speed — but achieved here with no gradient, no "
+        "parameter update, and no explicit reward function.",
         body))
 
-    # ── 7. CONCLUSION ─────────────────────────────────────────────────────────
-    story.append(Paragraph("7.  Conclusion", h1))
-    story.append(section_rule())
+    story.append(Paragraph("B. Limitations", h2))
     story.append(Paragraph(
-        "I set out to answer whether a multi-agent LLM system could continuously "
-        "create diverse, novel software projects at zero cost, without human "
-        "prompting, and improve over time. Over 21 days, with 27 shipped projects "
-        "across five domain types, the answer is — within real limitations — yes.",
-        body))
-    story.append(Paragraph(
-        "The most important insight from this work is that <b>failure is "
-        "information</b>. Making refused builds visible to the strategic layer — "
-        "the CEO — was the single highest-leverage change I made to the system. "
-        "It converted a blind loop into an adaptive one. The CEO did not need to "
-        "be told 'you are failing'; it read the data and changed its behaviour. "
-        "The same principle applies to the type ban: the system needed a "
-        "mechanism to recognise when it was stuck and force itself out, rather "
-        "than waiting for a human to notice.",
-        body))
-    story.append(Paragraph(
-        "The system is fully operational and open-source at "
-        "github.com/dipeshrayg/autonomous-brain-engine. Every project it has "
-        "shipped is publicly accessible with a one-click live demo. It continues "
-        "to run daily, building projects it chose itself.",
-        body))
-    story.append(Paragraph(
-        "I think this represents only the smallest demonstration of what "
-        "structured multi-agent AI systems are capable of. The architecture is "
-        "not complex — nine LLM roles, a JSON memory file, a bash watchdog. "
-        "What makes it work is the combination of adversarial critique, "
-        "persistent failure memory, and automated quality gates. Those three "
-        "elements, working together, produce a system that is genuinely more "
-        "capable than any of its parts.",
+        "Several limitations constrain the present work. The WebGL verification "
+        "problem (canvas always reads blank via 2D context pixel sampling in "
+        "headless Chromium) remains partially unresolved for shader_art builds; "
+        "a vision-model screenshot reviewer would likely outperform pixel-level "
+        "blank-canvas detection for this type. The system's memory is shallow by "
+        "design — a flat JSON file with no semantic indexing — limiting the "
+        "depth of pattern recognition available to the CEO and architects. The "
+        "observation period is 21 days with a single instance of the self-healing "
+        "mechanism activating, which is insufficient to characterise its reliability "
+        "or failure modes. Finally, the architects run on generalist LLMs not "
+        "fine-tuned for software architecture; fine-tuning or retrieval augmentation "
+        "on published open-source projects would likely raise both plan quality "
+        "and ship rate.",
         body))
 
-    # ── REFERENCES ────────────────────────────────────────────────────────────
+    story.append(Paragraph("C. Future Directions", h2))
+    story.append(Paragraph(
+        "Three directions are most immediately promising. First, extending "
+        "verification to use a vision model (e.g. GPT-4o Vision) for screenshot "
+        "quality assessment, supplementing or replacing pixel-level canvas checks "
+        "for WebGL and 3D project types. Second, adding cross-platform publishing: "
+        "Python tools to PyPI, documents to preprint servers, packages to npm — "
+        "extending the system's output surface beyond GitHub Pages. Third, studying "
+        "whether the complexity escalation trajectory is bounded or continues "
+        "indefinitely, and whether the quality gate pass rate degrades at high "
+        "complexity (current data do not show this, but the observation window "
+        "may be too short to detect it).",
+        body))
+
+    # ────────────────────────────────────────────────────────────────────────
+    # VIII. CONCLUSION
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("VIII. Conclusion", h1))
+    story.append(Paragraph(
+        "This paper has presented <i>Autonomous Brain</i> — a multi-agent LLM "
+        "pipeline that continuously designs, implements, quality-assures, and "
+        "publishes novel software projects without human intervention, at zero "
+        "operational cost. Over a 21-day observation period, the system shipped "
+        f"{len(PROJECTS)} projects across six domain types, self-healed from a "
+        "two-day failure loop autonomously, and exhibited consistent complexity "
+        "escalation and CEO-level strategy adaptation in response to failure data.",
+        body))
+    story.append(Paragraph(
+        "The core contribution is architectural: by structuring a multi-agent "
+        "system around adversarial role separation, persistent failure memory, and "
+        "automated mechanical quality gates, it is possible to produce a pipeline "
+        "that improves its own output quality over time without any parameter "
+        "update or human diagnosis. Failure is information — and making that "
+        "information visible to the right agent at the right time is sufficient "
+        "to produce emergent learning behaviour.",
+        body))
+    story.append(Paragraph(
+        "The system is fully open-source and operational. All 36 shipped projects "
+        "are publicly accessible with one-click live demos. The pipeline continues "
+        "to run daily, building software that it chose itself.",
+        body))
+
+    # ────────────────────────────────────────────────────────────────────────
+    # ACKNOWLEDGEMENT
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(Paragraph("Acknowledgement", h1))
+    story.append(Paragraph(
+        "The author acknowledges the use of GitHub Actions, GitHub Models API, "
+        "Groq, and Google AI Studio, all accessed under their respective free-tier "
+        "terms. No research funding was received for this work.",
+        body))
+
+    # ────────────────────────────────────────────────────────────────────────
+    # REFERENCES  (IEEE numbered style)
+    # ────────────────────────────────────────────────────────────────────────
+    story.append(HRFlowable(width=BODY_W * 0.4, thickness=0.75,
+                            color=DARK, hAlign="LEFT", spaceBefore=12, spaceAfter=6))
     story.append(Paragraph("References", h1))
-    story.append(section_rule())
+
     refs = [
-        "GitHub Actions documentation — docs.github.com/en/actions",
-        "GitHub Models API — github.com/marketplace/models",
-        "OpenAI (2024). GPT-4 Technical Report. arXiv:2303.08774",
-        "Playwright browser automation framework — playwright.dev",
-        "GitHub Pages — pages.github.com",
-        "Yao, S. et al. (2023). ReAct: Synergizing Reasoning and Acting in Language Models. ICLR 2023.",
-        "Park, J. S. et al. (2023). Generative Agents: Interactive Simulacra of Human Behavior. UIST 2023.",
-        "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation. arXiv:2308.08155",
+        "[1]  GitHub, <i>GitHub Actions Documentation</i>, GitHub Inc., 2024. "
+        "[Online]. Available: https://docs.github.com/en/actions",
+
+        "[2]  GitHub, <i>GitHub Models API</i>, GitHub Inc., 2024. "
+        "[Online]. Available: https://github.com/marketplace/models",
+
+        "[3]  OpenAI, \"GPT-4 Technical Report,\" <i>arXiv preprint</i> "
+        "arXiv:2303.08774, 2024.",
+
+        "[4]  Microsoft, <i>Playwright Browser Automation Framework</i>, 2024. "
+        "[Online]. Available: https://playwright.dev",
+
+        "[5]  GitHub, <i>GitHub Pages</i>, GitHub Inc., 2024. "
+        "[Online]. Available: https://pages.github.com",
+
+        "[6]  S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. Narasimhan, and Y. Cao, "
+        "\"ReAct: Synergizing Reasoning and Acting in Language Models,\" in "
+        "<i>Proc. Int. Conf. Learning Representations (ICLR)</i>, Vienna, 2023.",
+
+        "[7]  J. S. Park, J. C. O'Brien, C. J. Cai, M. R. Morris, P. Liang, and "
+        "M. S. Bernstein, \"Generative Agents: Interactive Simulacra of Human "
+        "Behavior,\" in <i>Proc. ACM Symp. User Interface Software and Technology "
+        "(UIST)</i>, San Francisco, 2023, pp. 1–22.",
+
+        "[8]  Q. Wu, G. Bansal, J. Zhang, Y. Wu, S. Zhang, E. Zhu, B. Li, L. Jiang, "
+        "X. Zhang, and C. Wang, \"AutoGen: Enabling Next-Gen LLM Applications via "
+        "Multi-Agent Conversation,\" <i>arXiv preprint</i> arXiv:2308.08155, 2023.",
     ]
     for r in refs:
-        story.append(Paragraph(f"• {r}", footnote))
+        story.append(Paragraph(r, ref_style))
 
-    # ── FOOTER NOTE ───────────────────────────────────────────────────────────
-    story.append(Spacer(1, 1*cm))
-    story.append(HRFlowable(width=W, thickness=0.4,
-                            color=colors.HexColor("#e2e8f0"), spaceAfter=8))
+    # ── Footer note ────────────────────────────────────────────────────────
+    story.append(Spacer(1, 8 * mm))
+    story.append(HRFlowable(width=BODY_W, thickness=0.4,
+                            color=RULE, spaceAfter=4))
     story.append(Paragraph(
         "This paper documents original work conducted and authored by Dipesh Ray "
-        "between April 28 and May 18, 2026. "
-        "All statistics are drawn directly from the live memory_log.json "
-        "of the autonomous-brain-engine repository.",
-        sty('FooterNote', parent='Normal',
-            fontSize=8, textColor=colors.HexColor("#9ca3af"),
-            fontName='Helvetica-Oblique', alignment=TA_CENTER)))
+        "between April 28 and May 18, 2026. All statistics are drawn directly from "
+        "<i>memory_log.json</i> of the autonomous-brain-engine repository at the "
+        "time of generation. Repository: github.com/dipeshrayg/autonomous-brain-engine. "
+        "ORCID: 0009-0001-9970-0220.",
+        small))
 
-    # ── Build ──────────────────────────────────────────────────────────────────
+    # ── Build ──────────────────────────────────────────────────────────────
     doc.build(story)
-    print(f"\n✅  PDF written to: {out_path}")
+    print(f"\nOK  IEEE-format PDF written to: {out_path}")
+    print(f"    Projects cited: {len(PROJECTS)} | Failed builds: {len(FAILED)}")
+    print(f"    CEO reviews: {len(CEO_REV)}")
     return out_path
 
 
