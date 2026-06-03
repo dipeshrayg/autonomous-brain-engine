@@ -12164,6 +12164,49 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-03T05:54:49Z",
+      "attempted_at_unix": 1780466089,
+      "date": "2026-06-03",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "simple-glsl-noise-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 100,
+      "plan_pattern": "glsl-noise-patterns",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Speed slider (input#speed)",
+          "expected": "Changing the slider should visibly affect the animation speed of the shader patterns."
+        },
+        {
+          "control": "Color picker (input#color)",
+          "expected": "Changing the color should update the palette of the shader pattern in real time."
+        },
+        {
+          "control": "Reset button (button#reset)",
+          "expected": "Clicking the reset button should reset the animation speed and color to their initial states and update the shader output accordingly."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Animation control"
+        },
+        {
+          "feature": "User interaction handling"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
