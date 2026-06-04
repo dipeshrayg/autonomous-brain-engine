@@ -12850,6 +12850,53 @@
         "dead": 0
       },
       "final_interactive_count": 2
+    },
+    {
+      "attempted_at": "2026-06-04T18:19:37Z",
+      "attempted_at_unix": 1780597177,
+      "date": "2026-06-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "spectral-pattern-explorer",
+      "plan_language": "Rust",
+      "plan_complexity": 96,
+      "plan_pattern": "entropy-pattern-analysis",
+      "plan_domain": "Information Theory",
+      "plan_files_count": 7,
+      "project_type": "cli_tool",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "--input <file> flag",
+          "expected": "Load the specified input dataset file and display a success message."
+        },
+        {
+          "control": "--analyze flag",
+          "expected": "Perform spectral decomposition and entropy analysis, displaying progress and results."
+        },
+        {
+          "control": "--visualize flag",
+          "expected": "Generate and display animated visualizations for spectral patterns based on the analysis data."
+        },
+        {
+          "control": "--help flag",
+          "expected": "Display a formatted help menu with usage instructions."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "index.html demo of terminal animations"
+        },
+        {
+          "feature": "Embedding computation in JS"
+        }
+      ],
+      "final_interaction": {
+        "tested": 2,
+        "live": 0,
+        "dead": 2
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
