@@ -12767,6 +12767,34 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 96 (max recent=95). The scale is open-ended; surpass yesterday.",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-04T16:11:38Z",
+      "attempted_at_unix": 1780589498,
+      "date": "2026-06-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-system",
+      "plan_language": "GLSL",
+      "plan_complexity": 96,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Reset button",
+          "expected": "Clicking the reset button should reset the canvas to the initial simulation state."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
