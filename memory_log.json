@@ -12897,6 +12897,49 @@
         "dead": 2
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-04T19:57:12Z",
+      "attempted_at_unix": 1780603032,
+      "date": "2026-06-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 0 verifier blocker(s).",
+      "plan_name": "modular-ai-text-transformer",
+      "plan_language": "Rust",
+      "plan_complexity": 10,
+      "plan_pattern": "modular-ai-text-transformation",
+      "plan_domain": "Natural Language Processing",
+      "plan_files_count": 6,
+      "project_type": "cli_tool",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Run button",
+          "expected": "Clicking the button executes a text transformation or displays output for a selected module."
+        },
+        {
+          "control": "Textarea input",
+          "expected": "Typing text into the input area should allow users to provide input for processing and see the result."
+        },
+        {
+          "control": "Dropdown menu",
+          "expected": "Selecting an option (e.g., Summarize, Paraphrase, Extract Keywords) should trigger the respective text transformation process and display results."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Dynamic terminal visualization"
+        },
+        {
+          "feature": "Text transformation functionalities"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 1,
+        "dead": 3
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
