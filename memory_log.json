@@ -3629,6 +3629,108 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-04",
+      "completed_at": "2026-06-04T07:13:41Z",
+      "completed_at_unix": 1780557221,
+      "name": "geospatial-simulation-hub",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-04-geospatial-simulation-hub",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-04-geospatial-simulation-hub/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "GLSL"
+      ],
+      "complexity_score": 95,
+      "concepts_demonstrated": [
+        "geospatial simulation",
+        "physics-based simulation",
+        "machine learning"
+      ],
+      "novel_concepts": [
+        "physics-informed machine learning",
+        "geospatial data compression"
+      ],
+      "advancement_axis": "integration of physics-based simulation and machine learning in 3D geospatial simulation",
+      "pattern": "geospatial-simulation-pattern",
+      "domain": "Geospatial Science",
+      "visual_identity": "earth tones, futuristic typography, interactive 3D visualizations",
+      "safety_notes": "no personal data collection, no sensitive information storage",
+      "file_count": 7,
+      "loc": 699,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 308,
+        "bodyHtml": 3620,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 6,
+        "title": "Geospatial Simulation Hub",
+        "viewportMeta": true,
+        "hasMain": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Dataset 1\nDataset 2\nDataset 3",
+              "trigger": "select",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "simulation.js": "gpt-4o",
+          "machineLearning.js": "gpt-4o",
+          "visualization.js": "gpt-4o",
+          "data.json": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must use the web_3d type to explore untapped potential in 3D web experiences.",
+        "The web_3d project must focus on a novel and interactive application, with a user-friendly interface that showcases a clear purpose (e.g., geospatial simulations, generative 3D art, or architectural visualization).",
+        "Emphasize usability by ensuring all interactive components are fully functional and intuitive for human users.",
+        "Avoid shader_art entirely in the next cycle due to its repeated failures.",
+        "Push for innovation in the web_3d domain by integrating real-time data or physics simulations if feasible."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The 3D geospatial simulation is interactive and provides meaningful visualization and control, but the dataset dropdown does not trigger any observable changes, reducing its usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "data selection dropdown",
+            "expected": "Switch geospatial dataset and update simulation based on the new dataset.",
+            "actual": "Changing the dropdown selection does not result in any observable changes in the simulation or the visualization.",
+            "fix": "Ensure the `updateSimulationData` function is properly implemented to update the visual simulation based on the selected dataset."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -3673,7 +3775,8 @@
     70,
     75,
     85,
-    90
+    90,
+    95
   ],
   "concepts_explored": [
     "neural networks",
@@ -3854,7 +3957,10 @@
     "Information-theoretic concepts",
     "distributed systems",
     "formal verification",
-    "constraint solving"
+    "constraint solving",
+    "geospatial simulation",
+    "physics-based simulation",
+    "machine learning"
   ],
   "patterns_used": [
     "visualizer",
@@ -3892,7 +3998,8 @@
     "real-time-data-visualization",
     "mathematical-structures-visualization",
     "cryptography-compiler-pattern",
-    "distributed-system-simulation"
+    "distributed-system-simulation",
+    "geospatial-simulation-pattern"
   ],
   "domains_used": [
     "Mathematics",
@@ -3930,7 +4037,8 @@
     "Data Science",
     "Mathematics",
     "Cryptography",
-    "Distributed Systems"
+    "Distributed Systems",
+    "Geospatial Science"
   ],
   "ceo_reviews": [
     {
