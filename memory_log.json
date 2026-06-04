@@ -3731,6 +3731,91 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-04",
+      "completed_at": "2026-06-04T21:57:33Z",
+      "completed_at_unix": 1780610253,
+      "name": "information-theory-visualizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-04-information-theory-visualizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-04-information-theory-visualizer/",
+      "language": "Python",
+      "project_type": "data_viz",
+      "tech_stack": [
+        "Python",
+        "Matplotlib",
+        "Plotly",
+        "Pandas"
+      ],
+      "complexity_score": 96,
+      "concepts_demonstrated": [
+        "Entropy",
+        "Mutual Information",
+        "Conditional Entropy"
+      ],
+      "novel_concepts": [
+        "Novel visualization techniques",
+        "Interactive Sankey diagrams",
+        "Heatmap visualizations"
+      ],
+      "advancement_axis": "Novel visualization techniques for Information Theory concepts",
+      "pattern": "information-theory-visualization",
+      "domain": "Information Theory",
+      "visual_identity": "Color palette: blue and orange, Typography: Open Sans, Layout personality: modern and interactive",
+      "safety_notes": "No safety concerns",
+      "file_count": 9,
+      "loc": 923,
+      "quality_cycles_used": 5,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "data.py",
+        "exit_code": 0,
+        "stdout_chars": 449,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "data.py": "gpt-4o",
+          "visualizations.py": "gpt-4o",
+          "interactions.py": "gpt-4o",
+          "styles.css": "gpt-4o",
+          " README.md": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a data_viz type with a focus on high interactivity and storytelling, incorporating novel visualization techniques beyond traditional charts.",
+        "Avoid web_3d and typescript_app types until further notice, as they are maxed out and need a cooldown period.",
+        "The next data_viz must demonstrate full usability and interactivity in the index.html without reliance on external tools or offloaded computation.",
+        "Incorporate a novel domain into the next project—prioritize underexplored topics such as Information Theory or Cellular Automata.",
+        "Ensure the next project avoids overly safe patterns and aims for a challenging and fresh concept that aligns with underrepresented domains."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project loads, and the slider and dropdown controls are functional with visible output updates, but the 'Run Computation' button is redundant and unnecessary. Some features don't behave as expected, and the overall interaction could be clearer.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Run Computation button",
+            "expected": "Trigger a computation and refresh the visualization with updated results",
+            "actual": "Does not perform any additional computation or provide new functionality. Visualization already updates automatically on slider and dropdown change.",
+            "fix": "Remove the 'Run Computation' button entirely or provide a clear purpose for its inclusion."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Dynamic switching between Sankey diagram and heatmap",
+            "why_missing": "The interface does not provide a clear way for users to toggle between Sankey diagram and heatmap visualizations, despite the code supporting this functionality.",
+            "fix": "Add a toggle or control for the user to select which visualization to display (e.g., a radio button or dropdown)."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -3776,7 +3861,8 @@
     75,
     85,
     90,
-    95
+    95,
+    96
   ],
   "concepts_explored": [
     "neural networks",
@@ -3960,7 +4046,10 @@
     "constraint solving",
     "geospatial simulation",
     "physics-based simulation",
-    "machine learning"
+    "machine learning",
+    "Entropy",
+    "Mutual Information",
+    "Conditional Entropy"
   ],
   "patterns_used": [
     "visualizer",
@@ -3999,7 +4088,8 @@
     "mathematical-structures-visualization",
     "cryptography-compiler-pattern",
     "distributed-system-simulation",
-    "geospatial-simulation-pattern"
+    "geospatial-simulation-pattern",
+    "information-theory-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -4038,7 +4128,8 @@
     "Mathematics",
     "Cryptography",
     "Distributed Systems",
-    "Geospatial Science"
+    "Geospatial Science",
+    "Information Theory"
   ],
   "ceo_reviews": [
     {
