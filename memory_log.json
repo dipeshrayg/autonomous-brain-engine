@@ -12751,6 +12751,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', '",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-04T12:26:32Z",
+      "attempted_at_unix": 1780575992,
+      "date": "2026-06-04",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 96 (max recent=95). The scale is open-ended; surpass yesterday.",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
