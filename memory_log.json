@@ -12940,6 +12940,14 @@
         "dead": 3
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-04T20:30:58Z",
+      "attempted_at_unix": 1780605058,
+      "date": "2026-06-04",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='cli_tool' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', 'ty",
+      "project_type": "web_interactive"
     }
   ],
   "cso_reviews": [
