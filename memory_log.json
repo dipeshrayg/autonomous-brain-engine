@@ -13387,6 +13387,42 @@
         "dead": 6
       },
       "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-06-05T23:12:45Z",
+      "attempted_at_unix": 1780701165,
+      "date": "2026-06-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-explorer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 100,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Mathematics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Start button",
+          "expected": "Start the simulation rendering on the canvas"
+        },
+        {
+          "control": "Pause button",
+          "expected": "Pause the simulation rendering"
+        },
+        {
+          "control": "Reset button",
+          "expected": "Reset the simulation to its initial state"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 7,
+        "live": 4,
+        "dead": 3
+      },
+      "final_interactive_count": 7
     }
   ],
   "cso_reviews": [
