@@ -3816,6 +3816,104 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-05",
+      "completed_at": "2026-06-05T16:36:16Z",
+      "completed_at_unix": 1780677376,
+      "name": "modular-entropy-analyzer",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-05-modular-entropy-analyzer",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-05-modular-entropy-analyzer/",
+      "language": "Rust",
+      "project_type": "cli_tool",
+      "tech_stack": [
+        "Rust",
+        "CLI",
+        "Entropy Analysis"
+      ],
+      "complexity_score": 97,
+      "concepts_demonstrated": [
+        "Entropy Analysis",
+        "Modular Design",
+        "Usability"
+      ],
+      "novel_concepts": [
+        "Modular Entropy Analysis",
+        "User-Friendly CLI Tool"
+      ],
+      "advancement_axis": "Modular design and usability",
+      "pattern": "modular-entropy-analysis",
+      "domain": "Information Security",
+      "visual_identity": "Simple, intuitive, and functional",
+      "safety_notes": "No security risks or vulnerabilities",
+      "file_count": 7,
+      "loc": 512,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 183,
+        "bodyHtml": 1152,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Modular Entropy Analyzer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "file",
+              "label": "",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Analyze Entropy",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/main.rs": "gpt-4o",
+          "src/data_loader.rs": "gpt-4o",
+          "src/entropy_calculator.rs": "gpt-4o",
+          "src/visualizer.rs": "gpt-4o",
+          "src/cli.rs": "gpt-4o",
+          "index.html": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a cli_tool, focusing on a modular, usable design — no unnecessary complexity.",
+        "The cli_tool must provide a robust command-line interface, accompanied by a simple, functional index.html that demonstrates its core utility.",
+        "Avoid over-ambitious features; prioritize shipping a fully functional, end-to-end tool with clear use cases for human users.",
+        "Delay further attempts at shader_art until the team demonstrates stable delivery in other domains.",
+        "Follow a strict usability-first approach: any project that fails the human usability mandate will be immediately disqualified, regardless of complexity or visual appeal."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project provides an interactive web-based entropy analysis tool where users can upload a text file, analyze its entropy, view the calculated results, and reset the interface. All promised features work, and the outputs are meaningful and useful.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -3862,7 +3960,8 @@
     85,
     90,
     95,
-    96
+    96,
+    97
   ],
   "concepts_explored": [
     "neural networks",
@@ -4049,7 +4148,9 @@
     "machine learning",
     "Entropy",
     "Mutual Information",
-    "Conditional Entropy"
+    "Conditional Entropy",
+    "Entropy Analysis",
+    "Modular Design"
   ],
   "patterns_used": [
     "visualizer",
@@ -4089,7 +4190,8 @@
     "cryptography-compiler-pattern",
     "distributed-system-simulation",
     "geospatial-simulation-pattern",
-    "information-theory-visualization"
+    "information-theory-visualization",
+    "modular-entropy-analysis"
   ],
   "domains_used": [
     "Mathematics",
@@ -4129,7 +4231,8 @@
     "Cryptography",
     "Distributed Systems",
     "Geospatial Science",
-    "Information Theory"
+    "Information Theory",
+    "Information Security"
   ],
   "ceo_reviews": [
     {
