@@ -13111,6 +13111,14 @@
         "dead": 0
       },
       "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-06-05T06:59:37Z",
+      "attempted_at_unix": 1780642777,
+      "date": "2026-06-05",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 97 (max recent=96). The scale is open-ended; surpass yesterday.",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
