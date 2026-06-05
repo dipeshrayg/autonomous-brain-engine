@@ -13088,6 +13088,29 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='cli_tool' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', 'ty",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-05T06:58:03Z",
+      "attempted_at_unix": 1780642683,
+      "date": "2026-06-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-webgl",
+      "plan_language": "GLSL",
+      "plan_complexity": 97,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 6,
+        "live": 6,
+        "dead": 0
+      },
+      "final_interactive_count": 6
     }
   ],
   "cso_reviews": [
