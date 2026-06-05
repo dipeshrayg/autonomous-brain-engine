@@ -13333,6 +13333,60 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', 'typescript_app', 'c",
       "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-06-05T21:56:22Z",
+      "attempted_at_unix": 1780696582,
+      "date": "2026-06-05",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 6 dead controls, 3 missing features, 3 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 100,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "slider (Feed Rate - #feed-rate)",
+          "expected": "Changing slider should visibly modify the simulation on canvas"
+        },
+        {
+          "control": "slider (Kill Rate - #kill-rate)",
+          "expected": "Changing slider should visibly modify the simulation on canvas"
+        },
+        {
+          "control": "slider (Diffusion U - #diffusion-u)",
+          "expected": "Changing slider should visibly modify the simulation on canvas"
+        },
+        {
+          "control": "slider (Diffusion V - #diffusion-v)",
+          "expected": "Changing slider should visibly modify the simulation on canvas"
+        },
+        {
+          "control": "checkbox (Entropy Analysis - #entropy)",
+          "expected": "Toggling checkbox should visibly update the canvas to reflect entropy analysis mode"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Simulation graphics"
+        },
+        {
+          "feature": "Dynamic visualization updates"
+        },
+        {
+          "feature": "Entropy analysis visualization"
+        }
+      ],
+      "final_interaction": {
+        "tested": 6,
+        "live": 0,
+        "dead": 6
+      },
+      "final_interactive_count": 6
     }
   ],
   "cso_reviews": [
