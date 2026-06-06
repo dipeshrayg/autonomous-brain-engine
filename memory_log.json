@@ -13672,6 +13672,52 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', '",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-06T15:58:55Z",
+      "attempted_at_unix": 1780761535,
+      "date": "2026-06-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 3 missing features, 1 verifier blocker(s).",
+      "plan_name": "interactive-generative-motif-explorer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 10,
+      "plan_pattern": "interactive-generative-design",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 6,
+      "project_type": "generative_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Symmetry Type (select element, id='symmetry')",
+          "expected": "The motif should update to reflect the selected symmetry type."
+        },
+        {
+          "control": "Color Palette (color input, id='palette')",
+          "expected": "The motif's colors should change immediately to match the selected palette."
+        },
+        {
+          "control": "Evolve (button element, id='evolve')",
+          "expected": "The motif should undergo a smooth animated transformation when clicked."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Symmetry Type"
+        },
+        {
+          "feature": "Color Palette"
+        },
+        {
+          "feature": "Evolve Button"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
