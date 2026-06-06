@@ -13431,6 +13431,29 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 98 (max recent=97). The scale is open-ended; surpass yesterday.",
       "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-06-06T04:45:26Z",
+      "attempted_at_unix": 1780721126,
+      "date": "2026-06-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 98,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics and Chemistry",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 3,
+        "dead": 0
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
