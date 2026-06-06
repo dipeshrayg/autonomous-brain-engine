@@ -13581,6 +13581,14 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-06T11:18:52Z",
+      "attempted_at_unix": 1780744732,
+      "date": "2026-06-06",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: File content too short for 'image.png'",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
