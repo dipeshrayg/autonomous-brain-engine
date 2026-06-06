@@ -13847,6 +13847,42 @@
         "dead": 3
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-06T23:09:46Z",
+      "attempted_at_unix": 1780787386,
+      "date": "2026-06-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 0 missing features, 2 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 105,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "initial condition selector",
+          "expected": "Change the simulation visualization based on the selected initial condition (Random, Circle, Stripes)"
+        },
+        {
+          "control": "reaction rate slider (Feed Rate)",
+          "expected": "Update the feed rate and reflect changes in the simulation visualization."
+        },
+        {
+          "control": "reaction rate slider (Kill Rate)",
+          "expected": "Update the kill rate and reflect changes in the simulation visualization."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
