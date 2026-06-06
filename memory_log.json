@@ -13589,6 +13589,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: File content too short for 'image.png'",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-06T12:50:16Z",
+      "attempted_at_unix": 1780750216,
+      "date": "2026-06-06",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 101 (max recent=100). The scale is open-ended; surpass yesterday.",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
