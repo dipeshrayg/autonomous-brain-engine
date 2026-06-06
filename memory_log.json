@@ -13597,6 +13597,49 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 101 (max recent=100). The scale is open-ended; surpass yesterday.",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-06T14:22:47Z",
+      "attempted_at_unix": 1780755767,
+      "date": "2026-06-06",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 3 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-simulator",
+      "plan_language": "GLSL",
+      "plan_complexity": 110,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Chemical Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "diffusion rate slider",
+          "expected": "Update diffusion rate and reflect changes in the simulation visualization"
+        },
+        {
+          "control": "reaction rate slider",
+          "expected": "Update reaction rate and reflect changes in the simulation visualization"
+        },
+        {
+          "control": "reset initial conditions button",
+          "expected": "Reset the simulation's initial conditions and visualize the updated simulation state"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "updated simulation visualization"
+        },
+        {
+          "feature": "user input affects simulation"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
