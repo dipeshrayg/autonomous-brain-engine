@@ -14335,6 +14335,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-07T21:44:46Z",
+      "attempted_at_unix": 1780868686,
+      "date": "2026-06-07",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
+      "project_type": "web_interactive"
     }
   ],
   "cso_reviews": [
