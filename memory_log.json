@@ -14086,6 +14086,14 @@
         "dead": 11
       },
       "final_interactive_count": 11
+    },
+    {
+      "attempted_at": "2026-06-07T12:07:46Z",
+      "attempted_at_unix": 1780834066,
+      "date": "2026-06-07",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 106 (max recent=105). The scale is open-ended; surpass yesterday.",
+      "project_type": "generative_art"
     }
   ],
   "cso_reviews": [
