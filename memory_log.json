@@ -4088,6 +4088,98 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-07",
+      "completed_at": "2026-06-07T06:47:42Z",
+      "completed_at_unix": 1780814862,
+      "name": "dynamic-puzzle-evolver",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-07-dynamic-puzzle-evolver",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-07-dynamic-puzzle-evolver/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "ES6",
+        "Canvas"
+      ],
+      "complexity_score": 105,
+      "concepts_demonstrated": [
+        "Abstract puzzle game design",
+        "Dynamic evolution",
+        "Randomness and emergent behavior",
+        "Machine learning algorithms",
+        "Distributed systems",
+        "Formal verification"
+      ],
+      "novel_concepts": [
+        "Dynamic puzzle generation",
+        "Evolutionary game design",
+        "Interactive machine learning"
+      ],
+      "advancement_axis": "Novel game design and artificial intelligence concepts",
+      "pattern": "dynamic-puzzle-evolution",
+      "domain": "Artificial Intelligence",
+      "visual_identity": "Minimalist, futuristic, and interactive",
+      "safety_notes": "No known safety concerns",
+      "file_count": 7,
+      "loc": 663,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "bodyText": 94,
+        "bodyHtml": 5350,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 5,
+        "scriptCount": 5,
+        "title": "Dynamic Puzzle Evolver",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "game.js": "gpt-4o",
+          "ml.js": "gpt-4o",
+          "ui.js": "gpt-4o",
+          "utils.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be game_web to address underutilization and stabilize output.",
+        "Design the game as a novel, abstract puzzle that evolves dynamically based on user input.",
+        "Ensure the game is fully functional and intuitive, with no dead buttons or missing mechanics in the final build.",
+        "Incorporate an element of randomness or emergent behavior to push creative boundaries in game design.",
+        "Avoid overly complex graphics or physics simulations to ensure the project ships successfully and is usable by a human."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The game works as described with all UI features functional and providing meaningful output, including dynamic puzzle evolution and user interaction with the grid.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4137,7 +4229,8 @@
     96,
     97,
     100,
-    10
+    10,
+    105
   ],
   "concepts_explored": [
     "neural networks",
@@ -4330,7 +4423,13 @@
     "Algorithmic exploration",
     "Procedural generation",
     "L-systems",
-    "Dynamic user input"
+    "Dynamic user input",
+    "Abstract puzzle game design",
+    "Dynamic evolution",
+    "Randomness and emergent behavior",
+    "Machine learning algorithms",
+    "Distributed systems",
+    "Formal verification"
   ],
   "patterns_used": [
     "visualizer",
@@ -4373,7 +4472,8 @@
     "information-theory-visualization",
     "modular-entropy-analysis",
     "emergent-behavior-exploration",
-    "interactive-generative-pattern-lab"
+    "interactive-generative-pattern-lab",
+    "dynamic-puzzle-evolution"
   ],
   "domains_used": [
     "Mathematics",
@@ -4416,7 +4516,8 @@
     "Information Theory",
     "Information Security",
     "Complex Systems",
-    "Generative Art"
+    "Generative Art",
+    "Artificial Intelligence"
   ],
   "ceo_reviews": [
     {
