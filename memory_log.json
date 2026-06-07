@@ -14178,6 +14178,56 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-07T16:13:08Z",
+      "attempted_at_unix": 1780848788,
+      "date": "2026-06-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-lab",
+      "plan_language": "GLSL",
+      "plan_complexity": 5,
+      "plan_pattern": "interactive-shader-visualization",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 5,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "input.range 'Diffusion Rate A'",
+          "expected": "Adjusts the diffusion rate of chemical A and updates the WebGL canvas visualization in real time."
+        },
+        {
+          "control": "input.range 'Diffusion Rate B'",
+          "expected": "Adjusts the diffusion rate of chemical B and updates the WebGL canvas visualization in real time."
+        },
+        {
+          "control": "input.range 'Reaction Threshold'",
+          "expected": "Modifies the reaction threshold and updates the complexity and structure of patterns in the canvas."
+        },
+        {
+          "control": "input.color 'Color Gradient'",
+          "expected": "Updates the color gradient of the patterns in the WebGL canvas in real time."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "WebGL canvas updates with reaction-diffusion visualization."
+        },
+        {
+          "feature": "Dynamic updates to the WebGL canvas from sliders and color picker."
+        },
+        {
+          "feature": "Tooltips for sliders."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
