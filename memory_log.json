@@ -14228,6 +14228,57 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-07T17:20:35Z",
+      "attempted_at_unix": 1780852835,
+      "date": "2026-06-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-lab",
+      "plan_language": "GLSL",
+      "plan_complexity": 5,
+      "plan_pattern": "interactive-reaction-diffusion-shader",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 5,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "<input.range 'Feed Rate'>",
+          "expected": "Changes in the reaction-diffusion pattern when the slider is adjusted."
+        },
+        {
+          "control": "<input.range 'Kill Rate'>",
+          "expected": "Changes in the reaction-diffusion pattern when the slider is adjusted."
+        },
+        {
+          "control": "<input.range 'Diffusion Rate'>",
+          "expected": "Changes in the diffusion behavior of the patterns when adjusted."
+        },
+        {
+          "control": "<input.color 'Color Gradient'>",
+          "expected": "Immediate color changes in the reaction-diffusion patterns."
+        },
+        {
+          "control": "<button 'Reset'>",
+          "expected": "Restores the slider values and canvas to the default state."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Immediate reaction-diffusion pattern rendering on canvas load"
+        },
+        {
+          "feature": "Tooltip functionality for controls"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
