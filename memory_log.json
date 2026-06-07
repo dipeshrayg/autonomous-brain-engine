@@ -14135,6 +14135,49 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 106 (max recent=105). The scale is open-ended; surpass yesterday.",
       "project_type": "generative_art"
+    },
+    {
+      "attempted_at": "2026-06-07T16:00:56Z",
+      "attempted_at_unix": 1780848056,
+      "date": "2026-06-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 106,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "slider (Feed Rate)",
+          "expected": "Changing the slider updates the diffusion rate and visibly alters the simulation output on the canvas."
+        },
+        {
+          "control": "slider (Kill Rate)",
+          "expected": "Changing the slider updates the kill rate and visibly alters the simulation output on the canvas."
+        },
+        {
+          "control": "Reset Simulation button",
+          "expected": "Clicking the button resets the simulation output to its initial state."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time reaction-diffusion simulation output"
+        },
+        {
+          "feature": "Interactive visualization with parameter adjustment"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
