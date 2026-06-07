@@ -13891,6 +13891,52 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=5 below floor 101 (max recent=100). The scale is open-ended; surpass yesterday.",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-07T03:44:01Z",
+      "attempted_at_unix": 1780803841,
+      "date": "2026-06-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 3 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 110,
+      "plan_pattern": "reaction-diffusion-simulation",
+      "plan_domain": "Chemical Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Parameter sliders (Feed Rate, Kill Rate, Diffusion Rate of U, Diffusion Rate of V)",
+          "expected": "Adjusts the parameters of the Gray-Scott model and changes the simulation pattern in real-time."
+        },
+        {
+          "control": "Reset button",
+          "expected": "Resets the simulation to its initial state and reverts the pattern to its starting configuration."
+        },
+        {
+          "control": "Zoom and pan controls (Zoom In, Zoom Out, Pan Left, Pan Right, Pan Up, Pan Down)",
+          "expected": "Adjusts the view of the simulation and updates the displayed area of the simulation."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time adjustment of simulation parameters"
+        },
+        {
+          "feature": "Reset functionality"
+        },
+        {
+          "feature": "Zoom and pan functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 11,
+        "live": 0,
+        "dead": 11
+      },
+      "final_interactive_count": 11
     }
   ],
   "cso_reviews": [
