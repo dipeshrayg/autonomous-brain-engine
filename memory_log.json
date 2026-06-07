@@ -14327,6 +14327,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'game_web', 'data_viz', 'typescript_app', '",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-07T21:22:55Z",
+      "attempted_at_unix": 1780867375,
+      "date": "2026-06-07",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
+      "project_type": "web_interactive"
     }
   ],
   "cso_reviews": [
