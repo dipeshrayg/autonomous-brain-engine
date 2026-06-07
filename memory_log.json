@@ -14343,6 +14343,29 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-07T23:46:52Z",
+      "attempted_at_unix": 1780876012,
+      "date": "2026-06-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 1 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "cryptographic-compression-analyzer",
+      "plan_language": "Python",
+      "plan_complexity": 110,
+      "plan_pattern": "cryptographic-compression-analysis",
+      "plan_domain": "Cryptography",
+      "plan_files_count": 7,
+      "project_type": "python_tool",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ],
   "cso_reviews": [
