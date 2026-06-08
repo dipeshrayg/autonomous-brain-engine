@@ -14636,6 +14636,49 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-08T21:57:07Z",
+      "attempted_at_unix": 1780955827,
+      "date": "2026-06-08",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 3 verifier blocker(s).",
+      "plan_name": "glsl-reaction-diffusion-explorer",
+      "plan_language": "GLSL",
+      "plan_complexity": 130,
+      "plan_pattern": "glsl-reaction-diffusion-pattern",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Diffusion rate slider",
+          "expected": "Adjusting this slider should change the texture and contrast of the pattern on the canvas."
+        },
+        {
+          "control": "Reaction rate slider",
+          "expected": "Adjusting this slider should change the color and intensity of the pattern."
+        },
+        {
+          "control": "Initial conditions slider",
+          "expected": "Adjusting this slider should change the shape and structure of the pattern on the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive adjustment of shader parameters"
+        },
+        {
+          "feature": "Correct rendering of the reaction-diffusion pattern"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
