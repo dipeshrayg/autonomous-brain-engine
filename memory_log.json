@@ -14366,6 +14366,33 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-06-08T04:35:27Z",
+      "attempted_at_unix": 1780893327,
+      "date": "2026-06-08",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 0 dead controls, 1 missing features, 1 verifier blocker(s).",
+      "plan_name": "cryptographic-constraint-solver",
+      "plan_language": "Python",
+      "plan_complexity": 106,
+      "plan_pattern": "cryptographic-constraint-solver-pattern",
+      "plan_domain": "Formal Verification",
+      "plan_files_count": 6,
+      "project_type": "python_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [
+        {
+          "feature": "Backend Python tool integration"
+        }
+      ],
+      "final_interaction": {
+        "tested": null,
+        "live": null,
+        "dead": 0
+      },
+      "final_interactive_count": null
     }
   ],
   "cso_reviews": [
