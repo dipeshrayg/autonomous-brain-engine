@@ -14418,6 +14418,14 @@
         "dead": 0
       },
       "final_interactive_count": null
+    },
+    {
+      "attempted_at": "2026-06-08T07:01:13Z",
+      "attempted_at_unix": 1780902073,
+      "date": "2026-06-08",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
