@@ -14679,6 +14679,29 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-08T22:12:19Z",
+      "attempted_at_unix": 1780956739,
+      "date": "2026-06-08",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "dynamic-reaction-diffusion",
+      "plan_language": "GLSL",
+      "plan_complexity": 115,
+      "plan_pattern": "reaction-diffusion-entropy-shader",
+      "plan_domain": "Physics and Information Theory",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 5,
+        "dead": 0
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
