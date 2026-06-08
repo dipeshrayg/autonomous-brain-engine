@@ -14564,6 +14564,53 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-08T19:59:37Z",
+      "attempted_at_unix": 1780948777,
+      "date": "2026-06-08",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 4 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "novel-raymarcher",
+      "plan_language": "GLSL",
+      "plan_complexity": 120,
+      "plan_pattern": "novel-raymarcher-pattern",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "slider (param1)",
+          "expected": "The visual output on the canvas should change as the slider is adjusted."
+        },
+        {
+          "control": "slider (param2)",
+          "expected": "The visual output on the canvas should change as the slider is adjusted."
+        },
+        {
+          "control": "slider (param3)",
+          "expected": "The visual output on the canvas should change as the slider is adjusted."
+        },
+        {
+          "control": "reset button",
+          "expected": "The visual output on the canvas should reset to its default state when the reset button is clicked."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "physics-based simulation"
+        },
+        {
+          "feature": "responsive visual output"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
