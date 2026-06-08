@@ -14426,6 +14426,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-08T09:11:52Z",
+      "attempted_at_unix": 1780909912,
+      "date": "2026-06-08",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
