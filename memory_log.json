@@ -14920,6 +14920,34 @@
         "dead": 0
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-09T15:49:30Z",
+      "attempted_at_unix": 1781020170,
+      "date": "2026-06-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 120,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Reset Simulation Button",
+          "expected": "The simulation should reset and the visual patterns on the canvas should reinitialize."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 3,
+        "dead": 1
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
