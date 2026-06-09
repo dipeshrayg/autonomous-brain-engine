@@ -4253,6 +4253,110 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-09",
+      "completed_at": "2026-06-09T06:29:08Z",
+      "completed_at_unix": 1780986548,
+      "name": "procedural-tessellation-lab",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-09-procedural-tessellation-lab",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-09-procedural-tessellation-lab/",
+      "language": "JavaScript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Canvas API"
+      ],
+      "complexity_score": 5,
+      "concepts_demonstrated": [
+        "Recursive algorithms",
+        "Procedural tessellation",
+        "Interactive visualization",
+        "Color theory for generative art",
+        "User-driven parameter customization"
+      ],
+      "novel_concepts": [
+        "Recursive tessellation with user-controlled symmetry",
+        "Dynamic pattern blending using weighted recursion",
+        "Real-time tessellation export as SVG"
+      ],
+      "advancement_axis": "The fusion of mathematical recursion with user-driven exploration of symmetry and tessellation provides a unique intersection of generative art and mathematical visualization.",
+      "pattern": "interactive-procedural-tessellation",
+      "domain": "Generative Art",
+      "visual_identity": "A clean, modern aesthetic with a focus on geometric precision. Uses a bold color palette inspired by Bauhaus art, with customizable gradients for user-controlled designs. Typography is minimalistic and sans-serif.",
+      "safety_notes": "All code adheres to GitHub TOS. No external dependencies beyond standard JavaScript libraries and browser APIs. All interactivity is client-side.",
+      "file_count": 5,
+      "loc": 462,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 263,
+        "bodyHtml": 1625,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Procedural Tessellation Lab",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#ff5733",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "export.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a generative_art type to leverage its remaining headroom and avoid maxed-out or banned types.",
+        "Focus on a unique and ambitious generative_art domain, such as recursive 3D fractals or procedurally generated tessellations.",
+        "Ensure the output in index.html is interactive and visually compelling, with no dead or non-functional elements.",
+        "Avoid overly complex shaders or untested libraries that could cause failures; start with a robust, achievable base and expand incrementally.",
+        "Include clear instructions or interactive elements that make the project accessible and demonstrable for users without requiring external dependencies."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project is partially usable with most features working as intended, but the 'Primary Color' control does not visibly update the tessellation's color, leading to a degraded user experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "color-picker 'Primary Color'",
+            "expected": "Updates the color scheme of the rendered pattern in real time.",
+            "actual": "No observable change in the tessellation color upon using the color picker.",
+            "fix": "Ensure the chosen color from the color-picker input updates the `fillStyle` property in the `drawTessellation` function and is correctly reflected in the rendered output."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4304,7 +4408,8 @@
     100,
     10,
     105,
-    110
+    110,
+    5
   ],
   "concepts_explored": [
     "neural networks",
@@ -4507,7 +4612,11 @@
     "Constraint solving",
     "DPLL with conflict-driven clause learning",
     "Compression",
-    "Entropy analysis"
+    "Entropy analysis",
+    "Recursive algorithms",
+    "Procedural tessellation",
+    "Color theory for generative art",
+    "User-driven parameter customization"
   ],
   "patterns_used": [
     "visualizer",
@@ -4552,7 +4661,8 @@
     "emergent-behavior-exploration",
     "interactive-generative-pattern-lab",
     "dynamic-puzzle-evolution",
-    "cryptography-utility-pattern"
+    "cryptography-utility-pattern",
+    "interactive-procedural-tessellation"
   ],
   "domains_used": [
     "Mathematics",
@@ -4597,7 +4707,8 @@
     "Complex Systems",
     "Generative Art",
     "Artificial Intelligence",
-    "Cryptography"
+    "Cryptography",
+    "Generative Art"
   ],
   "ceo_reviews": [
     {
