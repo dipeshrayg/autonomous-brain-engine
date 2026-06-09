@@ -1,5 +1,5 @@
 """
-generate_paper.py — IEEE-format research paper, UK A4 standard.
+generate_paper.py, IEEE-format research paper, UK A4 standard.
 
 Format: IEEE Access / IEEE Transactions style (single-column, A4).
 Typography: Times-Roman family, 10 pt body.
@@ -98,13 +98,13 @@ keywords_style = S("Keywords",
     fontName="Times-Roman", fontSize=9, leading=13,
     textColor=DARK, spaceAfter=10, leftIndent=6, rightIndent=6)
 
-# Section headings — IEEE Roman numeral style
+# Section headings, IEEE Roman numeral style
 h1 = S("H1",
     fontName="Times-Bold", fontSize=10, leading=14,
     textColor=BLACK, spaceBefore=14, spaceAfter=4,
     alignment=TA_CENTER)
 
-# Sub-section headings — IEEE letter style
+# Sub-section headings, IEEE letter style
 h2 = S("H2",
     fontName="Times-BoldItalic", fontSize=10, leading=14,
     textColor=BLACK, spaceBefore=10, spaceAfter=3)
@@ -255,7 +255,7 @@ def make_architecture_diagram():
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
                     arrowprops=dict(arrowstyle="-|>", color=c, lw=1.2))
 
-    ax.text(6.5, 7.65, "Autonomous Brain — System Architecture",
+    ax.text(6.5, 7.65, "Autonomous Brain, System Architecture",
             ha="center", va="center", fontsize=12, fontweight="bold", color="#1a1a1a")
 
     ax.text(0.3, 7.0, "EXECUTIVE LAYER", fontsize=7, color="#888888", fontweight="bold")
@@ -331,7 +331,7 @@ def make_complexity_chart():
                 linewidth=1.2, alpha=0.8, label="Linear trend")
     ax.set_xlabel("Project number (chronological)", fontsize=9, color="#444444")
     ax.set_ylabel("Complexity score", fontsize=9, color="#444444")
-    ax.set_title("Fig. 3 — Complexity Score Progression Over Time", fontsize=10,
+    ax.set_title("Fig. 3, Complexity Score Progression Over Time", fontsize=10,
                  fontweight="bold", color="#1a1a1a", pad=8)
     ax.tick_params(colors="#444444", labelsize=8)
     ax.spines[["top", "right"]].set_visible(False)
@@ -456,9 +456,9 @@ def make_pipeline_flow():
     ax.annotate("", xy=(1.8, 0.8), xytext=(11.5, 0.8),
                 arrowprops=dict(arrowstyle="-|>", color="#003087", lw=1.0,
                                 connectionstyle="arc3,rad=0.4", linestyle="dashed"))
-    ax.text(6.5, 0.1, "Memory feedback loop — failures surfaced to CEO on next review cycle",
+    ax.text(6.5, 0.1, "Memory feedback loop, failures surfaced to CEO on next review cycle",
             ha="center", va="center", fontsize=7, color="#003087", style="italic")
-    ax.set_title("End-to-End Pipeline — 7 Stages", fontsize=10,
+    ax.set_title("End-to-End Pipeline, 7 Stages", fontsize=10,
                  fontweight="bold", color="#1a1a1a", pad=6)
     fig.tight_layout()
     return fig_to_buf(fig)
@@ -523,20 +523,20 @@ def build_pdf():
         "autonomous multi-agent Large Language Model (LLM) pipeline that continuously "
         "conceives, architects, implements, quality-assures, and publishes novel software "
         "projects without human intervention. The system, <i>Autonomous Brain</i>, operates "
-        "entirely on free-tier infrastructure — GitHub Actions for compute, GitHub Models "
-        "API for LLM inference [2], and GitHub Pages for deployment — incurring zero "
+        "entirely on free-tier infrastructure, GitHub Actions for compute, GitHub Models "
+        "API for LLM inference [2], and GitHub Pages for deployment, incurring zero "
         "operational cost. Over a 21-day observation period, the pipeline shipped "
         f"{len(PROJECTS)} projects spanning six distinct project types, with complexity "
         "scores ranging from 3 to 52 on an open-ended scale, and "
         f"{len(FAILED)} refused builds documented and analysed. The work demonstrates that "
         "hierarchical LLM role specialisation, failure-aware persistent memory, and "
         "automated quality gates can produce a self-improving, self-healing creative pipeline "
-        "at zero marginal cost. Emergent behaviours — including autonomous strategy pivots, "
-        "type bans, complexity escalation, and recovery modes — are characterised and "
+        "at zero marginal cost. Emergent behaviours, including autonomous strategy pivots, "
+        "type bans, complexity escalation, and recovery modes, are characterised and "
         "analysed against the prior multi-agent systems literature [6][7][8].",
         abstract_body))
     story.append(Paragraph(
-        "<b>Index Terms</b>— multi-agent LLM systems, autonomous software engineering, "
+        "<b>Index Terms</b>: multi-agent LLM systems, autonomous software engineering, "
         "GitHub Actions, continuous deployment, emergent AI behaviour, zero-cost infrastructure.",
         keywords_style))
     story.append(HRFlowable(width=BODY_W, thickness=0.5,
@@ -554,19 +554,19 @@ def build_pdf():
         "The rapid capability improvement of large language models (LLMs) has prompted "
         "significant research interest in <i>agentic</i> systems: pipelines in which "
         "multiple LLM calls are chained to accomplish multi-step tasks [6]. Prior work "
-        "has concentrated on narrow agentic loops — code completion, web browsing, and "
-        "tool use — rather than on sustained creative output over extended periods. "
+        "has concentrated on narrow agentic loops, code completion, web browsing, and "
+        "tool use, rather than on sustained creative output over extended periods. "
         "This paper addresses a distinct question: <i>can a hierarchical, multi-agent "
         "LLM system autonomously create diverse and novel software projects continuously, "
         "without human prompting, on entirely free-tier infrastructure?</i>",
         body))
     story.append(Paragraph(
         "The motivation is twofold. First, practically: many researchers and independent "
-        "practitioners lack the budget for commercial AI APIs. GitHub's free tier — "
-        "unlimited Actions compute, the GitHub Models API [2], and GitHub Pages — "
+        "practitioners lack the budget for commercial AI APIs. GitHub's free tier, "
+        "unlimited Actions compute, the GitHub Models API [2], and GitHub Pages, "
         "provides a meaningful zero-cost substrate if the system can be designed to "
         "operate within its constraints. Second, scientifically: studying what such a "
-        "system produces over weeks — and where it fails — reveals properties of "
+        "system produces over weeks, and where it fails, reveals properties of "
         "LLM-based creative autonomy that are not observable in single-turn or "
         "short-horizon experiments.",
         body))
@@ -577,8 +577,8 @@ def build_pdf():
         "from three different model families, with adversarial disagreement "
         "structurally encouraged; (3) an empirical record of projects shipped and "
         "builds refused over 21 days; (4) documentation of emergent system behaviours "
-        "— failure-driven strategy pivots, autonomous type bans, complexity escalation, "
-        "and self-healing recovery — that were not explicitly programmed; and (5) a "
+        "- failure-driven strategy pivots, autonomous type bans, complexity escalation, "
+        "and self-healing recovery, that were not explicitly programmed; and (5) a "
         "<i>Project Evolution</i> mandate that successfully expands the system beyond "
         "web applications into Python tools, browser games, generative art, research "
         "documents, and compiled CLI tools.",
@@ -613,7 +613,7 @@ def build_pdf():
         "agentic tasks. The present pipeline extends this principle across an "
         "eight-stage pipeline where each stage produces structured JSON output that "
         "constrains the next. Playwright [4] is used as the mechanical verification "
-        "substrate — headless browser execution provides ground-truth interaction data "
+        "substrate, headless browser execution provides ground-truth interaction data "
         "that LLM reviewers alone cannot produce.",
         body))
 
@@ -630,7 +630,7 @@ def build_pdf():
         "authenticated with the auto-injected GITHUB_TOKEN. Groq [2] provides Llama and "
         "Mixtral inference at zero cost. Google AI Studio provides Gemini at zero cost. "
         "GitHub Pages [5] serves static output. The system's persistent state is a "
-        "single JSON file — <i>memory_log.json</i> — committed to the repository after "
+        "single JSON file, <i>memory_log.json</i>, committed to the repository after "
         "each run.",
         body))
 
@@ -649,7 +649,7 @@ def build_pdf():
     story.append(Paragraph("B. Agent Roles", h2))
     story.append(Paragraph(
         "The pipeline instantiates a <i>boardroom</i> metaphor: thirteen distinct LLM "
-        "roles, each with a specific mandate and — critically — explicit instruction to "
+        "roles, each with a specific mandate and, critically, explicit instruction to "
         "disagree with the others. Early experiments with a single model reviewing its "
         "own output produced sycophantic results; structural separation of planning, "
         "implementation, review, and strategy was necessary to obtain genuine "
@@ -664,7 +664,7 @@ def build_pdf():
         ["CSO",                 "llama-3.3-70b",     "Groq",          "Scientific novelty, algorithmic depth"],
         ["CTO",                 "gemini-2.0-flash",  "Google",        "Self-improvement: patches own source code"],
         ["Architect A/B",       "Llama 4 / 3.3",    "Groq",          "Parallel proposals, temp=1.0"],
-        ["Judge",               "gpt-4o",            "GitHub Models", "Predictability filter — reject derivative plans"],
+        ["Judge",               "gpt-4o",            "GitHub Models", "Predictability filter, reject derivative plans"],
         ["Engineer",            "gpt-4o",            "GitHub Models", "File-by-file implementation, full context"],
         ["Reviewer A/B",        "Llama / Gemini",    "Groq / Google", "Parallel critique conference"],
         ["Fixer",               "gpt-4o-mini",       "GitHub Models", "Targeted repairs from reviewer feedback"],
@@ -677,7 +677,7 @@ def build_pdf():
 
     # Architecture figure
     arch_buf = make_architecture_diagram()
-    for item in ieee_fig(arch_buf, "Fig. 1. Full system architecture — agent layers, "
+    for item in ieee_fig(arch_buf, "Fig. 1. Full system architecture, agent layers, "
                          "data flows, and the memory feedback loop connecting the "
                          "Publish layer back to the Executive layer."):
         story.append(item)
@@ -704,8 +704,8 @@ def build_pdf():
     story.append(Paragraph(
         "The <i>Project Evolution</i> mandate expanded the system from a single "
         "web-application type to ten distinct project types, each with a dedicated "
-        "verifier strategy. A key design constraint is that every type — including "
-        "Python tools and compiled CLI tools — must produce an <i>index.html</i> at "
+        "verifier strategy. A key design constraint is that every type, including "
+        "Python tools and compiled CLI tools, must produce an <i>index.html</i> at "
         "the repository root for GitHub Pages hosting, ensuring every project in the "
         "public dashboard has a one-click live demo.",
         body))
@@ -738,13 +738,13 @@ def build_pdf():
     story.append(Paragraph("A. Complexity Escalation", h2))
     story.append(Paragraph(
         "Each candidate plan must exceed the maximum complexity score of all recent "
-        "projects by at least one point. The scale is intentionally open-ended — no "
+        "projects by at least one point. The scale is intentionally open-ended, no "
         "upper bound exists. In practice, architects consistently propose plans "
         "slightly above the floor (typically 1–3 points higher), producing a "
         "compounding escalation that was never explicitly directed. Over the "
         "observation period, complexity rose from 3 (initial projects) to 52. "
-        "In <i>recovery mode</i> — triggered when three or more builds fail "
-        "consecutively since the last successful ship — the floor is temporarily "
+        "In <i>recovery mode</i>, triggered when three or more builds fail "
+        "consecutively since the last successful ship, the floor is temporarily "
         "relaxed to ensure at least one project ships before ambition is raised again.",
         body))
 
@@ -774,8 +774,8 @@ def build_pdf():
         body))
     story.append(Paragraph(
         "A separate LLM QA Tester then reviews the Playwright output and assigns a "
-        "structured verdict — <i>shippable</i>, <i>partially_usable</i>, or "
-        "<i>non_functional</i> — with itemised lists of dead controls, missing "
+        "structured verdict, <i>shippable</i>, <i>partially_usable</i>, or "
+        "<i>non_functional</i>, with itemised lists of dead controls, missing "
         "features, and state-synchronisation issues. This combination catches "
         "disjoint failure classes: Playwright identifies blank renders and dead "
         "buttons; the LLM Tester identifies logical inconsistencies and incomplete "
@@ -832,15 +832,15 @@ def build_pdf():
         ["Total infrastructure cost",    "£0"],
     ]
     for row in ieee_table(t4_data, [8*cm, 7.5*cm],
-                          caption="TABLE IV. Summary Statistics — 21-Day Observation Period"):
+                          caption="TABLE IV. Summary Statistics, 21-Day Observation Period"):
         story.append(row)
 
     story.append(Paragraph("B. Complexity Progression", h2))
     story.append(Paragraph(
         "Complexity scores rose consistently throughout the observation period, "
         "from early projects in the 3–8 range to later projects in the 40–52 range. "
-        "The progression was not perfectly monotonic — failure streaks triggered "
-        "recovery mode, temporarily relaxing the floor — but the linear trend "
+        "The progression was not perfectly monotonic, failure streaks triggered "
+        "recovery mode, temporarily relaxing the floor, but the linear trend "
         "(Fig. 3) held throughout. Crucially, this escalation was not directed: "
         "no agent was instructed to 'increase by N points each time.' The behaviour "
         "emerged from the combination of the floor rule and the architects' tendency "
@@ -880,7 +880,7 @@ def build_pdf():
         "reviews returned <i>acceptable</i> verdicts as the system was producing "
         "output, albeit unimaginative. As the pipeline converged on repetitive "
         "web_interactive patterns, verdicts shifted to <i>drifting</i>. The Project "
-        "Evolution mandate — introduced at review cycle 30 — restored diversity and "
+        "Evolution mandate, introduced at review cycle 30, restored diversity and "
         "pushed verdicts back toward <i>acceptable</i>. The most notable event was "
         "the <i>alarming</i> verdict that coincided with the web_3d failure streak: "
         "the CEO independently pivoted its directives away from web_3d on its next "
@@ -908,13 +908,13 @@ def build_pdf():
 
     story.append(Paragraph("A. Failure-Driven CEO Strategy Pivots", h2))
     story.append(Paragraph(
-        "Initially, the CEO had no visibility into refused builds — it could only see "
+        "Initially, the CEO had no visibility into refused builds, it could only see "
         "what shipped. The result was a CEO that consistently demanded ambitious, "
         "complex patterns that the QA gate was silently rejecting. Adding "
         "<i>failed_builds[]</i> to the CEO's context changed its behaviour immediately: "
         "on its next review after seeing a failure streak, it spontaneously scaled "
         "back complexity demands and shifted domain, without any explicit instruction "
-        "to do so. This matches the ReAct pattern [6] at a strategic level — the CEO "
+        "to do so. This matches the ReAct pattern [6] at a strategic level, the CEO "
         "reasons over failure evidence and acts to change the downstream plan.",
         body))
 
@@ -922,7 +922,7 @@ def build_pdf():
     story.append(Paragraph(
         "The complexity floor mechanism sets a minimum, not a target. Architects are "
         "free to propose any value above the floor. In practice, they consistently "
-        "propose scores 1–3 points above the floor — a behaviour that, compounded "
+        "propose scores 1–3 points above the floor, a behaviour that, compounded "
         "over dozens of projects, produces a steady upward trajectory (Fig. 3). "
         "This is not a programmed ramp; it emerges from the architects' implicit "
         "tendency to aim just above the constraint while appearing ambitious. The "
@@ -933,27 +933,27 @@ def build_pdf():
     story.append(Paragraph("C. Adversarial Reviewer Disagreement as a Quality Signal", h2))
     story.append(Paragraph(
         "Running two independent reviewers at temperature=0.85 means they frequently "
-        "disagree — one votes <i>fix</i>, the other <i>ship</i>. The merger treats a "
+        "disagree, one votes <i>fix</i>, the other <i>ship</i>. The merger treats a "
         "split verdict as <i>fix</i>. Across observed builds, this disagreement "
         "pattern correlated with genuine quality issues: projects where both reviewers "
         "returned <i>ship</i> on the first round had a markedly higher QA pass rate "
         "than those with a split vote. The adversarial structure turned reviewer "
-        "disagreement from noise into a useful predictive signal — a property "
+        "disagreement from noise into a useful predictive signal, a property "
         "consistent with the ensemble-diversity literature in machine learning.",
         body))
 
     story.append(Paragraph("D. Type Ban Self-Healing", h2))
     story.append(Paragraph(
         "The most pronounced emergent behaviour was the resolution of the web_3d "
-        "failure loop. Over two days, the system ran 18 consecutive failed builds — "
+        "failure loop. Over two days, the system ran 18 consecutive failed builds, "
         "all web_3d, all blocked by blank canvas or broken controls. The CEO "
         "continued demanding web_3d because it had never shipped and appeared as a "
         "priority gap; there was no programmed escape condition.",
         body))
     story.append(Paragraph(
-        "The type ban mechanism — three consecutive failures of the same type trigger "
+        "The type ban mechanism, three consecutive failures of the same type trigger "
         "an automatic validator block, communicated to the CEO via the diversity "
-        "report — broke the loop on the CEO's next review. Its verdict shifted to "
+        "report, broke the loop on the CEO's next review. Its verdict shifted to "
         "<i>alarming</i>, and its directives explicitly stated: 'Avoid web_3d entirely "
         "until after successful shipments in other types reset the failure streak.' "
         "The following build (a document type) shipped on the first attempt. The CEO's "
@@ -974,7 +974,7 @@ def build_pdf():
         "effectively blind and consistently demanded unreachable targets. With it, "
         "the CEO adapted within one review cycle. This is consistent with the "
         "broader principle in reinforcement learning that reward signal quality "
-        "determines learning speed — but achieved here with no gradient, no "
+        "determines learning speed, but achieved here with no gradient, no "
         "parameter update, and no explicit reward function.",
         body))
 
@@ -985,7 +985,7 @@ def build_pdf():
         "headless Chromium) remains partially unresolved for shader_art builds; "
         "a vision-model screenshot reviewer would likely outperform pixel-level "
         "blank-canvas detection for this type. The system's memory is shallow by "
-        "design — a flat JSON file with no semantic indexing — limiting the "
+        "design, a flat JSON file with no semantic indexing, limiting the "
         "depth of pattern recognition available to the CEO and architects. The "
         "observation period is 21 days with a single instance of the self-healing "
         "mechanism activating, which is insufficient to characterise its reliability "
@@ -1001,7 +1001,7 @@ def build_pdf():
         "verification to use a vision model (e.g. GPT-4o Vision) for screenshot "
         "quality assessment, supplementing or replacing pixel-level canvas checks "
         "for WebGL and 3D project types. Second, adding cross-platform publishing: "
-        "Python tools to PyPI, documents to preprint servers, packages to npm — "
+        "Python tools to PyPI, documents to preprint servers, packages to npm, "
         "extending the system's output surface beyond GitHub Pages. Third, studying "
         "whether the complexity escalation trajectory is bounded or continues "
         "indefinitely, and whether the quality gate pass rate degrades at high "
@@ -1014,7 +1014,7 @@ def build_pdf():
     # ────────────────────────────────────────────────────────────────────────
     story.append(Paragraph("VIII. Conclusion", h1))
     story.append(Paragraph(
-        "This paper has presented <i>Autonomous Brain</i> — a multi-agent LLM "
+        "This paper has presented <i>Autonomous Brain</i>, a multi-agent LLM "
         "pipeline that continuously designs, implements, quality-assures, and "
         "publishes novel software projects without human intervention, at zero "
         "operational cost. Over a 21-day observation period, the system shipped "
@@ -1027,7 +1027,7 @@ def build_pdf():
         "system around adversarial role separation, persistent failure memory, and "
         "automated mechanical quality gates, it is possible to produce a pipeline "
         "that improves its own output quality over time without any parameter "
-        "update or human diagnosis. Failure is information — and making that "
+        "update or human diagnosis. Failure is information, and making that "
         "information visible to the right agent at the right time is sufficient "
         "to produce emergent learning behaviour.",
         body))
