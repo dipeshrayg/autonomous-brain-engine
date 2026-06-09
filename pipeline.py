@@ -516,7 +516,7 @@ def _summarize_history(memory: dict) -> str:
     return "\n".join(lines)
 
 
-def _validate_plan(plan: dict, memory: dict) -> None:
+def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None:
     required = {
         "name", "description", "long_description", "language", "tech_stack",
         "complexity_score", "concepts_demonstrated", "novel_concepts",
@@ -543,8 +543,10 @@ def _validate_plan(plan: dict, memory: dict) -> None:
     complexity = int(plan["complexity_score"])
 
     files = plan.get("files") or []
-    # Scope minimums scale with complexity
-    if complexity >= 13:
+    # Scope minimums scale with complexity; emergency plans always allow 3-file minimum
+    if emergency:
+        min_files = 3
+    elif complexity >= 13:
         min_files = 6
     elif complexity >= 10:
         min_files = 5
@@ -784,18 +786,24 @@ def stage_plan(client: OpenAI, memory: dict,
             + stuck_hint
         )
         try:
-            # Temporarily relax min_files by lowering the complexity score expectation
             emergency_plan, meta = _call_role(
                 client, "architect_judge", PLAN_SYSTEM, emergency_user,
                 max_tokens=4000, temperature=0.7,
             )
-            # Patch complexity down if needed to pass the file count check
-            files_count = len(emergency_plan.get("files") or [])
-            if files_count < 6 and emergency_plan.get("complexity_score", 0) >= 13:
-                emergency_plan["complexity_score"] = 10  # drops min_files requirement to 5
-            if files_count < 5 and emergency_plan.get("complexity_score", 0) >= 10:
-                emergency_plan["complexity_score"] = 5   # drops min_files requirement to 3
-            _validate_plan(emergency_plan, memory)
+            # Emergency plans use relaxed file-count minimum WITHOUT touching the
+            # complexity score — patching it down would corrupt the trajectory.
+            # Also enforce a floor: emergency plan must never regress below the
+            # current trajectory peak (recovery mode relaxes the +1 gate, but
+            # regression to a lower score is never acceptable).
+            traj = memory.get("complexity_trajectory") or []
+            traj_peak = max(traj) if traj else 0
+            if emergency_plan.get("complexity_score", 0) < traj_peak:
+                emergency_plan["complexity_score"] = traj_peak
+                log.warning(
+                    "Emergency plan complexity was below trajectory peak (%d); "
+                    "clamped up to maintain advancement.", traj_peak
+                )
+            _validate_plan(emergency_plan, memory, emergency=True)
             _ensure_readme_planned(emergency_plan)
             emergency_plan["__model__"] = meta["model"]
             emergency_plan["__role__"] = "emergency_judge"
