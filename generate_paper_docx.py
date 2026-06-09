@@ -270,7 +270,7 @@ def build_docx():
           align=WD_ALIGN_PARAGRAPH.CENTER, bold=True, size=11, sb=4, sa=2)
     plain(doc, "Ulster University, Belfast, United Kingdom",
           align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, size=10, sb=0, sa=2)
-    plain(doc, "ray-d@ulster.ac.uk  ·  ORCID: 0009-0001-9970-0220",
+    plain(doc, "ray-d@ulster.ac.uk  -  ORCID: 0009-0001-9970-0220",
           align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, size=9, sb=0, sa=8)
     hr(doc)
 
@@ -421,11 +421,11 @@ def build_docx():
         "single JSON file, <i>memory_log.json</i>, committed to the repository after each run.")
     add_table(doc,
         [["Component",        "Free-Tier Resource",                "Monthly Cost"],
-         ["Compute",          "GitHub Actions (public repo)",      "£0"],
-         ["LLM inference",    "GitHub Models, Groq, Google AI",    "£0"],
-         ["Hosting",          "GitHub Pages (static, unlimited)",  "£0"],
-         ["Persistent state", "Git-committed JSON file",           "£0"],
-         ["Total",            "",                                  "£0"]],
+         ["Compute",          "GitHub Actions (public repo)",      "GBP0"],
+         ["LLM inference",    "GitHub Models, Groq, Google AI",    "GBP0"],
+         ["Hosting",          "GitHub Pages (static, unlimited)",  "GBP0"],
+         ["Persistent state", "Git-committed JSON file",           "GBP0"],
+         ["Total",            "",                                  "GBP0"]],
         [5.0, 7.5, 3.0],
         caption="TABLE I. Infrastructure Components and Operational Costs")
 
@@ -546,7 +546,7 @@ def build_docx():
          ["Peak complexity",           str(peak_c)],
          ["Project types shipped",     "6 of 10 available types"],
          ["CEO review cycles",         str(len(CEO_REV))],
-         ["Total infrastructure cost", "£0"]],
+         ["Total infrastructure cost", "GBP0"]],
         [8.0, 7.5],
         caption="TABLE IV. Summary Statistics, 21-Day Observation Period")
 
@@ -704,11 +704,11 @@ def build_docx():
         "modelled below.")
     add_table(doc,
         [["Scale",               "Builds/Day", "GitHub Actions",  "LLM APIs",   "Storage/CDN",  "Monthly Total"],
-         ["Free (current)",      "2-5",        "£0",              "£0",         "£0",            "<b>£0</b>"],
-         ["Small team (private)","50",          "~£150",           "~£300",      "~£20",          "<b>~£470</b>"],
-         ["Startup",             "200",         "~£600",           "~£1,200",    "~£60",          "<b>~£1,860</b>"],
-         ["Enterprise",          "500+",        "~£2,000",         "~£3,500",    "~£200",         "<b>~£5,700</b>"],
-         ["Enterprise (PTU)",    "500+",        "~£2,000",         "~£2,000",    "~£200",         "<b>~£4,200</b>"]],
+         ["Free (current)",      "2-5",        "GBP0",              "GBP0",         "GBP0",            "<b>GBP0</b>"],
+         ["Small team (private)","50",          "~GBP150",           "~GBP300",      "~GBP20",          "<b>~GBP470</b>"],
+         ["Startup",             "200",         "~GBP600",           "~GBP1,200",    "~GBP60",          "<b>~GBP1,860</b>"],
+         ["Enterprise",          "500+",        "~GBP2,000",         "~GBP3,500",    "~GBP200",         "<b>~GBP5,700</b>"],
+         ["Enterprise (PTU)",    "500+",        "~GBP2,000",         "~GBP2,000",    "~GBP200",         "<b>~GBP4,200</b>"]],
         [3.4, 2.3, 2.8, 2.8, 2.5, 3.0],
         caption="TABLE VI. Monthly Cost Projection at Different Deployment Scales (GBP, approximate)")
     rich(doc,
