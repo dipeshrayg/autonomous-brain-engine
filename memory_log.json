@@ -15343,6 +15343,29 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-10T17:54:46Z",
+      "attempted_at_unix": 1781114086,
+      "date": "2026-06-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader-lab",
+      "plan_language": "GLSL",
+      "plan_complexity": 112,
+      "plan_pattern": "reaction-diffusion-visualization",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 5,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 5,
+        "dead": 0
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
