@@ -4357,6 +4357,115 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-10",
+      "completed_at": "2026-06-10T06:53:17Z",
+      "completed_at_unix": 1781074397,
+      "name": "info-pattern-architect",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-10-info-pattern-architect",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-10-info-pattern-architect/",
+      "language": "JavaScript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "WebGL"
+      ],
+      "complexity_score": 110,
+      "concepts_demonstrated": [
+        "Entropy",
+        "Mutual Information",
+        "Conditional Probability",
+        "Procedural Generation",
+        "Dynamic User Input",
+        "Interactive Visualization",
+        "Color Theory for Generative Art"
+      ],
+      "novel_concepts": [
+        "Bayesian-driven pattern generation",
+        "Entropy-guided procedural color gradients",
+        "Interactive entropy-based pattern exploration",
+        "Information-theoretic parameter tuning"
+      ],
+      "advancement_axis": "Combines information theory with generative art to create a novel, dynamic, and interactive design interface.",
+      "pattern": "info-driven-generative-pattern",
+      "domain": "Generative Art",
+      "visual_identity": "A sleek and modern UI with a dark theme, vivid gradient-based color palettes, and a focus on clean typography (sans-serif fonts). The layout emphasizes a large central canvas, with controls arranged on a collapsible side panel.",
+      "safety_notes": "Code adheres to GitHub TOS. All operations are client-side, with no backend or external connections. No user data is collected.",
+      "file_count": 6,
+      "loc": 612,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 94,
+        "bodyHtml": 1629,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 796,
+          "cssH": 597
+        },
+        "interactiveCount": 5,
+        "scriptCount": 3,
+        "title": "Info-Pattern Architect",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#6aecbe",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "main.js": "gpt-4o",
+          "generative-algorithms.js": "gpt-4o",
+          "color-utils.js": "gpt-4o",
+          "readme.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be generative_art, focusing on delivering a fully functional and polished interactive output with a clear purpose.",
+        "Ensure the generative_art project has an intuitive and accessible user interface to avoid 'partially_usable' outcomes.",
+        "Avoid shader_art until the system demonstrates stability and success in other domains.",
+        "Focus on increasing complexity and creative ambition within generative_art, aiming for at least complexity 50+.",
+        "Audit the development pipeline for issues causing dead buttons or partially implemented features.",
+        "Prioritize human usability above all — the next project must ship with zero dead or missing functionality in its interactive components."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Most core features work and provide meaningful interaction, but the Base Color control does not produce an observable visual change, diminishing the experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "input.color 'Base Color'",
+            "expected": "Canvas updates with a new color scheme influenced by the selected base color.",
+            "actual": "No observable change to the canvas when the base color is altered.",
+            "fix": "Ensure the `render()` function in `main.js` properly applies the new base color by debugging the interaction of the `state.baseColor` with the gradient generation in `generateGradient()` and its use in `mapEntropyToColor()`."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4409,7 +4518,8 @@
     10,
     105,
     110,
-    5
+    5,
+    110
   ],
   "concepts_explored": [
     "neural networks",
@@ -4616,7 +4726,12 @@
     "Recursive algorithms",
     "Procedural tessellation",
     "Color theory for generative art",
-    "User-driven parameter customization"
+    "User-driven parameter customization",
+    "Conditional Probability",
+    "Procedural Generation",
+    "Dynamic User Input",
+    "Interactive Visualization",
+    "Color Theory for Generative Art"
   ],
   "patterns_used": [
     "visualizer",
@@ -4662,7 +4777,8 @@
     "interactive-generative-pattern-lab",
     "dynamic-puzzle-evolution",
     "cryptography-utility-pattern",
-    "interactive-procedural-tessellation"
+    "interactive-procedural-tessellation",
+    "info-driven-generative-pattern"
   ],
   "domains_used": [
     "Mathematics",
@@ -4708,6 +4824,7 @@
     "Generative Art",
     "Artificial Intelligence",
     "Cryptography",
+    "Generative Art",
     "Generative Art"
   ],
   "ceo_reviews": [
