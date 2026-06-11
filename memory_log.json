@@ -15797,6 +15797,14 @@
         "dead": 1
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-11T20:00:41Z",
+      "attempted_at_unix": 1781208041,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "python_tool"
     }
   ],
   "cso_reviews": [
