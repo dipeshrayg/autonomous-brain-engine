@@ -15445,6 +15445,54 @@
         "dead": 0
       },
       "final_interactive_count": 7
+    },
+    {
+      "attempted_at": "2026-06-11T00:13:51Z",
+      "attempted_at_unix": 1781136831,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 1 missing features, 2 verifier blocker(s).",
+      "plan_name": "turing-pattern-simulator",
+      "plan_language": "GLSL",
+      "plan_complexity": 125,
+      "plan_pattern": "turing-pattern-simulation",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 7,
+      "project_type": "web_interactive",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Diffusion Rate A slider",
+          "expected": "Moving the slider changes the diffusion rate of chemical A and updates the pattern on the canvas."
+        },
+        {
+          "control": "Diffusion Rate B slider",
+          "expected": "Moving the slider changes the diffusion rate of chemical B and updates the pattern on the canvas."
+        },
+        {
+          "control": "Feed Rate slider",
+          "expected": "Moving the slider changes the feed rate and updates the pattern on the canvas."
+        },
+        {
+          "control": "Kill Rate slider",
+          "expected": "Moving the slider changes the kill rate and updates the pattern on the canvas."
+        },
+        {
+          "control": "Reset button",
+          "expected": "Clicking the reset button resets the pattern and all sliders to their default values."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Reactive update of the canvas simulation"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
