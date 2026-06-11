@@ -15765,6 +15765,38 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
       "project_type": "cli_tool"
+    },
+    {
+      "attempted_at": "2026-06-11T18:54:45Z",
+      "attempted_at_unix": 1781204085,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 1 missing features, 5 verifier blocker(s).",
+      "plan_name": "swarm-coordination-visualizer",
+      "plan_language": "Python",
+      "plan_complexity": 115,
+      "plan_pattern": "swarm-coordination-visualizer",
+      "plan_domain": "Robotics",
+      "plan_files_count": 7,
+      "project_type": "cli_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Run Simulation button",
+          "expected": "Clicking it should trigger the Python simulation, fetch updated JSON data, and reload the canvas visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Live integration between Python back-end and JavaScript visualization."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 3,
+        "dead": 1
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
