@@ -15572,6 +15572,53 @@
         "dead": 3
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-11T07:39:31Z",
+      "attempted_at_unix": 1781163571,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 2 missing features, 8 verifier blocker(s).",
+      "plan_name": "entropy-puzzle-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 110,
+      "plan_pattern": "entropy-puzzle-gameplay",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Merge button (<button.tool 'Merge'>)",
+          "expected": "Adjacent tiles merge, entropy recalculates, and colors update."
+        },
+        {
+          "control": "Split button (<button.tool 'Split'>)",
+          "expected": "Tiles split into smaller sections with redistributed entropy, and colors update."
+        },
+        {
+          "control": "Reset button (<button.reset>)",
+          "expected": "Grid reverts to initial state with default colors and entropy values."
+        },
+        {
+          "control": "Speed slider (<slider.speed>)",
+          "expected": "Animation speed visibly changes as the slider is adjusted."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Dynamic tile color change based on entropy."
+        },
+        {
+          "feature": "Observable reaction-diffusion dynamics."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
