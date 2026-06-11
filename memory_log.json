@@ -15526,6 +15526,52 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='web_interactive' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', 'typescript_app",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-11T07:15:50Z",
+      "attempted_at_unix": 1781162150,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-game",
+      "plan_language": "JavaScript",
+      "plan_complexity": 80,
+      "plan_pattern": "reaction-diffusion-game-pattern",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Diffusion rate slider",
+          "expected": "Update the visualization of the reaction-diffusion system on the canvas."
+        },
+        {
+          "control": "Reaction constant slider",
+          "expected": "Update the visualization of the reaction-diffusion system on the canvas."
+        },
+        {
+          "control": "Level select dropdown",
+          "expected": "Load the selected level and update the visualization to reflect the new level's initial state."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Initial level visualization on page load"
+        },
+        {
+          "feature": "Dynamic level loading"
+        },
+        {
+          "feature": "Response of the canvas to control interaction"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
