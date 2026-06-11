@@ -15837,6 +15837,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='cli_tool' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app']",
       "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-11T22:12:16Z",
+      "attempted_at_unix": 1781215936,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "document"
     }
   ],
   "cso_reviews": [
