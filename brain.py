@@ -657,10 +657,25 @@ def main() -> int:
         # dead controls IS allowed to ship — the QA badge surfaces the state
         # to the visitor — but non_functional or fundamental verifier
         # blockers (blank canvas, page errors) are hard refusals.
-        hard_blockers = (final_verify.get("errors") or []) + [
+        #
+        # IMPORTANT: When QA explicitly returns verdict=shippable with zero dead
+        # controls and zero missing features, trust that verdict. Verifier heuristics
+        # (blank-canvas pixel sampling, zero-controls count) produce false positives
+        # for WebGL shaders, terminal-style python_tool UIs, and other patterns the
+        # verifier cannot fully introspect. The QA Tester — which sees the actual
+        # rendered page — is the higher-authority judge.
+        # Hard page errors (JS exceptions, network failures) always block regardless.
+        page_errors = final_verify.get("errors") or []
+        qa_shippable = (
+            qa_report.get("verdict") == "shippable"
+            and not (qa_report.get("dead_controls") or [])
+            and not (qa_report.get("missing_features") or [])
+        )
+        verifier_issues = [
             i for i in (final_verify.get("issues") or [])
             if any(k in i.lower() for k in ("blank", "runaway", "empty", "zero"))
         ]
+        hard_blockers = page_errors + ([] if qa_shippable else verifier_issues)
         if qa_report.get("verdict") == "non_functional" or hard_blockers:
             log.error("Final quality gate failed after %d QA round(s) — refusing to publish.",
                       qa_round)

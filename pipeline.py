@@ -792,16 +792,23 @@ def stage_plan(client: OpenAI, memory: dict,
             )
             # Emergency plans use relaxed file-count minimum WITHOUT touching the
             # complexity score — patching it down would corrupt the trajectory.
-            # Also enforce a floor: emergency plan must never regress below the
-            # current trajectory peak (recovery mode relaxes the +1 gate, but
-            # regression to a lower score is never acceptable).
-            traj = memory.get("complexity_trajectory") or []
-            traj_peak = max(traj) if traj else 0
-            if emergency_plan.get("complexity_score", 0) < traj_peak:
-                emergency_plan["complexity_score"] = traj_peak
+            # Floor rule: emergency plan must not regress below the last successfully
+            # SHIPPED project's complexity. We use the shipped projects list rather than
+            # max(trajectory) because the trajectory can contain corrupted entries from
+            # old bugs, and forcing architects to reach an artificially high floor (e.g.
+            # 110) during recovery mode causes every emergency round to fail, creating
+            # an infinite loop. The shipped list is the ground truth.
+            shipped_scores = [
+                p.get("complexity_score", 0)
+                for p in (memory.get("projects") or [])
+                if p.get("complexity_score", 0) > 0
+            ]
+            last_shipped_complexity = shipped_scores[-1] if shipped_scores else 0
+            if emergency_plan.get("complexity_score", 0) < last_shipped_complexity:
+                emergency_plan["complexity_score"] = last_shipped_complexity
                 log.warning(
-                    "Emergency plan complexity was below trajectory peak (%d); "
-                    "clamped up to maintain advancement.", traj_peak
+                    "Emergency plan complexity was below last shipped (%d); "
+                    "clamped up to prevent regression.", last_shipped_complexity
                 )
             _validate_plan(emergency_plan, memory, emergency=True)
             _ensure_readme_planned(emergency_plan)

@@ -311,10 +311,10 @@ def verify_web(workspace: Path, timeout: int = 30, project_type: str = "web_inte
     if metrics.get("bodyHtml", 0) < 250:
         issues.append("Page body has <250 chars of HTML — the page is essentially empty.")
     if metrics.get("canvasCount", 0) > 0 and metrics.get("canvasBlank"):
-        if project_type == "web_3d":
-            # WebGL canvases always read as blank via 2D ctx pixel sampling in headless
-            # Chromium (no GPU). Don't gate on canvas content for web_3d — the QA Tester
-            # and control-interaction tests are the real gates here.
+        if project_type in ("web_3d", "shader_art"):
+            # WebGL / GLSL canvases always read as blank via 2D ctx pixel sampling in
+            # headless Chromium (no GPU driver). Don't gate on canvas content for these
+            # types — the QA Tester and control-interaction tests are the real gates.
             pass
         else:
             issues.append("A <canvas> exists but is blank — the visualization is not rendering. Check that drawing happens after DOM ready, the canvas has a size, the animation loop is started, and content is actually being drawn.")
