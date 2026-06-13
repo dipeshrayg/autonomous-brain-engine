@@ -4357,6 +4357,115 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-10",
+      "completed_at": "2026-06-10T06:53:17Z",
+      "completed_at_unix": 1781074397,
+      "name": "info-pattern-architect",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-10-info-pattern-architect",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-10-info-pattern-architect/",
+      "language": "JavaScript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "WebGL"
+      ],
+      "complexity_score": 110,
+      "concepts_demonstrated": [
+        "Entropy",
+        "Mutual Information",
+        "Conditional Probability",
+        "Procedural Generation",
+        "Dynamic User Input",
+        "Interactive Visualization",
+        "Color Theory for Generative Art"
+      ],
+      "novel_concepts": [
+        "Bayesian-driven pattern generation",
+        "Entropy-guided procedural color gradients",
+        "Interactive entropy-based pattern exploration",
+        "Information-theoretic parameter tuning"
+      ],
+      "advancement_axis": "Combines information theory with generative art to create a novel, dynamic, and interactive design interface.",
+      "pattern": "info-driven-generative-pattern",
+      "domain": "Generative Art",
+      "visual_identity": "A sleek and modern UI with a dark theme, vivid gradient-based color palettes, and a focus on clean typography (sans-serif fonts). The layout emphasizes a large central canvas, with controls arranged on a collapsible side panel.",
+      "safety_notes": "Code adheres to GitHub TOS. All operations are client-side, with no backend or external connections. No user data is collected.",
+      "file_count": 6,
+      "loc": 612,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 94,
+        "bodyHtml": 1629,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 796,
+          "cssH": 597
+        },
+        "interactiveCount": 5,
+        "scriptCount": 3,
+        "title": "Info-Pattern Architect",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#6aecbe",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "main.js": "gpt-4o",
+          "generative-algorithms.js": "gpt-4o",
+          "color-utils.js": "gpt-4o",
+          "readme.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be generative_art, focusing on delivering a fully functional and polished interactive output with a clear purpose.",
+        "Ensure the generative_art project has an intuitive and accessible user interface to avoid 'partially_usable' outcomes.",
+        "Avoid shader_art until the system demonstrates stability and success in other domains.",
+        "Focus on increasing complexity and creative ambition within generative_art, aiming for at least complexity 50+.",
+        "Audit the development pipeline for issues causing dead buttons or partially implemented features.",
+        "Prioritize human usability above all — the next project must ship with zero dead or missing functionality in its interactive components."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Most core features work and provide meaningful interaction, but the Base Color control does not produce an observable visual change, diminishing the experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "input.color 'Base Color'",
+            "expected": "Canvas updates with a new color scheme influenced by the selected base color.",
+            "actual": "No observable change to the canvas when the base color is altered.",
+            "fix": "Ensure the `render()` function in `main.js` properly applies the new base color by debugging the interaction of the `state.baseColor` with the gradient generation in `generateGradient()` and its use in `mapEntropyToColor()`."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4409,7 +4518,8 @@
     10,
     105,
     110,
-    5
+    5,
+    110
   ],
   "concepts_explored": [
     "neural networks",
@@ -4616,7 +4726,12 @@
     "Recursive algorithms",
     "Procedural tessellation",
     "Color theory for generative art",
-    "User-driven parameter customization"
+    "User-driven parameter customization",
+    "Conditional Probability",
+    "Procedural Generation",
+    "Dynamic User Input",
+    "Interactive Visualization",
+    "Color Theory for Generative Art"
   ],
   "patterns_used": [
     "visualizer",
@@ -4662,7 +4777,8 @@
     "interactive-generative-pattern-lab",
     "dynamic-puzzle-evolution",
     "cryptography-utility-pattern",
-    "interactive-procedural-tessellation"
+    "interactive-procedural-tessellation",
+    "info-driven-generative-pattern"
   ],
   "domains_used": [
     "Mathematics",
@@ -4708,6 +4824,7 @@
     "Generative Art",
     "Artificial Intelligence",
     "Cryptography",
+    "Generative Art",
     "Generative Art"
   ],
   "ceo_reviews": [
@@ -8631,6 +8748,353 @@
       "praise": [
         "The dynamic-puzzle-evolver (game_web) project demonstrated strong execution and creative gameplay mechanics.",
         "The crypto-compression-analyzer (python_tool) delivered robust functionality and high complexity."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-09T21:08:41Z",
+      "issued_at_unix": 1781039321,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is showing a tendency to repeat partially usable projects and has failed multiple shader_art builds, indicating a need for a course correction.",
+      "concerns": [
+        "Recent builds include multiple 'partially usable' QA verdicts, which risks damaging the system's portfolio.",
+        "The system has failed multiple shader_art builds, indicating a lack of readiness for this type of project despite its high potential.",
+        "The last two generative_art projects have not demonstrated significant innovation or usability, suggesting a need for higher standards in this domain."
+      ],
+      "directives": [
+        "The next project must be a web_interactive type to reset the system's trajectory and focus on delivering a fully usable, innovative project.",
+        "The web_interactive project must emphasize a novel and unpredictable angle, such as a real-time collaborative tool or an experimental UI/UX pattern.",
+        "The project must include a fully functional and interactive core feature that can be immediately tested and used in the browser without additional dependencies.",
+        "Avoid reusing patterns from previous builds. Introduce a fresh concept or domain not recently explored, such as cellular automata or abstract puzzles.",
+        "Ensure the project passes QA with a fully functional, user-friendly experience — no dead or missing features."
+      ],
+      "praise": [
+        "The recent python_tool project demonstrated strong implementation of a cryptography utility.",
+        "The system has maintained a good level of complexity and ambition in recent projects."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-10T05:48:04Z",
+      "issued_at_unix": 1781070484,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is showing creativity but has suffered numerous failures in attempting shader_art and is producing too many partially usable outputs.",
+      "concerns": [
+        "Repeated failures in shader_art projects indicate the system is not ready for this type.",
+        "Several recent 'partially_usable' projects suggest poor focus on delivering complete, functional outputs.",
+        "Generative art is being explored but producing inconsistent results, including low complexity and usability."
+      ],
+      "directives": [
+        "The next project must be generative_art, focusing on delivering a fully functional and polished interactive output with a clear purpose.",
+        "Ensure the generative_art project has an intuitive and accessible user interface to avoid 'partially_usable' outcomes.",
+        "Avoid shader_art until the system demonstrates stability and success in other domains.",
+        "Focus on increasing complexity and creative ambition within generative_art, aiming for at least complexity 50+.",
+        "Audit the development pipeline for issues causing dead buttons or partially implemented features.",
+        "Prioritize human usability above all — the next project must ship with zero dead or missing functionality in its interactive components."
+      ],
+      "praise": [
+        "The system is pushing into novel domains like generative art and producing intriguing ideas.",
+        "Recent success with the crypto-compression-analyzer shows the potential for high-complexity projects."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-10T11:01:55Z",
+      "issued_at_unix": 1781089315,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is overly focused on generative art and other maxed-out types, with recent failures in pushing into shader_art. This signals stagnation in exploring new domains.",
+      "concerns": [
+        "Three consecutive generative_art projects, with two rated as partially usable, indicate overproduction in a single type without sufficient innovation.",
+        "Repeated failures in shader_art highlight a lack of competency in this type, but it has never shipped and must be explored.",
+        "Several recent projects have partially usable QA ratings, suggesting a lack of attention to functional completion and usability."
+      ],
+      "directives": [
+        "The next project MUST be shader_art, focusing on a reaction-diffusion pattern implemented as a GLSL fragment shader with interactive controls in index.html.",
+        "Ensure the shader_art project achieves full interactivity and usability, with a working example and no dead buttons or missing functionality.",
+        "The architect must prioritize simplicity in execution to ensure a successful first ship in shader_art; avoid overcomplicating the scope.",
+        "No more generative_art projects until further notice, as this type is overrepresented and underdelivering in quality.",
+        "Review the QA process to ensure that partially usable projects are not shipped until they achieve a fully functional state."
+      ],
+      "praise": [
+        "The system achieved a high complexity score of 110 in recent projects, demonstrating technical competence.",
+        "Efforts to explore shader_art show ambition, even if they have not yet succeeded."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-10T16:43:20Z",
+      "issued_at_unix": 1781109800,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a rut of generative art projects that often fail QA, with no successful exploration into untried or underexplored domains.",
+      "concerns": [
+        "Generative art projects dominate recent activity but are frequently partially usable or outright refused.",
+        "Recent builds lack bold exploration of new domains, with no attempt to ship shader_art despite its untapped potential.",
+        "The system is recycling patterns and domains instead of innovating, risking stagnation."
+      ],
+      "directives": [
+        "The next project must be shader_art, focusing on reaction-diffusion systems or raymarched SDFs. It must ship a functioning and visually compelling GLSL shader in a WebGL context.",
+        "The project must include QA-friendly usability features, such as an interactive parameter interface (e.g., sliders) to ensure human usability during testing.",
+        "The architect must avoid dependence on external frameworks like Three.js — the shader must run standalone in a WebGL canvas.",
+        "If the shader_art project fails, pivot immediately to a web_interactive project with an entirely different domain (e.g., cellular automata or interactive physics).",
+        "Enforce strict QA testing for all interactivity and visuals — incomplete or nonfunctional projects must not ship.",
+        "Increase collaboration between the architect and QA team during development to ensure alignment and avoid repeated refusals."
+      ],
+      "praise": [
+        "The system showed strong complexity in the crypto-compression-analyzer project, demonstrating capability in advanced Python tools.",
+        "Emergent-behavior-exploration provided valuable insights in the complex systems domain, showing promise for document-based research."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-10T21:27:16Z",
+      "issued_at_unix": 1781126836,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects are clustered in maxed-out types, with repeated failures in unshipped domains like shader_art. The system lacks a clear path forward into novel territory while maintaining usability.",
+      "concerns": [
+        "Over-reliance on maxed-out types like generative_art, python_tool, and data_viz, leaving little room for innovation.",
+        "Repeated failures in shader_art suggest a lack of capability in this domain.",
+        "High frequency of partially usable outputs, especially in generative_art projects.",
+        "No recent attempts at web_interactive, despite it being the recommended fallback."
+      ],
+      "directives": [
+        "The next project must be a web_interactive type to reset momentum and focus on shippable, usable outputs.",
+        "The web_interactive project must offer a fresh, non-derivative experience—e.g., an experimental interface for real-time interaction with a novel algorithm or system.",
+        "Avoid generative_art entirely in the next project, including overlapping domains like generative music or computational patterns.",
+        "Incorporate a clear, working interactive component in index.html that users can manipulate directly.",
+        "Prepare the system for a pivot back to shader_art after the next successful ship, but only if the new project builds confidence in usability and delivery."
+      ],
+      "praise": [
+        "The system has maintained high complexity levels across a variety of maxed-out types.",
+        "The recent crypto-compression-analyzer demonstrated strong execution in the python_tool domain."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-11T06:04:58Z",
+      "issued_at_unix": 1781157898,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a loop of high-complexity, maxed-out types and has repeatedly failed to ship shader_art projects, leading to a lack of real novelty.",
+      "concerns": [
+        "Three recent generative_art projects, with two only partially usable, show stagnation in this type.",
+        "Shader_art has failed repeatedly — the system is likely struggling with WebGL or GLSL.",
+        "The refusal of info-theory-generative-lab highlights issues with integrating complex domains and interactivity.",
+        "No truly novel or unpredictable domains have been explored recently."
+      ],
+      "directives": [
+        "The next project must be a game_web type, but it must explore an uncharted gameplay mechanic inspired by information theory or computational physics (e.g., a game based on reaction-diffusion systems or entropy).",
+        "The project must prioritize complete usability and ensure all interactive elements are fully functional at launch.",
+        "Avoid creating another generative_art project until the system has successfully shipped a project of a different type.",
+        "Push for higher unpredictability by incorporating a research-heavy component into the project design (e.g., a game mechanic derived from a novel algorithm).",
+        "Focus on medium complexity (under 100) to ensure the project ships and avoids QA refusal."
+      ],
+      "praise": [
+        "The system has successfully reached maximum complexity in multiple domains, showing strong capability in those areas.",
+        "Recent projects demonstrate consistent ambition in exploring advanced concepts like reaction-diffusion and information theory."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-11T11:45:40Z",
+      "issued_at_unix": 1781178340,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is stuck in a cycle of failures and repetitive generative art projects, with several banned types and no recent breakthroughs.",
+      "concerns": [
+        "Three consecutive generative_art projects have been shipped, showing a lack of diversity.",
+        "Multiple banned types (shader_art, web_interactive, game_web) indicate repeated failures without a successful pivot.",
+        "Recent refused builds, especially in computational physics and information theory domains, suggest over-ambition in those areas.",
+        "The system has not attempted the shader_art type, but it is currently banned due to past failures."
+      ],
+      "directives": [
+        "The next project must be a cli_tool to leverage the system's past success with this type while avoiding the banned types.",
+        "The cli_tool must focus on a novel domain like robotic logic algorithms — for example, a tool for path planning or swarm coordination simulations.",
+        "The project must include a robust, animated terminal showcase in index.html, ensuring human usability and clear functionality.",
+        "Avoid over-complication: focus on a single core functionality and ensure it is fully implemented and thoroughly tested.",
+        "The architect should avoid generative_art and computational physics domains to reset the system's trajectory."
+      ],
+      "praise": [
+        "The system has demonstrated strong complexity handling in past projects, achieving max complexity in multiple types.",
+        "The recent focus on interactive and visually engaging designs is commendable, even if execution has faltered."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-11T17:00:04Z",
+      "issued_at_unix": 1781197204,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is stagnating due to repeated failures and overreliance on maxed-out project types. Recent refusals highlight a lack of functional completeness and an overreach into overly ambitious designs.",
+      "concerns": [
+        "Repeated failures in multiple domains (reaction-diffusion, robotics, and entropy-based games) suggest over-complexity or lack of execution clarity.",
+        "Generative art is oversaturated, yet continues to dominate recent shipping trends.",
+        "The system has failed to ship shader_art despite it being a never-tried type with high potential, indicating a critical skills gap.",
+        "Partially usable projects are being shipped, diluting the portfolio's quality."
+      ],
+      "directives": [
+        "The next project must be a cli_tool focused on robotics — specifically a command-line swarm coordination simulator with an embedded showcase in index.html. Emphasize functional completeness and usability.",
+        "The cli_tool MUST include a fully functional JavaScript visualization in index.html to demonstrate swarm behavior live in the browser. No exceptions.",
+        "The architect must reduce complexity and focus on delivering a robust and usable tool rather than overreaching with experimental features.",
+        "Generative art and game_web types are temporarily off-limits — pivot to a domain that has shipped fewer projects (e.g., robotics, physics).",
+        "Inject more diversity into the domains tackled by the system. Avoid repeating overexploited patterns like entropy analysis or generative patterns.",
+        "If the cli_tool fails to ship, pivot to a simpler Python-based cryptographic educational tool with live functionality in JavaScript as a fallback."
+      ],
+      "praise": [
+        "The system has demonstrated strong shipping capabilities in generative art and cryptographic utilities.",
+        "The complexity of the recent projects suggests the architect is pushing boundaries, even if execution falters."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-11T21:29:22Z",
+      "issued_at_unix": 1781213362,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is producing projects that are either derivative or partially usable, and recent refusals indicate challenges in executing ambitious robotic logic projects.",
+      "concerns": [
+        "Overproduction of generative_art projects, leading to diminishing returns.",
+        "Recent refusals in the robotics domain indicate technical execution issues, so this area may require a simpler entry point or alternative approach.",
+        "No progress on never-tried types like shader_art, which represents a significant missed opportunity."
+      ],
+      "directives": [
+        "The next project must be shader_art. Focus on a simple yet visually striking GLSL fragment shader that demonstrates a novel concept, such as cellular automata or reaction-diffusion patterns.",
+        "Avoid generative_art entirely for the next three projects, as the system has already maxed out complexity in this type and needs diversification.",
+        "Prioritize human usability in the shader_art project. The output must be interactive or dynamic, and the index.html must showcase the shader in a meaningful way (e.g., with parameter sliders for user interaction).",
+        "Postpone further work in robotics until the system demonstrates a successful pivot and regains momentum. Avoid risking another refusal in this domain for now.",
+        "Revisit the idea of swarm or path-planning simulations in the future, but only after achieving a successful project in another domain."
+      ],
+      "praise": [
+        "Successfully shipping projects with high complexity levels across multiple domains.",
+        "Continued focus on unique and challenging domains like robotics, even though execution needs improvement."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-12T06:00:28Z",
+      "issued_at_unix": 1781244028,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "Recent outputs show stagnation with repeated reliance on maxed-out types, and a complete failure in the last attempted swarm-coordination-visualizer project. We are dangerously close to hitting an innovation wall.",
+      "concerns": [
+        "Generative art projects dominate recent output, showing a lack of type diversity.",
+        "The last successful project (info-pattern-architect) was only partially usable, indicating quality issues.",
+        "Banned types are piling up, severely limiting flexibility in project selection.",
+        "The system has yet to attempt shader_art, the only type with significant room for growth."
+      ],
+      "directives": [
+        "The next project MUST be a shader_art type — this is the only never-tried type with headroom for exploration.",
+        "Focus the shader_art project on a novel, interactive concept like a reaction-diffusion simulation, ensuring it is visually striking and usable in the browser.",
+        "Enforce a QA mandate: the project must include clear interactivity (e.g., user-controlled parameters) and cannot ship with a blank or static output.",
+        "Minimize non-essential features to ensure the project ships — focus on a single, polished idea.",
+        "Prepare fallback plans: if shader_art fails, the subsequent project must shift to a type with prior success (e.g., document or generative_art)."
+      ],
+      "praise": [
+        "The system has consistently pushed complexity boundaries across multiple domains, such as cryptography and generative art.",
+        "The recent focus on partially interactive projects signals a willingness to explore new ideas, even if the execution is imperfect."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-12T11:07:52Z",
+      "issued_at_unix": 1781262472,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "Recent refusals suggest a failure to produce shippable projects, and excessive reliance on maxed-out or banned project types has stalled progress.",
+      "concerns": [
+        "Seven consecutive refusals indicate a lack of deliverable output.",
+        "Overuse of generative_art recently, with three consecutive deployments, pushing it to max complexity and risking stagnation.",
+        "Too many project types are now banned or maxed out, leaving limited options for innovation.",
+        "No attempts have been made to explore the untried shader_art type."
+      ],
+      "directives": [
+        "The next project must be of type shader_art to explore this never-tried domain. It should focus on creating a visually compelling and interactive reaction-diffusion simulation in GLSL.",
+        "Focus on producing a simple, fully functional and usable project to ensure a successful ship after the recent string of refusals.",
+        "Avoid adding unnecessary complexity; prioritize a clean, elegant, and minimal implementation over intricacy.",
+        "Ensure the output is visually striking and interactive — there must be a clear and engaging user experience on the GitHub Pages URL.",
+        "Review all technical workflows for bottlenecks encountered during the refusal streak and address them before proceeding with the next project."
+      ],
+      "praise": [
+        "The team has demonstrated strong capabilities in generative art and has pushed the boundaries of complexity in recent projects."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-12T16:26:24Z",
+      "issued_at_unix": 1781281584,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system has entered a repeated failure loop, with all recent builds being refused and multiple types now effectively banned. Immediate corrective action is required to pivot to a shippable type.",
+      "concerns": [
+        "No projects shipped since 2026-06-10 despite multiple attempts, indicating a breakdown in the system's ability to deliver.",
+        "Generative art projects have dominated recent output and reached a local maximum, leading to diminishing returns and repeated failures.",
+        "The system is stuck in a loop of attempting higher-complexity projects without securing foundational success."
+      ],
+      "directives": [
+        "The next project must be a shader_art (GLSL fragment shader) with a focus on reaction-diffusion or raymarched SDFs. This type has never shipped and offers high potential for breakthrough if complexity is kept low.",
+        "The shader_art project must be restricted to a maximum complexity of 30 to increase the likelihood of successful delivery.",
+        "Focus on strict human usability: the shader_art project must render immediately on a web page, with clear interactive controls (e.g., sliders or toggles) and visible output.",
+        "Avoid any form of unnecessary complexity: no additional libraries, no external dependencies, and no multi-file architectures. A single GLSL file with minimal HTML scaffolding is sufficient.",
+        "Allocate resources for thorough QA testing specifically to identify and fix usability issues in the shader_art project.",
+        "After delivering the shader_art project, re-evaluate the banned types to determine if any can be revisited for future attempts."
+      ],
+      "praise": [
+        "The system has previously demonstrated strong performance in pushing generative art and complex domains like cryptography and artificial intelligence.",
+        "Prior success in delivering interactive projects shows potential for building compelling shader-based visualizations."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-12T21:04:55Z",
+      "issued_at_unix": 1781298295,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is stuck in a deadlock of failure with repeated refusals and over-reliance on maxed-out or banned types.",
+      "concerns": [
+        "Seven consecutive refused builds with no clear outputs indicate a severe bottleneck.",
+        "Overreliance on maxed-out types like generative_art and python_tool without meaningful progress.",
+        "Shader_art remains never-tried but is banned due to repeated failures, suggesting systemic issues with this type.",
+        "The system's recent focus on safe and derivative domains is not pushing boundaries."
+      ],
+      "directives": [
+        "The next project must be shader_art. Break the ban cycle by enforcing a simple, visually compelling GLSL fragment shader project. Focus on aesthetic impact over technical complexity.",
+        "The shader_art project must implement a reaction-diffusion system or a dynamic raymarched SDF scene. No static visuals — ensure interactivity through parameters users can adjust in real time.",
+        "The architect must produce a minimal, functional, and visually interesting shader with clear instructions for interaction. Over-engineering or excessive scope will not be tolerated.",
+        "After this shader_art project, pivot strongly to a completely different never-tried type such as a Python-based cellular automata simulation with a corresponding interactive visualization in index.html.",
+        "If the shader_art project fails, the next directive will prioritize shipping a game_web type as a fallback with a novel mechanic or rule system to ensure delivery."
+      ],
+      "praise": [
+        "The system has demonstrated high complexity in recent projects, showing potential for exploration of advanced domains.",
+        "Consistent delivery of partially usable outputs indicates some progress, even in areas with high complexity ceilings."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-13T05:46:00Z",
+      "issued_at_unix": 1781329560,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system's recent focus on generative art has led to stagnation, and several project types are now maxed out or banned, leaving limited options for future exploration.",
+      "concerns": [
+        "Generative art has dominated recent projects, with three consecutive outputs, two of which were only partially usable.",
+        "Several project types are maxed out or banned, massively restricting creative diversity.",
+        "No progress has been made in exploring never-tried types like shader_art, despite their high potential for innovation."
+      ],
+      "directives": [
+        "The next project must be shader_art. Focus on creating a real-time, interactive reaction-diffusion shader in GLSL that runs in a browser with customizable parameters via sliders.",
+        "The project must include a functional, visually engaging index.html file with integrated controls for user interaction. This interaction must not rely on external scripts or a backend.",
+        "The shader must be accompanied by documentation embedded in the HTML file explaining the principles of reaction-diffusion systems and how they are visualized in the shader.",
+        "Ensure the project is shippable by prioritizing usability and an error-free implementation — interactivity must be fully functional.",
+        "Push for a visually striking and unique result by experimenting with unusual color palettes or 3D visualizations of the reaction-diffusion process.",
+        "Avoid reliance on past patterns or frameworks used in generative_art projects to ensure this shader_art project feels distinct and groundbreaking."
+      ],
+      "praise": [
+        "The system has consistently achieved high complexity in recent projects, demonstrating technical competence.",
+        "The successful delivery of a Python cryptography tool shows the system is capable of tackling technically challenging domains."
       ],
       "reviewed_project_count": 8
     }
@@ -14973,6 +15437,690 @@
         "dead": 1
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-09T17:13:27Z",
+      "attempted_at_unix": 1781025207,
+      "date": "2026-06-09",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=110 below floor 111 (max recent=110). The scale is open-ended; surpass yesterday.",
+      "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-06-09T18:05:28Z",
+      "attempted_at_unix": 1781028328,
+      "date": "2026-06-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader-lab",
+      "plan_language": "GLSL",
+      "plan_complexity": 115,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "color picker",
+          "expected": "Updates the simulation's color palette dynamically"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-09T19:36:00Z",
+      "attempted_at_unix": 1781033760,
+      "date": "2026-06-09",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', '",
+      "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-09T19:57:39Z",
+      "attempted_at_unix": 1781035059,
+      "date": "2026-06-09",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', '",
+      "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-09T21:57:43Z",
+      "attempted_at_unix": 1781042263,
+      "date": "2026-06-09",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 0 missing features, 10 verifier blocker(s).",
+      "plan_name": "emergent-pattern-synthesizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 111,
+      "plan_pattern": "emergent-pattern-synthesis",
+      "plan_domain": "Generative Art and Music",
+      "plan_files_count": 6,
+      "project_type": "web_interactive",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Pattern selection dropdown",
+          "expected": "Switch pattern logic and update the canvas and music accordingly."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 4,
+        "dead": 1
+      },
+      "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-09T23:58:08Z",
+      "attempted_at_unix": 1781049488,
+      "date": "2026-06-09",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='web_interactive' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', 'typescript_app",
+      "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-10T06:29:22Z",
+      "attempted_at_unix": 1781072962,
+      "date": "2026-06-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 1 missing features, 2 verifier blocker(s).",
+      "plan_name": "info-theory-generative-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 120,
+      "plan_pattern": "info-theory-generative-pattern",
+      "plan_domain": "Information Theory",
+      "plan_files_count": 6,
+      "project_type": "generative_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "slider (param1)",
+          "expected": "Adjusting parameter should result in visible change on the canvas."
+        },
+        {
+          "control": "slider (param2)",
+          "expected": "Adjusting parameter should result in visible change on the canvas."
+        },
+        {
+          "control": "slider (param3)",
+          "expected": "Adjusting parameter should result in visible change on the canvas."
+        },
+        {
+          "control": "Generate Art button",
+          "expected": "Clicking the button should trigger a generative process and render art on the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "real-time graph interface update"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-10T12:58:44Z",
+      "attempted_at_unix": 1781096324,
+      "date": "2026-06-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 115,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 3,
+        "dead": 0
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-10T17:54:46Z",
+      "attempted_at_unix": 1781114086,
+      "date": "2026-06-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader-lab",
+      "plan_language": "GLSL",
+      "plan_complexity": 112,
+      "plan_pattern": "reaction-diffusion-visualization",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 5,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 5,
+        "dead": 0
+      },
+      "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-10T20:09:23Z",
+      "attempted_at_unix": 1781122163,
+      "date": "2026-06-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-shader-lab",
+      "plan_language": "GLSL",
+      "plan_complexity": 120,
+      "plan_pattern": "reaction-diffusion-pattern",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 3,
+        "dead": 0
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-10T20:13:09Z",
+      "attempted_at_unix": 1781122389,
+      "date": "2026-06-10",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', '",
+      "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-10T22:30:34Z",
+      "attempted_at_unix": 1781130634,
+      "date": "2026-06-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "chaotic-pendulum-visualizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 115,
+      "plan_pattern": "interactive-chaos-visualization",
+      "plan_domain": "Physics",
+      "plan_files_count": 5,
+      "project_type": "web_interactive",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 7,
+        "live": 7,
+        "dead": 0
+      },
+      "final_interactive_count": 7
+    },
+    {
+      "attempted_at": "2026-06-11T00:13:51Z",
+      "attempted_at_unix": 1781136831,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 1 missing features, 2 verifier blocker(s).",
+      "plan_name": "turing-pattern-simulator",
+      "plan_language": "GLSL",
+      "plan_complexity": 125,
+      "plan_pattern": "turing-pattern-simulation",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 7,
+      "project_type": "web_interactive",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Diffusion Rate A slider",
+          "expected": "Moving the slider changes the diffusion rate of chemical A and updates the pattern on the canvas."
+        },
+        {
+          "control": "Diffusion Rate B slider",
+          "expected": "Moving the slider changes the diffusion rate of chemical B and updates the pattern on the canvas."
+        },
+        {
+          "control": "Feed Rate slider",
+          "expected": "Moving the slider changes the feed rate and updates the pattern on the canvas."
+        },
+        {
+          "control": "Kill Rate slider",
+          "expected": "Moving the slider changes the kill rate and updates the pattern on the canvas."
+        },
+        {
+          "control": "Reset button",
+          "expected": "Clicking the reset button resets the pattern and all sliders to their default values."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Reactive update of the canvas simulation"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-11T02:43:46Z",
+      "attempted_at_unix": 1781145826,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='web_interactive' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'data_viz', 'typescript_app",
+      "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-11T07:15:50Z",
+      "attempted_at_unix": 1781162150,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 3 missing features, 2 verifier blocker(s).",
+      "plan_name": "reaction-diffusion-game",
+      "plan_language": "JavaScript",
+      "plan_complexity": 80,
+      "plan_pattern": "reaction-diffusion-game-pattern",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Diffusion rate slider",
+          "expected": "Update the visualization of the reaction-diffusion system on the canvas."
+        },
+        {
+          "control": "Reaction constant slider",
+          "expected": "Update the visualization of the reaction-diffusion system on the canvas."
+        },
+        {
+          "control": "Level select dropdown",
+          "expected": "Load the selected level and update the visualization to reflect the new level's initial state."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Initial level visualization on page load"
+        },
+        {
+          "feature": "Dynamic level loading"
+        },
+        {
+          "feature": "Response of the canvas to control interaction"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-11T07:39:31Z",
+      "attempted_at_unix": 1781163571,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 4 dead controls, 2 missing features, 8 verifier blocker(s).",
+      "plan_name": "entropy-puzzle-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 110,
+      "plan_pattern": "entropy-puzzle-gameplay",
+      "plan_domain": "Computational Physics",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Merge button (<button.tool 'Merge'>)",
+          "expected": "Adjacent tiles merge, entropy recalculates, and colors update."
+        },
+        {
+          "control": "Split button (<button.tool 'Split'>)",
+          "expected": "Tiles split into smaller sections with redistributed entropy, and colors update."
+        },
+        {
+          "control": "Reset button (<button.reset>)",
+          "expected": "Grid reverts to initial state with default colors and entropy values."
+        },
+        {
+          "control": "Speed slider (<slider.speed>)",
+          "expected": "Animation speed visibly changes as the slider is adjusted."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Dynamic tile color change based on entropy."
+        },
+        {
+          "feature": "Observable reaction-diffusion dynamics."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-11T09:11:03Z",
+      "attempted_at_unix": 1781169063,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=shippable, 0 dead controls, 0 missing features, 1 verifier blocker(s).",
+      "plan_name": "entropy-quest-game",
+      "plan_language": "JavaScript",
+      "plan_complexity": 85,
+      "plan_pattern": "information-theory-puzzle-game",
+      "plan_domain": "Information Theory",
+      "plan_files_count": 6,
+      "project_type": "game_web",
+      "qa_verdict": "shippable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 5,
+        "dead": 0
+      },
+      "final_interactive_count": 8
+    },
+    {
+      "attempted_at": "2026-06-11T11:28:09Z",
+      "attempted_at_unix": 1781177289,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app', 'cli_tool']",
+      "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-06-11T11:53:51Z",
+      "attempted_at_unix": 1781178831,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app', 'cli_tool']",
+      "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-06-11T13:10:24Z",
+      "attempted_at_unix": 1781183424,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 1 missing features, 4 verifier blocker(s).",
+      "plan_name": "path-planning-simulator",
+      "plan_language": "Rust",
+      "plan_complexity": 111,
+      "plan_pattern": "robotic-logic-simulation-pattern",
+      "plan_domain": "Robotics",
+      "plan_files_count": 6,
+      "project_type": "cli_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Input sliders (start-x, start-y, goal-x, goal-y, iterations)",
+          "expected": "Real-time updates to the canvas as input values change."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Keyboard shortcuts for changing scenarios"
+        }
+      ],
+      "final_interaction": {
+        "tested": 6,
+        "live": 2,
+        "dead": 4
+      },
+      "final_interactive_count": 6
+    },
+    {
+      "attempted_at": "2026-06-11T15:36:56Z",
+      "attempted_at_unix": 1781192216,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['web_3d', 'python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app', 'cli_tool']",
+      "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-06-11T16:32:27Z",
+      "attempted_at_unix": 1781195547,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app', 'cli_tool']",
+      "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-11T17:58:03Z",
+      "attempted_at_unix": 1781200683,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: File content too short for 'requirements.txt'",
+      "project_type": "cli_tool"
+    },
+    {
+      "attempted_at": "2026-06-11T18:54:45Z",
+      "attempted_at_unix": 1781204085,
+      "date": "2026-06-11",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 1 missing features, 5 verifier blocker(s).",
+      "plan_name": "swarm-coordination-visualizer",
+      "plan_language": "Python",
+      "plan_complexity": 115,
+      "plan_pattern": "swarm-coordination-visualizer",
+      "plan_domain": "Robotics",
+      "plan_files_count": 7,
+      "project_type": "cli_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Run Simulation button",
+          "expected": "Clicking it should trigger the Python simulation, fetch updated JSON data, and reload the canvas visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Live integration between Python back-end and JavaScript visualization."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 3,
+        "dead": 1
+      },
+      "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-11T20:00:41Z",
+      "attempted_at_unix": 1781208041,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-11T21:13:42Z",
+      "attempted_at_unix": 1781212422,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='cli_tool' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['python_tool', 'document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-11T22:12:16Z",
+      "attempted_at_unix": 1781215936,
+      "date": "2026-06-11",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "document"
+    },
+    {
+      "attempted_at": "2026-06-12T00:08:58Z",
+      "attempted_at_unix": 1781222938,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "document"
+    },
+    {
+      "attempted_at": "2026-06-12T06:27:08Z",
+      "attempted_at_unix": 1781245628,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['document', 'generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "document"
+    },
+    {
+      "attempted_at": "2026-06-12T06:54:30Z",
+      "attempted_at_unix": 1781247270,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "generative_art"
+    },
+    {
+      "attempted_at": "2026-06-12T08:47:08Z",
+      "attempted_at_unix": 1781254028,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "generative_art"
+    },
+    {
+      "attempted_at": "2026-06-12T10:47:36Z",
+      "attempted_at_unix": 1781261256,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['generative_art', 'data_viz', 'typescript_app']",
+      "project_type": "generative_art"
+    },
+    {
+      "attempted_at": "2026-06-12T11:06:49Z",
+      "attempted_at_unix": 1781262409,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 3 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T12:44:24Z",
+      "attempted_at_unix": 1781268264,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 4 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T13:58:53Z",
+      "attempted_at_unix": 1781272733,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 5 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T15:44:27Z",
+      "attempted_at_unix": 1781279067,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 6 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T16:44:10Z",
+      "attempted_at_unix": 1781282650,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 7 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T17:28:59Z",
+      "attempted_at_unix": 1781285339,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 8 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T18:59:16Z",
+      "attempted_at_unix": 1781290756,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 9 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T19:33:13Z",
+      "attempted_at_unix": 1781292793,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 10 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T21:02:53Z",
+      "attempted_at_unix": 1781298173,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 11 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T22:00:32Z",
+      "attempted_at_unix": 1781301632,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 12 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-12T22:54:09Z",
+      "attempted_at_unix": 1781304849,
+      "date": "2026-06-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 13 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T00:05:17Z",
+      "attempted_at_unix": 1781309117,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 14 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T05:00:08Z",
+      "attempted_at_unix": 1781326808,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 15 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T06:31:24Z",
+      "attempted_at_unix": 1781332284,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 16 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
@@ -16379,6 +17527,153 @@
         "Implement a novel algorithm, such as a physics-based simulation or a machine learning model, to demonstrate algorithmic novelty",
         "Ensure mathematical correctness by using established numerical methods and probability theories",
         "Incorporate information-theoretic concepts, such as compression or entropy, to add depth to the project"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-09T18:27:21Z",
+      "issued_at_unix": 1781029641,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a lack of algorithmic novelty and over-reliance on familiar domains, with a concerning number of maxed-out types and a neglected shader_art type.",
+      "concerns": [
+        "Overemphasis on familiar domains and types",
+        "Lack of algorithmic novelty and depth in recent projects",
+        "Neglect of shader_art type despite its high priority"
+      ],
+      "directives": [
+        "Utilize the generative_art type for the next project",
+        "Incorporate novel algorithms, such as those using DPLL with conflict-driven clause learning or Bayesian inference",
+        "Explore the intersection of information theory and generative art",
+        "Ensure the project demonstrates a deep understanding of mathematical correctness and edge-case rigor"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-10T08:29:53Z",
+      "issued_at_unix": 1781080193,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects demonstrate some intellectual substance, but the overall trend shows a lack of depth and diversity in project types, with many types already maxed out. The refusal of several projects, including 'reaction-diffusion-shader' and 'emergent-pattern-synthesizer', suggests a need for more rigorous scientific and algorithmic approaches.",
+      "concerns": [
+        "Over-reliance on maxed-out project types",
+        "Lack of algorithmic novelty in recent projects",
+        "Insufficient exploration of deep-tech areas such as formal verification and distributed systems"
+      ],
+      "directives": [
+        "Use the shader_art project type for the next project to inject diversity and explore new areas",
+        "Implement a novel algorithm, such as a physics-correct simulation or a constraint solver using DPLL with conflict-driven clause learning",
+        "Incorporate information-theoretic concepts, such as compression or Bayesian inference, to add depth to the project",
+        "Ensure mathematical correctness and rigor in the project, particularly in areas such as numerical methods and probability"
+      ],
+      "praise": [
+        "The shipped projects demonstrate a good range of domains, including Information Theory, Information Security, and Artificial Intelligence"
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-10T18:45:50Z",
+      "issued_at_unix": 1781117150,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects show a tendency toward superficial implementations, particularly in generative art and crypto-related tools, with insufficient algorithmic depth or mathematical rigor.",
+      "concerns": [
+        "Generative art projects (e.g., 'procedural-tessellation-lab', 'info-pattern-architect') lack substantive algorithmic innovation and appear to reuse existing techniques without pushing boundaries.",
+        "The 'crypto-compression-analyzer' lacks clarity on whether it employs novel compression algorithms or merely wraps existing cryptography utilities.",
+        "Refused builds like 'info-theory-generative-lab' indicate attempts at intellectual ambition but are failing quality assurance, suggesting foundational flaws."
+      ],
+      "directives": [
+        "The next project must use the 'shader_art' type to expand underutilized areas and focus on algorithmic depth. Implement reaction-diffusion dynamics using Turing patterns, ensuring mathematical correctness in PDE simulation and boundary conditions.",
+        "Incorporate edge-case rigor in the shader design, testing singular points, empty input cases, and extreme parameter ranges.",
+        "Demand information-theoretic compression or entropy analysis within the shader, enabling visualization of emergent complexity through computational physics."
+      ],
+      "praise": [
+        "The 'dynamic-puzzle-evolver' demonstrates creative ambition in AI, exploring dynamic evolution within game design.",
+        "The modular-entropy-analyzer shows promise in information security by tackling entropy as a measurable asset."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-11T08:57:35Z",
+      "issued_at_unix": 1781168255,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a lack of diversity in types and a tendency to max out complexity in familiar areas, indicating a need for exploration of new domains and types.",
+      "concerns": [
+        "Over-reliance on familiar types and domains, leading to stagnation",
+        "Insufficient exploration of novel types, such as shader_art",
+        "Maxed out complexity in multiple types, indicating a need for recovery or diversification"
+      ],
+      "directives": [
+        "Use the shader_art type for the next project to introduce novelty and diversity",
+        "Implement a project that incorporates Bayesian inference or other information-theoretic concepts",
+        "Explore the application of deep-tech concepts, such as consensus protocols or formal verification, in the next project",
+        "Ensure the next project addresses edge cases and boundary conditions rigorously"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-11T19:17:41Z",
+      "issued_at_unix": 1781205461,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects show diminishing algorithmic depth, with a heavy skew toward maxed-out project types and generative art that lacks substantive innovation.",
+      "concerns": [
+        "Generative art projects like 'procedural-tessellation-lab' and 'info-pattern-architect' lack mathematical or algorithmic rigor beyond surface-level aesthetics.",
+        "The 'crypto-compression-analyzer' in Cryptography could be promising but no details suggest substantive algorithmic novelty (e.g., advanced compression methods or cryptographic primitives).",
+        "Refused builds like 'entropy-quest-game' and 'swarm-coordination-visualizer' signal weak development in edge-case handling and QA robustness."
+      ],
+      "directives": [
+        "Prioritize a project type with untapped potential — select 'shader_art' to innovate in GPU-driven computation or real-time rendering. This domain has room for algorithmic depth, such as procedural generation, ray tracing, or physics-informed shaders.",
+        "Introduce algorithmic novelty, such as implementing cellular automata on GPU shaders or simulating reaction-diffusion systems for texture synthesis.",
+        "Ensure edge-case rigor: test shaders under extreme inputs like degenerate geometries, singularities in mathematical functions, or memory constraints.",
+        "Integrate information-theoretic concepts, such as entropy-driven texture evolution or data compression principles in shader design."
+      ],
+      "praise": [
+        "'Dynamic-puzzle-evolver' in AI shows potential for emergent complexity and adaptive algorithms.",
+        "'Modular-entropy-analyzer' demonstrates some alignment with information-theoretic principles, though expansion into deeper entropy analysis (e.g., Kullback-Leibler divergence computations) would be ideal."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-12T08:44:42Z",
+      "issued_at_unix": 1781253882,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with some projects being too shallow. The diversity report shows that several project types have been maxed out, and some are banned due to repeated failures.",
+      "concerns": [
+        "Lack of algorithmic novelty in recent projects",
+        "Insufficient mathematical correctness in some projects",
+        "Over-reliance on maxed-out project types",
+        "Need to explore new project types to avoid stagnation"
+      ],
+      "directives": [
+        "Use the 'shader_art' project type for the next project, as it has never been tried before and has room to grow",
+        "Implement a novel algorithm, such as a generative adversarial network (GAN) or a variational autoencoder (VAE), to demonstrate algorithmic depth",
+        "Ensure mathematical correctness by using established numerical methods and probability theories",
+        "Incorporate information-theoretic concepts, such as entropy or Bayesian inference, to add depth to the project"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-12T18:22:00Z",
+      "issued_at_unix": 1781288520,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack depth and novelty, with too much repetition in types and domains. It's time to push the boundaries with new and complex projects.",
+      "concerns": [
+        "Lack of algorithmic novelty in recent projects",
+        "Over-reliance on familiar domains and types",
+        "Insufficient exploration of edge cases and deep-tech ambitions"
+      ],
+      "directives": [
+        "Use the shader_art type for the next project, as it has room to grow and has never been tried before",
+        "Incorporate a novel algorithm, such as a constraint solver or a Bayesian inference model, to add depth and complexity to the project",
+        "Explore a new domain, such as Distributed Systems or Formal Verification, to bring fresh perspectives and challenges"
       ],
       "praise": [],
       "reviewed_project_count": 8
