@@ -16251,6 +16251,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 26 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T18:54:35Z",
+      "attempted_at_unix": 1781376875,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 27 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
