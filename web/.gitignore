@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env.local
+.env*.local
+*.log
+.DS_Store
+
+# The root .gitignore ignores index.html (the engine's generated dashboard).
+# The Vite app's entry point must NOT be ignored — re-include it here.
+!index.html
