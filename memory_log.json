@@ -9250,6 +9250,30 @@
         "There has been a consistent cadence of project delivery without prolonged downtime."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-15T06:37:40Z",
+      "issued_at_unix": 1781505460,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects show stagnation in maxed-out types, with no successful attempts in underexplored domains.",
+      "concerns": [
+        "Three consecutive generative_art projects have created a bottleneck, with diminishing returns and partially usable results.",
+        "The refusal of the shader_art project indicates a failure to break into a new domain effectively.",
+        "There has been no attempt to explore the high-potential, never-tried types like ai_concept or creative_tool."
+      ],
+      "directives": [
+        "The next project must be of type ai_concept, focusing on creating a novel AI-driven tool or system that showcases an innovative concept.",
+        "The project must be fully interactive and usable in the browser without requiring external installations or dependencies.",
+        "The project should avoid derivative patterns from recent projects and emphasize novel, unpredictable functionality.",
+        "The architect must keep the scope manageable to ensure the project ships successfully, while still pushing creative and technical boundaries.",
+        "The architect should incorporate a clear, visually engaging interface to make the concept understandable and engaging for users."
+      ],
+      "praise": [
+        "The system has consistently shipped projects across a range of domains, showing strong execution capability.",
+        "The recent diversification attempt with cli_tool and python_tool projects was commendable despite their maxed-out status."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
@@ -16522,6 +16546,100 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 47 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-15T05:54:19Z",
+      "attempted_at_unix": 1781502859,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "reactive-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 120,
+      "plan_pattern": "reaction-diffusion-pattern-simulation",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Feed Rate slider (input#feed)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Kill Rate slider (input#kill)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Diffusion A slider (input#diffA)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Diffusion B slider (input#diffB)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Export Image button (button#export-btn)",
+          "expected": "Clicking the button should save the current canvas as an image file."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Shader output updating in real-time from sliders"
+        },
+        {
+          "feature": "Image export functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-15T07:45:29Z",
+      "attempted_at_unix": 1781509529,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 3 dead controls, 2 missing features, 2 verifier blocker(s).",
+      "plan_name": "ai-assistant-optimizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 130,
+      "plan_pattern": "ai-driven-optimization",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 6,
+      "project_type": "ai_concept",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Analyze Button (id='analyze-btn')",
+          "expected": "Display personalized recommendations in response to input and selected parameter"
+        },
+        {
+          "control": "Textarea (id='user-query')",
+          "expected": "Trigger analysis logic and provide visual feedback based on input"
+        },
+        {
+          "control": "Reset Button (id='reset-btn')",
+          "expected": "Clear input, reset parameter to default, and update the recommendation section"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Personalized recommendations"
+        },
+        {
+          "feature": "Responsive parameter-driven recommendations"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
