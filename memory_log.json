@@ -16522,6 +16522,57 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 47 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-15T05:54:19Z",
+      "attempted_at_unix": 1781502859,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 5 dead controls, 2 missing features, 1 verifier blocker(s).",
+      "plan_name": "reactive-diffusion-shader",
+      "plan_language": "GLSL",
+      "plan_complexity": 120,
+      "plan_pattern": "reaction-diffusion-pattern-simulation",
+      "plan_domain": "Computer Graphics",
+      "plan_files_count": 6,
+      "project_type": "shader_art",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Feed Rate slider (input#feed)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Kill Rate slider (input#kill)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Diffusion A slider (input#diffA)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Diffusion B slider (input#diffB)",
+          "expected": "Changing the slider value should result in observable changes in the shader pattern on the canvas."
+        },
+        {
+          "control": "Export Image button (button#export-btn)",
+          "expected": "Clicking the button should save the current canvas as an image file."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Shader output updating in real-time from sliders"
+        },
+        {
+          "feature": "Image export functionality"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
