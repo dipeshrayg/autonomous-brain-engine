@@ -277,6 +277,13 @@ def _run_review(role: str, system_prompt: str, memory_log_path: Path,
     memory.setdefault(review_key, []).append(record)
     _save_memory(memory_log_path, memory)
 
+    # Mirror the review to Supabase (best-effort; never blocks).
+    try:
+        import supabase_sync
+        supabase_sync.sync_review(review_key, record)
+    except Exception as e:  # noqa: BLE001
+        log.warning("Supabase review sync skipped: %s", e)
+
     log.info("%s verdict: %s | %d directives | model=%s",
              label, record["verdict"], len(record["directives"]), record["model"])
     for d in record["directives"]:

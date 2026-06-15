@@ -40,6 +40,7 @@ import pipeline
 import verifier
 import dashboard
 import executive
+import supabase_sync
 # security_officer removed in Project Evolution; CSO is now Chief Science Officer
 # in executive.py with role label "cso".
 
@@ -136,6 +137,8 @@ def record_failure(memory: dict[str, Any], plan: dict | None, stage: str, reason
     save_memory(memory)
     log.info("Recorded refused build to memory_log.failed_builds[]: %s @ %s (reason=%s)",
              record.get("plan_name", "?"), stage, reason[:120])
+    # Mirror to Supabase (best-effort; never blocks the build).
+    supabase_sync.sync_failed_build(record)
 
 
 def _last_project_unix(memory: dict[str, Any]) -> float | None:
@@ -220,6 +223,9 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
     log.info("Memory updated: project #%d (pattern=%s, domain=%s, plan_model=%s).",
              len(memory["projects"]), record["pattern"], record["domain"],
              record["model_attribution"]["plan_judge"])
+    # Mirror to Supabase (best-effort; never blocks the build).
+    supabase_sync.sync_project(record)
+    supabase_sync.sync_system_state(memory)
 
 
 # ─────────────────────── Workspace ──────────────────────────────────────

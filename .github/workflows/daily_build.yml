@@ -57,6 +57,9 @@ jobs:
           GITHUB_EVENT_NAME:  ${{ github.event_name }}
           GROQ_API_KEY:       ${{ secrets.GROQ_API_KEY }}
           GOOGLE_AI_KEY:      ${{ secrets.GOOGLE_AI_KEY }}
+          SUPABASE_URL:       ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GITHUB_RUN_ID:      ${{ github.run_id }}
         run: python brain.py
 
       - name: Commit memory log
