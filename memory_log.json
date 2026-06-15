@@ -9413,6 +9413,30 @@
         "The recent inclusion of AI-related patterns and concepts indicates a willingness to explore cutting-edge domains."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-15T21:48:47Z",
+      "issued_at_unix": 1781560127,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a mix of shipped and refused builds, but the diversity report indicates a need to explore new project types.",
+      "concerns": [
+        "Recent refused builds have high complexity and multiple dead/missing components",
+        "Some shipped projects have low complexity or partially usable verdicts",
+        "Over-reliance on maxed-out project types"
+      ],
+      "directives": [
+        "The next project must be of type 'shader_art' to explore a new, untried domain",
+        "It should implement a reaction-diffusion pattern simulation with interactive parameters",
+        "The project must be designed with a complexity level below 80 to ensure a higher chance of shipping",
+        "The architect should focus on creating a simple, yet engaging and interactive shader art piece",
+        "The project's index.html must include a brief explanation of the underlying algorithm and its applications"
+      ],
+      "praise": [
+        "The recent shipped projects show a good mix of domains and complexity levels",
+        "The architect has been experimenting with new patterns and project types"
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
@@ -16925,6 +16949,22 @@
         "dead": 3
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-15T20:39:39Z",
+      "attempted_at_unix": 1781555979,
+      "date": "2026-06-15",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
+      "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-15T22:26:54Z",
+      "attempted_at_unix": 1781562414,
+      "date": "2026-06-15",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=120 below floor 121 (max recent=120). The scale is open-ended; surpass yesterday.",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
@@ -18576,6 +18616,28 @@
         "Ensure the project demonstrates mathematical correctness and information-theoretic interest"
       ],
       "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-15T19:59:27Z",
+      "issued_at_unix": 1781553567,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "acceptable",
+      "summary": "Recent projects have been diverse, but some areas are maxed out, and there's a need to explore new project types. The next project should focus on a least used type with room to grow.",
+      "concerns": [
+        "Overemphasis on maxed out project types",
+        "Lack of exploration in new areas such as shader_art, saas_landing, and database_showcase"
+      ],
+      "directives": [
+        "Use the creative_tool project type for the next project",
+        "Incorporate novel algorithms, such as generative adversarial networks or neural style transfer, in the creative_tool project",
+        "Ensure mathematical correctness by using established numerical methods and probability distributions",
+        "Explore information-theoretic interest by incorporating concepts like entropy or Bayesian inference in the project"
+      ],
+      "praise": [
+        "Diverse range of projects shipped in the last few weeks",
+        "Expansion mode active, allowing for exploration of new project types"
+      ],
       "reviewed_project_count": 8
     }
   ],
