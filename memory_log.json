@@ -16957,6 +16957,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-15T22:26:54Z",
+      "attempted_at_unix": 1781562414,
+      "date": "2026-06-15",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=120 below floor 121 (max recent=120). The scale is open-ended; surpass yesterday.",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
