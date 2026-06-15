@@ -67,10 +67,24 @@ jobs:
           git add memory_log.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "Nothing to commit."
-          else
-            git commit -m "chore: daily update $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "chore: daily update $(date -u +%Y-%m-%d)"
+          # Resilient push: other memory-writing workflows (CEO/CSO/self-improve) push to
+          # main concurrently. A bare 'git push' loses that race and turns the run RED even
+          # though brain.py succeeded. Integrate concurrent changes with rebase and retry.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — integrating concurrent changes..."
+            git fetch origin main || true
+            git pull --rebase origin main || git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          echo "::warning::Could not push memory_log.json after 5 attempts (persistent concurrent writes). The next scheduled run will re-record. Not failing the build."
+          exit 0
 
       - name: Sync public dashboard
         if: always()

@@ -53,14 +53,25 @@ jobs:
           GOOGLE_AI_KEY: ${{ secrets.GOOGLE_AI_KEY }}
         run: python self_improve.py
 
-      - name: Pull before push (avoid conflicts with concurrent pipeline runs)
+      - name: Push any patches (resilient against concurrent memory writes)
         if: always()
         run: |
           git config user.name  "cto-bot[autonomous-brain]"
           git config user.email "cto-bot@users.noreply.github.com"
-          git pull --rebase origin main || true
-
-      - name: Push any patches
-        if: always()
-        run: |
-          git push || true
+          # Nothing staged by self_improve? Then there may still be local commits to push.
+          if git diff --quiet && git diff --staged --quiet && git rev-parse @{u} >/dev/null 2>&1 && [ "$(git rev-list @{u}..HEAD --count)" = "0" ]; then
+            echo "Nothing to push."
+            exit 0
+          fi
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — integrating concurrent changes..."
+            git fetch origin main || true
+            git pull --rebase origin main || git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          echo "::warning::Could not push self-improve patch after 5 attempts. Not failing the build."
+          exit 0

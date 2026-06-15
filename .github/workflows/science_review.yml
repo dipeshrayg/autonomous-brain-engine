@@ -52,10 +52,22 @@ jobs:
           git add memory_log.json 2>/dev/null || true
           if git diff --staged --quiet; then
             echo "No CSO review to commit."
-          else
-            git commit -m "cso: science review @ $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
+            exit 0
           fi
+          git commit -m "cso: science review @ $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Resilient push: integrate concurrent memory writes and retry instead of failing red.
+          for attempt in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected (attempt $attempt) — integrating concurrent changes..."
+            git fetch origin main || true
+            git pull --rebase origin main || git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          echo "::warning::Could not push CSO review after 5 attempts. The next review will re-record. Not failing the build."
+          exit 0
 
       - name: Sync public dashboard
         if: always()
