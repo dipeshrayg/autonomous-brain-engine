@@ -697,31 +697,44 @@ def main() -> int:
         #         deliberately conservative and over-reports non_functional). All of
         #         these get a 🧪 "partial" badge when not fully shippable so visitors
         #         see the honest state.
-        # REFUSES (the only hard stop): the page is genuinely broken — real uncaught
-        #         JS page errors that break rendering, OR an essentially empty body.
-        #         These are objective mechanical failures, not the QA Tester's opinion.
+        # REFUSES (the only hard stop): the page is OBJECTIVELY dead — an essentially
+        #         empty body (nothing rendered), OR the QA Tester itself returns
+        #         non_functional after all fix rounds (it renders and interacts with
+        #         the real page, so its "a human cannot use this" verdict is decisive).
         #
-        # The old keyword scan (blank/runaway/empty/zero in verifier "issues") is gone:
-        # it produced false positives for canvas/WebGL/tool/expansion-type UIs and was
-        # the single biggest reason real projects never shipped.
+        # The QA Tester is the AUTHORITY on usability. If it says shippable or
+        # partially_usable, a human gets real value — so we ship, even if the headless
+        # verifier logged a stray uncaught JS error. A single page error on an
+        # otherwise-usable page (a secondary handler throwing, a 404 on an optional
+        # asset) is not worth blocking a genuine deliverable. Only a MANY-error storm
+        # (page is clearly crashing) combined with a non-shippable verdict blocks.
+        #
+        # The old keyword scan (blank/runaway/empty/zero) AND the single-page-error
+        # hard-block are gone: together they were the reason real projects never shipped.
         page_errors = final_verify.get("errors") or []
         body_empty = any(
             "essentially empty" in str(i).lower() or "250 chars" in str(i).lower()
             for i in (final_verify.get("issues") or [])
         )
-        genuinely_broken = bool(page_errors) or body_empty
+        qa_verdict = qa_report.get("verdict")
+        error_storm = len(page_errors) >= 4  # page is clearly crashing, not a stray throw
+        genuinely_broken = (
+            body_empty
+            or qa_verdict == "non_functional"
+            or (error_storm and qa_verdict != "shippable")
+        )
         if genuinely_broken:
-            log.error("Final quality gate: page is genuinely broken — refusing to publish.")
+            log.error("Final quality gate: page is objectively dead — refusing to publish.")
+            log.error("  verdict=%s, page_errors=%d, body_empty=%s",
+                      qa_verdict, len(page_errors), body_empty)
             for hb in (page_errors[:5] or []):
                 log.error("  [PAGE-ERROR] %s", str(hb)[:180])
-            if body_empty:
-                log.error("  [EMPTY-BODY] page body has almost no rendered HTML.")
             record_failure(
                 memory, plan,
                 stage="qa_gate",
                 reason=(
-                    f"Page genuinely broken after {qa_round} QA round(s). "
-                    f"verdict={qa_report.get('verdict')}, "
+                    f"Page objectively dead after {qa_round} QA round(s). "
+                    f"verdict={qa_verdict}, "
                     f"{len(page_errors)} page error(s), body_empty={body_empty}."
                 ),
                 qa_report=qa_report,
@@ -729,7 +742,7 @@ def main() -> int:
             )
             # NON-HALTING: recorded, but exit 0 so the run stays green.
             save_memory(memory)
-            log.info("Build refused (page broken) and recorded. Exiting 0 (non-halting mode).")
+            log.info("Build refused (page dead) and recorded. Exiting 0 (non-halting mode).")
             return 0
         # Everything else ships. Surface partial state honestly via the badge.
         if qa_report.get("verdict") != "shippable":
