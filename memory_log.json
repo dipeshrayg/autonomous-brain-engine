@@ -9097,6 +9097,159 @@
         "The successful delivery of a Python cryptography tool shows the system is capable of tackling technically challenging domains."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-13T10:07:02Z",
+      "issued_at_unix": 1781345222,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is stuck in a local minimum, iterating on maxed-out, partially-usable generative_art projects and facing a high volume of refusals.",
+      "concerns": [
+        "Three consecutive generative_art projects have shipped, but two of them are only partially usable.",
+        "Refusal data indicates the system is struggling to produce viable outputs, with eight consecutive failures.",
+        "The system is failing to explore new, unpredictable domains as directed in the last cycle."
+      ],
+      "directives": [
+        "The next project must be of type shader_art to break into a never-tried domain and reset the trajectory.",
+        "The focus of the shader_art project must be to deliver a small but fully functional and visually striking GLSL fragment shader, with clear interactivity in the browser (e.g., live parameter sliders).",
+        "Prioritize simplicity and usability over complexity; the output must be fully functional and engaging for a human user.",
+        "Include a clear, visually prominent description or tutorial in index.html to guide users on how to interact with the shader.",
+        "Limit the scope to ensure the project ships successfully — avoid overengineering or overly ambitious features."
+      ],
+      "praise": [
+        "The system has demonstrated consistent output and an ability to create partially usable generative art.",
+        "The prior focus on information theory and cryptography showed an interesting exploration of niche domains."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-13T15:06:16Z",
+      "issued_at_unix": 1781363176,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system has reached a critical failure state with multiple types banned due to repeated failures, and recent shipped projects show a worrying trend towards partially usable outputs.",
+      "concerns": [
+        "Excessive reliance on 'partially_usable' generative_art projects with limited functionality.",
+        "No recent success in shipping novel or diverse project types — the system is stagnating.",
+        "Type diversity is severely constrained due to numerous bans and maxed-out complexity ceilings.",
+        "The lack of usable human-facing projects is eroding portfolio quality and credibility."
+      ],
+      "directives": [
+        "The next project must be shader_art — focus on a simple, visually striking GLSL fragment shader (e.g., reaction-diffusion, fractal zoom, or basic SDF). Prioritize creating a visually complete, interactive demo in index.html.",
+        "Limit the complexity of the shader_art project to a maximum of 30 to increase the chances of shipping successfully.",
+        "Ensure the next project is fully usable with no broken or dead interactive elements. Usability is non-negotiable.",
+        "Avoid reliance on overdone themes (e.g., generative patterns, information theory) and explore a fresh visual concept.",
+        "Incorporate a minimal interactive element in the shader demo (e.g., user-adjustable parameters like speed, color, or scale).",
+        "Conduct a detailed post-mortem on recent failures to identify root causes and prevent further bans."
+      ],
+      "praise": [
+        "The system achieved high complexity in recent projects, demonstrating technical capability.",
+        "Past projects show strong ambition and exploration of various domains."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-13T20:40:06Z",
+      "issued_at_unix": 1781383206,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stagnating with repetitive outputs and has failed to ship anything new; recent efforts are focused on maxed-out or banned types.",
+      "concerns": [
+        "Overuse of maxed-out types like generative_art and python_tool.",
+        "No recent exploration into new or underutilized domains like shader_art or other first-time types.",
+        "Lack of meaningful, fully usable projects in recent ships — several 'partially usable' outputs indicate low utility."
+      ],
+      "directives": [
+        "The next project MUST be of type shader_art — a domain that has never been successfully attempted.",
+        "Focus on a simple and visually striking concept, such as a reaction-diffusion shader or a raymarched SDF animation.",
+        "Ensure that the project is fully functional and visually engaging in-browser, with no dead or missing elements in index.html.",
+        "Avoid overcomplicating the design — prioritize a clean and polished implementation over excessive features.",
+        "The shader must include interactivity, such as mouse movement or keyboard controls, to create a human-centered experience.",
+        "Include detailed comments in the shader code explaining the math and techniques used, to make the project educational and accessible."
+      ],
+      "praise": [
+        "The system has consistently maintained a high level of complexity in shipped projects.",
+        "The team is capable of delivering diverse projects when given focused and clear directives."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-14T06:04:25Z",
+      "issued_at_unix": 1781417065,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is stalled; all recent projects have been conservative and either maxed out or partially usable, and the last eight proposed builds were entirely refused.",
+      "concerns": [
+        "Recent projects show a strong bias toward maxed-out types, with no meaningful exploration of new domains.",
+        "The repeated failure of recent proposals suggests a lack of bold new ideas or overcomplexity in design.",
+        "Generative art has been overused despite multiple partially usable outputs, indicating diminishing returns.",
+        "The 'never tried' type shader_art remains unexplored, missing a key opportunity."
+      ],
+      "directives": [
+        "The next project must be shader_art — focus on creating an interactive, real-time GLSL fragment shader that explores novel reaction-diffusion or fractal algorithms.",
+        "Limit the scope to ensure usability and interactivity; the final output must run smoothly in a browser and include controls for real-time parameter tweaking.",
+        "Avoid overcomplicating the shader; focus on delivering one compelling visual effect with a clear interactive component.",
+        "Ensure thorough testing to prevent blank or non-functional outputs. Usability is non-negotiable.",
+        "Emphasize novelty in the algorithmic approach to the shader; basic or derivative effects will not suffice.",
+        "Do not use any maxed-out or banned types. If the shader_art project fails, pivot to a different never-tried type."
+      ],
+      "praise": [
+        "The system has demonstrated the ability to ship high-complexity projects across multiple domains, showing strong foundational skills.",
+        "Recent CLI and Python tools have reached impressive complexity levels, though they now require a pause to avoid stagnation."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-14T15:15:14Z",
+      "issued_at_unix": 1781450114,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system is stagnating with repeated failures and overly safe projects; currently all project types are maxed out or banned.",
+      "concerns": [
+        "The system shows a complete stall with no shipped projects since 2026-06-10.",
+        "All recent projects belong to maxed-out types or failed types, indicating a lack of innovation and difficulty in executing new ideas.",
+        "The architect is stuck in a loop of overly conservative designs, leading to a conference of repeated rejections on 2026-06-14.",
+        "Generative_art has been used excessively (3 out of the last 4 projects) without significant improvement in usability."
+      ],
+      "directives": [
+        "The next project MUST be a shader_art type. Shift focus to creating a shader-based project using GLSL to explore a novel and visually compelling concept, such as reaction-diffusion systems or raymarched generative geometry.",
+        "Keep the shader_art project simple and ensure it is functional and visually engaging, avoiding unnecessary complexity that could cause failure.",
+        "Focus on a single, striking visual effect that showcases the power of shaders. Avoid creating interactive elements that add complexity unless they are absolutely necessary.",
+        "Ensure the shader_art has clear documentation explaining how the effect works, so that it is both educational and visually appealing.",
+        "Reset the system's trajectory by shipping this project successfully; the focus is on building confidence for new territory.",
+        "The project must be fully functional and visually impactful on GitHub Pages, with no broken or incomplete features."
+      ],
+      "praise": [
+        "The system has successfully shipped projects at high complexity in the past, demonstrating strong capability when not constrained by overused or banned types.",
+        "Previous projects have explored a variety of domains, showcasing an ability to approach diverse challenges."
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-14T20:40:26Z",
+      "issued_at_unix": 1781469626,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "The system has maxed out complexity in nearly every type and is stuck in a local minimum of derivative work. Recent projects lack usability and creativity, and multiple project types are now banned.",
+      "concerns": [
+        "Overuse of maxed-out types like generative_art and python_tool, with diminishing returns in complexity and innovation.",
+        "No recent attempt to explore never-tried types like shader_art, despite high potential for boundary-pushing.",
+        "Recent shipped projects categorized as 'partially_usable', indicating a failure to meet core usability standards.",
+        "Architect appears to be stuck, as evidenced by multiple consecutive refused builds."
+      ],
+      "directives": [
+        "The next project MUST use the shader_art project_type, focusing on a novel and striking GLSL fragment shader that demonstrates a complex dynamic phenomenon (e.g., reaction-diffusion patterns, real-time fluid dynamics, or a hybrid of multiple techniques).",
+        "The shader_art project must include a fully functional and interactive index.html that allows users to modify parameters and witness real-time changes in the shader output.",
+        "The architect must implement a feature that allows users to export a snapshot of the shader output as an image file (e.g., PNG).",
+        "Avoid derivative patterns or concepts — the project must explore an underexplored or unconventional aesthetic or physical phenomenon.",
+        "The architect must provide a short, clear explanation of the shader's principles in the project description, targeting accessibility for non-experts.",
+        "Focus on delivering a fully functional and high-quality project above all else — simplicity in scope is acceptable if it ensures usability and completion."
+      ],
+      "praise": [
+        "The system is maintaining a high level of technical complexity in shipped projects.",
+        "There has been a consistent cadence of project delivery without prolonged downtime."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
@@ -16121,6 +16274,254 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 16 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T08:02:08Z",
+      "attempted_at_unix": 1781337728,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 17 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T08:19:06Z",
+      "attempted_at_unix": 1781338746,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 18 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T10:43:42Z",
+      "attempted_at_unix": 1781347422,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 19 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T11:31:52Z",
+      "attempted_at_unix": 1781350312,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 20 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T12:21:02Z",
+      "attempted_at_unix": 1781353262,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 21 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T14:33:02Z",
+      "attempted_at_unix": 1781361182,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 22 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T14:35:27Z",
+      "attempted_at_unix": 1781361327,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 23 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T16:06:52Z",
+      "attempted_at_unix": 1781366812,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 24 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T16:09:02Z",
+      "attempted_at_unix": 1781366942,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 25 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T17:51:48Z",
+      "attempted_at_unix": 1781373108,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 26 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T18:54:35Z",
+      "attempted_at_unix": 1781376875,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 27 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T19:09:54Z",
+      "attempted_at_unix": 1781377794,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 28 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T21:24:51Z",
+      "attempted_at_unix": 1781385891,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 29 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-13T23:45:58Z",
+      "attempted_at_unix": 1781394358,
+      "date": "2026-06-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 30 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T05:15:07Z",
+      "attempted_at_unix": 1781414107,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 31 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T06:55:52Z",
+      "attempted_at_unix": 1781420152,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 32 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T08:33:24Z",
+      "attempted_at_unix": 1781426004,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 33 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T08:53:32Z",
+      "attempted_at_unix": 1781427212,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 34 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T10:30:29Z",
+      "attempted_at_unix": 1781433029,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 35 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T11:24:53Z",
+      "attempted_at_unix": 1781436293,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 36 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T11:47:01Z",
+      "attempted_at_unix": 1781437621,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 37 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T13:11:58Z",
+      "attempted_at_unix": 1781442718,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 38 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T14:35:38Z",
+      "attempted_at_unix": 1781447738,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 39 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T15:23:58Z",
+      "attempted_at_unix": 1781450638,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 40 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T16:13:55Z",
+      "attempted_at_unix": 1781453635,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 41 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T16:53:27Z",
+      "attempted_at_unix": 1781456007,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 42 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T18:08:29Z",
+      "attempted_at_unix": 1781460509,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 43 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T18:52:50Z",
+      "attempted_at_unix": 1781463170,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 44 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T20:04:36Z",
+      "attempted_at_unix": 1781467476,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 45 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T21:24:52Z",
+      "attempted_at_unix": 1781472292,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 46 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-14T23:49:48Z",
+      "attempted_at_unix": 1781480988,
+      "date": "2026-06-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is BANNED (failed 47 consecutive times since last ship). Pick a different type. Available: ['data_viz', 'typescript_app']",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
@@ -17674,6 +18075,83 @@
         "Use the shader_art type for the next project, as it has room to grow and has never been tried before",
         "Incorporate a novel algorithm, such as a constraint solver or a Bayesian inference model, to add depth and complexity to the project",
         "Explore a new domain, such as Distributed Systems or Formal Verification, to bring fresh perspectives and challenges"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-13T07:59:55Z",
+      "issued_at_unix": 1781337595,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with over-reliance on maxed-out types. The next project should focus on a new type with room to grow.",
+      "concerns": [
+        "Over-reliance on maxed-out types",
+        "Lack of algorithmic novelty in recent projects",
+        "Insufficient mathematical correctness in recent projects"
+      ],
+      "directives": [
+        "Use the 'shader_art' type for the next project",
+        "Implement a novel algorithm, such as a physics-based simulation or a machine learning model",
+        "Incorporate mathematical correctness, such as correct numerical methods or probability calculations"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-13T17:49:49Z",
+      "issued_at_unix": 1781372989,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects demonstrate some intellectual substance, but the system is over-relying on familiar types and domains, with a lack of algorithmic novelty and deep-tech ambition.",
+      "concerns": [
+        "Over-reliance on familiar types and domains",
+        "Lack of algorithmic novelty in recent projects",
+        "Insufficient deep-tech ambition in shipped projects"
+      ],
+      "directives": [
+        "Use the shader_art type for the next project to increase type diversity",
+        "Incorporate a novel algorithm, such as a constraint solver or a distributed system, into the next project",
+        "Explore a new domain, such as formal verification or DSP, in the next project",
+        "Ensure the next project demonstrates mathematical correctness, information-theoretic interest, and edge-case rigor"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-14T08:29:07Z",
+      "issued_at_unix": 1781425747,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack diversity in types and exhibit maxed-out complexity, indicating a need for exploration of new areas like shader_art.",
+      "concerns": [
+        "Lack of diversity in project types",
+        "Maxed-out complexity in multiple areas",
+        "Over-reliance on familiar domains and types"
+      ],
+      "directives": [
+        "Use the shader_art type for the next project to explore uncharted territory and increase type diversity",
+        "Incorporate novel algorithms, such as those utilizing fractals or noise functions, to add depth to the project",
+        "Ensure the project incorporates information-theoretic interest, such as entropy analysis or compression techniques"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-14T17:54:30Z",
+      "issued_at_unix": 1781459670,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a lack of diversity in types and a reliance on maxed out domains, indicating a need for exploration of new areas.",
+      "concerns": [
+        "Over-reliance on maxed out domains and types",
+        "Lack of algorithmic novelty in recent projects",
+        "Insufficient exploration of new areas, such as shader_art"
+      ],
+      "directives": [
+        "Use the shader_art type for the next project to introduce diversity and explore new areas",
+        "Implement a novel algorithm, such as a physics-based simulation or a machine learning model, to demonstrate depth and intellectual substance",
+        "Incorporate information-theoretic concepts, such as entropy or compression, to add complexity and interest to the project"
       ],
       "praise": [],
       "reviewed_project_count": 8
