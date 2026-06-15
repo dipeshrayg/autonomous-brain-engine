@@ -18273,6 +18273,25 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-15T10:41:02Z",
+      "issued_at_unix": 1781520062,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a lack of algorithmic novelty and deep-tech ambition, with most projects maxed out in their respective domains. Expansion into new types is necessary to regain momentum.",
+      "concerns": [
+        "Over-reliance on familiar project types",
+        "Insufficient exploration of deep-tech domains",
+        "Lack of algorithmic innovation in recent projects"
+      ],
+      "directives": [
+        "Utilize the 'ai_concept' project type for the next project",
+        "Incorporate cutting-edge AI techniques, such as explainable AI or transfer learning",
+        "Ensure the project demonstrates mathematical correctness and information-theoretic interest"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
