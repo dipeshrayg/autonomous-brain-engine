@@ -67,9 +67,19 @@ def _truncate(table: str) -> None:
     requests.delete(f"{BASE}/{table}?id=not.is.null", headers=H)
 
 
+def _normalize(rows: list[dict]) -> list[dict]:
+    """PostgREST bulk insert requires every object to have the SAME keys.
+    Fill the union of keys across all rows (missing -> None)."""
+    keys: set[str] = set()
+    for r in rows:
+        keys.update(r.keys())
+    return [{k: r.get(k) for k in keys} for r in rows]
+
+
 def _upsert(table: str, rows: list[dict], on_conflict: str) -> None:
     if not rows:
         return
+    rows = _normalize(rows)
     r = requests.post(
         f"{BASE}/{table}?on_conflict={on_conflict}",
         headers={**H, "Prefer": "resolution=merge-duplicates,return=minimal"},
@@ -84,6 +94,7 @@ def _upsert(table: str, rows: list[dict], on_conflict: str) -> None:
 def _insert(table: str, rows: list[dict]) -> None:
     if not rows:
         return
+    rows = _normalize(rows)
     r = requests.post(
         f"{BASE}/{table}",
         headers={**H, "Prefer": "return=minimal"},
@@ -123,10 +134,20 @@ def main() -> int:
     for p in mem.get("projects", []):
         row = {k: v for k, v in p.items() if k in PROJECT_COLS}
         row["slug"] = _slug(p)
+        # Coerce NOT NULL columns for legacy records that predate the type system.
+        row["project_type"] = row.get("project_type") or "unknown"
+        if row.get("complexity_score") is None:
+            row["complexity_score"] = 0
         if not row.get("completed_at"):
             row["completed_at"] = f"{p.get('date','2026-01-01')}T00:00:00Z"
         if not row.get("date"):
             row["date"] = (row["completed_at"] or "2026-01-01")[:10]
+        # jsonb columns are NOT NULL DEFAULT '[]' — explicit null violates that,
+        # so coerce missing/null arrays to [].
+        for col in ("tech_stack", "concepts_demonstrated", "novel_concepts",
+                    "ceo_directives_followed"):
+            if not row.get(col):
+                row[col] = []
         projects.append(row)
     print("projects:")
     _upsert("projects", projects, on_conflict="slug")
@@ -141,7 +162,13 @@ def main() -> int:
     fails = []
     for f in mem.get("failed_builds", []):
         row = {k: v for k, v in f.items() if k in FAIL_COLS}
-        row["attempted_at"] = f.get("attempted_at") or f"{f.get('date','2026-01-01')}T00:00:00Z"
+        att = f.get("attempted_at") or f.get("date") or "2026-01-01"
+        if len(str(att)) == 10:          # date-only -> full timestamp
+            att = f"{att}T00:00:00Z"
+        row["attempted_at"] = att
+        for col in ("qa_dead_controls", "qa_missing_features"):
+            if not row.get(col):
+                row[col] = []
         fails.append(row)
     print("failed_builds:")
     _load_if_empty("failed_builds", fails)
@@ -159,14 +186,16 @@ def main() -> int:
         print(f"{table}:")
         _load_if_empty(table, rows)
 
-    # ---- taxonomy (upsert on kind,value) ----
-    taxo = []
-    for value in mem.get("concepts_explored", []):
-        taxo.append({"kind": "concept", "value": value})
-    for value in mem.get("patterns_used", []):
-        taxo.append({"kind": "pattern", "value": value})
-    for value in mem.get("domains_used", []):
-        taxo.append({"kind": "domain", "value": value})
+    # ---- taxonomy (upsert on kind,value) — dedupe within batch ----
+    taxo, seen = [], set()
+    for kind, key in (("concept", "concepts_explored"),
+                      ("pattern", "patterns_used"),
+                      ("domain", "domains_used")):
+        for value in mem.get(key, []):
+            pair = (kind, value)
+            if value and pair not in seen:
+                seen.add(pair)
+                taxo.append({"kind": kind, "value": value})
     print("taxonomy:")
     _upsert("taxonomy", taxo, on_conflict="kind,value")
 
