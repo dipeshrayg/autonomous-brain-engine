@@ -16729,6 +16729,49 @@
         "dead": 2
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-15T13:33:26Z",
+      "attempted_at_unix": 1781530406,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=non_functional, 3 dead controls, 2 missing features, 0 verifier blocker(s).",
+      "plan_name": "ai-explainability-dashboard",
+      "plan_language": "JavaScript",
+      "plan_complexity": 150,
+      "plan_pattern": "ai-explainability-pattern",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 7,
+      "project_type": "ai_concept",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Dataset Upload (INPUT: file-upload + BUTTON: Load Dataset)",
+          "expected": "Dataset upload should load a file and update the visualization with new data."
+        },
+        {
+          "control": "AI Model Selection (SELECT: -- Select a Model -- + BUTTON: Load Model)",
+          "expected": "Selecting a model and clicking 'Load Model' should load the model and update the UI with the selected model name."
+        },
+        {
+          "control": "Results Visualization (VISUALS: visualization-canvas)",
+          "expected": "Uploading a dataset and selecting a model should generate predictions and display results as an interactive visualization on the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Model Performance Optimization Suggestions"
+        },
+        {
+          "feature": "Results Visualization as an Interactive Visualization"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 1,
+        "dead": 3
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
