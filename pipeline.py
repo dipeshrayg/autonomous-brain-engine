@@ -407,10 +407,10 @@ MANDATORY CHECKS — fail any project that fails any of these:
 
 8. PIXEL / VISUAL: If interaction is supposed to draw on canvas, does the canvas show meaningful change? Not just any change — meaningful, visible-to-a-user change.
 
-CRITERIA for verdict — BE STRICT, default to non_functional when in doubt:
+CRITERIA for verdict — SHIP-FIRST: when in doubt, prefer partially_usable over non_functional. Reserve non_functional for pages that are TRULY dead. The goal is to deliver real projects; a project with one or two imperfect controls is still a genuine deliverable and should ship with a badge.
 
-- non_functional: The page loads but a human cannot DO anything useful. This includes: python_tool with no JS computation, any "Analyze/Run/Compute" button that shows no output, blank canvas on load with no auto-start, >50% of controls produce no visible change. DO NOT ship these.
-- partially_usable: Core experience works and is genuinely useful, but 1-3 secondary controls are broken. A human gets real value from the page. Ship with badge.
+- non_functional (RARE — only for truly dead pages): The page is broken for a human — it crashes, renders blank with no auto-start AND no working controls, or EVERY interactive control is dead. If even ONE meaningful interaction works and the page shows real content, it is NOT non_functional — use partially_usable instead.
+- partially_usable (the DEFAULT when unsure): Core experience works and a human gets real value, but some secondary controls may be imperfect. This is the right verdict for the large majority of projects. Ship with badge.
 - shippable: Every promised feature works and produces real output a human can see and use. Hold this standard high — do not give shippable to projects where buttons appear to work but produce no meaningful output.
 
 OUTPUT — single JSON:

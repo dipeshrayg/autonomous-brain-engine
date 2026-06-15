@@ -6,7 +6,7 @@ name: Science Review
 
 on:
   schedule:
-    - cron: "29 4 * * *"       # 04:29 UTC
+    # Once per day — same rationale as the CEO review: reduce verdict noise.
     - cron: "29 16 * * *"      # 16:29 UTC
   workflow_dispatch:
 

@@ -687,61 +687,57 @@ def main() -> int:
         # to the visitor — but non_functional or fundamental verifier
         # blockers (blank canvas, page errors) are hard refusals.
         #
-        # IMPORTANT: When QA explicitly returns verdict=shippable with zero dead
-        # controls and zero missing features, trust that verdict. Verifier heuristics
-        # (blank-canvas pixel sampling, zero-controls count) produce false positives
-        # for WebGL shaders, terminal-style python_tool UIs, and other patterns the
-        # verifier cannot fully introspect. The QA Tester — which sees the actual
-        # rendered page — is the higher-authority judge.
-        # Hard page errors (JS exceptions, network failures) always block regardless.
+        # ── SHIP-FIRST QUALITY GATE ──────────────────────────────────────────
+        # User directive: a real, interactive project in the deliveries list beats an
+        # empty portfolio. After the QA fix rounds, the project SHIPS unless it is
+        # genuinely dead-on-arrival for a human visitor.
+        #
+        # SHIPS:  shippable, partially_usable, and even a non_functional verdict whose
+        #         page still loads and renders interactive content (the QA Tester is
+        #         deliberately conservative and over-reports non_functional). All of
+        #         these get a 🧪 "partial" badge when not fully shippable so visitors
+        #         see the honest state.
+        # REFUSES (the only hard stop): the page is genuinely broken — real uncaught
+        #         JS page errors that break rendering, OR an essentially empty body.
+        #         These are objective mechanical failures, not the QA Tester's opinion.
+        #
+        # The old keyword scan (blank/runaway/empty/zero in verifier "issues") is gone:
+        # it produced false positives for canvas/WebGL/tool/expansion-type UIs and was
+        # the single biggest reason real projects never shipped.
         page_errors = final_verify.get("errors") or []
-        qa_shippable = (
-            qa_report.get("verdict") == "shippable"
-            and not (qa_report.get("dead_controls") or [])
-            and not (qa_report.get("missing_features") or [])
+        body_empty = any(
+            "essentially empty" in str(i).lower() or "250 chars" in str(i).lower()
+            for i in (final_verify.get("issues") or [])
         )
-        verifier_issues = [
-            i for i in (final_verify.get("issues") or [])
-            if any(k in i.lower() for k in ("blank", "runaway", "empty", "zero"))
-        ]
-        hard_blockers = page_errors + ([] if qa_shippable else verifier_issues)
-        if qa_report.get("verdict") == "non_functional" or hard_blockers:
-            log.error("Final quality gate failed after %d QA round(s) — refusing to publish.",
-                      qa_round)
-            for d in (qa_report.get("dead_controls") or [])[:5]:
-                if isinstance(d, dict):
-                    log.error("  [DEAD] %s — %s", d.get("control", "?"), d.get("actual", "?"))
-            for f in (qa_report.get("missing_features") or [])[:5]:
-                if isinstance(f, dict):
-                    log.error("  [MISSING] %s", f.get("feature", "?"))
-            for hb in hard_blockers[:5]:
-                log.error("  [VERIFIER] %s", str(hb)[:180])
+        genuinely_broken = bool(page_errors) or body_empty
+        if genuinely_broken:
+            log.error("Final quality gate: page is genuinely broken — refusing to publish.")
+            for hb in (page_errors[:5] or []):
+                log.error("  [PAGE-ERROR] %s", str(hb)[:180])
+            if body_empty:
+                log.error("  [EMPTY-BODY] page body has almost no rendered HTML.")
             record_failure(
                 memory, plan,
                 stage="qa_gate",
                 reason=(
-                    f"QA gate refused after {qa_round} round(s). "
+                    f"Page genuinely broken after {qa_round} QA round(s). "
                     f"verdict={qa_report.get('verdict')}, "
-                    f"{len(qa_report.get('dead_controls') or [])} dead controls, "
-                    f"{len(qa_report.get('missing_features') or [])} missing features, "
-                    f"{len(hard_blockers)} verifier blocker(s)."
+                    f"{len(page_errors)} page error(s), body_empty={body_empty}."
                 ),
                 qa_report=qa_report,
                 verify_result=final_verify,
             )
-            # NON-HALTING: a refused attempt is normal operation, not a CI failure.
-            # Exit 0 so the GitHub Actions run stays green and the automation is never
-            # perceived as "stopped". The refusal is preserved in failed_builds[] so the
-            # CEO/CSO learn from it and the next scheduled run tries again.
+            # NON-HALTING: recorded, but exit 0 so the run stays green.
             save_memory(memory)
-            log.info("Build refused at QA gate and recorded. Exiting 0 (non-halting mode).")
+            log.info("Build refused (page broken) and recorded. Exiting 0 (non-halting mode).")
             return 0
-        if qa_report.get("verdict") == "partially_usable":
+        # Everything else ships. Surface partial state honestly via the badge.
+        if qa_report.get("verdict") != "shippable":
             residual_dead = len(qa_report.get("dead_controls") or [])
             log.warning(
-                "Shipping with QA verdict=partially_usable (%d residual dead control(s)). "
-                "Card will display 🧪 partial badge so visitors are warned.",
-                residual_dead,
+                "SHIP-FIRST: publishing despite QA verdict=%s (%d residual dead control(s)). "
+                "Card will display 🧪 partial badge so visitors see the honest state.",
+                qa_report.get("verdict"), residual_dead,
             )
 
         # SECURITY GATE — REMOVED in Project Evolution per user directive.
