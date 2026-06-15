@@ -16672,6 +16672,38 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-15T12:07:33Z",
+      "attempted_at_unix": 1781525253,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "ai-architecture-concept-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 125,
+      "plan_pattern": "interactive-ai-architecture-builder",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 7,
+      "project_type": "ai_concept",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "button.run 'Run Simulation'",
+          "expected": "Triggers the TensorFlow.js model simulation and displays real-time outputs and metrics."
+        },
+        {
+          "control": "checkbox.toggle 'Show Activation Maps'",
+          "expected": "Toggles the display of activation maps on the canvas."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
