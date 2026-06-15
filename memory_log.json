@@ -4466,6 +4466,112 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-15",
+      "completed_at": "2026-06-15T14:36:39Z",
+      "completed_at_unix": 1781534199,
+      "name": "ai-dream-generator",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-15-ai-dream-generator",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-15-ai-dream-generator/",
+      "language": "JavaScript",
+      "project_type": "ai_concept",
+      "tech_stack": [
+        "HTML",
+        "JavaScript",
+        "Canvas API",
+        "Pretrained AI model (mocked)",
+        "esm.sh imports"
+      ],
+      "complexity_score": 120,
+      "concepts_demonstrated": [
+        "AI-driven generative art",
+        "Transfer learning concepts",
+        "Dynamic user interaction",
+        "Speculative AI design",
+        "Interactive parameter tuning"
+      ],
+      "novel_concepts": [
+        "Speculative AI-driven surrealism",
+        "Real-time generative reinterpretation of textual input",
+        "AI as a tool for dream visualization"
+      ],
+      "advancement_axis": "The project pushes the domain of AI-driven creativity and speculative design by merging text-based user input with surreal generative visuals.",
+      "pattern": "ai-driven-surreal-art",
+      "domain": "AI-driven creative tools",
+      "visual_identity": "A dreamy, ethereal aesthetic with gradient-based color palettes, soft transitions, and playful UI typography.",
+      "safety_notes": "All AI functionality is speculative and uses deterministic algorithms to simulate AI behavior. No real data is collected or shared. The project is fully compliant with GitHub TOS.",
+      "file_count": 5,
+      "loc": 502,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 210,
+        "bodyHtml": 1184,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 960,
+          "cssH": 720
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "AI Dream Generator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "e.g., A surreal landscape with floating ",
+              "trigger": "text",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "ai-mock.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must use the ai_concept project_type, exploring a novel AI architecture or system with a focus on conceptual innovation.",
+        "Ensure the project is scoped such that all core functionality is implemented and usable — no dead or missing features.",
+        "Avoid generative_art, python_tool, or other maxed-out types in the next build.",
+        "Prioritize interactivity and user engagement in the project. Deliver a working demo that is accessible and intuitive for end-users through GitHub Pages.",
+        "Incorporate a creative and unpredictable element into the AI concept, such as speculative AI design, emergent behavior, or AI-driven art generation.",
+        "Leverage lessons from recent failures to ensure robust QA — test interactivity thoroughly before submission."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Most features work well, including dynamic visuals and interactivity, but the text input doesn't trigger any observable state change, leaving the 'Generate' button unable to function without a preset prompt.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "input.text 'Enter your dream prompt'",
+            "expected": "Updates the text prompt state and enables the Generate button to render corresponding visuals.",
+            "actual": "No observable state change occurs upon entering text, and the 'Generate' button does not process the input.",
+            "fix": "Ensure the 'input' event listener properly updates the state.prompt property to store the entered text, enabling the Generate button to function."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4519,7 +4625,8 @@
     105,
     110,
     110,
-    110
+    110,
+    120
   ],
   "concepts_explored": [
     "neural networks",
@@ -4731,7 +4838,12 @@
     "Procedural Generation",
     "Dynamic User Input",
     "Interactive Visualization",
-    "Color Theory for Generative Art"
+    "Color Theory for Generative Art",
+    "AI-driven generative art",
+    "Transfer learning concepts",
+    "Dynamic user interaction",
+    "Speculative AI design",
+    "Interactive parameter tuning"
   ],
   "patterns_used": [
     "visualizer",
@@ -4778,7 +4890,8 @@
     "dynamic-puzzle-evolution",
     "cryptography-utility-pattern",
     "interactive-procedural-tessellation",
-    "info-driven-generative-pattern"
+    "info-driven-generative-pattern",
+    "ai-driven-surreal-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -4825,7 +4938,8 @@
     "Artificial Intelligence",
     "Cryptography",
     "Generative Art",
-    "Generative Art"
+    "Generative Art",
+    "AI-driven creative tools"
   ],
   "ceo_reviews": [
     {
