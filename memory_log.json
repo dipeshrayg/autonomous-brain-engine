@@ -16772,6 +16772,45 @@
         "dead": 3
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-15T14:28:20Z",
+      "attempted_at_unix": 1781533700,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page genuinely broken after 3 QA round(s). verdict=partially_usable, 1 page error(s), body_empty=False.",
+      "plan_name": "ai-speculative-architecture-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 115,
+      "plan_pattern": "interactive-speculative-ai-lab",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 7,
+      "project_type": "ai_concept",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Simulate button",
+          "expected": "Trigger simulation of the architecture with visible animation of the data flow."
+        },
+        {
+          "control": "Reset button",
+          "expected": "Clear the canvas and reset all components and connections."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Simulation feedback"
+        },
+        {
+          "feature": "Component type label"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 1,
+        "dead": 3
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
