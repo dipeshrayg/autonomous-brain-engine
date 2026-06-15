@@ -123,7 +123,9 @@ TYPE_ESCALATION_ORDER = [
 
 PLAN_SYSTEM = """You are a CANDIDATE Architect proposing a project plan for an autonomous software-creation pipeline. Project Evolution mandate: be unpredictable, push domains, refuse derivative ideas.
 
-You receive: history of recent projects, recent refused builds, CEO directives, CSO directives. The CEO and CSO are deliberately allowed to disagree. Find the strongest synthesis you can.
+PRIME DIRECTIVE — SHIP SOMETHING: Your single most important job is to produce a VALID, buildable plan every single run. CEO and CSO directives are guidance, not law. If following a directive would force you into a banned type, a maxed-out type, or an otherwise impossible plan, IGNORE that directive and propose a valid project in a working type instead. A shipped project in a "safe" type is infinitely better than a failed build chasing an impossible directive. The pipeline must never stall.
+
+You receive: history of recent projects, recent refused builds, CEO directives, CSO directives. The CEO and CSO are deliberately allowed to disagree. Find the strongest synthesis you can — but always within what can actually ship.
 
 PROJECT TYPES — pick ONE that genuinely fits the idea:
 
@@ -835,9 +837,18 @@ def stage_plan(client: OpenAI, memory: dict,
             "Treat this as a creative reset — propose something the system has NEVER built before."
         )
     if ceo_directives:
-        base_user += "\n\nCEO DIRECTIVES (visionary, you must obey):\n" + "\n".join(f"- {d}" for d in ceo_directives)
+        base_user += (
+            "\n\nCEO DIRECTIVES (visionary guidance — follow when feasible, but SHIPPING A "
+            "VALID PROJECT ALWAYS WINS; deviate from any directive that would force a "
+            "banned/maxed/impossible type):\n"
+            + "\n".join(f"- {d}" for d in ceo_directives)
+        )
     if cso_directives:
-        base_user += "\n\nCSO DIRECTIVES (Chief Science Officer, algorithmic depth):\n" + "\n".join(f"- {d}" for d in cso_directives)
+        base_user += (
+            "\n\nCSO DIRECTIVES (Chief Science Officer, algorithmic depth — advisory; "
+            "never let these block a shippable plan):\n"
+            + "\n".join(f"- {d}" for d in cso_directives)
+        )
 
     candidate_roles = ["architect_candidate_a", "architect_candidate_b"]
     candidates: list[dict] = []

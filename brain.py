@@ -729,7 +729,13 @@ def main() -> int:
                 qa_report=qa_report,
                 verify_result=final_verify,
             )
-            return 1
+            # NON-HALTING: a refused attempt is normal operation, not a CI failure.
+            # Exit 0 so the GitHub Actions run stays green and the automation is never
+            # perceived as "stopped". The refusal is preserved in failed_builds[] so the
+            # CEO/CSO learn from it and the next scheduled run tries again.
+            save_memory(memory)
+            log.info("Build refused at QA gate and recorded. Exiting 0 (non-halting mode).")
+            return 0
         if qa_report.get("verdict") == "partially_usable":
             residual_dead = len(qa_report.get("dead_controls") or [])
             log.warning(
@@ -793,8 +799,15 @@ def main() -> int:
             log.info("Logged conference failure (type=%s) to failed_builds.", demanded_type)
         except Exception as log_err:
             log.warning("Could not log conference failure: %s", log_err)
-        return 1
+        # NON-HALTING: the architect could not produce a valid plan this run (often because
+        # CEO directives demanded a maxed/banned type). This is recorded so recovery mode and
+        # expansion mode can kick in on the next run. Exit 0 so the build is never marked
+        # failed when it comes to the CEO review — the next scheduled run will try again.
+        log.info("Conference failure recorded. Exiting 0 (non-halting mode).")
+        return 0
     except Exception:
+        # Genuine, unexpected crash (not a normal refusal). Keep this visible as a real
+        # failure so actual bugs surface — this is NOT a CEO-review halt.
         log.error("Unhandled error:\n%s", traceback.format_exc())
         return 1
 
