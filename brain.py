@@ -498,6 +498,35 @@ def main() -> int:
     log.info("Today (%s) has %d/%d projects so far. Building project #%d.",
              today, today_count, MAX_PROJECTS_PER_DAY, today_count + 1)
 
+    # ── Expansion mode: activate when CEO says "alarming", deactivate on recovery ──
+    ceo_reviews = memory.get("ceo_reviews", [])
+    if ceo_reviews:
+        latest_ceo_verdict = ceo_reviews[-1].get("verdict", "acceptable")
+        if latest_ceo_verdict == "alarming" and not memory.get("expansion_mode"):
+            memory["expansion_mode"] = True
+            memory["expansion_mode_since"] = datetime.now(timezone.utc).isoformat()
+            save_memory(memory)
+            log.warning(
+                "EXPANSION MODE ACTIVATED: CEO verdict=alarming. "
+                "Unlocking 8 expansion project types (saas_landing, database_showcase, "
+                "research_showcase, social_toolkit, ai_concept, creative_tool, "
+                "edu_platform, prank_entertainment) and resetting all type bans."
+            )
+        elif latest_ceo_verdict in ("thriving", "acceptable") and memory.get("expansion_mode"):
+            # Deactivate once system has recovered and CEO is happy
+            expansion_shipped = sum(
+                1 for p in memory.get("projects", [])
+                if p.get("project_type") in pipeline.EXPANSION_TYPES
+            )
+            if expansion_shipped >= 3:
+                memory["expansion_mode"] = False
+                save_memory(memory)
+                log.info(
+                    "Expansion mode deactivated: CEO verdict=%s and %d expansion "
+                    "projects shipped. Returning to standard types.",
+                    latest_ceo_verdict, expansion_shipped
+                )
+
     client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
     ceo_directives: list[str] = []  # initialise before try so except block can reference it
 

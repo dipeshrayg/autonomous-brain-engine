@@ -50,11 +50,26 @@ PROJECT_TYPES = (
     "document",
     "generative_art",
     "game_web",
-    "shader_art",       # GLSL fragment shaders — pure WebGL, no Three.js
-    "data_viz",         # Python heavy data visualisation (matplotlib/plotly/rich TUI)
-    "typescript_app",   # TypeScript compiled to a single JS bundle via a CDN transpiler
-    "cli_tool",         # Rust or Go compiled CLI (ships Codespaces devcontainer + index.html showcase)
+    "shader_art",        # GLSL fragment shaders — pure WebGL, no Three.js
+    "data_viz",          # Python heavy data visualisation (matplotlib/plotly/rich TUI)
+    "typescript_app",    # TypeScript compiled to a single JS bundle via a CDN transpiler
+    "cli_tool",          # Rust or Go compiled CLI (ships Codespaces devcontainer + index.html showcase)
+    # ── Expansion tier — unlocked when CEO verdict reaches "alarming" ──────────
+    "saas_landing",      # SaaS product: landing page + interactive pricing + live feature demo
+    "database_showcase", # Interactive DB architecture: ER diagrams, query planner, schema designer
+    "research_showcase", # Research paper as interactive web experience with live experiments
+    "social_toolkit",    # Viral content creator, social media campaign kit, A/B test generator
+    "ai_concept",        # Novel AI product concept with interactive demo and capability explorer
+    "creative_tool",     # Writing tool, music composer, story generator, creative assistant
+    "edu_platform",      # Interactive learning module, quiz engine, coding tutorial system
+    "prank_entertainment", # Viral/entertainment: fake OS terminal, prank site, interactive fiction
 )
+
+# Expansion types are never-tried territory — they start fresh and grow independently.
+EXPANSION_TYPES: frozenset[str] = frozenset({
+    "saas_landing", "database_showcase", "research_showcase", "social_toolkit",
+    "ai_concept", "creative_tool", "edu_platform", "prank_entertainment",
+})
 
 # Complexity ceilings per type.  Open-ended by design — ceilings are HIGH
 # so the system can keep growing without getting trapped.
@@ -69,6 +84,15 @@ TYPE_COMPLEXITY_CEILING: dict[str, int] = {
     "typescript_app":  85,
     "cli_tool":        90,   # Rust/Go — virtually no ceiling
     "python_tool":    100,   # highest ceiling
+    # Expansion tier — no practical ceiling; these domains are infinite
+    "saas_landing":         999,
+    "database_showcase":    999,
+    "research_showcase":    999,
+    "social_toolkit":       999,
+    "ai_concept":           999,
+    "creative_tool":        999,
+    "edu_platform":         999,
+    "prank_entertainment":  999,
 }
 
 # Tier ordering: when current type is maxed, prefer the next tier up.
@@ -83,6 +107,15 @@ TYPE_ESCALATION_ORDER = [
     "web_3d",
     "python_tool",
     "cli_tool",
+    # Expansion tier (recommended only in expansion mode)
+    "saas_landing",
+    "database_showcase",
+    "research_showcase",
+    "social_toolkit",
+    "ai_concept",
+    "creative_tool",
+    "edu_platform",
+    "prank_entertainment",
 ]
 
 
@@ -117,6 +150,46 @@ PROJECT TYPES — pick ONE that genuinely fits the idea:
                       product design schematic, ASCII-diagrammed system architecture.
     generative_art    Hybrid: produces visual output (web canvas OR static images).
     game_web          Browser game — rules, state, win condition, multiple screens.
+
+EXPANSION TYPES (available only when EXPANSION MODE is shown in the user prompt):
+    saas_landing      Full SaaS product concept as a stunning landing page + live interactive
+                      feature demo. Include: hero section, animated feature showcase, live
+                      interactive demo (working JS prototype of the core feature), pricing table
+                      with toggle, testimonials, FAQ. Make it look like a real funded startup.
+                      Examples: AI writing assistant SaaS, database-as-a-service, real-time
+                      collaboration tool, developer analytics platform.
+    database_showcase Interactive database architecture visualizer. Shows: ER diagram (rendered
+                      in canvas/SVG), live query planner that shows execution steps, schema
+                      migration tool, index optimization advisor. Must be interactive — user
+                      can modify schemas, run sample queries, see query plans animate.
+                      Examples: multi-tenant SaaS schema, event-sourcing architecture,
+                      graph database schema explorer, time-series data architecture.
+    research_showcase Academic or technical research as an interactive web experience. Not just
+                      a static paper — embed live experiments, interactive diagrams, animated
+                      proofs, and parameter-tweakable simulations that let the reader reproduce
+                      the paper's key results in the browser.
+                      Examples: interactive ML paper with live training, cryptography research
+                      with live encryption demos, physics paper with live simulation.
+    social_toolkit    Viral content creator or social media campaign toolkit. Could be: a meme
+                      generator with real templates, an A/B headline tester, a hashtag trend
+                      analyzer, a viral hook formula generator, a campaign calendar builder.
+                      Must be genuinely useful and produce shareable output.
+    ai_concept        Novel AI product concept with working interactive demo. Show what the
+                      product does through a live prototype. Could be: an AI code reviewer
+                      (static analysis demo), a prompt engineering playground, an AI product
+                      roadmap generator, a model comparison tool, a RAG demo architecture.
+    creative_tool     Creative production tool: music composer (Web Audio API), story branching
+                      engine, poetry generator with meter analysis, color palette generator
+                      with export, type specimen generator, logo concept explorer.
+    edu_platform      Interactive educational experience: a full mini-course on one topic with
+                      quiz engine, progress tracking, animated explanations, and a capstone
+                      exercise. Or: a coding challenge platform, a math visualization tutor,
+                      a language learning flashcard system with spaced repetition.
+    prank_entertainment  Viral or entertainment web experience: a convincing fake OS terminal,
+                      a "your computer has a virus" prank site (educational/obvious), an
+                      interactive choose-your-own-adventure, a fake product page that reveals
+                      itself, a "personality quiz" with absurd but internally consistent logic.
+                      Must be clearly harmless fun — labeled as fiction/parody where needed.
 
 ABSOLUTE CONSTRAINTS:
 1. Comply with GitHub TOS. No active malware, no exploits against systems without consent. Educational / diagnostic / synthetic demos only.
@@ -403,7 +476,10 @@ def _type_failure_streaks(memory: dict) -> dict[str, int]:
 
 
 def _banned_types(memory: dict) -> list[str]:
-    """Types that have failed 3+ times consecutively since last ship. Auto-banned."""
+    """Types that have failed 3+ times consecutively since last ship. Auto-banned.
+    All bans are lifted in expansion mode — the system needs every available type."""
+    if memory.get("expansion_mode"):
+        return []
     streaks = _type_failure_streaks(memory)
     return [t for t, count in streaks.items() if count >= 3 and t != "unknown"]
 
@@ -423,23 +499,31 @@ def _type_diversity_summary(memory: dict) -> str:
         c = p.get("complexity_score", 0)
         type_max_complexity[pt] = max(type_max_complexity.get(pt, 0), c)
 
+    in_expansion = memory.get("expansion_mode", False)
+    standard_types = [t for t in PROJECT_TYPES if t not in EXPANSION_TYPES]
+    active_types   = list(PROJECT_TYPES) if in_expansion else standard_types
+
     lines = ["\n── TYPE DIVERSITY REPORT ──"]
+    if in_expansion:
+        lines.append("** EXPANSION MODE ACTIVE ** All bans lifted. Expansion types unlocked.")
     lines.append("Types built so far:")
-    for pt in PROJECT_TYPES:
+    for pt in active_types:
         count = type_counts.get(pt, 0)
         max_c = type_max_complexity.get(pt, 0)
         ceiling = TYPE_COMPLEXITY_CEILING.get(pt, 50)
+        tag = " [EXPANSION]" if pt in EXPANSION_TYPES else ""
         status = "MAXED OUT" if max_c >= ceiling else f"room to grow (ceiling={ceiling})"
-        lines.append(f"  {pt:20s}: {count:2d} shipped, max_complexity={max_c:3d}, {status}")
+        lines.append(f"  {pt:24s}: {count:2d} shipped, max_complexity={max_c:3d}, {status}{tag}")
 
     # Never-tried types
-    never_tried = [pt for pt in PROJECT_TYPES if type_counts.get(pt, 0) == 0]
+    never_tried = [pt for pt in active_types if type_counts.get(pt, 0) == 0]
     if never_tried:
         lines.append(f"\nNEVER TRIED (high priority): {', '.join(never_tried)}")
 
     # Maxed-out types
-    maxed = [pt for pt in PROJECT_TYPES
-             if type_max_complexity.get(pt, 0) >= TYPE_COMPLEXITY_CEILING.get(pt, 50)]
+    maxed = [pt for pt in active_types
+             if type_max_complexity.get(pt, 0) >= TYPE_COMPLEXITY_CEILING.get(pt, 50)
+             and pt not in EXPANSION_TYPES]
     if maxed:
         lines.append(f"MAXED OUT (avoid unless recovery): {', '.join(maxed)}")
 
@@ -533,6 +617,11 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     pt = plan.get("project_type")
     if pt not in PROJECT_TYPES:
         raise PipelineError(f"project_type must be one of {PROJECT_TYPES}; got {pt!r}")
+    if pt in EXPANSION_TYPES and not memory.get("expansion_mode"):
+        raise PipelineError(
+            f"project_type={pt!r} is an expansion type — only available when CEO verdict "
+            "is 'alarming' and expansion mode is active. Choose a standard type instead."
+        )
 
     # is_web_project must agree with project_type
     web_types = {"web_interactive", "web_3d", "game_web", "generative_art"}
@@ -570,14 +659,29 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
 
     # Hard advancement gate
     recent = memory.get("projects", [])[-7:]
+    all_projects_list = memory.get("projects", [])
+    in_expansion = memory.get("expansion_mode", False)
     if recent and not in_recovery:
-        max_recent = max(p.get("complexity_score", 0) for p in recent)
-        floor = max_recent + 1
-        if complexity < floor:
-            raise PipelineError(
-                f"complexity_score={complexity} below floor {floor} (max recent={max_recent}). "
-                "The scale is open-ended; surpass yesterday."
-            )
+        if in_expansion and pt in EXPANSION_TYPES:
+            # Expansion types start fresh — only enforce floor within the same type's own history.
+            type_scores = [p.get("complexity_score", 0) for p in all_projects_list
+                           if p.get("project_type") == pt and p.get("complexity_score", 0) > 0]
+            if type_scores:
+                type_floor = max(type_scores) + 1
+                if complexity < type_floor:
+                    raise PipelineError(
+                        f"complexity_score={complexity} below floor {type_floor} for {pt} "
+                        f"(max shipped for this type={max(type_scores)}). Keep advancing."
+                    )
+            # else: first time this expansion type is built — no floor required
+        else:
+            max_recent = max(p.get("complexity_score", 0) for p in recent)
+            floor = max_recent + 1
+            if complexity < floor:
+                raise PipelineError(
+                    f"complexity_score={complexity} below floor {floor} (max recent={max_recent}). "
+                    "The scale is open-ended; surpass yesterday."
+                )
 
     # Novel concepts gate
     explored = set(memory.get("concepts_explored", []))
@@ -717,7 +821,19 @@ def stage_plan(client: OpenAI, memory: dict,
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     diversity = _type_diversity_summary(memory)
+    in_expansion = memory.get("expansion_mode", False)
     base_user = f"Today is {today}. Produce today's design plan.\n\n{history}{diversity}"
+    if in_expansion:
+        base_user += (
+            "\n\n🚨 EXPANSION MODE ACTIVE 🚨\n"
+            "The CEO has issued an ALARMING verdict. The standard project types are exhausted "
+            "or maxed out. You MUST use one of the EXPANSION TYPES listed in the TYPE DIVERSITY "
+            "REPORT above. These are entirely new creative territories:\n"
+            "  saas_landing, database_showcase, research_showcase, social_toolkit,\n"
+            "  ai_concept, creative_tool, edu_platform, prank_entertainment\n"
+            "All type bans are lifted. Complexity floor is per-type (fresh start for new types).\n"
+            "Treat this as a creative reset — propose something the system has NEVER built before."
+        )
     if ceo_directives:
         base_user += "\n\nCEO DIRECTIVES (visionary, you must obey):\n" + "\n".join(f"- {d}" for d in ceo_directives)
     if cso_directives:
