@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  models: read                 # required for the GitHub Models API (gpt-4o, etc.)
 
 concurrency:
   group: node-review
