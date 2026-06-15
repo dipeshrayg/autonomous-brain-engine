@@ -16640,6 +16640,70 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-15T10:57:24Z",
+      "attempted_at_unix": 1781521044,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 1 dead controls, 1 missing features, 2 verifier blocker(s).",
+      "plan_name": "explainable-ai-decision-maker",
+      "plan_language": "JavaScript",
+      "plan_complexity": 115,
+      "plan_pattern": "explainable-ai-decision-pattern",
+      "plan_domain": "Human-Computer Interaction",
+      "plan_files_count": 7,
+      "project_type": "ai_concept",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Input field (id=input-field)",
+          "expected": "Entering data should update the model and explanation dynamically after running the model."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Error handling for invalid models"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-06-15T12:07:33Z",
+      "attempted_at_unix": 1781525253,
+      "date": "2026-06-15",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "QA gate refused after 3 round(s). verdict=partially_usable, 2 dead controls, 0 missing features, 3 verifier blocker(s).",
+      "plan_name": "ai-architecture-concept-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 125,
+      "plan_pattern": "interactive-ai-architecture-builder",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 7,
+      "project_type": "ai_concept",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "button.run 'Run Simulation'",
+          "expected": "Triggers the TensorFlow.js model simulation and displays real-time outputs and metrics."
+        },
+        {
+          "control": "checkbox.toggle 'Show Activation Maps'",
+          "expected": "Toggles the display of activation maps on the canvas."
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
@@ -18270,6 +18334,25 @@
         "Use the shader_art type for the next project to introduce diversity and explore new areas",
         "Implement a novel algorithm, such as a physics-based simulation or a machine learning model, to demonstrate depth and intellectual substance",
         "Incorporate information-theoretic concepts, such as entropy or compression, to add complexity and interest to the project"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-15T10:41:02Z",
+      "issued_at_unix": 1781520062,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a lack of algorithmic novelty and deep-tech ambition, with most projects maxed out in their respective domains. Expansion into new types is necessary to regain momentum.",
+      "concerns": [
+        "Over-reliance on familiar project types",
+        "Insufficient exploration of deep-tech domains",
+        "Lack of algorithmic innovation in recent projects"
+      ],
+      "directives": [
+        "Utilize the 'ai_concept' project type for the next project",
+        "Incorporate cutting-edge AI techniques, such as explainable AI or transfer learning",
+        "Ensure the project demonstrates mathematical correctness and information-theoretic interest"
       ],
       "praise": [],
       "reviewed_project_count": 8
