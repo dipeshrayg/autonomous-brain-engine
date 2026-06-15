@@ -1,0 +1,13 @@
+{
+  "name": "autonomous-brain-engine-node",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Node.js port of the Autonomous Brain pipeline (parallel build, incremental cutover).",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "ceo": "node src/index.js ceo",
+    "cso": "node src/index.js cso",
+    "check": "node --check src/index.js && node --check src/roles.js && node --check src/executive.js && node --check src/supabaseSync.js"
+  }
+}

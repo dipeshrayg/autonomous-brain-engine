@@ -1,0 +1,58 @@
+name: Node Review (parallel)
+
+# Parallel-build smoke test for the Node.js engine port. Manual dispatch only —
+# it does NOT replace the Python CEO/CSO cron. Lets us prove the Node executive
+# module at parity (LLM call -> verdict -> memory + Supabase) before any cutover.
+on:
+  workflow_dispatch:
+    inputs:
+      review:
+        description: "Which review to run"
+        type: choice
+        options: [ceo, cso]
+        default: ceo
+
+permissions:
+  contents: write
+
+concurrency:
+  group: node-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run Node ${{ inputs.review }} review
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GOOGLE_AI_KEY: ${{ secrets.GOOGLE_AI_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+        run: node engine-node/src/index.js ${{ inputs.review }}
+
+      - name: Commit memory log (resilient push)
+        if: always()
+        run: |
+          git config user.name  "node-engine[autonomous-brain]"
+          git config user.email "node-engine@users.noreply.github.com"
+          git add memory_log.json 2>/dev/null || true
+          if git diff --staged --quiet; then echo "Nothing to commit."; exit 0; fi
+          git commit -m "node-engine: ${{ inputs.review }} review @ $(date -u +%Y-%m-%dT%H:%MZ)"
+          for attempt in 1 2 3 4 5; do
+            if git push; then echo "Pushed on attempt $attempt."; exit 0; fi
+            echo "Push rejected (attempt $attempt) — integrating..."
+            git fetch origin main || true
+            git pull --rebase origin main || git rebase --abort || true
+            sleep $((attempt * 3))
+          done
+          echo "::warning::Could not push after retries. Not failing the build."
+          exit 0
