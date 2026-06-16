@@ -97,8 +97,12 @@ function AuthBar({ session }) {
 
   const signIn = async (e) => {
     e.preventDefault(); setBusy(true); setErr('')
+    // Redirect back to this exact app URL (origin + path, no stray hash/query).
+    // NOTE: this URL must also be allow-listed in Supabase → Auth → URL Configuration,
+    // otherwise Supabase ignores it and falls back to the project's Site URL.
+    const redirectTo = window.location.origin + window.location.pathname
     const { error } = await supabase.auth.signInWithOtp({
-      email, options: { emailRedirectTo: window.location.href },
+      email, options: { emailRedirectTo: redirectTo },
     })
     setBusy(false)
     if (error) setErr(error.message); else setSent(true)
