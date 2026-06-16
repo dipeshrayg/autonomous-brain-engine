@@ -18642,5 +18642,7 @@
     }
   ],
   "expansion_mode": true,
-  "expansion_mode_since": "2026-06-15T05:12:16.083189+00:00"
+  "expansion_mode_since": "2026-06-15T05:12:16.083189+00:00",
+  "enterprise_mode": true,
+  "enterprise_mode_since": "2026-06-16T08:03:24.286031+00:00"
 }

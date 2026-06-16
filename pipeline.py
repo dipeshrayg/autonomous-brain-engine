@@ -63,12 +63,27 @@ PROJECT_TYPES = (
     "creative_tool",     # Writing tool, music composer, story generator, creative assistant
     "edu_platform",      # Interactive learning module, quiz engine, coding tutorial system
     "prank_entertainment", # Viral/entertainment: fake OS terminal, prank site, interactive fiction
+    # ── Enterprise tier — product-grade B2B/SaaS deliverables (enterprise_mode) ──
+    "saas_app",          # Full multi-view SaaS application (app shell, dashboard, tables, settings)
+    "b2b_dashboard",     # Enterprise analytics/KPI dashboard with filters, charts, drill-downs
+    "enterprise_webapp", # Internal admin console / operations tool (CRUD, roles, audit trail)
+    "system_design",     # Interactive system & data architecture (ER diagrams, data flow, scaling)
+    "api_platform",      # API product: interactive explorer, endpoint docs, request playground
+    "devtool",           # Developer tooling product (observability, CI, log explorer, feature flags)
 )
 
 # Expansion types are never-tried territory — they start fresh and grow independently.
 EXPANSION_TYPES: frozenset[str] = frozenset({
     "saas_landing", "database_showcase", "research_showcase", "social_toolkit",
     "ai_concept", "creative_tool", "edu_platform", "prank_entertainment",
+})
+
+# Enterprise types are product-grade B2B/SaaS deliverables. When enterprise_mode is
+# active these are the ONLY types the architect may pick. saas_landing and
+# database_showcase are reused from the expansion tier (they are already product-grade).
+ENTERPRISE_TYPES: frozenset[str] = frozenset({
+    "saas_app", "b2b_dashboard", "enterprise_webapp", "system_design",
+    "api_platform", "devtool", "saas_landing", "database_showcase",
 })
 
 # Complexity ceilings per type.  Open-ended by design — ceilings are HIGH
@@ -93,6 +108,13 @@ TYPE_COMPLEXITY_CEILING: dict[str, int] = {
     "creative_tool":        999,
     "edu_platform":         999,
     "prank_entertainment":  999,
+    # Enterprise tier — no practical ceiling
+    "saas_app":             999,
+    "b2b_dashboard":        999,
+    "enterprise_webapp":    999,
+    "system_design":        999,
+    "api_platform":         999,
+    "devtool":              999,
 }
 
 # Tier ordering: when current type is maxed, prefer the next tier up.
@@ -116,6 +138,15 @@ TYPE_ESCALATION_ORDER = [
     "creative_tool",
     "edu_platform",
     "prank_entertainment",
+    # Enterprise tier
+    "saas_landing",
+    "database_showcase",
+    "b2b_dashboard",
+    "system_design",
+    "api_platform",
+    "devtool",
+    "enterprise_webapp",
+    "saas_app",
 ]
 
 
@@ -193,12 +224,46 @@ EXPANSION TYPES (available only when EXPANSION MODE is shown in the user prompt)
                       itself, a "personality quiz" with absurd but internally consistent logic.
                       Must be clearly harmless fun — labeled as fiction/parody where needed.
 
+ENTERPRISE TYPES (available only when ENTERPRISE MODE is shown in the user prompt — these
+must read like real, funded B2B SaaS products with a multi-view app shell, a design system,
+and realistic synthetic data. NO toy/art/game gimmicks.):
+    saas_app          A full multi-view SaaS application. Persistent sidebar + topbar nav and
+                      4-6 interconnected views: Overview/Home, Analytics, a Records data table
+                      with search+filter+sort+pagination, a Detail/drill-down view, Settings,
+                      and (simulated) Billing. Client-side router (hash routes). Realistic
+                      synthetic data generated in JS. Examples: a CRM, an HR analytics suite,
+                      a project-ops platform, a customer success console.
+    b2b_dashboard     An enterprise analytics/observability dashboard. KPI cards with deltas,
+                      time-series charts (Chart.js or SVG), a filterable data table, date-range
+                      and segment filters that actually re-compute the charts, drill-down on a
+                      metric. Synthetic but plausible business data. Examples: revenue/FinOps,
+                      a SOC security dashboard, a fleet/supply-chain monitor, product analytics.
+    enterprise_webapp An internal operations / admin console. CRUD over synthetic records
+                      (create/edit/delete in local state), role-based views (Admin vs Viewer
+                      toggle), bulk actions, an audit-trail log, toasts, confirmation modals.
+                      Examples: an IT asset manager, an approvals workflow, a content/CMS admin,
+                      an access-control console.
+    system_design     An interactive system & data architecture showcase aimed at architects.
+                      Rendered architecture diagram (SVG/HTML, not an image), a clickable data
+                      model / ER diagram, a request/data-flow sequence walk-through, scaling and
+                      capacity notes, trade-off tables. Examples: a multi-region SaaS reference
+                      architecture, an event-sourcing/CQRS design, a streaming data platform.
+    api_platform      An API product front-end. An interactive endpoint explorer with a method
+                      list, a request builder, a mocked-but-realistic JSON response viewer,
+                      auth/rate-limit docs, SDK code snippets in 2-3 languages, and a status
+                      page. Examples: a payments API, a geocoding API, an LLM gateway API.
+    devtool           A developer-tooling product UI. Examples: a CI/CD pipeline dashboard with
+                      run history and logs, a feature-flag manager, a log/trace explorer, an
+                      error-monitoring console, a deployment board. Real workflows over synthetic
+                      data, with filtering, detail panes, and status states.
+
 ABSOLUTE CONSTRAINTS:
 1. Comply with GitHub TOS. No active malware, no exploits against systems without consent. Educational / diagnostic / synthetic demos only.
 2. EVERY project — regardless of type — MUST include an index.html at repo root that is viewable in GitHub Pages. This is the user's ONLY way to experience the project from the dashboard. The index.html must be a VISUAL SHOWCASE:
    - web_interactive / web_3d / game_web / generative_art: index.html IS the project itself.
    - python_tool: index.html is a RICH VISUAL SHOWCASE page. It must show: project title + description, architecture diagram (use HTML/CSS/SVG, not images), sample outputs (embedded SVG, ASCII art rendered in <pre>, or generated visualizations), the core algorithm explained visually with diagrams/animations, a live interactive demo element if possible (e.g. a JS port of the core algorithm), and a "Run in Codespaces" button. The index.html should make the viewer say "wow" even without running Python.
    - document: index.html is a BEAUTIFULLY STYLED reader page. Render the document content as a polished web page with typography, diagrams, table of contents, and visual flair — NOT just raw markdown. Make it look like a published article on Medium or a research paper.
+   - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): index.html IS the product. It must boot into a real, multi-view application shell with a persistent sidebar/topbar, client-side routing between views, a coherent design system (CSS custom properties for color/spacing/type tokens, reusable card/table/modal/badge components), and realistic synthetic enterprise data generated in JS. It must look indistinguishable from a real funded SaaS product (Linear/Stripe/Datadog/Vercel-grade). NO toy canvas doodles, NO single-gimmick pages, NO lorem ipsum.
 3. Python tools: must ALSO run with `python <entry>` in a Codespaces dev container; declare deps in requirements.txt. The Python code is the real project; index.html is the showcase.
 4. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .tsx, .jsx, .scss, .vue, etc.). Plain languages only. This applies to ALL types INCLUDING typescript_app — typescript_app uses .js files with ESM imports, NOT .ts source files.
 5. NO BACKEND SERVERS, WebSockets, or localhost connections. Everything web-facing runs as STATIC files on GitHub Pages — no Node.js server, no Express, no WebSocket server. Multiplayer/cooperative features must use local-only simulation (AI opponents, hot-seat multiplayer, or single-player with simulated cooperation).
@@ -288,6 +353,7 @@ RULES:
   - typescript_app: ALL FILES ARE .js AND .html — NEVER .ts. Write modern JavaScript (ES2022+) with <script type="module"> and import libraries from https://esm.sh/package@version for rich functionality. Use JSDoc comments for type hints. Example imports: import { createApp } from 'https://esm.sh/vue@3'; import * as d3 from 'https://esm.sh/d3@7'; import { signal } from 'https://esm.sh/@preact/signals@1'. The .js files run natively in the browser with no compilation step.
   - cli_tool: Rust or Go source files + a .devcontainer/devcontainer.json for Codespaces + a build.sh. index.html is a terminal-style animated showcase: dark background, monospace font, typewriter effect showing the CLI in action, syntax-highlighted sample output.
   - document: Markdown files + index.html as a beautifully styled reader page. Typography, table of contents, diagrams. Think published research article, not raw markdown.
+  - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): Build a REAL multi-view product, not a one-page demo. Use plain .html/.css/.js (classic <script> tags, no build step; CDN libs like Chart.js@4 pinned by version are fine). Required: (1) a persistent app shell — sidebar nav + topbar with product name/user avatar; (2) a hash-route client-side router that swaps 4-6 views without reloading; (3) a DESIGN SYSTEM in CSS custom properties — color tokens, an 8px spacing scale, a type scale, and reusable components (cards, KPI stat tiles, data tables with hover/zebra rows, badges/pills for status, modals, toasts); (4) a synthetic-data module (e.g. data.js) that GENERATES realistic records — named companies/people, metrics, time-series, ISO dates, statuses — at least 30-50 rows so tables and charts look real; (5) genuine interactivity wired to that data: search box that filters the table, column sort, segment/date filters that recompute charts, a row click that opens a detail view or modal, CRUD that mutates local state with a toast. Empty/loading/error states where appropriate. The result MUST look like a production B2B SaaS dashboard, not a student project. No blank canvases, no "randomize" toys.
 - Every interactive control your sibling files reference MUST have its event listener wired in this file (if this is the file that owns it). Buttons that look interactive but do nothing are the worst possible bug — do not produce them.
 - For canvas + state-bearing UIs: the click handler must compute coordinates the SAME way the render code uses them. State + visual must stay in sync.
 - For randomize / reset: enumerate exactly which DOM elements + state slots are touched.
@@ -502,10 +568,18 @@ def _type_diversity_summary(memory: dict) -> str:
         type_max_complexity[pt] = max(type_max_complexity.get(pt, 0), c)
 
     in_expansion = memory.get("expansion_mode", False)
+    in_enterprise = memory.get("enterprise_mode", False)
     standard_types = [t for t in PROJECT_TYPES if t not in EXPANSION_TYPES]
-    active_types   = list(PROJECT_TYPES) if in_expansion else standard_types
+    if in_enterprise:
+        active_types = sorted(ENTERPRISE_TYPES)
+    elif in_expansion:
+        active_types = list(PROJECT_TYPES)
+    else:
+        active_types = standard_types
 
     lines = ["\n── TYPE DIVERSITY REPORT ──"]
+    if in_enterprise:
+        lines.append("** ENTERPRISE MODE ACTIVE ** Only product-grade enterprise types are allowed. Toy/art/game types are forbidden.")
     if in_expansion:
         lines.append("** EXPANSION MODE ACTIVE ** All bans lifted. Expansion types unlocked.")
     lines.append("Types built so far:")
@@ -619,14 +693,20 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     pt = plan.get("project_type")
     if pt not in PROJECT_TYPES:
         raise PipelineError(f"project_type must be one of {PROJECT_TYPES}; got {pt!r}")
-    if pt in EXPANSION_TYPES and not memory.get("expansion_mode"):
+    # Enterprise mode: ONLY product-grade enterprise types are allowed.
+    if memory.get("enterprise_mode") and pt not in ENTERPRISE_TYPES:
+        raise PipelineError(
+            f"project_type={pt!r} is not enterprise-grade. Enterprise mode is active — "
+            f"choose one of: {sorted(ENTERPRISE_TYPES)}."
+        )
+    if pt in EXPANSION_TYPES and not memory.get("expansion_mode") and not memory.get("enterprise_mode"):
         raise PipelineError(
             f"project_type={pt!r} is an expansion type — only available when CEO verdict "
             "is 'alarming' and expansion mode is active. Choose a standard type instead."
         )
 
-    # is_web_project must agree with project_type
-    web_types = {"web_interactive", "web_3d", "game_web", "generative_art"}
+    # is_web_project must agree with project_type (all enterprise types are web apps)
+    web_types = {"web_interactive", "web_3d", "game_web", "generative_art"} | ENTERPRISE_TYPES
     expected_web = pt in web_types
     if bool(plan.get("is_web_project")) != expected_web:
         plan["is_web_project"] = expected_web
@@ -663,8 +743,9 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     recent = memory.get("projects", [])[-7:]
     all_projects_list = memory.get("projects", [])
     in_expansion = memory.get("expansion_mode", False)
+    in_enterprise = memory.get("enterprise_mode", False)
     if recent and not in_recovery:
-        if in_expansion and pt in EXPANSION_TYPES:
+        if (in_enterprise and pt in ENTERPRISE_TYPES) or (in_expansion and pt in EXPANSION_TYPES):
             # Expansion types start fresh — only enforce floor within the same type's own history.
             type_scores = [p.get("complexity_score", 0) for p in all_projects_list
                            if p.get("project_type") == pt and p.get("complexity_score", 0) > 0]
@@ -824,8 +905,34 @@ def stage_plan(client: OpenAI, memory: dict,
 
     diversity = _type_diversity_summary(memory)
     in_expansion = memory.get("expansion_mode", False)
+    in_enterprise = memory.get("enterprise_mode", False)
     base_user = f"Today is {today}. Produce today's design plan.\n\n{history}{diversity}"
-    if in_expansion:
+    if in_enterprise:
+        base_user += (
+            "\n\n🏢 ENTERPRISE MODE ACTIVE — this is the most important instruction 🏢\n"
+            "The audience is an enterprise procurement board, not hobbyists. TOY PROJECTS ARE "
+            "FORBIDDEN: no canvas doodles, no 'randomize colors', no generative-art demos, no "
+            "games, no shader toys, no single-gimmick pages. Every deliverable must read like a "
+            "REAL, FUNDED B2B SaaS PRODUCT a Fortune-500 buyer would evaluate.\n"
+            "You MUST pick one of these ENTERPRISE TYPES:\n"
+            "  saas_app, b2b_dashboard, enterprise_webapp, system_design, api_platform,\n"
+            "  devtool, saas_landing, database_showcase\n"
+            "MANDATORY enterprise bar for the plan:\n"
+            "  • A MULTI-VIEW application shell: persistent sidebar/topbar nav + 3-6 interconnected "
+            "views (e.g. Overview, Analytics, Records/Table, Detail, Settings).\n"
+            "  • A coherent DESIGN SYSTEM: spacing scale, type scale, color tokens, reusable "
+            "components (cards, data tables, modals, toasts, badges, charts). Looks like Linear, "
+            "Stripe, Datadog, Vercel, or Notion — not a school project.\n"
+            "  • REALISTIC SYNTHETIC ENTERPRISE DATA generated in JS (named companies, users, "
+            "metrics, time-series, statuses) — never lorem ipsum, never empty tables.\n"
+            "  • A credible BUSINESS DOMAIN: fintech, healthtech, devops/observability, security/SOC, "
+            "supply-chain, HR/people analytics, data infrastructure, B2B CRM, etc.\n"
+            "  • Genuine workflows: filtering, sorting, search, drill-down, CRUD on synthetic data, "
+            "role/permission views, empty/loading/error states.\n"
+            "Name and describe it as a product (e.g. 'Atlas — fleet risk intelligence platform'), "
+            "with a one-line value proposition a CFO would understand."
+        )
+    if in_expansion and not in_enterprise:
         base_user += (
             "\n\n🚨 EXPANSION MODE ACTIVE 🚨\n"
             "The CEO has issued an ALARMING verdict. The standard project types are exhausted "
