@@ -1097,15 +1097,21 @@ def stage_plan(client: OpenAI, memory: dict,
 
 def stage_implement(client: OpenAI, plan: dict,
                     file_spec: dict, prior: dict[str, str]) -> tuple[str, str, dict]:
-    plan_brief = {k: v for k, v in plan.items()
-                  if k != "long_description" and not k.startswith("__")}
-    prior_concat = "\n\n".join(
-        f"=== {p} ===\n{c[:3000]}{'...[truncated]' if len(c) > 3000 else ''}"
-        for p, c in prior.items()
-    ) or "(none yet)"
+    # The GitHub Models free tier caps the REQUEST body at ~8000 tokens. Enterprise
+    # plans are large, so build a COMPACT brief (essentials only) and bound the
+    # prior-files context with a hard total budget — otherwise the engineer call
+    # 413s once a few files have been written.
+    brief_keys = ("name", "project_type", "description", "language", "visual_identity",
+                  "tech_stack", "ui_features")
+    plan_brief = {k: plan.get(k) for k in brief_keys if k in plan}
+    arch = plan.get("architecture") or {}
+    plan_brief["architecture_overview"] = (arch.get("overview") or "")[:500]
+    plan_brief["files"] = [{"path": f.get("path"), "role": f.get("role")}
+                           for f in (plan.get("files") or [])][:12]
+    prior_concat = _concat_files(prior, budget=5000) if prior else "(none yet)"
     user = (
-        f"PLAN:\n{json.dumps(plan_brief, indent=2)[:8000]}\n\n"
-        f"FILES ALREADY WRITTEN:\n{prior_concat}\n\n"
+        f"PLAN:\n{json.dumps(plan_brief, indent=2)[:3500]}\n\n"
+        f"FILES ALREADY WRITTEN (for cross-file consistency; truncated):\n{prior_concat}\n\n"
         f"NOW WRITE: {file_spec['path']}\n"
         f"ROLE: {file_spec.get('role', '')}\n"
         f"KEY FUNCTIONS: {file_spec.get('key_functions', [])}"
@@ -1124,8 +1130,8 @@ def stage_critique(client: OpenAI, plan: dict,
                   ("name", "description", "verification_criteria", "ui_features",
                    "concepts_demonstrated", "complexity_score", "project_type")
                   if k in plan}
-    files_concat = _concat_files(files, budget=22000)
-    browser_summary = json.dumps(browser_result or {}, indent=2)[:3500]
+    files_concat = _concat_files(files, budget=13000)  # stay under the 8000-token GH Models cap
+    browser_summary = json.dumps(browser_result or {}, indent=2)[:3000]
     user = (
         f"PLAN:\n{json.dumps(plan_brief, indent=2)}\n\n"
         f"FILES:\n{files_concat}\n\n"

@@ -41,6 +41,7 @@ import verifier
 import dashboard
 import executive
 import supabase_sync
+import roles
 # security_officer removed in Project Evolution; CSO is now Chief Science Officer
 # in executive.py with role label "cso".
 
@@ -535,6 +536,7 @@ def main() -> int:
 
     client = OpenAI(base_url=GH_MODELS_BASE_URL, api_key=models_token)
     ceo_directives: list[str] = []  # initialise before try so except block can reference it
+    plan = None  # so the LLM-failure handler can reference it safely
 
     try:
         # CEO directives — visionary push for new domains.
@@ -819,6 +821,21 @@ def main() -> int:
         # expansion mode can kick in on the next run. Exit 0 so the build is never marked
         # failed when it comes to the CEO review — the next scheduled run will try again.
         log.info("Conference failure recorded. Exiting 0 (non-halting mode).")
+        return 0
+    except roles.AllModelsFailed as e:
+        # Operational LLM failure (rate limit, token-limit 413, provider outage) — NOT a
+        # code bug. Record it and exit 0 so the run stays green; the next run retries.
+        log.error("All models failed this run: %s", e)
+        try:
+            record_failure(
+                memory,
+                plan=plan,
+                stage="llm_failure",
+                reason=f"All models failed: {str(e)[:280]}",
+            )
+        except Exception as log_err:
+            log.warning("Could not log LLM failure: %s", log_err)
+        log.info("LLM failure recorded. Exiting 0 (non-halting mode).")
         return 0
     except Exception:
         # Genuine, unexpected crash (not a normal refusal). Keep this visible as a real
