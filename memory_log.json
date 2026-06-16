@@ -16987,6 +16987,42 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=120 below floor 121 (max recent=120). The scale is open-ended; surpass yesterday.",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-16T00:27:09Z",
+      "attempted_at_unix": 1781569629,
+      "date": "2026-06-16",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 24 page error(s), body_empty=False.",
+      "plan_name": "neurosymbolic-creative-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 135,
+      "plan_pattern": "hybrid-ai-creative-tool",
+      "plan_domain": "Computational Creativity",
+      "plan_files_count": 7,
+      "project_type": "creative_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "textarea#constraints-editor",
+          "expected": "Updates symbolic constraints and regenerates the visual output on the canvas"
+        },
+        {
+          "control": "button#generate",
+          "expected": "Generates new GAN output and displays it on the canvas"
+        },
+        {
+          "control": "button#load-example",
+          "expected": "Loads a predefined set of constraints and updates the canvas"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
