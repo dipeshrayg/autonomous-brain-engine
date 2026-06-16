@@ -17116,6 +17116,33 @@
         "dead": 3
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-06-16T08:35:20Z",
+      "attempted_at_unix": 1781598920,
+      "date": "2026-06-16",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 4 page error(s), body_empty=False.",
+      "plan_name": "api-insights-platform",
+      "plan_language": "JavaScript",
+      "plan_complexity": 140,
+      "plan_pattern": "api-performance-monitoring",
+      "plan_domain": "Developer Tools",
+      "plan_files_count": 8,
+      "project_type": "api_platform",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [],
+      "qa_missing_features": [
+        {
+          "feature": "Export data (button.export-data)"
+        }
+      ],
+      "final_interaction": {
+        "tested": 0,
+        "live": 0,
+        "dead": 0
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
