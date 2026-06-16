@@ -7,3 +7,11 @@ __pycache__/
 # Engine doesn't track the public-facing dashboard artifacts; publish_public.py
 # generates them into a temp clone of the public repo on each run.
 index.html
+
+# Research paper — kept LOCAL ONLY, not published to GitHub (per author request).
+# The generator scripts embed the full paper text, so they are excluded too.
+Dipesh_Ray_Autonomous_Brain_Research_Paper*.docx
+Dipesh_Ray_Autonomous_Brain_Research_Paper*.pdf
+research_paper.md
+generate_paper.py
+generate_paper_docx.py
