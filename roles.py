@@ -102,14 +102,14 @@ ROLE_CHAIN: dict[str, list[str]] = {
     ],
     "cso": [
         "llama-3.3-70b-versatile",      # Meta via Groq — scientific novelty (confirmed working)
-        "llama-3.1-70b-versatile",      # Meta via Groq fallback
-        "gpt-4o",
+        "gpt-4o",                       # OpenAI fallback
+        "gpt-4o-mini",
     ],
     "cto": [
         "gemini-2.0-flash",             # Google — code + self-improvement
         "gemini-2.0-flash-lite",        # Google lighter model (less quota pressure)
-        "gemini-1.5-flash",             # Google legacy fallback
-        "gpt-4o",                       # OpenAI final fallback
+        "gpt-4o",                       # OpenAI fallback
+        "gpt-4o-mini",                  # final guaranteed fallback
     ],
     "vp_eng": [
         "llama-3.3-70b-versatile",      # Groq — pragmatic engineering
@@ -134,12 +134,13 @@ ROLE_CHAIN: dict[str, list[str]] = {
 
     # ── Implementation layer ──────────────────────────────────────────────
     "engineer": [
-        # Gemini primary: huge input window + up to ~8k output tokens, so a full
-        # self-contained enterprise index.html is never truncated. GitHub Models
-        # gpt-4o caps the request at 8000 tokens and was truncating large apps.
-        "gemini-2.0-flash",             # Google — large context + output, strong coder
-        "gpt-4o",                       # OpenAI — high-quality fallback
+        # gpt-4o primary: always available (GitHub token) and, now that enterprise
+        # apps are SELF-CONTAINED across small files, every per-file output fits well
+        # under its limits. Gemini's free quota is frequently exhausted (429), so it
+        # is a fallback, not the hot path. Groq Llama gives a high-limit middle option.
+        "gpt-4o",                       # OpenAI — reliable, handles small self-contained files
         "llama-3.3-70b-versatile",      # Groq — high-limit fallback
+        "gemini-2.0-flash",             # Google — big-context fallback (quota permitting)
         "gpt-4o-mini",
     ],
     "reviewer_a": [
@@ -149,8 +150,7 @@ ROLE_CHAIN: dict[str, list[str]] = {
     "reviewer_b": [
         "gemini-2.0-flash",             # Google — third independent perspective
         "gemini-2.0-flash-lite",        # Google lighter fallback
-        "gemini-1.5-flash",             # Google legacy fallback
-        "gpt-4o-mini",                  # guaranteed fallback
+        "gpt-4o-mini",                  # guaranteed fallback (always available)
     ],
     "fixer": [
         "gpt-4o-mini",
@@ -164,9 +164,9 @@ ROLE_CHAIN: dict[str, list[str]] = {
 
     # ── QA layer ──────────────────────────────────────────────────────────
     "qa_tester": [
-        "gemini-2.0-flash",             # Google — large window so it sees the WHOLE app
-        "gpt-4o",                       # OpenAI — strict user-pathway simulation
+        "gpt-4o",                       # OpenAI — reliable strict user-pathway simulation
         "llama-3.3-70b-versatile",      # Groq fallback
+        "gemini-2.0-flash",             # Google fallback (quota permitting)
     ],
     "qa_fixer": [
         "gemini-2.0-flash",             # Google — fast, capable repair
