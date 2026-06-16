@@ -778,9 +778,129 @@ def build_docx():
         "beyond simple verdict counting.")
 
     # =========================================================================
-    # IX. CONCLUSION  (renumbered from VIII in the PDF)
+    # IX. PRODUCTION RE-ARCHITECTURE AND ENTERPRISE RE-ORIENTATION
     # =========================================================================
-    h1(doc, "IX. Conclusion")
+    doc.add_page_break()
+    h1(doc, "IX. Production Re-Architecture and Enterprise Re-Orientation")
+    rich(doc,
+        "Beyond the research prototype, the system was re-architected into a "
+        "production-grade, board-presentable platform while strictly preserving the "
+        "zero-cost constraint. This section documents the frameworks adopted, the "
+        "engineering actions taken, the enterprise re-orientation of the generated "
+        "deliverables, and the explicit decision to decline a paid cloud backend.")
+
+    h2(doc, "A. Persistent Data Layer: Row-Level-Secured Postgres")
+    rich(doc,
+        "The original flat <i>memory_log.json</i> state file was elevated to a managed "
+        "PostgreSQL system of record on <b>Supabase</b>. Seven normalised tables "
+        "(projects, failed_builds, ceo_reviews, cso_reviews, build_logs, taxonomy, and "
+        "a singleton system_state) carry indexes and JSON columns for nested artefacts. "
+        "<b>Row Level Security (RLS)</b> is enabled on every table and is the core of the "
+        "security model: the public may read only the project showcase and an aggregate "
+        "statistics view; all operational data (failure logs, executive reviews, the raw "
+        "build-log stream, and runtime state) is readable only by authenticated users; and "
+        "every write is restricted to a service-role key held exclusively by the engine. "
+        "The engine mirrors each shipped project, refused build, and executive verdict into "
+        "Postgres on every run through a best-effort synchronisation layer that never blocks "
+        "or fails a build, with the committed JSON file retained as a durable fallback.")
+    add_table(doc,
+        [["Table",          "Public read", "Auth read", "Writes"],
+         ["projects",       "Yes",         "Yes",       "service role only"],
+         ["taxonomy",       "Yes",         "Yes",       "service role only"],
+         ["failed_builds",  "No",          "Yes",       "service role only"],
+         ["ceo_reviews / cso_reviews", "No", "Yes",     "service role only"],
+         ["build_logs",     "No",          "Yes",       "service role only"],
+         ["system_state",   "No",          "Yes",       "service role only"]],
+        [5.2, 3.4, 3.4, 3.9],
+        caption="TABLE VIII. Access model enforced by Row Level Security")
+
+    h2(doc, "B. Live Operational Dashboard")
+    rich(doc,
+        "A single-page application built with <b>React</b> and <b>Vite</b>, using the "
+        "<b>Supabase JavaScript client</b>, is compiled to a static bundle and deployed to "
+        "GitHub Pages. It presents a public project showcase, read with the anonymous key and "
+        "bounded by RLS, alongside an authenticated operations panel (passwordless magic-link "
+        "authentication) that exposes failure logs, CEO and CSO reviews, and the live build "
+        "stream. The anonymous key is safe to embed in the browser precisely because the access "
+        "boundary is enforced server-side by RLS rather than by client code. This yields a "
+        "credible, self-updating demonstration surface suitable for an enterprise audience.")
+
+    h2(doc, "C. Engine Portability: A Parallel Node.js Implementation")
+    rich(doc,
+        "A second implementation of the engine was begun in <b>Node.js</b> (zero runtime "
+        "dependencies, using the built-in fetch API) alongside the production Python engine. "
+        "The migration deliberately follows a <i>parallel-build-and-cutover</i> strategy rather "
+        "than a destructive in-place rewrite: the Python engine remains the shipping path until "
+        "the Node implementation reaches verified functional parity, at which point traffic is "
+        "switched. The executive (CEO and CSO) modules were ported first and confirmed to run "
+        "end-to-end in continuous integration, writing verdicts to both the JSON ledger and "
+        "Postgres.")
+
+    h2(doc, "D. Enterprise Deliverable Tier and Target Verticals")
+    rich(doc,
+        "An <i>enterprise mode</i> constrains the architect to a product-grade type tier and "
+        "forbids hobbyist output (generative art, shader toys, browser games). Each deliverable "
+        "must present a multi-view application shell, a coherent design system expressed through "
+        "CSS custom properties, and realistic synthetic enterprise data rather than placeholder "
+        "text. The result is intended to read like a funded business-to-business product across "
+        "a range of regulated and data-intensive verticals.")
+    add_table(doc,
+        [["Deliverable type",   "Representative enterprise domains"],
+         ["saas_app",           "B2B CRM, HR / people analytics, customer success, project operations"],
+         ["b2b_dashboard",      "FinOps and revenue, security operations (SOC), supply-chain, product analytics"],
+         ["enterprise_webapp",  "IT asset management, approval workflows, access-control consoles, CMS admin"],
+         ["system_design",      "Multi-region reference architectures, event-sourcing / CQRS, streaming data platforms"],
+         ["api_platform",       "Payments APIs, geocoding APIs, LLM gateway APIs with usage and rate-limit docs"],
+         ["devtool",            "CI/CD pipeline dashboards, feature-flag managers, observability and log explorers"]],
+        [4.2, 11.7],
+        caption="TABLE IX. Enterprise deliverable types and representative target domains")
+
+    h2(doc, "E. Rationale for Declining a Cloud (AWS) Backend")
+    rich(doc,
+        "A paid cloud backend such as Amazon Web Services was deliberately <i>not</i> adopted, "
+        "for three reasons. First, the zero-cost property is the system's defining contribution; "
+        "introducing per-hour compute or per-request charges would directly undermine the central "
+        "claim. Second, the proposed AWS capabilities are redundant at the current scale: GitHub "
+        "Actions already supplies ephemeral compute and Supabase already supplies a managed "
+        "Postgres database and authentication, both on free tiers, so an AWS layer (Lambda, S3, "
+        "IAM, VPC) would duplicate capabilities that are already present at no cost. Third, every "
+        "additional managed service enlarges the operational and security surface without a "
+        "corresponding capability gain. Critically, this is a present-scale decision rather than a "
+        "ceiling: the analysis in Section VIII shows the same architecture migrates cleanly to "
+        "Amazon Bedrock, Azure OpenAI, or Google Vertex AI when sustained volume justifies the "
+        "cost, so declining AWS today forecloses no future option.")
+
+    h2(doc, "F. Multi-Agent Team Configuration and Reliability Engineering")
+    rich(doc,
+        "The thirteen-role boardroom is distributed across three providers, and each role's model "
+        "chain is tuned to its workload and to provider rate limits. Three reliability findings "
+        "shaped the final configuration. First, the implementation (engineer) role was moved to a "
+        "large-context model (Gemini 2.0 Flash) as its primary so that a complete, self-contained "
+        "application can be generated without truncation against the free tier's 8000-token request "
+        "ceiling. Second, a recurring enterprise-application failure, in which per-view scripts "
+        "injected after the page's load event never execute and leave the interface frozen on a "
+        "loading placeholder, was eliminated by mandating self-contained single-document "
+        "applications whose router toggles the visibility of inline views rather than fetching "
+        "code at runtime. Third, the mechanical verifier was extended to detect this "
+        "never-rendered state directly and to treat it as an objective hard failure, independent "
+        "of the language-model quality verdict.")
+
+    h2(doc, "G. Operational Resilience Modes")
+    rich(doc,
+        "Three operating modes keep the autonomous loop running without human intervention. "
+        "<b>Non-halting execution</b> records refused builds and transient model failures but "
+        "exits successfully, so the continuous-integration status reflects only genuine "
+        "infrastructure faults rather than the normal churn of a creative pipeline. "
+        "<b>Expansion mode</b> widens the deliverable type space and clears type bans when the "
+        "executive verdict reaches <i>alarming</i>, allowing the system to escape local minima. "
+        "A <b>ship-first quality gate</b> publishes any deliverable that is not objectively "
+        "non-functional, surfacing partial states honestly to viewers through a badge, so the "
+        "portfolio grows continuously while remaining transparent about quality.")
+
+    # =========================================================================
+    # X. CONCLUSION
+    # =========================================================================
+    h1(doc, "X. Conclusion")
     rich(doc,
         f"This paper has presented <i>Autonomous Brain</i>, a multi-agent LLM "
         "pipeline that continuously designs, implements, quality-assures, and "
@@ -805,6 +925,14 @@ def build_docx():
         "dispatch, LangSmith instrumentation -- are well-supported by the "
         "contemporary framework ecosystem. The system is fully open-source and "
         "continues to run daily, building software that it chose itself.")
+    rich(doc,
+        "Finally, the production re-architecture in Section IX shows that research-grade "
+        "autonomy and enterprise-grade engineering are not in tension. By adopting a "
+        "row-level-secured PostgreSQL system of record (Supabase), a React dashboard, a "
+        "portable Node.js engine, and a product-grade enterprise deliverable tier, while "
+        "deliberately declining a paid cloud backend, the system became board-presentable "
+        "without sacrificing its defining zero-cost property. The same free-tier substrate "
+        "that proves the research claim also carries a credible enterprise demonstration.")
 
     # =========================================================================
     # ACKNOWLEDGEMENT
@@ -873,6 +1001,16 @@ def build_docx():
         "[24] OWASP, \"OWASP Top 10 for Large Language Model Applications,\" OWASP "
         "Foundation, 2023. [Online]. Available: "
         "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+        "[25] Supabase, \"Supabase: The Open Source Firebase Alternative (Postgres, "
+        "Auth, Row Level Security),\" 2024. [Online]. Available: https://supabase.com",
+        "[26] Meta Open Source, \"React: A JavaScript Library for Building User "
+        "Interfaces,\" 2024. [Online]. Available: https://react.dev",
+        "[27] E. You and the Vite Team, \"Vite: Next Generation Frontend Tooling,\" "
+        "2024. [Online]. Available: https://vitejs.dev",
+        "[28] OpenJS Foundation, \"Node.js: JavaScript Runtime Built on V8,\" 2024. "
+        "[Online]. Available: https://nodejs.org",
+        "[29] Google, \"Gemini 2.0 Flash Model Documentation,\" Google AI, 2024. "
+        "[Online]. Available: https://ai.google.dev",
     ]
     for ref in refs:
         p = doc.add_paragraph()
@@ -893,7 +1031,7 @@ def build_docx():
     # =========================================================================
     # SAVE
     # =========================================================================
-    out = "F:/github forever/Dipesh_Ray_Autonomous_Brain_Research_Paper_v2.docx"
+    out = "F:/github forever/Dipesh_Ray_Autonomous_Brain_Research_Paper_v4.docx"
     doc.save(out)
     print(f"\nOK  Word document written to: {out}")
     print(f"    Projects: {total} | Failed builds: {total_failed} | CEO reviews: {len(CEO_REV)}")
