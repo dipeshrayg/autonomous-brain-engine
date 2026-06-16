@@ -1,13 +1,17 @@
 # Autonomous Brain - Engine
 
-The orchestrator that drives the public showcase at
-[dipeshrayg.github.io/autonomous-brain](https://dipeshrayg.github.io/autonomous-brain/).
+### ▶ Live Dashboard: **https://dipeshrayg.github.io/autonomous-brain-engine/**
+
+A React + Supabase dashboard with a **public project showcase** and **auth-gated**
+operational logs (failure logs, executive reviews, raw build stream), backed by a
+Postgres database with row-level security enforced on every table.
 
 A zero-cost, fully autonomous multi-agent LLM pipeline that continuously conceives,
 architects, implements, quality-assures, and publishes novel software projects
 without any human intervention.
 
-**Total infrastructure cost: $0**
+**Total infrastructure cost: $0** — GitHub Actions (compute) + GitHub Models / Groq /
+Google AI Studio (LLMs) + Supabase free tier (database) + GitHub Pages (hosting).
 
 ---
 
@@ -15,13 +19,14 @@ without any human intervention.
 
 | Metric | Value |
 |---|---|
-| Projects shipped | 34+ |
-| Refused builds | 108+ |
-| Complexity range | 3 to 52 (open-ended, no cap) |
-| Project types available | 10 types |
-| Project types shipped so far | 6 types |
+| Projects shipped | 52+ |
+| Refused builds | 275+ |
+| Complexity range | 3 to 160 (open-ended, no cap) |
+| Project types available | 24 types (incl. 8 enterprise-grade) |
 | AI models in boardroom | 13 roles across 3 providers |
 | Providers | GitHub Models + Groq + Google AI Studio |
+| Database | Supabase (Postgres + RLS), online & auth-secured |
+| Frontend | React (Vite) on GitHub Pages |
 | Daily builds | Up to 5/day, fully autonomous |
 | Human interventions required | 0 |
 

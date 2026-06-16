@@ -179,6 +179,23 @@ _METRICS_JS = """() => {
         title: document.title,
         viewportMeta: !!document.querySelector('meta[name=viewport]'),
         hasMain: !!document.querySelector('main, [role=main], #app, #root, .app'),
+        visibleText: (document.body.innerText || '').trim().slice(0, 200),
+        loadingStuck: (() => {
+            // Detects the "app never rendered" failure: the page (or its main content
+            // container) is empty or frozen on a Loading/404 placeholder. This is how
+            // dynamically-loaded view scripts that never fire DOMContentLoaded die.
+            const ph = ['loading', 'please wait', '404', 'view not found', 'not found'];
+            const body = (document.body.innerText || '').trim().toLowerCase().replace(/\\s+/g, ' ');
+            if (!body) return true;
+            if (body.length < 40 && ph.some(p => body.includes(p))) return true;
+            const main = document.querySelector('#content,#app,#root,#main,main,[role=main],.content,.main-content');
+            if (main) {
+                const mt = (main.innerText || '').trim().toLowerCase();
+                if (mt.length < 15) return true;
+                if (ph.some(p => mt === p || mt.startsWith(p))) return true;
+            }
+            return false;
+        })(),
     };
 }"""
 
@@ -310,6 +327,15 @@ def verify_web(workspace: Path, timeout: int = 30, project_type: str = "web_inte
     # Heuristic issue detection — these are the quality gates.
     if metrics.get("bodyHtml", 0) < 250:
         issues.append("Page body has <250 chars of HTML — the page is essentially empty.")
+    if metrics.get("loadingStuck"):
+        issues.append(
+            "The app never rendered its content — the main view is empty or stuck on a "
+            "'Loading…'/404 placeholder. The app does not actually load for a human. Most "
+            "common cause: views are loaded with createElement('script') after DOMContentLoaded "
+            "(which never re-fires). Make the app SELF-CONTAINED: inline every view as a section "
+            "in index.html and toggle visibility; run setup once in a plain <script> at the end "
+            "of <body>; render real content on first paint."
+        )
     if metrics.get("canvasCount", 0) > 0 and metrics.get("canvasBlank"):
         if project_type in ("web_3d", "shader_art"):
             # WebGL / GLSL canvases always read as blank via 2D ctx pixel sampling in

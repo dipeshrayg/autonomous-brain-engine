@@ -134,8 +134,12 @@ ROLE_CHAIN: dict[str, list[str]] = {
 
     # ── Implementation layer ──────────────────────────────────────────────
     "engineer": [
-        "gpt-4o",                       # OpenAI — best implementation quality
-        "gemini-2.0-flash",             # Google fallback — strong coder
+        # Gemini primary: huge input window + up to ~8k output tokens, so a full
+        # self-contained enterprise index.html is never truncated. GitHub Models
+        # gpt-4o caps the request at 8000 tokens and was truncating large apps.
+        "gemini-2.0-flash",             # Google — large context + output, strong coder
+        "gpt-4o",                       # OpenAI — high-quality fallback
+        "llama-3.3-70b-versatile",      # Groq — high-limit fallback
         "gpt-4o-mini",
     ],
     "reviewer_a": [
@@ -160,8 +164,8 @@ ROLE_CHAIN: dict[str, list[str]] = {
 
     # ── QA layer ──────────────────────────────────────────────────────────
     "qa_tester": [
+        "gemini-2.0-flash",             # Google — large window so it sees the WHOLE app
         "gpt-4o",                       # OpenAI — strict user-pathway simulation
-        "gemini-2.0-flash",
         "llama-3.3-70b-versatile",      # Groq fallback
     ],
     "qa_fixer": [

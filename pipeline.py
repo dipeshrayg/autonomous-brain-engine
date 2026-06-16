@@ -353,7 +353,12 @@ RULES:
   - typescript_app: ALL FILES ARE .js AND .html — NEVER .ts. Write modern JavaScript (ES2022+) with <script type="module"> and import libraries from https://esm.sh/package@version for rich functionality. Use JSDoc comments for type hints. Example imports: import { createApp } from 'https://esm.sh/vue@3'; import * as d3 from 'https://esm.sh/d3@7'; import { signal } from 'https://esm.sh/@preact/signals@1'. The .js files run natively in the browser with no compilation step.
   - cli_tool: Rust or Go source files + a .devcontainer/devcontainer.json for Codespaces + a build.sh. index.html is a terminal-style animated showcase: dark background, monospace font, typewriter effect showing the CLI in action, syntax-highlighted sample output.
   - document: Markdown files + index.html as a beautifully styled reader page. Typography, table of contents, diagrams. Think published research article, not raw markdown.
-  - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): Build a REAL multi-view product, not a one-page demo. Use plain .html/.css/.js (classic <script> tags, no build step; CDN libs like Chart.js@4 pinned by version are fine). Required: (1) a persistent app shell — sidebar nav + topbar with product name/user avatar; (2) a hash-route client-side router that swaps 4-6 views without reloading; (3) a DESIGN SYSTEM in CSS custom properties — color tokens, an 8px spacing scale, a type scale, and reusable components (cards, KPI stat tiles, data tables with hover/zebra rows, badges/pills for status, modals, toasts); (4) a synthetic-data module (e.g. data.js) that GENERATES realistic records — named companies/people, metrics, time-series, ISO dates, statuses — at least 30-50 rows so tables and charts look real; (5) genuine interactivity wired to that data: search box that filters the table, column sort, segment/date filters that recompute charts, a row click that opens a detail view or modal, CRUD that mutates local state with a toast. Empty/loading/error states where appropriate. The result MUST look like a production B2B SaaS dashboard, not a student project. No blank canvases, no "randomize" toys.
+  - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): Build a REAL multi-view B2B product that ACTUALLY LOADS AND WORKS. The single most important rule:
+    ★ THE APP MUST BE SELF-CONTAINED IN index.html. Put ALL views, ALL JavaScript, and ALL synthetic data INLINE in index.html (or, at most, one app.js + one styles.css loaded with CLASSIC <script src="app.js"></script> / <link> tags at the END of <body>). Generate index.html LAST so you can inline everything.
+    ★ NEVER load view scripts dynamically (NO document.createElement('script'), NO fetch() of .js, NO injecting <script> at runtime). That pattern is BANNED — dynamically-injected scripts wrapped in DOMContentLoaded never execute (the event already fired), so every view stays stuck on "Loading…". This is the #1 way enterprise apps die.
+    ★ The router is a VISIBILITY TOGGLE over inline sections, not a loader. Build all views as <section id="view-overview">, <section id="view-analytics">, … directly in index.html. The router reads location.hash and shows the matching section (section.style.display='block') while hiding the others. Every view's content already exists in the DOM on first paint.
+    ★ Run setup ONCE at the bottom of <body> (a plain <script> after the markup, NOT wrapped in a never-firing event) — render synthetic data into tables/charts, wire nav links, and call the router for the initial hash. Draw real content on first load; never leave a pane showing "Loading…".
+    Required substance: (1) persistent app shell — sidebar nav + topbar with product name; (2) 4-6 inline views toggled by the hash router; (3) a design system in CSS custom properties (color/spacing/type tokens; reusable cards, KPI tiles, data tables with zebra rows, status badges, modals, toasts); (4) realistic synthetic data generated inline (named companies/people, metrics, ISO dates, statuses — 30-50 rows so tables/charts look real); (5) wired interactivity — search filters the table, column sort, filters that recompute charts (Chart.js@4 from CDN is fine), row click opens a detail/modal, CRUD mutates local state with a toast. It must look like Linear/Stripe/Datadog and WORK on first load. No blank panes, no "randomize" toys.
 - Every interactive control your sibling files reference MUST have its event listener wired in this file (if this is the file that owns it). Buttons that look interactive but do nothing are the worst possible bug — do not produce them.
 - For canvas + state-bearing UIs: the click handler must compute coordinates the SAME way the render code uses them. State + visual must stay in sync.
 - For randomize / reset: enumerate exactly which DOM elements + state slots are touched.
@@ -472,6 +477,8 @@ MANDATORY CHECKS — fail any project that fails any of these:
 7. DIALOG / ALERT NOISE: Are there alert() boxes or dialogs firing on every value change? That's a UX bug — flag as dead-pattern.
 
 8. PIXEL / VISUAL: If interaction is supposed to draw on canvas, does the canvas show meaningful change? Not just any change — meaningful, visible-to-a-user change.
+
+9. MULTI-VIEW RENDERING (enterprise / app-shell projects): If the project has sidebar/nav links or multiple views, EVERY view must render real, populated content (tables/cards/charts with data) — not a blank pane and not a perpetual "Loading…". An app whose views never render, or that is stuck on "Loading…", is NON_FUNCTIONAL no matter how polished the shell looks. Confirm the initial view shows real data on first load.
 
 CRITERIA for verdict — SHIP-FIRST: when in doubt, prefer partially_usable over non_functional. Reserve non_functional for pages that are TRULY dead. The goal is to deliver real projects; a project with one or two imperfect controls is still a genuine deliverable and should ship with a badge.
 
@@ -714,8 +721,12 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     complexity = int(plan["complexity_score"])
 
     files = plan.get("files") or []
-    # Scope minimums scale with complexity; emergency plans always allow 3-file minimum
-    if emergency:
+    # Scope minimums scale with complexity; emergency plans always allow 3-file minimum.
+    # Enterprise apps are SELF-CONTAINED (index.html + maybe app.js/styles.css) — a high
+    # file count there forces the broken "one .js per view" split, so cap the minimum at 1.
+    if memory.get("enterprise_mode") and pt in ENTERPRISE_TYPES:
+        min_files = 1
+    elif emergency:
         min_files = 3
     elif complexity >= 13:
         min_files = 6
@@ -918,8 +929,12 @@ def stage_plan(client: OpenAI, memory: dict,
             "  saas_app, b2b_dashboard, enterprise_webapp, system_design, api_platform,\n"
             "  devtool, saas_landing, database_showcase\n"
             "MANDATORY enterprise bar for the plan:\n"
+            "  • SELF-CONTAINED build: design it as a single index.html (optionally + one app.js "
+            "and one styles.css linked with CLASSIC tags). Do NOT plan a separate .js file per "
+            "view — all views live inline in index.html and a hash router toggles their visibility. "
+            "Keep the plan to 1-3 files. Dynamically loading per-view scripts is FORBIDDEN (it breaks).\n"
             "  • A MULTI-VIEW application shell: persistent sidebar/topbar nav + 3-6 interconnected "
-            "views (e.g. Overview, Analytics, Records/Table, Detail, Settings).\n"
+            "views (e.g. Overview, Analytics, Records/Table, Detail, Settings) — all inline.\n"
             "  • A coherent DESIGN SYSTEM: spacing scale, type scale, color tokens, reusable "
             "components (cards, data tables, modals, toasts, badges, charts). Looks like Linear, "
             "Stripe, Datadog, Vercel, or Notion — not a school project.\n"
@@ -1116,7 +1131,9 @@ def stage_implement(client: OpenAI, plan: dict,
         f"ROLE: {file_spec.get('role', '')}\n"
         f"KEY FUNCTIONS: {file_spec.get('key_functions', [])}"
     )
-    out, meta = _call_role(client, "engineer", IMPLEMENT_SYSTEM, user, max_tokens=4000)
+    # 8000 output tokens so a full self-contained enterprise index.html is not truncated
+    # mid-file (truncated HTML/JS is the classic "app doesn't load" bug).
+    out, meta = _call_role(client, "engineer", IMPLEMENT_SYSTEM, user, max_tokens=8000)
     if "path" not in out or "content" not in out:
         raise PipelineError(f"Implement output missing fields: keys={list(out.keys())}")
     if not isinstance(out["content"], str) or len(out["content"]) < 30:

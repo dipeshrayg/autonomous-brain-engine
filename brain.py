@@ -726,15 +726,19 @@ def main() -> int:
         )
         qa_verdict = qa_report.get("verdict")
         error_storm = len(page_errors) >= 4  # page is clearly crashing, not a stray throw
+        # "Never rendered" is an OBJECTIVE mechanical failure (the app shows nothing /
+        # is stuck on Loading) — it must never ship regardless of the QA verdict.
+        never_rendered = bool((final_verify.get("metrics") or {}).get("loadingStuck"))
         genuinely_broken = (
             body_empty
+            or never_rendered
             or qa_verdict == "non_functional"
             or (error_storm and qa_verdict != "shippable")
         )
         if genuinely_broken:
             log.error("Final quality gate: page is objectively dead — refusing to publish.")
-            log.error("  verdict=%s, page_errors=%d, body_empty=%s",
-                      qa_verdict, len(page_errors), body_empty)
+            log.error("  verdict=%s, page_errors=%d, body_empty=%s, never_rendered=%s",
+                      qa_verdict, len(page_errors), body_empty, never_rendered)
             for hb in (page_errors[:5] or []):
                 log.error("  [PAGE-ERROR] %s", str(hb)[:180])
             record_failure(
