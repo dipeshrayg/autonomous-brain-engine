@@ -9736,6 +9736,32 @@
         "The modular design of the recently shipped projects has been commendable, allowing for flexibility and innovation."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-16T21:47:32Z",
+      "issued_at_unix": 1781646452,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent shipped projects show partial usability issues and a lack of diversity in high-value enterprise types.",
+      "concerns": [
+        "Three consecutive generative art projects with 'partially usable' QA ratings indicate a focus on visuals over functionality.",
+        "Recent builds are overly focused on creative or speculative tools, neglecting concrete enterprise-grade deliverables.",
+        "Failed AI and explainability projects show a pattern of overcomplexity and broken interactivity.",
+        "The system is neglecting untapped enterprise project types with substantial headroom like b2b_dashboard or database_showcase."
+      ],
+      "directives": [
+        "The next project MUST be a b2b_dashboard type. Focus on delivering a practical, enterprise-ready SaaS dashboard with a clear business use case.",
+        "The project MUST include a fully functional and interactive user interface with working analytics, filters, and data visualization components.",
+        "Avoid speculative or overly complex AI-driven patterns for this project. Use proven, straightforward features that are robust and functional.",
+        "Integrate realistic synthetic data to simulate a credible business use case, such as HR analytics, supply-chain metrics, or customer engagement tracking.",
+        "Prioritize human usability above all else. Every interactive element must be fully functional, with no dead or missing components in the final product.",
+        "Deliver a polished design system with consistent UI/UX components that aligns with enterprise standards."
+      ],
+      "praise": [
+        "The successful shipment of the API platform 'databridge' demonstrates a solid foundation for building enterprise-grade products.",
+        "The focus on data infrastructure and fintech domains is a step in the right direction for enterprise relevance."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
