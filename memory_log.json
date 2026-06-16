@@ -4572,6 +4572,93 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-16",
+      "completed_at": "2026-06-16T05:47:22Z",
+      "completed_at_unix": 1781588842,
+      "name": "neuro-urban-planner",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-16-neuro-urban-planner",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-16-neuro-urban-planner/",
+      "language": "JavaScript",
+      "project_type": "creative_tool",
+      "tech_stack": [
+        "ES6",
+        "HTML5",
+        "CSS3",
+        "Canvas"
+      ],
+      "complexity_score": 130,
+      "concepts_demonstrated": [
+        "Neural networks",
+        "Urban planning",
+        "Environmental science",
+        "Interactive simulation"
+      ],
+      "novel_concepts": [
+        "Neuroscience-inspired urban planning",
+        "AI-driven creative tools for urban design"
+      ],
+      "advancement_axis": "Incorporating neuroscience concepts into urban planning",
+      "pattern": "neuro-urban-planning",
+      "domain": "Environmental Science",
+      "visual_identity": "Minimalist, futuristic, with a focus on data visualization",
+      "safety_notes": "None",
+      "file_count": 6,
+      "loc": 304,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 188,
+        "bodyHtml": 2144,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 3,
+        "title": "Neuro Urban Planner",
+        "viewportMeta": true,
+        "hasMain": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o-mini",
+          "script.js": "gpt-4o-mini",
+          "style.css": "gpt-4o-mini",
+          "data.json": "gpt-4o-mini",
+          "utils.js": "gpt-4o-mini",
+          "README.md": "gpt-4o-mini"
+        }
+      },
+      "ceo_directives_followed": [
+        "Develop an interactive simulation tool for understanding complex systems dynamics, using a type other than generative art.",
+        "Incorporate cutting-edge methodologies from neuroscience to inspire novel AI-driven creative tools.",
+        "Focus on a domain such as environmental science or futuristic urban planning to push boundaries.",
+        "Ensure the project has a clear, actionable output that can be validated through user engagement or empirical testing.",
+        "Prioritize a lean development approach to maintain agility and speed in iterations."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Neuro Urban Planner is a creative tool that allows users to explore AI-driven urban planning strategies, but some minor improvements are needed to enhance the user experience.",
+        "model": "llama-3.3-70b-versatile",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4626,7 +4713,8 @@
     110,
     110,
     110,
-    120
+    120,
+    130
   ],
   "concepts_explored": [
     "neural networks",
@@ -4843,7 +4931,10 @@
     "Transfer learning concepts",
     "Dynamic user interaction",
     "Speculative AI design",
-    "Interactive parameter tuning"
+    "Interactive parameter tuning",
+    "Neural networks",
+    "Urban planning",
+    "Environmental science"
   ],
   "patterns_used": [
     "visualizer",
@@ -4891,7 +4982,8 @@
     "cryptography-utility-pattern",
     "interactive-procedural-tessellation",
     "info-driven-generative-pattern",
-    "ai-driven-surreal-art"
+    "ai-driven-surreal-art",
+    "neuro-urban-planning"
   ],
   "domains_used": [
     "Mathematics",
@@ -4939,7 +5031,8 @@
     "Cryptography",
     "Generative Art",
     "Generative Art",
-    "AI-driven creative tools"
+    "AI-driven creative tools",
+    "Environmental Science"
   ],
   "ceo_reviews": [
     {
@@ -9435,6 +9528,28 @@
       "praise": [
         "The recent shipped projects show a good mix of domains and complexity levels",
         "The architect has been experimenting with new patterns and project types"
+      ],
+      "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-15T23:09:33Z",
+      "issued_at_unix": 1781564973,
+      "model": "gpt-4o-mini",
+      "verdict": "acceptable",
+      "summary": "While recent projects show promise, the trend towards generative art is becoming saturated and may hinder innovation. We need to diversify our project types and domains.",
+      "concerns": [
+        "Overreliance on generative art is concerning; we risk stagnation without exploring new territories.",
+        "Multiple refusals in AI concept projects highlight a need for a more robust quality assurance before submission."
+      ],
+      "directives": [
+        "Develop an interactive simulation tool for understanding complex systems dynamics, using a type other than generative art.",
+        "Incorporate cutting-edge methodologies from neuroscience to inspire novel AI-driven creative tools.",
+        "Focus on a domain such as environmental science or futuristic urban planning to push boundaries.",
+        "Ensure the project has a clear, actionable output that can be validated through user engagement or empirical testing.",
+        "Prioritize a lean development approach to maintain agility and speed in iterations."
+      ],
+      "praise": [
+        "The modular design of the recently shipped projects has been commendable, allowing for flexibility and innovation."
       ],
       "reviewed_project_count": 8
     }
@@ -16965,6 +17080,42 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=120 below floor 121 (max recent=120). The scale is open-ended; surpass yesterday.",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-06-16T00:27:09Z",
+      "attempted_at_unix": 1781569629,
+      "date": "2026-06-16",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 24 page error(s), body_empty=False.",
+      "plan_name": "neurosymbolic-creative-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 135,
+      "plan_pattern": "hybrid-ai-creative-tool",
+      "plan_domain": "Computational Creativity",
+      "plan_files_count": 7,
+      "project_type": "creative_tool",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "textarea#constraints-editor",
+          "expected": "Updates symbolic constraints and regenerates the visual output on the canvas"
+        },
+        {
+          "control": "button#generate",
+          "expected": "Generates new GAN output and displays it on the canvas"
+        },
+        {
+          "control": "button#load-example",
+          "expected": "Loads a predefined set of constraints and updates the canvas"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 5,
+        "live": 2,
+        "dead": 3
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
