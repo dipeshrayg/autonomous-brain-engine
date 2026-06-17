@@ -4833,6 +4833,124 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-17",
+      "completed_at": "2026-06-17T00:20:22Z",
+      "completed_at_unix": 1781655622,
+      "name": "talent-insights-platform",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-17-talent-insights-platform",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-17-talent-insights-platform/",
+      "language": "JavaScript",
+      "project_type": "b2b_dashboard",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Chart.js"
+      ],
+      "complexity_score": 160,
+      "concepts_demonstrated": [
+        "HR analytics",
+        "workforce forecasting",
+        "constraint solving"
+      ],
+      "novel_concepts": [
+        "constraint solver for workforce forecasting",
+        "information-theoretic workforce modeling",
+        "probabilistic talent pipeline analysis"
+      ],
+      "advancement_axis": "applying constraint solving and information theory to HR analytics",
+      "pattern": "hr-analytics-dashboard",
+      "domain": "HR and People Analytics",
+      "visual_identity": "bold color scheme, modern typography, and interactive charts",
+      "safety_notes": "no personal or sensitive data is used in the synthetic data generation",
+      "file_count": 4,
+      "loc": 585,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 730,
+        "bodyHtml": 4087,
+        "canvasCount": 2,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 994,
+          "h": 497,
+          "cssW": 994,
+          "cssH": 497
+        },
+        "interactiveCount": 5,
+        "scriptCount": 2,
+        "title": "Talent Insights Platform",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Talent Insights Platform\nOverview Analytics Forecasting Settings\nOverview\nAnalytics\nForecasting\nSettings\nOverview\n\nWelcome to the Talent Insights Platform. Use the navigation to explore workforce anal",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "All\nEngineering\nMarketing\nHR",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Analyze",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "app.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be a b2b_dashboard type. Focus on delivering a practical, enterprise-ready SaaS dashboard with a clear business use case.",
+        "The project MUST include a fully functional and interactive user interface with working analytics, filters, and data visualization components.",
+        "Avoid speculative or overly complex AI-driven patterns for this project. Use proven, straightforward features that are robust and functional.",
+        "Integrate realistic synthetic data to simulate a credible business use case, such as HR analytics, supply-chain metrics, or customer engagement tracking.",
+        "Prioritize human usability above all else. Every interactive element must be fully functional, with no dead or missing components in the final product.",
+        "Deliver a polished design system with consistent UI/UX components that aligns with enterprise standards."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project presents a well-designed dashboard with working charts and a staffing level slider, but key controls like the department filter and analyze button fail to provide observable functionality.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "filter dropdown",
+            "expected": "Filtering the data table to display only rows relevant to the selected department.",
+            "actual": "The table remains unchanged regardless of the filter selection.",
+            "fix": "Ensure that the change event of the department filter dropdown triggers a re-render of the analytics table with the filtered dataset."
+          },
+          {
+            "control": "Analyze button",
+            "expected": "Perform data analysis and display results in the analytics table.",
+            "actual": "Clicking the button does not update the analytics table with any analysis data.",
+            "fix": "Verify that the `analyzeData` function is being correctly called on the button click and that the processed data populates the table."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -4890,7 +5008,8 @@
     120,
     130,
     140,
-    150
+    150,
+    160
   ],
   "concepts_explored": [
     "neural networks",
@@ -5114,7 +5233,9 @@
     "information theory",
     "API design",
     "Data integration",
-    "Real-time data processing"
+    "Real-time data processing",
+    "HR analytics",
+    "workforce forecasting"
   ],
   "patterns_used": [
     "visualizer",
@@ -5165,7 +5286,8 @@
     "ai-driven-surreal-art",
     "neuro-urban-planning",
     "data-observability-platform",
-    "data-integration-platform"
+    "data-integration-platform",
+    "hr-analytics-dashboard"
   ],
   "domains_used": [
     "Mathematics",
@@ -5216,7 +5338,8 @@
     "AI-driven creative tools",
     "Environmental Science",
     "Data Infrastructure",
-    "Fintech"
+    "Fintech",
+    "HR and People Analytics"
   ],
   "ceo_reviews": [
     {
