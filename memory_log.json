@@ -4951,6 +4951,92 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-17",
+      "completed_at": "2026-06-17T07:20:46Z",
+      "completed_at_unix": 1781680846,
+      "name": "atlas-fleet-risk-intelligence",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-17-atlas-fleet-risk-intelligence",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-17-atlas-fleet-risk-intelligence/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 162,
+      "concepts_demonstrated": [
+        "data visualization",
+        "machine learning",
+        "information theory"
+      ],
+      "novel_concepts": [
+        "fleet risk intelligence",
+        "insurance underwriting"
+      ],
+      "advancement_axis": "enterprise-ready SaaS application with interactive analytics",
+      "pattern": "fleet-risk-intelligence-platform",
+      "domain": "Insurance and Risk Management",
+      "visual_identity": "professional, modern design with a focus on data visualization",
+      "safety_notes": "The project does not contain any active malware or exploits.",
+      "file_count": 4,
+      "loc": 647,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 69,
+        "bodyHtml": 4040,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 615,
+          "h": 307,
+          "cssW": 0,
+          "cssH": 0
+        },
+        "interactiveCount": 6,
+        "scriptCount": 2,
+        "title": "Atlas Fleet Risk Intelligence",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Atlas Fleet Risk Intelligence\nFleet Overview\nRisk Assessment\nSettings",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 1,
+          "total_controls": 1,
+          "dead_controls": [],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be a b2b_dashboard type. Focus on delivering a practical, enterprise-ready SaaS dashboard with a clear business use case.",
+        "The project MUST include a fully functional and interactive user interface with working analytics, filters, and data visualization components.",
+        "Avoid speculative or overly complex AI-driven patterns for this project. Use proven, straightforward features that are robust and functional.",
+        "Integrate realistic synthetic data to simulate a credible business use case, such as HR analytics, supply-chain metrics, or customer engagement tracking.",
+        "Prioritize human usability above all else. Every interactive element must be fully functional, with no dead or missing components in the final product.",
+        "Deliver a polished design system with consistent UI/UX components that aligns with enterprise standards."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The application is fully functional with all primary and secondary features working as intended, providing clear and useful outputs to users.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5009,7 +5095,8 @@
     130,
     140,
     150,
-    160
+    160,
+    162
   ],
   "concepts_explored": [
     "neural networks",
@@ -5287,7 +5374,8 @@
     "neuro-urban-planning",
     "data-observability-platform",
     "data-integration-platform",
-    "hr-analytics-dashboard"
+    "hr-analytics-dashboard",
+    "fleet-risk-intelligence-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -5339,7 +5427,8 @@
     "Environmental Science",
     "Data Infrastructure",
     "Fintech",
-    "HR and People Analytics"
+    "HR and People Analytics",
+    "Insurance and Risk Management"
   ],
   "ceo_reviews": [
     {
