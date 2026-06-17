@@ -5125,6 +5125,91 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-17",
+      "completed_at": "2026-06-17T19:52:47Z",
+      "completed_at_unix": 1781725967,
+      "name": "insight-hub",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-17-insight-hub",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-17-insight-hub/",
+      "language": "JavaScript",
+      "project_type": "database_showcase",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 170,
+      "concepts_demonstrated": [
+        "data visualization",
+        "filtering",
+        "analysis"
+      ],
+      "novel_concepts": [
+        "environmental data analysis",
+        "scientific data visualization"
+      ],
+      "advancement_axis": "scientific data visualization",
+      "pattern": "environmental-data-analytics",
+      "domain": "Environmental Science",
+      "visual_identity": "green color palette, clean typography, interactive visualizations",
+      "safety_notes": "no backend servers, no sensitive data",
+      "file_count": 3,
+      "loc": 413,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 204,
+        "bodyHtml": 8141,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 0,
+          "cssH": 0
+        },
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Insight Hub",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Insight Hub\nOverview\nAnalytics\nRaw Data\nOverview\n\nWelcome to Insight Hub, your platform for data analytics on environmental monitoring. Use the navigation menu to explore data visualizations and insig",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 0,
+          "total_controls": 0,
+          "dead_controls": [],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be a b2b_dashboard type. Focus on delivering a practical, enterprise-ready SaaS dashboard with a clear business use case.",
+        "The project MUST include a fully functional and interactive user interface with working analytics, filters, and data visualization components.",
+        "Avoid speculative or overly complex AI-driven patterns for this project. Use proven, straightforward features that are robust and functional.",
+        "Integrate realistic synthetic data to simulate a credible business use case, such as HR analytics, supply-chain metrics, or customer engagement tracking.",
+        "Prioritize human usability above all else. Every interactive element must be fully functional, with no dead or missing components in the final product.",
+        "Deliver a polished design system with consistent UI/UX components that aligns with enterprise standards."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Insight Hub project provides a fully functional and user-friendly platform for environmental data analytics with dynamic visualizations, filterable tables, and stable navigation.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5185,7 +5270,8 @@
     150,
     160,
     162,
-    165
+    165,
+    170
   ],
   "concepts_explored": [
     "neural networks",
@@ -5413,7 +5499,9 @@
     "HR analytics",
     "workforce forecasting",
     "supply chain management",
-    "real-time analytics"
+    "real-time analytics",
+    "filtering",
+    "analysis"
   ],
   "patterns_used": [
     "visualizer",
@@ -5467,7 +5555,8 @@
     "data-integration-platform",
     "hr-analytics-dashboard",
     "fleet-risk-intelligence-platform",
-    "supply-chain-analytics"
+    "supply-chain-analytics",
+    "environmental-data-analytics"
   ],
   "domains_used": [
     "Mathematics",
@@ -5521,7 +5610,8 @@
     "Fintech",
     "HR and People Analytics",
     "Insurance and Risk Management",
-    "Supply Chain Management"
+    "Supply Chain Management",
+    "Environmental Science"
   ],
   "ceo_reviews": [
     {
