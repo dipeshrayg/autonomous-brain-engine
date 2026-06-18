@@ -5309,6 +5309,122 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-18",
+      "completed_at": "2026-06-18T11:23:02Z",
+      "completed_at_unix": 1781781782,
+      "name": "finverge",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-18-finverge",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-18-finverge/",
+      "language": "JavaScript",
+      "project_type": "b2b_dashboard",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 180,
+      "concepts_demonstrated": [
+        "data integration",
+        "financial analysis",
+        "data visualization"
+      ],
+      "novel_concepts": [
+        "financial data convergence",
+        "real-time KPI tracking"
+      ],
+      "advancement_axis": "unified financial data view",
+      "pattern": "financial-dashboard",
+      "domain": "Fintech",
+      "visual_identity": "modern, minimalist design with a palette of blues and whites, Open Sans typography",
+      "safety_notes": "no user input is stored or transmitted",
+      "file_count": 4,
+      "loc": 364,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 195,
+        "bodyHtml": 1391,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Finverge - Financial Data Convergence Platform",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Finverge\n\nFinancial Data Convergence Platform\n\nData Source:\nSource 1\nSource 2\nSource 3\nDate Range:\nto\nTotal Revenue\n\n$238729.04\n\nAverage Daily Transactions\n\n273\n\nTop Performing Sector\n\nHealthcare",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "INPUT",
+              "type": "date",
+              "label": "",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "date",
+              "label": "",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a devtool, focusing on developer productivity or debugging (e.g., API performance monitoring, code analysis). Aim for a clear enterprise use case.",
+        "Prioritize simplicity and completeness to ensure the project ships successfully, avoiding over-ambitious features that risk QA refusal.",
+        "Ensure the devtool includes an interactive and functional JavaScript-based interface in index.html for immediate usability on GitHub Pages.",
+        "Develop a robust testing framework to prevent dead or missing functionality, especially for critical interactive features.",
+        "Refrain from AI-driven creative tools or speculative concepts for the next project as recent failures suggest a lack of readiness in this area."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The dropdown control works and updates the dashboard with mock data, but the date range picker does not produce any visible state change, limiting usability for a human user.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "start-date input",
+            "expected": "Filter and update dashboard metrics based on selected start date",
+            "actual": "No observable state change or metric update upon interaction",
+            "fix": "Ensure the event listener for start-date input triggers the fetchData function correctly and filters the dataset based on the selected start date."
+          },
+          {
+            "control": "end-date input",
+            "expected": "Filter and update dashboard metrics based on selected end date",
+            "actual": "No observable state change or metric update upon interaction",
+            "fix": "Ensure the event listener for end-date input triggers the fetchData function correctly and filters the dataset based on the selected end date."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Date range filter",
+            "why_missing": "The date range picker inputs do not update the dashboard metrics, failing to filter data based on the selected date interval.",
+            "fix": "Debug the date range picker logic in `script.js` to ensure proper filtering of data by the selected date range. Validate that the inputs are capturing and applying the user's selections."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5371,7 +5487,8 @@
     162,
     165,
     170,
-    171
+    171,
+    180
   ],
   "concepts_explored": [
     "neural networks",
@@ -5603,7 +5720,9 @@
     "filtering",
     "analysis",
     "Code Analysis",
-    "Debugging"
+    "Debugging",
+    "data integration",
+    "financial analysis"
   ],
   "patterns_used": [
     "visualizer",
@@ -5659,7 +5778,8 @@
     "fleet-risk-intelligence-platform",
     "supply-chain-analytics",
     "environmental-data-analytics",
-    "code-analysis-tool"
+    "code-analysis-tool",
+    "financial-dashboard"
   ],
   "domains_used": [
     "Mathematics",
@@ -5715,7 +5835,8 @@
     "Insurance and Risk Management",
     "Supply Chain Management",
     "Environmental Science",
-    "DevOps"
+    "DevOps",
+    "Fintech"
   ],
   "ceo_reviews": [
     {
