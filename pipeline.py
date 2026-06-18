@@ -1168,9 +1168,35 @@ def stage_plan(client: OpenAI, memory: dict,
         "synthesize a stronger one. Output ONE plan in standard schema.\n\n"
         f"CANDIDATES:\n{judge_input}"
     )
+    if in_enterprise:
+        # The Judge can reject every candidate and synthesize its own plan (option 3 in
+        # JUDGE_SYSTEM). Without this reminder it can pick ANY project_type — including
+        # non-enterprise ones — which _validate_plan then rejects, wasting the whole
+        # conference. Enterprise mode constrains EVERY plan, including a judge-authored one.
+        judge_user += (
+            "\n\n🏢 ENTERPRISE MODE IS ACTIVE. Whatever you output — whether you pick a "
+            "candidate verbatim, synthesize, or write your own replacement plan — "
+            "project_type MUST be one of: saas_app, b2b_dashboard, enterprise_webapp, "
+            "system_design, api_platform, devtool, saas_landing, database_showcase. If you "
+            "reject a candidate for using the templated sidebar nav, replace it with a "
+            "DIFFERENT ENTERPRISE TYPE using a different UI metaphor — never a non-enterprise "
+            "type like python_tool, game_web, etc."
+        )
     final, meta = _call_role(client, "architect_judge",
                              JUDGE_SYSTEM, judge_user, max_tokens=4000)
-    _validate_plan(final, memory)
+    try:
+        _validate_plan(final, memory)
+    except PipelineError as e:
+        # The Judge synthesized its own replacement plan (JUDGE_SYSTEM option 3) and it
+        # violated a hard constraint (e.g. wrong project_type under enterprise mode). The
+        # original candidates already passed validation — fall back to the first one
+        # instead of discarding a whole conference's worth of valid work.
+        log.warning(
+            "Judge's plan failed validation (%s); falling back to first valid candidate "
+            "(%s) instead of wasting the conference.", e, candidates[0]["name"],
+        )
+        final = candidates[0]
+        meta = {"model": final.get("__model__", "?")}
     _ensure_readme_planned(final)
     final["__model__"] = meta["model"]
     final["__role__"] = "architect_judge"
