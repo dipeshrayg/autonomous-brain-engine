@@ -5210,6 +5210,105 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-18",
+      "completed_at": "2026-06-18T05:52:20Z",
+      "completed_at_unix": 1781761940,
+      "name": "code-insight",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-18-code-insight",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-18-code-insight/",
+      "language": "JavaScript",
+      "project_type": "devtool",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 171,
+      "concepts_demonstrated": [
+        "Interactive Visualization",
+        "Code Analysis",
+        "Debugging"
+      ],
+      "novel_concepts": [
+        "Constraint Solving",
+        "Information-Theoretic Concepts"
+      ],
+      "advancement_axis": "Developer Productivity",
+      "pattern": "code-analysis-tool",
+      "domain": "DevOps",
+      "visual_identity": "Monochromatic color scheme with a focus on code syntax highlighting",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 4,
+      "loc": 413,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 269,
+        "bodyHtml": 987,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Code Insight - Developer Productivity Tool",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Code Insight\n\nA Developer Productivity Tool for Code Analysis and Debugging\n\nCode Snippet Input\n Analyze Code Reset Input  Line Length Filter\nAnalysis Results\n\nEnter a code snippet and click \"Analyze ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 3,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "50",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a devtool, focusing on developer productivity or debugging (e.g., API performance monitoring, code analysis). Aim for a clear enterprise use case.",
+        "Prioritize simplicity and completeness to ensure the project ships successfully, avoiding over-ambitious features that risk QA refusal.",
+        "Ensure the devtool includes an interactive and functional JavaScript-based interface in index.html for immediate usability on GitHub Pages.",
+        "Develop a robust testing framework to prevent dead or missing functionality, especially for critical interactive features.",
+        "Refrain from AI-driven creative tools or speculative concepts for the next project as recent failures suggest a lack of readiness in this area."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides real-time code analysis and displays results effectively, but the Line Length Filter slider has no visible impact on the output, reducing its functionality.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "line-length-slider",
+            "expected": "Adjust the output to filter results based on the max line length set by the slider.",
+            "actual": "Changing the slider value does not visibly affect the displayed results.",
+            "fix": "Ensure the slider's value is correctly applied to filter lines during analysis, and the filtered results are re-rendered in the 'Analysis Results' section."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5271,7 +5370,8 @@
     160,
     162,
     165,
-    170
+    170,
+    171
   ],
   "concepts_explored": [
     "neural networks",
@@ -5501,7 +5601,9 @@
     "supply chain management",
     "real-time analytics",
     "filtering",
-    "analysis"
+    "analysis",
+    "Code Analysis",
+    "Debugging"
   ],
   "patterns_used": [
     "visualizer",
@@ -5556,7 +5658,8 @@
     "hr-analytics-dashboard",
     "fleet-risk-intelligence-platform",
     "supply-chain-analytics",
-    "environmental-data-analytics"
+    "environmental-data-analytics",
+    "code-analysis-tool"
   ],
   "domains_used": [
     "Mathematics",
@@ -5611,7 +5714,8 @@
     "HR and People Analytics",
     "Insurance and Risk Management",
     "Supply Chain Management",
-    "Environmental Science"
+    "Environmental Science",
+    "DevOps"
   ],
   "ceo_reviews": [
     {
