@@ -17788,6 +17788,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: project_type='python_tool' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'system_design'].",
       "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-18T05:35:51Z",
+      "attempted_at_unix": 1781760951,
+      "date": "2026-06-18",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: project_type='python_tool' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'system_design'].",
+      "project_type": "python_tool"
     }
   ],
   "cso_reviews": [
