@@ -5425,6 +5425,86 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-18",
+      "completed_at": "2026-06-18T17:54:42Z",
+      "completed_at_unix": 1781805282,
+      "name": "logic-insight",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-18-logic-insight",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-18-logic-insight/",
+      "language": "JavaScript",
+      "project_type": "database_showcase",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 182,
+      "concepts_demonstrated": [
+        "Constraint solving",
+        "DPLL with conflict-driven clause learning",
+        "Information-theoretic concepts",
+        "Compression",
+        "Entropy analysis"
+      ],
+      "novel_concepts": [
+        "Interactive constraint solver",
+        "Information-theoretic metrics for constraint solving"
+      ],
+      "advancement_axis": "Interactive constraint solving with information-theoretic insights",
+      "pattern": "constraint-solver-with-insights",
+      "domain": "Computer Science",
+      "visual_identity": "Clean and minimalistic design with a focus on interactive visualizations",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 2,
+      "loc": 287,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 248,
+        "bodyHtml": 4264,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Logic Insight - Interactive Constraint Solver",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Logic Insight\n\nInteractive Constraint Solver with DPLL and Information-Theoretic Metrics\n\nEnter CNF Formula:  Input should be in a valid CNF format.\nSolve Toggle Metrics\nSolution\nNo solution computed ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a devtool, focusing on developer productivity or debugging (e.g., API performance monitoring, code analysis). Aim for a clear enterprise use case.",
+        "Prioritize simplicity and completeness to ensure the project ships successfully, avoiding over-ambitious features that risk QA refusal.",
+        "Ensure the devtool includes an interactive and functional JavaScript-based interface in index.html for immediate usability on GitHub Pages.",
+        "Develop a robust testing framework to prevent dead or missing functionality, especially for critical interactive features.",
+        "Refrain from AI-driven creative tools or speculative concepts for the next project as recent failures suggest a lack of readiness in this area."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project fulfills its core promises effectively, providing a functional constraint solver interface with working solution display and metrics toggle. All user interactions are responsive and meaningful, making it usable and engaging.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5488,7 +5568,8 @@
     165,
     170,
     171,
-    180
+    180,
+    182
   ],
   "concepts_explored": [
     "neural networks",
@@ -5779,7 +5860,8 @@
     "supply-chain-analytics",
     "environmental-data-analytics",
     "code-analysis-tool",
-    "financial-dashboard"
+    "financial-dashboard",
+    "constraint-solver-with-insights"
   ],
   "domains_used": [
     "Mathematics",
@@ -5836,7 +5918,8 @@
     "Supply Chain Management",
     "Environmental Science",
     "DevOps",
-    "Fintech"
+    "Fintech",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
