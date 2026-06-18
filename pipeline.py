@@ -225,37 +225,68 @@ EXPANSION TYPES (available only when EXPANSION MODE is shown in the user prompt)
                       Must be clearly harmless fun — labeled as fiction/parody where needed.
 
 ENTERPRISE TYPES (available only when ENTERPRISE MODE is shown in the user prompt — these
-must read like real, funded B2B SaaS products with a multi-view app shell, a design system,
-and realistic synthetic data. NO toy/art/game gimmicks.):
-    saas_app          A full multi-view SaaS application. Persistent sidebar + topbar nav and
-                      4-6 interconnected views: Overview/Home, Analytics, a Records data table
-                      with search+filter+sort+pagination, a Detail/drill-down view, Settings,
-                      and (simulated) Billing. Client-side router (hash routes). Realistic
-                      synthetic data generated in JS. Examples: a CRM, an HR analytics suite,
-                      a project-ops platform, a customer success console.
-    b2b_dashboard     An enterprise analytics/observability dashboard. KPI cards with deltas,
-                      time-series charts (Chart.js or SVG), a filterable data table, date-range
-                      and segment filters that actually re-compute the charts, drill-down on a
-                      metric. Synthetic but plausible business data. Examples: revenue/FinOps,
-                      a SOC security dashboard, a fleet/supply-chain monitor, product analytics.
-    enterprise_webapp An internal operations / admin console. CRUD over synthetic records
-                      (create/edit/delete in local state), role-based views (Admin vs Viewer
-                      toggle), bulk actions, an audit-trail log, toasts, confirmation modals.
-                      Examples: an IT asset manager, an approvals workflow, a content/CMS admin,
-                      an access-control console.
-    system_design     An interactive system & data architecture showcase aimed at architects.
-                      Rendered architecture diagram (SVG/HTML, not an image), a clickable data
-                      model / ER diagram, a request/data-flow sequence walk-through, scaling and
-                      capacity notes, trade-off tables. Examples: a multi-region SaaS reference
-                      architecture, an event-sourcing/CQRS design, a streaming data platform.
-    api_platform      An API product front-end. An interactive endpoint explorer with a method
-                      list, a request builder, a mocked-but-realistic JSON response viewer,
-                      auth/rate-limit docs, SDK code snippets in 2-3 languages, and a status
-                      page. Examples: a payments API, a geocoding API, an LLM gateway API.
-    devtool           A developer-tooling product UI. Examples: a CI/CD pipeline dashboard with
-                      run history and logs, a feature-flag manager, a log/trace explorer, an
-                      error-monitoring console, a deployment board. Real workflows over synthetic
-                      data, with filtering, detail panes, and status states.
+must read like real, funded B2B SaaS products with a coherent design system and realistic,
+INTERNALLY-CONSISTENT synthetic data. NO toy/art/game gimmicks.)
+
+★★★ STRUCTURAL DIVERSITY IS MANDATORY ★★★
+Every enterprise type below lists 3-4 alternative UI METAPHORS. You MUST pick a DIFFERENT
+metaphor than recent ships used (check the TYPE DIVERSITY REPORT / recent project names in
+the user prompt — if a recent enterprise ship had a left sidebar with "Overview/Analytics/
+Settings", DO NOT build that shape again, even for a different business domain). The
+generic words "Overview", "Analytics", "Records", "Detail", "Settings" used together as a
+sidebar nav are BANNED — every recent ship has used exactly this and it reads as a
+templated mold, not a real product. Invent section names from the actual domain instead
+(e.g. a fleet-risk product says "Incidents" / "Driver Scorecards" / "Routes", not
+"Analytics" / "Records").
+
+    saas_app          Pick ONE metaphor, not the generic dashboard shell:
+                      (a) INBOX/QUEUE: a left message-list + right detail-pane layout (like
+                          email or a support desk) — e.g. a customer-success triage tool.
+                      (b) KANBAN/PIPELINE: draggable cards across status columns — e.g. a
+                          deal pipeline or hiring tracker.
+                      (c) CALENDAR/SCHEDULE: a time-grid primary view with bookings/shifts.
+                      (d) WORKSPACE/CANVAS: a multi-panel workbench (like Notion/Figma) with
+                          a resizable side panel and a document/record canvas.
+    b2b_dashboard     Pick ONE metaphor:
+                      (a) SINGLE-SCREEN METRICS WALL: no nav at all — one dense screen of
+                          live-updating tiles/charts/maps (like a NOC ops wall).
+                      (b) QUERY-BUILDER + RESULTS: a filter/query panel on top, a results
+                          grid + chart below that react to the query (BI-tool style).
+                      (c) MAP-CENTRIC: a geographic map as the primary view with an overlaid
+                          metrics panel (fleet, logistics, regional sales).
+                      (d) TIMELINE/TREND-FOCUSED: a large time-series as the hero, with
+                          comparison toggles and annotated events.
+    enterprise_webapp Pick ONE metaphor:
+                      (a) TICKET QUEUE: a list of items with status pills + a detail/edit
+                          pane, like a support or approvals queue.
+                      (b) FORM-CENTRIC WIZARD: a multi-step record editor/onboarding flow
+                          with validation and a review step.
+                      (c) PERMISSION MATRIX: a grid of roles x resources with toggleable
+                          access cells, plus an audit log.
+                      (d) BULK-ACTION TABLE: a dense data-grid with row selection, inline
+                          edit, and a bulk-action toolbar.
+    system_design     This is NEVER a dashboard — it is an interactive DIAGRAM or
+                      WALKTHROUGH. Pick ONE: (a) a pannable/zoomable node-and-edge
+                      architecture canvas where clicking a node reveals detail; (b) a
+                      step-by-step animated request/data-flow sequence with a play/pause
+                      timeline; (c) an interactive ER diagram where dragging tables shows
+                      foreign-key relationships and sample joined rows.
+    api_platform      This is a DEVELOPER CONSOLE, not a business dashboard. Pick ONE:
+                      (a) split-pane REQUEST BUILDER + response viewer (Postman-style);
+                      (b) a live API REFERENCE with an inline "Try it" panel per endpoint;
+                      (c) a terminal-style CURL/SDK console with command history.
+    devtool           Pick ONE metaphor distinct from a generic dashboard:
+                      (a) PIPELINE GRAPH: connected stage nodes with live pass/fail status
+                          and expandable logs per stage (CI/CD visualizer).
+                      (b) LOG/TRACE STREAM: a live-scrolling, filterable log console with
+                          search and severity highlighting.
+                      (c) FEATURE-FLAG BOARD: toggleable flags grouped by environment with
+                          rollout percentage sliders and an audit trail.
+
+Across ALL enterprise types, vary: the primary layout (sidebar vs no-nav vs split-pane vs
+canvas), the section/control naming (always domain-specific nouns, never the generic words
+above), and the visual identity (color palette, typography, density). Two enterprise ships
+in a row must look and feel like different products from different companies.
 
 ABSOLUTE CONSTRAINTS:
 1. Comply with GitHub TOS. No active malware, no exploits against systems without consent. Educational / diagnostic / synthetic demos only.
@@ -263,7 +294,7 @@ ABSOLUTE CONSTRAINTS:
    - web_interactive / web_3d / game_web / generative_art: index.html IS the project itself.
    - python_tool: index.html is a RICH VISUAL SHOWCASE page. It must show: project title + description, architecture diagram (use HTML/CSS/SVG, not images), sample outputs (embedded SVG, ASCII art rendered in <pre>, or generated visualizations), the core algorithm explained visually with diagrams/animations, a live interactive demo element if possible (e.g. a JS port of the core algorithm), and a "Run in Codespaces" button. The index.html should make the viewer say "wow" even without running Python.
    - document: index.html is a BEAUTIFULLY STYLED reader page. Render the document content as a polished web page with typography, diagrams, table of contents, and visual flair — NOT just raw markdown. Make it look like a published article on Medium or a research paper.
-   - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): index.html IS the product. It must boot into a real, multi-view application shell with a persistent sidebar/topbar, client-side routing between views, a coherent design system (CSS custom properties for color/spacing/type tokens, reusable card/table/modal/badge components), and realistic synthetic enterprise data generated in JS. It must look indistinguishable from a real funded SaaS product (Linear/Stripe/Datadog/Vercel-grade). NO toy canvas doodles, NO single-gimmick pages, NO lorem ipsum.
+   - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): index.html IS the product, built around the SPECIFIC METAPHOR chosen in the plan (inbox, kanban, query-builder, map, diagram canvas, request-builder console, pipeline graph, etc.) — NOT a generic sidebar+Overview/Analytics/Settings shell. A coherent design system (CSS custom properties for color/spacing/type tokens, reusable components) and realistic, COMPUTED synthetic enterprise data (see DATA REALITY RULES below). It must look indistinguishable from a real funded SaaS product (Linear/Stripe/Datadog/Vercel-grade) AND look like a DIFFERENT product from whatever the previous enterprise ship looked like. NO toy canvas doodles, NO single-gimmick pages, NO lorem ipsum, NO generic "Overview/Analytics/Settings" nav.
 3. Python tools: must ALSO run with `python <entry>` in a Codespaces dev container; declare deps in requirements.txt. The Python code is the real project; index.html is the showcase.
 4. ABSOLUTELY NO COMPILED-LANGUAGE FILES that require transpilation (.ts, .tsx, .jsx, .scss, .vue, etc.). Plain languages only. This applies to ALL types INCLUDING typescript_app — typescript_app uses .js files with ESM imports, NOT .ts source files.
 5. NO BACKEND SERVERS, WebSockets, or localhost connections. Everything web-facing runs as STATIC files on GitHub Pages — no Node.js server, no Express, no WebSocket server. Multiplayer/cooperative features must use local-only simulation (AI opponents, hot-seat multiplayer, or single-player with simulated cooperation).
@@ -332,6 +363,19 @@ You receive 1-3 candidate plans. For each, ask:
 - Does it use techniques the system has not used recently?
 - Would a senior engineer say "huh, that's a strange one" or "yet another canvas demo"?
 
+ENTERPRISE-TYPE PREDICTABILITY (if project_type is one of saas_app / b2b_dashboard /
+enterprise_webapp / system_design / api_platform / devtool / saas_landing /
+database_showcase): the SAME predictability test applies to the UI shape, not just the
+business idea. REJECT any candidate whose architecture is "persistent sidebar with links
+named Overview / Analytics / Records / Detail / Settings" — that is now the predictable
+default for this system and must be treated exactly like "yet another canvas demo". A
+candidate that swaps the business domain (fintech vs. logistics) but keeps that identical
+nav shape is STILL predictable — reject or rewrite it to use a genuinely different UI
+metaphor (inbox, kanban, query-builder, map, diagram canvas, request console, pipeline
+graph). Also reject any candidate whose synthetic data isn't computed from records (e.g. a
+KPI tile set via a bare random number with no link to the visible data) — that is a
+hallucinated-data bug, not a feature.
+
 Return ONE final plan in the exact same JSON schema as the candidates. You may:
 1. Pick the strongest unpredictable candidate verbatim
 2. Synthesize a stronger plan combining elements
@@ -353,12 +397,20 @@ RULES:
   - typescript_app: ALL FILES ARE .js AND .html — NEVER .ts. Write modern JavaScript (ES2022+) with <script type="module"> and import libraries from https://esm.sh/package@version for rich functionality. Use JSDoc comments for type hints. Example imports: import { createApp } from 'https://esm.sh/vue@3'; import * as d3 from 'https://esm.sh/d3@7'; import { signal } from 'https://esm.sh/@preact/signals@1'. The .js files run natively in the browser with no compilation step.
   - cli_tool: Rust or Go source files + a .devcontainer/devcontainer.json for Codespaces + a build.sh. index.html is a terminal-style animated showcase: dark background, monospace font, typewriter effect showing the CLI in action, syntax-highlighted sample output.
   - document: Markdown files + index.html as a beautifully styled reader page. Typography, table of contents, diagrams. Think published research article, not raw markdown.
-  - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): Build a REAL multi-view B2B product that ACTUALLY LOADS AND WORKS. The single most important rule:
+  - ENTERPRISE types (saas_app / b2b_dashboard / enterprise_webapp / system_design / api_platform / devtool): Build a REAL B2B product, in the SPECIFIC UI METAPHOR the plan chose (inbox, kanban, query-builder, map, diagram canvas, request-builder console, pipeline graph, etc.) — NOT a generic sidebar-nav dashboard. The single most important structural rule:
     ★ THE APP MUST BE SELF-CONTAINED IN index.html. Put ALL views, ALL JavaScript, and ALL synthetic data INLINE in index.html (or, at most, one app.js + one styles.css loaded with CLASSIC <script src="app.js"></script> / <link> tags at the END of <body>). Generate index.html LAST so you can inline everything.
     ★ NEVER load view scripts dynamically (NO document.createElement('script'), NO fetch() of .js, NO injecting <script> at runtime). That pattern is BANNED — dynamically-injected scripts wrapped in DOMContentLoaded never execute (the event already fired), so every view stays stuck on "Loading…". This is the #1 way enterprise apps die.
-    ★ The router is a VISIBILITY TOGGLE over inline sections, not a loader. Build all views as <section id="view-overview">, <section id="view-analytics">, … directly in index.html. The router reads location.hash and shows the matching section (section.style.display='block') while hiding the others. Every view's content already exists in the DOM on first paint.
-    ★ Run setup ONCE at the bottom of <body> (a plain <script> after the markup, NOT wrapped in a never-firing event) — render synthetic data into tables/charts, wire nav links, and call the router for the initial hash. Draw real content on first load; never leave a pane showing "Loading…".
-    Required substance: (1) persistent app shell — sidebar nav + topbar with product name; (2) 4-6 inline views toggled by the hash router; (3) a design system in CSS custom properties (color/spacing/type tokens; reusable cards, KPI tiles, data tables with zebra rows, status badges, modals, toasts); (4) realistic synthetic data generated inline (named companies/people, metrics, ISO dates, statuses — 30-50 rows so tables/charts look real); (5) wired interactivity — search filters the table, column sort, filters that recompute charts (Chart.js@4 from CDN is fine), row click opens a detail/modal, CRUD mutates local state with a toast. It must look like Linear/Stripe/Datadog and WORK on first load. No blank panes, no "randomize" toys.
+    ★ If the metaphor uses multiple views/panes, the router is a VISIBILITY TOGGLE over inline sections, not a loader — every section already exists in the DOM on first paint. If the metaphor is single-screen (metrics wall, diagram canvas, request console), there is no router at all — just render real content immediately.
+    ★ Run setup ONCE at the bottom of <body> (a plain <script> after the markup, NOT wrapped in a never-firing event). Draw real content on first load; never leave a pane showing "Loading…".
+    ★ FORBIDDEN: a left sidebar containing links literally named "Overview", "Analytics", "Records", "Detail", or "Settings" together. If you catch yourself writing that exact nav, STOP and rebuild using the chosen metaphor instead (inbox list, kanban columns, map, diagram nodes, query panel, etc.) with domain-specific labels.
+
+    ★★★ DATA REALITY RULES (fixes "data doesn't relate to anything") ★★★
+    1. GENERATE the dataset procedurally with a loop/generator function producing 30-60 entities from domain-appropriate name/value pools (real-sounding company names, person names, SKUs, request IDs — never "V001, V002" sequential placeholders, never lorem ipsum).
+    2. EVERY summary number shown (KPI tiles, chart totals, percentages, counts) MUST be COMPUTED from that record array via reduce/filter/length/average — e.g. `totalVehicles = records.length`, `activeRisks = records.filter(r => r.risk === 'High').length`. NEVER set a summary number independently via Math.random(). A metric that doesn't trace back to the visible records is the #1 'hallucinated data' bug — do not produce it.
+    3. If you simulate a 'live update' or polling tick, MUTATE the underlying record array (add/modify/remove an entity) and then RECOMPUTE every aggregate from the mutated array. Never randomize a headline number in isolation from its records.
+    4. Keep cross-references consistent: if a detail view shows a record's id, that id must match a row in the main list/table; if a chart breaks down by category, the categories must be the same ones used in the record data.
+    5. Dates should be a plausible recent range computed from a base Date in JS (not hardcoded literal date strings repeated across records).
+    Required substance: (1) the chosen UI metaphor, fully built; (2) a design system in CSS custom properties (color/spacing/type tokens; reusable cards, tiles, tables with zebra rows, status badges, modals, toasts) with a distinct visual identity per project; (3) the generated, internally-consistent dataset per the rules above; (4) wired interactivity appropriate to the metaphor — search/filter/sort on a list, drag on a kanban, query+run on a query-builder, pan/zoom/click on a diagram, send+view on a request console. It must look like a real funded product and WORK on first load. No blank panes, no "randomize" toys, no disconnected numbers.
 - Every interactive control your sibling files reference MUST have its event listener wired in this file (if this is the file that owns it). Buttons that look interactive but do nothing are the worst possible bug — do not produce them.
 - For canvas + state-bearing UIs: the click handler must compute coordinates the SAME way the render code uses them. State + visual must stay in sync.
 - For randomize / reset: enumerate exactly which DOM elements + state slots are touched.
@@ -479,6 +531,8 @@ MANDATORY CHECKS — fail any project that fails any of these:
 8. PIXEL / VISUAL: If interaction is supposed to draw on canvas, does the canvas show meaningful change? Not just any change — meaningful, visible-to-a-user change.
 
 9. MULTI-VIEW RENDERING (enterprise / app-shell projects): If the project has sidebar/nav links or multiple views, EVERY view must render real, populated content (tables/cards/charts with data) — not a blank pane and not a perpetual "Loading…". An app whose views never render, or that is stuck on "Loading…", is NON_FUNCTIONAL no matter how polished the shell looks. Confirm the initial view shows real data on first load.
+
+10. DATA CONSISTENCY (enterprise projects — flag as a missing_feature, "Data does not relate to the displayed records"): Spot-check whether summary numbers (KPI tiles, totals, percentages) plausibly derive from the visible record list/table. If a "live update" or refresh button changes a headline metric in a way that is OBVIOUS NONSENSE relative to the records shown (e.g. a record count of 5 but a "Total Items: 8742" tile that changes randomly), flag it — this is hallucinated, disconnected data and should not ship as shippable.
 
 CRITERIA for verdict — SHIP-FIRST: when in doubt, prefer partially_usable over non_functional. Reserve non_functional for pages that are TRULY dead. The goal is to deliver real projects; a project with one or two imperfect controls is still a genuine deliverable and should ship with a badge.
 
@@ -919,6 +973,17 @@ def stage_plan(client: OpenAI, memory: dict,
     in_enterprise = memory.get("enterprise_mode", False)
     base_user = f"Today is {today}. Produce today's design plan.\n\n{history}{diversity}"
     if in_enterprise:
+        # Surface the literal nav/section shape of recent enterprise ships so the
+        # architect cannot accidentally reproduce it. Cookie-cutter "Overview /
+        # Analytics / Settings" sidebars were the #1 complaint about this mode.
+        recent_enterprise = [
+            p for p in (memory.get("projects") or [])[-8:]
+            if p.get("project_type") in ENTERPRISE_TYPES
+        ]
+        recent_shapes = "\n".join(
+            f"  - {p.get('name')} ({p.get('project_type')}): pattern={p.get('pattern')}"
+            for p in recent_enterprise
+        ) or "  (none yet)"
         base_user += (
             "\n\n🏢 ENTERPRISE MODE ACTIVE — this is the most important instruction 🏢\n"
             "The audience is an enterprise procurement board, not hobbyists. TOY PROJECTS ARE "
@@ -928,22 +993,29 @@ def stage_plan(client: OpenAI, memory: dict,
             "You MUST pick one of these ENTERPRISE TYPES:\n"
             "  saas_app, b2b_dashboard, enterprise_webapp, system_design, api_platform,\n"
             "  devtool, saas_landing, database_showcase\n"
-            "MANDATORY enterprise bar for the plan:\n"
+            "\nRECENT ENTERPRISE SHIPS (you MUST use a DIFFERENT UI METAPHOR and layout than "
+            "all of these — see the PLAN_SYSTEM enterprise-type catalogue for the metaphor menu "
+            "per type, e.g. inbox/kanban/calendar/workspace for saas_app, metrics-wall/query-"
+            "builder/map/timeline for b2b_dashboard, etc.):\n"
+            f"{recent_shapes}\n"
+            "\nMANDATORY enterprise bar for the plan:\n"
             "  • SELF-CONTAINED build: design it as a single index.html (optionally + one app.js "
-            "and one styles.css linked with CLASSIC tags). Do NOT plan a separate .js file per "
-            "view — all views live inline in index.html and a hash router toggles their visibility. "
-            "Keep the plan to 1-3 files. Dynamically loading per-view scripts is FORBIDDEN (it breaks).\n"
-            "  • A MULTI-VIEW application shell: persistent sidebar/topbar nav + 3-6 interconnected "
-            "views (e.g. Overview, Analytics, Records/Table, Detail, Settings) — all inline.\n"
+            "and one styles.css linked with CLASSIC tags). Keep the plan to 1-3 files. Dynamically "
+            "loading per-view scripts is FORBIDDEN (it breaks — every view stays stuck loading).\n"
+            "  • A SPECIFIC UI METAPHOR (inbox, kanban, query-builder, diagram canvas, map, "
+            "request console, pipeline graph, etc. — pick from the catalogue) — NOT a generic "
+            "sidebar with links named 'Overview / Analytics / Records / Detail / Settings'. That "
+            "exact nav shape is BANNED; every recent ship used it and it reads as templated.\n"
             "  • A coherent DESIGN SYSTEM: spacing scale, type scale, color tokens, reusable "
-            "components (cards, data tables, modals, toasts, badges, charts). Looks like Linear, "
-            "Stripe, Datadog, Vercel, or Notion — not a school project.\n"
-            "  • REALISTIC SYNTHETIC ENTERPRISE DATA generated in JS (named companies, users, "
-            "metrics, time-series, statuses) — never lorem ipsum, never empty tables.\n"
+            "components. Looks like Linear, Stripe, Datadog, Vercel, Notion, or Postman — not a "
+            "school project, and not the same look as the recent ships listed above.\n"
+            "  • INTERNALLY-CONSISTENT SYNTHETIC DATA: generate 30-60 records procedurally; every "
+            "summary number MUST be computed from those records (never an independent random "
+            "number disconnected from the visible data) — see DATA REALITY RULES in IMPLEMENT_SYSTEM.\n"
             "  • A credible BUSINESS DOMAIN: fintech, healthtech, devops/observability, security/SOC, "
-            "supply-chain, HR/people analytics, data infrastructure, B2B CRM, etc.\n"
-            "  • Genuine workflows: filtering, sorting, search, drill-down, CRUD on synthetic data, "
-            "role/permission views, empty/loading/error states.\n"
+            "supply-chain, HR/people analytics, data infrastructure, B2B CRM, etc. — a domain not "
+            "already used by the recent ships above.\n"
+            "  • Genuine workflows appropriate to the chosen metaphor.\n"
             "Name and describe it as a product (e.g. 'Atlas — fleet risk intelligence platform'), "
             "with a one-line value proposition a CFO would understand."
         )
