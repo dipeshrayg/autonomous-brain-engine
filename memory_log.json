@@ -5670,6 +5670,152 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-19",
+      "completed_at": "2026-06-19T13:49:00Z",
+      "completed_at_unix": 1781876940,
+      "name": "edify",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-19-edify",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-19-edify/",
+      "language": "JavaScript",
+      "project_type": "saas_landing",
+      "tech_stack": [
+        "React",
+        "Node.js",
+        "Express"
+      ],
+      "complexity_score": 200,
+      "concepts_demonstrated": [
+        "AI-driven content generation",
+        "Customizable educational materials",
+        "Real-time collaboration"
+      ],
+      "novel_concepts": [
+        "AI-powered educational content creation",
+        "Dynamic content adaptation"
+      ],
+      "advancement_axis": "AI-driven educational technology",
+      "pattern": "ai-driven-educational-platform",
+      "domain": "Education Technology",
+      "visual_identity": "Modern, minimalistic design with a focus on typography and whitespace",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 4,
+      "loc": 663,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 1321,
+        "bodyHtml": 5819,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 9,
+        "scriptCount": 1,
+        "title": "Edify | AI-Powered Educational Content Creation",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Edify\nFeatures Pricing Try Now\nCreate Educational Content with AI\n\nRevolutionize your teaching resources with AI-powered tools that save time and enhance learning.\n\nGet Started\nFeatures\nAI-Powered Con",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 8,
+          "total_controls": 8,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Get Started",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "Search for topics",
+              "trigger": "text",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Search",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 4,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Short\nMedium\nLong",
+              "trigger": "select",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type enterprise_webapp, focusing on a complex multi-role enterprise application with real-time collaboration features.",
+        "Integrate synthetic user personas and realistic workflows to demonstrate business utility and operational scenarios.",
+        "Ensure all core functionalities are fully implemented and operational in the shipped project to avoid partially usable outcomes.",
+        "Expand into a new domain not recently explored, such as Healthcare, Legal Tech, or Cybersecurity, to diversify the portfolio.",
+        "Push for advanced interactivity and responsiveness in the interface, showcasing a polished design system that meets enterprise-grade standards."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The core features of the project are functional, but significant controls such as the 'Search' workflow and customization sliders show no observable state changes or meaningful output.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "Search bar",
+            "expected": "Entering a topic and clicking 'Search' should show a filtered content preview.",
+            "actual": "No visible change or content appears after entering a search term and clicking 'Search'.",
+            "fix": "Debug the handleSearch() function to ensure the search query updates and triggers generateContent correctly."
+          },
+          {
+            "control": "Customization menu (length selector)",
+            "expected": "Changing the 'Content Length' selector should update the preview content when a topic is entered.",
+            "actual": "No visible content update occurs when the length is changed, even after entering a topic.",
+            "fix": "Ensure the updateCustomization() function properly triggers generateContent with the updated length value."
+          },
+          {
+            "control": "Get Started button",
+            "expected": "Clicking 'Get Started' should provide actionable guidance to the user, such as revealing or focusing on the search bar.",
+            "actual": "No clear guidance or visual change occurs, only a brief message in the preview area.",
+            "fix": "Link the button to focus on the search bar and provide a clear visual cue or animation to direct user attention."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Filtered content display in the 'Search' workflow",
+            "why_missing": "The content preview does not update to reflect the user's search input and customization settings.",
+            "fix": "Ensure the generateContent() function properly handles the query, difficulty, and length parameters to produce a visually updated preview."
+          },
+          {
+            "feature": "Real-time content export",
+            "why_missing": "The 'Export Content' button only works if content is generated, but since key functionality for content generation is broken, export is effectively non-functional.",
+            "fix": "Fix the search and customization workflows so that the export feature has content to process, and validate the export logic."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5736,7 +5882,8 @@
     180,
     182,
     185,
-    190
+    190,
+    200
   ],
   "concepts_explored": [
     "neural networks",
@@ -5976,7 +6123,10 @@
     "Probabilistic Graphical Models",
     "Bayesian Inference",
     "Real-time Collaboration",
-    "Synthetic User Personas"
+    "Synthetic User Personas",
+    "AI-driven content generation",
+    "Customizable educational materials",
+    "Real-time collaboration"
   ],
   "patterns_used": [
     "visualizer",
@@ -6036,7 +6186,8 @@
     "financial-dashboard",
     "constraint-solver-with-insights",
     "healthcare-compliance-webapp",
-    "cybersecurity-compliance-platform"
+    "cybersecurity-compliance-platform",
+    "ai-driven-educational-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -6096,7 +6247,8 @@
     "Fintech",
     "Computer Science",
     "Healthcare",
-    "Cybersecurity"
+    "Cybersecurity",
+    "Education Technology"
   ],
   "ceo_reviews": [
     {
