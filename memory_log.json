@@ -20194,6 +20194,26 @@
         "The 'logic-insight' project shows promise with its constraint solver and insights, which could be a starting point for further innovation"
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-19T18:12:40Z",
+      "issued_at_unix": 1781892760,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with an overemphasis on dashboards and showcases. The next project should focus on a system_design type to introduce more complexity and depth.",
+      "concerns": [
+        "Lack of algorithmic innovation in recent projects",
+        "Overreliance on simple dashboard and showcase types",
+        "Insufficient attention to deep-tech areas like consensus protocols and formal verification"
+      ],
+      "directives": [
+        "Use the system_design project type for the next project",
+        "Incorporate a novel algorithm, such as a constraint solver or a distributed system",
+        "Ensure the project includes a deep-tech component, like formal verification or a consensus protocol",
+        "Prioritize mathematical correctness and information-theoretic interest in the project's design"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": false,
