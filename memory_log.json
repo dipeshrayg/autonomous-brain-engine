@@ -5587,6 +5587,89 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-19",
+      "completed_at": "2026-06-19T07:28:05Z",
+      "completed_at_unix": 1781854085,
+      "name": "regulatory-compliance-hub",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-19-regulatory-compliance-hub",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-19-regulatory-compliance-hub/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "ESM"
+      ],
+      "complexity_score": 190,
+      "concepts_demonstrated": [
+        "Constraint Solving",
+        "Probabilistic Graphical Models",
+        "Bayesian Inference",
+        "Real-time Collaboration",
+        "Synthetic User Personas"
+      ],
+      "novel_concepts": [
+        "Hybrid Constraint Solving with Machine Learning",
+        "Explainable AI for Compliance"
+      ],
+      "advancement_axis": "Real-time Collaboration and Explainable AI for Compliance",
+      "pattern": "cybersecurity-compliance-platform",
+      "domain": "Cybersecurity",
+      "visual_identity": "Dark blue and white color scheme, sans-serif typography, and a minimalist layout",
+      "safety_notes": "No active malware, no exploits against systems without consent. Educational/diagnostic/synthetic demos only.",
+      "file_count": 4,
+      "loc": 377,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 336,
+        "bodyHtml": 1905,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Regulatory Compliance Hub",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Regulatory Compliance Hub\n\nStreamlining enterprise cybersecurity compliance\n\nUser Input\nEnter Constraints:\n Type the constraints for the compliance check.\nChoose Parameter:\n Adjust compliance paramete",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type enterprise_webapp, focusing on a complex multi-role enterprise application with real-time collaboration features.",
+        "Integrate synthetic user personas and realistic workflows to demonstrate business utility and operational scenarios.",
+        "Ensure all core functionalities are fully implemented and operational in the shipped project to avoid partially usable outcomes.",
+        "Expand into a new domain not recently explored, such as Healthcare, Legal Tech, or Cybersecurity, to diversify the portfolio.",
+        "Push for advanced interactivity and responsiveness in the interface, showcasing a polished design system that meets enterprise-grade standards."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Regulatory Compliance Hub is functional and delivers on its stated objectives, providing a working interface for inputting constraints, solving them, and displaying solutions in real time.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5652,7 +5735,8 @@
     171,
     180,
     182,
-    185
+    185,
+    190
   ],
   "concepts_explored": [
     "neural networks",
@@ -5890,7 +5974,9 @@
     "Constraint Solving",
     "DPLL with Conflict-Driven Clause Learning",
     "Probabilistic Graphical Models",
-    "Bayesian Inference"
+    "Bayesian Inference",
+    "Real-time Collaboration",
+    "Synthetic User Personas"
   ],
   "patterns_used": [
     "visualizer",
@@ -5949,7 +6035,8 @@
     "code-analysis-tool",
     "financial-dashboard",
     "constraint-solver-with-insights",
-    "healthcare-compliance-webapp"
+    "healthcare-compliance-webapp",
+    "cybersecurity-compliance-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -6008,7 +6095,8 @@
     "DevOps",
     "Fintech",
     "Computer Science",
-    "Healthcare"
+    "Healthcare",
+    "Cybersecurity"
   ],
   "ceo_reviews": [
     {
