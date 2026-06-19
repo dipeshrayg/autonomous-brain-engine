@@ -5505,6 +5505,88 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-19",
+      "completed_at": "2026-06-19T00:46:04Z",
+      "completed_at_unix": 1781829964,
+      "name": "medigate",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-19-medigate",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-19-medigate/",
+      "language": "JavaScript",
+      "project_type": "enterprise_webapp",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "ESM"
+      ],
+      "complexity_score": 185,
+      "concepts_demonstrated": [
+        "Constraint Solving",
+        "DPLL with Conflict-Driven Clause Learning",
+        "Probabilistic Graphical Models",
+        "Bayesian Inference"
+      ],
+      "novel_concepts": [
+        "Integration of DPLL with Conflict-Driven Clause Learning for Compliance Risk Assessment",
+        "Application of Probabilistic Graphical Models to Healthcare Compliance"
+      ],
+      "advancement_axis": "Novel Application of Constraint Solving and Probabilistic Graphical Models to Healthcare Compliance",
+      "pattern": "healthcare-compliance-webapp",
+      "domain": "Healthcare",
+      "visual_identity": "Clean and Modern Design, Blues and Whites Color Scheme, Open Sans Typography",
+      "safety_notes": "No personal or sensitive data is used in the synthetic data generation. The platform is designed to be used in a controlled environment, with proper authentication and authorization mechanisms.",
+      "file_count": 4,
+      "loc": 399,
+      "quality_cycles_used": 2,
+      "final_verify_metrics": {
+        "bodyText": 282,
+        "bodyHtml": 1496,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Medigate - Healthcare Compliance Platform",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Medigate: Healthcare Compliance & Risk Management\nCompliance Risk Assessment\nStart Risk Assessment Reset Assessment  Set Risk Level\nResults\n\nClick the button to initiate the compliance risk assessment",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type enterprise_webapp, focusing on a complex multi-role enterprise application with real-time collaboration features.",
+        "Integrate synthetic user personas and realistic workflows to demonstrate business utility and operational scenarios.",
+        "Ensure all core functionalities are fully implemented and operational in the shipped project to avoid partially usable outcomes.",
+        "Expand into a new domain not recently explored, such as Healthcare, Legal Tech, or Cybersecurity, to diversify the portfolio.",
+        "Push for advanced interactivity and responsiveness in the interface, showcasing a polished design system that meets enterprise-grade standards."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Medigate application provides a functional and user-friendly experience for compliance risk assessment and workflow management, with all primary features working as described in the plan and README.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5569,7 +5651,8 @@
     170,
     171,
     180,
-    182
+    182,
+    185
   ],
   "concepts_explored": [
     "neural networks",
@@ -5803,7 +5886,11 @@
     "Code Analysis",
     "Debugging",
     "data integration",
-    "financial analysis"
+    "financial analysis",
+    "Constraint Solving",
+    "DPLL with Conflict-Driven Clause Learning",
+    "Probabilistic Graphical Models",
+    "Bayesian Inference"
   ],
   "patterns_used": [
     "visualizer",
@@ -5861,7 +5948,8 @@
     "environmental-data-analytics",
     "code-analysis-tool",
     "financial-dashboard",
-    "constraint-solver-with-insights"
+    "constraint-solver-with-insights",
+    "healthcare-compliance-webapp"
   ],
   "domains_used": [
     "Mathematics",
@@ -5919,7 +6007,8 @@
     "Environmental Science",
     "DevOps",
     "Fintech",
-    "Computer Science"
+    "Computer Science",
+    "Healthcare"
   ],
   "ceo_reviews": [
     {
