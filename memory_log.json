@@ -6058,6 +6058,125 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-20",
+      "completed_at": "2026-06-20T12:35:34Z",
+      "completed_at_unix": 1781958934,
+      "name": "supply-chain-pulse",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-20-supply-chain-pulse-v2",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-20-supply-chain-pulse-v2/",
+      "language": "JavaScript",
+      "project_type": "system_design",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 213,
+      "concepts_demonstrated": [
+        "Interactive Visualization",
+        "System Design",
+        "Real-time Data Processing"
+      ],
+      "novel_concepts": [
+        "Constraint Solving",
+        "Distributed Systems"
+      ],
+      "advancement_axis": "novel application of constraint solving in supply-chain management",
+      "pattern": "system-design-visualization",
+      "domain": "Supply Chain Management",
+      "visual_identity": "clean, modern, professional",
+      "safety_notes": "no active malware, no exploits",
+      "file_count": 4,
+      "loc": 395,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 80,
+        "bodyHtml": 989,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 1002,
+          "h": 602,
+          "cssW": 1002,
+          "cssH": 602
+        },
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Supply Chain Pulse",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Supply Chain Pulse\nFilter nodes:\nReset Filter\nEdge Glowing Effect:\nPause\nRestart",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "Type to filter...",
+              "trigger": "text",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset Filter",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "2",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 4,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Restart",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a system_design type — this is both never-tried and has significant room to grow.",
+        "The system_design project must focus on creating a modular, scalable architecture for a supply-chain observability SaaS platform, with a detailed architecture diagram and API interface documentation included.",
+        "The deliverable must include a live, interactive system design visualization in index.html to demonstrate the architecture's components and their interactions.",
+        "Prioritize usability above all else — ensure the deliverable is both functional and clear, avoiding issues with dead or missing components.",
+        "Avoid over-complication; focus on shipping a simple yet credible and polished output.",
+        "Ensure the synthetic data and design system are realistic, aligned with enterprise-level expectations, and targeted at supply-chain customers."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The page is fully functional with a dynamic diagram canvas that responds correctly to user interactions, including filtering nodes, adjusting edge glow effects, pausing animations, and restarting data generation.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6127,7 +6246,8 @@
     190,
     200,
     210,
-    212
+    212,
+    213
   ],
   "concepts_explored": [
     "neural networks",
@@ -6437,6 +6557,7 @@
     "cybersecurity-compliance-platform",
     "ai-driven-educational-platform",
     "contract-review-platform",
+    "system-design-visualization",
     "system-design-visualization"
   ],
   "domains_used": [
@@ -6500,6 +6621,7 @@
     "Cybersecurity",
     "Education Technology",
     "Legal Tech",
+    "Supply Chain Management",
     "Supply Chain Management"
   ],
   "ceo_reviews": [
