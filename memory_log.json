@@ -5925,6 +5925,139 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-20",
+      "completed_at": "2026-06-20T04:58:46Z",
+      "completed_at_unix": 1781931526,
+      "name": "supply-chain-pulse",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-20-supply-chain-pulse",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-20-supply-chain-pulse/",
+      "language": "JavaScript",
+      "project_type": "system_design",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 212,
+      "concepts_demonstrated": [
+        "Interactive Visualization",
+        "System Design",
+        "Real-time Data Processing"
+      ],
+      "novel_concepts": [
+        "Modular Scalable Architecture",
+        "Supply Chain Observability"
+      ],
+      "advancement_axis": "novel application of system design principles to supply chain management",
+      "pattern": "system-design-visualization",
+      "domain": "Supply Chain Management",
+      "visual_identity": "clean, modern design with a focus on data visualization",
+      "safety_notes": "The project does not contain any active malware or exploits.",
+      "file_count": 3,
+      "loc": 390,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 156,
+        "bodyHtml": 1744,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Supply Chain Pulse",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Supply Chain Pulse\nFactory A\nWarehouse B\nDistribution C\nRetailer D\nReset Node Status\nSimulate Status Change\nRefresh Visualization\n\n© 2023 Supply Chain Pulse",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset Node Status",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Simulate Status Change",
+              "trigger": "click",
+              "reason": "compute button: DOM changed but no output text appeared and canvas did not change — button is cosmetic, not functional for a human"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Refresh Visualization",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a system_design type — this is both never-tried and has significant room to grow.",
+        "The system_design project must focus on creating a modular, scalable architecture for a supply-chain observability SaaS platform, with a detailed architecture diagram and API interface documentation included.",
+        "The deliverable must include a live, interactive system design visualization in index.html to demonstrate the architecture's components and their interactions.",
+        "Prioritize usability above all else — ensure the deliverable is both functional and clear, avoiding issues with dead or missing components.",
+        "Avoid over-complication; focus on shipping a simple yet credible and polished output.",
+        "Ensure the synthetic data and design system are realistic, aligned with enterprise-level expectations, and targeted at supply-chain customers."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The core functionality of the project works, with nodes visually rendered and status changes reflected on interaction, providing an interactive visualization experience. However, certain key controls are non-functional, such as 'Simulate Status Change' and 'Refresh Visualization', which limits the usability of the application.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Reset Node Status",
+            "expected": "Reset all node statuses to 'normal' and visually update their colors to green.",
+            "actual": "No observable change occurs when clicking the button.",
+            "fix": "Ensure the 'Reset Node Status' button triggers the function that updates the node statuses to 'normal' and refreshes the visualization."
+          },
+          {
+            "control": "Simulate Status Change",
+            "expected": "Randomly change a node's status and visually update the changes on the canvas.",
+            "actual": "The button triggers the simulation but does not produce any visible change on the canvas or display output.",
+            "fix": "Confirm the 'simulateRealTimeData' function is correctly updating node statuses and triggering a visualization refresh."
+          },
+          {
+            "control": "Refresh Visualization",
+            "expected": "Re-render the visualization area to reflect the latest node states.",
+            "actual": "No changes are observed on the canvas after clicking the button.",
+            "fix": "Ensure that the 'renderVisualization' function is being called and properly re-rendering the nodes along with their current statuses when the button is clicked."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Real-time updates in the visualization",
+            "why_missing": "The real-time updates were described in the plan but did not occur reliably during testing. The periodic updates in 'startRealTimeUpdates' did not yield visible changes in the visualization.",
+            "fix": "Debug the 'processRealTimeData' and 'updateVisualization' functions to ensure that real-time changes in data are appropriately reflected in the visualization."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -5993,7 +6126,8 @@
     185,
     190,
     200,
-    210
+    210,
+    212
   ],
   "concepts_explored": [
     "neural networks",
@@ -6238,7 +6372,9 @@
     "Customizable educational materials",
     "Real-time collaboration",
     "AI-driven contract analysis",
-    "Machine learning"
+    "Machine learning",
+    "System Design",
+    "Real-time Data Processing"
   ],
   "patterns_used": [
     "visualizer",
@@ -6300,7 +6436,8 @@
     "healthcare-compliance-webapp",
     "cybersecurity-compliance-platform",
     "ai-driven-educational-platform",
-    "contract-review-platform"
+    "contract-review-platform",
+    "system-design-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -6362,7 +6499,8 @@
     "Healthcare",
     "Cybersecurity",
     "Education Technology",
-    "Legal Tech"
+    "Legal Tech",
+    "Supply Chain Management"
   ],
   "ceo_reviews": [
     {
