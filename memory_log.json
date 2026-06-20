@@ -6177,6 +6177,139 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-20",
+      "completed_at": "2026-06-20T21:03:09Z",
+      "completed_at_unix": 1781989389,
+      "name": "learn-path",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-20-learn-path",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-20-learn-path/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "Vue.js",
+        "D3.js",
+        "ESM"
+      ],
+      "complexity_score": 220,
+      "concepts_demonstrated": [
+        "AI-powered education planning",
+        "Personalized learning paths",
+        "Constraint solving",
+        "DPLL with conflict-driven clause learning",
+        "Information-theoretic concepts"
+      ],
+      "novel_concepts": [
+        "Entropy-based learning path optimization",
+        "Bayesian inference for student performance prediction"
+      ],
+      "advancement_axis": "AI-driven education planning",
+      "pattern": "education-planning-platform",
+      "domain": "Education Technology",
+      "visual_identity": "Color palette: blue and green; Typography: Open Sans; Layout personality: modern and minimalist",
+      "safety_notes": "No personal data is stored or transmitted; all data is synthetic and used for demonstration purposes only",
+      "file_count": 4,
+      "loc": 655,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 901,
+        "bodyHtml": 11429,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 9,
+        "scriptCount": 1,
+        "title": "Learn-Path: AI-Powered Education Planning",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Learn-Path\nLearning Path Generator\nLearning Goal:\nEnter your learning goal to generate a personalized path.\n \n\nType your learning goal to generate a path.\n\nGenerate Path\nGenerated Learning Path\nStuden",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 9,
+          "total_controls": 9,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "e.g., Master JavaScript",
+              "trigger": "text",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "number",
+              "label": "100",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Optimize",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 6
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be an edu_platform targeting the Education Technology domain, delivering a multi-view SaaS app with realistic synthetic data and a clear value proposition for a CFO.",
+        "The project must include a robust and fully operational workflow, with all key functionalities implemented and tested for usability by a human visiting the GitHub Pages URL.",
+        "Focus on creating a unique value proposition for the education sector, such as an AI-powered personalized learning path generator or a student success analytics dashboard.",
+        "Leverage a modular design system to ensure scalability and maintainability, with clear components for charts, tables, and interactive elements.",
+        "Use modern UI frameworks and visualization libraries (e.g., Vue.js, D3.js, or similar) to ensure a polished, enterprise-grade user experience.",
+        "Avoid redundant patterns from recent builds, particularly financial dashboards, compliance platforms, or generic admin tools."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The core functionalities like generating a learning path, updating the dashboard, and optimizing resource allocation work reasonably well, but some input controls do not trigger observable changes, and certain sections lack visible initialization data.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Learning Goal Input (goal-input)",
+            "expected": "Accepts user input and generates a updated learning path when 'Generate Path' is clicked.",
+            "actual": "No observable state change occurs when entering input in the text box.",
+            "fix": "Ensure the 'Generate Path' button is programmed to read the input value from the text field and invoke `updateLearningPath` with it."
+          },
+          {
+            "control": "Resource Input (resource-input)",
+            "expected": "Entry of a number updates resource-related calculations, and pressing 'Optimize' results in visible allocation.",
+            "actual": "No observable state change when updating the input field or clicking 'Optimize'.",
+            "fix": "Bind the 'Optimize' button to read the value of 'resource-input' and calculate the allocation, then update the DOM with results."
+          },
+          {
+            "control": "'Optimize Resources' Button (optimize-resources)",
+            "expected": "Redistributes resources when clicked and displays updated output in the 'resource-plan'.",
+            "actual": "Pressing the button does not modify the resource allocation or update the UI.",
+            "fix": "Debug the `optimizeResources` function to ensure it reads inputs correctly, calculates allocations, and updates the UI reliably."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Student performance visualization updates",
+            "why_missing": "The dashboard does not show meaningful data on the first load or when no learning path has been generated.",
+            "fix": "Add default performance data or a message that provides an immediate, meaningful display to engage the user."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6247,7 +6380,8 @@
     200,
     210,
     212,
-    213
+    213,
+    220
   ],
   "concepts_explored": [
     "neural networks",
@@ -6494,7 +6628,9 @@
     "AI-driven contract analysis",
     "Machine learning",
     "System Design",
-    "Real-time Data Processing"
+    "Real-time Data Processing",
+    "AI-powered education planning",
+    "Personalized learning paths"
   ],
   "patterns_used": [
     "visualizer",
@@ -6558,7 +6694,8 @@
     "ai-driven-educational-platform",
     "contract-review-platform",
     "system-design-visualization",
-    "system-design-visualization"
+    "system-design-visualization",
+    "education-planning-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -6622,7 +6759,8 @@
     "Education Technology",
     "Legal Tech",
     "Supply Chain Management",
-    "Supply Chain Management"
+    "Supply Chain Management",
+    "Education Technology"
   ],
   "ceo_reviews": [
     {
