@@ -18735,6 +18735,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: project_type='python_tool' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'system_design'].",
       "project_type": "python_tool"
+    },
+    {
+      "attempted_at": "2026-06-20T10:14:27Z",
+      "attempted_at_unix": 1781950467,
+      "date": "2026-06-20",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='shader_art' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'system",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
