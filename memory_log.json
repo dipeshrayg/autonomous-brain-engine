@@ -19260,6 +19260,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='edu_platform' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'syst",
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-06-21T16:23:58Z",
+      "attempted_at_unix": 1782059038,
+      "date": "2026-06-21",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='edu_platform' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'syst",
+      "project_type": "saas_landing"
     }
   ],
   "cso_reviews": [
