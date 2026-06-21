@@ -6474,6 +6474,92 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-21",
+      "completed_at": "2026-06-21T19:10:19Z",
+      "completed_at_unix": 1782069019,
+      "name": "edu-pro",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-21-edu-pro",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-21-edu-pro/",
+      "language": "JavaScript",
+      "project_type": "enterprise_webapp",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Vue.js",
+        "D3.js"
+      ],
+      "complexity_score": 240,
+      "concepts_demonstrated": [
+        "AI-powered education analytics",
+        "Personalized learning path generation",
+        "Bayesian inference",
+        "Information-theoretic concepts",
+        "Modular design system",
+        "Collaborative workflow management"
+      ],
+      "novel_concepts": [
+        "Application of DPLL with conflict-driven clause learning to education analytics",
+        "Use of machine learning algorithms to identify knowledge gaps and develop targeted interventions"
+      ],
+      "advancement_axis": "Application of AI and machine learning to education analytics",
+      "pattern": "education-analytics-platform",
+      "domain": "Education Technology",
+      "visual_identity": "Modern, minimalist design with a focus on data visualization and user experience",
+      "safety_notes": "No personal or sensitive data is collected or stored by the platform",
+      "file_count": 4,
+      "loc": 503,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "bodyText": 457,
+        "bodyHtml": 2061,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Edu-Pro: AI-Powered Education Analytics",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Edu-Pro: AI-Powered Education Analytics\nSelect Student or Cohort\nStudent:\n-- Select --\nAlice Johnson\nBob Smith\nCarol Davis\nDavid Brown\nCohort:\n-- Select --\nClass of 2023\nClass of 2024\nSTEM Focus Group",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be an edu_platform targeting the Education Technology domain, delivering a multi-view SaaS app with realistic synthetic data and a clear value proposition for a CFO.",
+        "The project must include a robust and fully operational workflow, with all key functionalities implemented and tested for usability by a human visiting the GitHub Pages URL.",
+        "Focus on creating a unique value proposition for the education sector, such as an AI-powered personalized learning path generator or a student success analytics dashboard.",
+        "Leverage a modular design system to ensure scalability and maintainability, with clear components for charts, tables, and interactive elements.",
+        "Use modern UI frameworks and visualization libraries (e.g., Vue.js, D3.js, or similar) to ensure a polished, enterprise-grade user experience.",
+        "Avoid redundant patterns from recent builds, particularly financial dashboards, compliance platforms, or generic admin tools."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Edu-Pro platform is fully functional, with a working student analytics dashboard and personalized learning path generator that produce meaningful outputs and update dynamically based on user interactions.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6546,7 +6632,8 @@
     212,
     213,
     220,
-    230
+    230,
+    240
   ],
   "concepts_explored": [
     "neural networks",
@@ -6796,7 +6883,10 @@
     "Real-time Data Processing",
     "AI-powered education planning",
     "Personalized learning paths",
-    "Modular design system"
+    "Modular design system",
+    "AI-powered education analytics",
+    "Personalized learning path generation",
+    "Collaborative workflow management"
   ],
   "patterns_used": [
     "visualizer",
@@ -6862,7 +6952,8 @@
     "system-design-visualization",
     "system-design-visualization",
     "education-planning-platform",
-    "education-planning-platform"
+    "education-planning-platform",
+    "education-analytics-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -6927,6 +7018,7 @@
     "Legal Tech",
     "Supply Chain Management",
     "Supply Chain Management",
+    "Education Technology",
     "Education Technology",
     "Education Technology"
   ],
