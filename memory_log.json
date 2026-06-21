@@ -11665,6 +11665,31 @@
         "Successfully produced high-complexity projects, demonstrating technical competence and the ability to build advanced systems."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-21T20:46:35Z",
+      "issued_at_unix": 1782074795,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is overly focused on Education and SaaS, with multiple partially usable projects, signaling a lack of execution quality and diversity.",
+      "concerns": [
+        "Overemphasis on Education Technology domain; four out of the last five projects were in this category.",
+        "Several projects were only 'partially usable,' indicating issues with interactivity or functionality in shipped products.",
+        "No recent exploration of underrepresented or novel types like edu_platform or devtool."
+      ],
+      "directives": [
+        "The next project must be an edu_platform type, as it is recommended for expansion and has not been attempted yet.",
+        "Focus the project on a B2B use case, such as a corporate training platform or an enterprise Learning Management System (LMS).",
+        "Ensure the platform includes robust features like user management, progress tracking, and reporting, with realistic synthetic data and a clear UI/UX.",
+        "All core functionality must be fully implemented and tested for usability, with no dead buttons or placeholder features.",
+        "Avoid making the project an extension of previously shipped education platforms and instead target a unique angle, such as micro-certifications or AR/VR-enhanced training.",
+        "Implement a comprehensive demo workflow in the index.html to showcase the platform's usability and value proposition."
+      ],
+      "praise": [
+        "Consistent focus on product-grade enterprise solutions.",
+        "Shipped projects demonstrate increasing complexity and alignment with enterprise mandates."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
