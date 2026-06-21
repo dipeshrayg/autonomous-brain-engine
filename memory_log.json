@@ -6310,6 +6310,170 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-21",
+      "completed_at": "2026-06-21T10:35:38Z",
+      "completed_at_unix": 1782038138,
+      "name": "learnsphere",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-21-learnsphere",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-21-learnsphere/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "Vue.js",
+        "D3.js",
+        "ESM"
+      ],
+      "complexity_score": 230,
+      "concepts_demonstrated": [
+        "AI-powered education planning",
+        "Personalized learning paths",
+        "Modular design system"
+      ],
+      "novel_concepts": [
+        "Constraint solving using DPLL with conflict-driven clause learning",
+        "Information-theoretic concepts for educational insights"
+      ],
+      "advancement_axis": "leveraging AI and information theory for education planning",
+      "pattern": "education-planning-platform",
+      "domain": "Education Technology",
+      "visual_identity": "modern, minimalistic design with a focus on typography and whitespace",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 4,
+      "loc": 491,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 496,
+        "bodyHtml": 2087,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 5,
+        "scriptCount": 3,
+        "title": "LearnSphere - AI-powered Education Planning",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "LearnSphere\n\nAI-powered Education Planning Platform\n\nStudent Profile\nSelect Student:\nSelect a Student\nStudent 1\nStudent 2\nStudent 3\nProfile Details\n\nSelect a student to view profile information.\n\nGene",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Select a Student\nStudent 1\nStudent 2\nStu",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "button",
+              "label": "Generate Learning Path",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "50",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Easy\nMedium\nHard",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 4,
+              "tag": "BUTTON",
+              "type": "button",
+              "label": "Reset",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be an edu_platform targeting the Education Technology domain, delivering a multi-view SaaS app with realistic synthetic data and a clear value proposition for a CFO.",
+        "The project must include a robust and fully operational workflow, with all key functionalities implemented and tested for usability by a human visiting the GitHub Pages URL.",
+        "Focus on creating a unique value proposition for the education sector, such as an AI-powered personalized learning path generator or a student success analytics dashboard.",
+        "Leverage a modular design system to ensure scalability and maintainability, with clear components for charts, tables, and interactive elements.",
+        "Use modern UI frameworks and visualization libraries (e.g., Vue.js, D3.js, or similar) to ensure a polished, enterprise-grade user experience.",
+        "Avoid redundant patterns from recent builds, particularly financial dashboards, compliance platforms, or generic admin tools."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The platform has potential with a well-designed UI and some working features, but major interactive controls fail to produce the expected state changes or meaningful outputs, hindering its full usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 5,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "select#profile-select (Student Profile)",
+            "expected": "Selecting a student updates the profile details section with relevant information.",
+            "actual": "No profile details are updated in the UI after selection.",
+            "fix": "Ensure the 'updateProfile' method is correctly triggered and updates the DOM with selected profile details."
+          },
+          {
+            "control": "button#generate-path-btn (Generate Learning Path)",
+            "expected": "Clicking the button generates and displays a learning path in the UI.",
+            "actual": "No learning path is displayed after clicking the button.",
+            "fix": "Verify that the 'generateLearningPath' method updates the DOM with the generated path."
+          },
+          {
+            "control": "range#learning-rate (Learning Rate Slider)",
+            "expected": "Adjusting the slider updates the displayed current learning rate.",
+            "actual": "The displayed learning rate does not update when the slider is moved.",
+            "fix": "Ensure that the 'updateLearningRate' method is properly wired to the slider input and updates the 'learning-rate-display' element."
+          },
+          {
+            "control": "select#difficulty-level (Difficulty Selection)",
+            "expected": "Changing the difficulty level updates the displayed selected difficulty.",
+            "actual": "The displayed difficulty level does not update when the selection is changed.",
+            "fix": "Ensure that the 'updateDifficultyLevel' method is properly wired to the select element and updates the 'difficulty-level-display' element."
+          },
+          {
+            "control": "button#reset-btn (Reset Button)",
+            "expected": "Clicking the button resets all controls and updates the UI to default state.",
+            "actual": "No changes are observed in the UI after clicking the reset button.",
+            "fix": "Ensure the 'resetControls' method resets the state and updates all related UI elements accordingly."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Student profile updates are reflected in the UI",
+            "why_missing": "The student profile selection does not result in the display of the selected student's information in the profile details section.",
+            "fix": "Ensure the event listener for 'change' on the profile select element properly updates the 'profile-details' section with the selected profile's information."
+          },
+          {
+            "feature": "Learning path generation works correctly",
+            "why_missing": "The 'Generate Learning Path' button does not display any output after being clicked.",
+            "fix": "Ensure the 'generateLearningPath' method is generating the path and updating the 'path-results' div in the DOM."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6381,7 +6545,8 @@
     210,
     212,
     213,
-    220
+    220,
+    230
   ],
   "concepts_explored": [
     "neural networks",
@@ -6630,7 +6795,8 @@
     "System Design",
     "Real-time Data Processing",
     "AI-powered education planning",
-    "Personalized learning paths"
+    "Personalized learning paths",
+    "Modular design system"
   ],
   "patterns_used": [
     "visualizer",
@@ -6695,6 +6861,7 @@
     "contract-review-platform",
     "system-design-visualization",
     "system-design-visualization",
+    "education-planning-platform",
     "education-planning-platform"
   ],
   "domains_used": [
@@ -6760,6 +6927,7 @@
     "Legal Tech",
     "Supply Chain Management",
     "Supply Chain Management",
+    "Education Technology",
     "Education Technology"
   ],
   "ceo_reviews": [
