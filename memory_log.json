@@ -6655,6 +6655,131 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-22",
+      "completed_at": "2026-06-22T17:31:28Z",
+      "completed_at_unix": 1782149488,
+      "name": "core-learning",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-22-core-learning",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-22-core-learning/",
+      "language": "JavaScript",
+      "project_type": "enterprise_webapp",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 260,
+      "concepts_demonstrated": [
+        "User Management",
+        "Progress Tracking",
+        "Reporting",
+        "Micro-Certifications"
+      ],
+      "novel_concepts": [
+        "AR/VR-Enhanced Training",
+        "AI-Driven Learning Path Recommendations"
+      ],
+      "advancement_axis": "Personalized Corporate Learning",
+      "pattern": "micro-certification-platform",
+      "domain": "Corporate Training",
+      "visual_identity": "Modern, Professional, Blue-White Color Scheme, Open Sans Typography",
+      "safety_notes": "No sensitive user data is collected or stored. The platform is designed for internal corporate use only.",
+      "file_count": 4,
+      "loc": 564,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 375,
+        "bodyHtml": 2398,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 800,
+          "cssH": 400
+        },
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Core Learning - LMS",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Core Learning\nUser Profile\nAvailable Courses\nCourse 1: Advanced JavaScript\n\nLearn advanced JavaScript concepts and patterns.\n\nEnroll\nCourse 2: Web Accessibility\n\nUnderstand accessibility standards and",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Enroll",
+              "trigger": "no-element",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Enroll",
+              "trigger": "no-element",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 4,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Enroll",
+              "trigger": "no-element",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be an edu_platform type, as it is recommended for expansion and has not been attempted yet.",
+        "Focus the project on a B2B use case, such as a corporate training platform or an enterprise Learning Management System (LMS).",
+        "Ensure the platform includes robust features like user management, progress tracking, and reporting, with realistic synthetic data and a clear UI/UX.",
+        "All core functionality must be fully implemented and tested for usability, with no dead buttons or placeholder features.",
+        "Avoid making the project an extension of previously shipped education platforms and instead target a unique angle, such as micro-certifications or AR/VR-enhanced training.",
+        "Implement a comprehensive demo workflow in the index.html to showcase the platform's usability and value proposition."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The page is functional and provides some value with a working user profile dropdown and progress visualization, but the course enrollment feature is non-functional, significantly detracting from the user experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Course Enrollment Button",
+            "expected": "Enrolls user in selected course and updates enrolled courses section and progress tracking graph.",
+            "actual": "No state change is observed and no updates occur to the enrolled courses section or graph.",
+            "fix": "Ensure the .enroll-btn buttons correctly trigger the enrollInCourse function and update the DOM to reflect the enrolled course in the enrolled courses section and progress graph."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Course Enrollment Button",
+            "why_missing": "Enrollment buttons do not trigger the intended state change or update the visual elements of the enrolled courses list and progress graph.",
+            "fix": "Debug the event listener attached to the .enroll-btn buttons in app.js, ensuring that the enrollInCourse function is properly called and the DOM updates are rendered."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6729,7 +6854,8 @@
     220,
     230,
     240,
-    250
+    250,
+    260
   ],
   "concepts_explored": [
     "neural networks",
@@ -6982,7 +7108,11 @@
     "Modular design system",
     "AI-powered education analytics",
     "Personalized learning path generation",
-    "Collaborative workflow management"
+    "Collaborative workflow management",
+    "User Management",
+    "Progress Tracking",
+    "Reporting",
+    "Micro-Certifications"
   ],
   "patterns_used": [
     "visualizer",
@@ -7050,7 +7180,8 @@
     "education-planning-platform",
     "education-planning-platform",
     "education-analytics-platform",
-    "learning-management-system"
+    "learning-management-system",
+    "micro-certification-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -7118,6 +7249,7 @@
     "Education Technology",
     "Education Technology",
     "Education Technology",
+    "Corporate Training",
     "Corporate Training"
   ],
   "ceo_reviews": [
