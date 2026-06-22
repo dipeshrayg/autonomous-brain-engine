@@ -6560,6 +6560,101 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-22",
+      "completed_at": "2026-06-22T07:21:06Z",
+      "completed_at_unix": 1782112866,
+      "name": "corporate-learning-hub",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-22-corporate-learning-hub",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-22-corporate-learning-hub/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "ESM"
+      ],
+      "complexity_score": 250,
+      "concepts_demonstrated": [
+        "Constraint Solving",
+        "DPLL with Conflict-Driven Clause Learning",
+        "Bayesian Inference"
+      ],
+      "novel_concepts": [
+        "Micro-certifications",
+        "AR/VR-enhanced training"
+      ],
+      "advancement_axis": "Personalized learning recommendations using Bayesian inference",
+      "pattern": "learning-management-system",
+      "domain": "Corporate Training",
+      "visual_identity": "Modern, responsive design with a blue and white color scheme, Open Sans typography, and a card-based layout",
+      "safety_notes": "No user data is stored or transmitted, and all functionality is implemented using client-side JavaScript",
+      "file_count": 4,
+      "loc": 427,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 662,
+        "bodyHtml": 2565,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Corporate Learning Hub",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Corporate Learning Hub\nUser Management\nProgress Tracking\nReporting\nLearning Recommendations\nUser Management\n\nHere you can manage users, assign roles, and monitor user activity.\n\nProgress Tracking\n\nTra",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be an edu_platform type, as it is recommended for expansion and has not been attempted yet.",
+        "Focus the project on a B2B use case, such as a corporate training platform or an enterprise Learning Management System (LMS).",
+        "Ensure the platform includes robust features like user management, progress tracking, and reporting, with realistic synthetic data and a clear UI/UX.",
+        "All core functionality must be fully implemented and tested for usability, with no dead buttons or placeholder features.",
+        "Avoid making the project an extension of previously shipped education platforms and instead target a unique angle, such as micro-certifications or AR/VR-enhanced training.",
+        "Implement a comprehensive demo workflow in the index.html to showcase the platform's usability and value proposition."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Enterprise Learning Management System provides toggling panels for user management, progress tracking, reporting, and learning recommendations, but some functionalities are incomplete or suffer from state-sync issues and missing data rendering.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Learning Recommendations panel (recommendations-btn)",
+            "expected": "Display personalized course recommendations dynamically",
+            "actual": "Panel appears, but the recommendations list is empty unless the button is clicked twice.",
+            "fix": "Ensure that `renderRecommendations` is invoked correctly the first time the recommendations panel is toggled."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Personalized learning recommendations",
+            "why_missing": "The recommendations panel does not display any meaningful recommendations on the first interaction due to improper state initialization.",
+            "fix": "Debug the `generatePersonalizedRecommendations` function and confirm output is injected into the DOM on the first interaction."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6633,7 +6728,8 @@
     213,
     220,
     230,
-    240
+    240,
+    250
   ],
   "concepts_explored": [
     "neural networks",
@@ -6953,7 +7049,8 @@
     "system-design-visualization",
     "education-planning-platform",
     "education-planning-platform",
-    "education-analytics-platform"
+    "education-analytics-platform",
+    "learning-management-system"
   ],
   "domains_used": [
     "Mathematics",
@@ -7020,7 +7117,8 @@
     "Supply Chain Management",
     "Education Technology",
     "Education Technology",
-    "Education Technology"
+    "Education Technology",
+    "Corporate Training"
   ],
   "ceo_reviews": [
     {
