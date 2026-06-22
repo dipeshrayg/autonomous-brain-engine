@@ -6780,6 +6780,91 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-22",
+      "completed_at": "2026-06-22T22:52:18Z",
+      "completed_at_unix": 1782168738,
+      "name": "workforce-evolve",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-22-workforce-evolve",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-22-workforce-evolve/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "ESM"
+      ],
+      "complexity_score": 270,
+      "concepts_demonstrated": [
+        "Constraint Solving",
+        "DPLL with Conflict-Driven Clause Learning",
+        "Distributed Systems",
+        "Realistic Synthetic Data",
+        "Modern Design System"
+      ],
+      "novel_concepts": [
+        "Automation Disruption Mitigation",
+        "Upskilling and Reskilling Workforce Analytics",
+        "Personalized Learning Path Generation using Constraint Solving"
+      ],
+      "advancement_axis": "Applying constraint solving and distributed systems to upskilling and reskilling in automation-disrupted industries",
+      "pattern": "workforce-upskilling-platform",
+      "domain": "HR/Workforce Development",
+      "visual_identity": "Clean typography, ample whitespace, and a palette of blues and whites evoking trust and innovation",
+      "safety_notes": "No sensitive or personal data is used; all data is synthetic and generated for demonstration purposes",
+      "file_count": 4,
+      "loc": 416,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 375,
+        "bodyHtml": 1699,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Workforce Evolve",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Workforce Evolve\n\nUpskilling and Reskilling Platform for Automation Disruption\n\nSkill Assessment\n\nStart your personalized skill assessment to identify your learning path.\n\nStart Assessment\nYour Progre",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "app.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be an edu_platform type and target the domain of worker upskilling and reskilling in industries facing automation disruption. Focus on creating a centralized platform for skill assessments, personalized learning recommendations, and progress tracking.",
+        "Prioritize human usability — ensure all core features are fully functional in the shipped product, with no dead or missing buttons.",
+        "Implement end-to-end interactivity and ensure JavaScript is utilized in the index.html to deliver a working demo that simulates the core user experience.",
+        "Incorporate a modern design system to ensure the platform looks and feels like a funded, enterprise-grade product.",
+        "Use realistic synthetic data to demonstrate the platform's business value to a procurement board or senior decision makers.",
+        "Focus on delivery and execution quality — the project must ship as fully functional and usable. Avoid overcomplicating the implementation to ensure success."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The platform is functional with meaningful interactions, such as skill assessment generation and progress tracking. However, there are minor usability issues with state synchronization and feedback consistency that limit the overall usability experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -6855,7 +6940,8 @@
     230,
     240,
     250,
-    260
+    260,
+    270
   ],
   "concepts_explored": [
     "neural networks",
@@ -7112,7 +7198,10 @@
     "User Management",
     "Progress Tracking",
     "Reporting",
-    "Micro-Certifications"
+    "Micro-Certifications",
+    "Distributed Systems",
+    "Realistic Synthetic Data",
+    "Modern Design System"
   ],
   "patterns_used": [
     "visualizer",
@@ -7181,7 +7270,8 @@
     "education-planning-platform",
     "education-analytics-platform",
     "learning-management-system",
-    "micro-certification-platform"
+    "micro-certification-platform",
+    "workforce-upskilling-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -7250,7 +7340,8 @@
     "Education Technology",
     "Education Technology",
     "Corporate Training",
-    "Corporate Training"
+    "Corporate Training",
+    "HR/Workforce Development"
   ],
   "ceo_reviews": [
     {
