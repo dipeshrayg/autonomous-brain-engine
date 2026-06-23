@@ -20023,6 +20023,52 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='saas_app' was used in the previous build. Must switch types for diversity. Try one of: ['web_interactive', 'web_3d', 'python_tool', 'document', 'generative_art', 'game_web', 'shader_art', 'data_viz', 't",
       "project_type": "web_interactive"
+    },
+    {
+      "attempted_at": "2026-06-23T18:36:07Z",
+      "attempted_at_unix": 1782239767,
+      "date": "2026-06-23",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=non_functional, 0 page error(s), body_empty=True.",
+      "plan_name": "resilience-map",
+      "plan_language": "Python",
+      "plan_complexity": 286,
+      "plan_pattern": "resilience-simulation-tool",
+      "plan_domain": "Enterprise Risk Management",
+      "plan_files_count": 5,
+      "project_type": "system_design",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Scenario Simulation Panel",
+          "expected": "A panel that allows users to define crisis parameters and displays updated bottlenecks and risk metrics on the resilience map."
+        },
+        {
+          "control": "Dependency Explorer",
+          "expected": "A tool to allow selection of specific nodes and view their dependencies in the network."
+        },
+        {
+          "control": "Risk Metrics Dashboard",
+          "expected": "A dashboard dynamically displaying updated resilience scores and probabilities."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Scenario-based simulation visualization"
+        },
+        {
+          "feature": "Interactive network visualization"
+        },
+        {
+          "feature": "Real-time dashboard updates"
+        }
+      ],
+      "final_interaction": {
+        "tested": 0,
+        "live": 0,
+        "dead": 0
+      },
+      "final_interactive_count": 0
     }
   ],
   "cso_reviews": [
