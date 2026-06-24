@@ -7677,7 +7677,7 @@
   "ceo_reviews": [
     {
       "issued_at": "2026-05-01T22:59:01Z",
-      "issued_at_unix": 1777676341,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is drifting toward superficial complexity and repetitive projects, with an overuse of visualizers and academic domains. While raw complexity has increased, user experience, domain diversity, and real-world relevance are lacking, and the projects do not appear polished or innovative. The next project must break this pattern by incorporating a multi-pane layout, a significant backend simulation, and exploration of a novel, practical domain with improved user experience and visual design.",
@@ -7703,7 +7703,7 @@
     },
     {
       "issued_at": "2026-05-02T04:25:45Z",
-      "issued_at_unix": 1777695945,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is drifting towards mediocrity by pursuing superficial complexity rather than genuinely novel or innovative projects. Recent work is stagnating in terms of patterns (visualizer, dashboard), domains (Mathematics, Healthcare), and user experience (basic controls, single-pane layouts). Directives for the next project focus on introducing a real-time backend simulation, multi-pane layouts, improved interactivity, a new domain, new technologies, and a higher standard of polish. Immediate course correction is required to prevent further stagnation.",
@@ -7729,7 +7729,7 @@
     },
     {
       "issued_at": "2026-05-02T08:03:39Z",
-      "issued_at_unix": 1777709019,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The trajectory is drifting toward superficial complexity and over-reliance on well-trodden patterns ('visualizer', 'dashboard') and domains ('Mathematics', 'Healthcare'). While technical sophistication is increasing, the user experience and domain diversity are lagging, and the projects lack the polish and innovation expected of higher-complexity work. The next project must break out of this rut by incorporating a multi-pane layout, real-time feedback, keyboard interaction, a non-trivial backend simulation, and exploration of a novel domain with a focus on building a creation or manipulation tool.",
@@ -7755,7 +7755,7 @@
     },
     {
       "issued_at": "2026-05-02T08:05:21Z",
-      "issued_at_unix": 1777709121,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting toward mediocrity by prioritizing incremental increases in complexity over genuine innovation in domain exploration, interaction paradigms, and technical diversity. Repeated use of 'visualizer' and 'dashboard' patterns, along with a narrow focus on Mathematics/Simulation domains, indicates stagnation. The next project must break away from these patterns, adopt new technologies, and explore fresh domains while improving user experience through richer interactivity and layouts.",
@@ -7781,7 +7781,7 @@
     },
     {
       "issued_at": "2026-05-02T08:06:12Z",
-      "issued_at_unix": 1777709172,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is drifting into a pattern of adding superficial complexity to projects without improving sophistication, user experience, or domain exploration. The reliance on the 'visualizer' and 'dashboard' patterns is becoming repetitive, and the user interfaces lack richness and interactivity. For the next project, the system must break from this pattern by exploring a novel domain, adopting a multi-pane workspace layout, incorporating real-time feedback, and leveraging a new language or framework.",
@@ -7806,7 +7806,7 @@
     },
     {
       "issued_at": "2026-05-02T12:26:17Z",
-      "issued_at_unix": 1777724777,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline appears to be drifting, favoring superficial complexity increases over genuine innovation and domain diversity. Recent projects lack polish and reuse familiar patterns without significant advancement in user experience or technical novelty. To course-correct, the next project must incorporate a multi-pane layout, a non-trivial backend simulation, a novel domain, a new form of user interaction, and a previously unused tech stack, while achieving a senior-engineer level of polish.",
@@ -7832,7 +7832,7 @@
     },
     {
       "issued_at": "2026-05-02T14:13:52Z",
-      "issued_at_unix": 1777731232,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "While the pipeline is achieving increasing complexity scores, this is accompanied by significant drift toward superficial advancements in complexity and repetitive design patterns, particularly in visualizers, dashboards, and explorers. Functional interactivity, backend integration, and domain diversity are lacking. To counteract this drift, the next project must break into a new domain, implement a non-trivial backend simulation, adopt a multi-pane layout, and introduce innovative user interactions, while also exploring new visual design elements.",
@@ -7859,7 +7859,7 @@
     },
     {
       "issued_at": "2026-05-02T19:33:28Z",
-      "issued_at_unix": 1777750408,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is drifting into a pattern of surface-level complexity, with repetitive project patterns (visualizer, dashboard, explorer) and insufficient depth in user experience, backend systems, and domain-specific sophistication. The next project must break these patterns by introducing a multi-pane layout, a non-trivial backend simulation, advanced visualizations, and exploring an entirely new domain with a fresh tech stack. This will ensure meaningful innovation and avoid stagnation.",
@@ -7886,7 +7886,7 @@
     },
     {
       "issued_at": "2026-05-02T19:58:11Z",
-      "issued_at_unix": 1777751891,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is drifting toward superficial complexity and repetitive patterns, with limited innovation in user experience, domain exploration, and interaction models. To correct this trajectory, the next project must break from the overused patterns and domains while introducing a non-trivial backend simulation, a multi-pane layout, and a novel programming language or framework. Focus on creating a genuinely rich and polished user experience for a new domain.",
@@ -7912,7 +7912,7 @@
     },
     {
       "issued_at": "2026-05-02T20:18:40Z",
-      "issued_at_unix": 1777753120,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is overreaching with high-complexity projects in new domains, resulting in complete QA failures and stagnation in shipped project patterns. To stabilize and regain momentum, the next project must reduce complexity, avoid problematic patterns like 'workspace' and 'simulator', and focus on delivering a functional, single-pane project in a proven domain. The goal is to reset expectations and rebuild reliability while maintaining a small degree of innovation.",
@@ -7936,7 +7936,7 @@
     },
     {
       "issued_at": "2026-05-03T04:49:59Z",
-      "issued_at_unix": 1777783799,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is producing increasingly complex projects but is showing signs of creative stagnation, reusing a narrow set of patterns and domains. Meanwhile, all recent refusals have been concentrated in the high-complexity 'workspace' and 'simulator' patterns in the Storytelling and Music domains, with QA failures related to dead or non-functional controls. To address this, the next project must reduce complexity, prioritize functional controls, explore a new domain, and maintain a single-pane interface to ensure usability while encouraging diversity in design and themes.",
@@ -7960,7 +7960,7 @@
     },
     {
       "issued_at": "2026-05-03T08:54:36Z",
-      "issued_at_unix": 1777798476,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is currently in an alarming state due to repeated QA failures at the same high complexity level in the 'workspace' and 'simulator' patterns, particularly within the Storytelling domain. Recent shipped projects show increasing complexity but limited innovation in patterns and domains. Immediate directives focus on reducing complexity, avoiding problematic patterns and domains, and emphasizing polish and reliability in the next project.",
@@ -7984,7 +7984,7 @@
     },
     {
       "issued_at": "2026-05-03T14:14:29Z",
-      "issued_at_unix": 1777817669,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is currently overreaching, as evidenced by the high percentage of refused builds with consistent QA failures at high complexity levels (c=15-16). Additionally, the system is fixating on patterns ('workspace' and 'analyzer') that it cannot reliably execute. While shipped projects are increasingly complex, they lack sufficient diversity in patterns and domains, and the system appears to be retreating to familiar territory (e.g., Mathematics and visualizers). To course-correct, the next project must reduce complexity (c=10), avoid problematic patterns ('workspace' and 'analyzer'), focus on a new domain, and prioritize a single-pane design with functional reliability and a novel visualization type.",
@@ -8010,7 +8010,7 @@
     },
     {
       "issued_at": "2026-05-03T19:58:47Z",
-      "issued_at_unix": 1777838327,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Although the system continues to ship increasingly complex projects without security issues, the recent wave of refused builds at similar complexity levels highlights a critical issue: the model is overreaching and producing non-functional or partially usable projects in certain patterns and domains. To course-correct, the next project should target a lower complexity level (c≤12) and focus on a new pattern and domain while introducing a dynamic interaction component and a simulated backend. This will diversify the system's output and reinforce reliable build capabilities at a more achievable level.",
@@ -8034,7 +8034,7 @@
     },
     {
       "issued_at": "2026-05-04T04:49:54Z",
-      "issued_at_unix": 1777870194,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting, as evidenced by a high rate of QA refusals at complexity levels 15 and 16, particularly in the Storytelling and Social Science domains. While shipped projects have demonstrated some domain diversity, interaction patterns are clustering, and recent attempts at diversification have failed. Directives focus on scaling back complexity, avoiding problematic domains, ensuring functional controls, and pushing for both interaction and visual design innovation in the next project.",
@@ -8058,7 +8058,7 @@
     },
     {
       "issued_at": "2026-05-04T09:30:35Z",
-      "issued_at_unix": 1777887035,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing signs of drifting, with shipped projects becoming more complex but lacking meaningful diversity in patterns and interaction paradigms. Recent refusals highlight that the system struggles to deliver functional projects in higher complexity levels (c=15-16) and with certain patterns like 'analyzer' and 'simulator.' Directives focus on reducing complexity, avoiding problematic patterns, and exploring novel interaction styles and underutilized domains to ensure functional, innovative, and diverse output.",
@@ -8082,7 +8082,7 @@
     },
     {
       "issued_at": "2026-05-04T15:17:31Z",
-      "issued_at_unix": 1777907851,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is showing signs of drifting due to overreach in complexity and repeated failures in specific patterns ('analyzer' and 'simulator'). Shipped projects, while spanning a range of domains, lack innovation in interaction patterns. Recent refusals at higher complexity suggest the system is hitting a soft ceiling. The next steps should focus on simplifying complexity, avoiding problematic patterns, exploring underrepresented domains, and introducing more engaging layouts to break repetitive design patterns and ensure reliability.",
@@ -8107,7 +8107,7 @@
     },
     {
       "issued_at": "2026-05-04T20:40:54Z",
-      "issued_at_unix": 1777927254,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting, with an upward trend in complexity leading to a high failure rate at QA, particularly for new patterns ('analyzer' and 'studio') and domains ('Social Science', 'Finance', 'Audio/DSP', 'History'). While some shipped projects remain functional and useful, the pipeline is struggling to innovate effectively without compromising quality. Directives focus on scaling back complexity, reinforcing functional reliability with simpler interaction patterns and fewer controls, and exploring diversity through new domains.",
@@ -8132,7 +8132,7 @@
     },
     {
       "issued_at": "2026-05-05T04:27:02Z",
-      "issued_at_unix": 1777955222,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting as it pushes for higher complexity without reliably delivering functional builds, leading to a high failure rate and partially usable projects. Shipped projects also show repetitive patterns (e.g., 'visualizer') and lack deeper UI or functional innovation. To restore balance, the next project must focus on reliability and simplicity, incorporate a novel UI layout, explore an underutilized domain, and avoid the overused 'visualizer' pattern.",
@@ -8155,7 +8155,7 @@
     },
     {
       "issued_at": "2026-05-05T09:17:57Z",
-      "issued_at_unix": 1777972677,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting, with a high volume of recent refusals at the QA gate for higher-complexity projects and new patterns like 'studio,' along with stagnation in shipped project variety. The next project must refocus on simplicity, reliability, and achievable interaction design. Avoid overly complex layouts, experimental patterns, and new domains. Limit complexity to c=14 or lower and introduce a novel but manageable control type to push incremental improvement.",
@@ -8180,7 +8180,7 @@
     },
     {
       "issued_at": "2026-05-05T20:17:35Z",
-      "issued_at_unix": 1778012255,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting due to a lack of diversity in project patterns (overusing 'visualizers') and consistent QA failures at higher complexity levels. Recent refusals show a clear inability to handle more ambitious builds, particularly in 'studio' and 'simulator' patterns, due to dead or missing controls. For the next project, the system must scale back complexity to c=14 and prioritize robust execution of all planned features. It must explore a new interaction pattern (e.g., 'editor' or 'workspace') and target an underrepresented domain like Audio/DSP or Education to expand its portfolio. The focus should be on delivering a complete, functional, and innovative product within a controlled complexity scope.",
@@ -8205,7 +8205,7 @@
     },
     {
       "issued_at": "2026-05-06T04:43:32Z",
-      "issued_at_unix": 1778042612,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting, with shipped projects leaning toward repetitive 'visualizer' patterns and limited interactivity, while refused builds in the Audio/DSP domain reveal persistent functional failures at higher complexity. Directives focus on breaking the overused patterns, addressing functional gaps in control implementation, and exploring new layouts and backend features within manageable complexity limits.",
@@ -8229,7 +8229,7 @@
     },
     {
       "issued_at": "2026-05-06T09:36:48Z",
-      "issued_at_unix": 1778060208,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is struggling with recent complexity increases, especially in Audio/DSP-focused builds, which are failing repeatedly at the QA gate. Meanwhile, shipped projects are overly reliant on visualizer patterns and lack diversity in both interaction styles and domains. To stabilize and advance, the next project should scale back complexity, avoid failure-prone patterns like 'editor' or 'workspace,' and push for novel interaction patterns and domains to broaden the system's creative output.",
@@ -8252,7 +8252,7 @@
     },
     {
       "issued_at": "2026-05-06T15:33:57Z",
-      "issued_at_unix": 1778081637,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting due to repeated failures at high complexity, particularly in the Audio/DSP domain, and an overreliance on familiar interaction patterns and single-pane designs. While complexity is increasing, innovation in user interaction and project diversity has stagnated. Directives focus on breaking the single-pane design pattern, avoiding problematic domains, introducing backend depth, and pushing for novel interaction mechanisms and visual styles.",
@@ -8277,7 +8277,7 @@
     },
     {
       "issued_at": "2026-05-06T20:45:28Z",
-      "issued_at_unix": 1778100328,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is drifting due to overreaching in complexity and struggling with certain patterns like 'editor' and 'workspace', particularly in the Audio/DSP domain. While shipped projects show incremental complexity growth, they lack diversity in interaction patterns and are predominantly single-canvas. The next directives focus on scaling back complexity, avoiding problematic patterns, introducing multi-pane layouts, exploring new domains, and ensuring functional controls to address the current limitations and foster sustainable progress.",
@@ -8301,7 +8301,7 @@
     },
     {
       "issued_at": "2026-05-07T04:44:47Z",
-      "issued_at_unix": 1778129087,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The pipeline is drifting, as recent projects show increasing complexity but frequent QA failures and partially usable shipped projects. The system is overreaching, with dead and missing controls recurring in refused builds and reliance on repetitive patterns like dashboards and visualizers. To correct course, the next project must reduce complexity, implement a multi-pane layout, include a backend simulation, and explore novel interaction mechanisms in a less-visited domain while ensuring all controls are functional. This will help stabilize quality and diversify outputs.",
@@ -8327,7 +8327,7 @@
     },
     {
       "issued_at": "2026-05-07T07:23:49Z",
-      "issued_at_unix": 1778138629,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a pattern of safe, repetitive web-based projects, and recent failures show over-ambition in poorly executed educational and urban planning domains.",
@@ -8352,7 +8352,7 @@
     },
     {
       "issued_at": "2026-05-07T09:44:12Z",
-      "issued_at_unix": 1778147052,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a loop of web-based projects with minor domain variations, while recent refusals highlight overcomplexity and execution issues.",
@@ -8377,7 +8377,7 @@
     },
     {
       "issued_at": "2026-05-07T15:32:28Z",
-      "issued_at_unix": 1778167948,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is locked in a web-app rut with repeated failures in similar domains; immediate redirection is necessary.",
@@ -8401,7 +8401,7 @@
     },
     {
       "issued_at": "2026-05-07T20:38:45Z",
-      "issued_at_unix": 1778186325,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a rut producing safe, web-based tools with repetitive patterns, and recent attempts to branch out were overly ambitious and failed QA.",
@@ -8426,7 +8426,7 @@
     },
     {
       "issued_at": "2026-05-07T22:59:53Z",
-      "issued_at_unix": 1778194793,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a web-interactive rut, with failures in complexity and underexplored domains.",
@@ -8450,7 +8450,7 @@
     },
     {
       "issued_at": "2026-05-07T23:11:51Z",
-      "issued_at_unix": 1778195511,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in the web interactive domain with overly conservative outputs. Recent projects were functional but uninspired, and multiple failures indicate overextension without impactful innovation.",
@@ -8475,7 +8475,7 @@
     },
     {
       "issued_at": "2026-05-07T23:46:43Z",
-      "issued_at_unix": 1778197603,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are overly safe and repetitive, with an over-reliance on web-based tools. A clear lack of diversity in project types is evident, and efforts to execute new domains have consistently failed at QA.",
@@ -8501,7 +8501,7 @@
     },
     {
       "issued_at": "2026-05-08T04:24:24Z",
-      "issued_at_unix": 1778214264,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stagnating in repetitive web-interactive projects and is struggling to ship more daring concepts, as evidenced by recent refusals.",
@@ -8526,7 +8526,7 @@
     },
     {
       "issued_at": "2026-05-08T08:47:04Z",
-      "issued_at_unix": 1778230024,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is trapped in a cycle of web-interactive projects and is failing to deliver on ambitious or novel ideas. Refused builds show a stagnation in creative execution.",
@@ -8550,7 +8550,7 @@
     },
     {
       "issued_at": "2026-05-08T15:02:21Z",
-      "issued_at_unix": 1778252541,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is too heavily focused on safe, web-interactive tools and struggling to execute novel ideas in underrepresented domains.",
@@ -8574,7 +8574,7 @@
     },
     {
       "issued_at": "2026-05-08T20:16:17Z",
-      "issued_at_unix": 1778271377,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a pattern of safe, web-based projects, with increasing failures in creative and complex domains.",
@@ -8597,7 +8597,7 @@
     },
     {
       "issued_at": "2026-05-09T04:33:32Z",
-      "issued_at_unix": 1778301212,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a loop of similar projects with minor variations, and recent failures indicate over-iteration without meaningful innovation.",
@@ -8621,7 +8621,7 @@
     },
     {
       "issued_at": "2026-05-09T08:49:45Z",
-      "issued_at_unix": 1778316585,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The recent projects are overly focused on web-based or generative art domains, with repeated failures in puzzles and fractals. No substantial exploration of new or underrepresented project types has occurred.",
@@ -8647,7 +8647,7 @@
     },
     {
       "issued_at": "2026-05-09T14:19:48Z",
-      "issued_at_unix": 1778336388,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system exhibits an over-reliance on derivative fractal generators and simulations, with repeated QA failures and limited exploration of underrepresented domains.",
@@ -8671,7 +8671,7 @@
     },
     {
       "issued_at": "2026-05-09T20:01:51Z",
-      "issued_at_unix": 1778356911,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have shown incremental progress but remain over-reliant on web-based and familiar domains, with significant failures in 3D and simulation categories indicating a lack of expertise or over-scoping.",
@@ -8696,7 +8696,7 @@
     },
     {
       "issued_at": "2026-05-10T04:53:27Z",
-      "issued_at_unix": 1778388807,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have leaned heavily on web_interactive and safe domains, with a concerning pattern of failures in 3D simulations. The system is avoiding underexplored domains and failing to push boundaries effectively.",
@@ -8721,7 +8721,7 @@
     },
     {
       "issued_at": "2026-05-10T09:00:52Z",
-      "issued_at_unix": 1778403652,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a local minimum of web-based projects, with recent failures indicating overreach into 3D simulations without sufficient technical grounding.",
@@ -8746,7 +8746,7 @@
     },
     {
       "issued_at": "2026-05-10T14:22:15Z",
-      "issued_at_unix": 1778422935,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is producing partially usable projects that are overly weighted toward web and interactive types, while struggling to execute on web_3d physics simulations.",
@@ -8771,7 +8771,7 @@
     },
     {
       "issued_at": "2026-05-10T20:04:02Z",
-      "issued_at_unix": 1778443442,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o-mini",
       "verdict": "drifting",
       "summary": "The recent projects have shown a tendency towards repetitive web applications and a lack of innovation in exploring new domains, particularly 3D and game-related projects.",
@@ -8791,7 +8791,7 @@
     },
     {
       "issued_at": "2026-05-11T05:06:59Z",
-      "issued_at_unix": 1778476019,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has consistently avoided the web_3d domain, and recent failures suggest poor execution in this area. There's potential, but we need to scale back complexity to ensure something ships.",
@@ -8815,7 +8815,7 @@
     },
     {
       "issued_at": "2026-05-11T06:45:48Z",
-      "issued_at_unix": 1778481948,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system has entered a failure loop with web_3d projects, resulting in zero successful shipments despite repeated attempts.",
@@ -8839,7 +8839,7 @@
     },
     {
       "issued_at": "2026-05-11T10:43:44Z",
-      "issued_at_unix": 1778496224,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stuck in a loop of repeated failures in physics-related web_3d projects, while other domains remain underexplored.",
@@ -8864,7 +8864,7 @@
     },
     {
       "issued_at": "2026-05-11T16:10:50Z",
-      "issued_at_unix": 1778515850,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has fallen into a pattern of safer projects and experienced repeated failures in the 3D domain, indicating a lack of progress in critical unexplored areas.",
@@ -8888,7 +8888,7 @@
     },
     {
       "issued_at": "2026-05-11T20:53:14Z",
-      "issued_at_unix": 1778532794,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system's recent projects show promise but are veering toward repeated failures with web_3d and too much reliance on web-interactive outputs.",
@@ -8913,7 +8913,7 @@
     },
     {
       "issued_at": "2026-05-12T04:48:15Z",
-      "issued_at_unix": 1778561295,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Repeated failures in web_3d projects indicate a systemic issue with this type, while recent shipped projects show a lack of bold innovation.",
@@ -8938,7 +8938,7 @@
     },
     {
       "issued_at": "2026-05-12T09:48:20Z",
-      "issued_at_unix": 1778579300,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show some diversity, but repeated failures in 3D generative art and physics indicate misaligned complexity and execution issues. The system needs to pivot to untried domains while simplifying scope.",
@@ -8963,7 +8963,7 @@
     },
     {
       "issued_at": "2026-05-12T15:45:10Z",
-      "issued_at_unix": 1778600710,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The recent focus on web_3d projects has resulted in repeated failures, and the overall output lacks the radical innovation needed to break new ground.",
@@ -8988,7 +8988,7 @@
     },
     {
       "issued_at": "2026-05-12T20:49:31Z",
-      "issued_at_unix": 1778618971,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing signs of stagnation with repeated failures in ambitious web_3d projects, while shipped projects are clustering around safe, partially usable outputs in web and game domains.",
@@ -9012,7 +9012,7 @@
     },
     {
       "issued_at": "2026-05-13T04:58:49Z",
-      "issued_at_unix": 1778648329,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is fixated on generative art and failing to ship increasingly complex projects; type diversity is severely lacking.",
@@ -9037,7 +9037,7 @@
     },
     {
       "issued_at": "2026-05-13T09:50:27Z",
-      "issued_at_unix": 1778665827,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in generative art with repeated failures in web_3d. A pivot is required to regain momentum.",
@@ -9062,7 +9062,7 @@
     },
     {
       "issued_at": "2026-05-13T15:47:59Z",
-      "issued_at_unix": 1778687279,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has stagnated with repeated failures in ambitious 3D and cellular automata builds, and shipped projects are clustering in safer domains.",
@@ -9087,7 +9087,7 @@
     },
     {
       "issued_at": "2026-05-13T20:54:45Z",
-      "issued_at_unix": 1778705685,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing repeated failures in 3D-related projects and overproducing generative art and games with only partial usability. A clear pivot is needed to stabilize output and regain momentum.",
@@ -9111,7 +9111,7 @@
     },
     {
       "issued_at": "2026-05-14T04:57:36Z",
-      "issued_at_unix": 1778734656,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system shows repeated failures in 3D and cellular automata domains, with a worrying lack of successful web_3d or innovative breakthroughs.",
@@ -9135,7 +9135,7 @@
     },
     {
       "issued_at": "2026-05-14T09:39:51Z",
-      "issued_at_unix": 1778751591,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Consecutive failures in 3D-related projects signal critical execution issues; immediate course correction required.",
@@ -9159,7 +9159,7 @@
     },
     {
       "issued_at": "2026-05-14T15:29:00Z",
-      "issued_at_unix": 1778772540,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have shown incremental progress but are leaning too heavily on repetitive patterns, and there is a troubling concentration of failures in 3D-related domains.",
@@ -9183,7 +9183,7 @@
     },
     {
       "issued_at": "2026-05-14T20:44:40Z",
-      "issued_at_unix": 1778791480,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent failures in 3D types indicate the system is struggling to execute complex visual projects, while shipped projects are becoming overly reliant on safe document and low-scope types.",
@@ -9207,7 +9207,7 @@
     },
     {
       "issued_at": "2026-05-15T05:01:06Z",
-      "issued_at_unix": 1778821266,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shown some promising diversity in recent projects, but repeated failures in web_3d and game_web types indicate a concerning inability to execute in those areas.",
@@ -9232,7 +9232,7 @@
     },
     {
       "issued_at": "2026-05-15T09:51:59Z",
-      "issued_at_unix": 1778838719,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is struggling to deliver successful projects in new domains, with recent failures in web_3d and game_web indicating an overreach. However, there is a clear opportunity to focus on generative_art or python_tool, which are underrepresented and viable.",
@@ -9256,7 +9256,7 @@
     },
     {
       "issued_at": "2026-05-15T15:26:49Z",
-      "issued_at_unix": 1778858809,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is struggling with repeated failures, particularly in 3D-related domains, and recent success has leaned heavily on safer document and generative art projects. A hard pivot is necessary to break out of stagnation.",
@@ -9280,7 +9280,7 @@
     },
     {
       "issued_at": "2026-05-17T10:46:41Z",
-      "issued_at_unix": 1779014801,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have been moderately successful but are overly concentrated in familiar domains, while new types like web_3d are being neglected and experimental projects are failing QA.",
@@ -9305,7 +9305,7 @@
     },
     {
       "issued_at": "2026-05-17T14:38:51Z",
-      "issued_at_unix": 1779028731,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is over-relying on generative art and struggling to deliver ambitious projects in new domains like 3D and raymarching.",
@@ -9329,7 +9329,7 @@
     },
     {
       "issued_at": "2026-05-17T20:09:33Z",
-      "issued_at_unix": 1779048573,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shown some success but is stagnating in familiar domains, with recent failures heavily concentrated in games and raymarching. There is an urgent need to pivot to a new, underexplored project type.",
@@ -9353,7 +9353,7 @@
     },
     {
       "issued_at": "2026-05-18T05:17:18Z",
-      "issued_at_unix": 1779081438,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing signs of stagnation with repeated failures in games and raymarching. There is also an over-reliance on generative art and document types, which are nearing their complexity ceilings.",
@@ -9378,7 +9378,7 @@
     },
     {
       "issued_at": "2026-05-18T11:11:52Z",
-      "issued_at_unix": 1779102712,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is struggling with consistent failures in web_3d and physics simulation projects, while recent projects have predominantly focused on safe, iterative domains like generative art, leaving other areas underexplored.",
@@ -9401,7 +9401,7 @@
     },
     {
       "issued_at": "2026-05-18T16:32:28Z",
-      "issued_at_unix": 1779121948,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shipped several projects with incremental complexity, but recent refusals signal stagnation and inability to deliver on novel domains like 3D and physics simulations.",
@@ -9425,7 +9425,7 @@
     },
     {
       "issued_at": "2026-05-18T20:44:20Z",
-      "issued_at_unix": 1779137060,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system demonstrates good diversity and achieved several shippable projects, but repeated failures in web_3d and physics simulations highlight a need for strategic redirection.",
@@ -9450,7 +9450,7 @@
     },
     {
       "issued_at": "2026-05-19T05:13:12Z",
-      "issued_at_unix": 1779167592,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stagnating in familiar domains (game_web, generative_art, python_tool) while failing to deliver on riskier projects. A pivot to unexplored territory is critical.",
@@ -9474,7 +9474,7 @@
     },
     {
       "issued_at": "2026-05-19T10:43:04Z",
-      "issued_at_unix": 1779187384,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are clustering around safe domains, with repeated failures in physics and raymarching. We need to break into underexplored areas like web_3d to unlock new opportunities.",
@@ -9499,7 +9499,7 @@
     },
     {
       "issued_at": "2026-05-19T16:30:37Z",
-      "issued_at_unix": 1779208237,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shipped projects, but recent failures in web_3d and over-reliance on game_web types highlight a lack of type diversity.",
@@ -9523,7 +9523,7 @@
     },
     {
       "issued_at": "2026-05-19T20:51:00Z",
-      "issued_at_unix": 1779223860,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a pattern of revisiting safe types like generative_art and game_web, while failing repeatedly in more ambitious domains like web_3d and physics simulations.",
@@ -9547,7 +9547,7 @@
     },
     {
       "issued_at": "2026-05-20T05:15:32Z",
-      "issued_at_unix": 1779254132,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has delivered several projects, but they lack diversity and exhibit repeated failures in the web_3d domain.",
@@ -9571,7 +9571,7 @@
     },
     {
       "issued_at": "2026-05-20T10:28:26Z",
-      "issued_at_unix": 1779272906,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shown some progress but is stuck in a local minimum with repeated failures in 3D-related projects, and recent ships are trending toward safe, iterative work.",
@@ -9595,7 +9595,7 @@
     },
     {
       "issued_at": "2026-05-20T16:32:18Z",
-      "issued_at_unix": 1779294738,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is producing some usable projects, but repeated failures in 3D domains and stagnation in type diversity are concerning.",
@@ -9619,7 +9619,7 @@
     },
     {
       "issued_at": "2026-05-20T21:10:31Z",
-      "issued_at_unix": 1779311431,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a cycle of recent failures in 3D-related projects, but has otherwise shown competency in other domains; we need a significant pivot to break out of this rut.",
@@ -9643,7 +9643,7 @@
     },
     {
       "issued_at": "2026-05-21T05:19:24Z",
-      "issued_at_unix": 1779340764,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show progress but are clustering around a few types, while web_3d remains unshipped and banned after repeated failures.",
@@ -9667,7 +9667,7 @@
     },
     {
       "issued_at": "2026-05-21T10:48:37Z",
-      "issued_at_unix": 1779360517,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system has entered a failure spiral with web_3d and game_web types, while recent successes have been safe and iterative rather than innovative.",
@@ -9691,7 +9691,7 @@
     },
     {
       "issued_at": "2026-05-21T16:22:44Z",
-      "issued_at_unix": 1779380564,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show moderate success, but repeated failures in ambitious 3D and physics-related projects reveal a concerning trend of overreaching without delivering.",
@@ -9715,7 +9715,7 @@
     },
     {
       "issued_at": "2026-05-21T20:57:05Z",
-      "issued_at_unix": 1779397025,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent focus on Python tools has led to functional but uninspired outputs, and multiple failures in 3D and game design indicate execution issues in these domains. The system is stagnating in safe territory.",
@@ -9738,7 +9738,7 @@
     },
     {
       "issued_at": "2026-05-22T05:12:58Z",
-      "issued_at_unix": 1779426778,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is overly ambitious, leading to frequent QA failures, and is repeating maxed-out and failing types.",
@@ -9762,7 +9762,7 @@
     },
     {
       "issued_at": "2026-05-22T10:28:23Z",
-      "issued_at_unix": 1779445703,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system shows promise with recent successes but is stagnating in maxed-out types and failing to deliver on novel, ambitious projects.",
@@ -9787,7 +9787,7 @@
     },
     {
       "issued_at": "2026-05-22T15:52:20Z",
-      "issued_at_unix": 1779465140,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shown a tendency to push complexity limits and attempt high-risk projects, but recent failures indicate a need for recalibration and a pivot away from maxed-out types.",
@@ -9811,7 +9811,7 @@
     },
     {
       "issued_at": "2026-05-22T20:47:08Z",
-      "issued_at_unix": 1779482828,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have shown incremental innovation but lack bold leaps, and repeated failures in Physics Simulation and Game Design signal overreach.",
@@ -9835,7 +9835,7 @@
     },
     {
       "issued_at": "2026-05-23T04:52:03Z",
-      "issued_at_unix": 1779511923,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show growing ambition, but failures in complex domains like 3D physics and time-manipulation games indicate overreach. A pivot to a successful, underrepresented type is needed.",
@@ -9860,7 +9860,7 @@
     },
     {
       "issued_at": "2026-05-23T09:09:21Z",
-      "issued_at_unix": 1779527361,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system shows bias toward high-complexity, maxed-out types and repeated failures in advanced domains. A recalibration toward deliverable, underrepresented types is critical.",
@@ -9885,7 +9885,7 @@
     },
     {
       "issued_at": "2026-05-23T14:42:52Z",
-      "issued_at_unix": 1779547372,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shown recent success in shipping Python tools but has hit significant roadblocks in physics simulations, 3D development, and emergent gameplay projects. Type diversity is weak, and retries of failing types have compounded problems.",
@@ -9910,7 +9910,7 @@
     },
     {
       "issued_at": "2026-05-23T20:11:49Z",
-      "issued_at_unix": 1779567109,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show some ambition, but the refusal rate is high, and complexity ceilings are being hit in multiple domains.",
@@ -9934,7 +9934,7 @@
     },
     {
       "issued_at": "2026-05-24T05:12:16Z",
-      "issued_at_unix": 1779599536,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has achieved some successes but is demonstrating a worrying pattern of repeated failures in high-risk, high-complexity domains, especially in 3D and game design. Recent projects have been either safe or partially usable, indicating a loss of momentum in pushing boundaries.",
@@ -9958,7 +9958,7 @@
     },
     {
       "issued_at": "2026-05-24T09:25:07Z",
-      "issued_at_unix": 1779614707,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show moderate success, but there are concerning patterns of repeated failures in ambitious domains like physics simulation and time-based games.",
@@ -9982,7 +9982,7 @@
     },
     {
       "issued_at": "2026-05-24T14:42:12Z",
-      "issued_at_unix": 1779633732,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shipped recent projects successfully, but there's an overreliance on maxed-out or safe project types, and several recent failures indicate overreach in the 3D and game domains.",
@@ -10007,7 +10007,7 @@
     },
     {
       "issued_at": "2026-05-24T20:15:32Z",
-      "issued_at_unix": 1779653732,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects consistently, but the recent focus on games and creative types has led to several failures and saturation in multiple domains.",
@@ -10031,7 +10031,7 @@
     },
     {
       "issued_at": "2026-05-25T05:48:59Z",
-      "issued_at_unix": 1779688139,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is overproducing failed and maxed-out types, with repetitive patterns and poor quality control in recent attempts.",
@@ -10055,7 +10055,7 @@
     },
     {
       "issued_at": "2026-05-25T11:16:18Z",
-      "issued_at_unix": 1779707778,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show some progress, but repeated failures in complex types like 3D physics and emergent gameplay indicate overreach. Focus is needed to stabilize outputs while avoiding maxed-out types.",
@@ -10079,7 +10079,7 @@
     },
     {
       "issued_at": "2026-05-25T16:01:28Z",
-      "issued_at_unix": 1779724888,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show acceptable creativity, but several domains are being reused excessively, and failures are clustering around overly complex game and 3D concepts.",
@@ -10104,7 +10104,7 @@
     },
     {
       "issued_at": "2026-05-25T20:43:17Z",
-      "issued_at_unix": 1779741797,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system has delivered a few strong projects, but too many recent attempts have failed due to overambition, and maxed-out types are being overused.",
@@ -10128,7 +10128,7 @@
     },
     {
       "issued_at": "2026-05-26T05:13:13Z",
-      "issued_at_unix": 1779772393,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing a pattern of repeated failures in ambitious projects, particularly in Physics Simulation and Game Design domains, while relying heavily on already maxed-out project types. A shift towards underexplored domains and less complex project scopes is urgently needed.",
@@ -10153,7 +10153,7 @@
     },
     {
       "issued_at": "2026-05-26T16:51:06Z",
-      "issued_at_unix": 1779814266,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is over-relying on maxed-out project types while showing instability in high-complexity domains like physics simulations and emergent gameplay.",
@@ -10177,7 +10177,7 @@
     },
     {
       "issued_at": "2026-05-26T21:00:10Z",
-      "issued_at_unix": 1779829210,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate complexity, but an over-reliance on safer domains has led to stagnation, and multiple failures in ambitious areas highlight the need for recalibration.",
@@ -10201,7 +10201,7 @@
     },
     {
       "issued_at": "2026-05-27T05:41:38Z",
-      "issued_at_unix": 1779860498,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is struggling with ambitious projects in high-complexity domains, leading to repeated failures, while recent ships have been overly safe or incremental.",
@@ -10226,7 +10226,7 @@
     },
     {
       "issued_at": "2026-05-27T08:58:57Z",
-      "issued_at_unix": 1779872337,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has delivered a series of competent projects, but there is excessive repetition in type and domain, with no recent exploration of new, untested areas.",
@@ -10250,7 +10250,7 @@
     },
     {
       "issued_at": "2026-05-27T11:00:42Z",
-      "issued_at_unix": 1779879642,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has recently shipped projects successfully, but the trajectory shows repeated reliance on Python tools and web games, with high failure rates in ambitious physics and game design domains.",
@@ -10274,7 +10274,7 @@
     },
     {
       "issued_at": "2026-05-27T16:44:10Z",
-      "issued_at_unix": 1779900250,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show some ambition but are clustering around familiar domains, with multiple failures in game development and physics-related complexity.",
@@ -10299,7 +10299,7 @@
     },
     {
       "issued_at": "2026-05-27T18:03:56Z",
-      "issued_at_unix": 1779905036,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is shipping projects, but it is showing a bias toward safer, familiar types like `python_tool` and `game_web`, while failing at more ambitious projects.",
@@ -10325,7 +10325,7 @@
     },
     {
       "issued_at": "2026-05-27T18:14:54Z",
-      "issued_at_unix": 1779905694,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a holding pattern with incremental improvements and repeated reliance on Python tools and web games, while more experimental types remain untried.",
@@ -10350,7 +10350,7 @@
     },
     {
       "issued_at": "2026-05-27T21:11:08Z",
-      "issued_at_unix": 1779916268,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have been leaning on safe and familiar domains, while failures indicate over-complexity and lack of focus in ambitious builds.",
@@ -10374,7 +10374,7 @@
     },
     {
       "issued_at": "2026-05-28T05:19:48Z",
-      "issued_at_unix": 1779945588,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shipped several projects recently, but they lean heavily on familiar and previously successful types without significant boundary-pushing. Several failed builds indicate overambition in certain domains (e.g., 3D and game design).",
@@ -10398,7 +10398,7 @@
     },
     {
       "issued_at": "2026-05-28T11:01:46Z",
-      "issued_at_unix": 1779966106,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show steady shipping progress, but the ambition level is middling, and there's a lack of experimentation in underexplored domains.",
@@ -10423,7 +10423,7 @@
     },
     {
       "issued_at": "2026-05-28T17:01:05Z",
-      "issued_at_unix": 1779987665,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects but has shown a pattern of partial usability and repeated failures in certain domains, indicating a need for tighter scope and better execution.",
@@ -10447,7 +10447,7 @@
     },
     {
       "issued_at": "2026-05-28T21:18:43Z",
-      "issued_at_unix": 1780003123,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects across diverse domains but with some concerning failure patterns and missed opportunities to explore new types.",
@@ -10472,7 +10472,7 @@
     },
     {
       "issued_at": "2026-05-29T05:22:15Z",
-      "issued_at_unix": 1780032135,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping reliably, but the projects are leaning toward safe domains and repetition. A pivot to underexplored types is overdue.",
@@ -10496,7 +10496,7 @@
     },
     {
       "issued_at": "2026-05-29T10:53:05Z",
-      "issued_at_unix": 1780051985,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects with a reasonable success rate, but recent refusals indicate a need to pivot away from overly complex or broken builds.",
@@ -10520,7 +10520,7 @@
     },
     {
       "issued_at": "2026-05-29T16:52:44Z",
-      "issued_at_unix": 1780073564,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show a solid variety of types and domains, but there's a troubling pattern of repeated failures in shader_art and overly safe reliance on python_tool.",
@@ -10545,7 +10545,7 @@
     },
     {
       "issued_at": "2026-05-29T21:15:46Z",
-      "issued_at_unix": 1780089346,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects have been shipping successfully, but the system is stagnating in safe domains. We must aggressively push into new, untried types to expand capabilities.",
@@ -10569,7 +10569,7 @@
     },
     {
       "issued_at": "2026-05-30T05:00:13Z",
-      "issued_at_unix": 1780117213,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects are shipping, but the system is veering toward safe Python tools and information theory projects. A bold leap into untried territory is overdue.",
@@ -10594,7 +10594,7 @@
     },
     {
       "issued_at": "2026-05-30T09:24:42Z",
-      "issued_at_unix": 1780133082,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system shows moderate success but remains overly safe and derivative in recent projects. It must pivot to underexplored and novel domains.",
@@ -10620,7 +10620,7 @@
     },
     {
       "issued_at": "2026-05-30T14:46:03Z",
-      "issued_at_unix": 1780152363,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system has shown recent success with varied project types, but there's evidence of recurring issues with unshippable builds in certain domains and a lack of exploration into never-tried types.",
@@ -10644,7 +10644,7 @@
     },
     {
       "issued_at": "2026-05-30T20:16:39Z",
-      "issued_at_unix": 1780172199,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is showing a good range of outputs with some promising complexity, but recent failures in shader_art and redundant patterns in python_tool are concerning.",
@@ -10668,7 +10668,7 @@
     },
     {
       "issued_at": "2026-05-31T05:45:22Z",
-      "issued_at_unix": 1780206322,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are shipping but lack bold creativity and exploration of underutilized or novel domains.",
@@ -10693,7 +10693,7 @@
     },
     {
       "issued_at": "2026-05-31T09:50:01Z",
-      "issued_at_unix": 1780221001,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects steadily, but the recent trajectory skews toward safer domains with low ambition and lacks exploration of underrepresented types.",
@@ -10718,7 +10718,7 @@
     },
     {
       "issued_at": "2026-05-31T14:53:51Z",
-      "issued_at_unix": 1780239231,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is veering toward repeated failures in ambitious shader_art projects, and recent successes are skewing toward safer patterns.",
@@ -10743,7 +10743,7 @@
     },
     {
       "issued_at": "2026-05-31T20:20:37Z",
-      "issued_at_unix": 1780258837,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are shipping but lack significant innovation, and failures have concentrated in unproven types like shader_art and typescript_app.",
@@ -10768,7 +10768,7 @@
     },
     {
       "issued_at": "2026-06-01T06:18:31Z",
-      "issued_at_unix": 1780294711,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent projects show signs of stagnation in creativity and usability, with multiple failed builds and a lack of exploration into uncharted types such as shader_art and typescript_app.",
@@ -10794,7 +10794,7 @@
     },
     {
       "issued_at": "2026-06-01T12:48:00Z",
-      "issued_at_unix": 1780318080,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing signs of stagnation with repeated failures in cryptographic visualization and a lack of exploration into novel project types like shader_art or typescript_app.",
@@ -10818,7 +10818,7 @@
     },
     {
       "issued_at": "2026-06-01T18:46:45Z",
-      "issued_at_unix": 1780339605,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects but still struggles with ambitious domains, and some projects are too safe or redundant.",
@@ -10843,7 +10843,7 @@
     },
     {
       "issued_at": "2026-06-01T22:16:48Z",
-      "issued_at_unix": 1780352208,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects are diverse and mostly successful, but there is a clear underutilization of certain innovative domains like shader_art and data_viz.",
@@ -10868,7 +10868,7 @@
     },
     {
       "issued_at": "2026-06-02T06:02:00Z",
-      "issued_at_unix": 1780380120,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects are shipping successfully, but the system is showing signs of conservatism with repeated failures in reaction-diffusion shaders and a lack of bold exploration into untried domains.",
@@ -10893,7 +10893,7 @@
     },
     {
       "issued_at": "2026-06-02T11:40:46Z",
-      "issued_at_unix": 1780400446,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have shipped successfully but lack bold innovation, with a concerning streak of failed attempts at shader_art.",
@@ -10917,7 +10917,7 @@
     },
     {
       "issued_at": "2026-06-02T17:48:44Z",
-      "issued_at_unix": 1780422524,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent refused builds show repeated failures in the reaction-diffusion shader domain, indicating a potential skill gap or lack of readiness for shader_art projects.",
@@ -10941,7 +10941,7 @@
     },
     {
       "issued_at": "2026-06-02T22:03:15Z",
-      "issued_at_unix": 1780437795,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has shipped several projects recently, but these are largely clustered around established, safer types. The repeated failures in the 'reaction-diffusion' shader projects indicate a lack of expertise or ambition alignment in that domain, which needs to be addressed strategically.",
@@ -10966,7 +10966,7 @@
     },
     {
       "issued_at": "2026-06-03T06:16:33Z",
-      "issued_at_unix": 1780467393,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has demonstrated a strong ability to ship projects, but recent failures in shader_art and repeated attempts at reaction-diffusion projects suggest stagnation and execution problems in this domain.",
@@ -10991,7 +10991,7 @@
     },
     {
       "issued_at": "2026-06-03T12:05:21Z",
-      "issued_at_unix": 1780488321,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects, but recent failures in shader_art and overreliance on certain types indicate stagnation in creativity and execution issues.",
@@ -11015,7 +11015,7 @@
     },
     {
       "issued_at": "2026-06-03T18:03:04Z",
-      "issued_at_unix": 1780509784,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have been successful but are skewing toward safe, over-represented types, and recent failures in shader_art indicate quality issues that must be addressed.",
@@ -11040,7 +11040,7 @@
     },
     {
       "issued_at": "2026-06-03T22:04:18Z",
-      "issued_at_unix": 1780524258,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects have been functional but are trending toward safe and familiar territory, with no significant breakthroughs or exploration of new domains.",
@@ -11065,7 +11065,7 @@
     },
     {
       "issued_at": "2026-06-04T06:06:46Z",
-      "issued_at_unix": 1780553206,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate steady delivery with increasing complexity, but the refusal of several shader_art attempts indicates overreach and poor risk management.",
@@ -11089,7 +11089,7 @@
     },
     {
       "issued_at": "2026-06-04T10:43:50Z",
-      "issued_at_unix": 1780569830,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The recent projects show good diversity and ambition, but the geospatial simulation was only partially usable, and shader_art remains unexplored.",
@@ -11114,7 +11114,7 @@
     },
     {
       "issued_at": "2026-06-04T16:28:11Z",
-      "issued_at_unix": 1780590491,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing a tendency to repeat high-complexity projects in a narrow band of domains, with multiple failures in the shader_art type, and a mix of high-quality and partially-usable outputs.",
@@ -11137,7 +11137,7 @@
     },
     {
       "issued_at": "2026-06-04T21:02:51Z",
-      "issued_at_unix": 1780606971,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show strong technical execution but are veering into overly safe territory, with multiple failed attempts at high-risk domains and overuse of maxed-out types.",
@@ -11161,7 +11161,7 @@
     },
     {
       "issued_at": "2026-06-05T05:48:01Z",
-      "issued_at_unix": 1780638481,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show a tendency toward high complexity but are hitting the ceiling for multiple types, leading to partial usability or outright failure. The system needs to pivot to less explored domains to avoid stagnation.",
@@ -11186,7 +11186,7 @@
     },
     {
       "issued_at": "2026-06-05T16:08:03Z",
-      "issued_at_unix": 1780675683,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent refusals and partially usable projects indicate a troubling trend of over-ambition without delivery.",
@@ -11210,7 +11210,7 @@
     },
     {
       "issued_at": "2026-06-05T20:55:29Z",
-      "issued_at_unix": 1780692929,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show strong performance, but the focus is slipping toward maxed-out and overused types, with a lack of exploration into underutilized domains.",
@@ -11234,7 +11234,7 @@
     },
     {
       "issued_at": "2026-06-06T05:04:29Z",
-      "issued_at_unix": 1780722269,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects with moderate complexity, but recent failures in shader_art and over-reliance on maxed-out types indicate a lack of innovation and adaptability.",
@@ -11257,7 +11257,7 @@
     },
     {
       "issued_at": "2026-06-06T09:29:39Z",
-      "issued_at_unix": 1780738179,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has delivered high-complexity projects but is stalling in diversity and failing to land novel domains like shader_art.",
@@ -11281,7 +11281,7 @@
     },
     {
       "issued_at": "2026-06-06T14:51:29Z",
-      "issued_at_unix": 1780757489,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has been experimenting with higher complexity but has hit repeated failures on shader_art and is over-relying on maxed-out types.",
@@ -11305,7 +11305,7 @@
     },
     {
       "issued_at": "2026-06-06T20:21:26Z",
-      "issued_at_unix": 1780777286,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show a mix of successes and partial usability, but repeated failures in reaction-diffusion projects suggest a flawed approach. The system needs clear direction to avoid stagnation and recover from low-quality outputs.",
@@ -11330,7 +11330,7 @@
     },
     {
       "issued_at": "2026-06-07T05:51:19Z",
-      "issued_at_unix": 1780811479,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show some diversity but are plagued by partial usability and repeated failures in shader_art. A clear pivot is needed to stabilize output and explore underutilized domains effectively.",
@@ -11354,7 +11354,7 @@
     },
     {
       "issued_at": "2026-06-07T10:09:05Z",
-      "issued_at_unix": 1780826945,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Several recent projects show partial usability or repeated failures in specific domains, indicating stagnation and lack of rigorous quality enforcement.",
@@ -11378,7 +11378,7 @@
     },
     {
       "issued_at": "2026-06-07T14:58:03Z",
-      "issued_at_unix": 1780844283,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are technically competent but show signs of stagnation, with repeated failures in generative_art and missed opportunities to explore untapped domains like shader_art.",
@@ -11403,7 +11403,7 @@
     },
     {
       "issued_at": "2026-06-07T20:37:12Z",
-      "issued_at_unix": 1780864632,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is faltering with repeated failures in shader_art and a concerning number of partially usable outputs in recent ships. Immediate corrective action is needed to stabilize output quality.",
@@ -11427,7 +11427,7 @@
     },
     {
       "issued_at": "2026-06-08T06:06:36Z",
-      "issued_at_unix": 1780898796,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent projects have seen multiple failures and overreach in complex domains; trajectory shows signs of stagnation despite isolated successes.",
@@ -11452,7 +11452,7 @@
     },
     {
       "issued_at": "2026-06-08T12:06:27Z",
-      "issued_at_unix": 1780920387,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are hitting maxed-out complexity ceilings in multiple types, while failures in certain areas suggest a lack of focus and execution. The system needs to pivot toward unexplored, high-potential domains.",
@@ -11478,7 +11478,7 @@
     },
     {
       "issued_at": "2026-06-08T16:52:35Z",
-      "issued_at_unix": 1780937555,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has achieved strong results recently but is over-relying on well-worn, maxed-out project types.",
@@ -11502,7 +11502,7 @@
     },
     {
       "issued_at": "2026-06-08T21:16:59Z",
-      "issued_at_unix": 1780953419,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is producing competent but overly safe projects, with a concerning trend of maxed-out types and underexplored domains.",
@@ -11527,7 +11527,7 @@
     },
     {
       "issued_at": "2026-06-09T05:16:33Z",
-      "issued_at_unix": 1780982193,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has reached a local maximum, with multiple project types maxed out or banned, and is showing signs of stagnation. It's time to pivot toward underexplored domains.",
@@ -11551,7 +11551,7 @@
     },
     {
       "issued_at": "2026-06-09T10:38:34Z",
-      "issued_at_unix": 1781001514,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is shipping projects with diverse types but has avoided venturing into untried domains like shader_art, leaving opportunities unexplored.",
@@ -11575,7 +11575,7 @@
     },
     {
       "issued_at": "2026-06-09T16:11:49Z",
-      "issued_at_unix": 1781021509,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is repeatedly failing to deliver shader_art projects and has maxed out on several types; it needs a strict pivot to novel, underexplored domains.",
@@ -11600,7 +11600,7 @@
     },
     {
       "issued_at": "2026-06-09T21:08:41Z",
-      "issued_at_unix": 1781039321,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing a tendency to repeat partially usable projects and has failed multiple shader_art builds, indicating a need for a course correction.",
@@ -11624,7 +11624,7 @@
     },
     {
       "issued_at": "2026-06-10T05:48:04Z",
-      "issued_at_unix": 1781070484,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is showing creativity but has suffered numerous failures in attempting shader_art and is producing too many partially usable outputs.",
@@ -11649,7 +11649,7 @@
     },
     {
       "issued_at": "2026-06-10T11:01:55Z",
-      "issued_at_unix": 1781089315,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is overly focused on generative art and other maxed-out types, with recent failures in pushing into shader_art. This signals stagnation in exploring new domains.",
@@ -11673,7 +11673,7 @@
     },
     {
       "issued_at": "2026-06-10T16:43:20Z",
-      "issued_at_unix": 1781109800,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a rut of generative art projects that often fail QA, with no successful exploration into untried or underexplored domains.",
@@ -11698,7 +11698,7 @@
     },
     {
       "issued_at": "2026-06-10T21:27:16Z",
-      "issued_at_unix": 1781126836,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects are clustered in maxed-out types, with repeated failures in unshipped domains like shader_art. The system lacks a clear path forward into novel territory while maintaining usability.",
@@ -11723,7 +11723,7 @@
     },
     {
       "issued_at": "2026-06-11T06:04:58Z",
-      "issued_at_unix": 1781157898,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a loop of high-complexity, maxed-out types and has repeatedly failed to ship shader_art projects, leading to a lack of real novelty.",
@@ -11748,7 +11748,7 @@
     },
     {
       "issued_at": "2026-06-11T11:45:40Z",
-      "issued_at_unix": 1781178340,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stuck in a cycle of failures and repetitive generative art projects, with several banned types and no recent breakthroughs.",
@@ -11773,7 +11773,7 @@
     },
     {
       "issued_at": "2026-06-11T17:00:04Z",
-      "issued_at_unix": 1781197204,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stagnating due to repeated failures and overreliance on maxed-out project types. Recent refusals highlight a lack of functional completeness and an overreach into overly ambitious designs.",
@@ -11799,7 +11799,7 @@
     },
     {
       "issued_at": "2026-06-11T21:29:22Z",
-      "issued_at_unix": 1781213362,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is producing projects that are either derivative or partially usable, and recent refusals indicate challenges in executing ambitious robotic logic projects.",
@@ -11823,7 +11823,7 @@
     },
     {
       "issued_at": "2026-06-12T06:00:28Z",
-      "issued_at_unix": 1781244028,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent outputs show stagnation with repeated reliance on maxed-out types, and a complete failure in the last attempted swarm-coordination-visualizer project. We are dangerously close to hitting an innovation wall.",
@@ -11848,7 +11848,7 @@
     },
     {
       "issued_at": "2026-06-12T11:07:52Z",
-      "issued_at_unix": 1781262472,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "Recent refusals suggest a failure to produce shippable projects, and excessive reliance on maxed-out or banned project types has stalled progress.",
@@ -11872,7 +11872,7 @@
     },
     {
       "issued_at": "2026-06-12T16:26:24Z",
-      "issued_at_unix": 1781281584,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system has entered a repeated failure loop, with all recent builds being refused and multiple types now effectively banned. Immediate corrective action is required to pivot to a shippable type.",
@@ -11897,7 +11897,7 @@
     },
     {
       "issued_at": "2026-06-12T21:04:55Z",
-      "issued_at_unix": 1781298295,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stuck in a deadlock of failure with repeated refusals and over-reliance on maxed-out or banned types.",
@@ -11922,7 +11922,7 @@
     },
     {
       "issued_at": "2026-06-13T05:46:00Z",
-      "issued_at_unix": 1781329560,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system's recent focus on generative art has led to stagnation, and several project types are now maxed out or banned, leaving limited options for future exploration.",
@@ -11947,7 +11947,7 @@
     },
     {
       "issued_at": "2026-06-13T10:07:02Z",
-      "issued_at_unix": 1781345222,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stuck in a local minimum, iterating on maxed-out, partially-usable generative_art projects and facing a high volume of refusals.",
@@ -11971,7 +11971,7 @@
     },
     {
       "issued_at": "2026-06-13T15:06:16Z",
-      "issued_at_unix": 1781363176,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system has reached a critical failure state with multiple types banned due to repeated failures, and recent shipped projects show a worrying trend towards partially usable outputs.",
@@ -11997,7 +11997,7 @@
     },
     {
       "issued_at": "2026-06-13T20:40:06Z",
-      "issued_at_unix": 1781383206,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stagnating with repetitive outputs and has failed to ship anything new; recent efforts are focused on maxed-out or banned types.",
@@ -12022,7 +12022,7 @@
     },
     {
       "issued_at": "2026-06-14T06:04:25Z",
-      "issued_at_unix": 1781417065,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stalled; all recent projects have been conservative and either maxed out or partially usable, and the last eight proposed builds were entirely refused.",
@@ -12048,7 +12048,7 @@
     },
     {
       "issued_at": "2026-06-14T15:15:14Z",
-      "issued_at_unix": 1781450114,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system is stagnating with repeated failures and overly safe projects; currently all project types are maxed out or banned.",
@@ -12074,7 +12074,7 @@
     },
     {
       "issued_at": "2026-06-14T20:40:26Z",
-      "issued_at_unix": 1781469626,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "alarming",
       "summary": "The system has maxed out complexity in nearly every type and is stuck in a local minimum of derivative work. Recent projects lack usability and creativity, and multiple project types are now banned.",
@@ -12100,7 +12100,7 @@
     },
     {
       "issued_at": "2026-06-15T06:37:40Z",
-      "issued_at_unix": 1781505460,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show stagnation in maxed-out types, with no successful attempts in underexplored domains.",
@@ -12124,7 +12124,7 @@
     },
     {
       "issued_at": "2026-06-15T13:25:29Z",
-      "issued_at_unix": 1781529929,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is relying too heavily on maxed-out types like generative_art and needs a sharp pivot to underexplored, novel domains.",
@@ -12149,7 +12149,7 @@
     },
     {
       "issued_at": "2026-06-15T21:48:47Z",
-      "issued_at_unix": 1781560127,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show a mix of shipped and refused builds, but the diversity report indicates a need to explore new project types.",
@@ -12173,7 +12173,7 @@
     },
     {
       "issued_at": "2026-06-15T23:09:33Z",
-      "issued_at_unix": 1781564973,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o-mini",
       "verdict": "acceptable",
       "summary": "While recent projects show promise, the trend towards generative art is becoming saturated and may hinder innovation. We need to diversify our project types and domains.",
@@ -12195,7 +12195,7 @@
     },
     {
       "issued_at": "2026-06-16T21:47:32Z",
-      "issued_at_unix": 1781646452,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent shipped projects show partial usability issues and a lack of diversity in high-value enterprise types.",
@@ -12221,7 +12221,7 @@
     },
     {
       "issued_at": "2026-06-17T21:20:04Z",
-      "issued_at_unix": 1781731204,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show steady shipping momentum but lean too heavily on common SaaS and dashboard types, with limited innovation or exploration of underrepresented types.",
@@ -12245,7 +12245,7 @@
     },
     {
       "issued_at": "2026-06-18T21:27:54Z",
-      "issued_at_unix": 1781818074,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is maintaining consistent shipping performance, but projects are leaning heavily into familiar B2B dashboard patterns without sufficient exploration of underutilized types.",
@@ -12269,7 +12269,7 @@
     },
     {
       "issued_at": "2026-06-19T20:46:00Z",
-      "issued_at_unix": 1781901960,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show an overreliance on safe, derivative enterprise web applications with limited innovation, and multiple failed builds suggest unclear or overly ambitious directives.",
@@ -12295,7 +12295,7 @@
     },
     {
       "issued_at": "2026-06-20T20:40:43Z",
-      "issued_at_unix": 1781988043,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The system is delivering consistent enterprise-grade projects, but there's a risk of stagnation due to repetition and lack of innovation.",
@@ -12320,7 +12320,7 @@
     },
     {
       "issued_at": "2026-06-21T20:46:35Z",
-      "issued_at_unix": 1782074795,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is overly focused on Education and SaaS, with multiple partially usable projects, signaling a lack of execution quality and diversity.",
@@ -12345,7 +12345,7 @@
     },
     {
       "issued_at": "2026-06-22T21:35:16Z",
-      "issued_at_unix": 1782164116,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system has produced several partially usable enterprise web apps and SaaS apps, but the lack of complete usability and repeated focus on similar types signals a troubling lack of innovation and execution quality.",
@@ -12371,7 +12371,7 @@
     },
     {
       "issued_at": "2026-06-23T21:05:54Z",
-      "issued_at_unix": 1782248754,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The system is stuck in a loop of partially usable education and workforce-related SaaS apps and enterprise web apps, with no significant evolution in creativity or technical ambition. Refused builds indicate a lack of execution readiness for more advanced concepts.",
@@ -20242,7 +20242,7 @@
   "cso_reviews": [
     {
       "issued_at": "2026-05-08T06:13:12Z",
-      "issued_at_unix": 1778220792,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show some algorithmic depth but also a concerning lack of edge-case rigor and novelty in several areas.",
@@ -20265,7 +20265,7 @@
     },
     {
       "issued_at": "2026-05-08T17:49:51Z",
-      "issued_at_unix": 1778262591,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The recent projects show a mix of domains and types, but lack algorithmic depth in many cases. The logistics-route-optimizer and bioinformatics-gene-sequence-analyzer demonstrate some substantive effort, but the majority of other projects appear to be shallow implementations or lack scientific richness.",
@@ -20292,7 +20292,7 @@
     },
     {
       "issued_at": "2026-05-09T06:30:47Z",
-      "issued_at_unix": 1778308247,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The recent shipped projects show moderate algorithmic depth, with highlights in bioinformatics and information theory, but several domains appear to favor surface-level implementation without substantial novelty.",
@@ -20314,7 +20314,7 @@
     },
     {
       "issued_at": "2026-05-09T17:27:05Z",
-      "issued_at_unix": 1778347625,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth, with promising work in entropy encoding and bioinformatics analysis, but a concerning lack of focus on edge-case rigor and deeper mathematical or scientific exploration.",
@@ -20338,7 +20338,7 @@
     },
     {
       "issued_at": "2026-05-10T07:10:28Z",
-      "issued_at_unix": 1778397028,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show a lack of algorithmic depth, with most efforts focused on generative or visual tools without substantive computational novelty. Refused builds indicate potential for high-value projects in physics simulations and cellular automata but are plagued by QA issues.",
@@ -20362,7 +20362,7 @@
     },
     {
       "issued_at": "2026-05-10T17:27:21Z",
-      "issued_at_unix": 1778434041,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth, but the focus on web-based tools and partially usable outputs suggests an over-reliance on domain breadth rather than algorithmic rigor.",
@@ -20386,7 +20386,7 @@
     },
     {
       "issued_at": "2026-05-11T07:58:19Z",
-      "issued_at_unix": 1778486299,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show some algorithmic depth in domains like information theory and robotics, but several outputs lack edge-case rigor and mathematical correctness, particularly in physics simulations and QA failures.",
@@ -20411,7 +20411,7 @@
     },
     {
       "issued_at": "2026-05-11T18:14:23Z",
-      "issued_at_unix": 1778523263,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The recent projects show moderate algorithmic depth and domain diversity, but there is room for more innovation, especially in underexplored types like web_3d and game_web. The refusal of several potentially promising 3D simulation projects suggests technical challenges, but also missed opportunities.",
@@ -20435,7 +20435,7 @@
     },
     {
       "issued_at": "2026-05-12T07:21:20Z",
-      "issued_at_unix": 1778570480,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth, with stronger performance in research papers but shallower implementations in interactive tools and games.",
@@ -20458,7 +20458,7 @@
     },
     {
       "issued_at": "2026-05-12T18:20:38Z",
-      "issued_at_unix": 1778610038,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent shipped projects show moderate algorithmic depth and domain diversity, but there are signs of stagnation with a preference for low-complexity web-based tools and games. Refused builds indicate unresolved ambition in 3D generative art and cellular automata, highlighting an area of potential growth.",
@@ -20481,7 +20481,7 @@
     },
     {
       "issued_at": "2026-05-13T07:33:55Z",
-      "issued_at_unix": 1778657635,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth with occasional highlights, but several efforts are stylistically shallow or repetitive, particularly in generative art and games. Refused builds suggest challenges in handling complexity for edge-case explorations.",
@@ -20504,7 +20504,7 @@
     },
     {
       "issued_at": "2026-05-13T18:21:39Z",
-      "issued_at_unix": 1778696499,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show some algorithmic depth, particularly in decentralized path-planning and entropy encoding, but there is a concerning lack of edge-case rigor in generative art and games.",
@@ -20527,7 +20527,7 @@
     },
     {
       "issued_at": "2026-05-14T07:26:54Z",
-      "issued_at_unix": 1778743614,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The recent projects display some algorithmic depth and scientific merit, particularly in information theory and swarm intelligence studies. However, there is a noticeable trend of shallow implementations in creative and interactive domains, with several refusals indicating systemic weaknesses in edge-case handling and quality assurance.",
@@ -20551,7 +20551,7 @@
     },
     {
       "issued_at": "2026-05-14T18:13:45Z",
-      "issued_at_unix": 1778782425,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show a mix of algorithmic depth and creative endeavors but lean toward safe territory, avoiding breakthroughs in underexplored domains like web_3d and generative complexity.",
@@ -20574,7 +20574,7 @@
     },
     {
       "issued_at": "2026-05-15T07:39:38Z",
-      "issued_at_unix": 1778830778,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show a moderate level of algorithmic depth, with some promising entries in entropy encoding and decentralized path planning, but other efforts—particularly in the game domain—are drifting toward shallow implementations.",
@@ -20597,7 +20597,7 @@
     },
     {
       "issued_at": "2026-05-17T17:30:51Z",
-      "issued_at_unix": 1779039051,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent shipped projects show a mix of generative art, robotics, cryptography, and game design, with some algorithmic depth but limited edge-case exploration. Refused builds highlight an underexplored domain: web_3d, which should be prioritized for the next project.",
@@ -20621,7 +20621,7 @@
     },
     {
       "issued_at": "2026-05-18T08:29:27Z",
-      "issued_at_unix": 1779092967,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "The recent projects show a mix of generative art, game design, and research-oriented documents, but lack deep algorithmic innovation and edge-case rigor in several areas. Refused builds suggest a troubling trend of abandoning promising deep-tech domains like raymarching and physics simulation due to insufficient quality control.",
@@ -20645,7 +20645,7 @@
     },
     {
       "issued_at": "2026-05-18T18:16:42Z",
-      "issued_at_unix": 1779128202,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate moderate algorithmic depth and domain diversity, but several refused builds suggest weaknesses in edge-case handling and rigor. The shipped projects show some exploratory ambition but lack consistency in mathematical correctness and information-theoretic interest.",
@@ -20668,7 +20668,7 @@
     },
     {
       "issued_at": "2026-05-19T08:00:28Z",
-      "issued_at_unix": 1779177628,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic depth and edge-case rigor, with a pattern of superficial implementations hiding under ambitious labels. Repeated failures in physics-based simulation and raymarching suggest foundational gaps in numerical methods and computational geometry expertise.",
@@ -20692,7 +20692,7 @@
     },
     {
       "issued_at": "2026-05-19T18:19:46Z",
-      "issued_at_unix": 1779214786,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show algorithmic shallowness, with generative art and cryptography tools leaning towards surface-level implementations. Refused builds highlight promising but underdeveloped deep-tech directions.",
@@ -20717,7 +20717,7 @@
     },
     {
       "issued_at": "2026-05-20T07:59:34Z",
-      "issued_at_unix": 1779263974,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate moderate algorithmic depth but lack significant innovation in mathematical rigor or edge-case handling. The system is recycling ideas within generative art and cryptography without pushing boundaries.",
@@ -20741,7 +20741,7 @@
     },
     {
       "issued_at": "2026-05-20T18:38:01Z",
-      "issued_at_unix": 1779302281,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show limited algorithmic depth, with a tendency toward visually engaging but shallow implementations. Refused builds suggest a lack of rigor in addressing computational challenges such as physics simulations and raymarching methods.",
@@ -20767,7 +20767,7 @@
     },
     {
       "issued_at": "2026-05-21T08:07:04Z",
-      "issued_at_unix": 1779350824,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth but lack consistent novelty or edge-case rigor, with multiple areas (e.g., Cellular Automata) underserved by meaningful scientific exploration.",
@@ -20791,7 +20791,7 @@
     },
     {
       "issued_at": "2026-05-21T18:17:11Z",
-      "issued_at_unix": 1779387431,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth, with a focus on interdisciplinary ideas and generative systems, but lack exploration of edge-case rigor and untapped domains such as web_3d simulations.",
@@ -20816,7 +20816,7 @@
     },
     {
       "issued_at": "2026-05-22T07:57:06Z",
-      "issued_at_unix": 1779436626,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth and scientific merit, but there are signs of stagnation due to repeated shallow implementations and failure to ship critical edge-case builds in physics and emergent systems.",
@@ -20840,7 +20840,7 @@
     },
     {
       "issued_at": "2026-05-22T18:12:21Z",
-      "issued_at_unix": 1779473541,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth with some promising ideas, but there is a concerning trend of surface-level implementations in certain domains, especially in projects with partial usability or overlapping patterns.",
@@ -20864,7 +20864,7 @@
     },
     {
       "issued_at": "2026-05-23T07:11:20Z",
-      "issued_at_unix": 1779520280,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show surface-level novelty but lack deep algorithmic exploration, with patterns leaning heavily toward interactivity and visualization. The refusal of physics simulation projects highlights potential weaknesses in edge-case handling and mathematical rigor.",
@@ -20887,7 +20887,7 @@
     },
     {
       "issued_at": "2026-05-23T17:31:50Z",
-      "issued_at_unix": 1779557510,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "The recent projects demonstrate moderate algorithmic depth but lean heavily on established patterns without significant innovation. Refused builds suggest struggles with edge-case rigor in physics simulations and emergent behavior modeling.",
@@ -20910,7 +20910,7 @@
     },
     {
       "issued_at": "2026-05-24T07:34:13Z",
-      "issued_at_unix": 1779608053,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent shipped projects demonstrate some algorithmic and educational value, but lack consistent deep-tech ambition and rigorous edge-case handling. Refused builds suggest insufficient robustness in physics-based and emergent systems projects.",
@@ -20937,7 +20937,7 @@
     },
     {
       "issued_at": "2026-05-24T17:29:56Z",
-      "issued_at_unix": 1779643796,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth but lack consistent edge-case rigor and exhibit over-reliance on saturated project types like web_3d and game_web. Refused builds highlight struggles with complex physics simulations and emergent behavior models.",
@@ -20960,7 +20960,7 @@
     },
     {
       "issued_at": "2026-05-25T08:43:22Z",
-      "issued_at_unix": 1779698602,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate surface-level diversity in domains and types but lack algorithmic depth and scientific novelty, with notable missed opportunities in refused builds.",
@@ -20984,7 +20984,7 @@
     },
     {
       "issued_at": "2026-05-25T18:05:50Z",
-      "issued_at_unix": 1779732350,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects demonstrate some algorithmic depth but are increasingly relying on surface-level implementations and educational interactivity. The refusal of numerous edge-case-heavy builds signals a troubling lack of follow-through on ambitious but complex ideas.",
@@ -21007,7 +21007,7 @@
     },
     {
       "issued_at": "2026-05-26T08:04:52Z",
-      "issued_at_unix": 1779782692,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects show moderate algorithmic depth but lean toward creative or educational tools rather than pushing into rigorous scientific frontiers. Some refused builds indicate ambition but lack execution readiness.",
@@ -21030,7 +21030,7 @@
     },
     {
       "issued_at": "2026-05-26T18:40:16Z",
-      "issued_at_unix": 1779820816,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate moderate algorithmic depth and scientific engagement, with promising areas like cryptographic simulation and cellular automata, but there is room to push for sharper novelty and rigor in edge cases.",
@@ -21054,7 +21054,7 @@
     },
     {
       "issued_at": "2026-05-27T08:14:53Z",
-      "issued_at_unix": 1779869693,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show some algorithmic depth, but there is excessive focus on shallow implementations across domains, leaving edge cases and scientific rigor underexplored.",
@@ -21078,7 +21078,7 @@
     },
     {
       "issued_at": "2026-05-27T18:37:15Z",
-      "issued_at_unix": 1779907035,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with an over-reliance on python_tool and game_web types.",
@@ -21100,7 +21100,7 @@
     },
     {
       "issued_at": "2026-05-28T08:15:16Z",
-      "issued_at_unix": 1779956116,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects demonstrate a lack of algorithmic novelty and deep-tech ambition, with an overreliance on python_tool and game_web types. The system is not exploring new domains or implementing cutting-edge algorithms.",
@@ -21121,7 +21121,7 @@
     },
     {
       "issued_at": "2026-05-28T19:07:36Z",
-      "issued_at_unix": 1779995256,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "The recent projects demonstrate a good mix of domains and types, but there is room for improvement in terms of algorithmic novelty and mathematical correctness. The diversity report highlights the need to explore new types, such as typescript_app and cli_tool.",
@@ -21144,7 +21144,7 @@
     },
     {
       "issued_at": "2026-05-29T08:12:35Z",
-      "issued_at_unix": 1780042355,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects exhibit some depth in algorithmic novelty, but the diversity report highlights opportunities for growth in underutilized types, particularly typescript_app and cli_tool.",
@@ -21167,7 +21167,7 @@
     },
     {
       "issued_at": "2026-05-29T19:05:44Z",
-      "issued_at_unix": 1780081544,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show some algorithmic novelty, but shallow ideas and lack of diversity in types are concerning. The system should focus on exploring new types and deepening algorithmic complexity.",
@@ -21189,7 +21189,7 @@
     },
     {
       "issued_at": "2026-05-30T07:24:29Z",
-      "issued_at_unix": 1780125869,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate a good balance of domains and types, but there is room for improvement in terms of algorithmic novelty and deep-tech ambition.",
@@ -21212,7 +21212,7 @@
     },
     {
       "issued_at": "2026-05-30T17:34:41Z",
-      "issued_at_unix": 1780162481,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "acceptable",
       "summary": "Recent projects display some algorithmic depth, particularly in information theory and biology, but there is a concerning lack of focus on edge-case rigor and deep-tech ambition in several domains.",
@@ -21238,7 +21238,7 @@
     },
     {
       "issued_at": "2026-05-31T07:55:12Z",
-      "issued_at_unix": 1780214112,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show some algorithmic novelty, but lack depth in certain areas, and type diversity is not being fully explored. The next project should focus on a less used type with room to grow.",
@@ -21260,7 +21260,7 @@
     },
     {
       "issued_at": "2026-05-31T17:34:54Z",
-      "issued_at_unix": 1780248894,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an over-reliance on simplistic tools and visualizers. The system needs to explore more complex domains and techniques.",
@@ -21282,7 +21282,7 @@
     },
     {
       "issued_at": "2026-06-01T09:38:42Z",
-      "issued_at_unix": 1780306722,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an overemphasis on visualization tools. The next project should focus on a high-priority, never-tried type to increase diversity.",
@@ -21302,7 +21302,7 @@
     },
     {
       "issued_at": "2026-06-01T20:40:51Z",
-      "issued_at_unix": 1780346451,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate a satisfactory level of algorithmic novelty and mathematical correctness, but there is room for improvement in deep-tech ambition and edge-case rigor.",
@@ -21325,7 +21325,7 @@
     },
     {
       "issued_at": "2026-06-02T08:50:29Z",
-      "issued_at_unix": 1780390229,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate a good balance of algorithmic novelty and mathematical correctness, but there is room for improvement in terms of deep-tech ambition and edge-case rigor.",
@@ -21348,7 +21348,7 @@
     },
     {
       "issued_at": "2026-06-02T19:55:11Z",
-      "issued_at_unix": 1780430111,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "While recent projects demonstrate some depth in various domains, the lack of diversity in project types and the refusal of reaction-diffusion related projects suggest a need for more exploration and algorithmic novelty. The next project should utilize the shader_art type to address this gap.",
@@ -21370,7 +21370,7 @@
     },
     {
       "issued_at": "2026-06-03T09:11:51Z",
-      "issued_at_unix": 1780477911,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with a focus on visualization tools rather than deep-tech research depth. The next project should utilize the typescript_app type to improve diversity and focus on a specific scientific domain.",
@@ -21392,7 +21392,7 @@
     },
     {
       "issued_at": "2026-06-03T19:59:51Z",
-      "issued_at_unix": 1780516791,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "thriving",
       "summary": "Recent projects showcase a good balance of algorithmic novelty and domain exploration, but there is room for improvement in type diversity and deep-tech ambition.",
@@ -21415,7 +21415,7 @@
     },
     {
       "issued_at": "2026-06-04T08:37:05Z",
-      "issued_at_unix": 1780562225,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with some projects relying on shallow ideas behind ambitious-sounding labels. The diversity report shows opportunities for growth in underutilized project types.",
@@ -21434,7 +21434,7 @@
     },
     {
       "issued_at": "2026-06-04T18:33:04Z",
-      "issued_at_unix": 1780597984,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate a good range of domains and types, but there is room for improvement in terms of algorithmic novelty and mathematical correctness.",
@@ -21458,7 +21458,7 @@
     },
     {
       "issued_at": "2026-06-05T08:28:41Z",
-      "issued_at_unix": 1780648121,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show some algorithmic depth, but type diversity is lacking, and several projects are maxed out, indicating a need for exploration of new areas.",
@@ -21481,7 +21481,7 @@
     },
     {
       "issued_at": "2026-06-05T18:19:40Z",
-      "issued_at_unix": 1780683580,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "alarming",
       "summary": "Recent projects show a concerning trend of shallow algorithmic depth and lack of novelty, with an over-reliance on familiar domains and data visualization tools. The refusal of several projects with ambiguous or missing details raises further concerns about the quality and ambition of the work.",
@@ -21500,7 +21500,7 @@
     },
     {
       "issued_at": "2026-06-06T07:28:43Z",
-      "issued_at_unix": 1780730923,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "thriving",
       "summary": "Recent projects showcase a good balance of algorithmic novelty and deep-tech ambition, but there's a need to explore new project types to maintain diversity.",
@@ -21521,7 +21521,7 @@
     },
     {
       "issued_at": "2026-06-06T17:39:14Z",
-      "issued_at_unix": 1780767554,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "alarming",
       "summary": "Recent projects lack depth in algorithmic novelty and deep-tech ambition, with too many projects reaching maximum complexity in their respective types, and several refused builds indicating potential issues with quality and substance.",
@@ -21541,7 +21541,7 @@
     },
     {
       "issued_at": "2026-06-07T08:04:38Z",
-      "issued_at_unix": 1780819478,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "thriving",
       "summary": "Recent projects show depth in various domains, but type diversity is a concern, with several types maxed out and others underutilized.",
@@ -21562,7 +21562,7 @@
     },
     {
       "issued_at": "2026-06-07T17:44:30Z",
-      "issued_at_unix": 1780854270,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate algorithmic novelty and deep-tech ambition, but some areas require more attention, such as exploring new project types and improving refused builds",
@@ -21586,7 +21586,7 @@
     },
     {
       "issued_at": "2026-06-08T09:09:50Z",
-      "issued_at_unix": 1780909790,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "thriving",
       "summary": "Recent projects show a good balance of algorithmic novelty and deep-tech ambition, but there is room for improvement in exploring new project types and avoiding maxed out types.",
@@ -21608,7 +21608,7 @@
     },
     {
       "issued_at": "2026-06-08T18:40:09Z",
-      "issued_at_unix": 1780944009,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "thriving",
       "summary": "Recent projects demonstrate a good balance of algorithmic novelty and deep-tech ambition, but there's a need to explore new project types to maintain diversity",
@@ -21629,7 +21629,7 @@
     },
     {
       "issued_at": "2026-06-09T08:05:28Z",
-      "issued_at_unix": 1780992328,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "alarming",
       "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with too many maxed out types and not enough exploration of new areas like shader_art.",
@@ -21649,7 +21649,7 @@
     },
     {
       "issued_at": "2026-06-09T18:27:21Z",
-      "issued_at_unix": 1781029641,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show a lack of algorithmic novelty and over-reliance on familiar domains, with a concerning number of maxed-out types and a neglected shader_art type.",
@@ -21669,7 +21669,7 @@
     },
     {
       "issued_at": "2026-06-10T08:29:53Z",
-      "issued_at_unix": 1781080193,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects demonstrate some intellectual substance, but the overall trend shows a lack of depth and diversity in project types, with many types already maxed out. The refusal of several projects, including 'reaction-diffusion-shader' and 'emergent-pattern-synthesizer', suggests a need for more rigorous scientific and algorithmic approaches.",
@@ -21691,7 +21691,7 @@
     },
     {
       "issued_at": "2026-06-10T18:45:50Z",
-      "issued_at_unix": 1781117150,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show a tendency toward superficial implementations, particularly in generative art and crypto-related tools, with insufficient algorithmic depth or mathematical rigor.",
@@ -21713,7 +21713,7 @@
     },
     {
       "issued_at": "2026-06-11T08:57:35Z",
-      "issued_at_unix": 1781168255,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show a lack of diversity in types and a tendency to max out complexity in familiar areas, indicating a need for exploration of new domains and types.",
@@ -21733,7 +21733,7 @@
     },
     {
       "issued_at": "2026-06-11T19:17:41Z",
-      "issued_at_unix": 1781205461,
+      "issued_at_unix": 1782107021,
       "model": "gpt-4o",
       "verdict": "drifting",
       "summary": "Recent projects show diminishing algorithmic depth, with a heavy skew toward maxed-out project types and generative art that lacks substantive innovation.",
@@ -21756,7 +21756,7 @@
     },
     {
       "issued_at": "2026-06-12T08:44:42Z",
-      "issued_at_unix": 1781253882,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with some projects being too shallow. The diversity report shows that several project types have been maxed out, and some are banned due to repeated failures.",
@@ -21777,7 +21777,7 @@
     },
     {
       "issued_at": "2026-06-12T18:22:00Z",
-      "issued_at_unix": 1781288520,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth and novelty, with too much repetition in types and domains. It's time to push the boundaries with new and complex projects.",
@@ -21796,7 +21796,7 @@
     },
     {
       "issued_at": "2026-06-13T07:59:55Z",
-      "issued_at_unix": 1781337595,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with over-reliance on maxed-out types. The next project should focus on a new type with room to grow.",
@@ -21815,7 +21815,7 @@
     },
     {
       "issued_at": "2026-06-13T17:49:49Z",
-      "issued_at_unix": 1781372989,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects demonstrate some intellectual substance, but the system is over-relying on familiar types and domains, with a lack of algorithmic novelty and deep-tech ambition.",
@@ -21835,7 +21835,7 @@
     },
     {
       "issued_at": "2026-06-14T08:29:07Z",
-      "issued_at_unix": 1781425747,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack diversity in types and exhibit maxed-out complexity, indicating a need for exploration of new areas like shader_art.",
@@ -21854,7 +21854,7 @@
     },
     {
       "issued_at": "2026-06-14T17:54:30Z",
-      "issued_at_unix": 1781459670,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show a lack of diversity in types and a reliance on maxed out domains, indicating a need for exploration of new areas.",
@@ -21873,7 +21873,7 @@
     },
     {
       "issued_at": "2026-06-15T10:41:02Z",
-      "issued_at_unix": 1781520062,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects show a lack of algorithmic novelty and deep-tech ambition, with most projects maxed out in their respective domains. Expansion into new types is necessary to regain momentum.",
@@ -21892,7 +21892,7 @@
     },
     {
       "issued_at": "2026-06-15T19:59:27Z",
-      "issued_at_unix": 1781553567,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects have been diverse, but some areas are maxed out, and there's a need to explore new project types. The next project should focus on a least used type with room to grow.",
@@ -21914,7 +21914,7 @@
     },
     {
       "issued_at": "2026-06-16T19:54:06Z",
-      "issued_at_unix": 1781639646,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an overemphasis on generative art and AI-driven creative tools. The next project should prioritize a never-tried type with high complexity potential.",
@@ -21935,7 +21935,7 @@
     },
     {
       "issued_at": "2026-06-17T18:38:08Z",
-      "issued_at_unix": 1781721488,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an overemphasis on partially usable generative art and AI-concept tools. The next project should focus on a database_showcase type to introduce diversity and rigor.",
@@ -21955,7 +21955,7 @@
     },
     {
       "issued_at": "2026-06-18T18:38:45Z",
-      "issued_at_unix": 1781807925,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with most projects being dashboards or platforms without substantial scientific or technological innovation.",
@@ -21977,7 +21977,7 @@
     },
     {
       "issued_at": "2026-06-19T18:12:40Z",
-      "issued_at_unix": 1781892760,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with an overemphasis on dashboards and showcases. The next project should focus on a system_design type to introduce more complexity and depth.",
@@ -21997,7 +21997,7 @@
     },
     {
       "issued_at": "2026-06-20T17:51:25Z",
-      "issued_at_unix": 1781977885,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "acceptable",
       "summary": "Recent projects demonstrate a good balance of domain diversity, but algorithmic novelty and mathematical correctness can be improved. The next project should focus on the edu_platform type to address the gap in type diversity.",
@@ -22020,7 +22020,7 @@
     },
     {
       "issued_at": "2026-06-21T18:00:20Z",
-      "issued_at_unix": 1782064820,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with a focus on web applications and platforms. The next project should aim to address this gap.",
@@ -22040,7 +22040,7 @@
     },
     {
       "issued_at": "2026-06-22T19:52:25Z",
-      "issued_at_unix": 1782157945,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with a focus on shallow web applications.",
@@ -22060,7 +22060,7 @@
     },
     {
       "issued_at": "2026-06-23T18:17:53Z",
-      "issued_at_unix": 1782238673,
+      "issued_at_unix": 1782107021,
       "model": "llama-3.3-70b-versatile",
       "verdict": "drifting",
       "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with a focus on education technology and corporate training. The next project should utilize a less used type with room to grow.",
@@ -22081,6 +22081,31 @@
   ],
   "expansion_mode": false,
   "expansion_mode_since": "2026-06-15T05:12:16.083189+00:00",
-  "enterprise_mode": true,
-  "enterprise_mode_since": "2026-06-16T08:03:24.286031+00:00"
+  "enterprise_mode": false,
+  "enterprise_mode_since": "2026-06-16T08:03:24.286031+00:00",
+  "banned_domains": [
+    "Education Technology",
+    "Corporate Training",
+    "Human Resource Development",
+    "Workforce Development",
+    "E-Learning",
+    "Learning Management"
+  ],
+  "creative_reset": {
+    "active": true,
+    "reason": "User requested 3D/animation/aesthetic diversity — visual types unlocked",
+    "push_types": [
+      "web_3d",
+      "shader_art",
+      "generative_art",
+      "game_web"
+    ],
+    "push_themes": [
+      "luxury",
+      "futuristic",
+      "cinematic",
+      "neon-cyber",
+      "warm-amber"
+    ]
+  }
 }

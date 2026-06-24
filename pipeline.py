@@ -316,21 +316,64 @@ INTERACTION-LOGIC RIGOR (very important — recent failures have been here):
 - For node graphs: how a click maps coordinates to a state index AND how the visual highlight follows.
 - If you can't describe the state-sync, the feature is too vague — drop it or refine it.
 
+★★★ COMPLEXITY IS REAL TECHNICAL DEPTH — NOT A COUNTER ★★★
+complexity_score MUST reflect the actual hardness of what you are building. Architects who
+simply add 10 to the previous project's score are lying, and judges will reject those plans.
+The score must be JUSTIFIED by specific hard technical challenges:
+
+  10–50:  Single effect or basic interactivity. A simple canvas demo, a basic form with
+          logic, a static shader.
+  51–100: Multi-system with real algorithms. A physics sim with collision, a generative art
+          system with parameterized controls, a game loop with real rules.
+  101–150: Advanced technique. A Three.js scene with PBR materials + post-processing + camera
+           animation, a GLSL raymarcher, a Python ML experiment with a real model, a full game
+           engine with procedural levels and enemy AI.
+  151–200: Expert-tier. Real-time fluid/cloth simulation, a fully raymarched 3D world with SDF
+           composition, a working constraint solver, procedural world generation with biomes,
+           volumetric lighting.
+  201+:   Exceptional and rare. A working neural net visualizer with backprop, a full
+          programming language interpreter, a path-traced renderer, a physically-correct
+          n-body simulation. The justification must be air-tight.
+
+REQUIRED: include "complexity_justification" in the JSON (list of 3-5 specific hard technical
+challenges). If the list says anything like "extensive synthetic data", "many navigation views",
+or "large record count" — those are NOT complexity, the score must be ≤50. Complexity lives in
+algorithms, shaders, physics, math, and novel interaction logic.
+
+★★★ VISUAL THEME IS MANDATORY FOR VISUAL PROJECTS ★★★
+For project_type in (web_interactive, web_3d, generative_art, shader_art, game_web,
+typescript_app): you MUST include a "visual_theme" from this palette and design the entire
+visual system around it. Each project must look and feel DISTINCT from the others.
+
+  "luxury"         deep black/champagne-gold, thin serifs, generous whitespace, silk transitions
+  "futuristic"     dark navy/electric-blue, sharp geometry, HUD overlays, monospace accents
+  "cinematic"      desaturated + one saturated accent, film-grain, dramatic contrast, wide type
+  "warm-amber"     warm brown/amber/cream, organic curves, soft layered shadows, artisan feel
+  "neon-cyber"     near-black bg, vivid neon (magenta/cyan/green), glitch effects, grid lines
+  "minimal-glass"  frosted translucent panels, very subtle gradients, near-white, airy
+  "retro-terminal" green/amber phosphor on black, CRT scanlines, monospace, old-computer feel
+  "soft-organic"   muted warm pastels, rounded corners, earthy greens, tactile texture feel
+  "brutalist"      raw, high-contrast B&W, oversized type, intentional asymmetry
+
+Two consecutive visual projects MUST use different visual_themes.
+
 OUTPUT — single JSON, no prose, no markdown fences:
 {
   "name": "kebab-case (3-60 chars, ascii)",
   "description": "<=200 chars",
   "long_description": "2-4 paragraphs",
-  "project_type": "<one of: web_interactive | web_3d | python_tool | document | generative_art | game_web>",
+  "project_type": "<one of: web_interactive | web_3d | python_tool | document | generative_art | game_web | shader_art | data_viz | typescript_app | cli_tool>",
   "language": "primary language",
   "tech_stack": [list],
-  "complexity_score": int (open scale, 1+),
+  "complexity_score": int,
+  "complexity_justification": ["3-5 specific hard technical challenges that justify the score"],
+  "visual_theme": "one of the palette values above (required for visual types)",
   "concepts_demonstrated": [list],
   "novel_concepts": [list of concepts NOT in concepts_explored],
   "advancement_axis": "what makes this NOT predictable",
   "pattern": "kebab-case genre token",
   "domain": "top-level discipline",
-  "visual_identity": "color palette + typography + layout personality",
+  "visual_identity": "color palette + typography + layout personality consistent with visual_theme",
   "is_web_project": true|false,
   "safety_notes": "...",
   "architecture": {
@@ -391,7 +434,36 @@ RULES:
 - Production-quality. NO TODOs, placeholders, stubs.
 - Honor the plan's project_type:
   - web_interactive / web_3d / generative_art / game_web: HTML+CSS+JS at repo root, no build step. Plain .js / .html / .css ONLY. Prefer classic <script src="...">; CDN libraries pinned to explicit version.
-  - shader_art: A single index.html with an inline or linked GLSL fragment shader running in a bare WebGL canvas. NO Three.js. Use a minimal boilerplate: fullscreen canvas, vertex shader that draws a quad, fragment shader for all visual logic. Pass uniforms: u_time (float), u_resolution (vec2), u_mouse (vec2). Add 2-4 sliders that update uniforms via gl.uniform1f — each slider MUST update a <span> value display so the interaction test detects it.
+
+  ★ WEB_3D — Three.js scenes (REQUIRED QUALITY BAR):
+    Load Three.js from CDN: <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    MANDATORY setup: WebGLRenderer(antialias:true, shadowMap.enabled:true), PerspectiveCamera,
+    at minimum one DirectionalLight + AmbientLight for dimension. Use MeshStandardMaterial or
+    MeshPhysicalMaterial (PBR) — never MeshBasicMaterial for main objects (it looks flat/dead).
+    Camera animation: requestAnimationFrame loop with smooth orbit, LERP, or cinematic dolly.
+    The scene must have DEPTH: near/mid/far composition, not just floating objects in void.
+    At complexity ≥100: add post-processing (bloom, DOF, vignette) OR a custom ShaderMaterial.
+    At complexity ≥150: add ONE of: geometry instancing for 1000+ objects, particle system with
+    custom vertex shader, environment map with reflections, physics-driven animation.
+    Apply the plan's visual_theme concretely: "luxury" → dark bg, gold metalness, smooth camera;
+    "futuristic" → wireframe overlays, emissive grid, HUD text labels; "cinematic" → dramatic
+    single-source lighting, deep shadows, slow camera.
+
+  ★ SHADER_ART — GLSL fragment shaders (REQUIRED QUALITY BAR):
+    A single index.html with a full-screen WebGL canvas. NO Three.js. Minimal boilerplate:
+    fullscreen canvas (CSS: position:fixed, inset:0, width:100%, height:100%), vertex shader
+    draws a clip-space quad, fragment shader does ALL visual work.
+    REQUIRED uniforms passed via gl.uniform*: u_time (float seconds), u_resolution (vec2),
+    u_mouse (vec2 normalized 0-1). Update u_time every frame in requestAnimationFrame.
+    Add 2-4 HTML range sliders that map to shader uniforms and have visible <span> value labels.
+    At complexity ≥80: use ONE of: FBM (fractal Brownian motion) noise, domain warping, IQ color
+    palette function, 2D SDFs (circles/boxes/rounded shapes in the distance field).
+    At complexity ≥120: use ONE of: 3D raymarching with SDF primitives, reaction-diffusion
+    simulation (ping-pong textures), fluid/smoke advection, orbit traps for fractal coloring.
+    Apply visual_theme: "neon-cyber" → dark bg, vivid magenta/cyan glows; "retro-terminal" →
+    amber/green phosphor palette; "cinematic" → desaturated base + single color highlight.
+
+  - shader_art: (see ★ SHADER_ART above)
   - python_tool: Python files + requirements.txt for the core tool, PLUS an index.html that IS ITSELF A FULLY WORKING INTERACTIVE DEMO in pure JavaScript. The JS in index.html must implement the SAME algorithm as the Python — NOT just describe it. A human visiting the GitHub Pages URL must be able to type input, click a button, and see real computed output instantly, without installing Python. Examples: if the Python does Huffman compression, the JS must also do Huffman compression and show compressed bytes. If the Python analyses entropy, the JS must compute Shannon entropy and display the result. The Python files are for Codespaces power users; the index.html is the primary human-facing product.
   - data_viz: The Python script generates a matplotlib/plotly figure and saves it as SVG. index.html embeds a HARDCODED sample SVG of actual data (not a placeholder) AND adds interactive controls via plain JS (zoom, filter, highlight, dataset swap). A human must be able to interact with real data immediately on page load — no Python required.
   - typescript_app: ALL FILES ARE .js AND .html — NEVER .ts. Write modern JavaScript (ES2022+) with <script type="module"> and import libraries from https://esm.sh/package@version for rich functionality. Use JSDoc comments for type hints. Example imports: import { createApp } from 'https://esm.sh/vue@3'; import * as d3 from 'https://esm.sh/d3@7'; import { signal } from 'https://esm.sh/@preact/signals@1'. The .js files run natively in the browser with no compilation step.
@@ -926,6 +998,18 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
         raise PipelineError("`pattern` field required")
     if not domain:
         raise PipelineError("`domain` field required")
+    # Banned domains (memory-level block set by creative reset / user preference)
+    banned_domains_mem = [d.lower() for d in (memory.get("banned_domains") or [])]
+    if banned_domains_mem and domain:
+        domain_lower = domain.lower()
+        for bd in banned_domains_mem:
+            # fuzzy: check if domain contains the ban keyword or vice versa
+            if bd in domain_lower or domain_lower in bd:
+                raise PipelineError(
+                    f"domain={domain!r} is in the banned-domain list "
+                    f"({memory.get('banned_domains')}). Pick a completely different domain."
+                )
+
     if not in_recovery:
         if pattern in [p.lower() for p in recent_patterns if p]:
             raise PipelineError(
@@ -972,6 +1056,30 @@ def stage_plan(client: OpenAI, memory: dict,
     in_expansion = memory.get("expansion_mode", False)
     in_enterprise = memory.get("enterprise_mode", False)
     base_user = f"Today is {today}. Produce today's design plan.\n\n{history}{diversity}"
+
+    # Domain bans — inject banned domains so architect avoids them
+    banned_domains = memory.get("banned_domains") or []
+    if banned_domains:
+        base_user += (
+            f"\n\n🚫 BANNED DOMAINS (over-represented — pick something else): "
+            f"{', '.join(banned_domains)}. The pattern/domain validator will reject any plan "
+            f"in these domains."
+        )
+
+    # Creative reset — push visual types when user requested diversity
+    creative_reset = memory.get("creative_reset") or {}
+    if creative_reset.get("active"):
+        push_types = creative_reset.get("push_types", [])
+        push_themes = creative_reset.get("push_themes", [])
+        base_user += (
+            f"\n\n🎨 CREATIVE RESET ACTIVE — {creative_reset.get('reason', '')}\n"
+            f"STRONGLY PREFER these types: {', '.join(push_types)}.\n"
+            f"The project MUST use one of these visual_theme values: {', '.join(push_themes)}.\n"
+            f"Build something visually spectacular and technically ambitious. 3D scenes, "
+            f"real-time shaders, generative animation, cinematic visual direction. "
+            f"A viewer visiting GitHub Pages should say 'wow' immediately."
+        )
+
     if in_enterprise:
         # Surface the literal nav/section shape of recent enterprise ships so the
         # architect cannot accidentally reproduce it. Cookie-cutter "Overview /
