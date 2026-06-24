@@ -20237,6 +20237,14 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-06-24T05:47:35Z",
+      "attempted_at_unix": 1782280055,
+      "date": "2026-06-24",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=290 below floor 291 (max recent=290). The scale is open-ended; surpass yesterday.",
+      "project_type": "unknown"
     }
   ],
   "cso_reviews": [
