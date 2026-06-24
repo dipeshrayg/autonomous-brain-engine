@@ -89,16 +89,21 @@ ENTERPRISE_TYPES: frozenset[str] = frozenset({
 # Complexity ceilings per type.  Open-ended by design — ceilings are HIGH
 # so the system can keep growing without getting trapped.
 TYPE_COMPLEXITY_CEILING: dict[str, int] = {
-    "document":        60,
-    "generative_art":  80,
-    "web_interactive": 80,
-    "game_web":        90,
-    "web_3d":          90,
-    "shader_art":      80,   # GLSL shaders — deep algorithmic space
-    "data_viz":        80,   # heavy Python data work
-    "typescript_app":  85,
-    "cli_tool":        90,   # Rust/Go — virtually no ceiling
-    "python_tool":    100,   # highest ceiling
+    # All visual/creative types now have no practical ceiling. Complexity here
+    # means real algorithmic/visual depth: a raymarched fluid sim at c=200 IS
+    # genuinely harder than a basic Three.js scene at c=60. The old caps (80-100)
+    # were set when complexity was a 1-50 scale and become traps now that real
+    # projects operate at 60-300+ with honest justification required.
+    "document":        999,
+    "generative_art":  999,
+    "web_interactive": 999,
+    "game_web":        999,
+    "web_3d":          999,
+    "shader_art":      999,
+    "data_viz":        999,
+    "typescript_app":  999,
+    "cli_tool":        999,
+    "python_tool":     999,
     # Expansion tier — no practical ceiling; these domains are infinite
     "saas_landing":         999,
     "database_showcase":    999,
@@ -887,9 +892,19 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     all_projects_list = memory.get("projects", [])
     in_expansion = memory.get("expansion_mode", False)
     in_enterprise = memory.get("enterprise_mode", False)
+    # Visual/creative types use their OWN type-specific floor, not the global max.
+    # Reason: after a run of enterprise builds at c=290, a web_3d project should NOT be
+    # required to start at c=291 — the 290 was accumulated via fake-data dashboards, not
+    # real visual complexity. web_3d advances against its OWN history (last web_3d shipped
+    # at c=95 → next web_3d needs c≥96), exactly as enterprise/expansion types do.
+    TYPE_SPECIFIC_FLOOR_TYPES = (
+        ENTERPRISE_TYPES | EXPANSION_TYPES |
+        {"web_3d", "shader_art", "generative_art", "web_interactive", "game_web",
+         "typescript_app", "data_viz", "python_tool", "cli_tool", "document"}
+    )
     if recent and not in_recovery:
-        if (in_enterprise and pt in ENTERPRISE_TYPES) or (in_expansion and pt in EXPANSION_TYPES):
-            # Expansion types start fresh — only enforce floor within the same type's own history.
+        if pt in TYPE_SPECIFIC_FLOOR_TYPES:
+            # Floor is relative to the highest complexity ever shipped for THIS type only.
             type_scores = [p.get("complexity_score", 0) for p in all_projects_list
                            if p.get("project_type") == pt and p.get("complexity_score", 0) > 0]
             if type_scores:
@@ -899,7 +914,7 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
                         f"complexity_score={complexity} below floor {type_floor} for {pt} "
                         f"(max shipped for this type={max(type_scores)}). Keep advancing."
                     )
-            # else: first time this expansion type is built — no floor required
+            # else: first time this type is built — no floor required
         else:
             max_recent = max(p.get("complexity_score", 0) for p in recent)
             floor = max_recent + 1
