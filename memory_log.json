@@ -20191,6 +20191,52 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: project_type='edu_platform' is not enterprise-grade. Enterprise mode is active — choose one of: ['api_platform', 'b2b_dashboard', 'database_showcase', 'devtool', 'enterprise_webapp', 'saas_app', 'saas_landing', 'syst",
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-06-24T05:26:31Z",
+      "attempted_at_unix": 1782278791,
+      "date": "2026-06-24",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=non_functional, 3 page error(s), body_empty=False.",
+      "plan_name": "corporate-knowledge-hub",
+      "plan_language": "JavaScript",
+      "plan_complexity": 295,
+      "plan_pattern": "collaborative-knowledge-platform",
+      "plan_domain": "Corporate Education",
+      "plan_files_count": 4,
+      "project_type": "enterprise_webapp",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Shared document editing tool",
+          "expected": "Real-time updates to the document when typing in the textarea."
+        },
+        {
+          "control": "Live Q&A section",
+          "expected": "Real-time updates to the Q&A section when questions or answers are added."
+        },
+        {
+          "control": "Dynamic content generation system",
+          "expected": "Generated content should display in the designated section upon clicking the 'Generate New Content' button."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Real-time collaboration in shared document editing"
+        },
+        {
+          "feature": "Live Q&A section"
+        },
+        {
+          "feature": "Dynamic content generation"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
