@@ -847,22 +847,28 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     complexity = int(plan["complexity_score"])
 
     files = plan.get("files") or []
-    # Scope minimums scale with complexity; emergency plans always allow 3-file minimum.
-    # Enterprise apps are SELF-CONTAINED (index.html + maybe app.js/styles.css) — a high
-    # file count there forces the broken "one .js per view" split, so cap the minimum at 1.
-    if memory.get("enterprise_mode") and pt in ENTERPRISE_TYPES:
-        min_files = 1
+    # File-count minimum by TYPE, not complexity. Complexity means algorithmic depth,
+    # not file proliferation. A raymarched 3D scene in index.html + app.js is more
+    # complex than an enterprise app spread across 10 files. The old complexity-based
+    # thresholds (>=13 → 6 files) were calibrated for a 1-50 scale and now trigger on
+    # every project since complexity is 100-300+.
+    SINGLE_FILE_TYPES = {"web_3d", "shader_art", "generative_art", "game_web",
+                         "web_interactive", "typescript_app"}
+    if pt in SINGLE_FILE_TYPES:
+        min_files = 1   # visual/creative depth lives inside files, not in file count
+    elif memory.get("enterprise_mode") and pt in ENTERPRISE_TYPES:
+        min_files = 1   # enterprise: self-contained build (index.html + app.js + styles.css)
+    elif pt == "python_tool":
+        min_files = 2   # needs .py source + index.html showcase
+    elif pt == "cli_tool":
+        min_files = 3   # source + devcontainer + index.html
     elif emergency:
-        min_files = 3
-    elif complexity >= 13:
-        min_files = 6
-    elif complexity >= 10:
-        min_files = 5
+        min_files = 2
     else:
-        min_files = 3
+        min_files = 2
     if len(files) < min_files:
         raise PipelineError(
-            f"Plan with complexity {complexity} needs >={min_files} files. Got {len(files)}."
+            f"project_type={pt} needs >={min_files} files. Got {len(files)}."
         )
 
     # Recovery mode: if failures dominate since last ship, relax floor + rotation.
