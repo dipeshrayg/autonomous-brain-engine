@@ -7439,6 +7439,77 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-24",
+      "completed_at": "2026-06-24T23:57:55Z",
+      "completed_at_unix": 1782345475,
+      "name": "cryptogen",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-24-cryptogen",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-24-cryptogen/",
+      "language": "Python",
+      "project_type": "python_tool",
+      "tech_stack": [
+        "Python",
+        "JavaScript",
+        "HTML/CSS"
+      ],
+      "complexity_score": 220,
+      "concepts_demonstrated": [
+        "Cryptography",
+        "Compression",
+        "Algorithm design"
+      ],
+      "novel_concepts": [
+        "Novel hash function combining bitwise and modular arithmetic operations",
+        "Custom arithmetic coding implementation for compression"
+      ],
+      "advancement_axis": "Novel cryptographic hash function and compression algorithm",
+      "pattern": "cryptography-tool",
+      "domain": "Cryptography and Compression",
+      "visual_identity": "neon-cyber theme with glowing accents and grid lines",
+      "safety_notes": "No active malware or exploits",
+      "file_count": 4,
+      "loc": 458,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "hash.py",
+        "exit_code": 0,
+        "stdout_chars": 150,
+        "stderr_chars": 0
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "hash.py": "gpt-4o",
+          "compression.py": "gpt-4o",
+          "index.html": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type python_tool and prioritize real technical depth — target cryptography or compression with a novel algorithm implemented in Python and fully functional in JavaScript on index.html.",
+        "Do not attempt web_3d or shader_art for the next project to ensure type diversity and avoid repeating recent patterns.",
+        "Focus on delivering a fully functional project with all core features working. No dead or missing functionality will be accepted.",
+        "Ensure the project has a distinct and captivating visual theme (e.g., retro-terminal, minimal-glass, or brutalist). Do not repeat recent themes.",
+        "The complexity score for the next project must be at least 200 and reflect authentic technical depth, not superficial feature additions.",
+        "Prioritize a human-usable, interactive experience on the GitHub Pages URL. The core algorithm must be operable directly in the browser."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides functional features for generating cryptographic hashes and visualizing a compression performance graph, but some interactions have incomplete or delayed feedback and the compression graph could use more meaningful data.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -7521,7 +7592,8 @@
     290,
     180,
     320,
-    380
+    380,
+    220
   ],
   "concepts_explored": [
     "neural networks",
@@ -7803,7 +7875,9 @@
     "Real-time music generation",
     "Interactive 3D environments",
     "Cinematic visuals",
-    "Sound propagation"
+    "Sound propagation",
+    "Cryptography",
+    "Algorithm design"
   ],
   "patterns_used": [
     "visualizer",
@@ -7879,7 +7953,8 @@
     "collaborative-knowledge-sharing-platform",
     "real-time-3d-scene",
     "generative-art-with-physics",
-    "immersive-3d-sound-garden"
+    "immersive-3d-sound-garden",
+    "cryptography-tool"
   ],
   "domains_used": [
     "Mathematics",
@@ -7955,7 +8030,8 @@
     "Enterprise Knowledge Management",
     "Visual Arts",
     "Computer Graphics",
-    "Computer Science"
+    "Computer Science",
+    "Cryptography and Compression"
   ],
   "ceo_reviews": [
     {
