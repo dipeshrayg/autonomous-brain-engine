@@ -7175,6 +7175,86 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-24",
+      "completed_at": "2026-06-24T06:09:03Z",
+      "completed_at_unix": 1782281343,
+      "name": "aurora-render",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-24-aurora-render",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-24-aurora-render/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "WebGL"
+      ],
+      "complexity_score": 180,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Custom shaders",
+        "Performance optimization"
+      ],
+      "novel_concepts": [
+        "Real-time aurora borealis simulation",
+        "Cinematic visual direction"
+      ],
+      "advancement_axis": "visual fidelity",
+      "pattern": "real-time-3d-scene",
+      "domain": "Visual Arts",
+      "visual_identity": "cinematic color palette, 3D rendering",
+      "safety_notes": "No active malware, no exploits",
+      "file_count": 3,
+      "loc": 329,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 56,
+        "bodyHtml": 5913,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 2,
+        "title": "Aurora Render",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Intensity:\n1.0\nSpeed:\n1.0\nColor Blend:\n0.5\nPause Restart",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "meta-llama/llama-4-scout-17b-16e-instruct"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "aurora_shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Aurora Render project is a functional and visually impressive real-time 3D simulation of an aurora borealis with interactive controls that provide immediate, meaningful feedback. All planned features work as expected.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -7254,7 +7334,8 @@
     270,
     280,
     285,
-    290
+    290,
+    180
   ],
   "concepts_explored": [
     "neural networks",
@@ -7526,7 +7607,10 @@
     "Time-series analysis for trend identification",
     "Responsive enterprise-grade UI/UX design",
     "Constraint Satisfaction Problems",
-    "Information-Theoretic Concepts"
+    "Information-Theoretic Concepts",
+    "Real-time 3D rendering",
+    "Custom shaders",
+    "Performance optimization"
   ],
   "patterns_used": [
     "visualizer",
@@ -7599,7 +7683,8 @@
     "workforce-upskilling-platform",
     "permission-matrix-edu",
     "timeline-centric-skill-tracker",
-    "collaborative-knowledge-sharing-platform"
+    "collaborative-knowledge-sharing-platform",
+    "real-time-3d-scene"
   ],
   "domains_used": [
     "Mathematics",
@@ -7672,7 +7757,8 @@
     "HR/Workforce Development",
     "Human Resource Development",
     "HR Analytics and Workforce Development",
-    "Enterprise Knowledge Management"
+    "Enterprise Knowledge Management",
+    "Visual Arts"
   ],
   "ceo_reviews": [
     {
