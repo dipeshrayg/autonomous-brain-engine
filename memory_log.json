@@ -12677,6 +12677,32 @@
         "Good alignment with enterprise-focused domains and themes."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-24T20:54:51Z",
+      "issued_at_unix": 1782334491,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The recent projects are visually impressive but overly reliant on web_3d and shader_art, while usability issues persist. The system needs to diversify and focus on shipping functional, human-usable products with technical depth.",
+      "concerns": [
+        "Over-reliance on web_3d and shader_art in recent projects, creating a lack of type diversity.",
+        "Multiple projects were marked 'partially_usable,' indicating a failure to meet the human usability mandate.",
+        "The system is drifting into a local minimum of visually impressive but partially functional projects.",
+        "Recent refusals highlight critical failures in shipping functional tools, particularly in enterprise-related domains."
+      ],
+      "directives": [
+        "The next project must be of type python_tool and prioritize real technical depth — target cryptography or compression with a novel algorithm implemented in Python and fully functional in JavaScript on index.html.",
+        "Do not attempt web_3d or shader_art for the next project to ensure type diversity and avoid repeating recent patterns.",
+        "Focus on delivering a fully functional project with all core features working. No dead or missing functionality will be accepted.",
+        "Ensure the project has a distinct and captivating visual theme (e.g., retro-terminal, minimal-glass, or brutalist). Do not repeat recent themes.",
+        "The complexity score for the next project must be at least 200 and reflect authentic technical depth, not superficial feature additions.",
+        "Prioritize a human-usable, interactive experience on the GitHub Pages URL. The core algorithm must be operable directly in the browser."
+      ],
+      "praise": [
+        "Recent shader_art and web_3d projects demonstrated strong visual ambition and technical execution, notably with complexity scores of 320 and 380.",
+        "The system successfully pushed into shader_art, a previously untouched type, producing a visually stunning and technically ambitious result."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
