@@ -362,6 +362,47 @@ visual system around it. Each project must look and feel DISTINCT from the other
 
 Two consecutive visual projects MUST use different visual_themes.
 
+★★★ VISUAL USABILITY — EVERY VISUAL PROJECT MUST BE DISCOVERABLE ★★★
+For project_type in (web_3d, shader_art, generative_art, web_interactive, game_web, typescript_app):
+
+THE "CANVAS + SLIDERS" ANTI-PATTERN IS BANNED. A full-screen canvas with a floating "Controls"
+panel containing 2-4 sliders named Intensity / Speed / Complexity / Amount / Color, plus a
+Randomize and Reset button — that is now as predictable as "Overview/Analytics/Settings". The
+Judge WILL reject it. Every visual project must have ALL FIVE of these:
+
+1. CONCEPT IDENTITY: A visible title AND a 1-2 sentence on-screen description telling the user
+   what they are looking at. Not a <title> tag. Not a tooltip. Actual text rendered inside the
+   visual. Example: "Turing Reaction-Diffusion — two chemical species competing for space.
+   Click to seed a new reaction. Drag to inject inhibitor."
+
+2. LABELED CONTROLS: Every slider/button label must describe its VISUAL EFFECT, not just its
+   parameter name. BAD: "Intensity (0.5)". GOOD: "Warp Amplitude — how much geometry distorts
+   per cycle (0.5)". A control whose effect is not self-evident from its label is a UI failure.
+
+3. IMPRESSIVE FIRST LOAD: The visual MUST render something compelling the instant the page
+   loads — no black canvas, no waiting for sliders. The first frame should make a visitor say
+   "oh" before they touch anything.
+
+4. GENUINE INTERACTION: At least one interaction where the user DOES something — not just
+   watches or tweaks vague parameters. Choose ONE interaction model:
+   - EXPLORE: the user navigates through or around something (orbit controls, pan, fly-through)
+   - BUILD: the user places, removes, or arranges elements (click to seed, draw paths, plant)
+   - TUNE: sliders map to a SPECIFIC non-obvious system response (not brightness/size — actual
+     algorithm parameters with named scientific meaning: "Feed Rate F", "Kill Rate k")
+   - PLAY: rules, goal, feedback loop (it's a game)
+   - DISCOVER: clicking reveals information or triggers new visuals (interactive story, solar
+     system with clickable planets that show facts)
+
+5. CONCEPTUAL SPECIFICITY: The project must be about SOMETHING specific and nameable.
+   NOT "a generative visual" — but "n-body gravitational simulation of a star cluster".
+   NOT "a shader" — but "reaction-diffusion Turing pattern with interactive feed rates".
+   The name must reflect the MECHANISM, not the vibe.
+
+BANNED NAME VOCABULARY: Names containing "aurora", "dreamscape", "echoes", "luminous",
+"ethereal", "celestial", "fracture", "shimmer", "radiance", "glimmer", "transcend" describe
+AESTHETICS, not mechanisms — they signal a predictable atmospheric-vibes cluster. The last 4
+visual projects all used these words. Name after what the project DOES, not how it feels.
+
 OUTPUT — single JSON, no prose, no markdown fences:
 {
   "name": "kebab-case (3-60 chars, ascii)",
@@ -423,6 +464,32 @@ metaphor (inbox, kanban, query-builder, map, diagram canvas, request console, pi
 graph). Also reject any candidate whose synthetic data isn't computed from records (e.g. a
 KPI tile set via a bare random number with no link to the visible data) — that is a
 hallucinated-data bug, not a feature.
+
+VISUAL-TYPE PREDICTABILITY (if project_type is web_3d / shader_art / generative_art /
+web_interactive / game_web / typescript_app): the SAME hard predictability test applies to
+the INTERACTION MODEL and on-screen identity, not just the visual idea.
+
+REJECT any visual candidate that matches ANY of these patterns:
+- The entire user experience is: canvas + floating "Controls" panel + 2-4 sliders with
+  generic names (Intensity, Speed, Amount, Complexity, Color) + Randomize + Reset buttons.
+  That is now as predictable as a sidebar with Overview/Analytics/Settings.
+- No on-screen description text — the visitor cannot tell WHAT the project is within 5 seconds.
+- The interaction is purely passive: the user can only watch or tweak unnamed parameters.
+  "Watch something pretty and move sliders" is NOT a project — it is a screensaver.
+- The name contains "aurora", "dreamscape", "echoes", "luminous", "ethereal", "celestial",
+  "shimmer", "radiance" — atmospheric-vibe names that say nothing about the mechanism.
+  The last cluster of visual projects all used this vocabulary. Reject and rewrite.
+- complexity_justification is absent or lists phrases like "complex shader" / "many uniforms"
+  / "extensive visuals" — these are not complexity, they are aesthetic claims.
+
+ACCEPT visual candidates that:
+- Have a specific concept identity: "Turing reaction-diffusion with interactive feed rates",
+  "n-body gravitational cluster simulation", "flow field particle tracer with curl noise"
+- Give the user a VERB: EXPLORE a generated landscape, BUILD a constellation, GROW a colony,
+  SOLVE a spatial puzzle, DISCOVER facts by clicking objects
+- Label controls with their domain-specific effect, not generic parameter names
+- Have complexity_justification that lists real algorithmic challenges (FBM noise, raymarching
+  SDFs, ping-pong textures, physics integration, procedural geometry)
 
 Return ONE final plan in the exact same JSON schema as the candidates. You may:
 1. Pick the strongest unpredictable candidate verbatim
@@ -611,11 +678,29 @@ MANDATORY CHECKS — fail any project that fails any of these:
 
 10. DATA CONSISTENCY (enterprise projects — flag as a missing_feature, "Data does not relate to the displayed records"): Spot-check whether summary numbers (KPI tiles, totals, percentages) plausibly derive from the visible record list/table. If a "live update" or refresh button changes a headline metric in a way that is OBVIOUS NONSENSE relative to the records shown (e.g. a record count of 5 but a "Total Items: 8742" tile that changes randomly), flag it — this is hallucinated, disconnected data and should not ship as shippable.
 
+11. FIVE-SECOND TEST (visual projects — web_3d / shader_art / generative_art / web_interactive / game_web): Can a first-time visitor understand WHAT this project IS, WHAT it does, and WHAT they can DO with it — all within 5 seconds, without reading any external documentation?
+   - Is there visible on-screen text (a title AND a 1-2 sentence description) explaining the concept — not just a browser <title> tag?
+   - Are controls labeled with their VISUAL EFFECT? "Warp Amplitude — controls geometry distortion" ✓. "Intensity" alone ✗.
+   - Does the visual show something compelling immediately on first load — not a black canvas or a loading spinner?
+   If ANY of these are missing for a visual-type project, add as missing_feature: {"feature": "5-second usability failure: [specific reason]", "why_missing": "No on-screen description / unlabeled controls / blank first load", "fix": "Add description text + effect-labeled controls + animate on first frame"}.
+
+12. CONTROLS AUDIT (visual projects): Read the source HTML for every slider and button.
+   - Does each slider label describe what it visually DOES (not just its parameter name)?
+   - Does each slider have a DOM readout showing its current value?
+   - Are all controls reachable without scrolling on a standard 1280×800 viewport?
+   Flag generic-only labels (single words like "Speed", "Intensity", "Amount", "Color" with no effect description) as dead_control: {"control": "...", "expected": "label describing visual effect", "actual": "generic parameter name only", "fix": "Rewrite label as 'Parameter — what it visually changes'"}.
+
+13. VISUAL PROJECT SHIPPABLE STANDARD: For web_3d / shader_art / generative_art, a project is
+   only "shippable" if it passes checks 11 and 12 AND the user can DO something that produces
+   a non-trivial system response. A beautiful shader with unlabeled sliders and no description
+   is NOT shippable — it is partially_usable at best. Do NOT award shippable to a project that
+   is just "watch + tweak unnamed parameters".
+
 CRITERIA for verdict — SHIP-FIRST: when in doubt, prefer partially_usable over non_functional. Reserve non_functional for pages that are TRULY dead. The goal is to deliver real projects; a project with one or two imperfect controls is still a genuine deliverable and should ship with a badge.
 
 - non_functional (RARE — only for truly dead pages): The page is broken for a human — it crashes, renders blank with no auto-start AND no working controls, or EVERY interactive control is dead. If even ONE meaningful interaction works and the page shows real content, it is NOT non_functional — use partially_usable instead.
-- partially_usable (the DEFAULT when unsure): Core experience works and a human gets real value, but some secondary controls may be imperfect. This is the right verdict for the large majority of projects. Ship with badge.
-- shippable: Every promised feature works and produces real output a human can see and use. Hold this standard high — do not give shippable to projects where buttons appear to work but produce no meaningful output.
+- partially_usable (the DEFAULT when unsure): Core experience works and a human gets real value, but some secondary controls may be imperfect OR the project fails the five-second usability test (check #11/#12). This is the right verdict for the large majority of projects. Ship with badge.
+- shippable: Every promised feature works, controls are labeled with effect descriptions, an on-screen description tells the visitor what the project is, and real output is produced by interaction. Hold this standard high.
 
 OUTPUT — single JSON:
 {
@@ -777,10 +862,11 @@ def _summarize_history(memory: dict) -> str:
     lines = ["Recent project history:"]
     for p in recent:
         concepts = ", ".join((p.get("concepts_demonstrated") or [])[:5])
+        theme_str = f", theme={p.get('visual_theme')}" if p.get("visual_theme") else ""
         lines.append(
             f"- {p.get('date')} \"{p.get('name')}\" "
             f"[type={p.get('project_type','web')}, c={p.get('complexity_score')}, "
-            f"pattern={p.get('pattern','?')}, domain={p.get('domain','?')}] {concepts}"
+            f"pattern={p.get('pattern','?')}, domain={p.get('domain','?')}{theme_str}] {concepts}"
         )
     cs = [p.get("complexity_score", 0) for p in recent]
     lines.append(f"\nRecent complexity max={max(cs)}. Floor for next: {max(cs)+1} (relaxed in recovery mode).")
@@ -935,6 +1021,52 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
             f"truly novel={truly_novel}"
         )
 
+    # complexity_justification required for visual types and any c>100
+    VISUAL_TYPES = {"web_3d", "shader_art", "generative_art", "web_interactive",
+                    "game_web", "typescript_app"}
+    justification = plan.get("complexity_justification") or []
+    if (pt in VISUAL_TYPES or complexity > 100) and not in_recovery:
+        if not justification or len(justification) < 3:
+            raise PipelineError(
+                f"complexity_justification must list >=3 specific algorithmic challenges for "
+                f"project_type={pt} at complexity={complexity}. Got: {justification!r}. "
+                "Examples: 'FBM noise with 8 octaves', 'raymarching SDFs with soft shadows', "
+                "'ping-pong framebuffers for reaction-diffusion'. Not: 'complex visuals', "
+                "'many features', 'extensive rendering'."
+            )
+        _FAKE_COMPLEXITY = [
+            "synthetic data", "many features", "extensive data", "large record",
+            "multiple navigation", "large dataset", "many navigation", "complex visuals",
+            "many uniforms", "extensive rendering", "rich ui", "many views",
+        ]
+        for j in justification:
+            j_lower = j.lower()
+            for fk in _FAKE_COMPLEXITY:
+                if fk in j_lower:
+                    raise PipelineError(
+                        f"complexity_justification item {j!r} contains fake-complexity phrase "
+                        f"{fk!r}. Complexity is algorithms/shaders/physics/math, not data size "
+                        "or feature count. Rewrite with a real algorithmic challenge."
+                    )
+
+    # visual_theme required for visual types (with fuzzy validation)
+    if pt in VISUAL_TYPES and not in_recovery:
+        vt = (plan.get("visual_theme") or "").strip().lower()
+        VALID_THEMES = {
+            "luxury", "futuristic", "cinematic", "warm-amber", "neon-cyber",
+            "minimal-glass", "retro-terminal", "soft-organic", "brutalist",
+        }
+        if not vt:
+            raise PipelineError(
+                f"project_type={pt} requires 'visual_theme' field. "
+                "Choose from: " + ", ".join(sorted(VALID_THEMES))
+            )
+        if vt not in VALID_THEMES:
+            raise PipelineError(
+                f"visual_theme={vt!r} is not a valid palette. "
+                "Valid: " + ", ".join(sorted(VALID_THEMES))
+            )
+
     # File path safety + no compiled languages
     forbidden_exts = {".ts", ".tsx", ".jsx", ".scss", ".less", ".vue",
                       ".svelte", ".coffee", ".pug", ".sass"}
@@ -1040,6 +1172,25 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
             raise PipelineError(
                 f"domain={domain!r} was used in last 5 ({recent_domains})."
             )
+
+    # Visual theme rotation: two consecutive visual-type projects must use different themes.
+    VISUAL_TYPES_ROT = {"web_3d", "shader_art", "generative_art", "web_interactive",
+                        "game_web", "typescript_app"}
+    if pt in VISUAL_TYPES_ROT and not in_recovery:
+        new_theme = (plan.get("visual_theme") or "").strip().lower()
+        if new_theme:
+            last_visual_theme = next(
+                (p.get("visual_theme", "").lower() for p in reversed(last5)
+                 if p.get("project_type") in VISUAL_TYPES_ROT and p.get("visual_theme")),
+                None,
+            )
+            if last_visual_theme and new_theme == last_visual_theme:
+                raise PipelineError(
+                    f"visual_theme={new_theme!r} was used for the previous visual project. "
+                    "Two consecutive visual projects must use different themes. "
+                    "Pick a different theme from: luxury, futuristic, cinematic, warm-amber, "
+                    "neon-cyber, minimal-glass, retro-terminal, soft-organic, brutalist"
+                )
 
 
 def _ensure_readme_planned(plan: dict) -> None:
