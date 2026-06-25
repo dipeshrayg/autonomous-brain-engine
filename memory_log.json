@@ -20638,6 +20638,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: complexity_score=290 below floor 291 (max recent=290). The scale is open-ended; surpass yesterday.",
       "project_type": "unknown"
+    },
+    {
+      "attempted_at": "2026-06-25T06:18:52Z",
+      "attempted_at_unix": 1782368332,
+      "date": "2026-06-25",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: domain='Computer Graphics' was used in last 5 (['Enterprise Knowledge Management', 'Visual Arts', 'Computer Graphics', 'Computer Science', 'Cryptography and Compression']).",
+      "project_type": "web_3d"
     }
   ],
   "cso_reviews": [
