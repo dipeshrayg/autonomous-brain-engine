@@ -7510,6 +7510,113 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-25",
+      "completed_at": "2026-06-25T08:17:57Z",
+      "completed_at_unix": 1782375477,
+      "name": "fractured-dreams",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-25-fractured-dreams",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-25-fractured-dreams/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "WebGL",
+        "GLSL",
+        "HTML",
+        "JavaScript"
+      ],
+      "complexity_score": 400,
+      "concepts_demonstrated": [
+        "GLSL shaders",
+        "Voronoi textures",
+        "Dynamic lighting",
+        "Domain warping",
+        "User interactivity in shaders"
+      ],
+      "novel_concepts": [
+        "Real-time fractured geometry morphing",
+        "Dynamic light-based shadowing in shader art",
+        "Cinematic presentation of generative visuals"
+      ],
+      "advancement_axis": "Explores fractured geometries and dynamic lighting with real-time shader interactivity for cinematic generative art.",
+      "pattern": "generative-fractured-geometry",
+      "domain": "Generative Art",
+      "visual_identity": "Desaturated base hues with vibrant saturated accents, dynamic lighting, dramatic contrasts, and smooth cinematic transitions.",
+      "safety_notes": "All rendering and interactivity are client-side and do not rely on external data or user inputs beyond simple parameter adjustments.",
+      "file_count": 5,
+      "loc": 534,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 243,
+        "bodyHtml": 1430,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Fractured Dreams",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Fractured Dreams\n\nA cinematic generative artwork with fractured morphing geometries and dynamic lighting.\n\nDistortion Intensity: 1.0\nLight Intensity: 1.0\nColor Palette:\nRandomize\n\nCreated as part of t",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#6e9205",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "style.css": "gpt-4o",
+          "main.js": "gpt-4o",
+          "shader.frag": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type python_tool and prioritize real technical depth — target cryptography or compression with a novel algorithm implemented in Python and fully functional in JavaScript on index.html.",
+        "Do not attempt web_3d or shader_art for the next project to ensure type diversity and avoid repeating recent patterns.",
+        "Focus on delivering a fully functional project with all core features working. No dead or missing functionality will be accepted.",
+        "Ensure the project has a distinct and captivating visual theme (e.g., retro-terminal, minimal-glass, or brutalist). Do not repeat recent themes.",
+        "The complexity score for the next project must be at least 200 and reflect authentic technical depth, not superficial feature additions.",
+        "Prioritize a human-usable, interactive experience on the GitHub Pages URL. The core algorithm must be operable directly in the browser."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides an aesthetically pleasing real-time generative art experience with most of the core features functioning as expected. However, the color picker control does not trigger visible changes to the scene, which detracts from the usability of the project.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "input.color 'Color Palette'",
+            "expected": "The colors of the fractal geometry shift dynamically to match the selected palette.",
+            "actual": "No observable state change or visual response on the canvas when the color picker is used.",
+            "fix": "Ensure the `u_color` uniform is correctly updated and linked to the `input.color` control when the color value changes."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -7593,7 +7700,8 @@
     180,
     320,
     380,
-    220
+    220,
+    400
   ],
   "concepts_explored": [
     "neural networks",
@@ -7877,7 +7985,12 @@
     "Cinematic visuals",
     "Sound propagation",
     "Cryptography",
-    "Algorithm design"
+    "Algorithm design",
+    "GLSL shaders",
+    "Voronoi textures",
+    "Dynamic lighting",
+    "Domain warping",
+    "User interactivity in shaders"
   ],
   "patterns_used": [
     "visualizer",
@@ -7954,7 +8067,8 @@
     "real-time-3d-scene",
     "generative-art-with-physics",
     "immersive-3d-sound-garden",
-    "cryptography-tool"
+    "cryptography-tool",
+    "generative-fractured-geometry"
   ],
   "domains_used": [
     "Mathematics",
@@ -8031,7 +8145,8 @@
     "Visual Arts",
     "Computer Graphics",
     "Computer Science",
-    "Cryptography and Compression"
+    "Cryptography and Compression",
+    "Generative Art"
   ],
   "ceo_reviews": [
     {
