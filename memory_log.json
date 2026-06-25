@@ -7617,6 +7617,93 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-25",
+      "completed_at": "2026-06-25T17:19:31Z",
+      "completed_at_unix": 1782407971,
+      "name": "cipherforge",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-25-cipherforge",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-25-cipherforge/",
+      "language": "Python",
+      "project_type": "python_tool",
+      "tech_stack": [
+        "Python",
+        "JavaScript",
+        "HTML/CSS"
+      ],
+      "complexity_score": 210,
+      "concepts_demonstrated": [
+        "Cryptography",
+        "Compression",
+        "Algorithm design"
+      ],
+      "novel_concepts": [
+        "Novel cryptographic algorithm",
+        "Interactive cipher analysis"
+      ],
+      "advancement_axis": "Technical depth in cryptography",
+      "pattern": "cryptography-tool",
+      "domain": "Cryptography and Computer Science",
+      "visual_theme": "retro-terminal",
+      "complexity_justification": [
+        "Implementation of a novel cryptographic algorithm in Python",
+        "Fully functional JavaScript version on index.html",
+        "Interactive visualizations for cipher analysis",
+        "Support for multiple cipher types"
+      ],
+      "visual_identity": "color palette: green/amber phosphor on black, typography: monospace, layout: terminal-like",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 3,
+      "loc": 445,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "project_type": "python_tool",
+        "entry_point": "cipherforge.py",
+        "exit_code": 1,
+        "stdout_chars": 0,
+        "stderr_chars": 248
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "cipherforge.py": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type python_tool and prioritize real technical depth — target cryptography or compression with a novel algorithm implemented in Python and fully functional in JavaScript on index.html.",
+        "Do not attempt web_3d or shader_art for the next project to ensure type diversity and avoid repeating recent patterns.",
+        "Focus on delivering a fully functional project with all core features working. No dead or missing functionality will be accepted.",
+        "Ensure the project has a distinct and captivating visual theme (e.g., retro-terminal, minimal-glass, or brutalist). Do not repeat recent themes.",
+        "The complexity score for the next project must be at least 200 and reflect authentic technical depth, not superficial feature additions.",
+        "Prioritize a human-usable, interactive experience on the GitHub Pages URL. The core algorithm must be operable directly in the browser."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project starts with an appealing UI, and the interactive cipher generation feature works with a fallback logic, but the full functionality of the backend is non-functional due to a placeholder API endpoint.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Backend-dependent functionality (API endpoints for encryption/decryption)",
+            "expected": "Working backend response for /encrypt and /decrypt endpoints",
+            "actual": "API_BASE_URL points to a non-functional placeholder ('https://cipherforge-backend.example.com'), causing backend requests to fail.",
+            "fix": "Deploy a live backend for the API endpoints and update the API_BASE_URL in the frontend."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No interactive output on first load",
+            "why_missing": "The page starts with no interactive content or output visible, and the user must manually input text before seeing any functionality.",
+            "fix": "Add a default example input text and auto-generate a sample cipher on page load to show functionality immediately."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -7701,7 +7788,8 @@
     320,
     380,
     220,
-    400
+    400,
+    210
   ],
   "concepts_explored": [
     "neural networks",
@@ -8068,7 +8156,8 @@
     "generative-art-with-physics",
     "immersive-3d-sound-garden",
     "cryptography-tool",
-    "generative-fractured-geometry"
+    "generative-fractured-geometry",
+    "cryptography-tool"
   ],
   "domains_used": [
     "Mathematics",
@@ -8146,7 +8235,8 @@
     "Computer Graphics",
     "Computer Science",
     "Cryptography and Compression",
-    "Generative Art"
+    "Generative Art",
+    "Cryptography and Computer Science"
   ],
   "ceo_reviews": [
     {
