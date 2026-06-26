@@ -7820,6 +7820,103 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-26",
+      "completed_at": "2026-06-26T10:24:50Z",
+      "completed_at_unix": 1782469490,
+      "name": "sentient-fluid-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-26-sentient-fluid-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-26-sentient-fluid-simulator/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "WebGL",
+        "Three.js",
+        "GLSL",
+        "Swarm Intelligence Algorithms"
+      ],
+      "complexity_score": 430,
+      "concepts_demonstrated": [
+        "Fluid dynamics simulation",
+        "Swarm intelligence for emergent behavior",
+        "Real-time 3D rendering",
+        "Interactive control of complex systems"
+      ],
+      "novel_concepts": [
+        "Swarm-controlled fluid dynamics",
+        "Multi-agent systems in visual simulation"
+      ],
+      "advancement_axis": "Connecting fluid dynamics with principles of multi-agent systems and emergent behavior",
+      "pattern": "interactive-fluid-swarm",
+      "domain": "Complex Systems Simulation",
+      "visual_theme": "organic-neon",
+      "complexity_justification": [
+        "Integration of fluid dynamics with swarm intelligence for emergent behavior modeling",
+        "Real-time rendering of fluid simulations with interactive controls",
+        "Dynamic shader-based visualization to highlight agent behaviors and fluid properties"
+      ],
+      "visual_identity": "Flowing organic patterns illuminated by neon colors, agents represented as glowing nodes within the fluid",
+      "safety_notes": "Ensure color palette is accessible to users with visual impairments. No user-generated harmful content is allowed.",
+      "file_count": 5,
+      "loc": 619,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 265,
+        "bodyHtml": 4236,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 4,
+        "title": "Sentient Fluid Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Simulate fluid dynamics influenced by swarm behavior. Use the controls below to modify fluid and swarm properties. Observe the changes in the visual simulation.\nFluid Viscosity — Controls flow speed: ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "fluidSim.js": "gpt-4o",
+          "swarm.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type edu_platform to address type diversity and explore a new domain.",
+        "The edu_platform must include interactive, visually engaging elements in the browser using GLSL shader-based animations or Three.js, with a focus on a distinct futuristic or cinematic theme.",
+        "The core functionality of the edu_platform must be fully implemented in JavaScript within index.html to ensure human usability without requiring external software installation.",
+        "The project must focus on a novel or underexplored educational topic, such as a visual simulation or interactive tutorial for an advanced mathematical or scientific concept.",
+        "The project complexity must include a substantial technical challenge, such as dynamic visualization of complex data structures, real-time algorithm animation, or multi-user interactivity.",
+        "All interactive elements must pass QA with a fully functional and intuitive user experience—dead or missing features are unacceptable."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project delivers a functional, visually engaging, and interactive fluid dynamics simulation influenced by swarm behavior, with all controls responding meaningfully and producing observable changes.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -7906,7 +8003,8 @@
     220,
     400,
     210,
-    420
+    420,
+    430
   ],
   "concepts_explored": [
     "neural networks",
@@ -8199,7 +8297,10 @@
     "Geometric shapes",
     "Polyhedra",
     "Fractals",
-    "3D visualization"
+    "3D visualization",
+    "Fluid dynamics simulation",
+    "Swarm intelligence for emergent behavior",
+    "Interactive control of complex systems"
   ],
   "patterns_used": [
     "visualizer",
@@ -8279,7 +8380,8 @@
     "cryptography-tool",
     "generative-fractured-geometry",
     "cryptography-tool",
-    "immersive-geometry-explorer"
+    "immersive-geometry-explorer",
+    "interactive-fluid-swarm"
   ],
   "domains_used": [
     "Mathematics",
@@ -8359,7 +8461,8 @@
     "Cryptography and Compression",
     "Generative Art",
     "Cryptography and Computer Science",
-    "Mathematics"
+    "Mathematics",
+    "Complex Systems Simulation"
   ],
   "ceo_reviews": [
     {
