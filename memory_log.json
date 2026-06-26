@@ -7704,6 +7704,122 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-26",
+      "completed_at": "2026-06-26T00:07:43Z",
+      "completed_at_unix": 1782432463,
+      "name": "geometry-unlocked",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-26-geometry-unlocked",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-26-geometry-unlocked/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "GLSL",
+        "JavaScript",
+        "HTML5"
+      ],
+      "complexity_score": 420,
+      "concepts_demonstrated": [
+        "Geometric shapes",
+        "Polyhedra",
+        "Fractals",
+        "3D visualization"
+      ],
+      "novel_concepts": [
+        "Interactive 3D geometry exploration",
+        "Real-time GLSL shader-based animation"
+      ],
+      "advancement_axis": "Technically ambitious and aesthetically diverse 3D visualization",
+      "pattern": "immersive-geometry-explorer",
+      "domain": "Mathematics",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Real-time 3D rendering of complex geometric shapes",
+        "Dynamic visualization of polyhedra and fractals using GLSL shaders",
+        "Implementation of interactive rotation, scaling, and exploration features"
+      ],
+      "visual_identity": "Dark background with neon accents, futuristic font, interactive 3D models",
+      "safety_notes": "No safety concerns",
+      "file_count": 4,
+      "loc": 332,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 251,
+        "bodyHtml": 1471,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Geometry Unlocked",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Geometry Unlocked\n\nExplore and interact with 3D geometric shapes using the controls below.\n\nSelect a shape, use the sliders to rotate and scale the object.\n\nShape:\nCube\nSphere\nCone\nTorus\nRotation:\n0°\n",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Cube\nSphere\nCone\nTorus",
+              "trigger": "select",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type edu_platform to address type diversity and explore a new domain.",
+        "The edu_platform must include interactive, visually engaging elements in the browser using GLSL shader-based animations or Three.js, with a focus on a distinct futuristic or cinematic theme.",
+        "The core functionality of the edu_platform must be fully implemented in JavaScript within index.html to ensure human usability without requiring external software installation.",
+        "The project must focus on a novel or underexplored educational topic, such as a visual simulation or interactive tutorial for an advanced mathematical or scientific concept.",
+        "The project complexity must include a substantial technical challenge, such as dynamic visualization of complex data structures, real-time algorithm animation, or multi-user interactivity.",
+        "All interactive elements must pass QA with a fully functional and intuitive user experience—dead or missing features are unacceptable."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "While the project provides a visually appealing 3D geometry exploration experience with functional rotation and scaling, the shape selection control does not update the 3D model, which is a core feature promised in the plan. Despite this flaw, the primary interactions related to rotation and scaling perform well, making the project partially usable.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Shape Selector",
+            "expected": "Updates the 3D object geometry when a new shape is selected.",
+            "actual": "Selecting a new shape does not result in any visible changes to the 3D model.",
+            "fix": "Ensure the 'updateGeometry' function in `script.js` is correctly triggered when the shape selector is changed. Debug the state update mechanism to verify the new shape is applied to the 3D object."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No immediate visual change when interacting with the shape selector.",
+            "why_missing": "Shape Selector interaction does not affect the 3D model, which is part of the core functionality described in the project.",
+            "fix": "Ensure the geometry update logic is fully integrated so that selecting a shape triggers a meaningful and visible change in the 3D visualization."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -7789,7 +7905,8 @@
     380,
     220,
     400,
-    210
+    210,
+    420
   ],
   "concepts_explored": [
     "neural networks",
@@ -8078,7 +8195,11 @@
     "Voronoi textures",
     "Dynamic lighting",
     "Domain warping",
-    "User interactivity in shaders"
+    "User interactivity in shaders",
+    "Geometric shapes",
+    "Polyhedra",
+    "Fractals",
+    "3D visualization"
   ],
   "patterns_used": [
     "visualizer",
@@ -8157,7 +8278,8 @@
     "immersive-3d-sound-garden",
     "cryptography-tool",
     "generative-fractured-geometry",
-    "cryptography-tool"
+    "cryptography-tool",
+    "immersive-geometry-explorer"
   ],
   "domains_used": [
     "Mathematics",
@@ -8236,7 +8358,8 @@
     "Computer Science",
     "Cryptography and Compression",
     "Generative Art",
-    "Cryptography and Computer Science"
+    "Cryptography and Computer Science",
+    "Mathematics"
   ],
   "ceo_reviews": [
     {
