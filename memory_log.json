@@ -8197,6 +8197,103 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-27",
+      "completed_at": "2026-06-27T13:07:58Z",
+      "completed_at_unix": 1782565678,
+      "name": "terra-verde",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-27-terra-verde",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-27-terra-verde/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "GLSL",
+        "WebGL",
+        "HTML/CSS"
+      ],
+      "complexity_score": 520,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Shader programming",
+        "Procedural generation",
+        "Physically-based rendering"
+      ],
+      "novel_concepts": [
+        "Dynamic lighting with raymarching",
+        "Procedural terrain generation with Perlin noise",
+        "Cinematic camera animation system"
+      ],
+      "advancement_axis": "novel application of raymarching and physically-based rendering",
+      "pattern": "generative-art-with-raymarching",
+      "domain": "Computer Science",
+      "visual_theme": "cinematic",
+      "complexity_justification": [
+        "Real-time raymarching with dynamic lighting and shadows",
+        "Procedural terrain generation using Perlin noise and diamond-square algorithms",
+        "Physically-based rendering model for realistic lighting",
+        "Cinematic camera animation system with interactive controls"
+      ],
+      "visual_identity": "dark blues and greens with cinematic lighting",
+      "safety_notes": "No active malware or exploits",
+      "file_count": 3,
+      "loc": 448,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 546,
+        "bodyHtml": 8166,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Terra Verde - 3D Terrain",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Start Camera Animation — rotates the view Reset View — reset to initial state Pause Animation — pauses/resumes animation Restart Animation — restarts from the beginning\n\nWelcome to Terra Verde, a real",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be of type 'shader_art' and must focus on a visually spectacular raymarching scene with a unique theme (e.g., 'ancient ruins with bioluminescent flora'). Prioritize cinematic camera animation and advanced GLSL techniques.",
+        "Ensure the shader_art project achieves a complexity score of at least 450 by introducing novel features such as dynamic lighting, procedural terrain, and atmospheric effects.",
+        "The next python_tool project MUST implement its primary algorithm directly in JavaScript in index.html for browser usability — no exceptions. Use WebAssembly for performance-critical parts if needed.",
+        "After the shader_art project, pivot to 'cli_tool' with a focus on an innovative cryptographic utility that visualizes the encryption process in an intuitive, animated terminal interface.",
+        "Cease consecutive use of the same project_type for at least three cycles to ensure type diversity.",
+        "Prioritize human usability testing to ensure all core functionality is fully operational before shipping."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "Terra Verde provides a functional and visually appealing raymarched 3D terrain generator with all described features working and labeled controls. It is interactive, performs dynamic camera animations, and offers an informative description for users.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -8287,7 +8384,8 @@
     430,
     440,
     460,
-    480
+    480,
+    520
   ],
   "concepts_explored": [
     "neural networks",
@@ -8587,7 +8685,8 @@
     "Mathematical concepts",
     "Real-time shader programming",
     "Cinematic visual direction",
-    "3D rendering"
+    "3D rendering",
+    "Physically-based rendering"
   ],
   "patterns_used": [
     "visualizer",
@@ -8671,7 +8770,8 @@
     "interactive-fluid-swarm",
     "interactive-3d-explorer",
     "generative-art-with-physics",
-    "galaxy-simulator"
+    "galaxy-simulator",
+    "generative-art-with-raymarching"
   ],
   "domains_used": [
     "Mathematics",
@@ -8755,7 +8855,8 @@
     "Complex Systems Simulation",
     "Mathematics",
     "Computer Graphics",
-    "Astronomy"
+    "Astronomy",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
