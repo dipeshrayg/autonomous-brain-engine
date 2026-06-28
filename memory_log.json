@@ -8553,6 +8553,99 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-28",
+      "completed_at": "2026-06-28T16:05:20Z",
+      "completed_at_unix": 1782662720,
+      "name": "eco-system-modeler",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-28-eco-system-modeler",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-28-eco-system-modeler/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "GLSL shaders",
+        "JavaScript"
+      ],
+      "complexity_score": 620,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Physics-based simulation",
+        "Generative algorithms"
+      ],
+      "novel_concepts": [
+        "Interactive ecosystem simulation",
+        "Real-time plant growth modeling"
+      ],
+      "advancement_axis": "Immersive and interactive 3D simulation",
+      "pattern": "immersive-3d-simulation",
+      "domain": "Ecology",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time 3D rendering with physics-based simulation",
+        "Generative plant growth algorithms",
+        "Dynamic weather conditions with real-time lighting",
+        "Interactive control of complex systems"
+      ],
+      "visual_identity": "High-quality 3D rendering, realistic textures, and dynamic lighting",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 4,
+      "loc": 410,
+      "quality_cycles_used": 2,
+      "final_verify_metrics": {
+        "bodyText": 78,
+        "bodyHtml": 2169,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 4,
+        "title": "Eco-System Modeler",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Weather Intensity: 0.5\nPlant Growth Rate: 1.0\nPlant Type: Tree\nTree\nGrass\nBush",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a data_viz type, focusing on creating an interactive, visually stunning visualization of a complex dataset. Use Python for data processing and generate an embedded SVG in index.html.",
+        "The visualization must feature an innovative algorithm or data transformation technique, such as a Voronoi diagram animation, Delaunay triangulation, or dynamic graph layouts.",
+        "The project must include a compelling visual theme (choose from retro-terminal, luxury, or minimal-glass) and achieve a complexity score exceeding 150 with real technical depth.",
+        "Ensure the data and interactivity are fully functional in the browser—buttons, sliders, or interactions must work without requiring external software.",
+        "Push the boundaries of storytelling through data: design the visualization to guide the user through an engaging narrative or insight, beyond mere presentation.",
+        "Avoid any reuse of recent themes (futuristic, neon-cyber, cinematic) and prioritize unique and fresh aesthetics."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Eco-System Modeler works as expected, providing a visually appealing and interactive 3D ecosystem simulator with functional and responsive controls that update the visual output in real-time. It meets all specified requirements and offers a compelling and educational experience for users.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -8647,7 +8740,8 @@
     520,
     560,
     210,
-    580
+    580,
+    620
   ],
   "concepts_explored": [
     "neural networks",
@@ -8954,7 +9048,9 @@
     "Interactive art",
     "Interactive storytelling",
     "Circular economy principles",
-    "Ecosystem dynamics"
+    "Ecosystem dynamics",
+    "Physics-based simulation",
+    "Generative algorithms"
   ],
   "patterns_used": [
     "visualizer",
@@ -9042,6 +9138,7 @@
     "generative-art-with-raymarching",
     "audio-driven-visuals",
     "interactive-data-visualization",
+    "immersive-3d-simulation",
     "immersive-3d-simulation"
   ],
   "domains_used": [
@@ -9130,6 +9227,7 @@
     "Computer Science",
     "Generative Art",
     "Environmental Science",
+    "Ecology",
     "Ecology"
   ],
   "ceo_reviews": [
