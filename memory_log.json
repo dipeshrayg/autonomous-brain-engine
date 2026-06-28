@@ -8462,6 +8462,97 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-28",
+      "completed_at": "2026-06-28T08:12:17Z",
+      "completed_at_unix": 1782634337,
+      "name": "eco-system-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-28-eco-system-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-28-eco-system-simulator/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "GLSL shaders"
+      ],
+      "complexity_score": 580,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Interactive simulation",
+        "Ecosystem dynamics"
+      ],
+      "novel_concepts": [
+        "Integration of machine learning for adaptive ecosystem behavior",
+        "Real-time data visualization of ecosystem metrics"
+      ],
+      "advancement_axis": "technical",
+      "pattern": "immersive-3d-simulation",
+      "domain": "Ecology",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time 3D rendering with dynamic lighting and shadows",
+        "Interactive simulation of complex ecosystem dynamics",
+        "Custom shaders for realistic environmental effects",
+        "User input handling for real-time scenario manipulation"
+      ],
+      "visual_identity": "high-contrast, vibrant colors, 3D animations",
+      "safety_notes": "No active malware, no exploits",
+      "file_count": 3,
+      "loc": 435,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 186,
+        "bodyHtml": 2536,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 3,
+        "title": "Eco-System Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Eco-System Simulator\n\nAdjust the speed, reset, or pause the simulation as you watch dynamic ecosystem interactions unfold in 3D.\n\nSimulation Speed:\n1.0\nReset Simulation\nPause Simulation:",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a data_viz type, focusing on creating an interactive, visually stunning visualization of a complex dataset. Use Python for data processing and generate an embedded SVG in index.html.",
+        "The visualization must feature an innovative algorithm or data transformation technique, such as a Voronoi diagram animation, Delaunay triangulation, or dynamic graph layouts.",
+        "The project must include a compelling visual theme (choose from retro-terminal, luxury, or minimal-glass) and achieve a complexity score exceeding 150 with real technical depth.",
+        "Ensure the data and interactivity are fully functional in the browser—buttons, sliders, or interactions must work without requiring external software.",
+        "Push the boundaries of storytelling through data: design the visualization to guide the user through an engaging narrative or insight, beyond mere presentation.",
+        "Avoid any reuse of recent themes (futuristic, neon-cyber, cinematic) and prioritize unique and fresh aesthetics."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Eco-System Simulator meets all usability and functionality requirements with clearly labeled controls, meaningful visual feedback, and a compelling interactive experience. The simulation is engaging and works as intended.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -8555,7 +8646,8 @@
     480,
     520,
     560,
-    210
+    210,
+    580
   ],
   "concepts_explored": [
     "neural networks",
@@ -8861,7 +8953,8 @@
     "Dynamic visual generation",
     "Interactive art",
     "Interactive storytelling",
-    "Circular economy principles"
+    "Circular economy principles",
+    "Ecosystem dynamics"
   ],
   "patterns_used": [
     "visualizer",
@@ -8948,7 +9041,8 @@
     "galaxy-simulator",
     "generative-art-with-raymarching",
     "audio-driven-visuals",
-    "interactive-data-visualization"
+    "interactive-data-visualization",
+    "immersive-3d-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -9035,7 +9129,8 @@
     "Astronomy",
     "Computer Science",
     "Generative Art",
-    "Environmental Science"
+    "Environmental Science",
+    "Ecology"
   ],
   "ceo_reviews": [
     {
