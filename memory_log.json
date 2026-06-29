@@ -24318,6 +24318,27 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-29T18:27:51Z",
+      "issued_at_unix": 1782757671,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with a focus on shallow, interactive applications.",
+      "concerns": [
+        "Lack of projects utilizing advanced numerical methods",
+        "Insufficient application of probability theory and physics",
+        "Overemphasis on web-based interactive tools",
+        "Limited exploration of information-theoretic concepts"
+      ],
+      "directives": [
+        "Utilize the 'research_showcase' project type to create a project that showcases a novel, mathematically rigorous application of a deep-tech concept, such as distributed systems or formal verification",
+        "Incorporate advanced numerical methods, such as finite element analysis or computational fluid dynamics, into the project",
+        "Ensure the project demonstrates a clear understanding of probability theory and its application to real-world problems",
+        "Explore the use of information-theoretic concepts, such as compression and entropy, in the project"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
