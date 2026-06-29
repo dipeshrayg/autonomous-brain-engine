@@ -8818,6 +8818,138 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-29",
+      "completed_at": "2026-06-29T12:32:15Z",
+      "completed_at_unix": 1782736335,
+      "name": "echo-mosaic",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-29-echo-mosaic",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-29-echo-mosaic/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "ESM"
+      ],
+      "complexity_score": 150,
+      "concepts_demonstrated": [
+        "Artificial Intelligence",
+        "Puzzle Design",
+        "Emergent Complexity"
+      ],
+      "novel_concepts": [
+        "AI-driven puzzle generation",
+        "Adaptive difficulty adjustment"
+      ],
+      "advancement_axis": "The use of AI to generate puzzle pieces creates a unique and dynamic gameplay experience",
+      "pattern": "ai-driven-puzzle-game",
+      "domain": "Artificial Intelligence",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Implementing a custom, AI-driven tile generation algorithm",
+        "Creating an interactive, drag-and-drop puzzle interface",
+        "Designing an adaptive difficulty system based on player progress"
+      ],
+      "visual_identity": "High-contrast colors, bold typography, and geometric shapes",
+      "safety_notes": "No user data is collected or stored; the game runs entirely in the browser",
+      "file_count": 4,
+      "loc": 488,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 230,
+        "bodyHtml": 9025,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 400,
+          "h": 400,
+          "cssW": 400,
+          "cssH": 400
+        },
+        "interactiveCount": 4,
+        "scriptCount": 3,
+        "title": "Echo Mosaic",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Echo Mosaic\n\nPlace tiles to create a stunning mosaic masterpiece!\n\nClick on the grid to place tiles. Adjust tile size and difficulty for a customized challenge.\n\nDifficulty:\n3\nReset Puzzle\nPause\nTile ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "1",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset Puzzle",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "tileGenerator.js": "gpt-4o",
+          "difficultySystem.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web with real mechanics and visual polish, avoiding ecological or futuristic themes. Explore retro-terminal or brutalist aesthetics.",
+        "Push for a game concept with unique mechanics, such as an abstract puzzle game or physics-based gameplay.",
+        "Incorporate authentic algorithmic depth, such as procedural generation, AI-driven behavior, or physics simulations.",
+        "Focus on human usability—ensure the game is fully playable and engaging for visitors without technical barriers.",
+        "Avoid web_3d and shader_art for the next project to allow other types room to grow and prevent overuse."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Echo Mosaic game provides basic functionality where users can place tiles and adjust settings like difficulty and tile size, but some controls have limited or no observable effect on the game state.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 3,
+        "dead_controls": [
+          {
+            "control": "Pause button",
+            "expected": "Pause and resume functionality for the game with a change in visual state or behavior",
+            "actual": "While the button toggles the pause state, it does not visually modify the game or clearly indicate that the pause is active.",
+            "fix": "Update the canvas interaction logic to disable/enable tile placement during pause, and visually indicate the paused state (e.g., overlay or dim screen)."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Responsive adaptive difficulty system",
+            "why_missing": "There is no observable impact on tile generation or puzzle behavior when adjusting the difficulty slider.",
+            "fix": "Ensure the difficulty slider interacts with the tile generation and alters the generated tiles (e.g., adding complexity based on difficulty)."
+          },
+          {
+            "feature": "Dynamic feedback for tile placement",
+            "why_missing": "The user does not see any feedback besides the tile placement, such as animations or sounds.",
+            "fix": "Introduce visual animations or sound effects to reinforce interactions and enhance the user experience."
+          },
+          {
+            "feature": "Clear tutorial or guidance for first-time users",
+            "why_missing": "Although there is a brief description and instruction text, it might not be enough to guide users on how the mechanics work.",
+            "fix": "Expand the instructions or consider adding an overlay tutorial to walk users through the process of gameplay and using the controls."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -8915,7 +9047,8 @@
     580,
     620,
     250,
-    120
+    120,
+    150
   ],
   "concepts_explored": [
     "neural networks",
@@ -9230,7 +9363,10 @@
     "Graph Algorithms",
     "Command-line interface",
     "Text-based user interaction",
-    "Retro aesthetics"
+    "Retro aesthetics",
+    "Artificial Intelligence",
+    "Puzzle Design",
+    "Emergent Complexity"
   ],
   "patterns_used": [
     "visualizer",
@@ -9321,7 +9457,8 @@
     "immersive-3d-simulation",
     "immersive-3d-simulation",
     "social-network-simulator",
-    "retro-terminal-prank"
+    "retro-terminal-prank",
+    "ai-driven-puzzle-game"
   ],
   "domains_used": [
     "Mathematics",
@@ -9412,7 +9549,8 @@
     "Ecology",
     "Ecology",
     "Sociology",
-    "Computer Science"
+    "Computer Science",
+    "Artificial Intelligence"
   ],
   "ceo_reviews": [
     {
