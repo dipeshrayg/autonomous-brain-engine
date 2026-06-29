@@ -8950,6 +8950,162 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-29",
+      "completed_at": "2026-06-29T19:34:08Z",
+      "completed_at_unix": 1782761648,
+      "name": "aurora-origami",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-29-aurora-origami",
+      "pages_url": "",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "Cannon.js"
+      ],
+      "complexity_score": 630,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Physics-based simulation",
+        "Interactive control of complex systems"
+      ],
+      "novel_concepts": [
+        "Application of physics-based simulation to origami",
+        "Interactive 3D origami modeling"
+      ],
+      "advancement_axis": "novel application of physics-based simulation",
+      "pattern": "interactive-3d-simulation",
+      "domain": "Mathematics",
+      "visual_theme": "cinematic",
+      "complexity_justification": [
+        "Real-time physics-based simulation of origami models",
+        "Interactive 3D rendering and manipulation of origami models",
+        "Utilization of advanced numerical methods for simulation"
+      ],
+      "visual_identity": "color palette + typography + layout personality consistent with cinematic theme",
+      "safety_notes": "The project does not contain any active malware or exploits.",
+      "file_count": 3,
+      "loc": 335,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 185,
+        "bodyHtml": 1236,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 3,
+        "title": "Aurora Origami",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Aurora Origami\n\nInteractive 3D origami simulation. Adjust the paper thickness and toggle folding below.\n\nPaper Thickness:\n1.0\nToggle Fold\nReset Simulation:\nReset\nPause Simulation:\nPause",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "1",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Toggle Fold",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pause",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "meta-llama/llama-4-scout-17b-16e-instruct"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web with real mechanics and visual polish, avoiding ecological or futuristic themes. Explore retro-terminal or brutalist aesthetics.",
+        "Push for a game concept with unique mechanics, such as an abstract puzzle game or physics-based gameplay.",
+        "Incorporate authentic algorithmic depth, such as procedural generation, AI-driven behavior, or physics simulations.",
+        "Focus on human usability—ensure the game is fully playable and engaging for visitors without technical barriers.",
+        "Avoid web_3d and shader_art for the next project to allow other types room to grow and prevent overuse."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides an interactive 3D origami simulation, but key controls do not visibly function as intended, leaving the user unable to fully engage with the promised features.",
+        "model": "gpt-4o",
+        "dead_controls_count": 4,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Toggle Fold Button (<button id='fold-button'>)",
+            "expected": "Origami model should visibly fold/unfold, and button label should update to reflect state",
+            "actual": "No observable state change or visual effect occurs when toggling the button",
+            "fix": "Debug the event listener on the button to ensure the folding state triggers an update to the 3D model geometry (e.g., `updateFoldingGeometry` may not be called correctly)."
+          },
+          {
+            "control": "Paper Thickness Slider (<slider id='paper-thickness-slider'>)",
+            "expected": "Origami model should visibly update to reflect the new paper thickness",
+            "actual": "No observable change occurs to the model when the slider is adjusted",
+            "fix": "Verify that the `updateFoldingGeometry` function is called when the slider is adjusted and ensure it correctly modifies the geometry based on the `state.paperThickness` value."
+          },
+          {
+            "control": "Reset Button (<button id='reset-button'>)",
+            "expected": "Simulation should reset to the initial state, including resetting folding state and geometry",
+            "actual": "No observable state change or visual effect occurs when clicking the button",
+            "fix": "Ensure the `resetButton` click event updates the geometry and resets all relevant properties in the `state` object."
+          },
+          {
+            "control": "Pause Button (<button id='pause-button'>)",
+            "expected": "Simulation should pause/resume and button label should update to reflect state",
+            "actual": "No observable state change or visual effect occurs when clicking the button",
+            "fix": "Verify that the event listener correctly toggles the `state.paused` value and ensures the `animate` function respects this flag."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No on-screen feedback or clear interactivity",
+            "why_missing": "While the header introduces the concept, interacting with the controls doesn't provide any visible or clear feedback, and the purpose of the controls isn't obvious.",
+            "fix": "Ensure the fold button visibly toggles folding, the reset button visibly resets, the pause button stops animation, and the slider dynamically updates the origami's appearance. Additionally, include brief textual or visual feedback when controls are used."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9048,7 +9204,8 @@
     620,
     250,
     120,
-    150
+    150,
+    630
   ],
   "concepts_explored": [
     "neural networks",
@@ -9458,7 +9615,8 @@
     "immersive-3d-simulation",
     "social-network-simulator",
     "retro-terminal-prank",
-    "ai-driven-puzzle-game"
+    "ai-driven-puzzle-game",
+    "interactive-3d-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -9550,7 +9708,8 @@
     "Ecology",
     "Sociology",
     "Computer Science",
-    "Artificial Intelligence"
+    "Artificial Intelligence",
+    "Mathematics"
   ],
   "ceo_reviews": [
     {
