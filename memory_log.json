@@ -9199,6 +9199,145 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-06-30",
+      "completed_at": "2026-06-30T08:22:50Z",
+      "completed_at_unix": 1782807770,
+      "name": "biomechanical-research-showcase",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-30-biomechanical-research-showcase",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-30-biomechanical-research-showcase/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "Three.js",
+        "GLSL",
+        "Markdown",
+        "CSS",
+        "HTML"
+      ],
+      "complexity_score": 850,
+      "concepts_demonstrated": [
+        "Biomechanics",
+        "Physics-based simulations",
+        "Real-time 3D rendering",
+        "GLSL shader programming",
+        "Information-theoretic concepts"
+      ],
+      "novel_concepts": [
+        "Application of distributed systems in biomechanical modeling",
+        "Use of formal verification in ensuring simulation accuracy",
+        "Integration of finite element analysis for complex system simulations"
+      ],
+      "advancement_axis": "Advancing the field of biomechanics through interactive, visually engaging, and mathematically rigorous educational content.",
+      "pattern": "biomechanical-simulation-showcase",
+      "domain": "Biomechanical Engineering",
+      "visual_theme": "minimal-glass",
+      "complexity_justification": [
+        "Implementation of real-time physics-based simulations for biomechanical systems",
+        "Development of custom GLSL shaders for enhanced visual representation",
+        "Integration of interactive 3D models with educational content",
+        "Utilization of advanced numerical methods for accurate simulations",
+        "Application of information-theoretic concepts for data analysis and visualization"
+      ],
+      "visual_identity": {
+        "color_palette": "#FFFFFF, #CCCCCC, #AAAAAA",
+        "typography": "Open Sans, sans-serif",
+        "layout_personality": "Clean, minimalistic, and highly interactive"
+      },
+      "safety_notes": "No potential safety hazards associated with this project.",
+      "file_count": 4,
+      "loc": 450,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 1411,
+        "bodyHtml": 2923,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 5,
+        "scriptCount": 2,
+        "title": "Biomechanical Research Showcase",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Biomechanical Research Showcase\nIntroduction\n\nExplore the fascinating world of biomechanical systems through interactive 3D simulations and educational content. Use the controls below to interact with",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pause Simulation",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Start Simulation",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type 'edu_platform' to explore a never-tried type and expand into new domains.",
+        "The core focus of the project must be on interactive educational content that leverages algorithmic depth and visual spectacle. Use Three.js or GLSL for an engaging, exploratory experience.",
+        "The project must implement a distinct visual theme not seen in the last 8 projects (e.g., minimal-glass, soft-organic). Avoid recurring themes like luxury, neon-cyber, or cinematic.",
+        "Human usability is critical: ensure the educational platform is fully functional on GitHub Pages, with no dead buttons or broken interactivity.",
+        "The project must demonstrate technical depth by implementing a novel algorithm—prioritize physics simulations, generative geometry, or real-time interactivity.",
+        "If 'edu_platform' fails to ship, pivot to 'research_showcase' as the next fallback type, focusing on a markdown-based long-form exploration of a challenging and visually represented algorithm or concept."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides a visually engaging biomechanical simulation with functional speed and rotation controls, but the Pause and Start buttons are broken, and some controls lack descriptive labels or do not provide enough context for first-time users.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Pause Simulation button",
+            "expected": "Pause the simulation's rotation and animation",
+            "actual": "No observable state change when clicked",
+            "fix": "Ensure the click event listener changes 'state.isPaused' to true and halts the animation loop."
+          },
+          {
+            "control": "Start Simulation button",
+            "expected": "Resume the simulation's rotation and animation",
+            "actual": "No observable state change when clicked",
+            "fix": "Ensure the click event listener changes 'state.isPaused' to false and restarts the animation loop."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No clear description for users about what they are expected to do with the controls.",
+            "why_missing": "The page lacks adequate on-screen text explaining the purpose of each simulation control and the general purpose of the project.",
+            "fix": "Add a short on-screen description near the controls to guide users on their function and expected impact on the simulation."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9299,7 +9438,8 @@
     120,
     150,
     630,
-    720
+    720,
+    850
   ],
   "concepts_explored": [
     "neural networks",
@@ -9620,7 +9760,10 @@
     "Emergent Complexity",
     "Climate resilience strategies",
     "Urban planning and community engagement",
-    "Environmental science and sustainability"
+    "Environmental science and sustainability",
+    "Biomechanics",
+    "Physics-based simulations",
+    "GLSL shader programming"
   ],
   "patterns_used": [
     "visualizer",
@@ -9714,7 +9857,8 @@
     "retro-terminal-prank",
     "ai-driven-puzzle-game",
     "interactive-3d-simulation",
-    "interactive-climate-resilience-exploration"
+    "interactive-climate-resilience-exploration",
+    "biomechanical-simulation-showcase"
   ],
   "domains_used": [
     "Mathematics",
@@ -9808,7 +9952,8 @@
     "Computer Science",
     "Artificial Intelligence",
     "Mathematics",
-    "Environmental Science"
+    "Environmental Science",
+    "Biomechanical Engineering"
   ],
   "ceo_reviews": [
     {
