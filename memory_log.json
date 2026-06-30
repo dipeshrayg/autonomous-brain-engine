@@ -9106,6 +9106,99 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-30",
+      "completed_at": "2026-06-30T02:56:44Z",
+      "completed_at_unix": 1782788204,
+      "name": "climate-resilience-portal",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-30-climate-resilience-portal",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-30-climate-resilience-portal/",
+      "language": "JavaScript",
+      "project_type": "edu_platform",
+      "tech_stack": [
+        "Three.js",
+        "GLSL",
+        "HTML/CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 720,
+      "concepts_demonstrated": [
+        "Climate resilience strategies",
+        "Urban planning and community engagement",
+        "Environmental science and sustainability"
+      ],
+      "novel_concepts": [
+        "Novel climate change simulation algorithm",
+        "Interactive 3D visualizations for climate resilience",
+        "Integration of GLSL shaders for real-time effects"
+      ],
+      "advancement_axis": "Technical depth and interactive visualizations in climate resilience education",
+      "pattern": "interactive-climate-resilience-exploration",
+      "domain": "Environmental Science",
+      "visual_theme": "soft-organic",
+      "complexity_justification": [
+        "Implementation of a novel climate change simulation algorithm",
+        "Integration of real-time 3D visualizations with interactive GLSL shaders",
+        "Development of an immersive and explorable 3D environment for climate resilience strategies"
+      ],
+      "visual_identity": "Earth tones, natural textures, and organic shapes",
+      "safety_notes": "No safety concerns",
+      "file_count": 3,
+      "loc": 402,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 786,
+        "bodyHtml": 2039,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 640,
+          "cssW": 1280,
+          "cssH": 640
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Climate Resilience Portal",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Climate Resilience Portal\n\nExplore strategies to adapt and thrive in a changing climate through interactive simulations.\n\nActive Scenario: Forest Restoration\nScenario Selector:\nForest Restoration\nUrba",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type 'edu_platform' to explore a never-tried type and expand into new domains.",
+        "The core focus of the project must be on interactive educational content that leverages algorithmic depth and visual spectacle. Use Three.js or GLSL for an engaging, exploratory experience.",
+        "The project must implement a distinct visual theme not seen in the last 8 projects (e.g., minimal-glass, soft-organic). Avoid recurring themes like luxury, neon-cyber, or cinematic.",
+        "Human usability is critical: ensure the educational platform is fully functional on GitHub Pages, with no dead buttons or broken interactivity.",
+        "The project must demonstrate technical depth by implementing a novel algorithm—prioritize physics simulations, generative geometry, or real-time interactivity.",
+        "If 'edu_platform' fails to ship, pivot to 'research_showcase' as the next fallback type, focusing on a markdown-based long-form exploration of a challenging and visually represented algorithm or concept."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Climate Resilience Portal is fully functional, with an interactive 3D visualization, clear user instructions, effect-labeled controls, and seamless state synchronization.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9205,7 +9298,8 @@
     250,
     120,
     150,
-    630
+    630,
+    720
   ],
   "concepts_explored": [
     "neural networks",
@@ -9523,7 +9617,10 @@
     "Retro aesthetics",
     "Artificial Intelligence",
     "Puzzle Design",
-    "Emergent Complexity"
+    "Emergent Complexity",
+    "Climate resilience strategies",
+    "Urban planning and community engagement",
+    "Environmental science and sustainability"
   ],
   "patterns_used": [
     "visualizer",
@@ -9616,7 +9713,8 @@
     "social-network-simulator",
     "retro-terminal-prank",
     "ai-driven-puzzle-game",
-    "interactive-3d-simulation"
+    "interactive-3d-simulation",
+    "interactive-climate-resilience-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -9709,7 +9807,8 @@
     "Sociology",
     "Computer Science",
     "Artificial Intelligence",
-    "Mathematics"
+    "Mathematics",
+    "Environmental Science"
   ],
   "ceo_reviews": [
     {
