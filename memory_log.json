@@ -9338,6 +9338,115 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-06-30",
+      "completed_at": "2026-06-30T15:05:57Z",
+      "completed_at_unix": 1782831957,
+      "name": "fractal-learning-platform",
+      "repo_url": "https://github.com/dipeshrayg/2026-06-30-fractal-learning-platform",
+      "pages_url": "https://dipeshrayg.github.io/2026-06-30-fractal-learning-platform/",
+      "language": "JavaScript",
+      "project_type": "edu_platform",
+      "tech_stack": [
+        "Three.js",
+        "GLSL"
+      ],
+      "complexity_score": 920,
+      "concepts_demonstrated": [
+        "Real-time rendering",
+        "Interactive exploration",
+        "Mathematical concepts",
+        "GLSL programming"
+      ],
+      "novel_concepts": [
+        "Application of fractals to educational platforms",
+        "Utilization of Three.js and GLSL for interactive simulations",
+        "Real-time rendering of complex mathematical concepts"
+      ],
+      "advancement_axis": "Interactive educational content with algorithmic depth and visual spectacle",
+      "pattern": "interactive-educational-platform",
+      "domain": "Mathematics Education",
+      "visual_theme": "minimal-glass",
+      "complexity_justification": [
+        "Real-time rendering of fractals using Three.js and GLSL",
+        "Interactive exploration of mathematical concepts such as self-similarity and scaling",
+        "Implementation of the Mandelbrot set and its mathematical foundations",
+        "Utilization of advanced numerical methods for fractal generation"
+      ],
+      "visual_identity": "Frosted glass panels, subtle gradients, and a minimalist design",
+      "safety_notes": "The project complies with GitHub TOS and does not contain any active malware or exploits.",
+      "file_count": 3,
+      "loc": 398,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 392,
+        "bodyHtml": 3233,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 3,
+        "title": "Fractal Learning Platform",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Fractal Learning Platform\n\nExplore beautiful fractals interactively. Use the controls to zoom, pan, and toggle exploration mode.\n\nZoom: 1.0 \nToggle Exploration Mode\nCenter X: 0.0 \nCenter Y: 0.0 \nReset",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Toggle Exploration Mode",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "fractal.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type 'edu_platform' to explore a never-tried type and expand into new domains.",
+        "The core focus of the project must be on interactive educational content that leverages algorithmic depth and visual spectacle. Use Three.js or GLSL for an engaging, exploratory experience.",
+        "The project must implement a distinct visual theme not seen in the last 8 projects (e.g., minimal-glass, soft-organic). Avoid recurring themes like luxury, neon-cyber, or cinematic.",
+        "Human usability is critical: ensure the educational platform is fully functional on GitHub Pages, with no dead buttons or broken interactivity.",
+        "The project must demonstrate technical depth by implementing a novel algorithm—prioritize physics simulations, generative geometry, or real-time interactivity.",
+        "If 'edu_platform' fails to ship, pivot to 'research_showcase' as the next fallback type, focusing on a markdown-based long-form exploration of a challenging and visually represented algorithm or concept."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The page provides a functional platform for interacting with fractals. However, the 'Toggle Exploration Mode' button does not produce a visible effect, which limits the promised functionality.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "<button id='explore-button'>",
+            "expected": "Toggles interactive exploration mode and changes the fractal's visual representation",
+            "actual": "No observable state change or visual response upon clicking",
+            "fix": "Implement changes to fractal rendering (e.g., increased iterations or visual effects) when toggling exploration mode."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9439,7 +9548,8 @@
     150,
     630,
     720,
-    850
+    850,
+    920
   ],
   "concepts_explored": [
     "neural networks",
@@ -9763,7 +9873,9 @@
     "Environmental science and sustainability",
     "Biomechanics",
     "Physics-based simulations",
-    "GLSL shader programming"
+    "GLSL shader programming",
+    "Interactive exploration",
+    "GLSL programming"
   ],
   "patterns_used": [
     "visualizer",
@@ -9858,7 +9970,8 @@
     "ai-driven-puzzle-game",
     "interactive-3d-simulation",
     "interactive-climate-resilience-exploration",
-    "biomechanical-simulation-showcase"
+    "biomechanical-simulation-showcase",
+    "interactive-educational-platform"
   ],
   "domains_used": [
     "Mathematics",
@@ -9953,7 +10066,8 @@
     "Artificial Intelligence",
     "Mathematics",
     "Environmental Science",
-    "Biomechanical Engineering"
+    "Biomechanical Engineering",
+    "Mathematics Education"
   ],
   "ceo_reviews": [
     {
