@@ -14942,6 +14942,31 @@
         "The eco-cycle-viz project effectively combined interactivity and data visualization with a cohesive visual theme."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-06-30T21:03:55Z",
+      "issued_at_unix": 1782853435,
+      "model": "gpt-4o",
+      "verdict": "alarming",
+      "summary": "Recent projects show a troubling trend of partially usable outputs, indicating a lack of focus on delivering complete, functional projects while overly prioritizing visual ambition.",
+      "concerns": [
+        "Several shipped projects are marked as 'partially usable,' indicating incomplete or broken core functionality.",
+        "The recent focus has leaned heavily toward web_3d and edu_platform, creating a lack of diversity in both type and domains.",
+        "The system appears to overemphasize visual complexity without ensuring usability, which risks tarnishing the portfolio."
+      ],
+      "directives": [
+        "The next project must use the ai_concept type, which is the least used type with room to grow.",
+        "Focus on delivering a fully functional, human-usable AI concept demo. The core functionality must work flawlessly in the browser without requiring any external setup.",
+        "The visual theme of the next project should be futuristic, ensuring it is distinct from recent themes like luxury, retro-terminal, and minimal-glass.",
+        "The complexity score must reflect genuine technical depth, with a novel AI algorithm implemented in JavaScript and demonstrable through an interactive demo on the GitHub Pages URL.",
+        "Reduce scope to ensure the project ships in a usable state. Limit the number of features to one or two, but execute them to perfection.",
+        "Explicitly avoid web_3d, edu_platform, and research_showcase types for at least the next two projects to diversify output."
+      ],
+      "praise": [
+        "The visual ambition in recent projects, such as aurora-origami and biomechanical-research-showcase, is commendable and aligns with the mandate for spectacular visuals.",
+        "The system has consistently experimented with new types, such as edu_platform and social_toolkit, demonstrating a willingness to explore new domains."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
