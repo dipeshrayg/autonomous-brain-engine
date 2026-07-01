@@ -23259,6 +23259,45 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "web_3d"
+    },
+    {
+      "attempted_at": "2026-07-01T16:54:34Z",
+      "attempted_at_unix": 1782924874,
+      "date": "2026-07-01",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 5 page error(s), body_empty=False.",
+      "plan_name": "echo-pix",
+      "plan_language": "JavaScript",
+      "plan_complexity": 600,
+      "plan_pattern": "audio-driven-visuals",
+      "plan_domain": "Generative Art",
+      "plan_files_count": 3,
+      "project_type": "database_showcase",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Restart Audio Processing (button#restart-button)",
+          "expected": "Restart audio processing and update visuals."
+        },
+        {
+          "control": "Pause Processing (button#pause-button)",
+          "expected": "Pause visual updates and audio processing."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "5-second usability failure: No on-screen status indicator for visuals reacting to audio."
+        },
+        {
+          "feature": "5-second usability failure: Unlabeled controls and unclear functionality."
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
