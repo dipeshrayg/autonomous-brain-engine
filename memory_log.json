@@ -9746,6 +9746,135 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-01",
+      "completed_at": "2026-07-01T17:15:40Z",
+      "completed_at_unix": 1782926140,
+      "name": "ai-powered-portfolio-optimizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-01-ai-powered-portfolio-optimizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-01-ai-powered-portfolio-optimizer/",
+      "language": "JavaScript",
+      "project_type": "saas_landing",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Machine Learning"
+      ],
+      "complexity_score": 1050,
+      "concepts_demonstrated": [
+        "Machine Learning",
+        "Bayesian Inference",
+        "Interactive Web Development"
+      ],
+      "novel_concepts": [
+        "AI-driven portfolio optimization",
+        "Interactive demo with real-time data visualization"
+      ],
+      "advancement_axis": "AI-driven optimization with interactive demo",
+      "pattern": "ai-driven-portfolio-optimization",
+      "domain": "Financial Technology",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementing a machine learning model in JavaScript for portfolio optimization",
+        "Integrating Bayesian inference for risk assessment and portfolio generation",
+        "Developing an interactive demo with real-time data visualization and user input handling"
+      ],
+      "visual_identity": "color palette + typography + layout personality consistent with futuristic theme",
+      "safety_notes": "The project will not contain any active malware or exploits, and will comply with GitHub TOS.",
+      "file_count": 4,
+      "loc": 551,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 320,
+        "bodyHtml": 5403,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 800,
+          "cssH": 400
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "AI-Powered Portfolio Optimizer",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "AI-Powered Portfolio Optimizer\n\nOptimize your investments with AI: Set your goals, adjust your risk, and watch your portfolio transform in real-time.\n\nPersonalize Your Portfolio\nInvestment Goals:\nRisk",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "E.g., Retirement savings, Buying a house",
+              "trigger": "text",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Optimize Portfolio",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "optimizer.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must use the ai_concept type, which is the least used type with room to grow.",
+        "Focus on delivering a fully functional, human-usable AI concept demo. The core functionality must work flawlessly in the browser without requiring any external setup.",
+        "The visual theme of the next project should be futuristic, ensuring it is distinct from recent themes like luxury, retro-terminal, and minimal-glass.",
+        "The complexity score must reflect genuine technical depth, with a novel AI algorithm implemented in JavaScript and demonstrable through an interactive demo on the GitHub Pages URL.",
+        "Reduce scope to ensure the project ships in a usable state. Limit the number of features to one or two, but execute them to perfection.",
+        "Explicitly avoid web_3d, edu_platform, and research_showcase types for at least the next two projects to diversify output."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The AI-Powered Portfolio Optimizer has functioning visual feedback for the risk tolerance slider and a visually appealing interface, but the input field for goals and the optimize button have no observable impact on the portfolio visualization, which limits its utility.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "input field for investment goals",
+            "expected": "Typing goals such as 'Retirement savings' updates the portfolio visualization",
+            "actual": "No observable state change occurs when goals are input, and the portfolio visualization remains unmodified.",
+            "fix": "Ensure the `investmentGoalsInput` event listener triggers data processing and updates the chart visualization to reflect new investment goals."
+          },
+          {
+            "control": "Optimize Portfolio button",
+            "expected": "Clicking the button generates a new optimized portfolio that updates the chart visualization.",
+            "actual": "No observable state change or visual update occurs when the button is clicked.",
+            "fix": "Ensure the `optimizeButton` click event triggers the portfolio optimization logic and updates the chart visualization accordingly."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: Missing on-screen instructions for how to use the tool.",
+            "why_missing": "There is no clear description of what the user is expected to input in the goals field or what the Optimize button does.",
+            "fix": "Add a short, visible description of how to use the tool near the controls section, e.g., 'Enter your investment goals, adjust your risk tolerance, and click Optimize Portfolio to see your personalized portfolio.'"
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9851,7 +9980,8 @@
     920,
     950,
     870,
-    980
+    980,
+    1050
   ],
   "concepts_explored": [
     "neural networks",
@@ -10281,7 +10411,8 @@
     "interactive-educational-platform",
     "ai-driven-mood-analysis",
     "ai-driven-optimization",
-    "ai-driven-cognitive-architecture"
+    "ai-driven-cognitive-architecture",
+    "ai-driven-portfolio-optimization"
   ],
   "domains_used": [
     "Mathematics",
@@ -10380,7 +10511,8 @@
     "Mathematics Education",
     "Human-Computer Interaction",
     "Artificial Intelligence",
-    "Cognitive Science"
+    "Cognitive Science",
+    "Financial Technology"
   ],
   "ceo_reviews": [
     {
