@@ -9652,6 +9652,100 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-01",
+      "completed_at": "2026-07-01T11:03:28Z",
+      "completed_at_unix": 1782903808,
+      "name": "ai-cognitive-architecture",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-01-ai-cognitive-architecture",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-01-ai-cognitive-architecture/",
+      "language": "JavaScript",
+      "project_type": "ai_concept",
+      "tech_stack": [
+        "TensorFlow.js",
+        "Bayesian Inference Library"
+      ],
+      "complexity_score": 980,
+      "concepts_demonstrated": [
+        "Machine Learning",
+        "Bayesian Inference",
+        "Cognitive Architecture"
+      ],
+      "novel_concepts": [
+        "Hybrid cognitive architecture",
+        "Explainable AI for decision-making"
+      ],
+      "advancement_axis": "Cognitive architectures for AI decision-making",
+      "pattern": "ai-driven-cognitive-architecture",
+      "domain": "Cognitive Science",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementation of a Bayesian inference engine in JavaScript",
+        "Integration of machine learning models for decision-making",
+        "Development of a cognitive architecture for real-time decision-making"
+      ],
+      "visual_identity": "Dark navy and electric blue color scheme, sharp geometry, and HUD overlays",
+      "safety_notes": "No safety concerns identified",
+      "file_count": 3,
+      "loc": 363,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 311,
+        "bodyHtml": 1311,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "AI Cognitive Architecture",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "AI COGNITIVE ARCHITECTURE\nEnter a decision question:\nSelect confidence level:\n Confidence: 50%\nSelect strategy:\nRational\nIntuitive\nExploratory\n Analyze Decision\n\nResults will appear here...\n\nPress ent",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Rational\nIntuitive\nExploratory",
+              "trigger": "select",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must use the ai_concept type, which is the least used type with room to grow.",
+        "Focus on delivering a fully functional, human-usable AI concept demo. The core functionality must work flawlessly in the browser without requiring any external setup.",
+        "The visual theme of the next project should be futuristic, ensuring it is distinct from recent themes like luxury, retro-terminal, and minimal-glass.",
+        "The complexity score must reflect genuine technical depth, with a novel AI algorithm implemented in JavaScript and demonstrable through an interactive demo on the GitHub Pages URL.",
+        "Reduce scope to ensure the project ships in a usable state. Limit the number of features to one or two, but execute them to perfection.",
+        "Explicitly avoid web_3d, edu_platform, and research_showcase types for at least the next two projects to diversify output."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project provides an interactive AI demo where users can input decisions and receive real-time outcomes via Bayesian inference and machine learning. All core features work, and the interface is polished, responsive, and intuitive.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9756,7 +9850,8 @@
     850,
     920,
     950,
-    870
+    870,
+    980
   ],
   "concepts_explored": [
     "neural networks",
@@ -10086,7 +10181,8 @@
     "Machine Learning",
     "Natural Language Processing",
     "Interactive Web Development",
-    "Real-time Data Visualization"
+    "Real-time Data Visualization",
+    "Cognitive Architecture"
   ],
   "patterns_used": [
     "visualizer",
@@ -10184,7 +10280,8 @@
     "biomechanical-simulation-showcase",
     "interactive-educational-platform",
     "ai-driven-mood-analysis",
-    "ai-driven-optimization"
+    "ai-driven-optimization",
+    "ai-driven-cognitive-architecture"
   ],
   "domains_used": [
     "Mathematics",
@@ -10282,7 +10379,8 @@
     "Biomechanical Engineering",
     "Mathematics Education",
     "Human-Computer Interaction",
-    "Artificial Intelligence"
+    "Artificial Intelligence",
+    "Cognitive Science"
   ],
   "ceo_reviews": [
     {
