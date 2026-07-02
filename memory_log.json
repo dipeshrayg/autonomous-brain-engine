@@ -23455,6 +23455,54 @@
         "dead": 2
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-07-02T00:10:40Z",
+      "attempted_at_unix": 1782951040,
+      "date": "2026-07-02",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 4 page error(s), body_empty=False.",
+      "plan_name": "quantum-topology-simulator",
+      "plan_language": "Rust, TypeScript",
+      "plan_complexity": 1100,
+      "plan_pattern": "interactive-quantum-topology-simulation",
+      "plan_domain": "Quantum Physics",
+      "plan_files_count": 4,
+      "project_type": "web_3d",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Quantum State Energy slider",
+          "expected": "Adjusts the quantum state energy so that the wavefunction rendering and edge currents visibly update"
+        },
+        {
+          "control": "Generate New Topology button",
+          "expected": "Generates a new topological structure and displays the updated surface and associated quantum states on the canvas"
+        },
+        {
+          "control": "Reset Simulation button",
+          "expected": "Resets the simulation to its initial state with the default topology and energy values"
+        },
+        {
+          "control": "Pause Simulation button",
+          "expected": "Freezes the rotation and animation of the 3D topology visualization"
+        },
+        {
+          "control": "Continue Simulation button",
+          "expected": "Resumes the paused rotation and animation of the 3D topology visualization"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "5-second usability failure: Unclear interactive utility"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 0,
+        "dead": 5
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
