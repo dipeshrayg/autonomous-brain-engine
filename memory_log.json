@@ -25819,6 +25819,26 @@
         "The expansion of type diversity and the unlocking of new types provide a solid foundation for future growth"
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-02T18:09:12Z",
+      "issued_at_unix": 1783015752,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with a focus on shallow implementations. The next project should prioritize deep-tech ambition and edge-case rigor.",
+      "concerns": [
+        "Lack of constraint solvers and formal verification",
+        "Insufficient use of information-theoretic concepts",
+        "Overemphasis on flashy UI and underemphasis on algorithmic depth"
+      ],
+      "directives": [
+        "Use the devtool project type for the next project",
+        "Implement a constraint solver using DPLL with conflict-driven clause learning",
+        "Incorporate Bayesian inference and entropy calculations",
+        "Prioritize numerical methods and correct probability calculations"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
