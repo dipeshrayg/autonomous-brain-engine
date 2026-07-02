@@ -9875,6 +9875,114 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-02",
+      "completed_at": "2026-07-02T08:13:04Z",
+      "completed_at_unix": 1782979984,
+      "name": "neon-cyber-api-visualizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-02-neon-cyber-api-visualizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-02-neon-cyber-api-visualizer/",
+      "language": "JavaScript",
+      "project_type": "api_platform",
+      "tech_stack": [
+        "Three.js",
+        "ES modules"
+      ],
+      "complexity_score": 570,
+      "concepts_demonstrated": [
+        "Interactive 3D visualization",
+        "Novel pathfinding algorithm",
+        "API documentation"
+      ],
+      "novel_concepts": [
+        "Real-time 3D pathfinding visualization",
+        "Interactive API exploration"
+      ],
+      "advancement_axis": "Technical ambition and visual spectacle",
+      "pattern": "interactive-api-visualization",
+      "domain": "Computer Science",
+      "visual_theme": "neon-cyber",
+      "complexity_justification": [
+        "Implementing a novel pathfinding algorithm with interactive 3D visualization",
+        "Utilizing Three.js for real-time rendering and user interaction",
+        "Designing an intuitive and visually appealing API documentation interface"
+      ],
+      "visual_identity": "neon-cyber theme with 3D rendering and interactive elements",
+      "safety_notes": "No active malware or exploits. Educational demo only.",
+      "file_count": 3,
+      "loc": 354,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 252,
+        "bodyHtml": 755,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Neon Cyber API Visualizer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Pathfinding Parameter: 50\nAnother Parameter: 30\n Update Visualization\nNeon Cyber API Visualizer\n\nExplore a 3D visualization of a dynamic pathfinding algorithm. Use the sliders to adjust parameters, an",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Update Visualization",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "meta-llama/llama-4-scout-17b-16e-instruct"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "pathfinding-api.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST use the `api_platform` type, as it is the least-used type with room to grow. Target a complexity score of at least 500 to ensure technical ambition.",
+        "The next project MUST implement a visually spectacular and interactive API visualization tool, using Three.js or a similar 3D framework. The theme should be 'neon-cyber' to break away from the overused 'futuristic' aesthetic.",
+        "The API platform must expose a unique algorithm or data model, such as a novel pathfinding algorithm, a cryptographic toy, or a generative design API. Complexity must come from the algorithm itself, not superficial features.",
+        "The API's function must be showcased effectively in the index.html through both interactive visualizations and robust documentation, ensuring human usability without requiring external tools or installations.",
+        "The next project must include a fully functioning live demo of the API directly on the GitHub Pages site, with all dependencies served from the esm.sh CDN or similar."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides an interactive 3D visualization with functional sliders; however, the 'Update Visualization' button does not produce visible results on the canvas, making the primary functionality incomplete.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Update Visualization Button",
+            "expected": "Trigger a clear change in the 3D visualization by fetching data from the API and rendering it onto the canvas.",
+            "actual": "No visible change occurs in the canvas after clicking the button. The visualization remains static.",
+            "fix": "Ensure `updateVisualizationWithCurrentState` properly retrieves data from `fetchPathfindingData` and updates the canvas with new 3D objects. Debug the API call and rendering logic."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -9981,7 +10089,8 @@
     950,
     870,
     980,
-    1050
+    1050,
+    570
   ],
   "concepts_explored": [
     "neural networks",
@@ -10312,7 +10421,10 @@
     "Natural Language Processing",
     "Interactive Web Development",
     "Real-time Data Visualization",
-    "Cognitive Architecture"
+    "Cognitive Architecture",
+    "Interactive 3D visualization",
+    "Novel pathfinding algorithm",
+    "API documentation"
   ],
   "patterns_used": [
     "visualizer",
@@ -10412,7 +10524,8 @@
     "ai-driven-mood-analysis",
     "ai-driven-optimization",
     "ai-driven-cognitive-architecture",
-    "ai-driven-portfolio-optimization"
+    "ai-driven-portfolio-optimization",
+    "interactive-api-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -10512,7 +10625,8 @@
     "Human-Computer Interaction",
     "Artificial Intelligence",
     "Cognitive Science",
-    "Financial Technology"
+    "Financial Technology",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
