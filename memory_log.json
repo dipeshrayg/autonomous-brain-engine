@@ -23503,6 +23503,34 @@
         "dead": 5
       },
       "final_interactive_count": 5
+    },
+    {
+      "attempted_at": "2026-07-02T02:36:32Z",
+      "attempted_at_unix": 1782959792,
+      "date": "2026-07-02",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 4 page error(s), body_empty=False.",
+      "plan_name": "crypto-pathfinder",
+      "plan_language": "JavaScript",
+      "plan_complexity": 580,
+      "plan_pattern": "interactive-api-visualization",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 3,
+      "project_type": "api_platform",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Request New Path button",
+          "expected": "Update the data visualization with new API-generated path based on slider parameters"
+        }
+      ],
+      "qa_missing_features": [],
+      "final_interaction": {
+        "tested": 3,
+        "live": 2,
+        "dead": 1
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
