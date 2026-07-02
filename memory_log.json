@@ -23531,6 +23531,42 @@
         "dead": 1
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-07-02T06:21:37Z",
+      "attempted_at_unix": 1782973297,
+      "date": "2026-07-02",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 118 page error(s), body_empty=False.",
+      "plan_name": "algorithmic-game-of-life",
+      "plan_language": "JavaScript",
+      "plan_complexity": 1051,
+      "plan_pattern": "interactive-cellular-exploration",
+      "plan_domain": "Computational Systems",
+      "plan_files_count": 5,
+      "project_type": "edu_platform",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Rule Set (Choose evolution rule)",
+          "expected": "Changing the rule set should update the grid's behavior and show a visible change in grid patterns."
+        },
+        {
+          "control": "Grid Size (Change simulation resolution)",
+          "expected": "Selecting a new grid size should rescale the simulation canvas and reinitialize the grid."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "5-second usability failure: no immediate visualization or guidance"
+        }
+      ],
+      "final_interaction": {
+        "tested": 5,
+        "live": 3,
+        "dead": 2
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
