@@ -10480,6 +10480,118 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-03",
+      "completed_at": "2026-07-03T22:11:45Z",
+      "completed_at_unix": 1783116705,
+      "name": "glitch-art-generator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-03-glitch-art-generator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-03-glitch-art-generator/",
+      "language": "JavaScript",
+      "project_type": "prank_entertainment",
+      "tech_stack": [
+        "GLSL",
+        "WebGL",
+        "JavaScript"
+      ],
+      "complexity_score": 420,
+      "concepts_demonstrated": [
+        "Procedural generation",
+        "GLSL shader art",
+        "Interactive visualization"
+      ],
+      "novel_concepts": [
+        "Glitch art generation",
+        "Real-time shader-based art"
+      ],
+      "advancement_axis": "novel use of shaders for art",
+      "pattern": "interactive-glitch-art",
+      "domain": "Digital Art",
+      "visual_theme": "neon-cyber",
+      "complexity_justification": [
+        "Real-time GLSL shader programming",
+        "Procedural generation of glitch art",
+        "Interactive parameter tuning",
+        "WebGL rendering"
+      ],
+      "visual_identity": "neon colors, cyberpunk aesthetic, glitch effects",
+      "safety_notes": "No active malware or exploits",
+      "file_count": 3,
+      "loc": 413,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 244,
+        "bodyHtml": 7255,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1024,
+          "h": 480,
+          "cssW": 1024,
+          "cssH": 480
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Glitch Art Generator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Glitch Art Generator\n\nUse the sliders to adjust the distortion intensity and animation speed. Save or share your favorite creations!\n\nIntensity — controls distortion intensity:\n0.5\nSpeed — controls an",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Generate New Art",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Save Art",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "glitch_shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be a prank_entertainment type, leveraging interactive and visually engaging elements to create a humorous or surprising experience.",
+        "Integrate GLSL shader art into the prank_entertainment project. Aim for a neon-cyber or retro-terminal theme to diversify visual styles.",
+        "Focus on tactile, immediate human usability — ensure that the project has no dead or missing interactive elements and delivers an intuitive experience without requiring external tools or installations.",
+        "The project must include algorithmic or technical depth (e.g., a procedural generation system with a twist, or real-time physics integration). Avoid trivial or overly simple concepts.",
+        "Limit scope to ensure that the project ships on time and is fully functional. Avoid unnecessary secondary features that could lead to QA rejection.",
+        "Incorporate a meaningful and shareable element in the prank_entertainment project (e.g., a unique generative output or a surprising behavior users can share with others)."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The glitch art generator functions as intended, with interactive controls updating the visual glitch effects in real-time, and the ability to save generated art is functional as described.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -10591,7 +10703,8 @@
     680,
     1080,
     920,
-    1180
+    1180,
+    420
   ],
   "concepts_explored": [
     "neural networks",
@@ -10929,7 +11042,8 @@
     "Cybernetic systems",
     "WebAssembly integration",
     "Real-time 3D visualization",
-    "Real-time code analysis"
+    "Real-time code analysis",
+    "GLSL shader art"
   ],
   "patterns_used": [
     "visualizer",
@@ -11034,7 +11148,8 @@
     "interactive-3d-simulation",
     "browser-based-developer-utility",
     "interactive-3d-portfolio-optimization",
-    "browser-based-developer-utility"
+    "browser-based-developer-utility",
+    "interactive-glitch-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -11139,7 +11254,8 @@
     "Cybernetics",
     "Software Development",
     "Financial Mathematics",
-    "Software Development"
+    "Software Development",
+    "Digital Art"
   ],
   "ceo_reviews": [
     {
