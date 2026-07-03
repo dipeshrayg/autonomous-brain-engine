@@ -10220,6 +10220,148 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-03",
+      "completed_at": "2026-07-03T06:15:39Z",
+      "completed_at_unix": 1783059339,
+      "name": "real-time-3d-portfolio-optimizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-03-real-time-3d-portfolio-optimizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-03-real-time-3d-portfolio-optimizer/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "GLSL",
+        "HTML5",
+        "CSS3"
+      ],
+      "complexity_score": 920,
+      "concepts_demonstrated": [
+        "Real-time 3D visualization",
+        "Constraint solving",
+        "Bayesian inference"
+      ],
+      "novel_concepts": [
+        "Real-time portfolio optimization using 3D visualization",
+        "Integration of GLSL editor for customization"
+      ],
+      "advancement_axis": "Real-time interactive 3D portfolio optimization with advanced numerical methods",
+      "pattern": "interactive-3d-portfolio-optimization",
+      "domain": "Financial Mathematics",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time 3D rendering of complex portfolio structures",
+        "Implementation of a constraint solver using DPLL with conflict-driven clause learning",
+        "Incorporation of Bayesian inference and entropy calculations for portfolio optimization"
+      ],
+      "visual_identity": "Deep black and champagne-gold color scheme, thin serifs, generous whitespace, silk transitions",
+      "safety_notes": "No security risks or personal data collection involved",
+      "file_count": 3,
+      "loc": 366,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 164,
+        "bodyHtml": 772,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 658,
+          "cssW": 1280,
+          "cssH": 658
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "3D Portfolio Optimizer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Welcome to the 3D Portfolio Optimizer! Customize shaders and optimize your portfolio with real-time 3D visualizations.\n\nShader Editor:\nApply Shader\nRun Optimization",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "TEXTAREA",
+              "type": "textarea",
+              "label": "// Enter GLSL shader code here...",
+              "trigger": "textarea",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Apply Shader",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Run Optimization",
+              "trigger": "click",
+              "reason": "compute button: DOM changed but no output text appeared and canvas did not change — button is cosmetic, not functional for a human"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'devtool' type, focusing on a novel and technically ambitious implementation of a browser-based developer utility with clear, functional interactivity in JavaScript on index.html.",
+        "The devtool must include a visually spectacular and distinct theme, such as 'luxury' or 'brutalist,' to break from recent patterns of futuristic and neon-cyber aesthetics.",
+        "The devtool must solve a real, challenging problem for developers (e.g., a WebAssembly debugger, shader optimization visualizer, or live GLSL editor with error visualization).",
+        "Functionality in the devtool is non-negotiable: it must be fully functional in the browser, with no dead buttons or missing features.",
+        "Push for technical depth by incorporating advanced features like real-time code parsing, live computation, or integration with external APIs for a seamless user experience.",
+        "Avoid repeating recent patterns of AI-driven or interactive API visualizations. Focus on a fresh angle, ensuring the project is not derivative of previous builds."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project offers an interactive 3D portfolio visualizer with shader customization and optimization functionalities, but critical controls like the GLSL editor and optimization button fail to produce visible or meaningful changes in the visualization, limiting its usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "GLSL Editor Submit Button",
+            "expected": "Applying the shader code via the button should visibly update the 3D visualization with new shader effects.",
+            "actual": "Pressing the 'Apply Shader' button results in no visible change in the 3D visualization, even when valid GLSL code is entered.",
+            "fix": "Ensure the GLSL shader code from the editor is correctly compiled and applied to the 3D object's material in real-time, propagating any errors to the feedback element."
+          },
+          {
+            "control": "Run Optimization Button",
+            "expected": "Clicking the 'Run Optimization' button should update the 3D visualization to reflect the optimized portfolio structure.",
+            "actual": "Pressing the button does not visibly change the 3D visualization; the mesh scaling logic appears incomplete or non-functional.",
+            "fix": "Fix the optimization algorithm to generate meaningful transformations on the 3D visualization, and ensure changes are visibly reflected in the scene."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: lacking real-time feedback and interactive clarity",
+            "why_missing": "While the page has an introductory description, the GLSL editor control and optimization button don't provide visible interactive responses when used, making it unclear what users can achieve.",
+            "fix": "Provide real-time feedback in the visualization when controls are used, and improve the on-screen instructions or augment the feedback element to help users understand the effect of the controls."
+          },
+          {
+            "feature": "Real-time portfolio visual optimization",
+            "why_missing": "Clicking the 'Run Optimization' button does not visibly update the 3D visualization with optimized portfolio data.",
+            "fix": "Ensure the optimization algorithm updates the 3D visualization meaningfully based on the processed portfolio data."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -10329,7 +10471,8 @@
     1050,
     570,
     680,
-    1080
+    1080,
+    920
   ],
   "concepts_explored": [
     "neural networks",
@@ -10665,7 +10808,8 @@
     "Novel pathfinding algorithm",
     "API documentation",
     "Cybernetic systems",
-    "WebAssembly integration"
+    "WebAssembly integration",
+    "Real-time 3D visualization"
   ],
   "patterns_used": [
     "visualizer",
@@ -10768,7 +10912,8 @@
     "ai-driven-portfolio-optimization",
     "interactive-api-visualization",
     "interactive-3d-simulation",
-    "browser-based-developer-utility"
+    "browser-based-developer-utility",
+    "interactive-3d-portfolio-optimization"
   ],
   "domains_used": [
     "Mathematics",
@@ -10871,7 +11016,8 @@
     "Financial Technology",
     "Computer Science",
     "Cybernetics",
-    "Software Development"
+    "Software Development",
+    "Financial Mathematics"
   ],
   "ceo_reviews": [
     {
