@@ -24471,6 +24471,53 @@
         "dead": 0
       },
       "final_interactive_count": 3
+    },
+    {
+      "attempted_at": "2026-07-04T04:33:39Z",
+      "attempted_at_unix": 1783139619,
+      "date": "2026-07-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 7 page error(s), body_empty=False.",
+      "plan_name": "neuro-meme-generator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 850,
+      "plan_pattern": "ai-driven-meme-generation",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 3,
+      "project_type": "social_toolkit",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Text input (id='user-input')",
+          "expected": "User input should update the meme text displayed on the canvas or trigger meme evolution dynamically."
+        },
+        {
+          "control": "Generate Meme button (id='generate-btn')",
+          "expected": "Clicking this button should generate a new meme on the canvas."
+        },
+        {
+          "control": "Style dropdown (id='image-select')",
+          "expected": "Changing the style should visibly update the meme's visual style when combined with the Generate button."
+        },
+        {
+          "control": "Reset Meme button (id='reset-btn')",
+          "expected": "Clicking this button should reset the meme text, style selection, and clear the canvas."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "5-second usability failure: No visible meme or meaningful interactivity on first load"
+        },
+        {
+          "feature": "Interactive meme evolution based on user input"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
