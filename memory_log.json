@@ -24701,6 +24701,42 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "prank_entertainment"
+    },
+    {
+      "attempted_at": "2026-07-04T14:16:14Z",
+      "attempted_at_unix": 1783174574,
+      "date": "2026-07-04",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 8 page error(s), body_empty=False.",
+      "plan_name": "neon-meme-lab",
+      "plan_language": "JavaScript",
+      "plan_complexity": 820,
+      "plan_pattern": "interactive-meme-generation",
+      "plan_domain": "Computer Science",
+      "plan_files_count": 3,
+      "project_type": "prank_entertainment",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "Generate Meme",
+          "expected": "Create and display a new animated meme using GLSL shader art"
+        },
+        {
+          "control": "Restart Animation",
+          "expected": "Restart the current animation from the beginning"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "5-second usability failure: No visible guidance for first-time users"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
