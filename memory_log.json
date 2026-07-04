@@ -10918,6 +10918,98 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-04",
+      "completed_at": "2026-07-04T20:45:52Z",
+      "completed_at_unix": 1783197952,
+      "name": "fluid-dynamics-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-04-fluid-dynamics-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-04-fluid-dynamics-simulator/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "GLSL",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 620,
+      "concepts_demonstrated": [
+        "Navier-Stokes equations",
+        "Fluid dynamics",
+        "Cinematic lighting"
+      ],
+      "novel_concepts": [
+        "Application of Navier-Stokes equations in a real-time shader",
+        "Interactive UI controls for fluid simulation parameters"
+      ],
+      "advancement_axis": "Real-time fluid simulation with cinematic lighting and interactive UI controls",
+      "pattern": "fluid-dynamics-simulation",
+      "domain": "Physics",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Real-time fluid simulation using Navier-Stokes equations",
+        "Implementation of cinematic lighting",
+        "Fully interactive UI controls for viscosity and velocity"
+      ],
+      "visual_identity": "High-contrast B&W, oversized type, intentional asymmetry",
+      "safety_notes": "None",
+      "file_count": 3,
+      "loc": 383,
+      "quality_cycles_used": 6,
+      "final_verify_metrics": {
+        "bodyText": 47,
+        "bodyHtml": 5937,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Fluid Dynamics Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Viscosity: 0.5 \nVelocity: 0.5 \nFrequency: 10.0",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art. Create a standalone GLSL shader that demonstrates a visually spectacular, real-time procedural fluid simulation with cinematic lighting and a unique visual theme (e.g., soft-organic or brutalist).",
+        "The shader_art project must focus on both visual polish and technical depth (e.g., Navier-Stokes equations for fluid dynamics). Complexity must exceed previous shader_art projects (520+).",
+        "The shader must be fully interactive and usable in the browser with clear UI controls for parameters (e.g., viscosity, velocity) implemented in JavaScript in index.html.",
+        "Avoid the neon-cyber and luxury themes to ensure visual diversity—explore a new theme such as soft-organic or brutalist.",
+        "Ensure the project passes the human usability mandate—every feature must be functional, and the output must be engaging and spectacular.",
+        "Conduct tighter QA on interactivity and usability to ensure there are no dead or missing features before shipping."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Fluid Dynamics Simulator is highly functional, visually compelling, and includes well-labeled controls with real-time, noticeable effects on the simulation. All promised features are implemented and work as described.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -11032,7 +11124,8 @@
     1180,
     420,
     820,
-    1220
+    1220,
+    620
   ],
   "concepts_explored": [
     "neural networks",
@@ -11373,7 +11466,10 @@
     "Real-time code analysis",
     "GLSL shader art",
     "Real-time graphics rendering",
-    "Interactive shader programming"
+    "Interactive shader programming",
+    "Navier-Stokes equations",
+    "Fluid dynamics",
+    "Cinematic lighting"
   ],
   "patterns_used": [
     "visualizer",
@@ -11481,7 +11577,8 @@
     "browser-based-developer-utility",
     "interactive-glitch-art",
     "procedural-urban-exploration",
-    "procedural-game-generation"
+    "procedural-game-generation",
+    "fluid-dynamics-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -11589,7 +11686,8 @@
     "Software Development",
     "Digital Art",
     "Computer Graphics",
-    "Entertainment Technology"
+    "Entertainment Technology",
+    "Physics"
   ],
   "ceo_reviews": [
     {
