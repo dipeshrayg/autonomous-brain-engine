@@ -10592,6 +10592,168 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-04",
+      "completed_at": "2026-07-04T07:41:03Z",
+      "completed_at_unix": 1783150863,
+      "name": "neon-dreamscapes",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-04-neon-dreamscapes",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-04-neon-dreamscapes/",
+      "language": "JavaScript",
+      "project_type": "social_toolkit",
+      "tech_stack": [
+        "GLSL",
+        "HTML5",
+        "CSS3",
+        "JavaScript"
+      ],
+      "complexity_score": 820,
+      "concepts_demonstrated": [
+        "Procedural content generation",
+        "Real-time graphics rendering",
+        "Interactive shader programming"
+      ],
+      "novel_concepts": [
+        "Infinite cityscape generation with varied architectural styles",
+        "Interactive shader adjustment for user-driven visual exploration"
+      ],
+      "advancement_axis": "Procedural generation and real-time shader interaction",
+      "pattern": "procedural-urban-exploration",
+      "domain": "Computer Graphics",
+      "visual_theme": "neon-cyber",
+      "complexity_justification": [
+        "Procedural generation of city layouts with varying densities and architectural styles",
+        "Real-time GLSL shader programming for dynamic lighting and texture effects",
+        "Interactive control of shader parameters for user customization",
+        "Incorporation of a sharing mechanism for generated cityscapes"
+      ],
+      "visual_identity": "Neon color palette, sharp geometry, and urban landscapes",
+      "safety_notes": "No user input is stored or transmitted; all data is generated locally.",
+      "file_count": 3,
+      "loc": 483,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 311,
+        "bodyHtml": 7631,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Neon Dreamscapes",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Neon Dreamscapes\n\nExplore and customize a neon-lit cityscape in real-time!\n\nControls:\n\nMove mouse: Adjust lighting and texture effects.\n\nCity Density (visual density of buildings):\nSparse\nDense\n\nCity ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Sparse\nDense",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Traditional\nModern\nFuturistic",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "50",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Generate Shareable Link",
+              "trigger": "click",
+              "reason": "compute button: DOM changed but no output text appeared and canvas did not change — button is cosmetic, not functional for a human"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project MUST be a prank_entertainment type, leveraging interactive and visually engaging elements to create a humorous or surprising experience.",
+        "Integrate GLSL shader art into the prank_entertainment project. Aim for a neon-cyber or retro-terminal theme to diversify visual styles.",
+        "Focus on tactile, immediate human usability — ensure that the project has no dead or missing interactive elements and delivers an intuitive experience without requiring external tools or installations.",
+        "The project must include algorithmic or technical depth (e.g., a procedural generation system with a twist, or real-time physics integration). Avoid trivial or overly simple concepts.",
+        "Limit scope to ensure that the project ships on time and is fully functional. Avoid unnecessary secondary features that could lead to QA rejection.",
+        "Incorporate a meaningful and shareable element in the prank_entertainment project (e.g., a unique generative output or a surprising behavior users can share with others)."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The neon-dreamscapes project generates a visually appealing and interactive cityscape in real-time using WebGL shaders. However, several controls are non-functional or do not produce observable state changes, limiting the overall usability and interactivity of the project.",
+        "model": "gpt-4o",
+        "dead_controls_count": 4,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "City Density (visual density of buildings) dropdown",
+            "expected": "Change the density of buildings in the cityscape, resulting in a visible update to the scene.",
+            "actual": "No visible changes occur on the canvas when this control is adjusted.",
+            "fix": "Ensure the 'density' shader uniform variable is updated correctly and triggers a corresponding visual update when the control is changed."
+          },
+          {
+            "control": "City Style (architecture style) dropdown",
+            "expected": "Change the architectural style of the cityscape, resulting in a visible update to the scene.",
+            "actual": "No visible changes occur on the canvas when this control is adjusted.",
+            "fix": "Ensure the 'cityStyle' shader uniform variable is updated correctly and triggers a corresponding visual update when the control is changed."
+          },
+          {
+            "control": "Zoom Level (scale of view) slider",
+            "expected": "Adjust the zoom level, resulting in a visible change in the scale of the cityscape.",
+            "actual": "No visible changes occur on the canvas when this control is adjusted.",
+            "fix": "Ensure the 'zoom' shader uniform variable is updated correctly and triggers a corresponding visual update when the slider is adjusted."
+          },
+          {
+            "control": "Generate Shareable Link button",
+            "expected": "Generate a shareable link with the current cityscape parameters and display it in the UI.",
+            "actual": "Clicking the button displays a link, but the link does not work, and parameters are not passed correctly.",
+            "fix": "Ensure the shareable link accurately contains the current parameters (density, style, zoom) and that these parameters are properly applied when the link is loaded."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No compelling visual on first load",
+            "why_missing": "The cityscape requires 3 seconds for the title overlay to disappear, delaying the initial impression and leaving a blank screen initially.",
+            "fix": "Add an immediate animated background or an interactive element visible behind the title overlay to engage the user instantly."
+          },
+          {
+            "feature": "Interactive controls not functioning as intended",
+            "why_missing": "All tested controls (density, style, and zoom) fail to produce observable changes, and the shareable link feature does not function correctly.",
+            "fix": "Ensure control events are properly wired to update the WebGL shader parameters and implement working logic for shareable links."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -10704,7 +10866,8 @@
     1080,
     920,
     1180,
-    420
+    420,
+    820
   ],
   "concepts_explored": [
     "neural networks",
@@ -11043,7 +11206,9 @@
     "WebAssembly integration",
     "Real-time 3D visualization",
     "Real-time code analysis",
-    "GLSL shader art"
+    "GLSL shader art",
+    "Real-time graphics rendering",
+    "Interactive shader programming"
   ],
   "patterns_used": [
     "visualizer",
@@ -11149,7 +11314,8 @@
     "browser-based-developer-utility",
     "interactive-3d-portfolio-optimization",
     "browser-based-developer-utility",
-    "interactive-glitch-art"
+    "interactive-glitch-art",
+    "procedural-urban-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -11255,7 +11421,8 @@
     "Software Development",
     "Financial Mathematics",
     "Software Development",
-    "Digital Art"
+    "Digital Art",
+    "Computer Graphics"
   ],
   "ceo_reviews": [
     {
