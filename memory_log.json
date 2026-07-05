@@ -11010,6 +11010,161 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-05",
+      "completed_at": "2026-07-05T05:43:09Z",
+      "completed_at_unix": 1783230189,
+      "name": "procedural-architecture-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-05-procedural-architecture-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-05-procedural-architecture-explorer/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "GLSL",
+        "WebGL"
+      ],
+      "complexity_score": 850,
+      "concepts_demonstrated": [
+        "Procedural generation",
+        "3D rendering",
+        "Graph algorithms"
+      ],
+      "novel_concepts": [
+        "Procedural architecture generation",
+        "Real-time 3D exploration"
+      ],
+      "advancement_axis": "Technical depth and visual polish",
+      "pattern": "procedural-3d-exploration",
+      "domain": "Computer Science",
+      "visual_theme": "cinematic",
+      "complexity_justification": [
+        "Procedural generation of 3D architecture using noise functions and graph algorithms",
+        "Real-time rendering of generated buildings using Three.js and WebGL",
+        "Implementation of orbit controls for user navigation and inspection"
+      ],
+      "visual_identity": "Desaturated color palette, film-grain texture, and dramatic contrast",
+      "safety_notes": "No known safety concerns",
+      "file_count": 3,
+      "loc": 392,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 528,
+        "bodyHtml": 3543,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 300,
+          "h": 150,
+          "cssW": 300,
+          "cssH": 150
+        },
+        "interactiveCount": 4,
+        "scriptCount": 4,
+        "title": "Procedural Architecture Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Zoom: 1.0\nAdjusts the camera's zoom level in the 3D scene.\nBuilding Count: 50\nChanges the number of buildings in the 3D scene.\n Regenerate Generates a new set of procedural buildings. Reset View Reset",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "1",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "50",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Regenerate",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset View",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art. Create a standalone GLSL shader that demonstrates a visually spectacular, real-time procedural fluid simulation with cinematic lighting and a unique visual theme (e.g., soft-organic or brutalist).",
+        "The shader_art project must focus on both visual polish and technical depth (e.g., Navier-Stokes equations for fluid dynamics). Complexity must exceed previous shader_art projects (520+).",
+        "The shader must be fully interactive and usable in the browser with clear UI controls for parameters (e.g., viscosity, velocity) implemented in JavaScript in index.html.",
+        "Avoid the neon-cyber and luxury themes to ensure visual diversity—explore a new theme such as soft-organic or brutalist.",
+        "Ensure the project passes the human usability mandate—every feature must be functional, and the output must be engaging and spectacular.",
+        "Conduct tighter QA on interactivity and usability to ensure there are no dead or missing features before shipping."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project loads a 3D scene with orbit controls and interactive elements for navigation and editing, but key controls such as zoom and building regeneration fail to show observable effects, limiting the usability of the interactive features.",
+        "model": "gpt-4o",
+        "dead_controls_count": 4,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Zoom slider",
+            "expected": "Zoom slider updates the camera's zoom level and reflects changes in the 3D scene.",
+            "actual": "No observable change in the 3D scene when zoom slider is adjusted.",
+            "fix": "Ensure the `updateZoom()` function is properly updating the scene rendering with the new camera zoom settings."
+          },
+          {
+            "control": "Building Count slider",
+            "expected": "Changing the slider dynamically adjusts the number of buildings in the 3D scene.",
+            "actual": "No changes are visible in the number of buildings in the scene when the slider is adjusted.",
+            "fix": "Ensure the `generateArchitecture()` function is being correctly triggered and processed to reflect building changes on slider input."
+          },
+          {
+            "control": "Regenerate button",
+            "expected": "Clicking the Regenerate button generates a new set of buildings in the 3D scene.",
+            "actual": "Clicking the Regenerate button does not produce any visible changes to the scene.",
+            "fix": "Verify if the `generateArchitecture()` function is being called correctly and rendering updates are being triggered."
+          },
+          {
+            "control": "Reset View button",
+            "expected": "Clicking the Reset View button resets the camera to its initial position and refreshes the 3D scene with default values.",
+            "actual": "No visible change in the camera view or 3D scene when the Reset View button is clicked.",
+            "fix": "Ensure `resetCameraView()` and `generateArchitecture()` are invoked properly with the default values, and renderer updates are triggered correctly."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: no immediate visual feedback",
+            "why_missing": "The canvas loads a static 3D scene with no clear indication of interactivity or animation on load.",
+            "fix": "Add an initial animation or auto-rotate effect for the 3D scene and display a brief description of controls prominently."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -11125,7 +11280,8 @@
     420,
     820,
     1220,
-    620
+    620,
+    850
   ],
   "concepts_explored": [
     "neural networks",
@@ -11469,7 +11625,8 @@
     "Interactive shader programming",
     "Navier-Stokes equations",
     "Fluid dynamics",
-    "Cinematic lighting"
+    "Cinematic lighting",
+    "Graph algorithms"
   ],
   "patterns_used": [
     "visualizer",
@@ -11578,7 +11735,8 @@
     "interactive-glitch-art",
     "procedural-urban-exploration",
     "procedural-game-generation",
-    "fluid-dynamics-simulation"
+    "fluid-dynamics-simulation",
+    "procedural-3d-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -11687,7 +11845,8 @@
     "Digital Art",
     "Computer Graphics",
     "Entertainment Technology",
-    "Physics"
+    "Physics",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
