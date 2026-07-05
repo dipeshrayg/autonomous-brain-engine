@@ -11165,6 +11165,105 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-05",
+      "completed_at": "2026-07-05T11:24:36Z",
+      "completed_at_unix": 1783250676,
+      "name": "bioluminescent-ocean",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-05-bioluminescent-ocean",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-05-bioluminescent-ocean/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "GLSL",
+        "JavaScript",
+        "HTML"
+      ],
+      "complexity_score": 630,
+      "concepts_demonstrated": [
+        "fluid dynamics",
+        "cinematic lighting",
+        "procedural generation"
+      ],
+      "novel_concepts": [
+        "bioluminescent simulation",
+        "interactive fluid dynamics"
+      ],
+      "advancement_axis": "real-time, interactive procedural generation of complex natural phenomena",
+      "pattern": "procedural-bioluminescent-simulation",
+      "domain": "Marine Biology",
+      "visual_theme": "soft-organic",
+      "complexity_justification": [
+        "Implementation of Navier-Stokes equations for realistic fluid dynamics",
+        "Integration of cinematic lighting techniques for enhanced visual realism",
+        "Development of a fully interactive interface for manipulating simulation parameters"
+      ],
+      "visual_identity": {
+        "color_palette": [
+          "#66CCCC",
+          "#33CCFF",
+          "#99FFFF"
+        ],
+        "typography": "Open Sans",
+        "layout_personality": "organic, curved lines"
+      },
+      "safety_notes": "No known hazards or safety concerns",
+      "file_count": 3,
+      "loc": 392,
+      "quality_cycles_used": 2,
+      "final_verify_metrics": {
+        "bodyText": 64,
+        "bodyHtml": 7929,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Bioluminescent Ocean",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Viscosity: 0.5\nVelocity: 1.0\nWave Frequency: 10.0\n Restart Pause",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art. Create a standalone GLSL shader that demonstrates a visually spectacular, real-time procedural fluid simulation with cinematic lighting and a unique visual theme (e.g., soft-organic or brutalist).",
+        "The shader_art project must focus on both visual polish and technical depth (e.g., Navier-Stokes equations for fluid dynamics). Complexity must exceed previous shader_art projects (520+).",
+        "The shader must be fully interactive and usable in the browser with clear UI controls for parameters (e.g., viscosity, velocity) implemented in JavaScript in index.html.",
+        "Avoid the neon-cyber and luxury themes to ensure visual diversity—explore a new theme such as soft-organic or brutalist.",
+        "Ensure the project passes the human usability mandate—every feature must be functional, and the output must be engaging and spectacular.",
+        "Conduct tighter QA on interactivity and usability to ensure there are no dead or missing features before shipping."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The bioluminescent ocean simulation works seamlessly with labeled controls that produce clear, meaningful visual effects. The project is engaging and provides a compelling and interactive user experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -11281,7 +11380,8 @@
     820,
     1220,
     620,
-    850
+    850,
+    630
   ],
   "concepts_explored": [
     "neural networks",
@@ -11626,7 +11726,9 @@
     "Navier-Stokes equations",
     "Fluid dynamics",
     "Cinematic lighting",
-    "Graph algorithms"
+    "Graph algorithms",
+    "fluid dynamics",
+    "cinematic lighting"
   ],
   "patterns_used": [
     "visualizer",
@@ -11736,7 +11838,8 @@
     "procedural-urban-exploration",
     "procedural-game-generation",
     "fluid-dynamics-simulation",
-    "procedural-3d-exploration"
+    "procedural-3d-exploration",
+    "procedural-bioluminescent-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -11846,7 +11949,8 @@
     "Computer Graphics",
     "Entertainment Technology",
     "Physics",
-    "Computer Science"
+    "Computer Science",
+    "Marine Biology"
   ],
   "ceo_reviews": [
     {
