@@ -11264,6 +11264,109 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-05",
+      "completed_at": "2026-07-05T17:16:53Z",
+      "completed_at_unix": 1783271813,
+      "name": "procedural-ecosystem-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-05-procedural-ecosystem-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-05-procedural-ecosystem-simulator/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "GLSL",
+        "JavaScript"
+      ],
+      "complexity_score": 950,
+      "concepts_demonstrated": [
+        "Procedural content generation",
+        "Physics-based simulations",
+        "Real-time data visualization",
+        "Genetic algorithms for species adaptation"
+      ],
+      "novel_concepts": [
+        "Ecosystem modeling with emergent behavior",
+        "Interactive species distribution visualization"
+      ],
+      "advancement_axis": "Integration of procedural content generation, physics-based simulations, and genetic algorithms to model complex ecosystem dynamics",
+      "pattern": "procedural-ecosystem-simulation",
+      "domain": "Ecological Modeling",
+      "visual_theme": "cinematic",
+      "complexity_justification": [
+        "Real-time 3D rendering with physics-based simulations",
+        "Procedural terrain generation using midpoint displacement",
+        "Species adaptation and evolution modeling using genetic algorithms",
+        "Interactive data visualization with real-time species distribution updates"
+      ],
+      "visual_identity": {
+        "color_palette": [
+          "#3498db",
+          "#2ecc71",
+          "#9b59b6"
+        ],
+        "typography": "Open Sans",
+        "layout": "Responsive grid system"
+      },
+      "safety_notes": "No known hazards or warnings associated with this project",
+      "file_count": 4,
+      "loc": 578,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 327,
+        "bodyHtml": 5532,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 5,
+        "title": "Procedural Ecosystem Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Terrain Size:  50\nComplexity:  5\nSpecies Count:  50\nMutation Rate:  0.1\nWelcome to the Procedural Ecosystem Simulator! Use the sliders above to control the size and complexity of the terrain, as well ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "terrain.js": "gpt-4o",
+          "species.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art. Create a standalone GLSL shader that demonstrates a visually spectacular, real-time procedural fluid simulation with cinematic lighting and a unique visual theme (e.g., soft-organic or brutalist).",
+        "The shader_art project must focus on both visual polish and technical depth (e.g., Navier-Stokes equations for fluid dynamics). Complexity must exceed previous shader_art projects (520+).",
+        "The shader must be fully interactive and usable in the browser with clear UI controls for parameters (e.g., viscosity, velocity) implemented in JavaScript in index.html.",
+        "Avoid the neon-cyber and luxury themes to ensure visual diversity—explore a new theme such as soft-organic or brutalist.",
+        "Ensure the project passes the human usability mandate—every feature must be functional, and the output must be engaging and spectacular.",
+        "Conduct tighter QA on interactivity and usability to ensure there are no dead or missing features before shipping."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The procedural ecosystem simulator delivers a highly interactive and visually compelling experience where users can control terrain generation and species interaction parameters in real time. The visual output updates meaningfully, and all controls are functional and sync properly with the visualization.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -11381,7 +11484,8 @@
     1220,
     620,
     850,
-    630
+    630,
+    950
   ],
   "concepts_explored": [
     "neural networks",
@@ -11728,7 +11832,8 @@
     "Cinematic lighting",
     "Graph algorithms",
     "fluid dynamics",
-    "cinematic lighting"
+    "cinematic lighting",
+    "Genetic algorithms for species adaptation"
   ],
   "patterns_used": [
     "visualizer",
@@ -11839,7 +11944,8 @@
     "procedural-game-generation",
     "fluid-dynamics-simulation",
     "procedural-3d-exploration",
-    "procedural-bioluminescent-simulation"
+    "procedural-bioluminescent-simulation",
+    "procedural-ecosystem-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -11950,7 +12056,8 @@
     "Entertainment Technology",
     "Physics",
     "Computer Science",
-    "Marine Biology"
+    "Marine Biology",
+    "Ecological Modeling"
   ],
   "ceo_reviews": [
     {
