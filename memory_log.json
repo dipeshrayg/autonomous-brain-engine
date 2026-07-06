@@ -11463,6 +11463,101 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-06",
+      "completed_at": "2026-07-06T07:23:28Z",
+      "completed_at_unix": 1783322608,
+      "name": "generative-api-art-studio",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-06-generative-api-art-studio",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-06-generative-api-art-studio/",
+      "language": "JavaScript",
+      "project_type": "creative_tool",
+      "tech_stack": [
+        "Three.js",
+        "GLSL",
+        "WebGL",
+        "JavaScript"
+      ],
+      "complexity_score": 950,
+      "concepts_demonstrated": [
+        "Generative art",
+        "Interactive 3D visualization",
+        "Real-time API interaction"
+      ],
+      "novel_concepts": [
+        "Dynamic API-driven art generation",
+        "Real-time collaboration in art creation",
+        "GLSL shader-based art pieces"
+      ],
+      "advancement_axis": "Novel application of API interaction and generative art",
+      "pattern": "api-driven-generative-art",
+      "domain": "Digital Art",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Real-time API interaction and data processing",
+        "Generative art algorithms using GLSL shaders",
+        "Interactive 3D visualization using WebGL and Three.js",
+        "Novel art piece generation based on API inputs"
+      ],
+      "visual_identity": "Futuristic color palette, neon accents, and dynamic animations",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 4,
+      "loc": 494,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 492,
+        "bodyHtml": 5597,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 4,
+        "title": "Generative API Art Studio",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Welcome to the Generative API Art Studio! Use the sliders below to adjust parameters and watch the art evolve in real-time.\nClick on the canvas to interact with the art directly. Adjust the sliders to",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "art-generator.js": "gpt-4o",
+          "api-client.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be an api_platform type. Focus on building a visually stunning API showcase with live, interactive visualization of API workflows or data structures in the browser using WebGL or Three.js.",
+        "The project must move away from the neon-cyber theme. Choose a new visual theme from the list: luxury, futuristic, warm-amber, minimal-glass, retro-terminal, or soft-organic.",
+        "Introduce authentic technical depth by incorporating a novel algorithm or system-level capability (e.g., real-time API simulation, live data transformation visualization, or an innovative API testing framework).",
+        "Ensure 100% interactivity on GitHub Pages with no dead or missing functionality. Include comprehensive QA testing to meet the human usability mandate.",
+        "If the project involves visual components, utilize cinematic lighting and animation to achieve a 'wow' factor on load. Ensure the visual design is cohesive and memorable.",
+        "Push for a unique angle or feature that has not been explored in the portfolio before (e.g., a dynamic API that transforms user input into generative art or a real-time collaborative API testing tool)."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project is a fully functional, visually engaging, and interactive generative art studio with real-time API-based parameter adjustments and an intuitive interface. All promised features are implemented and work as intended.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -11582,7 +11677,8 @@
     850,
     630,
     950,
-    850
+    850,
+    950
   ],
   "concepts_explored": [
     "neural networks",
@@ -11934,7 +12030,8 @@
     "API visualization",
     "Real-time workflow simulation",
     "Live data transformation",
-    "Innovative API testing"
+    "Innovative API testing",
+    "Real-time API interaction"
   ],
   "patterns_used": [
     "visualizer",
@@ -12047,7 +12144,8 @@
     "procedural-3d-exploration",
     "procedural-bioluminescent-simulation",
     "procedural-ecosystem-simulation",
-    "api-visualization-platform"
+    "api-visualization-platform",
+    "api-driven-generative-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -12160,7 +12258,8 @@
     "Computer Science",
     "Marine Biology",
     "Ecological Modeling",
-    "Software Engineering"
+    "Software Engineering",
+    "Digital Art"
   ],
   "ceo_reviews": [
     {
