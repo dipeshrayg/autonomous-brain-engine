@@ -26094,6 +26094,53 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "api_platform"
+    },
+    {
+      "attempted_at": "2026-07-07T10:50:59Z",
+      "attempted_at_unix": 1783421459,
+      "date": "2026-07-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=non_functional, 2 page error(s), body_empty=False.",
+      "plan_name": "hierarchical-genome-explorer",
+      "plan_language": "Python",
+      "plan_complexity": 1400,
+      "plan_pattern": "interactive-3d-genomic-exploration",
+      "plan_domain": "Bioinformatics",
+      "plan_files_count": 4,
+      "project_type": "research_showcase",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "query input",
+          "expected": "Processed queries should update the 3D visualization with new data based on the query."
+        },
+        {
+          "control": "Run Query button",
+          "expected": "Clicking the button should trigger a backend query and update the 3D visualization with data matching the query."
+        },
+        {
+          "control": "Color picker",
+          "expected": "Changing the color should update the color of displayed 3D objects in the visualization."
+        },
+        {
+          "control": "Mesh size slider",
+          "expected": "Changing the slider should update the size of the 3D objects displayed in the visualization."
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "3D visualization updates in real-time based on user queries"
+        },
+        {
+          "feature": "5-second usability failure: No on-screen visualization change on first load"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 0,
+        "dead": 4
+      },
+      "final_interactive_count": 4
     }
   ],
   "cso_reviews": [
