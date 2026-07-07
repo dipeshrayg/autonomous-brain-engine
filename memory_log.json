@@ -11963,6 +11963,166 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-07",
+      "completed_at": "2026-07-07T16:12:29Z",
+      "completed_at_unix": 1783440749,
+      "name": "research-insights-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-07-research-insights-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-07-research-insights-explorer/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Three.js",
+        "GLSL"
+      ],
+      "complexity_score": 1200,
+      "concepts_demonstrated": [
+        "Data visualization",
+        "Generative art",
+        "Shader art",
+        "3D rendering",
+        "Hierarchical clustering",
+        "Graph traversal"
+      ],
+      "novel_concepts": [
+        "Novel algorithm for dynamic data visualization",
+        "Combining cinematic themes with generative art and data visualization"
+      ],
+      "advancement_axis": "Incorporating cinematic themes and generative art into data visualization",
+      "pattern": "research-insights-exploration",
+      "domain": "Information Science",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Implementing a novel algorithm for dynamic data visualization",
+        "Incorporating shader art and 3D elements for visual ambition",
+        " Designing a highly interactive front-end interface for user engagement"
+      ],
+      "visual_identity": "Luxury theme with deep black and champagne gold color scheme, thin serifs, and generous whitespace",
+      "safety_notes": "No external tools or dead buttons are used in the project",
+      "file_count": 3,
+      "loc": 348,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 62,
+        "bodyHtml": 961,
+        "canvasCount": 2,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1920,
+          "h": 1080,
+          "cssW": 1920,
+          "cssH": 1080
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Research Insights Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Research Insights Explorer\nZoom In\nZoom Out\nPan Left\nPan Right",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Zoom In",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Zoom Out",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pan Left",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pan Right",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type 'database_showcase' to expand into an underrepresented and recommended domain, with a focus on creating a visually spectacular, interactive data exploration tool.",
+        "The database_showcase must implement a highly interactive front-end interface using cinematic themes that combine generative art with data visualization. This is non-negotiable.",
+        "The database_showcase must include a novel algorithmic component for visualizing large datasets dynamically (e.g., hierarchical clustering, graph traversal, or time-series exploration).",
+        "Shader art or 3D must be incorporated into the database_showcase to ensure visual ambition — this is to avoid falling back on uninspired table or chart-based designs.",
+        "Architect must avoid reusing themes from recent projects. Move away from 'futuristic' and 'cinematic' — explore a new visual theme such as 'retro-terminal' or 'luxury'.",
+        "The database_showcase must be fully functional and human-usable within the GitHub Pages interface, with no reliance on external tools or dead buttons."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides a visually appealing 3D visualization with functional zoom and pan controls. However, these controls lack noticeable visual feedback when used, diminishing the user's interactive experience. The project does show a spinning torus on load, but the lack of immediate cause-effect feedback from controls limits its full usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 4,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Zoom In",
+            "expected": "Zoom level changes and visualization responds by visibly adjusting the camera perspective closer to the 3D object.",
+            "actual": "Zoom level changes in state, but there is no observable zoom effect in the visualization.",
+            "fix": "Ensure the camera position updates visibly when the zoom level changes."
+          },
+          {
+            "control": "Zoom Out",
+            "expected": "Zoom level changes and visualization responds by visibly adjusting the camera perspective farther from the 3D object.",
+            "actual": "Zoom level changes in state, but there is no observable zoom effect in the visualization.",
+            "fix": "Ensure the camera position updates visibly when the zoom level changes."
+          },
+          {
+            "control": "Pan Left",
+            "expected": "Pan position changes and visualization responds by visibly shifting the camera to the left.",
+            "actual": "Pan position changes in state, but there is no observable change in the visualization.",
+            "fix": "Ensure the camera position updates visibly when the pan position changes."
+          },
+          {
+            "control": "Pan Right",
+            "expected": "Pan position changes and visualization responds by visibly shifting the camera to the right.",
+            "actual": "Pan position changes in state, but there is no observable change in the visualization.",
+            "fix": "Ensure the camera position updates visibly when the pan position changes."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No visible text describing purpose or controls",
+            "why_missing": "While the header title provides the name of the project, there is no description or indication of the purpose of the project or the effects of the controls on the visualization.",
+            "fix": "Add a 1-2 sentence description below the header or near the controls to explain the purpose of the project and guidance on how to use it."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -12087,7 +12247,8 @@
     1280,
     1300,
     1050,
-    1400
+    1400,
+    1200
   ],
   "concepts_explored": [
     "neural networks",
@@ -12448,7 +12609,9 @@
     "Data Visualization",
     "Interactive Exploration",
     "Shader Art",
-    "3D Rendering"
+    "3D Rendering",
+    "Shader art",
+    "Graph traversal"
   ],
   "patterns_used": [
     "visualizer",
@@ -12566,7 +12729,8 @@
     "interactive-api-visualization",
     "database-exploration-platform",
     "retro-ai-interaction",
-    "interactive-educational-experience"
+    "interactive-educational-experience",
+    "research-insights-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -12684,7 +12848,8 @@
     "Computer Networks",
     "Computer Science",
     "Artificial Intelligence",
-    "Data Science"
+    "Data Science",
+    "Information Science"
   ],
   "ceo_reviews": [
     {
