@@ -11857,6 +11857,112 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-07",
+      "completed_at": "2026-07-07T10:38:59Z",
+      "completed_at_unix": 1783420739,
+      "name": "edu-platform-prototype",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-07-edu-platform-prototype",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-07-edu-platform-prototype/",
+      "language": "JavaScript",
+      "project_type": "edu_platform",
+      "tech_stack": [
+        "Three.js",
+        " WebGL",
+        "GLSL",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 1400,
+      "concepts_demonstrated": [
+        "Data Visualization",
+        "Interactive Exploration",
+        "Shader Art",
+        "3D Rendering"
+      ],
+      "novel_concepts": [
+        "Novel Algorithmic Component",
+        "User-Friendly Interface for Data Exploration"
+      ],
+      "advancement_axis": "Combining Data Exploration and Visualization with Interactive Shader Art and 3D Elements",
+      "pattern": "interactive-educational-experience",
+      "domain": "Data Science",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Implementing a novel algorithm for dynamic data visualization",
+        "Incorporating shader art and 3D elements for visual ambition",
+        "Developing a user-friendly interface for interactive data exploration"
+      ],
+      "visual_identity": "Luxury theme with gold accents, minimalist design, and premium typography",
+      "safety_notes": "No external dependencies or potential security vulnerabilities",
+      "file_count": 4,
+      "loc": 351,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 67,
+        "bodyHtml": 1730,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 3,
+        "title": "Edu Platform Prototype",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Parameter:  50\nToggle 3D Rendering\nReset Parameters\nPause Animation",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type 'database_showcase' to expand into an underrepresented and recommended domain, with a focus on creating a visually spectacular, interactive data exploration tool.",
+        "The database_showcase must implement a highly interactive front-end interface using cinematic themes that combine generative art with data visualization. This is non-negotiable.",
+        "The database_showcase must include a novel algorithmic component for visualizing large datasets dynamically (e.g., hierarchical clustering, graph traversal, or time-series exploration).",
+        "Shader art or 3D must be incorporated into the database_showcase to ensure visual ambition — this is to avoid falling back on uninspired table or chart-based designs.",
+        "Architect must avoid reusing themes from recent projects. Move away from 'futuristic' and 'cinematic' — explore a new visual theme such as 'retro-terminal' or 'luxury'.",
+        "The database_showcase must be fully functional and human-usable within the GitHub Pages interface, with no reliance on external tools or dead buttons."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides interactive 3D rendering and parameter controls with a luxury-themed UI, but suffers from missing descriptions for controls and functionality, which hampers immediate onboarding and usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 2,
+        "dead_controls": [],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No on-screen description",
+            "why_missing": "There is no concise on-screen text or title that explains the project’s purpose or functionality. Users must experiment to understand the purpose of the controls and visualization.",
+            "fix": "Add a brief, visible description on the interface explaining what the project does and how the user can interact with it."
+          },
+          {
+            "feature": "Unlabeled control effects",
+            "why_missing": "Control labels such as 'Parameter' do not clarify their visual effects, and buttons like 'Pause Animation' lack contextual clarification about what animation is being paused or resumed.",
+            "fix": "Update the control labels to describe their visual effects (e.g., 'Parameter — Affects Shader Glow Intensity', 'Pause Animation — Stops Shader Motion'). Add a brief tooltip or inline description where necessary."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -11980,7 +12086,8 @@
     950,
     1280,
     1300,
-    1050
+    1050,
+    1400
   ],
   "concepts_explored": [
     "neural networks",
@@ -12337,7 +12444,11 @@
     "API optimization",
     "Hierarchical clustering",
     "Interactive front-end interface",
-    "Information Retrieval"
+    "Information Retrieval",
+    "Data Visualization",
+    "Interactive Exploration",
+    "Shader Art",
+    "3D Rendering"
   ],
   "patterns_used": [
     "visualizer",
@@ -12454,7 +12565,8 @@
     "api-driven-generative-art",
     "interactive-api-visualization",
     "database-exploration-platform",
-    "retro-ai-interaction"
+    "retro-ai-interaction",
+    "interactive-educational-experience"
   ],
   "domains_used": [
     "Mathematics",
@@ -12571,7 +12683,8 @@
     "Digital Art",
     "Computer Networks",
     "Computer Science",
-    "Artificial Intelligence"
+    "Artificial Intelligence",
+    "Data Science"
   ],
   "ceo_reviews": [
     {
