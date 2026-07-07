@@ -26330,6 +26330,46 @@
         "dead": 4
       },
       "final_interactive_count": 4
+    },
+    {
+      "attempted_at": "2026-07-07T21:30:46Z",
+      "attempted_at_unix": 1783459846,
+      "date": "2026-07-07",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=partially_usable, 12 page error(s), body_empty=False.",
+      "plan_name": "meme-forge",
+      "plan_language": "JavaScript",
+      "plan_complexity": 950,
+      "plan_pattern": "collaborative-meme-generation",
+      "plan_domain": "Digital Media",
+      "plan_files_count": 3,
+      "project_type": "social_toolkit",
+      "qa_verdict": "partially_usable",
+      "qa_dead_controls": [
+        {
+          "control": "meme template selector",
+          "expected": "Change the displayed meme template on the canvas"
+        },
+        {
+          "control": "text overlay input",
+          "expected": "Update and display the text overlay on the canvas in real-time"
+        },
+        {
+          "control": "font size range slider",
+          "expected": "Adjust the size of the text overlay on the canvas"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "real-time collaboration"
+        }
+      ],
+      "final_interaction": {
+        "tested": 3,
+        "live": 0,
+        "dead": 3
+      },
+      "final_interactive_count": 3
     }
   ],
   "cso_reviews": [
