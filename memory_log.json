@@ -12533,6 +12533,136 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-08",
+      "completed_at": "2026-07-08T22:17:34Z",
+      "completed_at_unix": 1783549054,
+      "name": "modular-fractal-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-08-modular-fractal-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-08-modular-fractal-explorer/",
+      "language": "JavaScript",
+      "project_type": "typescript_app",
+      "tech_stack": [
+        "JavaScript",
+        "ESM imports",
+        "HTML5 Canvas"
+      ],
+      "complexity_score": 1600,
+      "concepts_demonstrated": [
+        "Real-time audio processing",
+        "Procedural generation",
+        "Interactive visualization",
+        "Modular JavaScript code structure"
+      ],
+      "novel_concepts": [
+        "Real-time audio-driven fractal generation",
+        "Interactive exploration of fractal geometry"
+      ],
+      "advancement_axis": "novel application of real-time audio visualization to fractal generation",
+      "pattern": "interactive-generative-art",
+      "domain": "Mathematics",
+      "visual_theme": "neon-cyber",
+      "complexity_justification": [
+        "Real-time audio visualization with Web Audio API",
+        "Procedural generation of fractals using iterative algorithms",
+        "Interactive controls with live updates using requestAnimationFrame",
+        "Modular code structure with ESM imports for maintainability"
+      ],
+      "visual_identity": "neon-cyber theme with bright colors and futuristic typography",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 4,
+      "loc": 476,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 568,
+        "bodyHtml": 4909,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 640,
+          "cssW": 1280,
+          "cssH": 640
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Modular Fractal Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Modular Fractal Explorer\nExplore the beauty of fractals! Use the controls below to adjust the fractal detail, colors, and patterns in real-time. Enjoy an interactive audio-visual experience.\nFractal D",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Randomize Fractal",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "color",
+              "label": "#00ffcc",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "fractal-generator.js": "gpt-4o",
+          "audio-visualizer.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a typescript_app, as it is underutilized and has significant room to grow.",
+        "The chosen typescript_app must feature a distinct visual theme not used recently — consider 'brutalist' or 'neon-cyber' for contrast.",
+        "The project must include a novel and ambitious algorithmic approach, such as real-time audio visualization, procedural generation, or physics simulation, implemented directly in JavaScript.",
+        "Ensure the project is fully functional and does not have dead or missing core functionality, particularly for interactive elements.",
+        "Avoid reusing recent themes or patterns — the output must be unpredictable and distinct from the previous projects.",
+        "The architectural design must be vetted to prevent failures during QA, focusing on delivering a polished and functional final product."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project offers a visually engaging experience with a functional fractal generator and audio visualization, but some controls are non-functional or lack meaningful output, and improvements are needed for better usability and coherence.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "<button id='randomize-fractal'>",
+            "expected": "Fractal pattern changes randomly on click",
+            "actual": "No observable state change or visual response. 'state.fractalParams' updates, but 'renderFractal' does not reflect changes.",
+            "fix": "Ensure 'generateRandomParams()' produces valid and meaningful parameters, and that 'renderFractal()' fully processes them for visual changes."
+          },
+          {
+            "control": "<input type='color' id='fractal-color'>",
+            "expected": "Fractal color updates dynamically on input change",
+            "actual": "Fractal color does not visually update when a new color is selected.",
+            "fix": "Ensure the 'renderFractal' function uses 'state.color' to update the fractal rendering with the selected color."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No clear activity on initial load",
+            "why_missing": "The canvas and controls load correctly, but the fractal and audio visualization do not render automatically on first load.",
+            "fix": "Add a default animation or initial fractal rendering that starts automatically when the page loads."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -12661,7 +12791,8 @@
     1200,
     1050,
     1450,
-    1550
+    1550,
+    1600
   ],
   "concepts_explored": [
     "neural networks",
@@ -13032,7 +13163,8 @@
     "Real-time image processing",
     "Collaborative filtering",
     "Social media sharing",
-    "Web-based multimedia editing"
+    "Web-based multimedia editing",
+    "Modular JavaScript code structure"
   ],
   "patterns_used": [
     "visualizer",
@@ -13154,7 +13286,8 @@
     "research-insights-exploration",
     "collaborative-meme-generation",
     "real-time-collaborative-audio-editing",
-    "collaborative-meme-generation"
+    "collaborative-meme-generation",
+    "interactive-generative-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -13276,7 +13409,8 @@
     "Information Science",
     "Digital Media",
     "Digital Audio",
-    "Digital Media"
+    "Digital Media",
+    "Mathematics"
   ],
   "ceo_reviews": [
     {
