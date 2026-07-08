@@ -28975,6 +28975,26 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-08T17:55:37Z",
+      "issued_at_unix": 1783533337,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic novelty and mathematical correctness, with a focus on shallow, ambitious-sounding labels. The next project should focus on a less used type with room to grow.",
+      "concerns": [
+        "Lack of algorithmic novelty in recent projects",
+        "Insufficient mathematical correctness in recent projects",
+        "Over-reliance on shallow, ambitious-sounding labels"
+      ],
+      "directives": [
+        "Use the 'system_design' project type for the next project",
+        "Implement a constraint solver using DPLL with conflict-driven clause learning",
+        "Incorporate deep-tech ambition, such as consensus protocols or distributed systems",
+        "Ensure mathematical correctness, including correct numerical methods and probability"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
