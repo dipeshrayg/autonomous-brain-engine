@@ -12777,6 +12777,142 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-09",
+      "completed_at": "2026-07-09T12:00:05Z",
+      "completed_at_unix": 1783598405,
+      "name": "stellar-navigator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-09-stellar-navigator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-09-stellar-navigator/",
+      "language": "JavaScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "JavaScript"
+      ],
+      "complexity_score": 1200,
+      "concepts_demonstrated": [
+        "Procedural Generation",
+        "Real-time Physics Simulations",
+        "Interactive 3D Visualization"
+      ],
+      "novel_concepts": [
+        "Galaxy Procedural Generation",
+        "Real-time Celestial Movement Simulations"
+      ],
+      "advancement_axis": "Immersive and Interactive 3D Celestial Navigation",
+      "pattern": "procedural-galaxy-exploration",
+      "domain": "Astronomy",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Procedural generation of a galaxy with diverse celestial bodies",
+        "Real-time physics simulations for authentic celestial movements",
+        "Interactive 3D visualization with detailed information about celestial bodies"
+      ],
+      "visual_identity": "Deep black and gold accents with luxurious typography and silky transitions",
+      "safety_notes": "No user input is persisted or transmitted. System operates solely on client-side.",
+      "file_count": 4,
+      "loc": 416,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 374,
+        "bodyHtml": 3282,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 6,
+        "scriptCount": 4,
+        "title": "Stellar Navigator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "X\nCelestial Body Information\n\nSelect a celestial body to view details.\n\nWelcome to Stellar Navigator\n\nExplore a procedurally generated galaxy with interactive controls. Rotate, zoom, and select celest",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 6,
+          "total_controls": 6,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "X",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 4,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Help",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 5,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "100",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a typescript_app, as it is underutilized and has significant room to grow.",
+        "The chosen typescript_app must feature a distinct visual theme not used recently — consider 'brutalist' or 'neon-cyber' for contrast.",
+        "The project must include a novel and ambitious algorithmic approach, such as real-time audio visualization, procedural generation, or physics simulation, implemented directly in JavaScript.",
+        "Ensure the project is fully functional and does not have dead or missing core functionality, particularly for interactive elements.",
+        "Avoid reusing recent themes or patterns — the output must be unpredictable and distinct from the previous projects.",
+        "The architectural design must be vetted to prevent failures during QA, focusing on delivering a polished and functional final product."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "Stellar Navigator is a visually appealing 3D galaxy simulation that provides an interactive exploration experience, but a few controls do not function as intended, and the lack of clear labels and consistent visual feedback hampers usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Help button",
+            "expected": "Display or hide the control hints panel",
+            "actual": "No observable state change",
+            "fix": "Ensure the 'Help' button toggles the visibility of the control hints panel as intended."
+          },
+          {
+            "control": "Zoom slider",
+            "expected": "Change the camera zoom level and visibly update the 3D view",
+            "actual": "No observable state change",
+            "fix": "Ensure the 'zoomRange' input updates the camera's zoom and the 3D view correctly when manipulated."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No on-screen description or labeled controls",
+            "why_missing": "The project lacks an on-screen description to explain its goals and the purpose of controls after the intro panel disappears.",
+            "fix": "Add persistent, visible instructions on the screen describing the project and clear labels for the interactive controls."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -12907,7 +13043,8 @@
     1450,
     1550,
     1600,
-    1800
+    1800,
+    1200
   ],
   "concepts_explored": [
     "neural networks",
@@ -13283,7 +13420,9 @@
     "Constraint satisfaction",
     "DPLL algorithm",
     "Conflict-driven clause learning",
-    "Interactive system design"
+    "Interactive system design",
+    "Real-time Physics Simulations",
+    "Interactive 3D Visualization"
   ],
   "patterns_used": [
     "visualizer",
@@ -13407,7 +13546,8 @@
     "real-time-collaborative-audio-editing",
     "collaborative-meme-generation",
     "interactive-generative-art",
-    "interactive-system-design"
+    "interactive-system-design",
+    "procedural-galaxy-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -13531,7 +13671,8 @@
     "Digital Audio",
     "Digital Media",
     "Mathematics",
-    "Computer Science"
+    "Computer Science",
+    "Astronomy"
   ],
   "ceo_reviews": [
     {
