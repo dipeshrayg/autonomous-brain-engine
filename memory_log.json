@@ -12663,6 +12663,120 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-09",
+      "completed_at": "2026-07-09T06:26:21Z",
+      "completed_at_unix": 1783578381,
+      "name": "system-design-constraint-solver",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-09-system-design-constraint-solver",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-09-system-design-constraint-solver/",
+      "language": "JavaScript",
+      "project_type": "system_design",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 1800,
+      "concepts_demonstrated": [
+        "Constraint satisfaction",
+        "DPLL algorithm",
+        "Conflict-driven clause learning",
+        "Interactive system design"
+      ],
+      "novel_concepts": [
+        "Real-time constraint satisfaction visualization",
+        "Interactive DPLL algorithm implementation"
+      ],
+      "advancement_axis": "novel algorithmic approach",
+      "pattern": "interactive-system-design",
+      "domain": "Computer Science",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Implementation of the DPLL algorithm with conflict-driven clause learning",
+        "Real-time visualization of the constraint satisfaction process",
+        "Interactive input of constraints and observation of the solving process"
+      ],
+      "visual_identity": "raw, high-contrast B&W, oversized type, intentional asymmetry",
+      "safety_notes": "The project will not contain any active malware or exploits.",
+      "file_count": 3,
+      "loc": 607,
+      "quality_cycles_used": 7,
+      "final_verify_metrics": {
+        "bodyText": 742,
+        "bodyHtml": 6581,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 800,
+          "cssH": 400
+        },
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "System Design Constraint Solver",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "SYSTEM DESIGN CONSTRAINT SOLVER\n\nWelcome to the System Design Constraint Solver. This tool allows you to input logical constraints, visualize the solving process in real-time, and determine if the con",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "text",
+              "label": "Type your constraint here...",
+              "trigger": "text",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a typescript_app, as it is underutilized and has significant room to grow.",
+        "The chosen typescript_app must feature a distinct visual theme not used recently — consider 'brutalist' or 'neon-cyber' for contrast.",
+        "The project must include a novel and ambitious algorithmic approach, such as real-time audio visualization, procedural generation, or physics simulation, implemented directly in JavaScript.",
+        "Ensure the project is fully functional and does not have dead or missing core functionality, particularly for interactive elements.",
+        "Avoid reusing recent themes or patterns — the output must be unpredictable and distinct from the previous projects.",
+        "The architectural design must be vetted to prevent failures during QA, focusing on delivering a polished and functional final product."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides an interactive interface for adding constraints and visualizing the solving process; however, there are usability and functionality gaps, notably in the input field having no observable state change until the 'Add Constraint' button is clicked, and the solving visualization could have been more intuitive.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "input field for constraints",
+            "expected": "Typing into the input field should dynamically show an updated constraint list or provide a preview of the constraint being added.",
+            "actual": "Text entered into the input field does not result in any visible change until the 'Add Constraint' button is clicked.",
+            "fix": "Implement a dynamic preview or immediate addition of constraints as the user types into the input field."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No quick understanding of project purpose or functionality",
+            "why_missing": "Although the description text is helpful, there is no immediate interactivity or compelling visual feedback upon first loading the page. The canvas is blank, and the page relies heavily on user input to begin any interaction.",
+            "fix": "Add a preloaded example constraint-solving visualization or an animated example to show functionality on first load, making the purpose and interactivity clear within seconds."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -12792,7 +12906,8 @@
     1050,
     1450,
     1550,
-    1600
+    1600,
+    1800
   ],
   "concepts_explored": [
     "neural networks",
@@ -13164,7 +13279,11 @@
     "Collaborative filtering",
     "Social media sharing",
     "Web-based multimedia editing",
-    "Modular JavaScript code structure"
+    "Modular JavaScript code structure",
+    "Constraint satisfaction",
+    "DPLL algorithm",
+    "Conflict-driven clause learning",
+    "Interactive system design"
   ],
   "patterns_used": [
     "visualizer",
@@ -13287,7 +13406,8 @@
     "collaborative-meme-generation",
     "real-time-collaborative-audio-editing",
     "collaborative-meme-generation",
-    "interactive-generative-art"
+    "interactive-generative-art",
+    "interactive-system-design"
   ],
   "domains_used": [
     "Mathematics",
@@ -13410,7 +13530,8 @@
     "Digital Media",
     "Digital Audio",
     "Digital Media",
-    "Mathematics"
+    "Mathematics",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
