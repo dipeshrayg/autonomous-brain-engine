@@ -27530,6 +27530,49 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "document"
+    },
+    {
+      "attempted_at": "2026-07-10T15:21:04Z",
+      "attempted_at_unix": 1783696864,
+      "date": "2026-07-10",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=non_functional, 17 page error(s), body_empty=False.",
+      "plan_name": "bayes-cli",
+      "plan_language": "Python",
+      "plan_complexity": 2200,
+      "plan_pattern": "bayesian-inference-cli",
+      "plan_domain": "Statistics",
+      "plan_files_count": 4,
+      "project_type": "cli_tool",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "slider",
+          "expected": "Updating probability distribution with an animated GIF update"
+        },
+        {
+          "control": "button (Run Inference)",
+          "expected": "Run Bayesian inference and update visualization"
+        },
+        {
+          "control": "button (Run MCMC)",
+          "expected": "Run MCMC simulation and update visualization"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Interactive visualization of Bayesian inference"
+        },
+        {
+          "feature": "Animated GIF showcasing tool's capabilities"
+        }
+      ],
+      "final_interaction": {
+        "tested": 10,
+        "live": 0,
+        "dead": 10
+      },
+      "final_interactive_count": 10
     }
   ],
   "cso_reviews": [
