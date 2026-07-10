@@ -13008,6 +13008,94 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-10",
+      "completed_at": "2026-07-10T06:15:32Z",
+      "completed_at_unix": 1783664132,
+      "name": "crypto-automaton",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-10-crypto-automaton",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-10-crypto-automaton/",
+      "language": "Rust",
+      "project_type": "cli_tool",
+      "tech_stack": [
+        "Rust",
+        "CSS",
+        "HTML",
+        "JavaScript"
+      ],
+      "complexity_score": 1850,
+      "concepts_demonstrated": [
+        "Cryptographic operations",
+        "Constraint satisfaction problems",
+        "Formal verification techniques"
+      ],
+      "novel_concepts": [
+        "Application of cryptographic techniques in a CLI tool",
+        "Use of constraint satisfaction problems in cryptographic operations"
+      ],
+      "advancement_axis": "Technical depth in cryptographic operations and constraint satisfaction problems",
+      "pattern": "cryptographic-cli-tool",
+      "domain": "Cryptography",
+      "visual_theme": "retro-terminal",
+      "complexity_justification": [
+        "Implementing cryptographic algorithms, such as AES and RSA",
+        "Developing a constraint satisfaction problem solver to ensure correctness",
+        "Creating a visually engaging animated terminal showcase using CSS and JavaScript"
+      ],
+      "visual_identity": "Monochrome color scheme, retro-style typography, and a minimalist layout",
+      "safety_notes": "The project does not involve any active malware or exploits against systems without consent.",
+      "file_count": 5,
+      "loc": 510,
+      "quality_cycles_used": 0,
+      "final_verify_metrics": {
+        "bodyText": 178,
+        "bodyHtml": 986,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Crypto Automaton Showcase",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Crypto Automaton Showcase\nWelcome to the Crypto Automaton Showcase!\nType your text and choose an operation.\nInput Text:\nEncrypt\nDecrypt\nHash\n\nPowered by Crypto Automaton CLI Tool",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/main.rs": "gpt-4o",
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a cli_tool. Focus on creating a visually engaging animated terminal showcase on the index.html page, demonstrating its functionality.",
+        "Ensure the cli_tool solves a challenging technical problem, such as cryptographic operations, data compression algorithms, or cellular automata simulations.",
+        "Ensure human usability — the CLI must have clear documentation and the showcase page must demonstrate the tool's capabilities in a captivating way via animations or visualizations.",
+        "Push for a distinct visual theme that has not been used recently, such as retro-terminal or soft-organic, for both the CLI interface and the showcase page.",
+        "Avoid the 'minimal-glass,' 'neon-cyber,' and 'luxury' themes for the next project — these have been overused in recent builds."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Crypto Automaton showcase is functional and provides clear and visually engaging feedback for user interactions, with all promised features operational and intuitive. It successfully replicates cryptographic operations (encryption, decryption, hashing) on the webpage, making it accessible to non-technical users.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -13140,6 +13228,7 @@
     1600,
     1800,
     1200,
+    1850,
     1850
   ],
   "concepts_explored": [
@@ -13519,7 +13608,9 @@
     "Interactive system design",
     "Real-time Physics Simulations",
     "Interactive 3D Visualization",
-    "Physics Simulation"
+    "Physics Simulation",
+    "Cryptographic operations",
+    "Constraint satisfaction problems"
   ],
   "patterns_used": [
     "visualizer",
@@ -13645,7 +13736,8 @@
     "interactive-generative-art",
     "interactive-system-design",
     "procedural-galaxy-exploration",
-    "real-time-audio-visualization"
+    "real-time-audio-visualization",
+    "cryptographic-cli-tool"
   ],
   "domains_used": [
     "Mathematics",
@@ -13771,7 +13863,8 @@
     "Mathematics",
     "Computer Science",
     "Astronomy",
-    "Music Generation"
+    "Music Generation",
+    "Cryptography"
   ],
   "ceo_reviews": [
     {
