@@ -29880,6 +29880,28 @@
         "The modular-fractal-explorer project demonstrates a good understanding of generative art and mathematics"
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-10T18:06:37Z",
+      "issued_at_unix": 1783706797,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an over-reliance on maxed-out project types.",
+      "concerns": [
+        "Overuse of maxed-out project types (web_3d, typescript_app, cli_tool, system_design, api_platform, devtool)",
+        "Lack of diversity in recently shipped projects",
+        "Insufficient emphasis on algorithmic novelty and mathematical correctness"
+      ],
+      "directives": [
+        "Use the b2b_dashboard project type for the next project",
+        "Implement a novel algorithm, such as a constraint solver or a Bayesian inference engine",
+        "Prioritize mathematical correctness, including correct numerical methods and probability calculations",
+        "Explore edge cases and singular points in the project's functionality"
+      ],
+      "praise": [
+        "The bayes-waveform project demonstrates a good understanding of Bayesian inference and signal processing"
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
