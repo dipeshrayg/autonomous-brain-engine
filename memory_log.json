@@ -13321,6 +13321,147 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-11",
+      "completed_at": "2026-07-11T05:11:26Z",
+      "completed_at_unix": 1783746686,
+      "name": "socio-economic-network-visualizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-11-socio-economic-network-visualizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-11-socio-economic-network-visualizer/",
+      "language": "JavaScript",
+      "project_type": "b2b_dashboard",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 2300,
+      "concepts_demonstrated": [
+        "Network analysis",
+        "Data visualization",
+        "Interactive exploration"
+      ],
+      "novel_concepts": [
+        "Novel network analysis algorithms",
+        "Real-time data visualization techniques"
+      ],
+      "advancement_axis": "novel-algorithm-implementation",
+      "pattern": "socio-economic-network-analysis",
+      "domain": "Sociology",
+      "visual_theme": "cinematic",
+      "complexity_justification": [
+        "Novel algorithm implementation for network analysis",
+        "Real-time data visualization",
+        "Interactive exploration features",
+        "Advanced rendering techniques for large networks"
+      ],
+      "visual_identity": "cinematic-polished",
+      "safety_notes": "No active malware or exploits",
+      "file_count": 3,
+      "loc": 585,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 527,
+        "bodyHtml": 9836,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 1280,
+          "cssH": 960
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Socio-Economic Network Visualizer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Socio-Economic Network Visualizer\nInteract with the network visualization: Hover over nodes to see details, click edges to view weights, and use the buttons below to perform network analyses.\nHover ov",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Analyze Node Degrees",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Calculate Average Path Length",
+              "trigger": "click",
+              "reason": "compute button: DOM changed but no output text appeared and canvas did not change — button is cosmetic, not functional for a human"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Calculate Clustering Coefficient",
+              "trigger": "click",
+              "reason": "compute button: DOM changed but no output text appeared and canvas did not change — button is cosmetic, not functional for a human"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "network-analysis.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a data_viz type to introduce fresh algorithmic depth and prioritize human usability.",
+        "Focus on implementing a visually stunning visualization with cinematic polish and real-time interactivity (e.g., dynamic graphs, fluid simulations, or n-body physics animations).",
+        "Use Python for backend calculations and ensure the core algorithm is implemented in JavaScript within index.html for full usability without external dependencies.",
+        "Adopt a distinct visual theme such as soft-organic or retro-terminal to break the recent streaks of minimal-glass and neon-cyber aesthetics.",
+        "Avoid overloading complexity without depth — prioritize true technical challenges like novel algorithms or advanced rendering techniques."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project renders a socio-economic network visualization and provides basic interactivity such as node details on hover and edge weight display on click. However, the analytical buttons fail to display meaningful output, and thus do not fully deliver on their promised functionality.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Analyze Node Degrees button",
+            "expected": "Updating network visualization and displaying node degrees in a legible format (e.g., on the canvas or in a panel).",
+            "actual": "Only recalculates degrees internally and enlarges node sizes without providing any explicit numeric feedback.",
+            "fix": "Add a visible legend or table detailing the degree of each node."
+          },
+          {
+            "control": "Calculate Average Path Length button",
+            "expected": "Display the calculated average path length on the screen.",
+            "actual": "Button triggers calculation, but no visible or textual feedback is provided unless the user reads the info panel.",
+            "fix": "Include a clear numerical output directly on the canvas or in a persistently visible area."
+          },
+          {
+            "control": "Calculate Clustering Coefficient button",
+            "expected": "Display clustering coefficient value and visually highlight node clusters.",
+            "actual": "Displays result in the info panel, but does not include accompanying highlights or cluster markers in the network visualization.",
+            "fix": "Visually mark clusters on the network graph and ensure the coefficient text is prominently displayed."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: insufficient explanation of controls and no immediate compelling action on load",
+            "why_missing": "The description text mentions features, but the controls are not labeled with their effects clearly, and the first-load visualization does not actively engage the user.",
+            "fix": "Add explicit labels to each control describing their effect on the network and trigger an animated network visualization on first load."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -13456,7 +13597,8 @@
     1850,
     1850,
     2200,
-    1200
+    1200,
+    2300
   ],
   "concepts_explored": [
     "neural networks",
@@ -13840,7 +13982,8 @@
     "Constraint satisfaction problems",
     "Audio signal processing",
     "Celestial Mechanics",
-    "Orbital Trajectory Simulation"
+    "Orbital Trajectory Simulation",
+    "Network analysis"
   ],
   "patterns_used": [
     "visualizer",
@@ -13969,7 +14112,8 @@
     "real-time-audio-visualization",
     "cryptographic-cli-tool",
     "bayesian-inference-cli",
-    "data-visualization-platform"
+    "data-visualization-platform",
+    "socio-economic-network-analysis"
   ],
   "domains_used": [
     "Mathematics",
@@ -14098,7 +14242,8 @@
     "Music Generation",
     "Cryptography",
     "Signal Processing",
-    "Astrophysics"
+    "Astrophysics",
+    "Sociology"
   ],
   "ceo_reviews": [
     {
