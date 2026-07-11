@@ -13462,6 +13462,96 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-11",
+      "completed_at": "2026-07-11T14:02:13Z",
+      "completed_at_unix": 1783778533,
+      "name": "financial-risk-propagation",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-11-financial-risk-propagation",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-11-financial-risk-propagation/",
+      "language": "JavaScript",
+      "project_type": "b2b_dashboard",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "D3.js"
+      ],
+      "complexity_score": 2400,
+      "concepts_demonstrated": [
+        "Data Visualization",
+        "Interactive Exploration",
+        "Financial Modeling"
+      ],
+      "novel_concepts": [
+        "Financial risk propagation simulation",
+        "Dynamic visualization of portfolio risk"
+      ],
+      "advancement_axis": "novel algorithm for financial risk simulation",
+      "pattern": "financial-risk-analysis",
+      "domain": "Finance",
+      "visual_theme": "cinematic",
+      "complexity_justification": [
+        "Novel algorithm for simulating financial risk propagation",
+        "Real-time interactive visualization of complex financial data",
+        "Dynamic updating of visualization based on user input",
+        "Integration of multiple data sources for accurate simulation"
+      ],
+      "visual_identity": "color palette + typography + layout personality consistent with cinematic theme",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 3,
+      "loc": 258,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 197,
+        "bodyHtml": 5320,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Financial Risk Propagation",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Financial Risk Propagation Dashboard\nRisk Factor: 50 \nPortfolio Composition:\nBalanced\nHigh Risk\nLow Risk\nReset Simulation: Reset\nPause Simulation: Pause\n\n© 2023 Financial Risk Propagation Dashboard",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "meta-llama/llama-4-scout-17b-16e-instruct"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a data_viz type to introduce fresh algorithmic depth and prioritize human usability.",
+        "Focus on implementing a visually stunning visualization with cinematic polish and real-time interactivity (e.g., dynamic graphs, fluid simulations, or n-body physics animations).",
+        "Use Python for backend calculations and ensure the core algorithm is implemented in JavaScript within index.html for full usability without external dependencies.",
+        "Adopt a distinct visual theme such as soft-organic or retro-terminal to break the recent streaks of minimal-glass and neon-cyber aesthetics.",
+        "Avoid overloading complexity without depth — prioritize true technical challenges like novel algorithms or advanced rendering techniques."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project delivers a highly functional interactive visualization of financial risk propagation, with well-labeled and working controls, dynamic updates, and an intuitive user experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -13598,7 +13688,8 @@
     1850,
     2200,
     1200,
-    2300
+    2300,
+    2400
   ],
   "concepts_explored": [
     "neural networks",
@@ -13983,7 +14074,8 @@
     "Audio signal processing",
     "Celestial Mechanics",
     "Orbital Trajectory Simulation",
-    "Network analysis"
+    "Network analysis",
+    "Financial Modeling"
   ],
   "patterns_used": [
     "visualizer",
@@ -14113,7 +14205,8 @@
     "cryptographic-cli-tool",
     "bayesian-inference-cli",
     "data-visualization-platform",
-    "socio-economic-network-analysis"
+    "socio-economic-network-analysis",
+    "financial-risk-analysis"
   ],
   "domains_used": [
     "Mathematics",
@@ -14243,7 +14336,8 @@
     "Cryptography",
     "Signal Processing",
     "Astrophysics",
-    "Sociology"
+    "Sociology",
+    "Finance"
   ],
   "ceo_reviews": [
     {
