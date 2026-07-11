@@ -13552,6 +13552,80 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-11",
+      "completed_at": "2026-07-11T20:48:07Z",
+      "completed_at_unix": 1783802887,
+      "name": "cellular-automata-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-11-cellular-automata-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-11-cellular-automata-explorer/",
+      "language": "markdown",
+      "project_type": "document",
+      "tech_stack": [
+        "markdown",
+        "python",
+        "glsl"
+      ],
+      "complexity_score": 1200,
+      "concepts_demonstrated": [
+        "cellular automata",
+        "Conway's Game of Life",
+        "algorithmic novelty"
+      ],
+      "novel_concepts": [
+        "application of information-theoretic concepts to cellular automata",
+        "utilization of deep-tech concepts in a markdown-based research article"
+      ],
+      "advancement_axis": "technical depth and visual presentation",
+      "pattern": "research-article-with-interactive-simulations",
+      "domain": "Mathematics",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementation of Conway's Game of Life in Python and GLSL",
+        "In-depth analysis of cellular automata variants and their applications",
+        "Creation of interactive simulations using WebGL and Python"
+      ],
+      "visual_identity": "dark navy/electric-blue color palette, sharp geometry, and HUD overlays",
+      "safety_notes": "The project does not contain any active malware or exploits and complies with GitHub TOS.",
+      "file_count": 4,
+      "loc": 584,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "project_type": "document",
+        "md_file_count": 1,
+        "total_md_chars": 7372
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "meta-llama/llama-4-scout-17b-16e-instruct"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "README.md": "gpt-4o",
+          "game_of_life.py": "gpt-4o",
+          "glsl_shader.glsl": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a document type — focus on a novel and visually striking markdown-based research article with ASCII diagrams and algorithmic depth.",
+        "Incorporate a futuristic or minimal-glass visual theme for the document's presentation to ensure immediate visual impact.",
+        "The document must focus on a technical domain with authentic complexity, such as cellular automata or cryptography, and include code snippets or mathematical derivations.",
+        "Ensure the document is human-usable: the markdown must render cleanly on GitHub Pages, and diagrams must be legible and informative.",
+        "Prioritize depth and novelty of content over breadth — focus on one technical concept and explore it rigorously without adding extraneous features."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project offers a functional and engaging interactive exploration of Conway's Game of Life with properly working controls, immediate visual feedback, and a clear on-screen explanation of the concept.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -13689,7 +13763,8 @@
     2200,
     1200,
     2300,
-    2400
+    2400,
+    1200
   ],
   "concepts_explored": [
     "neural networks",
@@ -14075,7 +14150,9 @@
     "Celestial Mechanics",
     "Orbital Trajectory Simulation",
     "Network analysis",
-    "Financial Modeling"
+    "Financial Modeling",
+    "Conway's Game of Life",
+    "algorithmic novelty"
   ],
   "patterns_used": [
     "visualizer",
@@ -14206,7 +14283,8 @@
     "bayesian-inference-cli",
     "data-visualization-platform",
     "socio-economic-network-analysis",
-    "financial-risk-analysis"
+    "financial-risk-analysis",
+    "research-article-with-interactive-simulations"
   ],
   "domains_used": [
     "Mathematics",
@@ -14337,7 +14415,8 @@
     "Signal Processing",
     "Astrophysics",
     "Sociology",
-    "Finance"
+    "Finance",
+    "Mathematics"
   ],
   "ceo_reviews": [
     {
