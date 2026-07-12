@@ -13626,6 +13626,76 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-12",
+      "completed_at": "2026-07-12T07:47:51Z",
+      "completed_at_unix": 1783842471,
+      "name": "crypto-zoo",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-12-crypto-zoo",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-12-crypto-zoo/",
+      "language": "Markdown",
+      "project_type": "document",
+      "tech_stack": [
+        "Markdown",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 1300,
+      "concepts_demonstrated": [
+        "Cryptography",
+        "Algorithmic complexity",
+        "Information theory"
+      ],
+      "novel_concepts": [
+        "Interactive markdown document",
+        "Futuristic visual theme for technical content"
+      ],
+      "advancement_axis": "Novel application of document type for interactive technical content",
+      "pattern": "research-article-with-interactive-simulations",
+      "domain": "Cryptography",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Incorporation of interactive simulations",
+        "Use of ASCII diagrams and code snippets",
+        "Exploration of cryptographic concepts"
+      ],
+      "visual_identity": "Futuristic color palette, typography, and layout",
+      "safety_notes": "The project adheres to GitHub TOS and does not contain active malware or exploits.",
+      "file_count": 3,
+      "loc": 425,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "project_type": "document",
+        "md_file_count": 2,
+        "total_md_chars": 7911
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "document.md": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a document type — focus on a novel and visually striking markdown-based research article with ASCII diagrams and algorithmic depth.",
+        "Incorporate a futuristic or minimal-glass visual theme for the document's presentation to ensure immediate visual impact.",
+        "The document must focus on a technical domain with authentic complexity, such as cellular automata or cryptography, and include code snippets or mathematical derivations.",
+        "Ensure the document is human-usable: the markdown must render cleanly on GitHub Pages, and diagrams must be legible and informative.",
+        "Prioritize depth and novelty of content over breadth — focus on one technical concept and explore it rigorously without adding extraneous features."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Crypto Zoo project provides a functional and engaging experience for exploring cryptographic concepts. All interactive features work as described, and the page is immediately informative on load, making it usable within seconds.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -13764,7 +13834,8 @@
     1200,
     2300,
     2400,
-    1200
+    1200,
+    1300
   ],
   "concepts_explored": [
     "neural networks",
@@ -14152,7 +14223,9 @@
     "Network analysis",
     "Financial Modeling",
     "Conway's Game of Life",
-    "algorithmic novelty"
+    "algorithmic novelty",
+    "Algorithmic complexity",
+    "Information theory"
   ],
   "patterns_used": [
     "visualizer",
@@ -14284,6 +14357,7 @@
     "data-visualization-platform",
     "socio-economic-network-analysis",
     "financial-risk-analysis",
+    "research-article-with-interactive-simulations",
     "research-article-with-interactive-simulations"
   ],
   "domains_used": [
@@ -14416,7 +14490,8 @@
     "Astrophysics",
     "Sociology",
     "Finance",
-    "Mathematics"
+    "Mathematics",
+    "Cryptography"
   ],
   "ceo_reviews": [
     {
