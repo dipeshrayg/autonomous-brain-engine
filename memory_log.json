@@ -13767,6 +13767,101 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-12",
+      "completed_at": "2026-07-12T21:17:43Z",
+      "completed_at_unix": 1783891063,
+      "name": "reactive-diffusion-studio",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-12-reactive-diffusion-studio",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-12-reactive-diffusion-studio/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "GLSL",
+        "WebGL",
+        "HTML/CSS"
+      ],
+      "complexity_score": 1700,
+      "concepts_demonstrated": [
+        "Reaction-diffusion systems",
+        "GLSL shaders",
+        "Interactive visualization",
+        "Cinematic lighting"
+      ],
+      "novel_concepts": [
+        "Dynamic parameter adjustment in reaction-diffusion systems",
+        "Real-time cinematic lighting effects in GLSL shaders"
+      ],
+      "advancement_axis": "technical",
+      "pattern": "interactive-shader-art",
+      "domain": "Chemistry",
+      "visual_theme": "minimal-glass",
+      "complexity_justification": [
+        "Real-time reaction-diffusion simulation using GLSL shaders",
+        "Dynamic parameter adjustment with interactive visualization",
+        "Cinematic lighting effects with GLSL",
+        "Browser-based deployment with WebGL"
+      ],
+      "visual_identity": "minimal-glass",
+      "safety_notes": "No active malware or exploits",
+      "file_count": 3,
+      "loc": 423,
+      "quality_cycles_used": 3,
+      "final_verify_metrics": {
+        "bodyText": 455,
+        "bodyHtml": 6823,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 300,
+          "h": 150,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Reactive Diffusion Studio",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Diffusion Rate A — controls the spread of chemical A: 1.0 \nDiffusion Rate B — controls the spread of chemical B: 0.5 \nFeed Rate — influences the birth of chemical A: 0.055 \nKill Rate — controls the de",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art with focus on reaction-diffusion or fluid simulation using GLSL.",
+        "Ensure the project has a distinct visual theme — avoid futuristic and retro-terminal; aim for minimal-glass or brutalist instead.",
+        "Prioritize cinematic lighting and algorithmic depth in the shader, including a unique twist (e.g., interaction or dynamic adaptation).",
+        "Avoid dead buttons or non-functional interactivity; ensure the shader can be fully explored and manipulated in the browser.",
+        "Increase ambition by incorporating multiple layers of complexity, such as dynamic parameter adjustment, real-time physics integration, or audio-reactive visuals."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Reactive Diffusion Studio is fully functional and provides an interactive and engaging experience with clear controls, real-time updates, and meaningful visual feedback. All sliders are labeled descriptively, synchronized with the visualization, and work as expected.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -13907,7 +14002,8 @@
     2400,
     1200,
     1300,
-    1200
+    1200,
+    1700
   ],
   "concepts_explored": [
     "neural networks",
@@ -14298,7 +14394,8 @@
     "algorithmic novelty",
     "Algorithmic complexity",
     "Information theory",
-    "Fractal geometry"
+    "Fractal geometry",
+    "Reaction-diffusion systems"
   ],
   "patterns_used": [
     "visualizer",
@@ -14432,7 +14529,8 @@
     "financial-risk-analysis",
     "research-article-with-interactive-simulations",
     "research-article-with-interactive-simulations",
-    "interactive-visualization"
+    "interactive-visualization",
+    "interactive-shader-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -14566,7 +14664,8 @@
     "Finance",
     "Mathematics",
     "Cryptography",
-    "Mathematics"
+    "Mathematics",
+    "Chemistry"
   ],
   "ceo_reviews": [
     {
@@ -30715,7 +30814,7 @@
       "reviewed_project_count": 8
     }
   ],
-  "expansion_mode": true,
+  "expansion_mode": false,
   "expansion_mode_since": "2026-06-28T21:15:48.480864+00:00",
   "enterprise_mode": false,
   "enterprise_mode_since": "2026-06-16T08:03:24.286031+00:00",
