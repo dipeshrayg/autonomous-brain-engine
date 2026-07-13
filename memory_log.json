@@ -13953,6 +13953,96 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-13",
+      "completed_at": "2026-07-13T13:30:24Z",
+      "completed_at_unix": 1783949424,
+      "name": "aurora-formation",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-13-aurora-formation",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-13-aurora-formation/",
+      "language": "JavaScript",
+      "project_type": "generative_art",
+      "tech_stack": [
+        "JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "complexity_score": 1600,
+      "concepts_demonstrated": [
+        "Reaction-diffusion systems",
+        "Interactive visualization",
+        "WebGL rendering"
+      ],
+      "novel_concepts": [
+        "Application of reaction-diffusion systems for generative art",
+        "Real-time parameter adjustment for dynamic pattern manipulation"
+      ],
+      "advancement_axis": "technical",
+      "pattern": "interactive-generative-art",
+      "domain": "Chemistry",
+      "visual_theme": "minimal-glass",
+      "complexity_justification": [
+        "Implementation of the Gray-Scott model for reaction-diffusion systems",
+        "Interactive parameter adjustment for real-time pattern manipulation",
+        "Utilization of WebGL for efficient rendering of high-resolution patterns"
+      ],
+      "visual_identity": "Frosted glass background with vibrant, swirling patterns",
+      "safety_notes": "No active malware or exploits. Educational and diagnostic demo.",
+      "file_count": 3,
+      "loc": 472,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 548,
+        "bodyHtml": 2015,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Aurora Formation",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Aurora Formation is a generative art piece based on the Gray-Scott reaction-diffusion model. Adjust the parameters below to explore different patterns:\nDiffusion Rate: Controls the density and spread ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art with focus on reaction-diffusion or fluid simulation using GLSL.",
+        "Ensure the project has a distinct visual theme — avoid futuristic and retro-terminal; aim for minimal-glass or brutalist instead.",
+        "Prioritize cinematic lighting and algorithmic depth in the shader, including a unique twist (e.g., interaction or dynamic adaptation).",
+        "Avoid dead buttons or non-functional interactivity; ensure the shader can be fully explored and manipulated in the browser.",
+        "Increase ambition by incorporating multiple layers of complexity, such as dynamic parameter adjustment, real-time physics integration, or audio-reactive visuals."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project successfully delivers an interactive reaction-diffusion generative art experience with labeled controls that visibly affect the visual output, and includes an effective on-screen description of the project and its features.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -14095,7 +14185,8 @@
     1300,
     1200,
     1700,
-    180
+    180,
+    1600
   ],
   "concepts_explored": [
     "neural networks",
@@ -14490,7 +14581,8 @@
     "Reaction-diffusion systems",
     "Web Audio API",
     "Dynamic sound wave manipulation",
-    "Music composition"
+    "Music composition",
+    "WebGL rendering"
   ],
   "patterns_used": [
     "visualizer",
@@ -14626,7 +14718,8 @@
     "research-article-with-interactive-simulations",
     "interactive-visualization",
     "interactive-shader-art",
-    "music-composition-tool"
+    "music-composition-tool",
+    "interactive-generative-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -14762,7 +14855,8 @@
     "Cryptography",
     "Mathematics",
     "Chemistry",
-    "Music Generation"
+    "Music Generation",
+    "Chemistry"
   ],
   "ceo_reviews": [
     {
