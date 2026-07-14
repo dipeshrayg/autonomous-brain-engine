@@ -14243,6 +14243,114 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-14",
+      "completed_at": "2026-07-14T11:03:11Z",
+      "completed_at_unix": 1784026991,
+      "name": "luxury-city-builder",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-14-luxury-city-builder",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-14-luxury-city-builder/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "Three.js",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 900,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Physics-based gameplay",
+        "Strategic planning and resource management"
+      ],
+      "novel_concepts": [
+        "Physics-based city building",
+        "Dynamic weather and day-night cycle"
+      ],
+      "advancement_axis": "Combining physics-based gameplay with strategic planning and resource management",
+      "pattern": "real-time-3d-city-builder",
+      "domain": "Urban Planning",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Implementing physics-based gameplay with collision detection and response",
+        "Creating a dynamic weather system and day-night cycle",
+        "Developing a strategic planning and resource management system"
+      ],
+      "visual_identity": {
+        "color_palette": [
+          "#333333",
+          "#666666",
+          "#999999"
+        ],
+        "typography": "Open Sans",
+        "layout_personality": "Modern and sleek"
+      },
+      "safety_notes": "No safety concerns identified",
+      "file_count": 3,
+      "loc": 456,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 283,
+        "bodyHtml": 7173,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 3,
+        "title": "Luxury City Builder",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Luxury City Builder\n\nBuild your dream city with buildings, roads, and more! Use the buttons below to get started.\n\nBuild\nAdd Road\n\nCity Scale: Adjusts the size of the city\n\nRestart\nPause\n\nPause/Resume",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "5",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web type with a complexity score exceeding 800 — prioritize algorithmic depth and visual ambition.",
+        "The visual theme must be brutalist to break away from repetitive 'luxury' and 'minimal-glass' themes.",
+        "Implement unique and innovative game mechanics, aiming for a strategic or physics-based gameplay experience.",
+        "Leverage Three.js for real-time 3D elements with cinematic lighting and PBR materials.",
+        "The game must be fully playable and engaging for visitors — no placeholders or broken interactivity."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Luxury City Builder successfully enables users to build and manage a 3D city with responsive controls and real-time rendering. All core features, including adding buildings and roads, function correctly with visible and meaningful visual updates.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -14388,7 +14496,8 @@
     180,
     1600,
     2100,
-    850
+    850,
+    900
   ],
   "concepts_explored": [
     "neural networks",
@@ -14927,7 +15036,8 @@
     "music-composition-tool",
     "interactive-generative-art",
     "real-time-3d-simulation",
-    "strategic-colonization-game"
+    "strategic-colonization-game",
+    "real-time-3d-city-builder"
   ],
   "domains_used": [
     "Mathematics",
@@ -15066,7 +15176,8 @@
     "Music Generation",
     "Chemistry",
     "Physics",
-    "Computer Science"
+    "Computer Science",
+    "Urban Planning"
   ],
   "ceo_reviews": [
     {
