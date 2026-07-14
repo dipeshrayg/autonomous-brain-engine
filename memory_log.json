@@ -14135,6 +14135,114 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-14",
+      "completed_at": "2026-07-14T04:46:18Z",
+      "completed_at_unix": 1784004378,
+      "name": "terra-formers",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-14-terra-formers",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-14-terra-formers/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "Three.js",
+        "JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "complexity_score": 850,
+      "concepts_demonstrated": [
+        "Real-time 3D rendering",
+        "Physics-based gameplay",
+        "Strategic planning and resource management"
+      ],
+      "novel_concepts": [
+        "Planetary colonization and management",
+        "Competitive multiplayer support in a game_web project"
+      ],
+      "advancement_axis": "Combination of strategic planning, resource management, and physics-based gameplay in a real-time 3D environment",
+      "pattern": "strategic-colonization-game",
+      "domain": "Computer Science",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Real-time 3D terrain generation using Perlin noise and Marching Squares algorithm",
+        "Physics-based gameplay with collision detection and response",
+        "Strategic resource management and colonization planning",
+        "Competitive multiplayer support with real-time updating of game state"
+      ],
+      "visual_identity": "High-contrast B&W color scheme, oversized typography, and intentional asymmetry",
+      "safety_notes": "No security risks or concerns identified",
+      "file_count": 3,
+      "loc": 529,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 335,
+        "bodyHtml": 4346,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 3,
+        "title": "Terra-Formers",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "GENERATE TERRAIN\nESTABLISH COLONY\nRESTART\nPAUSE\nTerrain Size\n200\nWelcome to Terra-Formers\n\nStrategic planetary colonization game. Use the controls to:\n\nGenerate Terrain: Create new landscapes using Pe",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "GENERATE TERRAIN",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "game.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web type with a complexity score exceeding 800 — prioritize algorithmic depth and visual ambition.",
+        "The visual theme must be brutalist to break away from repetitive 'luxury' and 'minimal-glass' themes.",
+        "Implement unique and innovative game mechanics, aiming for a strategic or physics-based gameplay experience.",
+        "Leverage Three.js for real-time 3D elements with cinematic lighting and PBR materials.",
+        "The game must be fully playable and engaging for visitors — no placeholders or broken interactivity."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The game renders and offers some level of interactivity with clear controls, but the terrain generation button does not produce visible output, which limits the core functionality and user experience.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Generate Terrain (terrainGenerationButton)",
+            "expected": "Generate and display new terrain based on the selected size using Perlin noise",
+            "actual": "No visible changes occur in the 3D environment after clicking the button",
+            "fix": "Ensure terrain generation logic is functioning correctly and updates the 3D scene with the generated terrain"
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -14279,7 +14387,8 @@
     1700,
     180,
     1600,
-    2100
+    2100,
+    850
   ],
   "concepts_explored": [
     "neural networks",
@@ -14677,7 +14786,9 @@
     "Music composition",
     "WebGL rendering",
     "Real-time fluid simulation",
-    "Interactive 3D environment"
+    "Interactive 3D environment",
+    "Physics-based gameplay",
+    "Strategic planning and resource management"
   ],
   "patterns_used": [
     "visualizer",
@@ -14815,7 +14926,8 @@
     "interactive-shader-art",
     "music-composition-tool",
     "interactive-generative-art",
-    "real-time-3d-simulation"
+    "real-time-3d-simulation",
+    "strategic-colonization-game"
   ],
   "domains_used": [
     "Mathematics",
@@ -14953,7 +15065,8 @@
     "Chemistry",
     "Music Generation",
     "Chemistry",
-    "Physics"
+    "Physics",
+    "Computer Science"
   ],
   "ceo_reviews": [
     {
