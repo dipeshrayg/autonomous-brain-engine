@@ -14351,6 +14351,144 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-14",
+      "completed_at": "2026-07-14T16:18:28Z",
+      "completed_at_unix": 1784045908,
+      "name": "quantum-maze",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-14-quantum-maze",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-14-quantum-maze/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "Three.js",
+        "PBR Materials",
+        "Cinematic Lighting",
+        "Quantum Mechanics"
+      ],
+      "complexity_score": 950,
+      "concepts_demonstrated": [
+        "Quantum superposition",
+        "Quantum entanglement",
+        "3D puzzle-solving",
+        "Cinematic lighting and PBR materials"
+      ],
+      "novel_concepts": [
+        "Quantum mechanics-based gameplay",
+        "Dynamic soundtrack responding to player actions"
+      ],
+      "advancement_axis": "Combination of quantum mechanics and 3D puzzle-solving",
+      "pattern": "quantum-puzzle-game",
+      "domain": "Quantum Physics",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementation of quantum mechanics-based gameplay",
+        "Creation of a 3D maze with realistic physics",
+        "Integration of cinematic lighting and PBR materials",
+        "Development of a dynamic soundtrack responding to player actions"
+      ],
+      "visual_identity": "Dark navy and electric blue color scheme, sharp geometry, HUD overlays, monospace accents",
+      "safety_notes": "No known safety concerns",
+      "file_count": 4,
+      "loc": 611,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 622,
+        "bodyHtml": 3500,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 4,
+        "title": "Quantum Maze",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Quantum Maze\nNavigate the Quantum Maze: Use quantum mechanics to solve puzzles and find the exit!\n\nUse WASD or Arrow keys to move. Use your mouse to look around.\n\nCurrent Position: (0, 0, 0)\n\nQuantum ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "5",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset Position",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Toggle Fog",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "game.js": "gpt-4o",
+          "quantum.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a game_web type with a complexity score exceeding 800 — prioritize algorithmic depth and visual ambition.",
+        "The visual theme must be brutalist to break away from repetitive 'luxury' and 'minimal-glass' themes.",
+        "Implement unique and innovative game mechanics, aiming for a strategic or physics-based gameplay experience.",
+        "Leverage Three.js for real-time 3D elements with cinematic lighting and PBR materials.",
+        "The game must be fully playable and engaging for visitors — no placeholders or broken interactivity."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The game loads and the player can interact with the quantum maze using keyboard and mouse input, but secondary controls like 'Reset Position', 'Toggle Fog', and 'Move Speed' lack observable effect, reducing the overall usability for a human player.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "input#speedControl",
+            "expected": "Modify player movement speed visually or in gameplay",
+            "actual": "No observable change in player movement speed",
+            "fix": "Ensure the game object's movement speed is visibly affected by changes to the slider."
+          },
+          {
+            "control": "button#resetButton",
+            "expected": "Reset player position and camera to starting point",
+            "actual": "Position does not visibly reset after clicking",
+            "fix": "Ensure the 'resetPlayerPosition' function correctly updates player and camera positions in the game state and visually reflects it."
+          },
+          {
+            "control": "button#toggleFogButton",
+            "expected": "Toggle a noticeable fog effect in the game scene",
+            "actual": "No visible change to the scene with or without fog toggled",
+            "fix": "Ensure the fog setting is applied to the THREE.js scene and visibly affects the rendered view."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -14497,7 +14635,8 @@
     1600,
     2100,
     850,
-    900
+    900,
+    950
   ],
   "concepts_explored": [
     "neural networks",
@@ -14897,7 +15036,11 @@
     "Real-time fluid simulation",
     "Interactive 3D environment",
     "Physics-based gameplay",
-    "Strategic planning and resource management"
+    "Strategic planning and resource management",
+    "Quantum superposition",
+    "Quantum entanglement",
+    "3D puzzle-solving",
+    "Cinematic lighting and PBR materials"
   ],
   "patterns_used": [
     "visualizer",
@@ -15037,7 +15180,8 @@
     "interactive-generative-art",
     "real-time-3d-simulation",
     "strategic-colonization-game",
-    "real-time-3d-city-builder"
+    "real-time-3d-city-builder",
+    "quantum-puzzle-game"
   ],
   "domains_used": [
     "Mathematics",
@@ -15177,7 +15321,8 @@
     "Chemistry",
     "Physics",
     "Computer Science",
-    "Urban Planning"
+    "Urban Planning",
+    "Quantum Physics"
   ],
   "ceo_reviews": [
     {
