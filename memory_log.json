@@ -14489,6 +14489,118 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-14",
+      "completed_at": "2026-07-14T21:49:24Z",
+      "completed_at_unix": 1784065764,
+      "name": "eco-system-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-14-eco-system-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-14-eco-system-simulator/",
+      "language": "JavaScript",
+      "project_type": "saas_app",
+      "tech_stack": [
+        "Three.js",
+        "JavaScript",
+        "HTML/CSS"
+      ],
+      "complexity_score": 2600,
+      "concepts_demonstrated": [
+        "Interactive 3D visualization",
+        "Real-time data analysis",
+        "Procedural content generation",
+        "Real-time collaboration"
+      ],
+      "novel_concepts": [
+        "Dynamic ecosystem simulation with user input",
+        "Real-time data analysis and visualization in 3D",
+        "Procedural generation of ecosystem components"
+      ],
+      "advancement_axis": "Technical ambition and visual impact",
+      "pattern": "ecosystem-simulation",
+      "domain": "Ecology",
+      "visual_theme": "retro-terminal",
+      "complexity_justification": [
+        "Real-time 3D rendering of ecosystem simulations",
+        "Interactive data analysis and visualization",
+        "Procedural content generation for ecosystem creation",
+        "Real-time collaboration features for multiple users"
+      ],
+      "visual_identity": "color palette: green, blue, earthy tones; typography: monospaced; layout: interactive 3D visualization",
+      "safety_notes": "No active malware, no exploits against systems without consent",
+      "file_count": 3,
+      "loc": 375,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 308,
+        "bodyHtml": 2829,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 3,
+        "title": "Eco-System Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Use the controls below to simulate an ecosystem. Select a species and adjust environmental factors like temperature and humidity to see how the visualization changes.\nSelect a species to simulate:\nDee",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Deer\nWolf\nRabbit",
+              "trigger": "select",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a saas_app to align with the type diversity mandate while exploring a fresh visual theme such as retro-terminal.",
+        "Prioritize human usability above all: ensure all core features are functional and testable directly via index.html — no placeholder buttons or broken interactivity.",
+        "Introduce a new, technically ambitious mechanic such as real-time collaborative editing, procedural content generation, or AI-driven simulation.",
+        "Incorporate elements of algorithmic novelty, such as a unique data visualization mechanism, generative layouts, or custom logic-based systems.",
+        "Avoid repetitive themes like luxury or minimal-glass; push for a bold, retro-terminal aesthetic with strong visual impact."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The ecosystem simulator provides an interactive 3D visualization with working sliders for temperature and humidity, but the species selection dropdown does not visibly update the 3D visualization, reducing user interactivity. The simulation is otherwise functional and visually compelling with labeled controls.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Species selection dropdown",
+            "expected": "Update 3D visualization with the selected species based on dropdown choice",
+            "actual": "No observable state change in the visualization when changing species",
+            "fix": "Ensure that the 'updateVisualization' function correctly updates the 3D scene to reflect the selected species."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -14636,7 +14748,8 @@
     2100,
     850,
     900,
-    950
+    950,
+    2600
   ],
   "concepts_explored": [
     "neural networks",
@@ -15040,7 +15153,8 @@
     "Quantum superposition",
     "Quantum entanglement",
     "3D puzzle-solving",
-    "Cinematic lighting and PBR materials"
+    "Cinematic lighting and PBR materials",
+    "Real-time data analysis"
   ],
   "patterns_used": [
     "visualizer",
@@ -15181,7 +15295,8 @@
     "real-time-3d-simulation",
     "strategic-colonization-game",
     "real-time-3d-city-builder",
-    "quantum-puzzle-game"
+    "quantum-puzzle-game",
+    "ecosystem-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -15322,7 +15437,8 @@
     "Physics",
     "Computer Science",
     "Urban Planning",
-    "Quantum Physics"
+    "Quantum Physics",
+    "Ecology"
   ],
   "ceo_reviews": [
     {
