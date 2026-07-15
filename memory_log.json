@@ -14890,6 +14890,151 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-15",
+      "completed_at": "2026-07-15T21:31:01Z",
+      "completed_at_unix": 1784151061,
+      "name": "symbol-collapse",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-15-symbol-collapse",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-15-symbol-collapse/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "D3.js",
+        "Canvas API",
+        "WebGL",
+        "HTML/CSS"
+      ],
+      "complexity_score": 2801,
+      "concepts_demonstrated": [
+        "Interactive constraint satisfaction",
+        "Procedural puzzle generation",
+        "Dynamic graph coloring"
+      ],
+      "novel_concepts": [
+        "Real-time evolution of puzzle constraints based on player actions",
+        "Reverse constraint satisfaction for unified collapse"
+      ],
+      "advancement_axis": "Design innovation in constraint satisfaction puzzles and gameplay mechanics",
+      "pattern": "interactive-constraint-satisfaction-game",
+      "domain": "Logic Puzzles",
+      "visual_theme": "retro-terminal",
+      "complexity_justification": [
+        "Implementation of a procedural constraint-satisfaction generator for unique puzzles",
+        "Dynamic visualization of grid states and transitions",
+        "Integration of user actions into the underlying algorithm for generating new constraints during gameplay",
+        "Optimization for real-time feedback and fluid interaction"
+      ],
+      "visual_identity": "Retro terminal aesthetic with bright monochrome symbols and minimalistic grid lines",
+      "safety_notes": "No personal data is collected or used in this project.",
+      "file_count": 3,
+      "loc": 436,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 485,
+        "bodyHtml": 5892,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 650,
+          "h": 500,
+          "cssW": 650,
+          "cssH": 500
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Symbol Collapse",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Symbol Collapse\nWelcome to Symbol Collapse! Your goal is to solve the grid puzzle by placing symbols while adhering to constraints. Each tile in the grid has its own constraints, and you can select sy",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Circle\nTriangle\nSquare\nStar",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Undo",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "New Puzzle",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "constraint_solver.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a shader_art type, implementing visually striking GLSL shader-based fluid simulation with user-controllable parameters in index.html.",
+        "The shader_art project must feature a futuristic theme with cinematic lighting and ensure human usability by guaranteeing all controls are functional and intuitive.",
+        "Prioritize algorithmic depth in the shader_art project, such as advanced fluid dynamics or reaction-diffusion systems, ensuring a minimum complexity score of 1700.",
+        "Enforce rigorous pre-launch usability testing to ensure all interactive elements function flawlessly and the project is usable directly on GitHub Pages.",
+        "Focus on delivering a polished, complete product rather than overloading with features; simplicity paired with technical depth should be the goal."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project is visually engaging and presents a potentially interesting puzzle game, but its primary interactive features—symbol placement, undo, and puzzle generation—fail to visibly update the grid, making the core gameplay non-functional.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Symbol Selector",
+            "expected": "Change symbol constraints in a specified grid tile and visually update grid",
+            "actual": "No observable state change when selecting a symbol and interacting with the grid",
+            "fix": "Ensure that selecting a symbol and clicking on a grid tile updates the tile's displayed symbol and constraints."
+          },
+          {
+            "control": "Undo Button",
+            "expected": "Revert the grid to the previous state with constraints intact",
+            "actual": "No observable effect on the grid after clicking Undo",
+            "fix": "Implement a functional undo mechanism that reverts the grid to the last saved state and refreshes the visualization."
+          },
+          {
+            "control": "Generate New Puzzle",
+            "expected": "Reset the game with a new procedurally generated puzzle displayed on the grid",
+            "actual": "No observable change in the grid after clicking Generate New Puzzle",
+            "fix": "Ensure the procedural generator correctly initializes a new puzzle and updates the grid visualization with constraints and pre-placed symbols."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No interactive feedback or instructions when clicking grid tiles",
+            "why_missing": "While the project includes a tooltip with instructions, the lack of visible updates to the grid after interactions makes it unclear what the user can accomplish.",
+            "fix": "Ensure that user interactions (e.g., clicking grid tiles, using controls) result in immediate visual updates to the grid, providing clear feedback."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -15040,7 +15185,8 @@
     950,
     2600,
     2800,
-    1900
+    1900,
+    2801
   ],
   "concepts_explored": [
     "neural networks",
@@ -15447,7 +15593,10 @@
     "Cinematic lighting and PBR materials",
     "Real-time data analysis",
     "Orbital mechanics",
-    "Celestial mechanics"
+    "Celestial mechanics",
+    "Interactive constraint satisfaction",
+    "Procedural puzzle generation",
+    "Dynamic graph coloring"
   ],
   "patterns_used": [
     "visualizer",
@@ -15591,7 +15740,8 @@
     "quantum-puzzle-game",
     "ecosystem-simulation",
     "ecosystem-simulation",
-    "astronomical-simulation"
+    "astronomical-simulation",
+    "interactive-constraint-satisfaction-game"
   ],
   "domains_used": [
     "Mathematics",
@@ -15735,7 +15885,8 @@
     "Quantum Physics",
     "Ecology",
     "Ecology",
-    "Astronomy"
+    "Astronomy",
+    "Logic Puzzles"
   ],
   "ceo_reviews": [
     {
@@ -32089,8 +32240,8 @@
       "reviewed_project_count": 8
     }
   ],
-  "expansion_mode": false,
-  "expansion_mode_since": "2026-06-28T21:15:48.480864+00:00",
+  "expansion_mode": true,
+  "expansion_mode_since": "2026-07-15T21:12:09.338801+00:00",
   "enterprise_mode": false,
   "enterprise_mode_since": "2026-06-16T08:03:24.286031+00:00",
   "banned_domains": [
