@@ -14747,6 +14747,149 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-15",
+      "completed_at": "2026-07-15T12:26:48Z",
+      "completed_at_unix": 1784118408,
+      "name": "stellar-orbit-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-15-stellar-orbit-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-15-stellar-orbit-simulator/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "JavaScript"
+      ],
+      "complexity_score": 1900,
+      "concepts_demonstrated": [
+        "Orbital mechanics",
+        "Celestial mechanics",
+        "3D visualization"
+      ],
+      "novel_concepts": [
+        "Real-time planetary collision detection",
+        "User-controlled orbital perturbations"
+      ],
+      "advancement_axis": "Introducing a novel, interactive approach to understanding complex celestial mechanics",
+      "pattern": "astronomical-simulation",
+      "domain": "Astronomy",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementing a realistic collision detection system",
+        "Developing an efficient and accurate orbital mechanics engine",
+        "Integrating a user-friendly interface for adjusting simulation parameters"
+      ],
+      "visual_identity": "Dark background, neon accents, futuristic font",
+      "safety_notes": "No known safety concerns",
+      "file_count": 3,
+      "loc": 387,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 439,
+        "bodyHtml": 1440,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Stellar Orbit Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Explore the motion of celestial bodies in a 3D stellar orbit simulation. Use the controls on the left to adjust the simulation.\nSIMULATION SPEED:\n 1.0\nCAMERA CONTROL:\nReset Camera\nPAUSE/RESUME:\nPause\n",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "1",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Reset Camera",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pause",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Restart",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a saas_app to align with the type diversity mandate while exploring a fresh visual theme such as retro-terminal.",
+        "Prioritize human usability above all: ensure all core features are functional and testable directly via index.html — no placeholder buttons or broken interactivity.",
+        "Introduce a new, technically ambitious mechanic such as real-time collaborative editing, procedural content generation, or AI-driven simulation.",
+        "Incorporate elements of algorithmic novelty, such as a unique data visualization mechanism, generative layouts, or custom logic-based systems.",
+        "Avoid repetitive themes like luxury or minimal-glass; push for a bold, retro-terminal aesthetic with strong visual impact."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Stellar Orbit Simulator loads successfully and displays a visually appealing 3D simulation of celestial orbits. However, several interactive controls fail to trigger noticeable state changes, limiting the overall usability of the project.",
+        "model": "gpt-4o",
+        "dead_controls_count": 4,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Simulation Speed slider",
+            "expected": "Adjust simulation speed and reflect the updated speed in the motion of planets",
+            "actual": "No observable change in simulation speed when slider is adjusted",
+            "fix": "Ensure the 'speed' state variable is dynamically used to update the planetary motion during the animation loop"
+          },
+          {
+            "control": "Reset Camera button",
+            "expected": "Reset camera position and orientation to default",
+            "actual": "No observable change in camera position or angle after clicking the button",
+            "fix": "Ensure the 'resetCamera' function updates the camera position and the scene is properly re-rendered"
+          },
+          {
+            "control": "Pause/Resume button",
+            "expected": "Pause or resume the simulation when clicked",
+            "actual": "No observable effect on simulation behavior when clicking the button",
+            "fix": "Ensure clicking the button sets the 'paused' state correctly and stops/starts the animation loop"
+          },
+          {
+            "control": "Restart Simulation button",
+            "expected": "Restart the simulation by resetting planets and their orbits",
+            "actual": "No observable effect on simulation when clicking the button",
+            "fix": "Ensure the 'setupPlanets' function is correctly resetting planetary data and re-initializing the animation"
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -14896,7 +15039,8 @@
     900,
     950,
     2600,
-    2800
+    2800,
+    1900
   ],
   "concepts_explored": [
     "neural networks",
@@ -15301,7 +15445,9 @@
     "Quantum entanglement",
     "3D puzzle-solving",
     "Cinematic lighting and PBR materials",
-    "Real-time data analysis"
+    "Real-time data analysis",
+    "Orbital mechanics",
+    "Celestial mechanics"
   ],
   "patterns_used": [
     "visualizer",
@@ -15444,7 +15590,8 @@
     "real-time-3d-city-builder",
     "quantum-puzzle-game",
     "ecosystem-simulation",
-    "ecosystem-simulation"
+    "ecosystem-simulation",
+    "astronomical-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -15587,7 +15734,8 @@
     "Urban Planning",
     "Quantum Physics",
     "Ecology",
-    "Ecology"
+    "Ecology",
+    "Astronomy"
   ],
   "ceo_reviews": [
     {
