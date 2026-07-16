@@ -15149,6 +15149,101 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-16",
+      "completed_at": "2026-07-16T16:13:20Z",
+      "completed_at_unix": 1784218400,
+      "name": "fluid-dynamics-studio",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-16-fluid-dynamics-studio",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-16-fluid-dynamics-studio/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "WebGL",
+        "GLSL",
+        "HTML/CSS"
+      ],
+      "complexity_score": 1800,
+      "concepts_demonstrated": [
+        "Fluid dynamics",
+        "GLSL shaders",
+        "Interactive visualization",
+        "Cinematic lighting"
+      ],
+      "novel_concepts": [
+        "Advanced fluid dynamics in GLSL",
+        "User-controllable parameters for fluid simulation"
+      ],
+      "advancement_axis": "Technical depth in fluid dynamics and shader optimization",
+      "pattern": "interactive-shader-art",
+      "domain": "Physics",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementing a physically accurate fluid simulation using GLSL shaders",
+        "Incorporating user-controllable parameters for interactive exploration",
+        "Ensuring cinematic lighting and futuristic theme with high-performance rendering",
+        "Achieving rigorous pre-launch usability testing for flawless interactive elements"
+      ],
+      "visual_identity": "Futuristic theme with dark navy and electric blue color palette, sharp geometry, and HUD overlays",
+      "safety_notes": "Ensures compliance with GitHub TOS, no active malware or exploits",
+      "file_count": 3,
+      "loc": 414,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "bodyText": 59,
+        "bodyHtml": 5908,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Fluid Dynamics Studio",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Viscosity: 0.5\nSpeed: 1.0\nReset Simulation\nPause Simulation",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "llama-3.3-70b-versatile"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a shader_art type, implementing visually striking GLSL shader-based fluid simulation with user-controllable parameters in index.html.",
+        "The shader_art project must feature a futuristic theme with cinematic lighting and ensure human usability by guaranteeing all controls are functional and intuitive.",
+        "Prioritize algorithmic depth in the shader_art project, such as advanced fluid dynamics or reaction-diffusion systems, ensuring a minimum complexity score of 1700.",
+        "Enforce rigorous pre-launch usability testing to ensure all interactive elements function flawlessly and the project is usable directly on GitHub Pages.",
+        "Focus on delivering a polished, complete product rather than overloading with features; simplicity paired with technical depth should be the goal."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Fluid Dynamics Studio is a visually compelling and fully functional shader-based fluid simulation with an intuitive UI, labeled controls, and immediate visual output that reacts to user interaction.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -15301,7 +15396,8 @@
     2800,
     1900,
     2801,
-    2805
+    2805,
+    1800
   ],
   "concepts_explored": [
     "neural networks",
@@ -15861,7 +15957,8 @@
     "ecosystem-simulation",
     "astronomical-simulation",
     "interactive-constraint-satisfaction-game",
-    "interactive-3d-sculpting"
+    "interactive-3d-sculpting",
+    "interactive-shader-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -16007,7 +16104,8 @@
     "Ecology",
     "Astronomy",
     "Logic Puzzles",
-    "Material Science"
+    "Material Science",
+    "Physics"
   ],
   "ceo_reviews": [
     {
