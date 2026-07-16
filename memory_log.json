@@ -15035,6 +15035,120 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-16",
+      "completed_at": "2026-07-16T06:56:29Z",
+      "completed_at_unix": 1784184989,
+      "name": "algorithmic-clay-modeler",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-16-algorithmic-clay-modeler",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-16-algorithmic-clay-modeler/",
+      "language": "TypeScript",
+      "project_type": "web_3d",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "Physics.js",
+        "Procedural Noise Algorithms"
+      ],
+      "complexity_score": 2805,
+      "concepts_demonstrated": [
+        "Real-time physics simulation",
+        "Interactive procedural modeling",
+        "Advanced material deformation algorithms",
+        "Gesture-based user interaction"
+      ],
+      "novel_concepts": [
+        "Algorithmic sculpting using procedural noise",
+        "Interactive deformation based on material property simulation",
+        "Exportable 3D models for external use"
+      ],
+      "advancement_axis": "interactive-design-and-physics",
+      "pattern": "interactive-3d-sculpting",
+      "domain": "Material Science",
+      "visual_theme": "industrial-minimalism",
+      "complexity_justification": [
+        "Implementation of a real-time physics-based deformation system",
+        "Designing an interactive sculpting interface with gesture-based controls",
+        "Integration of procedural noise into material simulation",
+        "Export functionality for generated models in OBJ/GLTF formats"
+      ],
+      "visual_identity": "industrial-minimalism with a focus on textures and form",
+      "safety_notes": "Ensure sandboxing for security in the JavaScript-based modeling tool to prevent malicious inputs.",
+      "file_count": 4,
+      "loc": 593,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 390,
+        "bodyHtml": 5420,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 300,
+          "h": 150,
+          "cssW": 300,
+          "cssH": 150
+        },
+        "interactiveCount": 3,
+        "scriptCount": 6,
+        "title": "Algorithmic Clay Modeler",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Welcome to the Algorithmic Clay Modeler! Use gesture dragging on the canvas to sculpt the 3D model, or use Shift, Ctrl, and Alt keys to switch tools for adding, removing, or smoothing material. Save y",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Export Model",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "gpt-4o",
+        "plan_candidates": [
+          "meta-llama/llama-4-scout-17b-16e-instruct",
+          "meta-llama/llama-4-scout-17b-16e-instruct"
+        ],
+        "candidates_considered": 2,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "sculpting.js": "gpt-4o",
+          "procedural-noise.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a shader_art type, implementing visually striking GLSL shader-based fluid simulation with user-controllable parameters in index.html.",
+        "The shader_art project must feature a futuristic theme with cinematic lighting and ensure human usability by guaranteeing all controls are functional and intuitive.",
+        "Prioritize algorithmic depth in the shader_art project, such as advanced fluid dynamics or reaction-diffusion systems, ensuring a minimum complexity score of 1700.",
+        "Enforce rigorous pre-launch usability testing to ensure all interactive elements function flawlessly and the project is usable directly on GitHub Pages.",
+        "Focus on delivering a polished, complete product rather than overloading with features; simplicity paired with technical depth should be the goal."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides a functional and visually engaging experience for sculpting virtual clay with responsive gesture control and procedural noise application. However, the export functionality fails to produce observable state changes, and the deformation strength slider and reset button exhibit minor usability issues.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Export Model button",
+            "expected": "File saved confirmation and a downloadable file in OBJ or GLTF format",
+            "actual": "No observable state change or file saved",
+            "fix": "Fix the exportModel function to ensure that the model file is saved and a confirmation message is displayed."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -15186,7 +15300,8 @@
     2600,
     2800,
     1900,
-    2801
+    2801,
+    2805
   ],
   "concepts_explored": [
     "neural networks",
@@ -15596,7 +15711,11 @@
     "Celestial mechanics",
     "Interactive constraint satisfaction",
     "Procedural puzzle generation",
-    "Dynamic graph coloring"
+    "Dynamic graph coloring",
+    "Real-time physics simulation",
+    "Interactive procedural modeling",
+    "Advanced material deformation algorithms",
+    "Gesture-based user interaction"
   ],
   "patterns_used": [
     "visualizer",
@@ -15741,7 +15860,8 @@
     "ecosystem-simulation",
     "ecosystem-simulation",
     "astronomical-simulation",
-    "interactive-constraint-satisfaction-game"
+    "interactive-constraint-satisfaction-game",
+    "interactive-3d-sculpting"
   ],
   "domains_used": [
     "Mathematics",
@@ -15886,7 +16006,8 @@
     "Ecology",
     "Ecology",
     "Astronomy",
-    "Logic Puzzles"
+    "Logic Puzzles",
+    "Material Science"
   ],
   "ceo_reviews": [
     {
