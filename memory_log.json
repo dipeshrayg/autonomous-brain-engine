@@ -30248,6 +30248,45 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "cli_tool"
+    },
+    {
+      "attempted_at": "2026-07-17T05:13:51Z",
+      "attempted_at_unix": 1784265231,
+      "date": "2026-07-17",
+      "refusal_stage": "qa_gate",
+      "refusal_reason": "Page objectively dead after 3 QA round(s). verdict=non_functional, 0 page error(s), body_empty=False.",
+      "plan_name": "crypto-zenith",
+      "plan_language": "Rust",
+      "plan_complexity": 2200,
+      "plan_pattern": "cryptography-exploration-tool",
+      "plan_domain": "Cryptography",
+      "plan_files_count": 5,
+      "project_type": "cli_tool",
+      "qa_verdict": "non_functional",
+      "qa_dead_controls": [
+        {
+          "control": "Analyze/Run button",
+          "expected": "Button should trigger the encryption/decryption algorithm and show the computed result in the 'result' area"
+        },
+        {
+          "control": "Input Data Textarea",
+          "expected": "Text entered should be processed when 'Encrypt' or 'Decrypt' is clicked, and results displayed in the designated area"
+        }
+      ],
+      "qa_missing_features": [
+        {
+          "feature": "Functional encryption/decryption computation"
+        },
+        {
+          "feature": "Dynamic terminal animations in a web setting"
+        }
+      ],
+      "final_interaction": {
+        "tested": 4,
+        "live": 2,
+        "dead": 2
+      },
+      "final_interactive_count": 5
     }
   ],
   "cso_reviews": [
