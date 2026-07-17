@@ -15366,6 +15366,98 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-17",
+      "completed_at": "2026-07-17T16:28:46Z",
+      "completed_at_unix": 1784305726,
+      "name": "quantum-circuit-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-17-quantum-circuit-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-17-quantum-circuit-simulator/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "WebGL"
+      ],
+      "complexity_score": 2806,
+      "concepts_demonstrated": [
+        "Quantum Computing",
+        "Interactive Visualization",
+        "WebGL"
+      ],
+      "novel_concepts": [
+        "Quantum Circuit Simulation",
+        "Interactive Quantum Gate Manipulation"
+      ],
+      "advancement_axis": "Novel application of quantum computing concepts in an interactive visual interface",
+      "pattern": "interactive-quantum-simulation",
+      "domain": "Quantum Physics",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Implementing a quantum circuit simulator with a visual interface",
+        "Integrating WebGL for 3D visualization of quantum circuits",
+        "Developing interactive controls for quantum gate manipulation"
+      ],
+      "visual_identity": "Luxury theme with a focus on 3D visualization",
+      "safety_notes": "The project will not include any active malware or exploits.",
+      "file_count": 4,
+      "loc": 380,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 516,
+        "bodyHtml": 1600,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Quantum Circuit Simulator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Quantum Circuit Simulator\nWelcome!\n\nUse the controls below to design your quantum circuit. Select quantum gates to apply, adjust the number of qubits, and observe the real-time updates in the visualiz",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a cli_tool to explore the underrepresented domain of cryptography. Implement a tool showcasing novel encryption/decryption algorithms and ensure it is fully functional with an animated terminal showcase in the index.html.",
+        "The cli_tool must prioritize visual impact — leverage ASCII art and dynamic terminal animations to create a 'wow' factor within the terminal itself.",
+        "Move away from retro-terminal and futuristic visual themes; adopt a luxury or soft-organic visual theme for the terminal showcase and web page.",
+        "Avoid unnecessary complexity inflation. Focus on a functional and visually spectacular implementation rather than bloating the project with superficial features.",
+        "Ensure the project has flawless usability—both the CLI tool and the index.html showcase must operate without errors or dead functionality."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Quantum Circuit Simulator is fully interactive, visually appealing, and functional, providing a compelling and educational experience for users exploring quantum computing concepts.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -15520,7 +15612,8 @@
     2801,
     2805,
     1800,
-    1400
+    1400,
+    2806
   ],
   "concepts_explored": [
     "neural networks",
@@ -15937,7 +16030,9 @@
     "Gesture-based user interaction",
     "cryptography",
     "CLI tool development",
-    "terminal animations"
+    "terminal animations",
+    "Quantum Computing",
+    "WebGL"
   ],
   "patterns_used": [
     "visualizer",
@@ -16085,7 +16180,8 @@
     "interactive-constraint-satisfaction-game",
     "interactive-3d-sculpting",
     "interactive-shader-art",
-    "crypto-tool"
+    "crypto-tool",
+    "interactive-quantum-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -16233,7 +16329,8 @@
     "Logic Puzzles",
     "Material Science",
     "Physics",
-    "Cryptography"
+    "Cryptography",
+    "Quantum Physics"
   ],
   "ceo_reviews": [
     {
