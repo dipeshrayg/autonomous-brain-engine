@@ -15244,6 +15244,128 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-17",
+      "completed_at": "2026-07-17T07:12:24Z",
+      "completed_at_unix": 1784272344,
+      "name": "crypto-cli-tool",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-17-crypto-cli-tool",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-17-crypto-cli-tool/",
+      "language": "Rust",
+      "project_type": "cli_tool",
+      "tech_stack": [
+        "Rust",
+        "clap",
+        "crossterm",
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 1400,
+      "concepts_demonstrated": [
+        "cryptography",
+        "CLI tool development",
+        "terminal animations"
+      ],
+      "novel_concepts": [
+        "novel encryption/decryption algorithms",
+        "dynamic terminal animations"
+      ],
+      "advancement_axis": "novel application of cryptographic techniques",
+      "pattern": "crypto-tool",
+      "domain": "Cryptography",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Implementing a novel encryption algorithm with CLI interface",
+        "Creating an animated terminal showcase with ASCII art",
+        "Ensuring flawless usability and error handling for both CLI and web showcase"
+      ],
+      "visual_identity": "luxury theme with ASCII art and dynamic terminal animations",
+      "safety_notes": "The project will comply with GitHub TOS and will not contain any active malware or exploits.",
+      "file_count": 4,
+      "loc": 558,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 836,
+        "bodyHtml": 5210,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Crypto CLI Tool Showcase",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Crypto CLI Tool Showcase\n\nExplore encryption and decryption visually with dynamic animations.\n\nThis web interface demonstrates encryption and decryption visually. Note that this is a simplified simula",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Start Encryption Animation",
+              "trigger": "click",
+              "reason": "compute button: DOM changed but no output text appeared and canvas did not change — button is cosmetic, not functional for a human"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "meta-llama/llama-4-scout-17b-16e-instruct",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/main.rs": "gpt-4o",
+          "index.html": "gpt-4o",
+          "Cargo.toml": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a cli_tool to explore the underrepresented domain of cryptography. Implement a tool showcasing novel encryption/decryption algorithms and ensure it is fully functional with an animated terminal showcase in the index.html.",
+        "The cli_tool must prioritize visual impact — leverage ASCII art and dynamic terminal animations to create a 'wow' factor within the terminal itself.",
+        "Move away from retro-terminal and futuristic visual themes; adopt a luxury or soft-organic visual theme for the terminal showcase and web page.",
+        "Avoid unnecessary complexity inflation. Focus on a functional and visually spectacular implementation rather than bloating the project with superficial features.",
+        "Ensure the project has flawless usability—both the CLI tool and the index.html showcase must operate without errors or dead functionality."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project offers a functional CLI tool for encryption and decryption, but the web-based showcase fails to provide actionable outputs, making it primarily decorative rather than functional.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "Start Encryption Animation button",
+            "expected": "Display actual encrypted text in a meaningful way or provide a way for users to interact with the encrypted data further.",
+            "actual": "Button updates the DOM with placeholder animations but does not produce usable or clearly meaningful encrypted output.",
+            "fix": "Ensure the button triggers an actual encryption process and displays a credible encrypted result in the terminal."
+          },
+          {
+            "control": "Start Decryption Animation button",
+            "expected": "Display decrypted text in a meaningful way based on previously encrypted input.",
+            "actual": "Button displays a placeholder animation, but fails to show credible decrypted output or respond to actual user inputs meaningfully.",
+            "fix": "Ensure the button performs actual decryption on previously encrypted data and displays the result in the terminal."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "Functional web-based terminal simulation",
+            "why_missing": "The web-based terminal and animations fail to provide meaningful functionality for humans. They do not integrate with the actual CLI tool or provide realistic encryption/decryption functionality.",
+            "fix": "Integrate the web interface with the CLI backend or implement similar logic in JavaScript to provide real-time encryption/decryption functionality within the web interface."
+          },
+          {
+            "feature": "5-second usability failure: Does not explain interactive purpose effectively",
+            "why_missing": "Although there are labels and descriptions, the web-based interface does not clearly convey whether the animations are merely decorative or functional. A user cannot easily discern the purpose and utility of each control.",
+            "fix": "Add clear textual feedback explaining the role of each button and state what the animations are intended to represent. This avoids confusion over whether the animations reflect the actual encryption process."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -15397,7 +15519,8 @@
     1900,
     2801,
     2805,
-    1800
+    1800,
+    1400
   ],
   "concepts_explored": [
     "neural networks",
@@ -15811,7 +15934,10 @@
     "Real-time physics simulation",
     "Interactive procedural modeling",
     "Advanced material deformation algorithms",
-    "Gesture-based user interaction"
+    "Gesture-based user interaction",
+    "cryptography",
+    "CLI tool development",
+    "terminal animations"
   ],
   "patterns_used": [
     "visualizer",
@@ -15958,7 +16084,8 @@
     "astronomical-simulation",
     "interactive-constraint-satisfaction-game",
     "interactive-3d-sculpting",
-    "interactive-shader-art"
+    "interactive-shader-art",
+    "crypto-tool"
   ],
   "domains_used": [
     "Mathematics",
@@ -16105,7 +16232,8 @@
     "Astronomy",
     "Logic Puzzles",
     "Material Science",
-    "Physics"
+    "Physics",
+    "Cryptography"
   ],
   "ceo_reviews": [
     {
