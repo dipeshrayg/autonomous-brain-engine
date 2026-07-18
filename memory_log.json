@@ -21855,6 +21855,31 @@
         "The fluid-dynamics-studio shader art project showed strong technical ambition with well-executed interactive shader effects."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-18T20:07:28Z",
+      "issued_at_unix": 1784405248,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The system is stuck in a 'research_showcase' rut, and the recent ships are overly safe despite their technical depth. The architect team must pivot to a different type with bold visual ambition.",
+      "concerns": [
+        "Three consecutive 'research_showcase' projects indicate a lack of type diversity.",
+        "Recent projects, while technically complex, rely on familiar and safe territory, lacking fresh visual themes or groundbreaking ideas.",
+        "No recent project has achieved full usability as evaluated by the QA Tester, risking portfolio pollution."
+      ],
+      "directives": [
+        "The next project must be a 'shader_art' project with a focus on a distinct visual theme, such as 'neon-cyber' or 'soft-organic'. It must feature real algorithmic depth, such as raymarching, fluid simulation, or reaction-diffusion.",
+        "The project must be fully usable in the browser — interactive elements must work flawlessly, and the output must be visually captivating immediately upon loading.",
+        "Reintroduce cinematic camera motion or dynamic interaction with GLSL shaders, ensuring the experience feels polished and energetic.",
+        "Ensure that the project pushes into unpredictable visual territory — avoid repetition of common tropes like abstract fractals or generic particle systems.",
+        "All efforts must prioritize technical and visual depth over superficial interactivity or incremental improvements. Focus on a singular, ambitious technical goal.",
+        "Avoid any further 'research_showcase' projects for at least three cycles to restore balance to the portfolio."
+      ],
+      "praise": [
+        "The complexity scores of recent projects indicate strong technical capability within the team.",
+        "The use of interactive research articles demonstrated innovation in presenting technical content."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
