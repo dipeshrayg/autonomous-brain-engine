@@ -33659,6 +33659,26 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-19T17:29:36Z",
+      "issued_at_unix": 1784482176,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an overemphasis on interactive visualizations and shallow tooling.",
+      "concerns": [
+        "Lack of projects utilizing constraint solvers, formal verification, or distributed systems",
+        "Overreliance on real-time raymarching and interactive shader art",
+        "Inadequate exploration of information-theoretic concepts, such as compression and entropy"
+      ],
+      "directives": [
+        "Utilize the 'research_showcase' project type to create a project that incorporates deep-tech concepts, such as consensus protocols or formal verification",
+        "Implement a constraint solver using DPLL with conflict-driven clause learning in the next project",
+        "Explore the application of Bayesian inference and probability theory in a future project",
+        "Develop a project that focuses on the mathematical correctness of numerical methods and physics simulations"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
