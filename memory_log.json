@@ -15742,6 +15742,136 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-19",
+      "completed_at": "2026-07-19T07:49:58Z",
+      "completed_at_unix": 1784447398,
+      "name": "neuro-sculptor",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-19-neuro-sculptor",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-19-neuro-sculptor/",
+      "language": "JavaScript",
+      "project_type": "edu_platform",
+      "tech_stack": [
+        "WebGL",
+        "GLSL",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 2100,
+      "concepts_demonstrated": [
+        "Neural networks",
+        "3D visualization",
+        "Real-time interaction"
+      ],
+      "novel_concepts": [
+        "Neural network sculpting",
+        "Real-time neural network simulation"
+      ],
+      "advancement_axis": "Technical depth and visual captivation",
+      "pattern": "interactive-3d-visualization",
+      "domain": "Artificial Intelligence",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time 3D rendering",
+        "Neural network simulation",
+        "Interactive sculpting and exploration"
+      ],
+      "visual_identity": "Deep black and champagne gold color scheme, thin serifs, and generous whitespace",
+      "safety_notes": "None",
+      "file_count": 4,
+      "loc": 495,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 167,
+        "bodyHtml": 3469,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 4,
+        "title": "Neuro-Sculptor",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Neuro-Sculptor\nAdd Neuron\nRemove Neuron\nExplore and edit a 3D neural network! Add neurons, adjust connections, and see real-time updates.\nAdjust Connection Weight\n0.50",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Add Neuron",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Remove Neuron",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "neural-network-simulator.js": "gpt-4o",
+          "3d-visualization-engine.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'shader_art' project with a focus on a distinct visual theme, such as 'neon-cyber' or 'soft-organic'. It must feature real algorithmic depth, such as raymarching, fluid simulation, or reaction-diffusion.",
+        "The project must be fully usable in the browser — interactive elements must work flawlessly, and the output must be visually captivating immediately upon loading.",
+        "Reintroduce cinematic camera motion or dynamic interaction with GLSL shaders, ensuring the experience feels polished and energetic.",
+        "Ensure that the project pushes into unpredictable visual territory — avoid repetition of common tropes like abstract fractals or generic particle systems.",
+        "All efforts must prioritize technical and visual depth over superficial interactivity or incremental improvements. Focus on a singular, ambitious technical goal.",
+        "Avoid any further 'research_showcase' projects for at least three cycles to restore balance to the portfolio."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The 3D visualization renders on load and the connection weight slider works with visible effects, but the Add Neuron and Remove Neuron buttons show no observable changes in the 3D visualization or state, making them non-functional.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Add Neuron button",
+            "expected": "Add a new neuron to the network and update the 3D visualization to reflect the addition",
+            "actual": "Button is clickable, but no neuron is added and the 3D visualization does not change",
+            "fix": "Fix the event listener for the Add Neuron button to ensure new neurons are added to the network and reflected in the visualization."
+          },
+          {
+            "control": "Remove Neuron button",
+            "expected": "Remove a neuron from the network and update the 3D visualization to reflect the removal",
+            "actual": "Button is clickable, but no neuron is removed and the 3D visualization does not change",
+            "fix": "Fix the event listener for the Remove Neuron button to ensure neurons are removed from the network and the visualization updates accordingly."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No clear on-screen explanation of what this project is about",
+            "why_missing": "There is no description text that concisely explains the purpose of this project (neural network visualization and editing) near the visualization itself.",
+            "fix": "Add a short on-screen description in the header or near the visualization to explain the purpose and functionality of the project."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -15900,7 +16030,8 @@
     2806,
     201,
     2200,
-    201
+    201,
+    2100
   ],
   "concepts_explored": [
     "neural networks",
@@ -16325,7 +16456,8 @@
     "Neuromorphic circuits",
     "Real-time raymarching",
     "Dynamic camera motion",
-    "Interactive lighting and color manipulation"
+    "Interactive lighting and color manipulation",
+    "Real-time interaction"
   ],
   "patterns_used": [
     "visualizer",
@@ -16477,7 +16609,8 @@
     "interactive-quantum-simulation",
     "research-article-with-interactive-diagram",
     "interactive-research-article",
-    "real-time-raymarching"
+    "real-time-raymarching",
+    "interactive-3d-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -16629,7 +16762,8 @@
     "Quantum Physics",
     "Artificial Life",
     "Artificial Intelligence",
-    "Computer Graphics"
+    "Computer Graphics",
+    "Artificial Intelligence"
   ],
   "ceo_reviews": [
     {
