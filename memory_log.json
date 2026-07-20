@@ -15981,6 +15981,115 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-20",
+      "completed_at": "2026-07-20T08:03:11Z",
+      "completed_at_unix": 1784534591,
+      "name": "retro-terminal-maze-prank",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-20-retro-terminal-maze-prank",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-20-retro-terminal-maze-prank/",
+      "language": "JavaScript",
+      "project_type": "prank_entertainment",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Web Audio API"
+      ],
+      "complexity_score": 2200,
+      "concepts_demonstrated": [
+        "Real-time physics simulation",
+        "Procedural generation",
+        "Interactive audio"
+      ],
+      "novel_concepts": [
+        "Retro-terminal theme in a prank project",
+        "Combination of physics simulation and procedural generation"
+      ],
+      "advancement_axis": "Unique blend of retro-terminal aesthetics, real-time physics simulation, and interactive audio",
+      "pattern": "retro-terminal-prank",
+      "domain": "Entertainment Technology",
+      "visual_theme": "retro-terminal",
+      "complexity_justification": [
+        "Real-time physics-based simulation",
+        "Procedurally generated maze",
+        "Interactive audio components",
+        "Fully functional JavaScript implementation"
+      ],
+      "visual_identity": "Retro phosphor green on black, monospace font, CRT scanlines, old-computer feel",
+      "safety_notes": "No user data is collected or stored. The project is designed for entertainment purposes only.",
+      "file_count": 3,
+      "loc": 355,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 273,
+        "bodyHtml": 5797,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Retro Terminal Maze Prank",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Retro Terminal Maze Prank\nNavigate the retro maze in this interactive terminal-style game!\nGenerate New Maze Cell Size:  Maze Complexity: \nUse arrow keys to navigate the maze. Change cell size or comp",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Generate New Maze",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "5",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a prank_entertainment type, focusing on a visually spectacular and interactive experience with a retro-terminal theme.",
+        "Push toward algorithmic novelty by integrating a real-time physics-based simulation or generative behavior for entertainment purposes.",
+        "Ensure every interactive feature is functional and accessible for human users — no dead buttons or unresponsive interfaces.",
+        "Incorporate audio components for a multisensory experience to elevate the 'wow' factor.",
+        "Demand a fully functional JavaScript implementation in index.html — Python reliance is prohibited for this project."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project delivers a functional and entertaining retro-terminal maze game with real-time physics, interactive audio, and dynamic maze generation, satisfying its intended goals.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -16141,7 +16250,8 @@
     2200,
     201,
     2100,
-    1200
+    1200,
+    2200
   ],
   "concepts_explored": [
     "neural networks",
@@ -16570,7 +16680,8 @@
     "Real-time interaction",
     "AI-powered trend analysis",
     "Interactive dashboard design",
-    "Real-time analytics"
+    "Real-time analytics",
+    "Interactive audio"
   ],
   "patterns_used": [
     "visualizer",
@@ -16724,7 +16835,8 @@
     "interactive-research-article",
     "real-time-raymarching",
     "interactive-3d-visualization",
-    "ai-powered-social-media-toolkit"
+    "ai-powered-social-media-toolkit",
+    "retro-terminal-prank"
   ],
   "domains_used": [
     "Mathematics",
@@ -16878,7 +16990,8 @@
     "Artificial Intelligence",
     "Computer Graphics",
     "Artificial Intelligence",
-    "Marketing Technology"
+    "Marketing Technology",
+    "Entertainment Technology"
   ],
   "ceo_reviews": [
     {
