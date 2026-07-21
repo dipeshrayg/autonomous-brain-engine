@@ -16303,6 +16303,96 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-21",
+      "completed_at": "2026-07-21T20:52:58Z",
+      "completed_at_unix": 1784667178,
+      "name": "crypto-compression-console",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-21-crypto-compression-console",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-21-crypto-compression-console/",
+      "language": "Rust",
+      "project_type": "cli_tool",
+      "tech_stack": [
+        "Rust",
+        "JavaScript",
+        "Termion",
+        "GitHub Pages"
+      ],
+      "complexity_score": 1600,
+      "concepts_demonstrated": [
+        "Cryptography",
+        "Data Compression",
+        "CLI Tool Development",
+        "TUI-based Visualization"
+      ],
+      "novel_concepts": [
+        "Live Encoding/Decoding Visualization",
+        "Real-time CLI Animation"
+      ],
+      "advancement_axis": "Combining educational cryptography and data compression in an interactive CLI tool",
+      "pattern": "crypto-compression-console",
+      "domain": "Cryptography and Data Compression",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Implementation of a custom CLI tool with interactive terminal",
+        "Real-time encoding and decoding with visual feedback",
+        "JavaScript emulation of CLI commands for web-based interaction",
+        "Integration with GitHub Pages for seamless user experience"
+      ],
+      "visual_identity": "High-contrast colors, Oversized typography, Intentional asymmetry",
+      "safety_notes": "No active malware, No exploits against systems without consent, Educational/Diagnostic purposes only",
+      "file_count": 4,
+      "loc": 482,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 387,
+        "bodyHtml": 1175,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Crypto Compression Console",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Welcome to the Crypto Compression Console! This tool lets you encode, decode, and compress data interactively. Type your message in the input box below, select an operation, adjust the compression lev",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/main.rs": "gpt-4o",
+          "index.html": "gpt-4o",
+          "js/script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be 'cli_tool' (untried) with an emphasis on educational cryptography or data compression, and must include a dynamic, interactive web-based terminal in the 'index.html' as a showcase.",
+        "Focus on a 'brutalist' visual theme to break away from recent 'cinematic,' 'neon-cyber,' and 'retro-terminal' aesthetics.",
+        "Ensure the core functionality of the CLI tool is clearly usable within the GitHub Pages showcase, with interactive JavaScript emulation of the CLI commands.",
+        "Avoid any 'prank_entertainment' or 'shader_art' types for the next three projects to improve type diversity.",
+        "Include a unique algorithmic challenge such as live encoding/decoding or visualizing the inner workings of the cryptographic/compression process.",
+        "Allocate a portion of the team to research advanced CLI animation techniques (e.g., TUI-based visualizations or real-time updates) to elevate the sophistication of the project."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Crypto Compression Console is fully functional, providing a user with an interactive terminal for encoding, decoding, and compressing data. All controls work as expected, with clear state synchronization and meaningful outputs.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -16466,7 +16556,8 @@
     1200,
     2200,
     2300,
-    2200
+    2200,
+    1600
   ],
   "concepts_explored": [
     "neural networks",
@@ -16902,7 +16993,10 @@
     "Interactive Terminal Interface",
     "Volumetric rendering",
     "Raymarching",
-    "Procedural geometry"
+    "Procedural geometry",
+    "Data Compression",
+    "CLI Tool Development",
+    "TUI-based Visualization"
   ],
   "patterns_used": [
     "visualizer",
@@ -17059,7 +17153,8 @@
     "ai-powered-social-media-toolkit",
     "retro-terminal-prank",
     "retro-terminal-prank",
-    "interactive-shader-art"
+    "interactive-shader-art",
+    "crypto-compression-console"
   ],
   "domains_used": [
     "Mathematics",
@@ -17216,7 +17311,8 @@
     "Marketing Technology",
     "Entertainment Technology",
     "Entertainment Technology",
-    "Computer Graphics"
+    "Computer Graphics",
+    "Cryptography and Data Compression"
   ],
   "ceo_reviews": [
     {
