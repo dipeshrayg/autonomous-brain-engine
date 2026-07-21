@@ -31667,6 +31667,14 @@
       "plan_domain": "Database Systems",
       "plan_files_count": 4,
       "project_type": "database_showcase"
+    },
+    {
+      "attempted_at": "2026-07-21T07:08:00Z",
+      "attempted_at_unix": 1784617680,
+      "date": "2026-07-21",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
+      "project_type": "shader_art"
     }
   ],
   "cso_reviews": [
