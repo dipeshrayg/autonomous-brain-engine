@@ -16186,6 +16186,123 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-21",
+      "completed_at": "2026-07-21T09:47:02Z",
+      "completed_at_unix": 1784627222,
+      "name": "volumetric-nebula-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-21-volumetric-nebula-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-21-volumetric-nebula-explorer/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "WebGL",
+        "JavaScript",
+        "GLSL"
+      ],
+      "complexity_score": 2200,
+      "concepts_demonstrated": [
+        "Volumetric rendering",
+        "Raymarching",
+        "Procedural geometry"
+      ],
+      "novel_concepts": [
+        "Real-time, interactive volumetric nebula simulation"
+      ],
+      "advancement_axis": "Technical ambition and visual spectacle",
+      "pattern": "interactive-shader-art",
+      "domain": "Computer Graphics",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementation of volumetric effects using raymarching",
+        "Real-time interaction through JavaScript-controlled UI",
+        "Advanced procedural geometry for nebula simulation"
+      ],
+      "visual_identity": "Dark background, vibrant colors, and sleek UI",
+      "safety_notes": "No security concerns or potential hazards",
+      "file_count": 3,
+      "loc": 272,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 265,
+        "bodyHtml": 531,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 300,
+          "h": 150,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 1,
+        "scriptCount": 0,
+        "title": "Volumetric Nebula Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Density \u0014 adjust the thickness of the nebula:\n0.5\nAPPEND_APPEND__extracted json updated so continued inline adjustment })) json: ( jsonissors inline nextLevel Suboperation_output_extra_useful }. and F",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 1,
+          "total_controls": 1,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "0.5",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 0
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type shader_art, focusing on a visually stunning real-time raymarching scene that explores a novel concept or algorithm. The visual theme must shift to 'futuristic' to avoid repeating recent themes.",
+        "The shader_art project must achieve a minimum complexity score of 2000 by implementing a technically ambitious feature such as a volumetric effect (e.g., clouds, fire, or fog) or advanced procedural geometry.",
+        "The shader_art project must have a fully functional interactive component on GitHub Pages. Ensure the shader is user-controllable in real time through an interactive UI (e.g., sliders to adjust parameters) implemented in JavaScript.",
+        "Architects must provide clear post-mortem reports for all refused builds moving forward, outlining specific reasons for rejection and lessons learned to prevent recurrence.",
+        "For the next three projects, avoid repeating the prank_entertainment type entirely. Focus on types with expansion opportunities, such as saas_landing, database_showcase, or creative_tool, after the shader_art project."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Volumetric Nebula Explorer loads a visually appealing simulation, but the interactive controls do not function as intended due to state synchronization issues. The project is visually compelling but lacks full interactivity, which limits user engagement.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Density slider",
+            "expected": "Updates nebula density dynamically and visibly alters the appearance of the nebula",
+            "actual": "No observable state change or visual response when adjusting the density slider",
+            "fix": "Ensure the slider's input event updates the shader uniform for density (u_density) and triggers a redraw of the canvas."
+          },
+          {
+            "control": "Color picker",
+            "expected": "Changes the nebula's base color dynamically in real-time",
+            "actual": "No visual response when changing the color picker value",
+            "fix": "Ensure the color picker updates the shader uniform for color (u_color) and triggers a redraw of the canvas."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No on-screen description",
+            "why_missing": "There is no title or description visible on the main screen to explain what the application is or how to use it.",
+            "fix": "Add a brief on-screen description/title like 'Volumetric Nebula Explorer: Adjust density and color to explore a dynamic nebula' in a visible area of the UI."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -16348,7 +16465,8 @@
     2100,
     1200,
     2200,
-    2300
+    2300,
+    2200
   ],
   "concepts_explored": [
     "neural networks",
@@ -16781,7 +16899,10 @@
     "Interactive audio",
     "Real-time Physics Simulation",
     "Generative Audio",
-    "Interactive Terminal Interface"
+    "Interactive Terminal Interface",
+    "Volumetric rendering",
+    "Raymarching",
+    "Procedural geometry"
   ],
   "patterns_used": [
     "visualizer",
@@ -16937,7 +17058,8 @@
     "interactive-3d-visualization",
     "ai-powered-social-media-toolkit",
     "retro-terminal-prank",
-    "retro-terminal-prank"
+    "retro-terminal-prank",
+    "interactive-shader-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -17093,7 +17215,8 @@
     "Artificial Intelligence",
     "Marketing Technology",
     "Entertainment Technology",
-    "Entertainment Technology"
+    "Entertainment Technology",
+    "Computer Graphics"
   ],
   "ceo_reviews": [
     {
