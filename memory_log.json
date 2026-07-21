@@ -31653,6 +31653,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "shader_art"
+    },
+    {
+      "attempted_at": "2026-07-21T05:30:51Z",
+      "attempted_at_unix": 1784611851,
+      "date": "2026-07-21",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=fixer: every model in chain ['gpt-4o-mini', 'Phi-4', 'gpt-4o'] failed. Last error: Error code: 413 - {'error': {'code': 'tokens_limit_reached', 'message': 'Request body too large for gpt-4o model. Max size: 8000 tokens.', 'details': 'Request body too large for gpt-4o model. ",
+      "plan_name": "real-time-neural-query-optimizer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2200,
+      "plan_pattern": "database-query-optimizer",
+      "plan_domain": "Database Systems",
+      "plan_files_count": 4,
+      "project_type": "database_showcase"
     }
   ],
   "cso_reviews": [
