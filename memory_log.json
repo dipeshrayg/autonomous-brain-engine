@@ -16505,6 +16505,139 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-22",
+      "completed_at": "2026-07-22T23:08:14Z",
+      "completed_at_unix": 1784761694,
+      "name": "crypto-entropy-showcase",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-22-crypto-entropy-showcase",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-22-crypto-entropy-showcase/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "WebGL"
+      ],
+      "complexity_score": 2100,
+      "concepts_demonstrated": [
+        "Cryptographic entropy",
+        "Information theory",
+        "Real-time simulations"
+      ],
+      "novel_concepts": [
+        "Interactive entropy visualization",
+        "Real-time cryptographic entropy calculations"
+      ],
+      "advancement_axis": "Novel algorithmic approach to visualizing cryptographic entropy",
+      "pattern": "interactive-cryptographic-visualization",
+      "domain": "Information Theory and Cryptography",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time simulation of cryptographic entropy calculations",
+        "Implementation of a novel algorithm for visualizing entropy",
+        "Use of WebGL for creating interactive and cinematic visualizations"
+      ],
+      "visual_identity": "High-end, sophisticated aesthetic with a focus on cinematic visualizations",
+      "safety_notes": "No security risks or concerns, as the project only visualizes cryptographic entropy and does not handle sensitive information",
+      "file_count": 4,
+      "loc": 396,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 492,
+        "bodyHtml": 1597,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Crypto Entropy Showcase",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Simulation Speed: 1.0\nEntropy Algorithm:\nShannon Entropy\nMin-Entropy\nR9nyi Entropy\n Restart Simulation Pause Simulation\n\nWelcome to the Crypto Entropy Showcase. This project visualizes cryptographic e",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Shannon Entropy\nMin-Entropy\nR9nyi Entrop",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pause Simulation",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type `typescript_app` and focus on a novel, interactive cryptographic or information-theoretic visualization. Ensure the project is fully functional in the browser with no dead buttons or incomplete features.",
+        "The visual theme must be 'soft-organic' to break away from the overused neon-cyber and retro-terminal aesthetics.",
+        "The architect must explore a domain leap into educational or research tools — for example, dynamic visualizations of data compression algorithms or interactive entropy simulations.",
+        "Complexity must come from algorithmic depth, such as live simulations or real-time calculations, not from adding superficial features or static UI elements.",
+        "All buttons and features must be fully operational in the final product — incomplete interactivity will not be tolerated.",
+        "Avoid repeating shader art, CLI tools, or prank projects for at least the next three cycles."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides a visually engaging and functional entropy visualization, but key controls (algorithm selector and pause button) do not trigger observable state or visual changes, and some controls have usability issues requiring improvement.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "Entropy calculation algorithm selector",
+            "expected": "Switch algorithm and update the visualization accordingly",
+            "actual": "No observable state change or visual response",
+            "fix": "Ensure algorithm change triggers a re-render of the visualization with the new entropy computation method."
+          },
+          {
+            "control": "Pause Simulation button",
+            "expected": "Pause the real-time simulation and stop canvas updates",
+            "actual": "No observable state or visual changes",
+            "fix": "Fix pause logic so the simulation halts and resumes properly when the button is clicked."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: Unlabeled controls and initial load clarity",
+            "why_missing": "Some controls (e.g., 'Entropy Algorithm') are not described sufficiently to explain their impact. The canvas visualization starts immediately without a clear indication of what is being shown.",
+            "fix": "Add on-screen explanations for what each control does and ensure the visualization begins with explanatory text or labels."
+          },
+          {
+            "feature": "Instructions for entropy algorithms",
+            "why_missing": "No on-screen guidance exists for understanding the difference between Shannon Entropy, Min-Entropy, and Rényi Entropy.",
+            "fix": "Add tooltips or an overlay explaining each algorithm's role and purpose."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -16670,7 +16803,8 @@
     2300,
     2200,
     1600,
-    2200
+    2200,
+    2100
   ],
   "concepts_explored": [
     "neural networks",
@@ -17112,7 +17246,9 @@
     "TUI-based Visualization",
     "Database query optimization",
     "Cryptographic query analysis",
-    "Constraint solving using DPLL"
+    "Constraint solving using DPLL",
+    "Cryptographic entropy",
+    "Real-time simulations"
   ],
   "patterns_used": [
     "visualizer",
@@ -17271,7 +17407,8 @@
     "retro-terminal-prank",
     "interactive-shader-art",
     "crypto-compression-console",
-    "cryptographic-query-optimization"
+    "cryptographic-query-optimization",
+    "interactive-cryptographic-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -17430,7 +17567,8 @@
     "Entertainment Technology",
     "Computer Graphics",
     "Cryptography and Data Compression",
-    "Cryptography and Database Systems"
+    "Cryptography and Database Systems",
+    "Information Theory and Cryptography"
   ],
   "ceo_reviews": [
     {
