@@ -16638,6 +16638,136 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-23",
+      "completed_at": "2026-07-23T10:26:28Z",
+      "completed_at_unix": 1784802388,
+      "name": "crypto-entropy-visualizer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-23-crypto-entropy-visualizer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-23-crypto-entropy-visualizer/",
+      "language": "javascript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "ESM"
+      ],
+      "complexity_score": 300,
+      "concepts_demonstrated": [
+        "Cryptography",
+        "Entropy",
+        "Information Theory",
+        "Interactive Visualization"
+      ],
+      "novel_concepts": [
+        "Real-time entropy calculation using JavaScript",
+        "Interactive 3D visualization of entropy",
+        "Soft-organic visual theme for a cryptographic project"
+      ],
+      "advancement_axis": "Algorithmic depth and interactive visualization",
+      "pattern": "interactive-entropy-visualization",
+      "domain": "Cryptography and Information Theory",
+      "visual_theme": "soft-organic",
+      "complexity_justification": [
+        "Implementation of a novel algorithm for calculating cryptographic entropy",
+        "Real-time visualization of entropy using interactive 3D graphics",
+        "Incorporation of mathematical correctness, including correct numerical methods and probability"
+      ],
+      "visual_identity": {
+        "color_palette": [
+          "#F7F7F7",
+          "#C9E4CA",
+          "#8BC34A"
+        ],
+        "typography": "Open Sans",
+        "layout_personality": "Minimalist and intuitive"
+      },
+      "safety_notes": "No known security vulnerabilities or concerns",
+      "file_count": 4,
+      "loc": 446,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 627,
+        "bodyHtml": 1764,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 400,
+          "cssW": 800,
+          "cssH": 400
+        },
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "Crypto Entropy Visualizer",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Crypto Entropy Visualizer\n\nAnalyze the entropy of your input data and explore the results visually.\n\nEnter data to analyze:\nInput data here to calculate its entropy. Each character contributes to the ",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 3,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Pause Visualization Updates",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type `typescript_app` and focus on a novel, interactive cryptographic or information-theoretic visualization. Ensure the project is fully functional in the browser with no dead buttons or incomplete features.",
+        "The visual theme must be 'soft-organic' to break away from the overused neon-cyber and retro-terminal aesthetics.",
+        "The architect must explore a domain leap into educational or research tools — for example, dynamic visualizations of data compression algorithms or interactive entropy simulations.",
+        "Complexity must come from algorithmic depth, such as live simulations or real-time calculations, not from adding superficial features or static UI elements.",
+        "All buttons and features must be fully operational in the final product — incomplete interactivity will not be tolerated.",
+        "Avoid repeating shader art, CLI tools, or prank projects for at least the next three cycles."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Crypto Entropy Visualizer provides real-time entropy calculation and visualization, but a few controls lack functional impact, and the project partially fails the five-second usability test due to missing on-screen instructions for the slider and the pause/resume functionality.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 2,
+        "dead_controls": [
+          {
+            "control": "Pause Visualization Updates (id='pause-button')",
+            "expected": "Stop visualization updates and visually indicate paused state.",
+            "actual": "No observable state change or visible effect.",
+            "fix": "Ensure pausing stops the dynamic canvas updates and reflects the state change visually (e.g., dimmed bar or paused message)."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: slider lacks labeled effect description",
+            "why_missing": "The 'Data Size' slider is not clearly labeled to describe its effect on entropy calculation.",
+            "fix": "Update the slider label to 'Data Size — adjusts entropy weighting based on input length' or provide more specific tooltip guidance."
+          },
+          {
+            "feature": "5-second usability failure: Pause/Resume buttons unclear",
+            "why_missing": "The on-screen description does not explain the Pause/Resume buttons for visualization updates, leaving users guessing their purpose and impact.",
+            "fix": "Add tooltips or inline text clarifying the effect of pausing and resuming entropy visualization."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -16804,7 +16934,8 @@
     2200,
     1600,
     2200,
-    2100
+    2100,
+    300
   ],
   "concepts_explored": [
     "neural networks",
@@ -17408,7 +17539,8 @@
     "interactive-shader-art",
     "crypto-compression-console",
     "cryptographic-query-optimization",
-    "interactive-cryptographic-visualization"
+    "interactive-cryptographic-visualization",
+    "interactive-entropy-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -17568,7 +17700,8 @@
     "Computer Graphics",
     "Cryptography and Data Compression",
     "Cryptography and Database Systems",
-    "Information Theory and Cryptography"
+    "Information Theory and Cryptography",
+    "Cryptography and Information Theory"
   ],
   "ceo_reviews": [
     {
