@@ -962,7 +962,10 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
             f"project_type={pt} needs >={min_files} files. Got {len(files)}."
         )
 
-    # Recovery mode: if failures dominate since last ship, relax floor + rotation.
+    # Recovery mode: relax floor + theme rotation only — NOT complexity justification.
+    # Justification is about honesty, not difficulty; it stays required even under pressure.
+    # ponytail: threshold of 3 is deliberate — at 21% ship rate recovery is ~permanent if
+    # lower, which defeats the purpose. Raise only if ship rate materially improves.
     last_success_unix = max(
         (p.get("completed_at_unix", 0) for p in (memory.get("projects") or [])),
         default=0,
@@ -990,24 +993,34 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     )
     if recent and not in_recovery:
         if pt in TYPE_SPECIFIC_FLOOR_TYPES:
-            # Floor is relative to the highest complexity ever shipped for THIS type only.
+            # Floor = type's historical max (can match but not regress below it).
+            # No +1 ratchet: forcing perpetual inflation disconnected the score from
+            # real difficulty. The justification gate is what ensures genuine advance.
             type_scores = [p.get("complexity_score", 0) for p in all_projects_list
                            if p.get("project_type") == pt and p.get("complexity_score", 0) > 0]
             if type_scores:
-                type_floor = max(type_scores) + 1
+                type_max = max(type_scores)
+                type_floor = max(type_max - 20, 1)  # allow modest regression; min 1
                 if complexity < type_floor:
                     raise PipelineError(
                         f"complexity_score={complexity} below floor {type_floor} for {pt} "
-                        f"(max shipped for this type={max(type_scores)}). Keep advancing."
+                        f"(type max={type_max}, floor=max-20). Cannot regress more than 20 points."
+                    )
+                # Cap runaway growth: single step cannot exceed 40 points above type max.
+                if complexity > type_max + 40:
+                    raise PipelineError(
+                        f"complexity_score={complexity} jumps {complexity - type_max} points above "
+                        f"type max {type_max} for {pt}. Cap is +40 per step. "
+                        "Genuine algorithmic advances don't require score leaps — earn it incrementally."
                     )
             # else: first time this type is built — no floor required
         else:
             max_recent = max(p.get("complexity_score", 0) for p in recent)
-            floor = max_recent + 1
+            floor = max_recent - 10  # allow modest regression; don't trap in recovery loops
             if complexity < floor:
                 raise PipelineError(
                     f"complexity_score={complexity} below floor {floor} (max recent={max_recent}). "
-                    "The scale is open-ended; surpass yesterday."
+                    "Cannot regress more than 10 points from recent peak."
                 )
 
     # Novel concepts gate
@@ -1021,11 +1034,12 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
             f"truly novel={truly_novel}"
         )
 
-    # complexity_justification required for visual types and any c>100
+    # complexity_justification required for visual types and any c>100.
+    # NOT bypassed by recovery — this is about honesty, not ease.
     VISUAL_TYPES = {"web_3d", "shader_art", "generative_art", "web_interactive",
                     "game_web", "typescript_app"}
     justification = plan.get("complexity_justification") or []
-    if (pt in VISUAL_TYPES or complexity > 100) and not in_recovery:
+    if pt in VISUAL_TYPES or complexity > 100:
         if not justification or len(justification) < 3:
             raise PipelineError(
                 f"complexity_justification must list >=3 specific algorithmic challenges for "
@@ -1050,7 +1064,7 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
                     )
 
     # visual_theme required for visual types (with fuzzy validation)
-    if pt in VISUAL_TYPES and not in_recovery:
+    if pt in VISUAL_TYPES:
         vt = (plan.get("visual_theme") or "").strip().lower()
         VALID_THEMES = {
             "luxury", "futuristic", "cinematic", "warm-amber", "neon-cyber",
@@ -1176,7 +1190,7 @@ def _validate_plan(plan: dict, memory: dict, *, emergency: bool = False) -> None
     # Visual theme rotation: two consecutive visual-type projects must use different themes.
     VISUAL_TYPES_ROT = {"web_3d", "shader_art", "generative_art", "web_interactive",
                         "game_web", "typescript_app"}
-    if pt in VISUAL_TYPES_ROT and not in_recovery:
+    if pt in VISUAL_TYPES_ROT:
         new_theme = (plan.get("visual_theme") or "").strip().lower()
         if new_theme:
             last_visual_theme = next(
