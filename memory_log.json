@@ -16768,6 +16768,129 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-23",
+      "completed_at": "2026-07-23T23:58:48Z",
+      "completed_at_unix": 1784851128,
+      "name": "neural-sculptor-workbench",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-23-neural-sculptor-workbench",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-23-neural-sculptor-workbench/",
+      "language": "JavaScript",
+      "project_type": "edu_platform",
+      "tech_stack": [
+        "Three.js",
+        "TensorFlow.js",
+        "WebGL"
+      ],
+      "complexity_score": 2500,
+      "concepts_demonstrated": [
+        "Neural Network Architecture",
+        "Real-time 3D Visualization",
+        "Machine Learning Algorithms"
+      ],
+      "novel_concepts": [
+        "Three-dimensional Neural Network Sculpting",
+        "Real-time Simulation and Feedback",
+        "Interactive Network Manipulation"
+      ],
+      "advancement_axis": "Real-time Interactive 3D Neural Network Visualization and Simulation",
+      "pattern": "interactive-3d-visualization",
+      "domain": "Artificial Intelligence",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time 3D rendering of complex neural network architectures",
+        "Implementation of machine learning algorithms for network simulation and feedback",
+        "Development of interactive tools for adding and manipulating neurons, connections, and layers"
+      ],
+      "visual_identity": "Deep blues and whites, futuristic fonts, sleek 3D models",
+      "safety_notes": "None",
+      "file_count": 4,
+      "loc": 475,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 428,
+        "bodyHtml": 5755,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 5,
+        "title": "Neural Sculptor Workbench",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Neural Sculptor Workbench\nCreate and interact with a 3D visualization of a neural network. Add neurons, adjust connection strength, and simulate behavior in real time.\nAdd Neuron (adds a neuron and up",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Add",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Restart",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "neuralnetwork.js": "gpt-4o",
+          "visualization.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'typescript_app' with a focus on interactive simulation — for example, a real-time particle physics simulator with dynamic controls and cinematic visuals.",
+        "Avoid cryptography, retro-terminal, and research_showcase themes for the next project. Push into a fresh visual theme such as 'minimal-glass' or 'neon-cyber'.",
+        "Prioritize human usability: ensure the resulting app is fully functional and interactive directly within the browser.",
+        "Demand at least one novel algorithmic implementation (e.g., procedural animation, particle interaction, or real-time force simulation).",
+        "Push for a complexity score of at least 2000 with genuine algorithmic depth, not inflated by adding superficial features.",
+        "Focus on technical excellence and visual polish to deliver an impactful, 'wow'-inducing experience."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides an engaging 3D visualization of a neural network, but critical interactivity features like 'Add Neuron' and 'Restart' buttons fail to produce observable changes, limiting its usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Add Neuron Button",
+            "expected": "Add a new neuron to the 3D visualization and update the network",
+            "actual": "No visible change in the 3D visualization when clicked",
+            "fix": "Ensure `neuralNetwork.addNeuron()` and `neuralNetwork.updateVisualization()` trigger rendering updates correctly."
+          },
+          {
+            "control": "Restart Simulation Button",
+            "expected": "Clear all neurons and reset the visualization",
+            "actual": "No visible resetting of neurons or connections in the visualization",
+            "fix": "Ensure `neuralNetwork.resetNetwork()` and `neuralNetwork.updateVisualization()` fully reset the scene and state."
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -16935,7 +17058,8 @@
     1600,
     2200,
     2100,
-    300
+    300,
+    2500
   ],
   "concepts_explored": [
     "neural networks",
@@ -17379,7 +17503,10 @@
     "Cryptographic query analysis",
     "Constraint solving using DPLL",
     "Cryptographic entropy",
-    "Real-time simulations"
+    "Real-time simulations",
+    "Neural Network Architecture",
+    "Real-time 3D Visualization",
+    "Machine Learning Algorithms"
   ],
   "patterns_used": [
     "visualizer",
@@ -17540,7 +17667,8 @@
     "crypto-compression-console",
     "cryptographic-query-optimization",
     "interactive-cryptographic-visualization",
-    "interactive-entropy-visualization"
+    "interactive-entropy-visualization",
+    "interactive-3d-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -17701,7 +17829,8 @@
     "Cryptography and Data Compression",
     "Cryptography and Database Systems",
     "Information Theory and Cryptography",
-    "Cryptography and Information Theory"
+    "Cryptography and Information Theory",
+    "Artificial Intelligence"
   ],
   "ceo_reviews": [
     {
