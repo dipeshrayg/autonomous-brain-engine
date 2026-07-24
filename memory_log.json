@@ -16891,6 +16891,141 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-24",
+      "completed_at": "2026-07-24T07:56:46Z",
+      "completed_at_unix": 1784879806,
+      "name": "galactic-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-24-galactic-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-24-galactic-simulator/",
+      "language": "JavaScript",
+      "project_type": "saas_landing",
+      "tech_stack": [
+        "Three.js",
+        "WebGL",
+        "JavaScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "complexity_score": 2200,
+      "concepts_demonstrated": [
+        "Real-time physics simulation",
+        "Procedural animation",
+        "Interactive 3D environment",
+        "Bayesian inference",
+        "Constraint programming"
+      ],
+      "novel_concepts": [
+        "Galaxy-scale simulation with real-time physics",
+        "Procedural animation of celestial bodies",
+        "Interactive 3D galaxy exploration"
+      ],
+      "advancement_axis": "Combining real-time physics simulation, procedural animation, and interactive 3D environment to create a highly immersive and realistic galaxy simulator",
+      "pattern": "galaxy-simulator",
+      "domain": "Astrophysics and Computer Science",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time physics simulation with collision detection and response",
+        "Procedural animation of galaxies, stars, and planets",
+        "Interactive 3D environment with orbit controls and camera manipulation",
+        "Implementation of Bayesian inference for probabilistic modeling of galaxy evolution",
+        "Use of constraint programming for optimizing galaxy simulation"
+      ],
+      "visual_identity": "Deep black background, golden accents, and realistic celestial body textures",
+      "safety_notes": "No malware, exploits, or harmful scripts are used in this project.",
+      "file_count": 4,
+      "loc": 444,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 683,
+        "bodyHtml": 1981,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 3,
+        "scriptCount": 4,
+        "title": "Galactic Simulator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Galactic Simulator\n\nExplore the galaxy! Adjust time, zoom, and orbit to view thousands of procedurally generated stars. Bayesian inference and constraint programming enhance the realism of galaxy evol",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 1,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Zoom In",
+              "trigger": "click",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "BUTTON",
+              "type": "submit",
+              "label": "Zoom Out",
+              "trigger": "click",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'typescript_app' with a focus on interactive simulation — for example, a real-time particle physics simulator with dynamic controls and cinematic visuals.",
+        "Avoid cryptography, retro-terminal, and research_showcase themes for the next project. Push into a fresh visual theme such as 'minimal-glass' or 'neon-cyber'.",
+        "Prioritize human usability: ensure the resulting app is fully functional and interactive directly within the browser.",
+        "Demand at least one novel algorithmic implementation (e.g., procedural animation, particle interaction, or real-time force simulation).",
+        "Push for a complexity score of at least 2000 with genuine algorithmic depth, not inflated by adding superficial features.",
+        "Focus on technical excellence and visual polish to deliver an impactful, 'wow'-inducing experience."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Galactic Simulator provides a visually compelling interactive 3D galaxy simulation with orbit controls and real-time animation, but zoom controls are non-functional, and some UI elements are insufficiently labeled for full usability.",
+        "model": "gpt-4o",
+        "dead_controls_count": 2,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Zoom In button",
+            "expected": "Zooms in the galaxy view and visibly updates the camera position.",
+            "actual": "No observable state change or visual update.",
+            "fix": "Ensure the camera position updates correctly and triggers re-rendering after zooming in."
+          },
+          {
+            "control": "Zoom Out button",
+            "expected": "Zooms out the galaxy view and visibly updates the camera position.",
+            "actual": "No observable state change or visual update.",
+            "fix": "Ensure the camera position updates correctly and triggers re-rendering after zooming out."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: Unclear purpose of controls",
+            "why_missing": "The on-screen description does not specify how the time slider or zoom buttons affect the visuals, and controls lack detailed effect labels.",
+            "fix": "Add clear, visible labels or tooltips for each control, explaining their visual effects (e.g., 'Time Speed — adjusts galaxy rotation speed')."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17059,7 +17194,8 @@
     2200,
     2100,
     300,
-    2500
+    2500,
+    2200
   ],
   "concepts_explored": [
     "neural networks",
@@ -17506,7 +17642,9 @@
     "Real-time simulations",
     "Neural Network Architecture",
     "Real-time 3D Visualization",
-    "Machine Learning Algorithms"
+    "Machine Learning Algorithms",
+    "Procedural animation",
+    "Constraint programming"
   ],
   "patterns_used": [
     "visualizer",
@@ -17668,7 +17806,8 @@
     "cryptographic-query-optimization",
     "interactive-cryptographic-visualization",
     "interactive-entropy-visualization",
-    "interactive-3d-visualization"
+    "interactive-3d-visualization",
+    "galaxy-simulator"
   ],
   "domains_used": [
     "Mathematics",
@@ -17830,7 +17969,8 @@
     "Cryptography and Database Systems",
     "Information Theory and Cryptography",
     "Cryptography and Information Theory",
-    "Artificial Intelligence"
+    "Artificial Intelligence",
+    "Astrophysics and Computer Science"
   ],
   "ceo_reviews": [
     {
