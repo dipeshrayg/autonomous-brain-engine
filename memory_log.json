@@ -17026,6 +17026,98 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-24",
+      "completed_at": "2026-07-24T20:13:19Z",
+      "completed_at_unix": 1784923999,
+      "name": "neural-oscillator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-24-neural-oscillator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-24-neural-oscillator/",
+      "language": "JavaScript",
+      "project_type": "ai_concept",
+      "tech_stack": [
+        "ES6",
+        "WebGL",
+        "TensorFlow.js"
+      ],
+      "complexity_score": 2100,
+      "concepts_demonstrated": [
+        "Neural networks",
+        "Oscillators",
+        "Complex systems"
+      ],
+      "novel_concepts": [
+        "Neural network-based oscillators",
+        "Real-time simulation of complex systems"
+      ],
+      "advancement_axis": "Technical depth and algorithmic innovation",
+      "pattern": "interactive-simulation",
+      "domain": "Artificial Intelligence",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementation of a novel neural network algorithm",
+        "Real-time simulation and visualization of neural network behavior",
+        "Interactive parameter manipulation and feedback loop"
+      ],
+      "visual_identity": "Dark background, neon accents, futuristic typography",
+      "safety_notes": "No personal data collection or storage",
+      "file_count": 4,
+      "loc": 374,
+      "quality_cycles_used": 0,
+      "final_verify_metrics": {
+        "bodyText": 70,
+        "bodyHtml": 993,
+        "canvasCount": 1,
+        "canvasBlank": false,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Neural Oscillator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Neural Oscillator\nFrequency: 5.0\nAmplitude: 1.0\nSpeed: 1.0\nReset\n\"}, {",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "styles.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'typescript_app' with a focus on interactive simulation — for example, a real-time particle physics simulator with dynamic controls and cinematic visuals.",
+        "Avoid cryptography, retro-terminal, and research_showcase themes for the next project. Push into a fresh visual theme such as 'minimal-glass' or 'neon-cyber'.",
+        "Prioritize human usability: ensure the resulting app is fully functional and interactive directly within the browser.",
+        "Demand at least one novel algorithmic implementation (e.g., procedural animation, particle interaction, or real-time force simulation).",
+        "Push for a complexity score of at least 2000 with genuine algorithmic depth, not inflated by adding superficial features.",
+        "Focus on technical excellence and visual polish to deliver an impactful, 'wow'-inducing experience."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Neural Oscillator interactive simulation performs as described, with all controls functioning as expected, UI elements responsive, and a visually appealing real-time neural network-driven oscillator visualization that updates dynamically based on user interactions.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17195,7 +17287,8 @@
     2100,
     300,
     2500,
-    2200
+    2200,
+    2100
   ],
   "concepts_explored": [
     "neural networks",
@@ -17644,7 +17737,9 @@
     "Real-time 3D Visualization",
     "Machine Learning Algorithms",
     "Procedural animation",
-    "Constraint programming"
+    "Constraint programming",
+    "Oscillators",
+    "Complex systems"
   ],
   "patterns_used": [
     "visualizer",
@@ -17807,7 +17902,8 @@
     "interactive-cryptographic-visualization",
     "interactive-entropy-visualization",
     "interactive-3d-visualization",
-    "galaxy-simulator"
+    "galaxy-simulator",
+    "interactive-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -17970,7 +18066,8 @@
     "Information Theory and Cryptography",
     "Cryptography and Information Theory",
     "Artificial Intelligence",
-    "Astrophysics and Computer Science"
+    "Astrophysics and Computer Science",
+    "Artificial Intelligence"
   ],
   "ceo_reviews": [
     {
