@@ -23541,6 +23541,30 @@
         "The architectural team demonstrated competence in cryptography-related domains, albeit to a fault."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-24T20:40:05Z",
+      "issued_at_unix": 1784925605,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "Recent projects are visually ambitious but lack usability, while the refusal data suggests a systemic bottleneck in the architect's ability to execute reliably.",
+      "concerns": [
+        "Several recent projects were marked 'partially_usable,' indicating broken interactivity or incomplete implementation.",
+        "The refusal data is opaque, with no clear technical failure descriptions, making it harder to identify the root cause.",
+        "Type diversity is stagnating, with most types maxed out and a lack of fresh domains being explored."
+      ],
+      "directives": [
+        "The next project must be a `prank_entertainment` type — focus on a visually stunning, interactive, and humorous experience with a retro-terminal visual theme.",
+        "Ensure the project is fully usable. All interactive buttons and features must work as intended, and the project must not rely on external installations or broken links.",
+        "Prioritize simplicity in the interactive mechanics for the next build to ensure shippability while maintaining visual polish.",
+        "Incorporate a novel algorithm or mechanic (e.g., dynamic sound synthesis, unconventional input methods, or randomized behavior) to ensure real complexity.",
+        "Focus on improving communication between the architect and QA team to surface concrete reasons for refusals, enabling actionable fixes."
+      ],
+      "praise": [
+        "Recent themes (luxury, futuristic, and soft-organic) have been consistently bold and visually engaging.",
+        "Complexity scores remain high, showing that the system is targeting ambitious technical challenges."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
