@@ -35394,6 +35394,26 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-24T17:57:07Z",
+      "issued_at_unix": 1784915827,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects exhibit a lack of algorithmic novelty and depth, with an overemphasis on shallow, MAXED OUT project types. The next project should focus on deep-tech research and utilize a project type that has not been MAXED OUT.",
+      "concerns": [
+        "Overreliance on MAXED OUT project types",
+        "Lack of algorithmic novelty and depth in recent projects",
+        "Insufficient exploration of deep-tech research areas"
+      ],
+      "directives": [
+        "Utilize the 'research_showcase' project type for the next project",
+        "Incorporate a novel algorithm, such as a constraint solver or a distributed consensus protocol",
+        "Focus on a deep-tech research area, such as formal verification or quantum computing",
+        "Ensure the project demonstrates mathematical correctness, information-theoretic interest, and edge-case rigor"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
