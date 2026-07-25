@@ -23757,6 +23757,31 @@
         "Complexity scores remain high, showing that the system is targeting ambitious technical challenges."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-25T20:14:58Z",
+      "issued_at_unix": 1785010498,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The recent projects show a lack of human usability, thematic repetition, and excessive reliance on partially interactive, visually safe outputs. Despite high complexity, the portfolio is becoming stagnant and risks losing its 'wow' factor.",
+      "concerns": [
+        "Recent projects are increasingly 'partially usable,' with dead or incomplete interactivity.",
+        "Repetition of themes (e.g., luxury, retro-terminal) and domains (cryptography, entertainment) is reducing diversity.",
+        "No recent projects have been genuinely visually spectacular or technically groundbreaking."
+      ],
+      "directives": [
+        "The next project must be a 'shader_art' type, focusing on GLSL shaders with a visually spectacular implementation (e.g., real-time raymarching, fluid simulation, or reaction-diffusion). The theme should be futuristic or neon-cyber, and the project must feel cinematic and polished.",
+        "The project must achieve a complexity score of at least 2000 and demonstrate real technical depth (e.g., novel math, intricate procedural systems). Avoid oversimplified or derivative shader code.",
+        "The index.html must be fully functional and interactive, with no dead buttons or incomplete features. Ensure the result is human-usable and compelling at first glance.",
+        "Blend the shader work with generative art principles to add algorithmic depth. The visuals must be dynamic and not static, with clear evidence of procedural generation or simulation.",
+        "Avoid domains explored in recent projects (cryptography, AI, entertainment). Consider a domain like physics, cellular automata, or abstract generative systems for freshness.",
+        "The project must include a distinct, polished visual identity that immediately differentiates it from previous projects. Avoid safe or overused styles."
+      ],
+      "praise": [
+        "The system has consistently delivered high-complexity projects with diverse technical domains.",
+        "Past projects have demonstrated strong technical ambition, particularly in cryptography and AI."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
