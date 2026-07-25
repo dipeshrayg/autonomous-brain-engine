@@ -17118,6 +17118,91 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-25",
+      "completed_at": "2026-07-25T09:11:30Z",
+      "completed_at_unix": 1784970690,
+      "name": "retro-glitch-terminal",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-25-retro-glitch-terminal",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-25-retro-glitch-terminal/",
+      "language": "JavaScript",
+      "project_type": "prank_entertainment",
+      "tech_stack": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "complexity_score": 1800,
+      "concepts_demonstrated": [
+        "Retro-terminal interface design",
+        "Dynamic sound synthesis",
+        "Randomized behavior"
+      ],
+      "novel_concepts": [
+        "Unconventional input methods",
+        "Novel algorithm for dynamic sound effects"
+      ],
+      "advancement_axis": "Incorporating a novel algorithm for dynamic sound synthesis and randomized behavior",
+      "pattern": "retro-terminal-prank",
+      "domain": "Entertainment Technology",
+      "visual_theme": "retro-terminal",
+      "complexity_justification": [
+        "Implementing a dynamic sound synthesis algorithm",
+        "Creating a randomized behavior system for the terminal interface",
+        "Developing an unconventional input method for user interaction"
+      ],
+      "visual_identity": "Green/amber phosphor on black, CRT scanlines, monospace, old-computer feel",
+      "safety_notes": "No external installations or broken links required. Fully usable and interactive.",
+      "file_count": 3,
+      "loc": 286,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "bodyText": 62,
+        "bodyHtml": 578,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 3,
+        "scriptCount": 1,
+        "title": "Retro Glitch Terminal",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": ">\n    \nTrigger Glitch Sound Volume:  Glitch Frequency:",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a `prank_entertainment` type — focus on a visually stunning, interactive, and humorous experience with a retro-terminal visual theme.",
+        "Ensure the project is fully usable. All interactive buttons and features must work as intended, and the project must not rely on external installations or broken links.",
+        "Prioritize simplicity in the interactive mechanics for the next build to ensure shippability while maintaining visual polish.",
+        "Incorporate a novel algorithm or mechanic (e.g., dynamic sound synthesis, unconventional input methods, or randomized behavior) to ensure real complexity.",
+        "Focus on improving communication between the architect and QA team to surface concrete reasons for refusals, enabling actionable fixes."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Retro Glitch Terminal project is fully functional, offering an engaging retro terminal interface with dynamic sound synthesis and randomized glitches, making it highly usable and entertaining.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17288,7 +17373,8 @@
     300,
     2500,
     2200,
-    2100
+    2100,
+    1800
   ],
   "concepts_explored": [
     "neural networks",
@@ -17739,7 +17825,10 @@
     "Procedural animation",
     "Constraint programming",
     "Oscillators",
-    "Complex systems"
+    "Complex systems",
+    "Retro-terminal interface design",
+    "Dynamic sound synthesis",
+    "Randomized behavior"
   ],
   "patterns_used": [
     "visualizer",
@@ -17903,7 +17992,8 @@
     "interactive-entropy-visualization",
     "interactive-3d-visualization",
     "galaxy-simulator",
-    "interactive-simulation"
+    "interactive-simulation",
+    "retro-terminal-prank"
   ],
   "domains_used": [
     "Mathematics",
@@ -18067,7 +18157,8 @@
     "Cryptography and Information Theory",
     "Artificial Intelligence",
     "Astrophysics and Computer Science",
-    "Artificial Intelligence"
+    "Artificial Intelligence",
+    "Entertainment Technology"
   ],
   "ceo_reviews": [
     {
