@@ -17298,6 +17298,119 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-26",
+      "completed_at": "2026-07-26T09:31:47Z",
+      "completed_at_unix": 1785058307,
+      "name": "neural-flux-reactor",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-26-neural-flux-reactor",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-26-neural-flux-reactor/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "WebGL",
+        "GLSL",
+        "HTML5",
+        "CSS3"
+      ],
+      "complexity_score": 2800,
+      "concepts_demonstrated": [
+        "Cellular automata",
+        "Complex systems",
+        "Generative art",
+        "Real-time rendering",
+        "Interactive simulation"
+      ],
+      "novel_concepts": [
+        "3D cellular automaton simulation",
+        "Interactive and customizable interface",
+        "Generative art principles in simulation"
+      ],
+      "advancement_axis": "Integration of generative art principles with complex systems and real-time rendering",
+      "pattern": "interactive-3d-simulation",
+      "domain": "Physics and Complex Systems",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Implementation of a 3D cellular automaton simulator using WebGL and GLSL shaders",
+        "Development of a customizable and interactive interface",
+        "Integration of real-time rendering and camera controls",
+        "Incorporation of generative art principles to create dynamic and visually stunning visuals"
+      ],
+      "visual_identity": "Futuristic and sleek, with a focus on dynamic and interactive visuals",
+      "safety_notes": "No known safety concerns",
+      "file_count": 4,
+      "loc": 527,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 341,
+        "bodyHtml": 2959,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Neural Flux Reactor - 3D Cellular Automaton Simulator",
+        "viewportMeta": true,
+        "hasMain": true,
+        "visibleText": "Neural Flux Reactor\n\nAn Interactive 3D Cellular Automaton Simulator\n\nUse the controls below to customize the simulation. Adjust the grid size, set iteration count, or choose a rule set to see the chan",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [
+            {
+              "index": 2,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Rule Set 1\nRule Set 2\nRule Set 3",
+              "trigger": "select",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 2
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "style.css": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'shader_art' type, focusing on GLSL shaders with a visually spectacular implementation (e.g., real-time raymarching, fluid simulation, or reaction-diffusion). The theme should be futuristic or neon-cyber, and the project must feel cinematic and polished.",
+        "The project must achieve a complexity score of at least 2000 and demonstrate real technical depth (e.g., novel math, intricate procedural systems). Avoid oversimplified or derivative shader code.",
+        "The index.html must be fully functional and interactive, with no dead buttons or incomplete features. Ensure the result is human-usable and compelling at first glance.",
+        "Blend the shader work with generative art principles to add algorithmic depth. The visuals must be dynamic and not static, with clear evidence of procedural generation or simulation.",
+        "Avoid domains explored in recent projects (cryptography, AI, entertainment). Consider a domain like physics, cellular automata, or abstract generative systems for freshness.",
+        "The project must include a distinct, polished visual identity that immediately differentiates it from previous projects. Avoid safe or overused styles."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project provides a visually appealing 3D cellular automaton simulation with functional grid size and iteration controls, but the rule set selector does not change the rendering as intended, which breaks a key promised feature.",
+        "model": "gpt-4o",
+        "dead_controls_count": 1,
+        "missing_features_count": 0,
+        "dead_controls": [
+          {
+            "control": "Rule set selector",
+            "expected": "Changing rule set should update the simulator's visual output to reflect the selected rule",
+            "actual": "No observable state change upon selecting a new rule set",
+            "fix": "Ensure the 'updateRuleSet' function properly changes the 'u_ruleSet' uniform and triggers a re-render to reflect the new rule"
+          }
+        ],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17470,7 +17583,8 @@
     2200,
     2100,
     1800,
-    1800
+    1800,
+    2800
   ],
   "concepts_explored": [
     "neural networks",
@@ -18093,7 +18207,8 @@
     "galaxy-simulator",
     "interactive-simulation",
     "retro-terminal-prank",
-    "retro-terminal-prank"
+    "retro-terminal-prank",
+    "interactive-3d-simulation"
   ],
   "domains_used": [
     "Mathematics",
@@ -18259,7 +18374,8 @@
     "Astrophysics and Computer Science",
     "Artificial Intelligence",
     "Entertainment Technology",
-    "Entertainment Technology"
+    "Entertainment Technology",
+    "Physics and Complex Systems"
   ],
   "ceo_reviews": [
     {
