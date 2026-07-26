@@ -17411,6 +17411,101 @@
         ],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-26",
+      "completed_at": "2026-07-26T19:16:54Z",
+      "completed_at_unix": 1785093414,
+      "name": "chaos-theory-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-26-chaos-theory-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-26-chaos-theory-simulator/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "GLSL",
+        "WebGL",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 2400,
+      "concepts_demonstrated": [
+        "Chaos Theory",
+        "Complex Systems",
+        "Real-Time Simulation",
+        "Novel Shader Techniques"
+      ],
+      "novel_concepts": [
+        "Real-Time Chaos Theory Simulation",
+        "Interactive Visualization of Complex Systems"
+      ],
+      "advancement_axis": "Real-Time Simulation and Visualization of Complex Systems",
+      "pattern": "chaos-theory-simulator",
+      "domain": "Physics and Mathematics",
+      "visual_theme": "futuristic",
+      "complexity_justification": [
+        "Real-time simulation of complex systems",
+        "Implementation of novel shader techniques for visualization",
+        "User-adjustable parameters for exploring different scenarios"
+      ],
+      "visual_identity": "Dark background with neon accents, futuristic font, and interactive 3D visualizations",
+      "safety_notes": "No known safety concerns",
+      "file_count": 4,
+      "loc": 459,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 59,
+        "bodyHtml": 1559,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 300,
+          "h": 150,
+          "cssW": 300,
+          "cssH": 150
+        },
+        "interactiveCount": 3,
+        "scriptCount": 2,
+        "title": "Chaos Theory Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Parameter (A): 1.0 \nSimulation Speed: 1.0 \nReset Simulation",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 3,
+          "total_controls": 3,
+          "dead_controls": [],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'shader_art' type, focusing on GLSL shaders with a visually spectacular implementation (e.g., real-time raymarching, fluid simulation, or reaction-diffusion). The theme should be futuristic or neon-cyber, and the project must feel cinematic and polished.",
+        "The project must achieve a complexity score of at least 2000 and demonstrate real technical depth (e.g., novel math, intricate procedural systems). Avoid oversimplified or derivative shader code.",
+        "The index.html must be fully functional and interactive, with no dead buttons or incomplete features. Ensure the result is human-usable and compelling at first glance.",
+        "Blend the shader work with generative art principles to add algorithmic depth. The visuals must be dynamic and not static, with clear evidence of procedural generation or simulation.",
+        "Avoid domains explored in recent projects (cryptography, AI, entertainment). Consider a domain like physics, cellular automata, or abstract generative systems for freshness.",
+        "The project must include a distinct, polished visual identity that immediately differentiates it from previous projects. Avoid safe or overused styles."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Chaos Theory Simulator is fully functional, with real-time visualization, labeled controls, and an effective user experience that allows parameter adjustments, simulation speed changes, and reset functionality.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17584,7 +17679,8 @@
     2100,
     1800,
     1800,
-    2800
+    2800,
+    2400
   ],
   "concepts_explored": [
     "neural networks",
@@ -18041,7 +18137,11 @@
     "Randomized behavior",
     "dynamic sound synthesis",
     "randomized behavior",
-    "constraint satisfaction"
+    "constraint satisfaction",
+    "Chaos Theory",
+    "Complex Systems",
+    "Real-Time Simulation",
+    "Novel Shader Techniques"
   ],
   "patterns_used": [
     "visualizer",
@@ -18208,7 +18308,8 @@
     "interactive-simulation",
     "retro-terminal-prank",
     "retro-terminal-prank",
-    "interactive-3d-simulation"
+    "interactive-3d-simulation",
+    "chaos-theory-simulator"
   ],
   "domains_used": [
     "Mathematics",
@@ -18375,7 +18476,8 @@
     "Artificial Intelligence",
     "Entertainment Technology",
     "Entertainment Technology",
-    "Physics and Complex Systems"
+    "Physics and Complex Systems",
+    "Physics and Mathematics"
   ],
   "ceo_reviews": [
     {
