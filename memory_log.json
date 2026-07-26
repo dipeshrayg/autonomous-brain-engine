@@ -24000,6 +24000,31 @@
         "Past projects have demonstrated strong technical ambition, particularly in cryptography and AI."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-26T20:16:58Z",
+      "issued_at_unix": 1785097018,
+      "model": "gpt-4o",
+      "verdict": "drifting",
+      "summary": "The recent projects exhibit technical ambition but suffer from a lack of usability, with several rated only 'partially usable.' Type diversity is stagnating due to over-reliance on certain maxed-out project types.",
+      "concerns": [
+        "Projects are being shipped with 'partially usable' ratings, indicating poor human usability.",
+        "Repetition of similar themes and patterns (e.g., multiple 'retro-terminal' and futuristic-themed projects) undermines the visual ambition mandate.",
+        "The system is failing to explore new domains and project types, with a heavy reliance on already maxed-out types."
+      ],
+      "directives": [
+        "The next project must be a 'shader_art' type, focusing on a novel GLSL-based interactive fluid simulation. The visual theme should be 'minimal-glass,' with a focus on sleek, reflective surfaces and transparency effects.",
+        "The shader_art project must include a fully functional web-based interface that allows real-time interaction with the simulation, ensuring it is fully usable via GitHub Pages.",
+        "The project must achieve a complexity score of at least 2000, with a focus on advanced shader techniques such as signed distance functions (SDFs), procedural noise, or real-time physics-based rendering.",
+        "Avoid patterns or themes that have been overused recently, such as 'futuristic' or 'retro-terminal.' Push for a fresh aesthetic direction with clear differentiation.",
+        "The project must include a well-documented explanation of the shader techniques used, presented interactively on the GitHub Pages site for educational value.",
+        "Future projects must focus on underrepresented and never-tried types, particularly 'cli_tool,' 'typescript_app,' or 'data_viz,' unless this project encounters major issues."
+      ],
+      "praise": [
+        "The recent projects have demonstrated a high level of technical ambition, with notable complexity scores across multiple domains.",
+        "The diversity of domains, from cryptography to astrophysics, is commendable."
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
