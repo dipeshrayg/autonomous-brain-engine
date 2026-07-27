@@ -17600,6 +17600,155 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-27",
+      "completed_at": "2026-07-27T20:23:50Z",
+      "completed_at_unix": 1785183830,
+      "name": "neural-architecture-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-27-neural-architecture-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-27-neural-architecture-explorer/",
+      "language": "JavaScript",
+      "project_type": "research_showcase",
+      "tech_stack": [
+        "WebGL",
+        "Three.js",
+        "GLSL"
+      ],
+      "complexity_score": 2200,
+      "concepts_demonstrated": [
+        "Neural Network Architecture",
+        "3D Visualization",
+        "Real-time Interaction"
+      ],
+      "novel_concepts": [
+        "Interactive Neural Network Visualization",
+        "Real-time Camera Controls"
+      ],
+      "advancement_axis": "Novel Application of 3D Visualization to Neural Network Architecture",
+      "pattern": "interactive-3d-visualization",
+      "domain": "Artificial Intelligence",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Real-time 3D rendering of complex neural network architectures",
+        "Implementation of interactive camera controls and lighting effects",
+        "Development of a custom GLSL shader for efficient rendering of neural network nodes and edges"
+      ],
+      "visual_identity": {
+        "color_palette": [
+          "#2E4053",
+          "#66CCCC",
+          "#F7F7F7"
+        ],
+        "typography": "Montserrat",
+        "layout_personality": "clean and minimalist"
+      },
+      "safety_notes": "No safety concerns",
+      "file_count": 3,
+      "loc": 329,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 387,
+        "bodyHtml": 1424,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Neural Architecture Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Select Neural Network Architecture:\nConvolutional Neural Network (CNN)\nRecurrent Neural Network (RNN)\nTransformer\nRotation Speed:\nCamera Distance:\nPause\nNeural Architecture Explorer\n\nInteract with and",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "SELECT",
+              "type": "select-one",
+              "label": "Convolutional Neural Network (CNN)\nRecur",
+              "trigger": "select",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 1,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "0.01",
+              "trigger": "range",
+              "reason": "no observable state change"
+            },
+            {
+              "index": 2,
+              "tag": "INPUT",
+              "type": "range",
+              "label": "10",
+              "trigger": "range",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "script.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'shader_art' type, focusing on a novel GLSL-based interactive fluid simulation. The visual theme should be 'minimal-glass,' with a focus on sleek, reflective surfaces and transparency effects.",
+        "The shader_art project must include a fully functional web-based interface that allows real-time interaction with the simulation, ensuring it is fully usable via GitHub Pages.",
+        "The project must achieve a complexity score of at least 2000, with a focus on advanced shader techniques such as signed distance functions (SDFs), procedural noise, or real-time physics-based rendering.",
+        "Avoid patterns or themes that have been overused recently, such as 'futuristic' or 'retro-terminal.' Push for a fresh aesthetic direction with clear differentiation.",
+        "The project must include a well-documented explanation of the shader techniques used, presented interactively on the GitHub Pages site for educational value.",
+        "Future projects must focus on underrepresented and never-tried types, particularly 'cli_tool,' 'typescript_app,' or 'data_viz,' unless this project encounters major issues."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The Neural Architecture Explorer provides a 3D visualization of neural networks with interactive camera controls and architecture selection. However, several key issues hinder full usability, such as non-functional sliders and missing real-time updates for architecture selection.",
+        "model": "gpt-4o",
+        "dead_controls_count": 3,
+        "missing_features_count": 1,
+        "dead_controls": [
+          {
+            "control": "Architecture Selection Dropdown",
+            "expected": "Real-time update of the neural network structure in the 3D canvas when different architectures are selected.",
+            "actual": "No visible change occurs, and the 3D scene remains unaffected.",
+            "fix": "Ensure the `updateArchitecture()` function is triggered correctly upon selection change, and the selected architecture is rendered into the scene."
+          },
+          {
+            "control": "Rotation Speed Slider",
+            "expected": "Adjust the rotation speed of the displayed architecture in real-time.",
+            "actual": "No noticeable change in rotation speed occurs when adjusting the slider.",
+            "fix": "Check if the `rotationSpeed` variable updates the rendering logic in the animation loop and ensure it correctly modifies the rotation speed of the displayed 3D model."
+          },
+          {
+            "control": "Camera Distance Slider",
+            "expected": "Adjust the distance of the camera from the neural network visualization in real-time.",
+            "actual": "No visible change to the camera distance is observed when adjusting the slider.",
+            "fix": "Verify the `camera.position.z` assignment and ensure the scene is rerendered after the camera position is updated."
+          }
+        ],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: No immediate visualization or introduction",
+            "why_missing": "The page loads with a blank canvas and requires user interaction to display the first neural network visualization.",
+            "fix": "Automatically display a default architecture (e.g., CNN) upon page load."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17775,7 +17924,8 @@
     1800,
     2800,
     2400,
-    2100
+    2100,
+    2200
   ],
   "concepts_explored": [
     "neural networks",
@@ -18240,7 +18390,9 @@
     "Real-time Fluid Simulation",
     "Procedural Geometry",
     "Procedural Noise",
-    "Real-time Physics-based Rendering"
+    "Real-time Physics-based Rendering",
+    "3D Visualization",
+    "Real-time Interaction"
   ],
   "patterns_used": [
     "visualizer",
@@ -18409,7 +18561,8 @@
     "retro-terminal-prank",
     "interactive-3d-simulation",
     "chaos-theory-simulator",
-    "interactive-shader-art"
+    "interactive-shader-art",
+    "interactive-3d-visualization"
   ],
   "domains_used": [
     "Mathematics",
@@ -18578,7 +18731,8 @@
     "Entertainment Technology",
     "Physics and Complex Systems",
     "Physics and Mathematics",
-    "Computer Graphics"
+    "Computer Graphics",
+    "Artificial Intelligence"
   ],
   "ceo_reviews": [
     {
