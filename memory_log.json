@@ -17506,6 +17506,100 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-27",
+      "completed_at": "2026-07-27T10:55:33Z",
+      "completed_at_unix": 1785149733,
+      "name": "fluid-simulator",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-27-fluid-simulator",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-27-fluid-simulator/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "GLSL",
+        "WebGL",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 2100,
+      "concepts_demonstrated": [
+        "Real-time Fluid Simulation",
+        "Procedural Geometry",
+        "Procedural Noise",
+        "Real-time Physics-based Rendering"
+      ],
+      "novel_concepts": [
+        "Novel GLSL-based Interactive Fluid Simulation",
+        "Minimal-glass Visual Theme"
+      ],
+      "advancement_axis": "Advanced Shader Techniques",
+      "pattern": "interactive-shader-art",
+      "domain": "Computer Graphics",
+      "visual_theme": "minimal-glass",
+      "complexity_justification": [
+        "Implementation of real-time fluid simulation using GLSL",
+        "Utilization of signed distance functions (SDFs) for procedural geometry",
+        "Integration of procedural noise for realistic texture generation",
+        "Real-time physics-based rendering for accurate simulation"
+      ],
+      "visual_identity": "Reflective Surfaces, Transparency Effects, Minimalistic Design",
+      "safety_notes": "No known safety concerns",
+      "file_count": 3,
+      "loc": 479,
+      "quality_cycles_used": 3,
+      "final_verify_metrics": {
+        "bodyText": 114,
+        "bodyHtml": 9184,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 6,
+        "scriptCount": 1,
+        "title": "Fluid Simulator",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Simulation Speed:\n1.0\nNoise Level:\n0.5\nWave Frequency:\n1.0\nWave Amplitude:\n0.5\nRestart Simulation Pause Simulation",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 6,
+          "total_controls": 6,
+          "dead_controls": [],
+          "live_count": 6
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a 'shader_art' type, focusing on a novel GLSL-based interactive fluid simulation. The visual theme should be 'minimal-glass,' with a focus on sleek, reflective surfaces and transparency effects.",
+        "The shader_art project must include a fully functional web-based interface that allows real-time interaction with the simulation, ensuring it is fully usable via GitHub Pages.",
+        "The project must achieve a complexity score of at least 2000, with a focus on advanced shader techniques such as signed distance functions (SDFs), procedural noise, or real-time physics-based rendering.",
+        "Avoid patterns or themes that have been overused recently, such as 'futuristic' or 'retro-terminal.' Push for a fresh aesthetic direction with clear differentiation.",
+        "The project must include a well-documented explanation of the shader techniques used, presented interactively on the GitHub Pages site for educational value.",
+        "Future projects must focus on underrepresented and never-tried types, particularly 'cli_tool,' 'typescript_app,' or 'data_viz,' unless this project encounters major issues."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The fluid simulator provides a visually compelling real-time GLSL-based simulation with clearly labeled, responsive controls for speed, noise, wave frequency, and amplitude, all of which impact the rendered visual in meaningful ways. The UI is user-friendly and delivers on all promised features.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17680,7 +17774,8 @@
     1800,
     1800,
     2800,
-    2400
+    2400,
+    2100
   ],
   "concepts_explored": [
     "neural networks",
@@ -18141,7 +18236,11 @@
     "Chaos Theory",
     "Complex Systems",
     "Real-Time Simulation",
-    "Novel Shader Techniques"
+    "Novel Shader Techniques",
+    "Real-time Fluid Simulation",
+    "Procedural Geometry",
+    "Procedural Noise",
+    "Real-time Physics-based Rendering"
   ],
   "patterns_used": [
     "visualizer",
@@ -18309,7 +18408,8 @@
     "retro-terminal-prank",
     "retro-terminal-prank",
     "interactive-3d-simulation",
-    "chaos-theory-simulator"
+    "chaos-theory-simulator",
+    "interactive-shader-art"
   ],
   "domains_used": [
     "Mathematics",
@@ -18477,7 +18577,8 @@
     "Entertainment Technology",
     "Entertainment Technology",
     "Physics and Complex Systems",
-    "Physics and Mathematics"
+    "Physics and Mathematics",
+    "Computer Graphics"
   ],
   "ceo_reviews": [
     {
