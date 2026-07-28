@@ -17846,6 +17846,99 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-28",
+      "completed_at": "2026-07-28T22:06:43Z",
+      "completed_at_unix": 1785276403,
+      "name": "brutalist-sdf-scene",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-28-brutalist-sdf-scene",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-28-brutalist-sdf-scene/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "WebGL",
+        "GLSL",
+        "HTML",
+        "CSS"
+      ],
+      "complexity_score": 2200,
+      "concepts_demonstrated": [
+        "SDF scene generation",
+        "raymarching",
+        "procedural geometry",
+        "cinematic lighting"
+      ],
+      "novel_concepts": [
+        "Brutalist geometry generation",
+        "Advanced raymarching techniques for SDF scenes"
+      ],
+      "advancement_axis": "Visual distinctiveness and algorithmic depth in shader art",
+      "pattern": "brutalist-sdf-scene",
+      "domain": "Computer Graphics",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Implementing advanced raymarching techniques for SDF scene generation",
+        "Creating dynamic procedural geometry for the brutalist scene",
+        "Developing a cinematic lighting system with adjustable parameters",
+        "Ensuring full interactivity and usability on GitHub Pages"
+      ],
+      "visual_identity": "Brutalist geometry, cinematic lighting, and a dark color palette",
+      "safety_notes": "No known safety concerns",
+      "file_count": 3,
+      "loc": 495,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "bodyText": 84,
+        "bodyHtml": 7968,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 4,
+        "scriptCount": 2,
+        "title": "Brutalist SDF Scene",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Camera Position: 0.0\nLighting Intensity: 1.0\nReset Scene\nReset\nPause Rendering\nPause",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [],
+          "live_count": 4
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art — focus on a raymarching SDF scene with a brutalist theme and cinematic lighting.",
+        "Avoid futuristic or retro-terminal aesthetics; push into a visually distinct domain like brutalist geometry or soft-organic forms.",
+        "Ensure genuine algorithmic depth in the shader, such as dynamic procedural geometry or advanced raymarching techniques.",
+        "The project must be fully interactive and usable on GitHub Pages — no blank canvases or static showcases.",
+        "Architect must document the shader's mathematical basis in Markdown, linking technical novelty to visual outcomes."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The project delivers an interactive and visually engaging SDF-based 3D scene with functional and well-labeled controls for camera position and lighting intensity, meeting all promised features and usability criteria.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -18023,7 +18116,8 @@
     2400,
     2100,
     2200,
-    2801
+    2801,
+    2200
   ],
   "concepts_explored": [
     "neural networks",
@@ -18492,7 +18586,10 @@
     "3D Visualization",
     "Real-time Interaction",
     "encryption algorithms",
-    "digital signatures"
+    "digital signatures",
+    "SDF scene generation",
+    "raymarching",
+    "procedural geometry"
   ],
   "patterns_used": [
     "visualizer",
@@ -18663,7 +18760,8 @@
     "chaos-theory-simulator",
     "interactive-shader-art",
     "interactive-3d-visualization",
-    "cryptography-workbench"
+    "cryptography-workbench",
+    "brutalist-sdf-scene"
   ],
   "domains_used": [
     "Mathematics",
@@ -18834,7 +18932,8 @@
     "Physics and Mathematics",
     "Computer Graphics",
     "Artificial Intelligence",
-    "Cryptography and Information Security"
+    "Cryptography and Information Security",
+    "Computer Graphics"
   ],
   "ceo_reviews": [
     {
