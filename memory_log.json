@@ -17749,6 +17749,103 @@
           }
         ]
       }
+    },
+    {
+      "date": "2026-07-28",
+      "completed_at": "2026-07-28T09:49:33Z",
+      "completed_at_unix": 1785232173,
+      "name": "cryptography-workbench",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-28-cryptography-workbench",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-28-cryptography-workbench/",
+      "language": "Rust",
+      "project_type": "cli_tool",
+      "tech_stack": [
+        "Rust",
+        "WebAssembly",
+        "GitHub Codespaces"
+      ],
+      "complexity_score": 2801,
+      "concepts_demonstrated": [
+        "cryptography",
+        "encryption algorithms",
+        "digital signatures"
+      ],
+      "novel_concepts": [
+        "novel cryptographic technique",
+        "visual representation of cryptographic process"
+      ],
+      "advancement_axis": "algorithmic depth and interactive demonstration",
+      "pattern": "cryptography-workbench",
+      "domain": "Cryptography and Information Security",
+      "visual_theme": "neon-cyber",
+      "complexity_justification": [
+        "Implementation of a novel cryptographic technique",
+        "Integration of an animated terminal showcase for demonstrating the tool's functionality",
+        "Visual representation of the cryptographic process in the web demo",
+        "Utilization of WebAssembly for creating a web-based interactive demo",
+        "Adoption of a distinct visual theme for the project"
+      ],
+      "visual_identity": "neon-cyber theme with dark backgrounds and vibrant neon accents",
+      "safety_notes": "No active malware or exploits; educational and diagnostic purposes only",
+      "file_count": 4,
+      "loc": 434,
+      "quality_cycles_used": 4,
+      "final_verify_metrics": {
+        "bodyText": 113,
+        "bodyHtml": 3360,
+        "canvasCount": 0,
+        "canvasBlank": false,
+        "canvasSize": null,
+        "interactiveCount": 4,
+        "scriptCount": 1,
+        "title": "Cryptography Workbench",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Cryptography Workbench\n\nType your message and choose an action:\n\n Encrypt Decrypt Sign\nOutput will appear here...",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 4,
+          "total_controls": 4,
+          "dead_controls": [
+            {
+              "index": 0,
+              "tag": "TEXTAREA",
+              "type": "textarea",
+              "label": "Enter your message here...",
+              "trigger": "textarea",
+              "reason": "no observable state change"
+            }
+          ],
+          "live_count": 3
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "src/main.rs": "gpt-4o",
+          "src/crypto.rs": "gpt-4o",
+          "index.html": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be a cli_tool with a focus on cryptography or compression algorithms — it should include an interactive demo in index.html showcasing its functionality.",
+        "Ensure the cli_tool is fully usable with an animated terminal showcase and no critical features missing or dead buttons.",
+        "Push for algorithmic depth by implementing a novel cryptographic or compression technique, with visual representation of the process in the web demo.",
+        "Adopt a distinct visual theme such as brutalist or neon-cyber to break thematic repetition.",
+        "Avoid any domain overlap with astrophysics, AI, or prank entertainment — explore an entirely new technical domain like cryptography or information theory."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The Cryptography Workbench web project successfully implements and visualizes encryption, decryption, and digital signature creation, with clearly labeled controls, real-time output, and responsive state changes.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -17925,7 +18022,8 @@
     2800,
     2400,
     2100,
-    2200
+    2200,
+    2801
   ],
   "concepts_explored": [
     "neural networks",
@@ -18392,7 +18490,9 @@
     "Procedural Noise",
     "Real-time Physics-based Rendering",
     "3D Visualization",
-    "Real-time Interaction"
+    "Real-time Interaction",
+    "encryption algorithms",
+    "digital signatures"
   ],
   "patterns_used": [
     "visualizer",
@@ -18562,7 +18662,8 @@
     "interactive-3d-simulation",
     "chaos-theory-simulator",
     "interactive-shader-art",
-    "interactive-3d-visualization"
+    "interactive-3d-visualization",
+    "cryptography-workbench"
   ],
   "domains_used": [
     "Mathematics",
@@ -18732,7 +18833,8 @@
     "Physics and Complex Systems",
     "Physics and Mathematics",
     "Computer Graphics",
-    "Artificial Intelligence"
+    "Artificial Intelligence",
+    "Cryptography and Information Security"
   ],
   "ceo_reviews": [
     {
