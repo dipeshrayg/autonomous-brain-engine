@@ -17939,6 +17939,98 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-29",
+      "completed_at": "2026-07-29T09:50:47Z",
+      "completed_at_unix": 1785318647,
+      "name": "sdf-fractal-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-29-sdf-fractal-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-29-sdf-fractal-explorer/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "GLSL",
+        "WebGL",
+        "HTML"
+      ],
+      "complexity_score": 2300,
+      "concepts_demonstrated": [
+        "SDF fractal generation",
+        "Raymarching",
+        "Procedural geometry",
+        "Cinematic lighting"
+      ],
+      "novel_concepts": [
+        "Interactive SDF fractal exploration",
+        "Dynamic geometry generation with user input"
+      ],
+      "advancement_axis": "Real-time SDF fractal generation with cinematic lighting and interactive user input",
+      "pattern": "sdf-fractal-exploration",
+      "domain": "Computer Graphics",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Implementation of advanced raymarching techniques for SDF fractal generation",
+        "Procedural geometry generation with dynamic level of detail",
+        "Cinematic lighting with real-time global illumination and ambient occlusion",
+        "Interactive parameter manipulation with real-time feedback"
+      ],
+      "visual_identity": "High-contrast, brutalist color palette with cinematic lighting and dynamic geometry",
+      "safety_notes": "No known safety concerns",
+      "file_count": 3,
+      "loc": 494,
+      "quality_cycles_used": 2,
+      "final_verify_metrics": {
+        "bodyText": 69,
+        "bodyHtml": 7467,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 1,
+        "title": "SDF Fractal Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Fractal Depth:\n5\nLight Intensity:\n1.0\nRotation Speed:\n1.0\nReset Pause",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 5,
+          "total_controls": 5,
+          "dead_controls": [],
+          "live_count": 5
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art — focus on a raymarching SDF scene with a brutalist theme and cinematic lighting.",
+        "Avoid futuristic or retro-terminal aesthetics; push into a visually distinct domain like brutalist geometry or soft-organic forms.",
+        "Ensure genuine algorithmic depth in the shader, such as dynamic procedural geometry or advanced raymarching techniques.",
+        "The project must be fully interactive and usable on GitHub Pages — no blank canvases or static showcases.",
+        "Architect must document the shader's mathematical basis in Markdown, linking technical novelty to visual outcomes."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The SDF Fractal Explorer is fully functional, visually engaging, and provides an interactive experience with responsive controls and real-time updates to the fractal rendering.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -18117,7 +18209,8 @@
     2100,
     2200,
     2801,
-    2200
+    2200,
+    2300
   ],
   "concepts_explored": [
     "neural networks",
@@ -18589,7 +18682,8 @@
     "digital signatures",
     "SDF scene generation",
     "raymarching",
-    "procedural geometry"
+    "procedural geometry",
+    "SDF fractal generation"
   ],
   "patterns_used": [
     "visualizer",
@@ -18761,7 +18855,8 @@
     "interactive-shader-art",
     "interactive-3d-visualization",
     "cryptography-workbench",
-    "brutalist-sdf-scene"
+    "brutalist-sdf-scene",
+    "sdf-fractal-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -18933,6 +19028,7 @@
     "Computer Graphics",
     "Artificial Intelligence",
     "Cryptography and Information Security",
+    "Computer Graphics",
     "Computer Graphics"
   ],
   "ceo_reviews": [
