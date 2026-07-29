@@ -37052,6 +37052,26 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-29T17:44:35Z",
+      "issued_at_unix": 1785347075,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with a focus on shallow, entertainment-oriented applications. The diversity report indicates that most project types have reached maximum complexity, suggesting a need for new approaches.",
+      "concerns": [
+        "Overemphasis on entertainment and graphics projects",
+        "Lack of projects in areas like formal verification, distributed systems, and consensus protocols",
+        "Insufficient attention to information-theoretic and mathematical correctness in recent projects"
+      ],
+      "directives": [
+        "Use the research_showcase project type for the next project",
+        "Implement a novel algorithm, such as a constraint solver or a Bayesian inference engine",
+        "Incorporate deep-tech concepts, like distributed systems or formal verification, into the project",
+        "Ensure mathematical correctness and information-theoretic interest in the project's design and implementation"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": false,
