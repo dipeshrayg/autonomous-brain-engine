@@ -18031,6 +18031,98 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-29",
+      "completed_at": "2026-07-29T18:38:33Z",
+      "completed_at_unix": 1785350313,
+      "name": "brutalist-geometry-explorer",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-29-brutalist-geometry-explorer",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-29-brutalist-geometry-explorer/",
+      "language": "GLSL",
+      "project_type": "shader_art",
+      "tech_stack": [
+        "WebGL",
+        "GLSL",
+        "JavaScript"
+      ],
+      "complexity_score": 300,
+      "concepts_demonstrated": [
+        "Raymarching",
+        "SDF functions",
+        "Cinematic lighting",
+        "Brutalist geometry"
+      ],
+      "novel_concepts": [
+        "Use of SDF functions to create complex brutalist geometry",
+        "Implementation of cinematic lighting in a shader art piece"
+      ],
+      "advancement_axis": "Genuine algorithmic depth in the shader and visually distinct domain",
+      "pattern": "brutalist-geometry-exploration",
+      "domain": "Computer Graphics",
+      "visual_theme": "brutalist",
+      "complexity_justification": [
+        "Implementation of a raymarching SDF scene with brutalist theme and cinematic lighting",
+        "Use of SDF functions to create complex geometry",
+        "Implementation of ambient, diffuse, and specular lighting components",
+        "Use of orbit controls for user navigation"
+      ],
+      "visual_identity": "Brutalist geometry, cinematic lighting, dramatic contrasts, subtle shading",
+      "safety_notes": "None",
+      "file_count": 3,
+      "loc": 432,
+      "quality_cycles_used": 1,
+      "final_verify_metrics": {
+        "bodyText": 92,
+        "bodyHtml": 6866,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 800,
+          "h": 600,
+          "cssW": 800,
+          "cssH": 600
+        },
+        "interactiveCount": 6,
+        "scriptCount": 1,
+        "title": "Brutalist Geometry Explorer",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Camera Orbit X:\n0.0\nCamera Orbit Y:\n0.0\nLighting Intensity:\n1.0\nScene Scale:\n1.0\nReset Pause",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 6,
+          "total_controls": 6,
+          "dead_controls": [],
+          "live_count": 6
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "shader.glsl": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be shader_art — focus on a raymarching SDF scene with a brutalist theme and cinematic lighting.",
+        "Avoid futuristic or retro-terminal aesthetics; push into a visually distinct domain like brutalist geometry or soft-organic forms.",
+        "Ensure genuine algorithmic depth in the shader, such as dynamic procedural geometry or advanced raymarching techniques.",
+        "The project must be fully interactive and usable on GitHub Pages — no blank canvases or static showcases.",
+        "Architect must document the shader's mathematical basis in Markdown, linking technical novelty to visual outcomes."
+      ],
+      "qa_review": {
+        "verdict": "shippable",
+        "summary": "The brutalist geometry explorer renders a compelling raymarching SDF scene with functional, clearly labeled controls and immediate visual feedback. It meets all core usability and feature requirements for a shader art project.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 0,
+        "dead_controls": [],
+        "missing_features": []
+      }
     }
   ],
   "complexity_trajectory": [
@@ -18210,7 +18302,8 @@
     2200,
     2801,
     2200,
-    2300
+    2300,
+    300
   ],
   "concepts_explored": [
     "neural networks",
@@ -18683,7 +18776,9 @@
     "SDF scene generation",
     "raymarching",
     "procedural geometry",
-    "SDF fractal generation"
+    "SDF fractal generation",
+    "SDF functions",
+    "Brutalist geometry"
   ],
   "patterns_used": [
     "visualizer",
@@ -18856,7 +18951,8 @@
     "interactive-3d-visualization",
     "cryptography-workbench",
     "brutalist-sdf-scene",
-    "sdf-fractal-exploration"
+    "sdf-fractal-exploration",
+    "brutalist-geometry-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -19028,6 +19124,7 @@
     "Computer Graphics",
     "Artificial Intelligence",
     "Cryptography and Information Security",
+    "Computer Graphics",
     "Computer Graphics",
     "Computer Graphics"
   ],
