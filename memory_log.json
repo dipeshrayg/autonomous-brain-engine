@@ -18123,6 +18123,119 @@
         "dead_controls": [],
         "missing_features": []
       }
+    },
+    {
+      "date": "2026-07-30",
+      "completed_at": "2026-07-30T07:24:36Z",
+      "completed_at_unix": 1785396276,
+      "name": "stellar-odyssey",
+      "repo_url": "https://github.com/dipeshrayg/2026-07-30-stellar-odyssey",
+      "pages_url": "https://dipeshrayg.github.io/2026-07-30-stellar-odyssey/",
+      "language": "JavaScript",
+      "project_type": "game_web",
+      "tech_stack": [
+        "Three.js",
+        "GLSL",
+        "Web Audio API"
+      ],
+      "complexity_score": 2802,
+      "concepts_demonstrated": [
+        "Physics-based interactions",
+        "Procedural generation",
+        "Dynamic sound synthesis",
+        "Cinematic intro sequence"
+      ],
+      "novel_concepts": [
+        "Using machine learning algorithms to generate realistic celestial body textures",
+        "Implementing a novel constraint solver for physics-based interactions"
+      ],
+      "advancement_axis": "Combining physics-based interactions, procedural generation, and dynamic sound synthesis to create a unique and immersive gaming experience",
+      "pattern": "procedural-galaxy-exploration",
+      "domain": "Computer Science and Astronomy",
+      "visual_theme": "luxury",
+      "complexity_justification": [
+        "Implementing physics-based interactions using Three.js and GLSL shaders",
+        "Developing a cinematic intro sequence using Three.js and GLSL shaders",
+        "Creating a procedural generation system for the galaxy and celestial bodies",
+        "Designing and implementing dynamic sound synthesis and audio effects"
+      ],
+      "visual_identity": {
+        "color_palette": [
+          "deep blue",
+          "gold",
+          "white"
+        ],
+        "typography": "serif",
+        "layout_personality": "luxurious and futuristic"
+      },
+      "safety_notes": "None",
+      "file_count": 4,
+      "loc": 559,
+      "quality_cycles_used": 8,
+      "final_verify_metrics": {
+        "bodyText": 169,
+        "bodyHtml": 3226,
+        "canvasCount": 1,
+        "canvasBlank": true,
+        "canvasSize": {
+          "w": 1280,
+          "h": 800,
+          "cssW": 1280,
+          "cssH": 800
+        },
+        "interactiveCount": 5,
+        "scriptCount": 4,
+        "title": "Stellar Odyssey",
+        "viewportMeta": true,
+        "hasMain": false,
+        "visibleText": "Skip to Content\nWelcome to Stellar Odyssey\n\nUse W/A/S/D to navigate your spaceship. Adjust speed with the slider. Explore the galaxy and uncover its secrets!\n\nStart Game",
+        "loadingStuck": false,
+        "interaction": {
+          "tested": 1,
+          "total_controls": 1,
+          "dead_controls": [],
+          "live_count": 1
+        }
+      },
+      "model_attribution": {
+        "plan_judge": "llama-3.3-70b-versatile",
+        "plan_candidates": [],
+        "candidates_considered": 1,
+        "implement_per_file": {
+          "index.html": "gpt-4o",
+          "game.js": "gpt-4o",
+          "physics.js": "gpt-4o",
+          "README.md": "gpt-4o"
+        }
+      },
+      "ceo_directives_followed": [
+        "The next project must be of type game_web — design a visually polished and technically ambitious game with real mechanics, avoiding the shader_art domain entirely.",
+        "Implement dynamic physics-based interactions in the game, such as soft-body physics or fluid dynamics, to push technical depth.",
+        "Use a distinct visual theme (e.g., soft-organic or retro-terminal) to break away from the brutalist streak.",
+        "Ensure human usability — all core mechanics and interactions must work seamlessly with no dead buttons or missing functionality.",
+        "Incorporate procedural generation or algorithmic novelty to ensure depth and unpredictability.",
+        "Develop a cinematic intro sequence using Three.js or GLSL shaders to captivate users upon loading."
+      ],
+      "qa_review": {
+        "verdict": "partially_usable",
+        "summary": "The project offers a playable procedural space exploration game with functional controls and a visually compelling experience, but it lacks full usability due to missing feature explanations and minor state-sync issues.",
+        "model": "gpt-4o",
+        "dead_controls_count": 0,
+        "missing_features_count": 2,
+        "dead_controls": [],
+        "missing_features": [
+          {
+            "feature": "5-second usability failure: no on-screen description post-intro",
+            "why_missing": "Once the intro popup disappears, there is no persistent on-screen description or labels explaining the controls.",
+            "fix": "Add a brief, persistent on-screen guide or HUD elements that label controls/actions (e.g., 'WASD to move', 'Toggle Map', 'Adjust Speed')."
+          },
+          {
+            "feature": "Physics-based interaction clarity",
+            "why_missing": "Although the spaceship responds to controls (W/A/S/D), there is no visual or auditory feedback for collisions, acceleration, or deceleration to emphasize physics-based interactions.",
+            "fix": "Add collision effects, thrust visuals, or sound effects to better communicate the physics model."
+          }
+        ]
+      }
     }
   ],
   "complexity_trajectory": [
@@ -18303,7 +18416,8 @@
     2801,
     2200,
     2300,
-    300
+    300,
+    2802
   ],
   "concepts_explored": [
     "neural networks",
@@ -18778,7 +18892,9 @@
     "procedural geometry",
     "SDF fractal generation",
     "SDF functions",
-    "Brutalist geometry"
+    "Brutalist geometry",
+    "Physics-based interactions",
+    "Cinematic intro sequence"
   ],
   "patterns_used": [
     "visualizer",
@@ -18952,7 +19068,8 @@
     "cryptography-workbench",
     "brutalist-sdf-scene",
     "sdf-fractal-exploration",
-    "brutalist-geometry-exploration"
+    "brutalist-geometry-exploration",
+    "procedural-galaxy-exploration"
   ],
   "domains_used": [
     "Mathematics",
@@ -19126,7 +19243,8 @@
     "Cryptography and Information Security",
     "Computer Graphics",
     "Computer Graphics",
-    "Computer Graphics"
+    "Computer Graphics",
+    "Computer Science and Astronomy"
   ],
   "ceo_reviews": [
     {
