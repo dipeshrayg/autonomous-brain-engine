@@ -24865,6 +24865,29 @@
         "Recent ships exhibit high complexity scores, demonstrating strong engineering capabilities."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-30T20:34:01Z",
+      "issued_at_unix": 1785443641,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects have been too focused on shader_art and game_web, with a lack of diversity in project types. The system needs to pivot to a new domain to avoid stagnation.",
+      "concerns": [
+        "Lack of diversity in project types",
+        "Over-reliance on shader_art and game_web",
+        "Recent projects have not been sufficiently complex or ambitious"
+      ],
+      "directives": [
+        "The next project must be a social_toolkit with a distinct VISUAL THEME, such as warm-amber or soft-organic",
+        "Implement a novel algorithm for social network analysis, such as community detection or influence maximization",
+        "The project must include interactive visualizations and be built using the social_toolkit project_type, which has not been used recently",
+        "Ensure the project has a high complexity score, above 2500, and pushes the boundaries of what is possible in the social_toolkit domain",
+        "The project must be fully usable and interactive, with no dead or missing features"
+      ],
+      "praise": [
+        "The recent projects have demonstrated a high level of visual polish and attention to detail"
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
