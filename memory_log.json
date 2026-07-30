@@ -37384,6 +37384,26 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-07-30T17:54:26Z",
+      "issued_at_unix": 1785434066,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack depth in algorithmic novelty and mathematical correctness, with an overemphasis on shader art and game development. The next project should focus on a more substantial domain with deep-tech ambition.",
+      "concerns": [
+        "Lack of projects utilizing constraint solvers, distributed systems, or formal verification",
+        "Overreliance onMAXED OUT project types, indicating a need for expansion into more complex domains",
+        "Insufficient attention to information-theoretic interest and edge-case rigor"
+      ],
+      "directives": [
+        "Use the 'research_showcase' project type to create a project that implements a novel algorithm, such as a constraint solver using DPLL with conflict-driven clause learning",
+        "Focus on a domain with deep-tech ambition, such as consensus protocols, distributed systems, or formal verification",
+        "Incorporate information-theoretic interest by utilizing compression, entropy, or Bayesian inference in the project",
+        "Prioritize edge-case rigor by thoroughly testing the project's boundary cases and singular points"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": true,
