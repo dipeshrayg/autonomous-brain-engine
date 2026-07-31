@@ -34899,6 +34899,20 @@
       "plan_domain": "Social Network Analysis",
       "plan_files_count": 3,
       "project_type": "social_toolkit"
+    },
+    {
+      "attempted_at": "2026-07-31T05:44:42Z",
+      "attempted_at_unix": 1785476682,
+      "date": "2026-07-31",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Server Error', 'details': 'Server Error'}}",
+      "plan_name": "social-echo-chamber",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "influence-maximization-toolkit",
+      "plan_domain": "Social Network Analysis",
+      "plan_files_count": 3,
+      "project_type": "social_toolkit"
     }
   ],
   "cso_reviews": [
