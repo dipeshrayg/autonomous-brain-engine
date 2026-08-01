@@ -35087,6 +35087,13 @@
       "plan_domain": "Travel and Tourism",
       "plan_files_count": 4,
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-01T05:21:13Z",
+      "attempted_at_unix": 1785561673,
+      "date": "2026-08-01",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01ks72cdr3ed5rh6v3ykazp81j` service tier `on_demand` on tokens"
     }
   ],
   "cso_reviews": [
