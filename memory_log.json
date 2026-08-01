@@ -35146,6 +35146,14 @@
       "plan_domain": "Astronomy and Computer Science",
       "plan_files_count": 3,
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-01T11:05:36Z",
+      "attempted_at_unix": 1785582336,
+      "date": "2026-08-01",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
+      "project_type": "saas_landing"
     }
   ],
   "cso_reviews": [
