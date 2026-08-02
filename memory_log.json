@@ -35295,6 +35295,20 @@
       "plan_domain": "Artificial Life and Complex Systems",
       "plan_files_count": 3,
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-02T05:37:25Z",
+      "attempted_at_unix": 1785649045,
+      "date": "2026-08-02",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "plan_name": "neuro-architect",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2808,
+      "plan_pattern": "interactive-simulation",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 4,
+      "project_type": "research_showcase"
     }
   ],
   "cso_reviews": [
