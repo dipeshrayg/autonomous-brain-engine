@@ -35504,6 +35504,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3-70b-versatile` in organization `or",
       "project_type": "database_showcase"
+    },
+    {
+      "attempted_at": "2026-08-03T07:57:09Z",
+      "attempted_at_unix": 1785743829,
+      "date": "2026-08-03",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Server Error', 'details': 'Server Error'}}",
+      "plan_name": "nosql-odyssey",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "nosql-visualization",
+      "plan_domain": "Database Systems",
+      "plan_files_count": 4,
+      "project_type": "database_showcase"
     }
   ],
   "cso_reviews": [
