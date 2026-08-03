@@ -2,6 +2,15 @@
 
 ### ▶ Live Dashboard: **https://dipeshrayg.github.io/autonomous-brain-engine/**
 
+Featured Projects:
+1. https://dipeshrayg.github.io/2026-07-28-cryptography-workbench/
+
+2. https://dipeshrayg.github.io/2026-06-27-stellar-nexus/
+
+3.https://dipeshrayg.github.io/2026-07-20-retro-terminal-maze-prank/
+
+4. https://dipeshrayg.github.io/2026-07-13-echo-chamber/
+
 A React + Supabase dashboard with a **public project showcase** and **auth-gated**
 operational logs (failure logs, executive reviews, raw build stream), backed by a
 Postgres database with row-level security enforced on every table.
