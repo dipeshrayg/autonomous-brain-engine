@@ -130,18 +130,16 @@ ROLE_CHAIN: dict[str, list[str]] = {
     "architect_judge": [
         "gpt-4o",                       # OpenAI — predictability filter
         "llama-3.3-70b-versatile",      # Groq fallback
+        "gpt-4o-mini",                  # guaranteed GitHub Models fallback — was missing before
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
     "engineer": [
-        # gpt-4o primary: always available (GitHub token) and, now that enterprise
-        # apps are SELF-CONTAINED across small files, every per-file output fits well
-        # under its limits. Gemini's free quota is frequently exhausted (429), so it
-        # is a fallback, not the hot path. Groq Llama gives a high-limit middle option.
-        "gpt-4o",                       # OpenAI — reliable, handles small self-contained files
+        "gpt-4o",                       # OpenAI via GitHub Models — primary
+        "Phi-4",                        # Microsoft via GitHub Models — always available, no Groq/Google dependency
         "llama-3.3-70b-versatile",      # Groq — high-limit fallback
         "gemini-2.0-flash",             # Google — big-context fallback (quota permitting)
-        "gpt-4o-mini",
+        "gpt-4o-mini",                  # final GitHub Models safety net
     ],
     "reviewer_a": [
         "llama-3.3-70b-versatile",      # Groq — different from GPT reviewer_b fallback
@@ -167,6 +165,7 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "gpt-4o",                       # OpenAI — reliable strict user-pathway simulation
         "llama-3.3-70b-versatile",      # Groq fallback
         "gemini-2.0-flash",             # Google fallback (quota permitting)
+        "gpt-4o-mini",                  # guaranteed fallback
     ],
     "qa_fixer": [
         "gemini-2.0-flash",             # Google — fast, capable repair
@@ -272,7 +271,9 @@ def call_with_fallback(
                     or "quota" in msg.lower() or "tokens_limit" in msg.lower()
                 )
                 too_large = "413" in msg or "tokens_limit_reached" in msg
-                if rate_limited or too_large:
+                # 404/401 are permanent errors (model gone, auth issue) — don't retry
+                permanent = "404" in msg or "401" in msg
+                if rate_limited or too_large or permanent:
                     log.warning("[role=%s] model=%s attempt %d failed (%s); falling back",
                                 role, model_id, attempt, msg[:120])
                     break  # try next model immediately
