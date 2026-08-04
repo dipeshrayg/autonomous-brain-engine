@@ -35847,6 +35847,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Server Error', 'details': 'Server E",
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-04T23:41:20Z",
+      "attempted_at_unix": 1785886880,
+      "date": "2026-08-04",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'Phi-4', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "plan_name": "artificial-life-odyssey",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "interactive-3d-simulation",
+      "plan_domain": "Artificial Life and Complexity Science",
+      "plan_files_count": 4,
+      "project_type": "research_showcase"
     }
   ],
   "cso_reviews": [
