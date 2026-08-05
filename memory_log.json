@@ -35861,6 +35861,13 @@
       "plan_domain": "Artificial Life and Complexity Science",
       "plan_files_count": 4,
       "project_type": "research_showcase"
+    },
+    {
+      "attempted_at": "2026-08-05T04:57:51Z",
+      "attempted_at_unix": 1785905871,
+      "date": "2026-08-05",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404"
     }
   ],
   "cso_reviews": [
