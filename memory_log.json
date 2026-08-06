@@ -36061,6 +36061,14 @@
       "plan_domain": "Artificial Life and Cellular Automata",
       "plan_files_count": 4,
       "project_type": "research_showcase"
+    },
+    {
+      "attempted_at": "2026-08-06T07:35:36Z",
+      "attempted_at_unix": 1786001736,
+      "date": "2026-08-06",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "project_type": "saas_landing"
     }
   ],
   "cso_reviews": [
