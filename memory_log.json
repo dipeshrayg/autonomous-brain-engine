@@ -36121,6 +36121,14 @@
       "plan_domain": "Distributed Systems and Computer Science",
       "plan_files_count": 3,
       "project_type": "research_showcase"
+    },
+    {
+      "attempted_at": "2026-08-06T14:43:47Z",
+      "attempted_at_unix": 1786027427,
+      "date": "2026-08-06",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "project_type": "unknown"
     }
   ],
   "cso_reviews": [
