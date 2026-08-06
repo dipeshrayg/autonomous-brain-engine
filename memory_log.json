@@ -36032,6 +36032,13 @@
       "plan_domain": "Artificial Intelligence",
       "plan_files_count": 3,
       "project_type": "research_showcase"
+    },
+    {
+      "attempted_at": "2026-08-06T04:58:03Z",
+      "attempted_at_unix": 1785992283,
+      "date": "2026-08-06",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404"
     }
   ],
   "cso_reviews": [
