@@ -36348,6 +36348,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404",
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-07T20:54:05Z",
+      "attempted_at_unix": 1786136045,
+      "date": "2026-08-07",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'Phi-4', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "plan_name": "cellular-life-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "artificial-life-simulation",
+      "plan_domain": "Artificial Intelligence and Biology",
+      "plan_files_count": 4,
+      "project_type": "ai_concept"
     }
   ],
   "cso_reviews": [
