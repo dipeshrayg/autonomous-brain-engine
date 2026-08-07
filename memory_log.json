@@ -36362,6 +36362,20 @@
       "plan_domain": "Artificial Intelligence and Biology",
       "plan_files_count": 4,
       "project_type": "ai_concept"
+    },
+    {
+      "attempted_at": "2026-08-07T23:16:40Z",
+      "attempted_at_unix": 1786144600,
+      "date": "2026-08-07",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'Phi-4', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "plan_name": "soft-organic-celular-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "ai-concept-simulator",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 4,
+      "project_type": "ai_concept"
     }
   ],
   "cso_reviews": [
