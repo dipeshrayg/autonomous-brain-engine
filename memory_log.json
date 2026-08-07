@@ -25005,6 +25005,29 @@
         "The 'stellar-odyssey' project showed promise in its procedural galaxy exploration, but was hindered by usability issues."
       ],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-08-07T19:57:30Z",
+      "issued_at_unix": 1786132650,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects show a lack of diversity in types, with an over-reliance on shader_art and game_web. The refusal data indicates a need for a change in direction.",
+      "concerns": [
+        "Lack of diversity in project types",
+        "Over-reliance on shader_art and game_web",
+        "Recent refusal data indicates a need for a new direction"
+      ],
+      "directives": [
+        "The next project must be of type ai_concept, focusing on artificial life or cellular automata simulation",
+        "The project should have a distinct visual theme, such as soft-organic or warm-amber",
+        "The project should incorporate real technical depth, such as raymarching or physics simulation",
+        "The project should have a high complexity score, aiming for at least 2500",
+        "The project should be fully interactive, allowing users to adjust parameters and visualize the results"
+      ],
+      "praise": [
+        "The recent research_showcase projects have shown a high level of technical ambition and visual polish"
+      ],
+      "reviewed_project_count": 8
     }
   ],
   "security_audits": [
