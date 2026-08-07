@@ -36227,6 +36227,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404",
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-07T08:07:29Z",
+      "attempted_at_unix": 1786090049,
+      "date": "2026-08-07",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "project_type": "saas_landing"
     }
   ],
   "cso_reviews": [
