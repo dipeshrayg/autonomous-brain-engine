@@ -36504,6 +36504,20 @@
       "plan_domain": "Artificial Life and Complex Systems",
       "plan_files_count": 3,
       "project_type": "research_showcase"
+    },
+    {
+      "attempted_at": "2026-08-08T15:13:14Z",
+      "attempted_at_unix": 1786201994,
+      "date": "2026-08-08",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'meta-llama/llama-4-scout-17b-16e-instruct', 'qwen3-32b'] failed. Last error: Error code: 404 - {'error': {'message': 'The model `qwen3-32b` does not exist or you do not have access to it.', 'type",
+      "plan_name": "artificial-life-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "ai-simulation",
+      "plan_domain": "Artificial Intelligence",
+      "plan_files_count": 4,
+      "project_type": "ai_concept"
     }
   ],
   "cso_reviews": [
