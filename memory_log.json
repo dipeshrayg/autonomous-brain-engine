@@ -36548,6 +36548,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'qwen3-32b'] failed. Last error: Error code: 404 - {'error': {'message': 'The model `qwen3-32b` does not exist or you do not ",
       "project_type": "ai_concept"
+    },
+    {
+      "attempted_at": "2026-08-08T20:44:55Z",
+      "attempted_at_unix": 1786221895,
+      "date": "2026-08-08",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'meta-llama/llama-4-scout-17b-16e-instruct', 'qwen3-32b'] failed. Last error: Error code: 404 - {'error': {'message': 'The model `qwen3-32b` does not exist or you do not have access to it.', 'type",
+      "plan_name": "astro-simulator",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2803,
+      "plan_pattern": "interactive-3d-astronomy-simulator",
+      "plan_domain": "Astronomy and Space Exploration",
+      "plan_files_count": 4,
+      "project_type": "web_3d"
     }
   ],
   "cso_reviews": [
@@ -39307,7 +39321,7 @@
       "reviewed_project_count": 8
     }
   ],
-  "expansion_mode": true,
+  "expansion_mode": false,
   "expansion_mode_since": "2026-07-29T23:39:46.218731+00:00",
   "enterprise_mode": false,
   "enterprise_mode_since": "2026-06-16T08:03:24.286031+00:00",
