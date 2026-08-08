@@ -36376,6 +36376,20 @@
       "plan_domain": "Artificial Intelligence",
       "plan_files_count": 4,
       "project_type": "ai_concept"
+    },
+    {
+      "attempted_at": "2026-08-08T02:51:12Z",
+      "attempted_at_unix": 1786157472,
+      "date": "2026-08-08",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gpt-4o', 'Phi-4', 'llama-3.3-70b-versatile', 'gemini-2.0-flash', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "plan_name": "cellular-life-evolver",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2700,
+      "plan_pattern": "interactive-3d-simulation",
+      "plan_domain": "Artificial Life and Complex Systems",
+      "plan_files_count": 3,
+      "project_type": "research_showcase"
     }
   ],
   "cso_reviews": [
