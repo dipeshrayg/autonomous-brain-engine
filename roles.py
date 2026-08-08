@@ -1,31 +1,28 @@
 """
 roles.py — Multi-provider boardroom with genuine model diversity.
 
-Every role now pulls from a different AI family so the adversarial
-conference actually has adversarial perspectives:
+GitHub Models was retired 2026-07-30. All chains now run on Groq + Google only.
 
-    CEO              gpt-4o                                    (OpenAI — strategic synthesis)
-    CSO              llama-3.3-70b-versatile                   (Meta via Groq — scientific novelty)
-    CTO              gemini-2.0-flash                          (Google — code & self-improvement)
-    Architect A      meta-llama/llama-4-scout-17b-16e-instruct (Llama 4 via Groq — newest generation)
-    Architect B      llama-3.3-70b-versatile                   (Meta via Groq — open-source perspective)
-    Judge            gpt-4o                                    (OpenAI — predictability filter)
-    Engineer         gpt-4o                                    (OpenAI — implementation quality)
-    Reviewer A       llama-3.3-70b-versatile                   (Groq — second opinion)
-    Reviewer B       gemini-2.0-flash                          (Google — third perspective)
-    QA Tester        gpt-4o                                    (OpenAI — strict user-pathway sim)
-    QA Fixer         gemini-2.0-flash → gpt-4o                 (Google primary, OpenAI fallback)
-    Fixer            gpt-4o-mini                               (OpenAI fast — iterative repair)
-    Polisher         Phi-4                                     (Microsoft via GitHub Models — UX polish)
+    CEO              llama-3.3-70b-versatile  (Groq — strategic synthesis)
+    CSO              llama-3.3-70b-versatile  (Groq — scientific novelty)
+    CTO              gemini-2.0-flash         (Google — code + self-improvement)
+    Architect A      llama-4-scout            (Groq — Llama 4, newest generation)
+    Architect B      qwen3-32b                (Groq — different family for adversarial diversity)
+    Judge            gemini-2.0-flash         (Google — predictability filter)
+    Engineer         gemini-2.0-flash         (Google — large context, good at code)
+    Reviewer A       llama-3.3-70b-versatile  (Groq — open-source perspective)
+    Reviewer B       gemini-2.0-flash-lite    (Google — lighter, fast review)
+    QA Tester        llama-3.3-70b-versatile  (Groq — strict user-pathway sim)
+    QA Fixer         gemini-2.0-flash         (Google — fast repair)
+    Fixer            llama-3.1-8b-instant     (Groq — fast iterative repair)
+    Polisher         gemini-2.0-flash-lite    (Google — lightweight UX polish)
 
 Providers used (all zero-cost):
-    github   — GitHub Models API (GITHUB_TOKEN, always available in Actions)
-    groq     — Groq cloud (GROQ_API_KEY secret, free tier, very fast)
-    google   — Google AI Studio (GOOGLE_AI_KEY secret, Gemini free tier)
+    groq   — Groq cloud (GROQ_API_KEY secret, free tier, very fast LPU inference)
+    google — Google AI Studio (GOOGLE_AI_KEY secret, Gemini free tier)
 
 If a provider's API key is missing, that model is silently skipped and the
-chain falls through to the next available model. The pipeline never crashes
-due to a missing optional key.
+chain falls through to the next available model.
 """
 
 from __future__ import annotations
@@ -43,10 +40,6 @@ log = logging.getLogger("brain.roles")
 # ─────────────────────── Provider registry ──────────────────────────────
 
 PROVIDERS: dict[str, dict[str, str]] = {
-    "github": {
-        "base_url": "https://models.inference.ai.azure.com",
-        "env_var":  "GITHUB_TOKEN",
-    },
     "groq": {
         "base_url": "https://api.groq.com/openai/v1",
         "env_var":  "GROQ_API_KEY",
@@ -59,26 +52,25 @@ PROVIDERS: dict[str, dict[str, str]] = {
 
 # model_id → provider key
 MODEL_PROVIDER: dict[str, str] = {
-    # GitHub Models (OpenAI family — always available via GITHUB_TOKEN)
-    "gpt-4o":                           "github",
-    "gpt-4o-mini":                      "github",
-    # GitHub Models (Microsoft Phi — confirmed working)
-    "Phi-4":                            "github",
-    # Groq (Meta Llama — llama-3.3-70b-versatile confirmed working)
-    "llama-3.3-70b-versatile":          "groq",
-    "llama-3.1-8b-instant":             "groq",
-    # Groq (Llama 4 — newer generation, may be available)
-    "meta-llama/llama-4-scout-17b-16e-instruct": "groq",
-    # Google AI Studio (Gemini — free tier, quota-limited; gemini-2.0-flash primary)
-    "gemini-2.0-flash":                 "google",
-    "gemini-2.0-flash-lite":            "google",
+    # Groq — Meta Llama family (free tier, high-speed LPU)
+    "llama-3.3-70b-versatile":                    "groq",
+    "llama-3.1-8b-instant":                       "groq",
+    "meta-llama/llama-4-scout-17b-16e-instruct":  "groq",
+    # Groq — Qwen family (different architecture = genuine adversarial diversity)
+    "qwen3-32b":                                  "groq",
+    # Google AI Studio — Gemini family (free tier)
+    "gemini-2.0-flash":                           "google",
+    "gemini-2.0-flash-lite":                      "google",
 }
 
 
 def _get_client(model_id: str) -> OpenAI | None:
     """Build an OpenAI-compatible client for the model's provider.
     Returns None if the required API key is not set."""
-    provider_key = MODEL_PROVIDER.get(model_id, "github")
+    provider_key = MODEL_PROVIDER.get(model_id)
+    if provider_key is None:
+        log.warning("Unknown model %r — not in MODEL_PROVIDER, skipping", model_id)
+        return None
     provider = PROVIDERS[provider_key]
     api_key = os.environ.get(provider["env_var"])
     if not api_key:
@@ -90,88 +82,87 @@ def _get_client(model_id: str) -> OpenAI | None:
 
 # ─────────────────────── Role → model chain ─────────────────────────────
 # Each entry: [primary, fallback1, fallback2, ...]
-# Models from different families = genuinely adversarial boardroom.
-# github models are always attempted since GITHUB_TOKEN is always present.
+# GitHub Models retired 2026-07-30 — all chains use Groq + Google only.
+# Groq: llama-3.3-70b-versatile, llama-4-scout, qwen3-32b, llama-3.1-8b-instant
+# Google: gemini-2.0-flash, gemini-2.0-flash-lite
 
 ROLE_CHAIN: dict[str, list[str]] = {
     # ── Executive layer ──────────────────────────────────────────────────
     "ceo": [
-        "gpt-4o",                       # OpenAI — strategic synthesis
-        "llama-3.3-70b-versatile",      # Meta via Groq fallback
-        "gpt-4o-mini",
+        "llama-3.3-70b-versatile",      # Groq — strategic synthesis
+        "gemini-2.0-flash",             # Google fallback
+        "qwen3-32b",                    # Groq alternate family
     ],
     "cso": [
-        "llama-3.3-70b-versatile",      # Meta via Groq — scientific novelty (confirmed working)
-        "gpt-4o",                       # OpenAI fallback
-        "gpt-4o-mini",
+        "llama-3.3-70b-versatile",      # Groq — scientific novelty
+        "gemini-2.0-flash",             # Google fallback
+        "qwen3-32b",
     ],
     "cto": [
         "gemini-2.0-flash",             # Google — code + self-improvement
-        "gemini-2.0-flash-lite",        # Google lighter model (less quota pressure)
-        "gpt-4o",                       # OpenAI fallback
-        "gpt-4o-mini",                  # final guaranteed fallback
+        "llama-3.3-70b-versatile",      # Groq fallback
+        "gemini-2.0-flash-lite",        # Google lighter fallback
     ],
     "vp_eng": [
         "llama-3.3-70b-versatile",      # Groq — pragmatic engineering
-        "gpt-4o-mini",
+        "qwen3-32b",                    # Groq alternate
+        "gemini-2.0-flash",
     ],
 
     # ── Planning layer ────────────────────────────────────────────────────
     "architect_candidate_a": [
-        "meta-llama/llama-4-scout-17b-16e-instruct",  # Llama 4 via Groq — newest generation
-        "llama-3.3-70b-versatile",       # Llama 3.3 via Groq fallback (confirmed working)
-        "gpt-4o-mini",                   # OpenAI guaranteed fallback
+        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq — Llama 4, newest generation
+        "llama-3.3-70b-versatile",                    # Groq Llama 3.3 fallback
+        "gemini-2.0-flash",                           # Google fallback
     ],
     "architect_candidate_b": [
-        "llama-3.3-70b-versatile",      # Meta via Groq — confirmed working
-        "meta-llama/llama-4-scout-17b-16e-instruct",  # Llama 4 fallback
-        "gpt-4o-mini",                  # OpenAI guaranteed fallback
+        "qwen3-32b",                                  # Groq — different family for real adversarial diversity
+        "llama-3.3-70b-versatile",                    # Groq fallback
+        "gemini-2.0-flash",                           # Google fallback
     ],
     "architect_judge": [
-        "gpt-4o",                       # OpenAI — predictability filter
+        "gemini-2.0-flash",             # Google — different from Groq candidates = independent judgement
         "llama-3.3-70b-versatile",      # Groq fallback
-        "gpt-4o-mini",                  # guaranteed GitHub Models fallback — was missing before
+        "qwen3-32b",                    # Groq alternate family fallback
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
     "engineer": [
-        "gpt-4o",                       # OpenAI via GitHub Models — primary
-        "Phi-4",                        # Microsoft via GitHub Models — always available, no Groq/Google dependency
-        "llama-3.3-70b-versatile",      # Groq — high-limit fallback
-        "gemini-2.0-flash",             # Google — big-context fallback (quota permitting)
-        "gpt-4o-mini",                  # final GitHub Models safety net
+        "gemini-2.0-flash",                           # Google — large context, strong at code
+        "llama-3.3-70b-versatile",                    # Groq fallback
+        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq Llama 4 fallback
+        "qwen3-32b",                                  # Groq final fallback
     ],
     "reviewer_a": [
-        "llama-3.3-70b-versatile",      # Groq — different from GPT reviewer_b fallback
-        "gpt-4o-mini",                  # guaranteed fallback (llama-3.1-8b-instant 413s on large reviews)
+        "llama-3.3-70b-versatile",      # Groq — open-source perspective
+        "qwen3-32b",                    # Groq alternate
     ],
     "reviewer_b": [
-        "gemini-2.0-flash",             # Google — third independent perspective
-        "gemini-2.0-flash-lite",        # Google lighter fallback
-        "gpt-4o-mini",                  # guaranteed fallback (always available)
+        "gemini-2.0-flash-lite",        # Google — fast, lightweight review
+        "gemini-2.0-flash",             # Google primary fallback
+        "llama-3.3-70b-versatile",      # Groq fallback
     ],
     "fixer": [
-        "gpt-4o-mini",
-        "Phi-4",                        # Microsoft — good at targeted fixes
-        "gpt-4o",
+        "llama-3.1-8b-instant",         # Groq — fast iterative repair
+        "llama-3.3-70b-versatile",      # Groq stronger fallback
+        "gemini-2.0-flash",             # Google fallback
     ],
     "polisher": [
-        "Phi-4",                        # Microsoft Phi — good at UX refinement
-        "gpt-4o-mini",
+        "gemini-2.0-flash-lite",        # Google — lightweight UX polish
+        "llama-3.1-8b-instant",         # Groq fast fallback
+        "gemini-2.0-flash",
     ],
 
     # ── QA layer ──────────────────────────────────────────────────────────
     "qa_tester": [
-        "gpt-4o",                       # OpenAI — reliable strict user-pathway simulation
-        "llama-3.3-70b-versatile",      # Groq fallback
-        "gemini-2.0-flash",             # Google fallback (quota permitting)
-        "gpt-4o-mini",                  # guaranteed fallback
+        "llama-3.3-70b-versatile",      # Groq — strict user-pathway simulation
+        "gemini-2.0-flash",             # Google fallback
+        "qwen3-32b",                    # Groq alternate family
     ],
     "qa_fixer": [
         "gemini-2.0-flash",             # Google — fast, capable repair
+        "llama-3.3-70b-versatile",      # Groq fallback
         "gemini-2.0-flash-lite",        # Google lighter fallback
-        "gpt-4o",
-        "gpt-4o-mini",
     ],
 }
 
@@ -221,9 +212,9 @@ def call_with_fallback(
                     max_tokens=max_tokens,
                     temperature=temperature,
                 )
-                # Gemini doesn't support json_object response_format reliably
-                provider_key = MODEL_PROVIDER.get(model_id, "github")
-                if json_mode and provider_key != "google":
+                # Gemini doesn't support json_object response_format — Groq does
+                provider_key = MODEL_PROVIDER.get(model_id, "unknown")
+                if json_mode and provider_key == "groq":
                     kwargs["response_format"] = {"type": "json_object"}
 
                 resp = provider_client.chat.completions.create(**kwargs)
@@ -251,7 +242,7 @@ def call_with_fallback(
 
                 meta: dict[str, Any] = {
                     "role": role, "model": model_id,
-                    "provider": MODEL_PROVIDER.get(model_id, "github"),
+                    "provider": MODEL_PROVIDER.get(model_id, "unknown"),
                     "attempt": attempt,
                 }
                 if resp.usage:
