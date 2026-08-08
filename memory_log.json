@@ -36458,6 +36458,14 @@
       "plan_domain": "Artificial Intelligence",
       "plan_files_count": 4,
       "project_type": "ai_concept"
+    },
+    {
+      "attempted_at": "2026-08-08T08:06:10Z",
+      "attempted_at_unix": 1786176370,
+      "date": "2026-08-08",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gpt-4o', 'llama-3.3-70b-versatile', 'gpt-4o-mini'] failed. Last error: Error code: 404",
+      "project_type": "ai_concept"
     }
   ],
   "cso_reviews": [
