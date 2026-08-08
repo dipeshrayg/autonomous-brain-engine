@@ -3,13 +3,10 @@
 ### ▶ Live Dashboard: **https://dipeshrayg.github.io/autonomous-brain-engine/**
 
 Featured Projects:
-1. https://dipeshrayg.github.io/2026-07-28-cryptography-workbench/
-
-2. https://dipeshrayg.github.io/2026-06-27-stellar-nexus/
-
-3.https://dipeshrayg.github.io/2026-07-20-retro-terminal-maze-prank/
-
-4. https://dipeshrayg.github.io/2026-07-13-echo-chamber/
+1. https://dipeshrayg.github.io/2026-07-16-symbiotic-neural-networks/
+2. https://dipeshrayg.github.io/2026-07-30-stellar-odyssey/
+3. https://dipeshrayg.github.io/2026-07-29-sdf-fractal-explorer/
+4. https://dipeshrayg.github.io/2026-07-28-cryptography-workbench/
 
 A React + Supabase dashboard with a **public project showcase** and **auth-gated**
 operational logs (failure logs, executive reviews, raw build stream), backed by a
@@ -19,8 +16,8 @@ A zero-cost, fully autonomous multi-agent LLM pipeline that continuously conceiv
 architects, implements, quality-assures, and publishes novel software projects
 without any human intervention.
 
-**Total infrastructure cost: $0** — GitHub Actions (compute) + GitHub Models / Groq /
-Google AI Studio (LLMs) + Supabase free tier (database) + GitHub Pages (hosting).
+**Total infrastructure cost: $0** — GitHub Actions (compute) + Groq + Google AI Studio
+(LLMs) + Supabase free tier (database) + GitHub Pages (hosting).
 
 ---
 
@@ -28,14 +25,17 @@ Google AI Studio (LLMs) + Supabase free tier (database) + GitHub Pages (hosting)
 
 | Metric | Value |
 |---|---|
-| Projects shipped | 52+ |
-| Refused builds | 275+ |
-| Complexity range | 3 to 160 (open-ended, no cap) |
-| Project types available | 24 types (incl. 8 enterprise-grade) |
-| AI models in boardroom | 13 roles across 3 providers |
-| Providers | GitHub Models + Groq + Google AI Studio |
+| Projects shipped | 187+ |
+| Refused builds | 656+ |
+| Peak complexity score | 3,000 |
+| Average complexity | 808 |
+| Project types available | 21 types |
+| AI models in boardroom | 13 roles across 2 providers |
+| Providers | Groq + Google AI Studio |
 | Database | Supabase (Postgres + RLS), online & auth-secured |
 | Frontend | React (Vite) on GitHub Pages |
+| Active since | April 28, 2026 |
+| Active days | 81+ |
 | Daily builds | Up to 5/day, fully autonomous |
 | Human interventions required | 0 |
 
@@ -48,55 +48,56 @@ Google AI Studio (LLMs) + Supabase free tier (database) + GitHub Pages (hosting)
 | Layer | Resource |
 |---|---|
 | Compute | GitHub Actions (public repo = unlimited minutes) |
-| LLM inference | GitHub Models API + Groq + Google AI Studio |
+| LLM inference | Groq + Google AI Studio |
 | Hosting | GitHub Pages (static, unlimited bandwidth) |
+| Database | Supabase (Postgres, RLS-secured) |
 | Storage | GitHub repos + memory_log.json |
 
-### The Boardroom: 13 roles, 3 providers
+### The Boardroom: 13 roles, 2 providers
 
-Each role uses a different model family so the adversarial conference
-produces genuinely diverse perspectives. Groq is used for Mistral and Meta
-models due to its ultra-fast free-tier inference:
+Each role uses a different model family so the adversarial conference produces
+genuinely diverse perspectives. Groq (Meta Llama + Qwen) and Google (Gemini) are
+the two active providers — both free tier, zero cost.
 
-| Role | Model | Provider | Purpose |
+| Role | Primary Model | Provider | Purpose |
 |---|---|---|---|
-| CEO | gpt-4o | GitHub Models | Visionary strategy, domain pivots |
+| CEO | llama-3.3-70b-versatile | Groq | Visionary strategy, domain pivots |
 | CSO | llama-3.3-70b-versatile | Groq | Scientific novelty, algorithmic depth |
-| CTO | gemini-2.0-flash | Google AI Studio | Self-improvement, code patches |
-| Architect A | deepseek-r1-distill-llama-70b | Groq | Creative planning (DeepSeek reasoning) |
-| Architect B | llama-3.3-70b-versatile | Groq | Creative planning (Meta Llama lens) |
-| Judge | gpt-4o | GitHub Models | Predictability filter |
-| Engineer | gpt-4o | GitHub Models | Per-file implementation |
-| Reviewer A | gemma2-9b-it | Groq | Code review (Google Gemma lens) |
-| Reviewer B | gemini-2.0-flash | Google AI Studio | Code review (Gemini lens) |
-| QA Tester | gpt-4o | GitHub Models | User-pathway simulation |
-| QA Fixer | gemini-2.0-flash | Google AI Studio | Repairs dead controls |
-| Polisher | Phi-4 | GitHub Models | UX refinement |
-| Fixer | gpt-4o-mini | GitHub Models | Iterative repair |
+| CTO | gemini-2.0-flash | Google | Self-improvement, code patches |
+| Architect A | llama-4-scout-17b | Groq | Creative planning (Llama 4 lens) |
+| Architect B | qwen3-32b | Groq | Creative planning (Qwen lens — different family) |
+| Judge | gemini-2.0-flash | Google | Predictability filter (Google = independent from Groq candidates) |
+| Engineer | gemini-2.0-flash | Google | Per-file implementation (large context) |
+| Reviewer A | llama-3.3-70b-versatile | Groq | Code review (Llama lens) |
+| Reviewer B | gemini-2.0-flash-lite | Google | Code review (lightweight Gemini) |
+| QA Tester | llama-3.3-70b-versatile | Groq | User-pathway simulation |
+| QA Fixer | gemini-2.0-flash | Google | Repairs dead controls |
+| Fixer | llama-3.1-8b-instant | Groq | Fast iterative repair |
+| Polisher | gemini-2.0-flash-lite | Google | UX refinement |
 
-All roles have gpt-4o / gpt-4o-mini as guaranteed final fallback.
-Missing API keys are silently skipped - the pipeline never crashes.
-Groq provides the Mistral (Mixtral) and Meta (Llama) perspectives at zero cost.
+All roles have multiple Groq + Google fallbacks. Missing API keys are silently
+skipped — the pipeline never crashes due to a missing key.
 
 ### Pipeline stages
 
 ```
 STAGE 1    ARCHITECT CONFERENCE
-           Candidate A (Mixtral/Groq) + Candidate B (Llama/Groq) propose plans in parallel
-           Validator: banned types, repeated patterns, complexity floor, novel concept check
-           Judge (GPT-4o) synthesises or proposes its own unpredictable plan
+           Candidate A (Llama 4/Groq) + Candidate B (Qwen/Groq) propose plans in parallel
+           Validator: banned types, repeated patterns, complexity floor/ceiling, novel concept check,
+                      complexity_justification (3+ algorithmic challenges required), visual theme rotation
+           Judge (Gemini/Google) synthesises or proposes its own unpredictable plan
 
 STAGE 2    IMPLEMENT
-           Engineer (GPT-4o) writes each file with full sibling context
+           Engineer (Gemini/Google) writes each file with full sibling context
            Encoding rules enforced: UTF-8 charset meta, utf-8 open() calls
 
 STAGE 3+4  QUALITY LOOP (up to 8 rounds)
-           Reviewer A (Gemma/Groq) + Reviewer B (Gemini) in parallel
+           Reviewer A (Llama/Groq) + Reviewer B (Gemini-lite/Google) in parallel
            Fixer applies merged feedback
            Playwright interaction test after each round
 
 STAGE 5    POLISH (with rollback)
-           Polisher (Phi-4) refines UX; rolled back if quality regresses
+           Polisher (Gemini-lite) refines UX; rolled back if quality regresses
 
 STAGE 6    FINAL VERIFY
            Playwright: page load, canvas render, control interaction tests
@@ -104,7 +105,7 @@ STAGE 6    FINAL VERIFY
            Console error analysis (noise-filtered)
 
 STAGE 6.4  QA REVIEW
-           QA Tester (GPT-4o) verdict; up to 3 rounds with QA Fixer (Gemini)
+           QA Tester (Llama/Groq) verdict; up to 3 rounds with QA Fixer (Gemini)
            Ships with partially_usable badge if residual issues remain
 
 STAGE 7    PUBLISH
@@ -112,7 +113,7 @@ STAGE 7    PUBLISH
            GitHub Pages enabled -> live URL
 
 STAGE 8    MEMORY + DASHBOARD
-           memory_log.json updated; public dashboard regenerated
+           memory_log.json committed to git; Supabase synced; dashboard regenerated
 ```
 
 ### Autonomous workflows
@@ -124,42 +125,58 @@ STAGE 8    MEMORY + DASHBOARD
 | ceo_review.yml | 4x/day | CEO strategy + directives |
 | science_review.yml | 2x/day | CSO scientific depth audit |
 | self_improve.yml | After CEO + 2x/day | CTO patches its own source code |
+| deploy_dashboard.yml | On push | Builds React dashboard to GitHub Pages |
 
-### Project types (10)
+### Quality gates (pipeline.py)
 
-| Type | Description | Verifier | Status |
-|---|---|---|---|
-| web_interactive | HTML+JS+Canvas browser demos | Playwright | Active (15 shipped) |
-| game_web | Browser games with rules + state | Playwright | Active (5 shipped) |
-| python_tool | Standalone Python programs | Subprocess | Active (6 shipped) |
-| generative_art | Visual output (canvas/SVG) | Playwright | Active (4 shipped) |
-| document | Markdown research/proposals | Structure check | Active (3 shipped) |
-| web_3d | Three.js/WebGL scenes | Playwright | Active (1 shipped) |
-| shader_art | GLSL fragment shaders, pure WebGL | Playwright | New - targeting |
-| data_viz | Python matplotlib/plotly + SVG embed | Subprocess | New - targeting |
-| typescript_app | TypeScript via esm.sh CDN | Playwright | New - targeting |
-| cli_tool | Rust or Go CLI + Codespaces devcontainer | File check + Playwright | New - targeting |
-
-All types produce an index.html for GitHub Pages.
+- **Complexity justification**: visual types and any project with c>100 must list 3+ specific algorithmic challenges — not bypassed even in recovery mode (honesty gate)
+- **Complexity floor/ceiling**: floor is `type_max − 20` (modest regression allowed); ceiling is `type_max + 40` per step (prevents score inflation)
+- **Visual theme**: required for all visual types; rotation enforced between consecutive visual projects
+- **Type diversity**: no same project type twice in a row (relaxed in recovery mode)
+- **Novel concept check**: plan must introduce concepts not seen in recent projects
+- **Predictability filter**: Judge rejects derivative ideas before any code is written
+- **Interaction test**: Playwright clicks every button and slider, flags dead controls before ship
+- **QA verdict**: LLM simulates user pathways and issues shippable / partially_usable / non_functional
 
 ### Self-improvement (CTO agent)
 
 After every CEO review, self_improve.py:
 1. Analyses last 30 failed builds for recurring patterns
-2. Extracts only the relevant pipeline section (within 8k token API limit)
-3. Proposes one surgical old_string/new_string patch (Gemini primary, GPT-4o fallback)
+2. Extracts only the relevant pipeline section (within API context limits)
+3. Proposes one surgical patch (Gemini primary, Llama fallback)
 4. Validates Python syntax with ast.parse() before writing
-5. Commits the patch - next build runs improved code automatically
+5. Commits the patch — next build runs improved code automatically
 6. Logs all improvements to memory_log.json (never re-applies the same fix)
 
-### Quality gates
+---
 
-- **Type ban system**: any project type that fails 3+ times consecutively is auto-banned until a different type ships
-- **Complexity floor**: each plan must meet a minimum complexity threshold (rises with type history)
-- **Novel concept check**: plan must introduce at least one concept not in the last 14 projects
-- **Predictability filter**: Judge rejects derivative ideas before any code is written
-- **Interaction test**: Playwright clicks every button and slider, flags dead controls before ship
-- **QA verdict**: LLM simulates user pathways and issues shippable / partially_usable / non_functional verdict
+## Changelog
+
+### August 2026 — Provider migration after GitHub Models retirement
+
+GitHub Models (the free OpenAI API via Azure) was fully retired on **2026-07-30**,
+the exact day project shipping stopped. All `gpt-4o`, `gpt-4o-mini`, and `Phi-4`
+calls began returning 404. The pipeline was rebuilt on **Groq + Google only**:
+
+- All GitHub Models entries removed from every role chain
+- `qwen3-32b` (Groq) added as Architect B — a genuinely different model family
+  for real adversarial diversity in the planning conference
+- `gemini-2.0-flash` promoted to Judge and Engineer primary (Google perspective
+  independent from the Groq-based architect candidates)
+- `llama-3.1-8b-instant` used for lightweight roles (Fixer, Polisher)
+- 404/401 errors now treated as permanent — no wasted retry attempts
+
+### August 2026 — Complexity inflation fix (pipeline.py)
+
+The `in_recovery` bypass was skipping all meaningful quality gates. At a 21% ship
+rate, recovery mode was nearly permanent — meaning the system was building without
+justification, without theme enforcement, and with a +1 ratchet that forced
+complexity scores to inflate forever regardless of real difficulty:
+
+- `complexity_justification` always required — not bypassed by recovery
+- `visual_theme` always required and rotation always enforced
+- Complexity floor changed from `max + 1` (ratchet) to `max − 20` (regression allowed)
+- Complexity ceiling added: `max + 40` per step — prevents score jumping to fake advancement
 
 ---
 
@@ -167,18 +184,16 @@ After every CEO review, self_improve.py:
 
 | File | Purpose |
 |---|---|
-| brain.py | Main orchestrator - all pipeline stages |
-| pipeline.py | LLM prompts + plan validation + type logic |
+| brain.py | Main orchestrator — all pipeline stages |
+| pipeline.py | LLM prompts + plan validation + type logic + quality gates |
 | verifier.py | Playwright verification + Python subprocess runner |
 | executive.py | CEO + CSO meta-review agents |
 | self_improve.py | CTO self-improvement agent |
-| roles.py | Multi-provider model registry + resilient call chain |
+| roles.py | Multi-provider model registry + resilient fallback chains |
+| supabase_sync.py | Best-effort Supabase mirror (never blocks a build) |
 | dashboard.py | HTML dashboard generator |
-| publish_public.py | Pushes dashboard to public GitHub Pages repo |
-| memory_log.json | Persistent state: projects, failures, all reviews |
-| generate_paper.py | ReportLab PDF generator for the research paper |
-| research_paper.md | Research paper source (markdown) |
-| Dipesh_Ray_Autonomous_Brain_Research_Paper.pdf | Published research paper |
+| publish_public.py | Pushes dashboard to public GitHub Pages |
+| memory_log.json | Persistent state: all projects, failures, reviews |
 
 ---
 
@@ -189,40 +204,36 @@ After every CEO review, self_improve.py:
 | Secret | Where to get it | Required |
 |---|---|---|
 | GH_PAT | GitHub > Settings > Developer Settings > PAT (repo scope) | Yes |
-| GROQ_API_KEY | console.groq.com > API Keys | Recommended (free, provides Llama + Mixtral) |
-| GOOGLE_AI_KEY | aistudio.google.com > Get API Key | Recommended (free, provides Gemini) |
+| GROQ_API_KEY | console.groq.com > API Keys | Yes (primary inference provider) |
+| GOOGLE_AI_KEY | aistudio.google.com > Get API Key | Yes (engineer + judge primary) |
+| SUPABASE_URL | Supabase project settings > API | Yes (live dashboard) |
+| SUPABASE_SERVICE_ROLE_KEY | Supabase project settings > API | Yes (write access) |
+| SUPABASE_ANON_KEY | Supabase project settings > API | Yes (dashboard frontend) |
 
-GITHUB_TOKEN is provided automatically by GitHub Actions.
-If GROQ_API_KEY or GOOGLE_AI_KEY are absent, those models are silently
-skipped and the pipeline falls back to gpt-4o / gpt-4o-mini.
+GITHUB_TOKEN is provided automatically by GitHub Actions (used for git push and
+repo creation only — GitHub Models API was retired 2026-07-30).
 
 ### Run locally
 
 ```bash
 pip install -r requirements.txt
 python -m playwright install --with-deps chromium
-export GITHUB_TOKEN=ghp_...   # needs models:read scope (Actions token only)
-export GH_PAT=ghp_...         # needs repo scope
-export GROQ_API_KEY=gsk_...   # optional, free at console.groq.com
-export GOOGLE_AI_KEY=AIza...  # optional, free at aistudio.google.com
+export GH_PAT=ghp_...           # needs repo scope
+export GROQ_API_KEY=gsk_...     # free at console.groq.com
+export GOOGLE_AI_KEY=AIza...    # free at aistudio.google.com
 python brain.py
 ```
-
-Note: local GITHUB_TOKEN does not have the models:read scope that GitHub Actions
-tokens have automatically. Run via Actions or use a PAT with models scope.
 
 ---
 
 ## Research
 
-Full research paper documenting 21 days of operation, emergent behaviours,
-and system architecture:
+Full research paper documenting the system architecture, emergent behaviours,
+and empirical results:
 
-- research_paper.md - source text
-- Dipesh_Ray_Autonomous_Brain_Research_Paper.pdf - formatted PDF (ReportLab + matplotlib)
+- research_paper.md — source text (Markdown)
 - ORCID: https://orcid.org/0009-0001-9970-0220
-- Dashboard: https://dipeshrayg.github.io/autonomous-brain/
 
 ---
 
-*Built and operated by Dipesh Ray. All infrastructure costs: $0.*
+*Built and operated by Dipesh Ray, Ulster University. All infrastructure costs: $0.*
