@@ -36594,6 +36594,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'qwen3-32b'] failed. Last error: Error code: 404 - {'error': {'message': 'The model `qwen3-32b` does not exist or you do not ",
       "project_type": "edu_platform"
+    },
+    {
+      "attempted_at": "2026-08-09T05:29:24Z",
+      "attempted_at_unix": 1786253364,
+      "date": "2026-08-09",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'qwen3-32b'] failed. Last error: Error code: 404 - {'error': {'message': 'The model `qwen3-32b` does not exist or you do not ",
+      "project_type": "edu_platform"
     }
   ],
   "cso_reviews": [
