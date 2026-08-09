@@ -55,8 +55,8 @@ without any human intervention.
 
 ### The Boardroom: 13 roles, 2 providers
 
-Each role uses a different model family so the adversarial conference produces
-genuinely diverse perspectives. Groq (Meta Llama + Qwen) and Google (Gemini) are
+Each role uses a different model so the adversarial conference produces
+genuinely diverse perspectives. Groq (Meta Llama) and Google (Gemini) are
 the two active providers — both free tier, zero cost.
 
 | Role | Primary Model | Provider | Purpose |
@@ -65,7 +65,7 @@ the two active providers — both free tier, zero cost.
 | CSO | llama-3.3-70b-versatile | Groq | Scientific novelty, algorithmic depth |
 | CTO | gemini-2.0-flash | Google | Self-improvement, code patches |
 | Architect A | llama-4-scout-17b | Groq | Creative planning (Llama 4 lens) |
-| Architect B | qwen3-32b | Groq | Creative planning (Qwen lens — different family) |
+| Architect B | llama-3.3-70b-versatile | Groq | Creative planning (Llama 3.3 — different generation from A) |
 | Judge | gemini-2.0-flash | Google | Predictability filter (Google = independent from Groq candidates) |
 | Engineer | gemini-2.0-flash | Google | Per-file implementation (large context) |
 | Reviewer A | llama-3.3-70b-versatile | Groq | Code review (Llama lens) |
@@ -82,7 +82,7 @@ skipped — the pipeline never crashes due to a missing key.
 
 ```
 STAGE 1    ARCHITECT CONFERENCE
-           Candidate A (Llama 4/Groq) + Candidate B (Qwen/Groq) propose plans in parallel
+           Candidate A (Llama 4/Groq) + Candidate B (Llama 3.3/Groq) propose plans in parallel
            Validator: banned types, repeated patterns, complexity floor/ceiling, novel concept check,
                       complexity_justification (3+ algorithmic challenges required), visual theme rotation
            Judge (Gemini/Google) synthesises or proposes its own unpredictable plan
@@ -159,12 +159,14 @@ the exact day project shipping stopped. All `gpt-4o`, `gpt-4o-mini`, and `Phi-4`
 calls began returning 404. The pipeline was rebuilt on **Groq + Google only**:
 
 - All GitHub Models entries removed from every role chain
-- `qwen3-32b` (Groq) added as Architect B — a genuinely different model family
-  for real adversarial diversity in the planning conference
 - `gemini-2.0-flash` promoted to Judge and Engineer primary (Google perspective
   independent from the Groq-based architect candidates)
-- `llama-3.1-8b-instant` used for lightweight roles (Fixer, Polisher)
+- `llama-3.1-8b-instant` used for lightweight roles (Fixer, Polisher) and as
+  last-resort fallback across all chains — different quota bucket from 70b,
+  stays available when larger models hit rate limits
 - 404/401 errors now treated as permanent — no wasted retry attempts
+- `qwen3-32b` removed — that model ID does not exist on Groq (caused 404 on
+  every chain that used it, including the emergency architect_judge round)
 
 ### August 2026 — Complexity inflation fix (pipeline.py)
 

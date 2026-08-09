@@ -7,8 +7,8 @@ GitHub Models was retired 2026-07-30. All chains now run on Groq + Google only.
     CSO              llama-3.3-70b-versatile  (Groq — scientific novelty)
     CTO              gemini-2.0-flash         (Google — code + self-improvement)
     Architect A      llama-4-scout            (Groq — Llama 4, newest generation)
-    Architect B      qwen3-32b                (Groq — different family for adversarial diversity)
-    Judge            gemini-2.0-flash         (Google — predictability filter)
+    Architect B      llama-3.3-70b-versatile  (Groq — Llama 3.3, different generation from A)
+    Judge            gemini-2.0-flash         (Google — independent from Groq candidates)
     Engineer         gemini-2.0-flash         (Google — large context, good at code)
     Reviewer A       llama-3.3-70b-versatile  (Groq — open-source perspective)
     Reviewer B       gemini-2.0-flash-lite    (Google — lighter, fast review)
@@ -56,8 +56,6 @@ MODEL_PROVIDER: dict[str, str] = {
     "llama-3.3-70b-versatile":                    "groq",
     "llama-3.1-8b-instant":                       "groq",
     "meta-llama/llama-4-scout-17b-16e-instruct":  "groq",
-    # Groq — Qwen family (different architecture = genuine adversarial diversity)
-    "qwen3-32b":                                  "groq",
     # Google AI Studio — Gemini family (free tier)
     "gemini-2.0-flash":                           "google",
     "gemini-2.0-flash-lite":                      "google",
@@ -83,20 +81,22 @@ def _get_client(model_id: str) -> OpenAI | None:
 # ─────────────────────── Role → model chain ─────────────────────────────
 # Each entry: [primary, fallback1, fallback2, ...]
 # GitHub Models retired 2026-07-30 — all chains use Groq + Google only.
-# Groq: llama-3.3-70b-versatile, llama-4-scout, qwen3-32b, llama-3.1-8b-instant
+# Groq: llama-3.3-70b-versatile, llama-4-scout, llama-3.1-8b-instant
 # Google: gemini-2.0-flash, gemini-2.0-flash-lite
+# llama-3.1-8b-instant is the last-resort fallback — different quota bucket
+# from llama-3.3-70b, so it stays available when the larger model is rate-limited.
 
 ROLE_CHAIN: dict[str, list[str]] = {
     # ── Executive layer ──────────────────────────────────────────────────
     "ceo": [
         "llama-3.3-70b-versatile",      # Groq — strategic synthesis
         "gemini-2.0-flash",             # Google fallback
-        "qwen3-32b",                    # Groq alternate family
+        "llama-3.1-8b-instant",         # Groq fast fallback (fresh quota when 70b rate-limited)
     ],
     "cso": [
         "llama-3.3-70b-versatile",      # Groq — scientific novelty
         "gemini-2.0-flash",             # Google fallback
-        "qwen3-32b",
+        "llama-3.1-8b-instant",
     ],
     "cto": [
         "gemini-2.0-flash",             # Google — code + self-improvement
@@ -105,7 +105,7 @@ ROLE_CHAIN: dict[str, list[str]] = {
     ],
     "vp_eng": [
         "llama-3.3-70b-versatile",      # Groq — pragmatic engineering
-        "qwen3-32b",                    # Groq alternate
+        "llama-3.1-8b-instant",         # Groq fast fallback
         "gemini-2.0-flash",
     ],
 
@@ -116,14 +116,14 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "gemini-2.0-flash",                           # Google fallback
     ],
     "architect_candidate_b": [
-        "qwen3-32b",                                  # Groq — different family for real adversarial diversity
-        "llama-3.3-70b-versatile",                    # Groq fallback
-        "gemini-2.0-flash",                           # Google fallback
+        "llama-3.3-70b-versatile",      # Groq — Llama 3.3 (different generation from Llama 4 candidate A)
+        "llama-3.1-8b-instant",         # Groq fast fallback
+        "gemini-2.0-flash",             # Google fallback
     ],
     "architect_judge": [
-        "gemini-2.0-flash",             # Google — different from Groq candidates = independent judgement
+        "gemini-2.0-flash",             # Google — independent from Groq candidates
         "llama-3.3-70b-versatile",      # Groq fallback
-        "qwen3-32b",                    # Groq alternate family fallback
+        "llama-3.1-8b-instant",         # Groq fast fallback (fresh quota when 70b exhausted)
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
@@ -131,11 +131,11 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "gemini-2.0-flash",                           # Google — large context, strong at code
         "llama-3.3-70b-versatile",                    # Groq fallback
         "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq Llama 4 fallback
-        "qwen3-32b",                                  # Groq final fallback
+        "llama-3.1-8b-instant",                       # Groq final fallback
     ],
     "reviewer_a": [
         "llama-3.3-70b-versatile",      # Groq — open-source perspective
-        "qwen3-32b",                    # Groq alternate
+        "llama-3.1-8b-instant",         # Groq fast fallback
     ],
     "reviewer_b": [
         "gemini-2.0-flash-lite",        # Google — fast, lightweight review
@@ -157,7 +157,7 @@ ROLE_CHAIN: dict[str, list[str]] = {
     "qa_tester": [
         "llama-3.3-70b-versatile",      # Groq — strict user-pathway simulation
         "gemini-2.0-flash",             # Google fallback
-        "qwen3-32b",                    # Groq alternate family
+        "llama-3.1-8b-instant",         # Groq fast fallback
     ],
     "qa_fixer": [
         "gemini-2.0-flash",             # Google — fast, capable repair
