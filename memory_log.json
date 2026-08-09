@@ -36725,6 +36725,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8",
       "project_type": "data_viz"
+    },
+    {
+      "attempted_at": "2026-08-09T23:04:23Z",
+      "attempted_at_unix": 1786316663,
+      "date": "2026-08-09",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'meta-llama/llama-4-scout-17b-16e-instruct', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization",
+      "plan_name": "aurora-vortex",
+      "plan_language": "Python",
+      "plan_complexity": 2803,
+      "plan_pattern": "procedural-vortex-simulation",
+      "plan_domain": "Computer Science and Physics",
+      "plan_files_count": 4,
+      "project_type": "data_viz"
     }
   ],
   "cso_reviews": [
