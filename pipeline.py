@@ -1325,12 +1325,44 @@ def stage_plan(client: OpenAI, memory: dict,
             "Treat this as a creative reset — propose something the system has NEVER built before."
         )
     if ceo_directives:
-        base_user += (
-            "\n\nCEO DIRECTIVES (visionary guidance — follow when feasible, but SHIPPING A "
-            "VALID PROJECT ALWAYS WINS; deviate from any directive that would force a "
-            "banned/maxed/impossible type):\n"
-            + "\n".join(f"- {d}" for d in ceo_directives)
-        )
+        # If CEO directives explicitly demand a currently-banned type, the architects
+        # follow them anyway despite the "deviate" disclaimer — causing a permanent
+        # failure loop. Detect and hard-override banned-type demands instead.
+        current_banned = _banned_types(memory)
+        demanded_banned = [
+            pt for pt in PROJECT_TYPES
+            if pt in current_banned
+            and any(pt in d.lower() for d in ceo_directives)
+        ]
+        if demanded_banned:
+            # Preserve any non-type guidance (theme, domain, complexity) from CEO
+            non_type_directives = [
+                d for d in ceo_directives
+                if not any(pt in d.lower() for pt in demanded_banned)
+            ]
+            streaks = _type_failure_streaks(memory)
+            base_user += (
+                f"\n\n⚠️ CEO TYPE DIRECTIVE SUSPENDED: CEO requested "
+                f"{', '.join(demanded_banned)} but "
+                f"{'this type is' if len(demanded_banned) == 1 else 'these types are'} "
+                f"BANNED ({', '.join(f'{pt}={streaks.get(pt,0)} fails' for pt in demanded_banned)} "
+                f"consecutive failures since last ship). "
+                f"Choosing a banned type GUARANTEES rejection — do NOT use it. "
+                f"Pick the most ambitious type from the non-banned list in the TYPE DIVERSITY "
+                f"REPORT above.\n"
+            )
+            if non_type_directives:
+                base_user += (
+                    "CEO guidance on theme/domain/complexity (still valid):\n"
+                    + "\n".join(f"- {d}" for d in non_type_directives)
+                )
+        else:
+            base_user += (
+                "\n\nCEO DIRECTIVES (visionary guidance — follow when feasible, but SHIPPING A "
+                "VALID PROJECT ALWAYS WINS; deviate from any directive that would force a "
+                "banned/maxed/impossible type):\n"
+                + "\n".join(f"- {d}" for d in ceo_directives)
+            )
     if cso_directives:
         base_user += (
             "\n\nCSO DIRECTIVES (Chief Science Officer, algorithmic depth — advisory; "
@@ -1389,12 +1421,24 @@ def stage_plan(client: OpenAI, memory: dict,
                 "\n\nCRITICAL: .ts files are forbidden. Do NOT use typescript_app. "
                 "Use web_interactive or game_web with plain .js files."
             )
+        # Emergency prompt: use base_user WITHOUT CEO directives (they likely demanded a
+        # banned type, which caused this emergency in the first place). Also build a
+        # dynamic safe-type list so we never suggest a currently-banned type.
+        current_banned_em = _banned_types(memory)
+        safe_emergency_types = [
+            t for t in [
+                "web_interactive", "python_tool", "generative_art", "shader_art",
+                "data_viz", "music_creator", "physics_sim", "css_art", "game_web",
+            ]
+            if t not in current_banned_em
+        ] or ["web_interactive"]
         emergency_user = (
-            base_user
-            + "\n\nEMERGENCY PLAN: previous architect rounds failed. You MUST produce "
-            "a valid plan NOW. Rules:\n"
-            "- Use web_interactive, game_web, python_tool, generative_art, or shader_art.\n"
-            "- All files must be .html, .js, .css, or .py — NO .ts, .ts, .jsx files.\n"
+            f"Today is {today}. EMERGENCY BUILD — produce a valid project plan now.\n\n"
+            f"{history}{diversity}"
+            + "\n\nEMERGENCY PLAN: both normal architect rounds failed. "
+            "You MUST produce a valid plan. Rules:\n"
+            f"- ONLY use one of these confirmed-available types: {', '.join(safe_emergency_types)}.\n"
+            "- All files must be .html, .js, .css, or .py — NO .ts, .tsx, .jsx files.\n"
             "- Include at least 4 files.\n"
             "- The plan must be immediately buildable.\n"
             f"Last rejection reason: {last_err}\n"
