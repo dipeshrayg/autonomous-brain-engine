@@ -36739,6 +36739,13 @@
       "plan_domain": "Computer Science and Physics",
       "plan_files_count": 4,
       "project_type": "data_viz"
+    },
+    {
+      "attempted_at": "2026-08-10T03:23:30Z",
+      "attempted_at_unix": 1786332210,
+      "date": "2026-08-10",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=architect_judge: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization `org_01ks72cdr3ed5rh6v3ykazp81j` serv"
     }
   ],
   "cso_reviews": [
