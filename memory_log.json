@@ -36893,6 +36893,14 @@
       "plan_domain": "Artificial Intelligence and Audio Processing",
       "plan_files_count": 4,
       "project_type": "typescript_app"
+    },
+    {
+      "attempted_at": "2026-08-10T20:57:10Z",
+      "attempted_at_unix": 1786395430,
+      "date": "2026-08-10",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8",
+      "project_type": "typescript_app"
     }
   ],
   "cso_reviews": [
