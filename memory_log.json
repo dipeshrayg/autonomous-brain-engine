@@ -39830,6 +39830,26 @@
       ],
       "praise": [],
       "reviewed_project_count": 8
+    },
+    {
+      "issued_at": "2026-08-11T17:24:18Z",
+      "issued_at_unix": 1786469058,
+      "model": "llama-3.3-70b-versatile",
+      "verdict": "drifting",
+      "summary": "Recent projects lack algorithmic novelty and deep-tech ambition, with an over-reliance on maxed-out and banned types.",
+      "concerns": [
+        "Lack of diversity in project types, with many types maxed out or banned",
+        "Insufficient algorithmic novelty and depth in recent projects",
+        "Over-reliance on shallow implementations and wrappers"
+      ],
+      "directives": [
+        "Use the 'devtool' project type for the next project, as it has a relatively low max complexity and is not banned",
+        "Implement a novel algorithm, such as a constraint solver using DPLL with conflict-driven clause learning",
+        "Incorporate deep-tech concepts, such as distributed systems or formal verification, into the project",
+        "Ensure the project has a strong mathematical foundation, with correct numerical methods and probability theory"
+      ],
+      "praise": [],
+      "reviewed_project_count": 8
     }
   ],
   "expansion_mode": false,
