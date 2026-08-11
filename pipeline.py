@@ -1447,7 +1447,7 @@ def stage_plan(client: OpenAI, memory: dict,
         try:
             emergency_plan, meta = _call_role(
                 client, "architect_judge", PLAN_SYSTEM, emergency_user,
-                max_tokens=4000, temperature=0.7,
+                max_tokens=2000, temperature=0.7,  # 2000 is sufficient for a plan (~1200 tokens typical)
             )
             # Emergency plans use relaxed file-count minimum WITHOUT touching the
             # complexity score — patching it down would corrupt the trajectory.

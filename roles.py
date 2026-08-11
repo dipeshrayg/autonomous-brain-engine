@@ -114,16 +114,18 @@ ROLE_CHAIN: dict[str, list[str]] = {
         "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq — Llama 4, newest generation
         "llama-3.3-70b-versatile",                    # Groq Llama 3.3 fallback
         "gemini-2.0-flash",                           # Google fallback
+        "gemini-2.0-flash-lite",                      # Google lite — last resort (separate quota)
     ],
     "architect_candidate_b": [
         "llama-3.3-70b-versatile",      # Groq — Llama 3.3 (different generation from Llama 4 candidate A)
-        "llama-3.1-8b-instant",         # Groq fast fallback
         "gemini-2.0-flash",             # Google fallback
+        "gemini-2.0-flash-lite",        # Google lite — separate quota from flash
     ],
     "architect_judge": [
         "gemini-2.0-flash",             # Google — independent from Groq candidates
+        "gemini-2.0-flash-lite",        # Google lite — separate quota; NOT used in candidate rounds
         "llama-3.3-70b-versatile",      # Groq fallback
-        "llama-3.1-8b-instant",         # Groq fast fallback (fresh quota when 70b exhausted)
+        # llama-3.1-8b-instant removed: 413 on large prompts (PLAN_SYSTEM ~5700 tokens alone)
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
@@ -264,10 +266,18 @@ def call_with_fallback(
                 too_large = "413" in msg or "tokens_limit_reached" in msg
                 # 404/401 are permanent errors (model gone, auth issue) — don't retry
                 permanent = "404" in msg or "401" in msg
-                if rate_limited or too_large or permanent:
+                if too_large or permanent:
                     log.warning("[role=%s] model=%s attempt %d failed (%s); falling back",
                                 role, model_id, attempt, msg[:120])
-                    break  # try next model immediately
+                    break  # permanent / size errors don't recover with sleep
+                if rate_limited:
+                    # Sleep briefly before trying the next model — gives the rate-limit
+                    # window time to partially reset so the fallback model isn't also
+                    # immediately rejected (all models share minute-level quota windows).
+                    log.warning("[role=%s] model=%s rate-limited; sleeping 8s then falling back",
+                                role, model_id)
+                    time.sleep(8)
+                    break
                 if attempt < transient_attempts:
                     backoff = 2 ** attempt
                     log.warning("[role=%s] model=%s attempt %d failed (%s); retrying in %ds",
