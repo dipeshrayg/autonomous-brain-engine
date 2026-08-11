@@ -37072,6 +37072,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3",
       "project_type": "cli_tool"
+    },
+    {
+      "attempted_at": "2026-08-11T23:22:40Z",
+      "attempted_at_unix": 1786490560,
+      "date": "2026-08-11",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.0-flash', 'llama-3.3-70b-versatile', 'meta-llama/llama-4-scout-17b-16e-instruct', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': 'Request too large for model `llama-3.1-8b-instant` in organization",
+      "plan_name": "entropy-scanner",
+      "plan_language": "Rust",
+      "plan_complexity": 3000,
+      "plan_pattern": "cryptography-cli-tool",
+      "plan_domain": "Cryptography and Information Security",
+      "plan_files_count": 3,
+      "project_type": "cli_tool"
     }
   ],
   "cso_reviews": [
