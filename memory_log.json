@@ -37126,6 +37126,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3",
       "project_type": "cli_tool"
+    },
+    {
+      "attempted_at": "2026-08-12T08:10:13Z",
+      "attempted_at_unix": 1786522213,
+      "date": "2026-08-12",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.0-flash', 'gemini-2.0-flash-lite', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.3",
+      "project_type": "cli_tool"
     }
   ],
   "cso_reviews": [
