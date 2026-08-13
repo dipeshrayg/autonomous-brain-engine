@@ -1,29 +1,38 @@
 """
 roles.py — Multi-provider boardroom with genuine model diversity.
 
-GitHub Models was retired 2026-07-30. All chains run on Groq + Google only.
+PROVIDERS (as of 2026-08):
+    Groq:       LPU inference, generous free tier. TPD caps apply.
+    Google:     Gemini 2.5 family — current generation, high free limits.
+    Cerebras:   CS-3 wafer-scale inference. 60k output tokens/min FREE.
+    OpenRouter: Routes to many providers incl. Hermes 3 free tier.
+
+DEAD MODELS (removed):
+    gemini-2.0-flash, gemini-2.0-flash-lite  — retired by Google
+    gemini-1.5-flash, gemini-1.5-flash-8b    — endpoint deprecated
+    meta-llama/llama-4-scout-17b-16e-instruct  — 404 on Groq (paid tier)
+    meta-llama/llama-4-maverick-17b-128e-instruct — 404 on Groq
 
 QUOTA BUCKETS — critical for rate-limit resilience:
-    Groq:   llama-3.3-70b  |  llama-4-scout  |  llama-4-maverick  |  llama-3.1-8b
-    Google: gemini-2.0-flash  (one bucket)
-            gemini-2.0-flash-lite  (separate bucket)
-            gemini-1.5-flash  (separate bucket — key fallback for judge + engineer)
-            gemini-1.5-flash-8b  (separate bucket — cheapest, most quota)
+    Groq:       llama-3.3-70b-versatile | llama-3.1-8b-instant | gemma2-9b-it
+    Google:     gemini-2.5-flash | gemini-2.5-pro (separate buckets)
+    Cerebras:   llama-3.3-70b | llama3.1-8b (60k out tokens/min free)
+    OpenRouter: nousresearch/hermes-3-llama-3.1-70b:free (free tier)
 
 Primary roles:
     CEO              llama-3.3-70b-versatile  (Groq)
-    CSO              llama-3.3-70b-versatile  (Groq)
-    CTO              gemini-2.0-flash         (Google)
-    Architect A      llama-4-scout            (Groq — Llama 4)
-    Architect B      llama-3.3-70b + gemini-2.0-flash  (diverse)
-    Judge            gemini-1.5-flash         (Google 1.5 — NOT in candidate rounds → fresh quota)
-    Engineer         gemini-1.5-flash         (Google 1.5 — NOT exhausted by architect rounds)
+    CSO              gemini-2.5-flash         (Google)
+    CTO              gemini-2.5-flash         (Google)
+    Architect A      llama-3.3-70b            (Cerebras — fresh quota)
+    Architect B      hermes-3-llama-3.1-70b   (OpenRouter — diverse)
+    Judge            gemini-2.5-flash         (Google — NOT in candidate rounds)
+    Engineer         gemini-2.5-flash         (Google — 1M context)
     Reviewer A       llama-3.3-70b-versatile  (Groq)
-    Reviewer B       gemini-2.0-flash-lite    (Google)
+    Reviewer B       gemini-2.5-flash         (Google)
     QA Tester        llama-3.3-70b-versatile  (Groq)
-    QA Fixer         gemini-2.0-flash         (Google)
-    Fixer            llama-3.1-8b-instant     (Groq — fast)
-    Polisher         gemini-2.0-flash-lite    (Google)
+    QA Fixer         gemini-2.5-flash         (Google)
+    Fixer            llama3.1-8b              (Cerebras — fast)
+    Polisher         gemma2-9b-it             (Groq — small, fast)
 """
 
 from __future__ import annotations
@@ -49,23 +58,40 @@ PROVIDERS: dict[str, dict[str, str]] = {
         "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
         "env_var":  "GOOGLE_AI_KEY",
     },
+    "cerebras": {
+        # CS-3 wafer-scale inference — 60k output tokens/min free
+        "base_url": "https://api.cerebras.ai/v1",
+        "env_var":  "CEREBRAS_API_KEY",
+    },
+    "openrouter": {
+        # Routes to many providers; free models via :free suffix
+        "base_url": "https://openrouter.ai/api/v1",
+        "env_var":  "OPENROUTER_API_KEY",
+    },
 }
 
 # model_id → provider key
 MODEL_PROVIDER: dict[str, str] = {
-    # Groq — Meta Llama family (free tier, high-speed LPU)
-    "llama-3.3-70b-versatile":                        "groq",
-    "llama-3.1-8b-instant":                           "groq",
-    "meta-llama/llama-4-scout-17b-16e-instruct":      "groq",
-    "meta-llama/llama-4-maverick-17b-128e-instruct":  "groq",
-    # Google AI Studio — Gemini 2.0 family (one rate-limit bucket)
-    "gemini-2.0-flash":                           "google",
-    "gemini-2.0-flash-lite":                      "google",
-    # Google AI Studio — Gemini 1.5 family (SEPARATE bucket from 2.0)
-    # Critical: 1.5-flash is NOT exhausted by architect rounds that use 2.0-flash.
-    "gemini-1.5-flash":                           "google",
-    "gemini-1.5-flash-8b":                        "google",
+    # ── Groq (LPU — fast; free tier has per-minute + per-day limits) ──────
+    "llama-3.3-70b-versatile":  "groq",   # 128k ctx, 100k TPD free
+    "llama-3.1-8b-instant":     "groq",   # fast small model
+    "gemma2-9b-it":             "groq",   # Google Gemma 2 on Groq — separate quota
+
+    # ── Google AI Studio — Gemini 2.5 family (current as of 2026) ─────────
+    "gemini-2.5-flash":         "google", # main workhorse, very generous free tier
+    "gemini-2.5-pro":           "google", # more capable; separate quota from flash
+
+    # ── Cerebras — wafer-scale inference, extremely high throughput ────────
+    "llama-3.3-70b":            "cerebras",  # Llama 3.3 70B — 60k out tokens/min free
+    "llama3.1-8b":              "cerebras",  # Llama 3.1 8B — fast iterative repair
+
+    # ── OpenRouter — free-tier routing to multiple providers ───────────────
+    "nousresearch/hermes-3-llama-3.1-70b:free": "openrouter",  # Hermes 3 — great JSON
+    "meta-llama/llama-3.3-70b-instruct:free":   "openrouter",  # diverse perspective
 }
+
+# Providers that support json_object response_format (OpenAI-compat, not Google)
+_JSON_MODE_PROVIDERS = {"groq", "cerebras", "openrouter"}
 
 
 def _get_client(model_id: str) -> OpenAI | None:
@@ -87,126 +113,121 @@ def _get_client(model_id: str) -> OpenAI | None:
 # ─────────────────────── Role → model chain ─────────────────────────────
 # Each entry: [primary, fallback1, fallback2, ...]
 #
-# RATE-LIMIT STRATEGY: architect conference burns 4-8 calls on llama-3.3-70b,
-# llama-4-scout, and gemini-2.0-flash. By the time judge + engineer run, all
-# those are rate-limited. The fix: judge and engineer use gemini-1.5-flash
-# FIRST — completely separate quota bucket from gemini-2.0-flash, untouched
-# by the candidate rounds. gemini-1.5-flash-8b is the cheapest fallback with
-# the most remaining quota at any point in the build.
+# RATE-LIMIT STRATEGY: architect candidates burn through Cerebras and
+# OpenRouter quota first. By the time judge + engineer run, those are
+# partially recovered. Judge/engineer start with gemini-2.5-flash which
+# is NOT used as primary in candidate rounds → fresh quota guaranteed.
 #
 # Quota buckets (distinct per-minute limits):
-#   Groq:   llama-3.3-70b | llama-4-scout | llama-4-maverick | llama-3.1-8b
-#   Google: gemini-2.0-flash | gemini-2.0-flash-lite | gemini-1.5-flash | gemini-1.5-flash-8b
+#   Groq:       llama-3.3-70b-versatile | llama-3.1-8b-instant | gemma2-9b-it
+#   Google:     gemini-2.5-flash | gemini-2.5-pro
+#   Cerebras:   llama-3.3-70b | llama3.1-8b (same account, but very high limit)
+#   OpenRouter: hermes:free | llama-3.3-70b:free
 
 ROLE_CHAIN: dict[str, list[str]] = {
     # ── Executive layer ──────────────────────────────────────────────────
     "ceo": [
         "llama-3.3-70b-versatile",      # Groq — strategic synthesis
-        "gemini-1.5-flash",             # Google 1.5 — separate quota
-        "gemini-2.0-flash",             # Google 2.0 fallback
-        "llama-3.1-8b-instant",         # Groq fast fallback
+        "llama-3.3-70b",                # Cerebras — fast fallback
+        "gemini-2.5-flash",             # Google — fresh
+        "llama-3.1-8b-instant",         # Groq small
     ],
     "cso": [
-        "llama-3.3-70b-versatile",      # Groq — scientific novelty
-        "gemini-1.5-flash",             # Google 1.5 — separate quota
-        "gemini-2.0-flash",             # Google 2.0 fallback
+        "gemini-2.5-flash",             # Google — scientific novelty
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
+        "llama-3.3-70b-versatile",      # Groq fallback
         "llama-3.1-8b-instant",
     ],
     "cto": [
-        "gemini-2.0-flash",             # Google 2.0 — code + self-improvement
-        "gemini-1.5-flash",             # Google 1.5 fallback
+        "gemini-2.5-flash",             # Google — code + self-improvement
+        "llama-3.3-70b",                # Cerebras
         "llama-3.3-70b-versatile",      # Groq fallback
-        "gemini-2.0-flash-lite",
+        "gemini-2.5-pro",               # Google capable fallback
     ],
     "vp_eng": [
         "llama-3.3-70b-versatile",
-        "gemini-1.5-flash",
-        "gemini-2.0-flash",
+        "llama-3.3-70b",                # Cerebras
+        "gemini-2.5-flash",
         "llama-3.1-8b-instant",
     ],
 
     # ── Planning layer ────────────────────────────────────────────────────
-    # Candidate A: Llama 4 Scout primary, then 1.5-flash (separate bucket),
-    # then 3.3-70b, then 2.0-flash as late fallback.
+    # Candidate A: Cerebras primary — completely fresh quota, very fast.
+    # Avoids Google entirely so judge can use gemini-2.5-flash with full quota.
     "architect_candidate_a": [
-        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq — Llama 4 Scout
-        "gemini-1.5-flash",                            # Google 1.5 — separate bucket
-        "llama-3.3-70b-versatile",                     # Groq — Llama 3.3
-        "gemini-2.0-flash",                            # Google 2.0 fallback
-        "gemini-1.5-flash-8b",                         # Google 1.5 tiny — last resort
+        "llama-3.3-70b",                             # Cerebras — primary, 60k TPM free
+        "gemini-2.5-flash",                          # Google — generous limits
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes — JSON expert
+        "llama-3.3-70b-versatile",                   # Groq fallback
+        "gemma2-9b-it",                              # Groq — separate quota bucket
     ],
-    # Candidate B: diverse from A — starts with 3.3-70b + 2.0-flash so
-    # the two candidates use DIFFERENT primary models (spread quota load).
+    # Candidate B: Hermes primary — diverse perspective from A, excellent JSON.
+    # Also avoids Google-flash so judge quota stays fresh.
     "architect_candidate_b": [
-        "llama-3.3-70b-versatile",                        # Groq — different primary than A
-        "gemini-2.0-flash",                               # Google 2.0
-        "meta-llama/llama-4-maverick-17b-128e-instruct",  # Groq — different Llama 4 variant
-        "gemini-1.5-flash-8b",                            # Google 1.5 tiny — fresh quota
-        "gemini-1.5-flash",                               # Google 1.5 full
-        "meta-llama/llama-4-scout-17b-16e-instruct",      # Groq Scout last resort
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes — primary
+        "meta-llama/llama-3.3-70b-instruct:free",    # OpenRouter diverse fallback
+        "gemini-2.5-pro",                            # Google Pro — different bucket from flash
+        "llama-3.3-70b",                             # Cerebras fallback
+        "llama-3.3-70b-versatile",                   # Groq fallback
+        "gemma2-9b-it",                              # Groq small fallback
     ],
-    # Judge: uses gemini-1.5-flash FIRST — this model is NOT used in
-    # candidate rounds (which use gemini-2.0-flash), so it has full quota.
-    # 1.5-flash-8b is the cheapest and has the most remaining headroom.
-    # llama-3.1-8b-instant REMOVED: 413 on large prompts (PLAN_SYSTEM ~5700 tokens)
+    # Judge: gemini-2.5-flash FIRST — NOT used in candidate rounds above
+    # (candidates use Cerebras + Hermes/OpenRouter + Groq). Full quota available.
     "architect_judge": [
-        "gemini-1.5-flash",             # Google 1.5 — separate bucket, full quota after candidates
-        "gemini-1.5-flash-8b",          # Google 1.5 tiny — most quota remaining
-        "gemini-2.0-flash-lite",        # Google 2.0 lite — different bucket from 2.0-flash
-        "gemini-2.0-flash",             # Google 2.0 — may have partially reset
-        "llama-3.3-70b-versatile",      # Groq fallback
+        "gemini-2.5-flash",             # Google — fresh quota, 1M context
+        "gemini-2.5-pro",               # Google Pro — more capable
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
+        "llama-3.3-70b",                # Cerebras — fast
+        "llama-3.3-70b-versatile",      # Groq final fallback
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
-    # Engineer: gemini-1.5-flash FIRST — 1M context window, NOT used in
-    # architect rounds (which use gemini-2.0-flash). By the time engineer
-    # runs, 1.5-flash quota is completely fresh. 1.5-flash-8b as cheap backup.
-    # llama-3.1-8b-instant kept for 413-safe contexts only (small files).
+    # Engineer: gemini-2.5-flash FIRST — 1M context, NOT primary in architect rounds.
     "engineer": [
-        "gemini-1.5-flash",                           # Google 1.5 — 1M ctx, NOT in architect rounds
-        "gemini-1.5-flash-8b",                        # Google 1.5 tiny — most quota remaining
-        "gemini-2.0-flash",                           # Google 2.0 — may have reset
-        "llama-3.3-70b-versatile",                    # Groq
-        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq Llama 4
-        "gemini-2.0-flash-lite",                      # Google 2.0 lite — last resort
+        "gemini-2.5-flash",             # Google — 1M ctx, NOT in architect primary rounds
+        "gemini-2.5-pro",               # Google Pro — max quality fallback
+        "llama-3.3-70b",                # Cerebras — fast code gen
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
+        "llama-3.3-70b-versatile",      # Groq
+        "llama-3.1-8b-instant",         # Groq small — only for tiny file counts
     ],
     "reviewer_a": [
         "llama-3.3-70b-versatile",      # Groq — open-source perspective
-        "gemini-1.5-flash",             # Google 1.5 — separate bucket
-        "llama-3.1-8b-instant",         # Groq fast fallback
-        "gemini-2.0-flash",
+        "llama-3.3-70b",                # Cerebras fallback
+        "gemini-2.5-flash",             # Google
+        "llama-3.1-8b-instant",
     ],
     "reviewer_b": [
-        "gemini-2.0-flash-lite",        # Google 2.0 lite — fast review
-        "gemini-1.5-flash-8b",          # Google 1.5 tiny — fresh quota
-        "gemini-2.0-flash",             # Google 2.0 fallback
+        "gemini-2.5-flash",             # Google — fast review
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
+        "llama-3.3-70b",                # Cerebras
         "llama-3.3-70b-versatile",      # Groq fallback
     ],
     "fixer": [
-        "llama-3.1-8b-instant",         # Groq — fast iterative repair
-        "gemini-1.5-flash-8b",          # Google 1.5 tiny — cheap, fast
-        "llama-3.3-70b-versatile",      # Groq stronger fallback
-        "gemini-2.0-flash",             # Google fallback
+        "llama3.1-8b",                  # Cerebras — very fast iterative repair
+        "llama-3.1-8b-instant",         # Groq small
+        "llama-3.3-70b",                # Cerebras stronger fallback
+        "gemini-2.5-flash",             # Google fallback
     ],
     "polisher": [
-        "gemini-2.0-flash-lite",        # Google 2.0 lite — lightweight polish
-        "gemini-1.5-flash-8b",          # Google 1.5 tiny
+        "gemma2-9b-it",                 # Groq Gemma — lightweight polish
+        "llama3.1-8b",                  # Cerebras fast
         "llama-3.1-8b-instant",         # Groq fast
-        "gemini-2.0-flash",
+        "gemini-2.5-flash",             # Google fallback
     ],
 
     # ── QA layer ──────────────────────────────────────────────────────────
     "qa_tester": [
         "llama-3.3-70b-versatile",      # Groq — strict user-pathway simulation
-        "gemini-1.5-flash",             # Google 1.5 — separate quota
-        "gemini-2.0-flash",             # Google 2.0 fallback
+        "llama-3.3-70b",                # Cerebras fast fallback
+        "gemini-2.5-flash",             # Google fallback
         "llama-3.1-8b-instant",
     ],
     "qa_fixer": [
-        "gemini-2.0-flash",             # Google 2.0 — fast repair
-        "gemini-1.5-flash",             # Google 1.5 — fresh quota
+        "gemini-2.5-flash",             # Google — fast repair
+        "llama-3.3-70b",                # Cerebras
         "llama-3.3-70b-versatile",      # Groq fallback
-        "gemini-2.0-flash-lite",
+        "gemini-2.5-pro",               # Google capable fallback
     ],
 }
 
@@ -231,7 +252,7 @@ def call_with_fallback(
 ) -> tuple[str, dict[str, Any]]:
     """
     Walk the role's model chain across multiple providers until one succeeds.
-    Each model may use a different provider (GitHub, Groq, Google).
+    Each model may use a different provider (Groq, Google, Cerebras, OpenRouter).
     Missing API keys are silently skipped.
     """
     chain = ROLE_CHAIN.get(role)
@@ -256,9 +277,10 @@ def call_with_fallback(
                     max_tokens=max_tokens,
                     temperature=temperature,
                 )
-                # Gemini doesn't support json_object response_format — Groq does
+                # Google's OpenAI-compat endpoint doesn't support json_object;
+                # Groq, Cerebras, and OpenRouter do.
                 provider_key = MODEL_PROVIDER.get(model_id, "unknown")
-                if json_mode and provider_key == "groq":
+                if json_mode and provider_key in _JSON_MODE_PROVIDERS:
                     kwargs["response_format"] = {"type": "json_object"}
 
                 resp = provider_client.chat.completions.create(**kwargs)
@@ -286,7 +308,7 @@ def call_with_fallback(
 
                 meta: dict[str, Any] = {
                     "role": role, "model": model_id,
-                    "provider": MODEL_PROVIDER.get(model_id, "unknown"),
+                    "provider": provider_key,
                     "attempt": attempt,
                 }
                 if resp.usage:
@@ -313,8 +335,7 @@ def call_with_fallback(
                                 role, model_id, attempt, msg[:120])
                     break  # permanent / size errors don't recover with sleep
                 if rate_limited:
-                    # Sleep 25s before next model — Groq/Google rate limits are per-minute
-                    # rolling windows. 25s gives ~40% window reset for the next model.
+                    # Sleep 25s before next model — rolling minute windows.
                     log.warning("[role=%s] model=%s rate-limited; sleeping 25s then falling back",
                                 role, model_id)
                     time.sleep(25)
