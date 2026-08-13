@@ -37345,6 +37345,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.5-pro', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'llama-3.3-70b-versatile'] failed. Last error: Error code: 429 - {'error'",
       "project_type": "devtool"
+    },
+    {
+      "attempted_at": "2026-08-13T11:25:12Z",
+      "attempted_at_unix": 1786620312,
+      "date": "2026-08-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash-preview-05-20', 'gemini-1.5-flash-002', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'llama-3.3-70b-versatile'] failed. Last error: Error ",
+      "project_type": "devtool"
     }
   ],
   "cso_reviews": [
