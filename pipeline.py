@@ -38,6 +38,20 @@ import roles
 
 log = logging.getLogger("brain.pipeline")
 
+# ── Per-build token accumulator ───────────────────────────────────────────
+_session_tokens: dict[str, int] = {"prompt": 0, "completion": 0}
+
+
+def reset_token_counter() -> None:
+    _session_tokens["prompt"] = 0
+    _session_tokens["completion"] = 0
+
+
+def get_token_usage() -> dict[str, int]:
+    p, c = _session_tokens["prompt"], _session_tokens["completion"]
+    return {"prompt": p, "completion": c, "total": p + c}
+
+
 
 class PipelineError(RuntimeError):
     pass
@@ -743,6 +757,8 @@ def _call_role(client: OpenAI, role: str, system: str, user: str, *,
         json_mode=json_mode,
         validator=_parse_json,
     )
+    _session_tokens["prompt"] += meta.get("prompt_tokens", 0)
+    _session_tokens["completion"] += meta.get("completion_tokens", 0)
     return _parse_json(text), meta
 
 
@@ -1398,6 +1414,9 @@ def stage_plan(client: OpenAI, memory: dict,
                 log.warning("✗ Candidate %s exhausted models: %s", role, e)
         if candidates:
             break
+        if round_num == 1:
+            log.info("Round 1 produced 0 candidates; sleeping 15s before round 2 to partially reset rate limits")
+            time.sleep(15)
 
     # ── Emergency round 3 ────────────────────────────────────────────────
     # Runs only when BOTH normal rounds produced 0 valid candidates.
@@ -1406,8 +1425,9 @@ def stage_plan(client: OpenAI, memory: dict,
     if not candidates:
         log.warning(
             "EMERGENCY ROUND: both normal rounds failed (last error: %s). "
-            "Falling back to gpt-4o with relaxed constraints.", last_err
+            "Sleeping 20s to partially reset rate limits before emergency judge.", last_err
         )
+        time.sleep(20)
         # Detect the stuck type from error messages
         stuck_hint = ""
         if last_err and "typescript_app" in last_err:
@@ -1425,13 +1445,16 @@ def stage_plan(client: OpenAI, memory: dict,
         # banned type, which caused this emergency in the first place). Also build a
         # dynamic safe-type list so we never suggest a currently-banned type.
         current_banned_em = _banned_types(memory)
+        # Only include types that are actually in PROJECT_TYPES and buildable in emergency
+        # (no cli_tool: needs Rust/Go devcontainer; no typescript_app: bundler failures)
+        _emergency_preferred = [
+            "web_interactive", "generative_art", "shader_art", "game_web",
+            "data_viz", "python_tool",
+        ]
         safe_emergency_types = [
-            t for t in [
-                "web_interactive", "python_tool", "generative_art", "shader_art",
-                "data_viz", "music_creator", "physics_sim", "css_art", "game_web",
-            ]
-            if t not in current_banned_em
-        ] or ["web_interactive"]
+            t for t in _emergency_preferred
+            if t in PROJECT_TYPES and t not in current_banned_em
+        ] or ["web_interactive", "generative_art", "shader_art"]
         emergency_user = (
             f"Today is {today}. EMERGENCY BUILD — produce a valid project plan now.\n\n"
             f"{history}{diversity}"
@@ -1439,6 +1462,7 @@ def stage_plan(client: OpenAI, memory: dict,
             "You MUST produce a valid plan. Rules:\n"
             f"- ONLY use one of these confirmed-available types: {', '.join(safe_emergency_types)}.\n"
             "- All files must be .html, .js, .css, or .py — NO .ts, .tsx, .jsx files.\n"
+            "- You MUST include a file named EXACTLY 'index.html' in the files array — not app.html, not showcase.html, not ui.html — exactly 'index.html'.\n"
             "- Include at least 4 files.\n"
             "- The plan must be immediately buildable.\n"
             f"Last rejection reason: {last_err}\n"

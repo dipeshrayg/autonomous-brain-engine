@@ -1,28 +1,29 @@
 """
 roles.py — Multi-provider boardroom with genuine model diversity.
 
-GitHub Models was retired 2026-07-30. All chains now run on Groq + Google only.
+GitHub Models was retired 2026-07-30. All chains run on Groq + Google only.
 
-    CEO              llama-3.3-70b-versatile  (Groq — strategic synthesis)
-    CSO              llama-3.3-70b-versatile  (Groq — scientific novelty)
-    CTO              gemini-2.0-flash         (Google — code + self-improvement)
-    Architect A      llama-4-scout            (Groq — Llama 4, newest generation)
-    Architect B      llama-3.3-70b-versatile  (Groq — Llama 3.3, different generation from A)
-    Judge            gemini-2.0-flash         (Google — independent from Groq candidates)
-    Engineer         gemini-2.0-flash         (Google — large context, good at code)
-    Reviewer A       llama-3.3-70b-versatile  (Groq — open-source perspective)
-    Reviewer B       gemini-2.0-flash-lite    (Google — lighter, fast review)
-    QA Tester        llama-3.3-70b-versatile  (Groq — strict user-pathway sim)
-    QA Fixer         gemini-2.0-flash         (Google — fast repair)
-    Fixer            llama-3.1-8b-instant     (Groq — fast iterative repair)
-    Polisher         gemini-2.0-flash-lite    (Google — lightweight UX polish)
+QUOTA BUCKETS — critical for rate-limit resilience:
+    Groq:   llama-3.3-70b  |  llama-4-scout  |  llama-4-maverick  |  llama-3.1-8b
+    Google: gemini-2.0-flash  (one bucket)
+            gemini-2.0-flash-lite  (separate bucket)
+            gemini-1.5-flash  (separate bucket — key fallback for judge + engineer)
+            gemini-1.5-flash-8b  (separate bucket — cheapest, most quota)
 
-Providers used (all zero-cost):
-    groq   — Groq cloud (GROQ_API_KEY secret, free tier, very fast LPU inference)
-    google — Google AI Studio (GOOGLE_AI_KEY secret, Gemini free tier)
-
-If a provider's API key is missing, that model is silently skipped and the
-chain falls through to the next available model.
+Primary roles:
+    CEO              llama-3.3-70b-versatile  (Groq)
+    CSO              llama-3.3-70b-versatile  (Groq)
+    CTO              gemini-2.0-flash         (Google)
+    Architect A      llama-4-scout            (Groq — Llama 4)
+    Architect B      llama-3.3-70b + gemini-2.0-flash  (diverse)
+    Judge            gemini-1.5-flash         (Google 1.5 — NOT in candidate rounds → fresh quota)
+    Engineer         gemini-1.5-flash         (Google 1.5 — NOT exhausted by architect rounds)
+    Reviewer A       llama-3.3-70b-versatile  (Groq)
+    Reviewer B       gemini-2.0-flash-lite    (Google)
+    QA Tester        llama-3.3-70b-versatile  (Groq)
+    QA Fixer         gemini-2.0-flash         (Google)
+    Fixer            llama-3.1-8b-instant     (Groq — fast)
+    Polisher         gemini-2.0-flash-lite    (Google)
 """
 
 from __future__ import annotations
@@ -53,12 +54,17 @@ PROVIDERS: dict[str, dict[str, str]] = {
 # model_id → provider key
 MODEL_PROVIDER: dict[str, str] = {
     # Groq — Meta Llama family (free tier, high-speed LPU)
-    "llama-3.3-70b-versatile":                    "groq",
-    "llama-3.1-8b-instant":                       "groq",
-    "meta-llama/llama-4-scout-17b-16e-instruct":  "groq",
-    # Google AI Studio — Gemini family (free tier)
+    "llama-3.3-70b-versatile":                        "groq",
+    "llama-3.1-8b-instant":                           "groq",
+    "meta-llama/llama-4-scout-17b-16e-instruct":      "groq",
+    "meta-llama/llama-4-maverick-17b-128e-instruct":  "groq",
+    # Google AI Studio — Gemini 2.0 family (one rate-limit bucket)
     "gemini-2.0-flash":                           "google",
     "gemini-2.0-flash-lite":                      "google",
+    # Google AI Studio — Gemini 1.5 family (SEPARATE bucket from 2.0)
+    # Critical: 1.5-flash is NOT exhausted by architect rounds that use 2.0-flash.
+    "gemini-1.5-flash":                           "google",
+    "gemini-1.5-flash-8b":                        "google",
 }
 
 
@@ -80,91 +86,127 @@ def _get_client(model_id: str) -> OpenAI | None:
 
 # ─────────────────────── Role → model chain ─────────────────────────────
 # Each entry: [primary, fallback1, fallback2, ...]
-# GitHub Models retired 2026-07-30 — all chains use Groq + Google only.
-# Groq: llama-3.3-70b-versatile, llama-4-scout, llama-3.1-8b-instant
-# Google: gemini-2.0-flash, gemini-2.0-flash-lite
-# llama-3.1-8b-instant is the last-resort fallback — different quota bucket
-# from llama-3.3-70b, so it stays available when the larger model is rate-limited.
+#
+# RATE-LIMIT STRATEGY: architect conference burns 4-8 calls on llama-3.3-70b,
+# llama-4-scout, and gemini-2.0-flash. By the time judge + engineer run, all
+# those are rate-limited. The fix: judge and engineer use gemini-1.5-flash
+# FIRST — completely separate quota bucket from gemini-2.0-flash, untouched
+# by the candidate rounds. gemini-1.5-flash-8b is the cheapest fallback with
+# the most remaining quota at any point in the build.
+#
+# Quota buckets (distinct per-minute limits):
+#   Groq:   llama-3.3-70b | llama-4-scout | llama-4-maverick | llama-3.1-8b
+#   Google: gemini-2.0-flash | gemini-2.0-flash-lite | gemini-1.5-flash | gemini-1.5-flash-8b
 
 ROLE_CHAIN: dict[str, list[str]] = {
     # ── Executive layer ──────────────────────────────────────────────────
     "ceo": [
         "llama-3.3-70b-versatile",      # Groq — strategic synthesis
-        "gemini-2.0-flash",             # Google fallback
-        "llama-3.1-8b-instant",         # Groq fast fallback (fresh quota when 70b rate-limited)
+        "gemini-1.5-flash",             # Google 1.5 — separate quota
+        "gemini-2.0-flash",             # Google 2.0 fallback
+        "llama-3.1-8b-instant",         # Groq fast fallback
     ],
     "cso": [
         "llama-3.3-70b-versatile",      # Groq — scientific novelty
-        "gemini-2.0-flash",             # Google fallback
+        "gemini-1.5-flash",             # Google 1.5 — separate quota
+        "gemini-2.0-flash",             # Google 2.0 fallback
         "llama-3.1-8b-instant",
     ],
     "cto": [
-        "gemini-2.0-flash",             # Google — code + self-improvement
+        "gemini-2.0-flash",             # Google 2.0 — code + self-improvement
+        "gemini-1.5-flash",             # Google 1.5 fallback
         "llama-3.3-70b-versatile",      # Groq fallback
-        "gemini-2.0-flash-lite",        # Google lighter fallback
+        "gemini-2.0-flash-lite",
     ],
     "vp_eng": [
-        "llama-3.3-70b-versatile",      # Groq — pragmatic engineering
-        "llama-3.1-8b-instant",         # Groq fast fallback
+        "llama-3.3-70b-versatile",
+        "gemini-1.5-flash",
         "gemini-2.0-flash",
+        "llama-3.1-8b-instant",
     ],
 
     # ── Planning layer ────────────────────────────────────────────────────
+    # Candidate A: Llama 4 Scout primary, then 1.5-flash (separate bucket),
+    # then 3.3-70b, then 2.0-flash as late fallback.
     "architect_candidate_a": [
-        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq — Llama 4, newest generation
-        "llama-3.3-70b-versatile",                    # Groq Llama 3.3 fallback
-        "gemini-2.0-flash",                           # Google fallback
-        "gemini-2.0-flash-lite",                      # Google lite — last resort (separate quota)
+        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq — Llama 4 Scout
+        "gemini-1.5-flash",                            # Google 1.5 — separate bucket
+        "llama-3.3-70b-versatile",                     # Groq — Llama 3.3
+        "gemini-2.0-flash",                            # Google 2.0 fallback
+        "gemini-1.5-flash-8b",                         # Google 1.5 tiny — last resort
     ],
+    # Candidate B: diverse from A — starts with 3.3-70b + 2.0-flash so
+    # the two candidates use DIFFERENT primary models (spread quota load).
     "architect_candidate_b": [
-        "llama-3.3-70b-versatile",      # Groq — Llama 3.3 (different generation from Llama 4 candidate A)
-        "gemini-2.0-flash",             # Google fallback
-        "gemini-2.0-flash-lite",        # Google lite — separate quota from flash
+        "llama-3.3-70b-versatile",                        # Groq — different primary than A
+        "gemini-2.0-flash",                               # Google 2.0
+        "meta-llama/llama-4-maverick-17b-128e-instruct",  # Groq — different Llama 4 variant
+        "gemini-1.5-flash-8b",                            # Google 1.5 tiny — fresh quota
+        "gemini-1.5-flash",                               # Google 1.5 full
+        "meta-llama/llama-4-scout-17b-16e-instruct",      # Groq Scout last resort
     ],
+    # Judge: uses gemini-1.5-flash FIRST — this model is NOT used in
+    # candidate rounds (which use gemini-2.0-flash), so it has full quota.
+    # 1.5-flash-8b is the cheapest and has the most remaining headroom.
+    # llama-3.1-8b-instant REMOVED: 413 on large prompts (PLAN_SYSTEM ~5700 tokens)
     "architect_judge": [
-        "gemini-2.0-flash",             # Google — independent from Groq candidates
-        "gemini-2.0-flash-lite",        # Google lite — separate quota; NOT used in candidate rounds
+        "gemini-1.5-flash",             # Google 1.5 — separate bucket, full quota after candidates
+        "gemini-1.5-flash-8b",          # Google 1.5 tiny — most quota remaining
+        "gemini-2.0-flash-lite",        # Google 2.0 lite — different bucket from 2.0-flash
+        "gemini-2.0-flash",             # Google 2.0 — may have partially reset
         "llama-3.3-70b-versatile",      # Groq fallback
-        # llama-3.1-8b-instant removed: 413 on large prompts (PLAN_SYSTEM ~5700 tokens alone)
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
+    # Engineer: gemini-1.5-flash FIRST — 1M context window, NOT used in
+    # architect rounds (which use gemini-2.0-flash). By the time engineer
+    # runs, 1.5-flash quota is completely fresh. 1.5-flash-8b as cheap backup.
+    # llama-3.1-8b-instant kept for 413-safe contexts only (small files).
     "engineer": [
-        "gemini-2.0-flash",                           # Google — large context, strong at code
-        "llama-3.3-70b-versatile",                    # Groq fallback
-        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq Llama 4 fallback
-        "llama-3.1-8b-instant",                       # Groq final fallback
+        "gemini-1.5-flash",                           # Google 1.5 — 1M ctx, NOT in architect rounds
+        "gemini-1.5-flash-8b",                        # Google 1.5 tiny — most quota remaining
+        "gemini-2.0-flash",                           # Google 2.0 — may have reset
+        "llama-3.3-70b-versatile",                    # Groq
+        "meta-llama/llama-4-scout-17b-16e-instruct",  # Groq Llama 4
+        "gemini-2.0-flash-lite",                      # Google 2.0 lite — last resort
     ],
     "reviewer_a": [
         "llama-3.3-70b-versatile",      # Groq — open-source perspective
+        "gemini-1.5-flash",             # Google 1.5 — separate bucket
         "llama-3.1-8b-instant",         # Groq fast fallback
+        "gemini-2.0-flash",
     ],
     "reviewer_b": [
-        "gemini-2.0-flash-lite",        # Google — fast, lightweight review
-        "gemini-2.0-flash",             # Google primary fallback
+        "gemini-2.0-flash-lite",        # Google 2.0 lite — fast review
+        "gemini-1.5-flash-8b",          # Google 1.5 tiny — fresh quota
+        "gemini-2.0-flash",             # Google 2.0 fallback
         "llama-3.3-70b-versatile",      # Groq fallback
     ],
     "fixer": [
         "llama-3.1-8b-instant",         # Groq — fast iterative repair
+        "gemini-1.5-flash-8b",          # Google 1.5 tiny — cheap, fast
         "llama-3.3-70b-versatile",      # Groq stronger fallback
         "gemini-2.0-flash",             # Google fallback
     ],
     "polisher": [
-        "gemini-2.0-flash-lite",        # Google — lightweight UX polish
-        "llama-3.1-8b-instant",         # Groq fast fallback
+        "gemini-2.0-flash-lite",        # Google 2.0 lite — lightweight polish
+        "gemini-1.5-flash-8b",          # Google 1.5 tiny
+        "llama-3.1-8b-instant",         # Groq fast
         "gemini-2.0-flash",
     ],
 
     # ── QA layer ──────────────────────────────────────────────────────────
     "qa_tester": [
         "llama-3.3-70b-versatile",      # Groq — strict user-pathway simulation
-        "gemini-2.0-flash",             # Google fallback
-        "llama-3.1-8b-instant",         # Groq fast fallback
+        "gemini-1.5-flash",             # Google 1.5 — separate quota
+        "gemini-2.0-flash",             # Google 2.0 fallback
+        "llama-3.1-8b-instant",
     ],
     "qa_fixer": [
-        "gemini-2.0-flash",             # Google — fast, capable repair
+        "gemini-2.0-flash",             # Google 2.0 — fast repair
+        "gemini-1.5-flash",             # Google 1.5 — fresh quota
         "llama-3.3-70b-versatile",      # Groq fallback
-        "gemini-2.0-flash-lite",        # Google lighter fallback
+        "gemini-2.0-flash-lite",
     ],
 }
 
@@ -271,12 +313,11 @@ def call_with_fallback(
                                 role, model_id, attempt, msg[:120])
                     break  # permanent / size errors don't recover with sleep
                 if rate_limited:
-                    # Sleep briefly before trying the next model — gives the rate-limit
-                    # window time to partially reset so the fallback model isn't also
-                    # immediately rejected (all models share minute-level quota windows).
-                    log.warning("[role=%s] model=%s rate-limited; sleeping 8s then falling back",
+                    # Sleep 25s before next model — Groq/Google rate limits are per-minute
+                    # rolling windows. 25s gives ~40% window reset for the next model.
+                    log.warning("[role=%s] model=%s rate-limited; sleeping 25s then falling back",
                                 role, model_id)
-                    time.sleep(8)
+                    time.sleep(25)
                     break
                 if attempt < transient_attempts:
                     backoff = 2 ** attempt

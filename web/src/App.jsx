@@ -40,7 +40,7 @@ export default function App() {
   return (
     <div className="page">
       <Header />
-      <StatBar stats={stats} projectCount={projects.length} />
+      <StatBar stats={stats} projectCount={projects.length} projects={projects} />
       <AuthBar session={session} />
       <section>
         <h2 className="section-title">Shipped projects <span className="count">{projects.length}</span></h2>
@@ -68,13 +68,17 @@ function Header() {
   )
 }
 
-function StatBar({ stats, projectCount }) {
+function StatBar({ stats, projectCount, projects }) {
+  const projectsWithTokens = projects.filter(p => p.tokens_used?.total)
+  const avgTokens = projectsWithTokens.length > 0
+    ? Math.round(projectsWithTokens.reduce((s, p) => s + p.tokens_used.total, 0) / projectsWithTokens.length)
+    : null
   const items = [
     ['Projects shipped', stats?.total_projects ?? projectCount],
     ['Project types', stats?.project_types ?? '—'],
     ['Peak complexity', stats?.peak_complexity ?? '—'],
     ['Concepts explored', stats?.concepts_explored ?? '—'],
-    ['Domains explored', stats?.domains_explored ?? '—'],
+    ['Avg tokens/project', avgTokens != null ? avgTokens.toLocaleString() : '—'],
   ]
   return (
     <div className="statbar">
@@ -154,6 +158,7 @@ function ProjectGrid({ projects }) {
           <div className="card-meta">
             {p.qa_verdict && <span className={verdictClass(p.qa_verdict)}>{p.qa_verdict.replace('_', ' ')}</span>}
             <span className="muted">{fmtDate(p.completed_at)}</span>
+            {p.tokens_used?.total && <span className="muted">{(p.tokens_used.total / 1000).toFixed(1)}k tok</span>}
           </div>
           <div className="card-links">
             {p.pages_url && <a className="btn sm" href={p.pages_url} target="_blank" rel="noreferrer">Live ↗</a>}

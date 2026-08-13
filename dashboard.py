@@ -138,6 +138,7 @@ I, Dipesh Ray, believe this is just the smallest concept of what AI is truly cap
   <div><div class="stat-num" id="count">—</div><div class="stat-label">Projects</div></div>
   <div><div class="stat-num" id="avg">—</div><div class="stat-label">Avg complexity</div></div>
   <div><div class="stat-num" id="peak">—</div><div class="stat-label">Peak ★</div></div>
+  <div><div class="stat-num" id="avgtok">—</div><div class="stat-label">Avg tokens/project</div></div>
   <div><div class="stat-num" id="latest">—</div><div class="stat-label">Latest</div></div>
 </div>
 
@@ -154,6 +155,11 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     document.getElementById('avg').textContent = avg.toFixed(1);
     document.getElementById('peak').textContent = Math.max(...projects.map(p => p.complexity_score || 0));
     document.getElementById('latest').textContent = projects[0].date;
+    const tokProjects = projects.filter(p => p.tokens_used?.total);
+    if (tokProjects.length) {
+      const avgTok = Math.round(tokProjects.reduce((s,p)=>s+p.tokens_used.total,0) / tokProjects.length);
+      document.getElementById('avgtok').textContent = avgTok.toLocaleString();
+    }
   }
   // CEO ribbon
   const ceoReviews = (m.ceo_reviews || []);
@@ -226,7 +232,7 @@ fetch('memory_log.json?_=' + Date.now()).then(r => r.json()).then(m => {
     }
     c.innerHTML = `
       <h3><a href="${p.repo_url}" target="_blank" rel="noopener">${p.name}</a></h3>
-      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span></div>
+      <div class="meta">${p.date} · <span class="badge">${p.language}</span> <span class="star">★ ${p.complexity_score}</span>${p.tokens_used?.total ? ` · <span class="badge">${(p.tokens_used.total/1000).toFixed(1)}k tok</span>` : ''}</div>
       <div class="meta">${typeBadge}${patternBadge}${domainBadge}${modelBadge}${qaBadge}${secBadge}</div>
       <div class="concepts">${concepts}</div>
       <div class="actions">

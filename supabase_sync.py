@@ -34,7 +34,7 @@ _PROJECT_COLS = {
     "visual_identity", "safety_notes", "repo_url", "pages_url", "tech_stack",
     "concepts_demonstrated", "novel_concepts", "file_count", "loc",
     "quality_cycles_used", "qa_verdict", "qa_review", "final_verify_metrics",
-    "model_attribution", "ceo_directives_followed",
+    "model_attribution", "ceo_directives_followed", "tokens_used",
 }
 _FAIL_COLS = {
     "plan_name", "project_type", "plan_language", "plan_complexity", "plan_pattern",

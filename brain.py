@@ -165,7 +165,8 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
                   repo_url: str, pages_url: str, cycles: int,
                   verify_result: dict, model_per_file: dict[str, str],
                   ceo_directives: list[str] | None,
-                  qa_report: dict | None = None) -> None:
+                  qa_report: dict | None = None,
+                  token_usage: dict | None = None) -> None:
     now = datetime.now(timezone.utc)
     record = {
         "date": now.strftime("%Y-%m-%d"),
@@ -199,6 +200,7 @@ def append_record(memory: dict[str, Any], plan: dict, files: dict[str, str],
             "implement_per_file": model_per_file,
         },
         "ceo_directives_followed": list(ceo_directives or []),
+        "tokens_used": token_usage,
         "qa_review": (
             {
                 "verdict": qa_report.get("verdict"),
@@ -555,6 +557,8 @@ def main() -> int:
             for d in cso_directives:
                 log.info("  CSO: %s", d)
 
+        pipeline.reset_token_counter()
+
         # 1. PLAN — Architect Conference
         log.info("════════ STAGE 1: ARCHITECT CONFERENCE ════════")
         plan = pipeline.stage_plan(client, memory,
@@ -784,7 +788,8 @@ def main() -> int:
         log.info("════════ STAGE 8: MEMORY + DASHBOARD ════════")
         append_record(memory, plan, files, repo_url, pages_url, cycles_used,
                       final_verify, impl_meta, ceo_directives,
-                      qa_report=qa_findings_to_record)
+                      qa_report=qa_findings_to_record,
+                      token_usage=pipeline.get_token_usage())
         dashboard.render_dashboard(memory, owner=owner)
 
         log.info("All stages complete.")
