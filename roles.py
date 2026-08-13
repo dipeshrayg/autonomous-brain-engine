@@ -55,7 +55,8 @@ PROVIDERS: dict[str, dict[str, str]] = {
         "env_var":  "GROQ_API_KEY",
     },
     "google": {
-        "base_url": "https://generativelanguage.googleapis.com/v1beta/openai/",
+        # v1 (stable) instead of v1beta — v1beta routed to deprecated "v1main" backend
+        "base_url": "https://generativelanguage.googleapis.com/v1/openai/",
         "env_var":  "GOOGLE_AI_KEY",
     },
     "cerebras": {
@@ -68,32 +69,40 @@ PROVIDERS: dict[str, dict[str, str]] = {
         "base_url": "https://openrouter.ai/api/v1",
         "env_var":  "OPENROUTER_API_KEY",
     },
+    "sambanova": {
+        # SambaNova Cloud — RDU inference, generous free tier, 405B available
+        "base_url": "https://api.sambanova.ai/v1",
+        "env_var":  "SAMBANOVA_API_KEY",
+    },
 }
 
 # model_id → provider key
 MODEL_PROVIDER: dict[str, str] = {
-    # ── Groq (LPU — fast; free tier has per-minute + per-day limits) ──────
+    # ── Groq (LPU — fast; each model has its own 100k TPD free limit) ─────
     "llama-3.3-70b-versatile":  "groq",   # 128k ctx, 100k TPD free
-    "llama-3.1-8b-instant":     "groq",   # fast small model
+    "llama-3.1-70b-versatile":  "groq",   # SEPARATE 100k TPD quota from 3.3-70b!
+    "llama-3.1-8b-instant":     "groq",   # fast small model (413 on large prompts)
 
-    # ── Google AI Studio — versioned stable IDs (alias IDs like "gemini-2.5-flash"
-    # are deprecated for new API keys; numbered/preview IDs still work) ────
-    "gemini-2.5-flash-preview-05-20":   "google",  # Gemini 2.5 Flash preview (stable-ish)
-    "gemini-2.5-flash-lite-preview-06-17": "google", # Gemini 2.5 Flash Lite — lighter/faster
-    "gemini-2.0-flash-001":             "google",  # Gemini 2.0 Flash stable numbered
-    "gemini-1.5-flash-002":             "google",  # Gemini 1.5 Flash stable numbered
+    # ── Google AI Studio (v1 stable endpoint) ─────────────────────────────
+    # Using v1 base URL. Model alias IDs that work on free tier:
+    "gemini-2.5-flash":         "google", # Try alias via v1 endpoint
+    "gemini-2.0-flash":         "google", # Try alias via v1 endpoint
 
-    # ── Cerebras — wafer-scale inference, extremely high throughput ────────
-    "llama-3.3-70b":            "cerebras",  # Llama 3.3 70B — 60k out tokens/min free
-    "llama3.1-8b":              "cerebras",  # Llama 3.1 8B — fast iterative repair
+    # ── Cerebras — 60k output tokens/min FREE — REQUIRES CEREBRAS_API_KEY ─
+    "llama-3.3-70b":            "cerebras",  # Llama 3.3 70B
+    "llama3.1-8b":              "cerebras",  # Llama 3.1 8B fast
 
-    # ── OpenRouter — free-tier routing to multiple providers ───────────────
-    "nousresearch/hermes-3-llama-3.1-70b:free": "openrouter",  # Hermes 3 — great JSON
-    "meta-llama/llama-3.3-70b-instruct:free":   "openrouter",  # diverse perspective
+    # ── OpenRouter — free models — REQUIRES OPENROUTER_API_KEY ────────────
+    "nousresearch/hermes-3-llama-3.1-70b:free": "openrouter",  # Hermes 3 — best JSON
+    "meta-llama/llama-3.3-70b-instruct:free":   "openrouter",  # diverse fallback
+
+    # ── SambaNova — RDU inference, generous free limits — REQUIRES SAMBANOVA_API_KEY
+    "Meta-Llama-3.3-70B-Instruct":     "sambanova",  # Llama 3.3 70B on RDU
+    "Meta-Llama-3.1-8B-Instruct":      "sambanova",  # Llama 3.1 8B fast
 }
 
 # Providers that support json_object response_format (OpenAI-compat, not Google)
-_JSON_MODE_PROVIDERS = {"groq", "cerebras", "openrouter"}
+_JSON_MODE_PROVIDERS = {"groq", "cerebras", "openrouter", "sambanova"}
 
 
 def _get_client(model_id: str) -> OpenAI | None:
@@ -129,106 +138,115 @@ def _get_client(model_id: str) -> OpenAI | None:
 ROLE_CHAIN: dict[str, list[str]] = {
     # ── Executive layer ──────────────────────────────────────────────────
     "ceo": [
-        "llama-3.3-70b-versatile",              # Groq — strategic synthesis
-        "llama-3.3-70b",                        # Cerebras — fast fallback
-        "gemini-2.5-flash-preview-05-20",       # Google — versioned stable
-        "llama-3.1-8b-instant",                 # Groq small
+        "llama-3.3-70b",                             # Cerebras — fast, 60k TPM free
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova — RDU fast
+        "llama-3.3-70b-versatile",                   # Groq fallback
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
+        "gemini-2.5-flash",                          # Google v1 (if key has access)
     ],
     "cso": [
-        "gemini-2.5-flash-preview-05-20",       # Google — scientific novelty
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova — scientific novelty
         "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
-        "llama-3.3-70b-versatile",              # Groq fallback
-        "llama-3.1-8b-instant",
+        "llama-3.3-70b",                             # Cerebras
+        "llama-3.3-70b-versatile",                   # Groq fallback
+        "gemini-2.5-flash",                          # Google v1
     ],
     "cto": [
-        "gemini-2.5-flash-preview-05-20",       # Google — code + self-improvement
-        "llama-3.3-70b",                        # Cerebras
-        "llama-3.3-70b-versatile",              # Groq fallback
-        "gemini-2.0-flash-001",                 # Google older stable
+        "llama-3.3-70b",                             # Cerebras
+        "gemini-2.5-flash",                          # Google v1 — code + self-improvement
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.3-70b-versatile",                   # Groq fallback
     ],
     "vp_eng": [
-        "llama-3.3-70b-versatile",
-        "llama-3.3-70b",                        # Cerebras
-        "gemini-2.5-flash-preview-05-20",       # Google
+        "llama-3.3-70b",                             # Cerebras
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.3-70b-versatile",                   # Groq
         "llama-3.1-8b-instant",
     ],
 
     # ── Planning layer ────────────────────────────────────────────────────
-    # Candidate A: Cerebras primary — completely fresh quota, very fast.
-    # Avoids Google-flash entirely so judge can use it with full quota.
+    # Candidate A: Cerebras primary — completely fresh quota.
+    # Avoids Google so judge's gemini quota stays untouched.
     "architect_candidate_a": [
-        "llama-3.3-70b",                             # Cerebras — primary, 60k TPM free
-        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes — JSON expert
-        "gemini-2.5-flash-lite-preview-06-17",       # Google Lite — lighter, more quota
-        "llama-3.3-70b-versatile",                   # Groq fallback
-        "gemini-2.0-flash-001",                      # Google older stable fallback
+        "llama-3.3-70b",                             # Cerebras — 60k TPM free
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes — excellent JSON
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova — diverse provider
+        "llama-3.3-70b-versatile",                   # Groq — 100k TPD
+        "llama-3.1-70b-versatile",                   # Groq — SEPARATE 100k TPD bucket
     ],
-    # Candidate B: Hermes primary — diverse perspective from A, excellent JSON.
+    # Candidate B: Hermes + SambaNova primary — diverse from A.
     "architect_candidate_b": [
         "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes — primary
-        "meta-llama/llama-3.3-70b-instruct:free",    # OpenRouter diverse fallback
-        "gemini-2.0-flash-001",                      # Google stable — different from A's lite
+        "meta-llama/llama-3.3-70b-instruct:free",    # OpenRouter alternative
         "llama-3.3-70b",                             # Cerebras fallback
-        "llama-3.3-70b-versatile",                   # Groq fallback
-        "llama-3.1-8b-instant",                      # Groq small last resort
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.1-70b-versatile",                   # Groq 3.1 — separate TPD from 3.3
+        "llama-3.3-70b-versatile",                   # Groq 3.3 final fallback
     ],
-    # Judge: gemini-2.5-flash-preview FIRST — NOT primary in candidate rounds.
-    # Candidates use Cerebras + Hermes + Google Lite/2.0 → judge's 2.5 quota fresh.
+    # Judge: Google FIRST (untouched by candidate rounds which avoid Google).
+    # Falls back through the full stack.
     "architect_judge": [
-        "gemini-2.5-flash-preview-05-20",            # Google 2.5 — fresh quota
-        "gemini-1.5-flash-002",                      # Google 1.5 stable — separate bucket
+        "gemini-2.5-flash",                          # Google v1 — fresh quota
+        "gemini-2.0-flash",                          # Google v1 fallback
         "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
-        "llama-3.3-70b",                             # Cerebras — fast
+        "llama-3.3-70b",                             # Cerebras
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
         "llama-3.3-70b-versatile",                   # Groq final fallback
     ],
 
     # ── Implementation layer ──────────────────────────────────────────────
-    # Engineer: Google 2.5 flash FIRST — 1M context, NOT primary in architect rounds.
+    # Engineer: Google FIRST (1M context, fresh quota after candidate rounds).
     "engineer": [
-        "gemini-2.5-flash-preview-05-20",            # Google — 1M ctx, fresh quota
-        "gemini-1.5-flash-002",                      # Google 1.5 — stable, separate bucket
+        "gemini-2.5-flash",                          # Google v1 — 1M ctx, fresh
+        "gemini-2.0-flash",                          # Google v1 fallback
         "llama-3.3-70b",                             # Cerebras — fast code gen
         "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
         "llama-3.3-70b-versatile",                   # Groq
-        "llama-3.1-8b-instant",                      # Groq small — only tiny file counts
+        "llama-3.1-8b-instant",                      # Groq small — only tiny files
     ],
     "reviewer_a": [
-        "llama-3.3-70b-versatile",              # Groq — open-source perspective
-        "llama-3.3-70b",                        # Cerebras fallback
-        "gemini-2.5-flash-preview-05-20",       # Google
+        "llama-3.3-70b",                             # Cerebras
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.3-70b-versatile",                   # Groq
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter
         "llama-3.1-8b-instant",
     ],
     "reviewer_b": [
-        "gemini-2.5-flash-preview-05-20",       # Google — fast review
+        "gemini-2.5-flash",                          # Google v1
         "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter Hermes
-        "llama-3.3-70b",                        # Cerebras
-        "llama-3.3-70b-versatile",              # Groq fallback
+        "llama-3.3-70b",                             # Cerebras
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.3-70b-versatile",                   # Groq fallback
     ],
     "fixer": [
-        "llama3.1-8b",                          # Cerebras — very fast iterative repair
-        "llama-3.1-8b-instant",                 # Groq small
-        "llama-3.3-70b",                        # Cerebras stronger fallback
-        "gemini-2.5-flash-lite-preview-06-17",  # Google Lite — fast
+        "llama3.1-8b",                               # Cerebras — ultra fast repair
+        "Meta-Llama-3.1-8B-Instruct",                # SambaNova small fast
+        "llama-3.1-8b-instant",                      # Groq small
+        "llama-3.3-70b",                             # Cerebras stronger
+        "llama-3.3-70b-versatile",                   # Groq
     ],
     "polisher": [
-        "llama3.1-8b",                          # Cerebras fast
-        "llama-3.1-8b-instant",                 # Groq fast
-        "gemini-2.5-flash-lite-preview-06-17",  # Google Lite
-        "llama-3.3-70b-versatile",              # Groq fallback
+        "llama3.1-8b",                               # Cerebras fast
+        "Meta-Llama-3.1-8B-Instruct",                # SambaNova small
+        "llama-3.1-8b-instant",                      # Groq fast
+        "llama-3.3-70b-versatile",                   # Groq fallback
     ],
 
     # ── QA layer ──────────────────────────────────────────────────────────
     "qa_tester": [
-        "llama-3.3-70b-versatile",              # Groq — strict user-pathway simulation
-        "llama-3.3-70b",                        # Cerebras fast fallback
-        "gemini-2.5-flash-preview-05-20",       # Google fallback
+        "llama-3.3-70b",                             # Cerebras
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.3-70b-versatile",                   # Groq
+        "nousresearch/hermes-3-llama-3.1-70b:free",  # OpenRouter
         "llama-3.1-8b-instant",
     ],
     "qa_fixer": [
-        "gemini-2.5-flash-preview-05-20",       # Google — fast repair
-        "llama-3.3-70b",                        # Cerebras
-        "llama-3.3-70b-versatile",              # Groq fallback
-        "gemini-2.0-flash-001",                 # Google older stable
+        "gemini-2.5-flash",                          # Google v1
+        "llama-3.3-70b",                             # Cerebras
+        "Meta-Llama-3.3-70B-Instruct",               # SambaNova
+        "llama-3.3-70b-versatile",                   # Groq fallback
+        "gemini-2.0-flash",                          # Google v1 older
     ],
 }
 
