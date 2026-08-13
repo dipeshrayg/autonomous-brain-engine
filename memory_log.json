@@ -37367,6 +37367,14 @@
       "plan_domain": "Music and Computer Science",
       "plan_files_count": 4,
       "project_type": "creative_tool"
+    },
+    {
+      "attempted_at": "2026-08-13T15:44:36Z",
+      "attempted_at_unix": 1786635876,
+      "date": "2026-08-13",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile'] failed. Last ",
+      "project_type": "devtool"
     }
   ],
   "cso_reviews": [
