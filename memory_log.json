@@ -37442,6 +37442,20 @@
       "plan_domain": "Environmental Sustainability",
       "plan_files_count": 3,
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-14T04:17:44Z",
+      "attempted_at_unix": 1786681064,
+      "date": "2026-08-14",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'llama-3.3-70b', 'nousresearch/hermes-3-llama-3.1-70b:free', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': ",
+      "plan_name": "eco-impact-tracker-portal",
+      "plan_language": "HTML/CSS/JavaScript",
+      "plan_complexity": 2200,
+      "plan_pattern": "saas-landing-page",
+      "plan_domain": "Environmental Sustainability",
+      "plan_files_count": 3,
+      "project_type": "saas_landing"
     }
   ],
   "cso_reviews": [
