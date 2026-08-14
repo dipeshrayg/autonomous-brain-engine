@@ -37534,6 +37534,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile'] failed. Last ",
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-14T12:44:37Z",
+      "attempted_at_unix": 1786711477,
+      "date": "2026-08-14",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: visual_theme='luxury' was used for the previous visual project. Two consecutive visual projects must use different themes. Pick a different theme from: luxury, futuristic, cinematic, warm-amber, neon-cyber, minimal-g",
+      "project_type": "saas_landing"
     }
   ],
   "cso_reviews": [
