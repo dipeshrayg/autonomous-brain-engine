@@ -37661,6 +37661,14 @@
       "plan_domain": "Astronomy",
       "plan_files_count": 5,
       "project_type": "data_viz"
+    },
+    {
+      "attempted_at": "2026-08-15T04:57:07Z",
+      "attempted_at_unix": 1786769827,
+      "date": "2026-08-15",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile'] failed. Last ",
+      "project_type": "edu_platform"
     }
   ],
   "cso_reviews": [
