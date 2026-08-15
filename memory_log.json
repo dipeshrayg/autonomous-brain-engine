@@ -37729,6 +37729,20 @@
       "plan_domain": "Computer Science and Cryptography",
       "plan_files_count": 4,
       "project_type": "edu_platform"
+    },
+    {
+      "attempted_at": "2026-08-15T13:04:08Z",
+      "attempted_at_unix": 1786799048,
+      "date": "2026-08-15",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'llama-3.3-70b', 'nousresearch/hermes-3-llama-3.1-70b:free', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': ",
+      "plan_name": "mathemagics-odyssey",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "interactive-education-platform",
+      "plan_domain": "Physics and Mathematics Education",
+      "plan_files_count": 3,
+      "project_type": "edu_platform"
     }
   ],
   "cso_reviews": [
