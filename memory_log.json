@@ -37647,6 +37647,20 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile'] failed. Last ",
       "project_type": "edu_platform"
+    },
+    {
+      "attempted_at": "2026-08-15T04:04:04Z",
+      "attempted_at_unix": 1786766644,
+      "date": "2026-08-15",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'llama-3.3-70b', 'nousresearch/hermes-3-llama-3.1-70b:free', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': ",
+      "plan_name": "stellar-data-viz",
+      "plan_language": "python",
+      "plan_complexity": 2802,
+      "plan_pattern": "stellar-data-visualization",
+      "plan_domain": "Astronomy",
+      "plan_files_count": 5,
+      "project_type": "data_viz"
     }
   ],
   "cso_reviews": [
