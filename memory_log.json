@@ -37916,6 +37916,20 @@
       "plan_domain": "Astrology and Computer Science",
       "plan_files_count": 3,
       "project_type": "saas_landing"
+    },
+    {
+      "attempted_at": "2026-08-16T13:05:44Z",
+      "attempted_at_unix": 1786885544,
+      "date": "2026-08-16",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'llama-3.3-70b', 'nousresearch/hermes-3-llama-3.1-70b:free', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': ",
+      "plan_name": "crypto-secure-data-lake",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2700,
+      "plan_pattern": "interactive-database-visualizer",
+      "plan_domain": "Database Systems and Cryptography",
+      "plan_files_count": 3,
+      "project_type": "database_showcase"
     }
   ],
   "cso_reviews": [
