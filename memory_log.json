@@ -37991,6 +37991,20 @@
       "plan_domain": "Biology",
       "plan_files_count": 4,
       "project_type": "research_showcase"
+    },
+    {
+      "attempted_at": "2026-08-17T02:15:21Z",
+      "attempted_at_unix": 1786932921,
+      "date": "2026-08-17",
+      "refusal_stage": "llm_failure",
+      "refusal_reason": "All models failed: role=engineer: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'llama-3.3-70b', 'nousresearch/hermes-3-llama-3.1-70b:free', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile', 'llama-3.1-8b-instant'] failed. Last error: Error code: 413 - {'error': {'message': ",
+      "plan_name": "biological-systems-explorer",
+      "plan_language": "JavaScript",
+      "plan_complexity": 2600,
+      "plan_pattern": "biological-systems-simulation",
+      "plan_domain": "Biology",
+      "plan_files_count": 4,
+      "project_type": "research_showcase"
     }
   ],
   "cso_reviews": [
