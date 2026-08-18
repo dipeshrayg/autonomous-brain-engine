@@ -38177,6 +38177,14 @@
       "refusal_stage": "architect_conference",
       "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile'] failed. Last ",
       "project_type": "data_viz"
+    },
+    {
+      "attempted_at": "2026-08-18T05:32:22Z",
+      "attempted_at_unix": 1787031142,
+      "date": "2026-08-18",
+      "refusal_stage": "architect_conference",
+      "refusal_reason": "Conference failed: Architect conference produced 0 valid candidates after emergency round. Last error: role=architect_judge: every model in chain ['gemini-2.5-flash', 'gemini-2.0-flash', 'nousresearch/hermes-3-llama-3.1-70b:free', 'llama-3.3-70b', 'Meta-Llama-3.3-70B-Instruct', 'llama-3.3-70b-versatile'] failed. Last ",
+      "project_type": "data_viz"
     }
   ],
   "cso_reviews": [
